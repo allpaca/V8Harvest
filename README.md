@@ -2,7 +2,7 @@
 The Harvest of V8 regress.  
   
 
-### **crbug:909614**  
+## **crbug:909614**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition_turbo:ia32,ignition_turbo](https://crbug.com/909614)**  
 **[Commit: [bigint] Make kMaxLength platform-independent.](https://chromium.googlesource.com/v8/v8/+/9d51166)**  
@@ -25,8 +25,9 @@ assertThrows(() => { var dummy = 2n ** just_above; });
 [test/mjsunit/harmony/bigint/regressions.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/harmony/bigint/regressions.js?cl=9d51166)  
 [test/mjsunit/regress/regress-crbug-909614.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-909614.js?cl=9d51166)  
   
+---   
 
-### **crbug:908309**  
+## **crbug:908309**  
    
 **[Issue: No Permission](https://crbug.com/908309)**  
 **[Commit: [turbofan] Fix types of Promise#catch() and Promise#finally().](https://chromium.googlesource.com/v8/v8/+/1bfb024)**  
@@ -64,8 +65,9 @@ const p = Object.defineProperty(Promise.resolve(), 'then', {
 [src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=1bfb024)  
 [test/mjsunit/regress/regress-crbug-908309.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-908309.js?cl=1bfb024)  
   
+---   
 
-### **crbug:906870**  
+## **crbug:906870**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/906870)**  
 **[Commit: [turbofan] Properly turn `Number.min(-0,+0)` into `-0`.](https://chromium.googlesource.com/v8/v8/+/154cb3f)**  
@@ -125,8 +127,9 @@ Regress: [mjsunit/regress/regress-crbug-906870.js](https://chromium.googlesource
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=154cb3f)  
 [test/mjsunit/regress/regress-crbug-906870.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-906870.js?cl=154cb3f)  
   
+---   
 
-### **crbug:906220**  
+## **crbug:906220**  
    
 **[Issue: No Permission](https://crbug.com/906220)**  
 **[Commit: [turbofan] Fix negative offset handling in escape analysis.](https://chromium.googlesource.com/v8/v8/+/2bc9d01)**  
@@ -149,8 +152,9 @@ assertEquals(undefined, foo());
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=2bc9d01)  
 [test/mjsunit/regress/regress-crbug-906220.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-906220.js?cl=2bc9d01)  
   
+---   
 
-### **crbug:906043**  
+## **crbug:906043**  
    
 **[Issue: No Permission](https://crbug.com/906043)**  
 **[Commit: [runtime] Reduce spread/apply call max arguments](https://chromium.googlesource.com/v8/v8/+/4e3a17d)**  
@@ -209,8 +213,9 @@ for (let i = 8; i < 32; i++) {
 [test/webkit/fast/js/function-apply-expected.txt](https://cs.chromium.org/chromium/src/v8/test/webkit/fast/js/function-apply-expected.txt?cl=4e3a17d)  
 [test/webkit/fast/js/function-apply.js](https://cs.chromium.org/chromium/src/v8/test/webkit/fast/js/function-apply.js?cl=4e3a17d)  
   
+---   
 
-### **crbug:905457**  
+## **crbug:905457**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/905457)**  
 **[Commit: [turbofan] Preserve NaN properly for NumberMin and NumberMax.](https://chromium.googlesource.com/v8/v8/+/a2f7867)**  
@@ -270,8 +275,9 @@ Regress: [mjsunit/regress/regress-crbug-905457.js](https://chromium.googlesource
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=a2f7867)  
 [test/mjsunit/regress/regress-crbug-905457.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-905457.js?cl=a2f7867)  
   
+---   
 
-### **crbug:903043**  
+## **crbug:903043**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/903043)**  
 **[Commit: [turbofan] Fix -0 check for subnormals.](https://chromium.googlesource.com/v8/v8/+/56f6a76)**  
@@ -328,8 +334,9 @@ Regress: [mjsunit/regress/regress-crbug-903043.js](https://chromium.googlesource
 [src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=56f6a76)  
 [test/mjsunit/regress/regress-crbug-903043.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-903043.js?cl=56f6a76)  
   
+---   
 
-### **crbug:902672**  
+## **crbug:902672**  
    
 **[Issue: No Permission](https://crbug.com/902672)**  
 **[Commit: [builtin] Array.p.join throws on invalid Array lengths.](https://chromium.googlesource.com/v8/v8/+/0dd0af7)**  
@@ -352,8 +359,9 @@ assertThrows(() => Array.prototype.join.call(a,b), TypeError);
 [src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=0dd0af7)  
 [test/mjsunit/regress/regress-crbug-902672.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-902672.js?cl=0dd0af7)  
   
+---   
 
-### **crbug:902610**  
+## **crbug:902610**  
    
 **[Issue: No Permission](https://crbug.com/902610)**  
 **[Commit: [parser] Fix off-by-one in parameter count check](https://chromium.googlesource.com/v8/v8/+/36e1e46)**  
@@ -378,8 +386,9 @@ assertThrows(() => {
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=36e1e46)  
 [test/mjsunit/regress/regress-crbug-902610.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-902610.js?cl=36e1e46)  
   
+---   
 
-### **crbug:902395**  
+## **crbug:902395**  
    
 **[Issue: No Permission](https://crbug.com/902395)**  
 **[Commit: [ignition] More accurate dead statement elision](https://chromium.googlesource.com/v8/v8/+/7412593)**  
@@ -430,8 +439,9 @@ opt();
 [src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=7412593)  
 [test/mjsunit/regress/regress-crbug-902395.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-902395.js?cl=7412593)  
   
+---   
 
-### **crbug:900674**  
+## **crbug:900674**  
    
 **[Issue: DCHECK failure in IsNumber() in objects-inl.h](https://crbug.com/900674)**  
 **[Commit: [async-hooks] Fix Promise.resolve optimization with async hooks enabled](https://chromium.googlesource.com/v8/v8/+/607033a)**  
@@ -454,8 +464,9 @@ foo();
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=607033a)  
 [test/mjsunit/regress/regress-crbug-900674.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-900674.js?cl=607033a)  
   
+---   
 
-### **crbug:899535**  
+## **crbug:899535**  
    
 **[Issue: Check failed: !v8::internal::FLAG_enable_slow_asserts || (object->IsFixedDoubleArray())](https://crbug.com/899535)**  
 **[Commit: [elements] fix wrong cast of empty FixedArray in Array.prototype.includes](https://chromium.googlesource.com/v8/v8/+/f942791)**  
@@ -475,8 +486,9 @@ a.includes(4.4, { toString: () => a.length = 0 });
 [test/mjsunit/es7/array-includes.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es7/array-includes.js?cl=f942791)  
 [test/mjsunit/regress/regress-crbug-899535.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-899535.js?cl=f942791)  
   
+---   
 
-### **crbug:899524**  
+## **crbug:899524**  
    
 **[Issue: No Permission](https://crbug.com/899524)**  
 **[Commit: [turbofan] Fix LoadElement with variable index scalar replacement.](https://chromium.googlesource.com/v8/v8/+/104d752)**  
@@ -520,8 +532,9 @@ baz([1], new (class A extends Array {}));
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=104d752)  
 [test/mjsunit/regress/regress-crbug-899524.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-899524.js?cl=104d752)  
   
+---   
 
-### **crbug:899464**  
+## **crbug:899464**  
    
 **[Issue: No Permission](https://crbug.com/899464)**  
 **[Commit: [regexp] Ensure FastFlagGetter returns either 0 or 1](https://chromium.googlesource.com/v8/v8/+/6397149)**  
@@ -541,8 +554,9 @@ Regress: [mjsunit/regress/regress-crbug-899464.js](https://chromium.googlesource
 [src/objects/js-regexp.h](https://cs.chromium.org/chromium/src/v8/src/objects/js-regexp.h?cl=6397149)  
 [test/mjsunit/regress/regress-crbug-899464.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-899464.js?cl=6397149)  
   
+---   
 
-### **crbug:898974**  
+## **crbug:898974**  
    
 **[Issue: CHECK failure: !unit.failed() in module-compiler.cc](https://crbug.com/898974)**  
 **[Commit: [asm.js] Fix storing float32 value into float64 heap view.](https://chromium.googlesource.com/v8/v8/+/545fa6e)**  
@@ -587,8 +601,9 @@ assertTrue(isNaN(view32[4]));
 [src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=545fa6e)  
 [test/mjsunit/regress/regress-crbug-898974.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-898974.js?cl=545fa6e)  
   
+---   
 
-### **crbug:898785**  
+## **crbug:898785**  
    
 **[Issue: No Permission](https://crbug.com/898785)**  
 **[Commit: [builtins] Fix out-of-bounds in Array#lastIndexOf().](https://chromium.googlesource.com/v8/v8/+/b8a9113)**  
@@ -610,8 +625,9 @@ a.lastIndexOf(5, o);
 [src/builtins/array-lastindexof.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-lastindexof.tq?cl=b8a9113)  
 [test/mjsunit/regress/regress-crbug-898785.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-898785.js?cl=b8a9113)  
   
+---   
 
-### **crbug:897514**  
+## **crbug:897514**  
    
 **[Issue: No Permission](https://crbug.com/897514)**  
 **[Commit: [ic] Respect PropertyDetails::KindField when following transitions](https://chromium.googlesource.com/v8/v8/+/6c703ff)**  
@@ -647,8 +663,9 @@ for (let i = 0; i<3; i++) {
 [src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=6c703ff)  
 [test/mjsunit/regress/regress-crbug-897514.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-897514.js?cl=6c703ff)  
   
+---   
 
-### **crbug:897406**  
+## **crbug:897406**  
    
 **[Issue: CHECK failure: generator_object->is_executing() in isolate.cc](https://crbug.com/897406)**  
 **[Commit: [async] Gracefully handle suspended generators.](https://chromium.googlesource.com/v8/v8/+/2a08adb)**  
@@ -673,8 +690,9 @@ async_hooks.createHook({
 [src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=2a08adb)  
 [test/mjsunit/regress/regress-crbug-897406.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-897406.js?cl=2a08adb)  
   
+---   
 
-### **crbug:897404**  
+## **crbug:897404**  
    
 **[Issue: No Permission](https://crbug.com/897404)**  
 **[Commit: [builtins] Fix Array.p.join length overflow and invalid string length handling](https://chromium.googlesource.com/v8/v8/+/ec969ea)**  
@@ -709,8 +727,9 @@ assertThrows(() => a.join(), TestError);
 [test/mjsunit/messages.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/messages.js?cl=ec969ea)  
 [test/mjsunit/regress/regress-crbug-897404.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-897404.js?cl=ec969ea)  
   
+---   
 
-### **crbug:897098**  
+## **crbug:897098**  
    
 **[Issue: DCHECK failure in !is_the_hole(index) in fixed-array-inl.h](https://crbug.com/897098)**  
 **[Commit: [elements] handle OOB-holes in Array.prototype.includes fast-path](https://chromium.googlesource.com/v8/v8/+/5b92f91)**  
@@ -731,8 +750,9 @@ arr.includes(0, start);
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=5b92f91)  
 [test/mjsunit/regress/regress-crbug-897098.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-897098.js?cl=5b92f91)  
   
+---   
 
-### **crbug:896700**  
+## **crbug:896700**  
    
 **[Issue: Ill in v8::internal::CaptureAsyncStackTrace](https://crbug.com/896700)**  
 **[Commit: [async] Gracefully handle exceptions in async_hooks.](https://chromium.googlesource.com/v8/v8/+/e650b9e)**  
@@ -753,8 +773,9 @@ Promise.resolve().then();
 [src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=e650b9e)  
 [test/mjsunit/regress/regress-crbug-896700.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-896700.js?cl=e650b9e)  
   
+---   
 
-### **crbug:896181**  
+## **crbug:896181**  
    
 **[Issue: Ill in v8::internal::JSArray::ArrayJoinConcatToSequentialString](https://crbug.com/896181)**  
 **[Commit: [builtins] Fix Array.p.join handling of an index getter with side effects](https://chromium.googlesource.com/v8/v8/+/7cb6c81)**  
@@ -782,8 +803,9 @@ assertSame('0.1,,0.2', a.join());
 [test/mjsunit/array-join-index-getter-side-effects.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/array-join-index-getter-side-effects.js?cl=7cb6c81)  
 [test/mjsunit/regress/regress-crbug-896181.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-896181.js?cl=7cb6c81)  
   
+---   
 
-### **crbug:895199**  
+## **crbug:895199**  
    
 **[Issue: No Permission](https://crbug.com/895199)**  
 **[Commit: [turbofan] Fix representation selection of CheckFloat64Hole.](https://chromium.googlesource.com/v8/v8/+/63f92a9)**  
@@ -811,8 +833,9 @@ foo()
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=63f92a9)  
 [test/mjsunit/regress/regress-crbug-895199.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-895199.js?cl=63f92a9)  
   
+---   
 
-### **crbug:892472**  
+## **crbug:892472**  
    
 **[Issue: No Permission](https://crbug.com/892472)**  
 **[Commit: [async] Only try to peak into async functions/generators.](https://chromium.googlesource.com/v8/v8/+/4111c98)**  
@@ -833,8 +856,9 @@ assertThrows(() => RegExp.prototype.test.call(a));
 [test/mjsunit/regress/regress-crbug-892472-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-892472-1.js?cl=4111c98)  
 [test/mjsunit/regress/regress-crbug-892472-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-892472-2.js?cl=4111c98)  
   
+---   
 
-### **crbug:891627**  
+## **crbug:891627**  
    
 **[Issue: No Permission](https://crbug.com/891627)**  
 **[Commit: [turbofan] Fix Word32 (Signed32OrMinusZero) conversions that identify zeros.](https://chromium.googlesource.com/v8/v8/+/513a5bd)**  
@@ -885,8 +909,9 @@ bar(0.1);
 [test/cctest/compiler/test-representation-change.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-representation-change.cc?cl=513a5bd)  
 [test/mjsunit/regress/regress-crbug-891627.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-891627.js?cl=513a5bd)  
   
+---   
 
-### **crbug:890243**  
+## **crbug:890243**  
    
 **[Issue: Ill in v8::internal::compiler::RepresentationChanger::TypeError](https://crbug.com/890243)**  
 **[Commit: [turbofan] Add missing Word64->Bit support.](https://chromium.googlesource.com/v8/v8/+/852a8d3)**  
@@ -923,8 +948,9 @@ assertFalse(foo({x:1}));
 [src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=852a8d3)  
 [test/mjsunit/regress/regress-crbug-890243.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-890243.js?cl=852a8d3)  
   
+---   
 
-### **crbug:888825**  
+## **crbug:888825**  
    
 **[Issue: No Permission](https://crbug.com/888825)**  
 **[Commit: [parser] Don't resolve preparser variables for arrow functions](https://chromium.googlesource.com/v8/v8/+/55ecf51)**  
@@ -943,8 +969,9 @@ eval("((a=function g() { function g() {}}) => {})();");
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=55ecf51)  
 [test/mjsunit/regress/regress-crbug-888825.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-888825.js?cl=55ecf51)  
   
+---   
 
-### **crbug:887891**  
+## **crbug:887891**  
    
 **[Issue: No Permission](https://crbug.com/887891)**  
 **[Commit: [es2015] Setup JSTypedArray after allocating the JSArrayBuffer.](https://chromium.googlesource.com/v8/v8/+/129f770)**  
@@ -965,8 +992,9 @@ try { foo(); } catch (e) { }
 [src/builtins/builtins-typed-array-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typed-array-gen.cc?cl=129f770)  
 [test/mjsunit/regress/regress-crbug-887891.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-887891.js?cl=129f770)  
   
+---   
 
-### **crbug:885404**  
+## **crbug:885404**  
    
 **[Issue: CHECK failure: byte_length() <= JSArrayBuffer::kMaxByteLength in objects-debug.cc](https://crbug.com/885404)**  
 **[Commit: [es2015] Clear JSTypedArray raw fields in the constructor.](https://chromium.googlesource.com/v8/v8/+/984048e)**  
@@ -988,8 +1016,9 @@ assertEquals(2, ab.byteLength);
 [src/builtins/builtins-typed-array-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typed-array-gen.cc?cl=984048e)  
 [test/mjsunit/regress/regress-crbug-885404.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-885404.js?cl=984048e)  
   
+---   
 
-### **crbug:884933**  
+## **crbug:884933**  
    
 **[Issue: Ill in v8::internal::compiler::RepresentationChanger::TypeError](https://crbug.com/884933)**  
 **[Commit: [turbofan] Add missing Word8/16 -> Word64 representation changes.](https://chromium.googlesource.com/v8/v8/+/1210d0c)**  
@@ -1085,8 +1114,9 @@ Regress: [mjsunit/regress/regress-crbug-884933.js](https://chromium.googlesource
 [test/cctest/compiler/test-representation-change.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-representation-change.cc?cl=1210d0c)  
 [test/mjsunit/regress/regress-crbug-884933.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-884933.js?cl=1210d0c)  
   
+---   
 
-### **crbug:882233**  
+## **crbug:882233**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/882233)**  
 **[Commit: [array] Consistently throw TypeError for zero-length arrays](https://chromium.googlesource.com/v8/v8/+/e365bc2)**  
@@ -1115,8 +1145,9 @@ assertThrows(() => Array.prototype.shift.call(object));
 [test/mjsunit/regress/regress-crbug-882233-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-882233-1.js?cl=e365bc2)  
 [test/mjsunit/regress/regress-crbug-882233-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-882233-2.js?cl=e365bc2)  
   
+---   
 
-### **crbug:881247**  
+## **crbug:881247**  
    
 **[Issue: No Permission](https://crbug.com/881247)**  
 **[Commit: [CloneObjectIC] Avoid FieldType confusions](https://chromium.googlesource.com/v8/v8/+/78e5763)**  
@@ -1151,8 +1182,9 @@ spread();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=78e5763)  
 [test/mjsunit/regress/regress-crbug-881247.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-881247.js?cl=78e5763)  
   
+---   
 
-### **crbug:880207**  
+## **crbug:880207**  
    
 **[Issue: No Permission](https://crbug.com/880207)**  
 **[Commit: [turbofan] Fix incorrect typing rule for NumberExpm1.](https://chromium.googlesource.com/v8/v8/+/56f7dda)**  
@@ -1200,8 +1232,9 @@ Regress: [mjsunit/regress/regress-crbug-880207.js](https://chromium.googlesource
 [src/compiler/operation-typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operation-typer.cc?cl=56f7dda)  
 [test/mjsunit/regress/regress-crbug-880207.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-880207.js?cl=56f7dda)  
   
+---   
 
-### **crbug:879898**  
+## **crbug:879898**  
    
 **[Issue: No Permission](https://crbug.com/879898)**  
 **[Commit: [turbofan] Improve typing of ToNumeric and ToNumber.](https://chromium.googlesource.com/v8/v8/+/b898112)**  
@@ -1226,8 +1259,9 @@ assertThrows(foo);
 [src/compiler/types.h](https://cs.chromium.org/chromium/src/v8/src/compiler/types.h?cl=b898112)  
 [test/mjsunit/regress/regress-crbug-879898.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-879898.js?cl=b898112)  
   
+---   
 
-### **crbug:879560**  
+## **crbug:879560**  
    
 **[Issue: DCHECK failure in (pointer_) != nullptr in utils.h](https://crbug.com/879560)**  
 **[Commit: [turbofan] Fix typo flushed out by recent CL.](https://chromium.googlesource.com/v8/v8/+/b1bd6be)**  
@@ -1252,8 +1286,9 @@ foo();
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=b1bd6be)  
 [test/mjsunit/regress/regress-crbug-879560.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-879560.js?cl=b1bd6be)  
   
+---   
 
-### **crbug:878845**  
+## **crbug:878845**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(p_o) at ../../src/code-stub-assembler.h:351 in code-ass](https://crbug.com/878845)**  
 **[Commit: [array] Fix side-effect for 'from' argument in Array.p.lastIndexOf](https://chromium.googlesource.com/v8/v8/+/b9540d4)**  
@@ -1277,8 +1312,9 @@ Array.prototype.lastIndexOf.call(arr, 100, {
 [src/builtins/array-lastindexof.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-lastindexof.tq?cl=b9540d4)  
 [test/mjsunit/regress/regress-crbug-878845.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-878845.js?cl=b9540d4)  
   
+---   
 
-### **crbug:876443**  
+## **crbug:876443**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(p_o) at ../../src/code-stub-assembler.h:351 in code-ass](https://crbug.com/876443)**  
 **[Commit: [builtins] Enable Torque Array.prototype.splice](https://chromium.googlesource.com/v8/v8/+/fd334b3)**  
@@ -1320,8 +1356,9 @@ var b = a.splice(-4, 9, 10);
 [test/test262/test262.status](https://cs.chromium.org/chromium/src/v8/test/test262/test262.status?cl=fd334b3)  
 [test/webkit/array-splice.js](https://cs.chromium.org/chromium/src/v8/test/webkit/array-splice.js?cl=fd334b3)  
   
+---   
 
-### **crbug:871886**  
+## **crbug:871886**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(LoadElements(object)) at ../../src/code-stub-assembler.](https://crbug.com/871886)**  
 **[Commit: [csa] avoid FixedDoubleArray CAST on empty FixedArray](https://chromium.googlesource.com/v8/v8/+/5b74a7e)**  
@@ -1345,8 +1382,9 @@ arr.slice(0,
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=5b74a7e)  
 [test/mjsunit/regress/regress-crbug-871886.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-871886.js?cl=5b74a7e)  
   
+---   
 
-### **crbug:869313**  
+## **crbug:869313**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(LoadObjectField(data_view, JSDataView::kByteLengthOffse](https://crbug.com/869313)**  
 **[Commit: [dataview] Fix too tight TNode type in DataView getters](https://chromium.googlesource.com/v8/v8/+/3656b46)**  
@@ -1376,8 +1414,9 @@ function f() {
 [src/builtins/data-view.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/data-view.tq?cl=3656b46)  
 [test/mjsunit/regress/regress-crbug-869313.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-869313.js?cl=3656b46)  
   
+---   
 
-### **crbug:867776**  
+## **crbug:867776**  
    
 **[Issue: V8 OOB write BigInt64Array.of and BigInt64Array.from side effect neuter](https://crbug.com/867776)**  
 **[Commit: [csa] Fix is-neutered check in EmitBigTypedArrayElementStore](https://chromium.googlesource.com/v8/v8/+/a24d5ad)**  
@@ -1410,8 +1449,9 @@ for (var i = 0; i < 3; i++) {
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=a24d5ad)  
 [test/mjsunit/regress/regress-crbug-867776.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-867776.js?cl=a24d5ad)  
   
+---   
 
-### **crbug:866315**  
+## **crbug:866315**  
    
 **[Issue: Ill in v8::Utils::ReportApiFailure](https://crbug.com/866315)**  
 **[Commit: [async] Fix a crash when AsyncHooks is used in the proto of an object](https://chromium.googlesource.com/v8/v8/+/2d0a764)**  
@@ -1435,8 +1475,9 @@ assertThrows('num.disable()');
 [src/async-hooks-wrapper.h](https://cs.chromium.org/chromium/src/v8/src/async-hooks-wrapper.h?cl=2d0a764)  
 [test/mjsunit/regress/regress-crbug-866315.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-866315.js?cl=2d0a764)  
   
+---   
 
-### **crbug:865892**  
+## **crbug:865892**  
    
 **[Issue: CHECK failure: !isolate->has_scheduled_exception() in builtins-console.cc](https://crbug.com/865892)**  
 **[Commit: [async] Improve error handling when running async hooks](https://chromium.googlesource.com/v8/v8/+/4a28271)**  
@@ -1468,8 +1509,9 @@ foo();
 [src/isolate.h](https://cs.chromium.org/chromium/src/v8/src/isolate.h?cl=4a28271)  
 [test/mjsunit/regress/regress-crbug-865892.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-865892.js?cl=4a28271)  
   
+---   
 
-### **crbug:865312**  
+## **crbug:865312**  
    
 **[Issue: DCHECK failure in end <= array->length_value() in elements.cc](https://crbug.com/865312)**  
 **[Commit: [array] Only use fast-path in Array.p.fill for JSArrays](https://chromium.googlesource.com/v8/v8/+/b87e762)**  
@@ -1517,8 +1559,9 @@ for (let constructor of typedArrayConstructors) {
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=b87e762)  
 [test/mjsunit/regress/regress-crbug-865312.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-865312.js?cl=b87e762)  
   
+---   
 
-### **crbug:862538**  
+## **crbug:862538**  
    
 **[Issue: Ill in v8::internal::ScannerStream::For](https://crbug.com/862538)**  
 **[Commit: [scanner] Fix scanner stream creation: Sliced strings can have an underlying thin string.](https://chromium.googlesource.com/v8/v8/+/ae044d69)**  
@@ -1544,8 +1587,9 @@ __f_5778("abcdefghijklmnopqrstuvwxyz");
 [src/parsing/scanner-character-streams.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/scanner-character-streams.cc?cl=ae044d69)  
 [test/mjsunit/regress/regress-crbug-862538.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-862538.js?cl=ae044d69)  
   
+---   
 
-### **crbug:860788**  
+## **crbug:860788**  
    
 **[Issue: CHECK failure: !isolate->has_scheduled_exception() in builtins-console.cc](https://crbug.com/860788)**  
 **[Commit: [async] Implement error handling when running async hooks](https://chromium.googlesource.com/v8/v8/+/614c807)**  
@@ -1586,8 +1630,9 @@ try {
 [src/async-hooks-wrapper.cc](https://cs.chromium.org/chromium/src/v8/src/async-hooks-wrapper.cc?cl=614c807)  
 [test/mjsunit/regress/regress-crbug-860788.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-860788.js?cl=614c807)  
   
+---   
 
-### **crbug:859809**  
+## **crbug:859809**  
    
 **[Issue: DCHECK failure in !object->IsFiller() in mark-compact.cc](https://crbug.com/859809)**  
 **[Commit: [array] Add regression test that causes left trimming while sorting](https://chromium.googlesource.com/v8/v8/+/26ac072)**  
@@ -1618,8 +1663,9 @@ xs.sort((a, b) => {
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/26ac072^!)  
 [test/mjsunit/regress/regress-crbug-859809.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-859809.js?cl=26ac072)  
   
+---   
 
-### **crbug:856095**  
+## **crbug:856095**  
    
 **[Issue: No Permission](https://crbug.com/856095)**  
 **[Commit: Fix overzealous assert in CallOrConstructVarArgs](https://chromium.googlesource.com/v8/v8/+/34225a6)**  
@@ -1663,8 +1709,9 @@ a();
 [src/x64/macro-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/macro-assembler-x64.h?cl=34225a6)  
 [test/mjsunit/regress/regress-crbug-856095.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-856095.js?cl=34225a6)  
   
+---   
 
-### **crbug:854299**  
+## **crbug:854299**  
    
 **[Issue: No Permission](https://crbug.com/854299)**  
 **[Commit: [array] Change Array.p.sort bailout behavior from fast- to slow-path](https://chromium.googlesource.com/v8/v8/+/3bcf2b8)**  
@@ -1702,8 +1749,9 @@ for (let i = 0; i < 1000; ++i) {
 [src/builtins/array-sort.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-sort.tq?cl=3bcf2b8)  
 [test/mjsunit/regress/regress-crbug-854299.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-854299.js?cl=3bcf2b8)  
   
+---   
 
-### **crbug:852592**  
+## **crbug:852592**  
    
 **[Issue: No Permission](https://crbug.com/852592)**  
 **[Commit: [array] Fix OOB load/stores when underlying FixedArray changed](https://chromium.googlesource.com/v8/v8/+/ce3c006)**  
@@ -1741,8 +1789,9 @@ array.sort(compareFn);
 [src/builtins/array-sort.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-sort.tq?cl=ce3c006)  
 [test/mjsunit/regress/regress-crbug-852592.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-852592.js?cl=ce3c006)  
   
+---   
 
-### **crbug:851393**  
+## **crbug:851393**  
    
 **[Issue: Ill in v8::internal::Runtime_SetDataProperties](https://crbug.com/851393)**  
 **[Commit: [builtins] Relax type check in a slow path of Object.assign.](https://chromium.googlesource.com/v8/v8/+/412ec75)**  
@@ -1762,8 +1811,9 @@ Object.assign(proxy, { b: "boom", 060: "ah", o: "ouch" });
 [src/runtime/runtime-object.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-object.cc?cl=412ec75)  
 [test/mjsunit/regress/regress-crbug-851393.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-851393.js?cl=412ec75)  
   
+---   
 
-### **crbug:850005**  
+## **crbug:850005**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(var_elements.value()) at ../../src/builtins/builtins-ca](https://crbug.com/850005)**  
 **[Commit: [CSA] Fix assertion in CallOrConstructDoubleVarargs with empty FixedArray](https://chromium.googlesource.com/v8/v8/+/cb29d62)**  
@@ -1787,8 +1837,9 @@ f(...args);
 [src/builtins/builtins-call-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-call-gen.cc?cl=cb29d62)  
 [test/mjsunit/regress/regress-crbug-850005.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-850005.js?cl=cb29d62)  
   
+---   
 
-### **crbug:849024**  
+## **crbug:849024**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/849024)**  
 **[Commit: [builtins] Add reference error for global object property access](https://chromium.googlesource.com/v8/v8/+/d8f0237)**  
@@ -1849,8 +1900,9 @@ assertDoesNotThrow(test3);
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=d8f0237)  
 [test/mjsunit/regress/regress-crbug-849024.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-849024.js?cl=d8f0237)  
   
+---   
 
-### **crbug:848165**  
+## **crbug:848165**  
    
 **[Issue: enumeration_index out-of-bound](https://crbug.com/848165)**  
 **[Commit: Properly set enumeration order for accessor properties in class literals.](https://chromium.googlesource.com/v8/v8/+/e602c90)**  
@@ -1872,8 +1924,9 @@ Object.defineProperty(cls0, "length", {value:'1'});
 [src/objects/literal-objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/literal-objects.cc?cl=e602c90)  
 [test/mjsunit/regress/regress-crbug-848165.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-848165.js?cl=e602c90)  
   
+---   
 
-### **crbug:843022**  
+## **crbug:843022**  
    
 **[Issue: Security: OOB access in RegExpBuiltinsAssembler::LoadRegExpResultFirstMatch](https://crbug.com/843022)**  
 **[Commit: [regexp] Do not assume fast regexp results are non-empty](https://chromium.googlesource.com/v8/v8/+/5999f8f)**  
@@ -1907,8 +1960,9 @@ assertEquals(["undefined"], "a".match(new RegExpWithSlowResult()));
 [src/builtins/builtins-regexp-gen.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-regexp-gen.h?cl=5999f8f)  
 [test/mjsunit/regress/regress-crbug-843022.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-843022.js?cl=5999f8f)  
   
+---   
 
-### **crbug:841592**  
+## **crbug:841592**  
    
 **[Issue: Crash in IntToSmi<31>](https://crbug.com/841592)**  
 **[Commit: [elements] Avoid NOP operation when shrinking HashTables](https://chromium.googlesource.com/v8/v8/+/0b4b14b)**  
@@ -1941,8 +1995,9 @@ a.length = 1;
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=0b4b14b)  
 [test/mjsunit/regress/regress-crbug-841592.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-841592.js?cl=0b4b14b)  
   
+---   
 
-### **crbug:840220**  
+## **crbug:840220**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(TypedArraySpeciesConstructor(context, exemplar)) at ../](https://crbug.com/840220)**  
 **[Commit: [CSA] Remove overzealous type check](https://chromium.googlesource.com/v8/v8/+/7235c851)**  
@@ -1967,8 +2022,9 @@ assertThrows(() => instance.map(each => each * 2), TypeError);
 [src/builtins/builtins-typed-array-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typed-array-gen.cc?cl=7235c851)  
 [test/mjsunit/regress/regress-crbug-840220.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-840220.js?cl=7235c851)  
   
+---   
 
-### **crbug:837939**  
+## **crbug:837939**  
    
 **[Issue: Security: [v8] Information Leak in Map constructor](https://crbug.com/837939)**  
 **[Commit: Do not throw if the array is empty in Map constructor](https://chromium.googlesource.com/v8/v8/+/c77c869)**  
@@ -1995,8 +2051,9 @@ new WeakMap(iterable);
 [src/builtins/builtins-collections-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-collections-gen.cc?cl=c77c869)  
 [test/mjsunit/es6/regress/regress-crbug-837939.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/regress/regress-crbug-837939.js?cl=c77c869)  
   
+---   
 
-### **crbug:831984**  
+## **crbug:831984**  
    
 **[Issue: Ill in v8::internal::FullEvacuationVerifier::VerifyPointers](https://crbug.com/831984)**  
 **[Commit: [keys] Don't keep chain of OrderedHashSets in KeyAccumulator](https://chromium.googlesource.com/v8/v8/+/7bb79b9)**  
@@ -2018,8 +2075,9 @@ for (let j = 0; j < 40; j++) {
 [src/keys.cc](https://cs.chromium.org/chromium/src/v8/src/keys.cc?cl=7bb79b9)  
 [test/mjsunit/regress/regress-crbug-831984.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-831984.js?cl=7bb79b9)  
   
+---   
 
-### **crbug:831943**  
+## **crbug:831943**  
    
 **[Issue: Security: Crash with JavaScript RegExp subclassing](https://crbug.com/831943)**  
 **[Commit: [builtins] Fix missing ToString in RegExp.p.match](https://chromium.googlesource.com/v8/v8/+/7bdbe77)**  
@@ -2046,8 +2104,9 @@ assertArrayEquals(result, ['0']);
 [src/builtins/builtins-regexp-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-regexp-gen.cc?cl=7bdbe77)  
 [test/mjsunit/regress/regress-crbug-831943.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-831943.js?cl=7bdbe77)  
   
+---   
 
-### **crbug:830565**  
+## **crbug:830565**  
    
 **[Issue: Promise never resolves/rejects when thenable throws before callback](https://crbug.com/830565)**  
 **[Commit: [builtins] Properly reject immediately throwing thenables.](https://chromium.googlesource.com/v8/v8/+/7f8e83b)**  
@@ -2078,8 +2137,9 @@ testAsync(assert => {
 [test/mjsunit/regress/regress-crbug-830565.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-830565.js?cl=7f8e83b)  
 [test/webkit/fast/js/Promise-resolve-with-then-exception-expected.txt](https://cs.chromium.org/chromium/src/v8/test/webkit/fast/js/Promise-resolve-with-then-exception-expected.txt?cl=7f8e83b)  
   
+---   
 
-### **crbug:827013**  
+## **crbug:827013**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(LoadFixedArrayElement( descriptors, DescriptorArray::To](https://crbug.com/827013)**  
 **[Commit: [builtins] Fix fast path of Function.prototype.bind.](https://chromium.googlesource.com/v8/v8/+/ef01379)**  
@@ -2109,8 +2169,9 @@ Regress: [mjsunit/regress/regress-crbug-827013.js](https://chromium.googlesource
 [src/builtins/builtins-function-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-function-gen.cc?cl=ef01379)  
 [test/mjsunit/regress/regress-crbug-827013.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-827013.js?cl=ef01379)  
   
+---   
 
-### **crbug:825045**  
+## **crbug:825045**  
    
 **[Issue: DCHECK failure in descriptor_number < number_of_descriptors() in objects-inl.h](https://crbug.com/825045)**  
 **[Commit: [turbofan] Properly test number of descriptors.](https://chromium.googlesource.com/v8/v8/+/aa30205)**  
@@ -2135,8 +2196,9 @@ foo();
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=aa30205)  
 [test/mjsunit/regress/regress-crbug-825045.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-825045.js?cl=aa30205)  
   
+---   
 
-### **crbug:823130**  
+## **crbug:823130**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/823130)**  
 **[Commit: Fix "x is not iterable" error message consistency](https://chromium.googlesource.com/v8/v8/+/45a2d9c)**  
@@ -2187,8 +2249,9 @@ for (var j = 0; j < vars.length && j < 7; j++) {
 [src/runtime/runtime-object.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-object.cc?cl=45a2d9c)  
 [test/mjsunit/regress/regress-crbug-823130.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-823130.js?cl=45a2d9c)  
   
+---   
 
-### **crbug:823069**  
+## **crbug:823069**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path_opt](https://crbug.com/823069)**  
 **[Commit: [builtins] Throw on pop()/shift() when JSArray's length is not writable.](https://chromium.googlesource.com/v8/v8/+/75e04cd)**  
@@ -2212,8 +2275,9 @@ assertThrows(()=>{v.shift();});
 [src/objects/js-array.h](https://cs.chromium.org/chromium/src/v8/src/objects/js-array.h?cl=75e04cd)  
 [test/mjsunit/regress/regress-crbug-823069.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-823069.js?cl=75e04cd)  
   
+---   
 
-### **crbug:822284**  
+## **crbug:822284**  
    
 **[Issue: ThinStrings are incompatible with TurboFan SeqString types](https://crbug.com/822284)**  
 **[Commit: [turbofan] NumberToString can return non-sequential strings.](https://chromium.googlesource.com/v8/v8/+/c65f0a7)**  
@@ -2246,8 +2310,9 @@ assertEquals(49, foo(1));
 [src/compiler/operation-typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operation-typer.cc?cl=c65f0a7)  
 [test/mjsunit/regress/regress-crbug-822284.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-822284.js?cl=c65f0a7)  
   
+---   
 
-### **crbug:821159**  
+## **crbug:821159**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:ia32,ignition](https://crbug.com/821159)**  
 **[Commit: [es2015] Properly deal with fast-path results from IterableToList.](https://chromium.googlesource.com/v8/v8/+/631629a)**  
@@ -2269,8 +2334,9 @@ Math.max(...[3]);
 [test/mjsunit/regress/regress-crbug-821159-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-821159-3.js?cl=631629a)  
 [test/mjsunit/regress/regress-crbug-821159-4.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-821159-4.js?cl=631629a)  
   
+---   
 
-### **crbug:820820**  
+## **crbug:820820**  
    
 **[Issue: Null-dereference READ in type](https://crbug.com/820820)**  
 **[Commit: [turbofan] Properly deal with killed nodes in LoadElimination.](https://chromium.googlesource.com/v8/v8/+/022e1a5)**  
@@ -2305,8 +2371,9 @@ foo();
 [src/compiler/load-elimination.h](https://cs.chromium.org/chromium/src/v8/src/compiler/load-elimination.h?cl=022e1a5)  
 [test/mjsunit/regress/regress-crbug-820820.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-820820.js?cl=022e1a5)  
   
+---   
 
-### **crbug:820596**  
+## **crbug:820596**  
    
 **[Issue: DCHECK failure in static_cast<unsigned>(length_) > static_cast<unsigned>(i) in zone.h](https://crbug.com/820596)**  
 **[Commit: [esnext] fix OOB read in ASTPrinter::VisistTemplateLiteral](https://chromium.googlesource.com/v8/v8/+/0802e2b)**  
@@ -2325,8 +2392,9 @@ var x;
 [src/ast/prettyprinter.cc](https://cs.chromium.org/chromium/src/v8/src/ast/prettyprinter.cc?cl=0802e2b)  
 [test/mjsunit/es6/regress/regress-crbug-820596.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/regress/regress-crbug-820596.js?cl=0802e2b)  
   
+---   
 
-### **crbug:820312**  
+## **crbug:820312**  
    
 **[Issue: Security: V8: PromiseAllResolveElementClosure can cause elements kind confusion](https://crbug.com/820312)**  
 **[Commit: [builtins] Properly handle DICTIONARY_ELEMENTS in Promise.all closures.](https://chromium.googlesource.com/v8/v8/+/fd29e1d)**  
@@ -2363,8 +2431,9 @@ resolve_element_closures[0xfffe]();
 [src/builtins/builtins-promise-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-promise-gen.cc?cl=fd29e1d)  
 [test/mjsunit/regress/regress-crbug-820312.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-820312.js?cl=fd29e1d)  
   
+---   
 
-### **crbug:819298**  
+## **crbug:819298**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/819298)**  
 **[Commit: [turbofan] Fix invalid SpeculativeToNumber optimization.](https://chromium.googlesource.com/v8/v8/+/e583fc8)**  
@@ -2392,8 +2461,9 @@ assertEquals(0, a[0]);
 [src/compiler/typed-optimization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typed-optimization.cc?cl=e583fc8)  
 [test/mjsunit/regress/regress-crbug-819298.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-819298.js?cl=e583fc8)  
   
+---   
 
-### **crbug:819086**  
+## **crbug:819086**  
    
 **[Issue: CHECK failure: Node::New() Error: #392:DeoptimizeIf[1] is nullptr in node.cc](https://crbug.com/819086)**  
 **[Commit: [turbofan] Only store after all checks are done.](https://chromium.googlesource.com/v8/v8/+/6196dd0)**  
@@ -2418,8 +2488,9 @@ foo()[0];
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=6196dd0)  
 [test/mjsunit/regress/regress-crbug-819086.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-819086.js?cl=6196dd0)  
   
+---   
 
-### **crbug:816961**  
+## **crbug:816961**  
    
 **[Issue: No Permission](https://crbug.com/816961)**  
 **[Commit: Fix buffer-detached check in TypedArray.of/from](https://chromium.googlesource.com/v8/v8/+/c94df3c)**  
@@ -2451,8 +2522,9 @@ assertThrows(function() {
 [src/builtins/builtins-typedarray-gen.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typedarray-gen.h?cl=c94df3c)  
 [test/mjsunit/regress/regress-crbug-816961.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-816961.js?cl=c94df3c)  
   
+---   
 
-### **crbug:813630**  
+## **crbug:813630**  
    
 **[Issue: DCHECK failure in !has_rest_ in scopes.cc](https://crbug.com/813630)**  
 **[Commit: [parser] Fix aborting preparsing of a function with a rest param.](https://chromium.googlesource.com/v8/v8/+/4f506db)**  
@@ -2485,8 +2557,9 @@ function g(...args) {
 [src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=4f506db)  
 [test/mjsunit/regress/regress-crbug-813630.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-813630.js?cl=4f506db)  
   
+---   
 
-### **crbug:813450**  
+## **crbug:813450**  
    
 **[Issue: Ill in v8::internal::Runtime_AllocateInNewSpace](https://crbug.com/813450)**  
 **[Commit: [proxies] Use write barriers for Proxy [[Construct]] arguments](https://chromium.googlesource.com/v8/v8/+/c7d01c4)**  
@@ -2522,8 +2595,9 @@ var instance2 = Reflect.construct(proxy, constructorArgs);
 [src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=c7d01c4)  
 [test/mjsunit/regress/regress-crbug-813450.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-813450.js?cl=c7d01c4)  
   
+---   
 
-### **crbug:813427**  
+## **crbug:813427**  
    
 **[Issue: CHECK failure: constructor_initial_map->instance_size() <= instance_size in objects.cc](https://crbug.com/813427)**  
 **[Commit: [runtime] Fix overzealous check for derived constructor instance size](https://chromium.googlesource.com/v8/v8/+/da83b61)**  
@@ -2582,8 +2656,9 @@ for (let count = 0; count < 10; count++) {
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=da83b61)  
 [test/mjsunit/regress/regress-crbug-813427.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-813427.js?cl=da83b61)  
   
+---   
 
-### **crbug:808192**  
+## **crbug:808192**  
    
 **[Issue: Security: V8 Integer overflow in object allocation size](https://crbug.com/808192)**  
 **[Commit: [runtime] Harden JSFunction::CalculateInstanceSizeHelper(...)](https://chromium.googlesource.com/v8/v8/+/7b27040)**  
@@ -2629,8 +2704,9 @@ assertEquals(1, a.a);
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=7b27040)  
 [test/mjsunit/regress/regress-crbug-808192.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-808192.js?cl=7b27040)  
   
+---   
 
-### **crbug:807096**  
+## **crbug:807096**  
    
 **[Issue: Security: Arrow function scope fixing bug](https://crbug.com/807096)**  
 **[Commit: [parser] More carefully handle destructuring in arrow params](https://chromium.googlesource.com/v8/v8/+/f1a5518)**  
@@ -2670,8 +2746,9 @@ testAsync(assert => {
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=f1a5518)  
 [test/mjsunit/regress/regress-crbug-807096.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-807096.js?cl=f1a5518)  
   
+---   
 
-### **crbug:806388**  
+## **crbug:806388**  
    
 **[Issue: Security: A bug in JSFunction::GetDerivedMap](https://crbug.com/806388)**  
 **[Commit: [runtime] Fix derived class instantiation](https://chromium.googlesource.com/v8/v8/+/8361fa5)**  
@@ -2703,8 +2780,9 @@ gc();
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=8361fa5)  
 [test/mjsunit/regress/regress-crbug-806388.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-806388.js?cl=8361fa5)  
   
+---   
 
-### **crbug:806200**  
+## **crbug:806200**  
    
 **[Issue: DCHECK failure in !spread_pos.IsValid() in parser-base.h](https://crbug.com/806200)**  
 **[Commit: [parser] Throw syntax error for %Foo(...spread)](https://chromium.googlesource.com/v8/v8/+/3249b16)**  
@@ -2723,8 +2801,9 @@ assertThrows("%Foo(...spread)", SyntaxError);
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=3249b16)  
 [test/mjsunit/regress/regress-crbug-806200.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-806200.js?cl=3249b16)  
   
+---   
 
-### **crbug:805765**  
+## **crbug:805765**  
    
 **[Issue: CHECK failure: (location_) != nullptr in handles.h](https://crbug.com/805765)**  
 **[Commit: [ignition] Fix wide suspends to also return](https://chromium.googlesource.com/v8/v8/+/830e39a)**  
@@ -2756,8 +2835,9 @@ g.next();
 [src/builtins/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?cl=830e39a)  
 [test/mjsunit/regress/regress-crbug-805765.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-805765.js?cl=830e39a)  
   
+---   
 
-### **crbug:802333**  
+## **crbug:802333**  
    
 **[Issue: Security: V8: A bug in the ObjectDescriptor class](https://crbug.com/802333)**  
 **[Commit: [runtime] Fix Class Literals](https://chromium.googlesource.com/v8/v8/+/e416e3c)**  
@@ -2794,8 +2874,9 @@ assertEquals(0, opt());
 [src/objects/literal-objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/literal-objects.cc?cl=e416e3c)  
 [test/mjsunit/regress/regress-crbug-802333.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-802333.js?cl=e416e3c)  
   
+---   
 
-### **crbug:801627**  
+## **crbug:801627**  
    
 **[Issue: Security: V8: JIT: Type confusion in NodeProperties::InferReceiverMaps](https://crbug.com/801627)**  
 **[Commit: [turbofan] Fix type confusion in NodeProperties::InferReceiverMaps.](https://chromium.googlesource.com/v8/v8/+/e272a2f)**  
@@ -2830,8 +2911,9 @@ new Derived();
 [src/compiler/node-properties.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/node-properties.cc?cl=e272a2f)  
 [test/mjsunit/regress/regress-crbug-801627.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-801627.js?cl=e272a2f)  
   
+---   
 
-### **crbug:800810**  
+## **crbug:800810**  
    
 **[Issue: DCHECK failure in receiver->map() == *original_map in elements.cc](https://crbug.com/800810)**  
 **[Commit: [elements] Fix overzealous DCHECK in Array.prototype.includes](https://chromium.googlesource.com/v8/v8/+/b785d2a)**  
@@ -2857,8 +2939,9 @@ array.includes(61301);
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=b785d2a)  
 [test/mjsunit/regress/regress-crbug-800810.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-800810.js?cl=b785d2a)  
   
+---   
 
-### **crbug:800077**  
+## **crbug:800077**  
    
 **[Issue: CHECK failure: Type cast failed in CAST(key) at ../../src/code-stub-assembler.cc:7137 in code-a](https://crbug.com/800077)**  
 **[Commit: [csa] Fix type casing in GetProperty](https://chromium.googlesource.com/v8/v8/+/8643720)**  
@@ -2877,8 +2960,9 @@ Reflect.has(sample, undefined);
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=8643720)  
 [test/mjsunit/regress/regress-crbug-800077.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-800077.js?cl=8643720)  
   
+---   
 
-### **crbug:800032**  
+## **crbug:800032**  
    
 **[Issue: Security: V8: Bugs in Genesis::InitializeGlobal](https://crbug.com/800032)**  
 **[Commit: [Runtime] Set expected_nof_properties when creating Constructors](https://chromium.googlesource.com/v8/v8/+/42e8ca9)**  
@@ -2910,8 +2994,9 @@ gc();
 [src/factory.cc](https://cs.chromium.org/chromium/src/v8/src/factory.cc?cl=42e8ca9)  
 [test/mjsunit/regress/regress-crbug-800032.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-800032.js?cl=42e8ca9)  
   
+---   
 
-### **crbug:798644**  
+## **crbug:798644**  
    
 **[Issue: Security: V8: Type confusion in ElementsAccessorBase::CollectValuesOrEntriesImpl](https://crbug.com/798644)**  
 **[Commit: [elements] Fix Object.entries/values with changing elements](https://chromium.googlesource.com/v8/v8/+/be9c5fd)**  
@@ -2945,8 +3030,9 @@ let str = results.toString();
 [test/mjsunit/es8/object-entries.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es8/object-entries.js?cl=be9c5fd)  
 [test/mjsunit/regress/regress-crbug-798644.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-798644.js?cl=be9c5fd)  
   
+---   
 
-### **crbug:798026**  
+## **crbug:798026**  
    
 **[Issue: No Permission](https://crbug.com/798026)**  
 **[Commit: [Builtins] Eliminate the fast path in constructor entries](https://chromium.googlesource.com/v8/v8/+/a10689d)**  
@@ -2971,8 +3057,9 @@ new Set(array);
 [src/builtins/builtins-collections-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-collections-gen.cc?cl=a10689d)  
 [test/mjsunit/regress/regress-crbug-798026.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-798026.js?cl=a10689d)  
   
+---   
 
-### **crbug:795922**  
+## **crbug:795922**  
    
 **[Issue: DCHECK failure in !has_null_prototype() in ast.cc](https://crbug.com/795922)**  
 **[Commit: [ignition] Move object/array literal init to bytecode gen](https://chromium.googlesource.com/v8/v8/+/9128e8b)**  
@@ -2995,8 +3082,9 @@ assertThrows(
 [src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=9128e8b)  
 [test/mjsunit/regress/regress-crbug-795922.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-795922.js?cl=9128e8b)  
   
+---   
 
-### **crbug:791256**  
+## **crbug:791256**  
    
 **[Issue: DCHECK failure in kNoSourcePosition != start_position() in scopes.cc](https://crbug.com/791256)**  
 **[Commit: [parser] Fix NaryOperation positions.](https://chromium.googlesource.com/v8/v8/+/10d9c31)**  
@@ -3020,8 +3108,9 @@ Regress: [mjsunit/regress/regress-crbug-791256.js](https://chromium.googlesource
 [src/ast/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast/ast.h?cl=10d9c31)  
 [test/mjsunit/regress/regress-crbug-791256.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-791256.js?cl=10d9c31)  
   
+---   
 
-### **crbug:791245**  
+## **crbug:791245**  
    
 **[Issue: Security: V8: JIT: Simplified-lowererer IrOpcode::kStoreField, IrOpcode::kStoreElement optimization bug](https://crbug.com/791245)**  
 **[Commit: [turbofan] Properly type the OrderedHashTableHealIndex builtin result.](https://chromium.googlesource.com/v8/v8/+/3ef6e45)**  
@@ -3051,8 +3140,9 @@ console.log(foo(s));
 [test/mjsunit/regress/regress-crbug-791245-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-791245-1.js?cl=3ef6e45)  
 [test/mjsunit/regress/regress-crbug-791245-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-791245-2.js?cl=3ef6e45)  
   
+---   
 
-### **crbug:789764**  
+## **crbug:789764**  
    
 **[Issue: Crash in v8::internal::Script::FindSharedFunctionInfo](https://crbug.com/789764)**  
 **[Commit: [parser] Fix func numbering inside for in.](https://chromium.googlesource.com/v8/v8/+/0394b71)**  
@@ -3080,8 +3170,9 @@ a();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=0394b71)  
 [test/mjsunit/regress/regress-crbug-789764.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-789764.js?cl=0394b71)  
   
+---   
 
-### **crbug:786723**  
+## **crbug:786723**  
    
 **[Issue: DCHECK failure in !compilation_info()->dependencies() || !compilation_info()->dependencies()->HasA](https://crbug.com/786723)**  
 **[Commit: [turbofan] Fix prototype mutation in Object.create lowering.](https://chromium.googlesource.com/v8/v8/+/4a7eec5)**  
@@ -3113,8 +3204,9 @@ f();
 [src/objects/map.h](https://cs.chromium.org/chromium/src/v8/src/objects/map.h?cl=4a7eec5)  
 [test/mjsunit/regress/regress-crbug-786723.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-786723.js?cl=4a7eec5)  
   
+---   
 
-### **crbug:786020**  
+## **crbug:786020**  
    
 **[Issue: CHECK failure: !descriptors->GetKey(i)->IsInterestingSymbol() in objects-debug.cc](https://crbug.com/786020)**  
 **[Commit: [objects] Fix flag in {Map::AddMissingTransitions}.](https://chromium.googlesource.com/v8/v8/+/4ad9430)**  
@@ -3133,8 +3225,9 @@ Regress: [mjsunit/regress/regress-crbug-786020.js](https://chromium.googlesource
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=4ad9430)  
 [test/mjsunit/regress/regress-crbug-786020.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-786020.js?cl=4ad9430)  
   
+---   
 
-### **crbug:784835**  
+## **crbug:784835**  
    
 **[Issue: page content not display](https://crbug.com/784835)**  
 **[Commit: [ic] Properly handle negative indices.](https://chromium.googlesource.com/v8/v8/+/3dddc2b)**  
@@ -3160,8 +3253,9 @@ assertEquals(42, foo(a, -1));
 [src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=3dddc2b)  
 [test/mjsunit/regress/regress-crbug-784835.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-784835.js?cl=3dddc2b)  
   
+---   
 
-### **crbug:783902**  
+## **crbug:783902**  
    
 **[Issue: CHECK failure: method->map()->instance_descriptors()->GetKey(kHomeObjectPropertyIndex) == isola](https://crbug.com/783902)**  
 **[Commit: Reland^2 "[runtime] Slightly optimize creation of class literals."](https://chromium.googlesource.com/v8/v8/+/cc9e77a)**  
@@ -3210,8 +3304,9 @@ class B extends A {
 [test/mjsunit/regress/regress-crbug-783902.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-783902.js?cl=cc9e77a)  
 [tools/v8heapconst.py](https://cs.chromium.org/chromium/src/v8/tools/v8heapconst.py?cl=cc9e77a)  
   
+---   
 
-### **crbug:783132**  
+## **crbug:783132**  
    
 **[Issue: CHECK failure: is_transitionable_fast_elements_kind implies !Map::IsInplaceGeneralizableField(d](https://crbug.com/783132)**  
 **[Commit: [runtime] Ensure elements transitions don't interfere with field type tracking.](https://chromium.googlesource.com/v8/v8/+/00a781d)**  
@@ -3247,8 +3342,9 @@ f(Array.prototype, 0);
 [test/mjsunit/regress/regress-crbug-783132.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-783132.js?cl=00a781d)  
 [test/mjsunit/unbox-double-arrays.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/unbox-double-arrays.js?cl=00a781d)  
   
+---   
 
-### **crbug:781583**  
+## **crbug:781583**  
    
 **[Issue: Stack-overflow in v8::internal::KeyAccumulator::CollectOwnElementIndices](https://crbug.com/781583)**  
 **[Commit: [builtins] Add stack check during generator resumption.](https://chromium.googlesource.com/v8/v8/+/2bc09c9)**  
@@ -3291,8 +3387,9 @@ assertThrows(() => gens2.pop().next(), RangeError);
 [src/builtins/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?cl=2bc09c9)  
 [test/mjsunit/regress/regress-crbug-781583.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-781583.js?cl=2bc09c9)  
   
+---   
 
-### **crbug:781506**  
+## **crbug:781506**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/781506)**  
 **[Commit: [turbofan] Generate the correct bounds when the array protector isn't valid.](https://chromium.googlesource.com/v8/v8/+/fd150c7)**  
@@ -3317,8 +3414,9 @@ assertEquals(undefined, foo(x => x));
 [test/mjsunit/regress/regress-crbug-781506-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-781506-2.js?cl=fd150c7)  
 [test/mjsunit/regress/regress-crbug-781506-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-781506-3.js?cl=fd150c7)  
   
+---   
 
-### **crbug:781116**  
+## **crbug:781116**  
    
 **[Issue: DCHECK failure in false == cell_reports_intact in isolate.cc](https://crbug.com/781116)**  
 **[Commit: [turbofan] Properly handle Array.prototype and Object.prototype in the runtime.](https://chromium.googlesource.com/v8/v8/+/82b3ac9)**  
@@ -3352,8 +3450,9 @@ foo();
 [test/mjsunit/regress/regress-crbug-781116-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-781116-1.js?cl=82b3ac9)  
 [test/mjsunit/regress/regress-crbug-781116-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-781116-2.js?cl=82b3ac9)  
   
+---   
 
-### **crbug:779457**  
+## **crbug:779457**  
    
 **[Issue: DCHECK failure in outer_scope_ == scope->outer_scope() in bytecode-generator.cc](https://crbug.com/779457)**  
 **[Commit: [parser] RewritableExpressions should keep track of their Scope directly](https://chromium.googlesource.com/v8/v8/+/082009f)**  
@@ -3399,8 +3498,9 @@ Regress: [mjsunit/regress/regress-crbug-779457.js](https://chromium.googlesource
 [src/parsing/preparser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?cl=082009f)  
 [test/mjsunit/regress/regress-crbug-779457.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-779457.js?cl=082009f)  
   
+---   
 
-### **crbug:779367**  
+## **crbug:779367**  
    
 **[Issue: Null-dereference READ in v8::internal::CallOptimization::IsCrossContextLazyAccessorPair](https://crbug.com/779367)**  
 **[Commit: Check is_simple_api_call before IsCrossContextLazyAccessorPair, accessor could be null](https://chromium.googlesource.com/v8/v8/+/b976b30)**  
@@ -3428,8 +3528,9 @@ g(g);
 [src/compiler/access-info.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-info.cc?cl=b976b30)  
 [test/mjsunit/regress/regress-crbug-779367.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-779367.js?cl=b976b30)  
   
+---   
 
-### **crbug:779344**  
+## **crbug:779344**  
    
 **[Issue: Stack-overflow in v8::internal::CheckObjectType](https://crbug.com/779344)**  
 **[Commit: Perform stack check on Proxy call trap.](https://chromium.googlesource.com/v8/v8/+/1e77461)**  
@@ -3455,8 +3556,9 @@ assertThrows(proxy);
 [src/interpreter/interpreter-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/interpreter-generator.cc?cl=1e77461)  
 [test/mjsunit/regress/regress-crbug-779344.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-779344.js?cl=1e77461)  
   
+---   
 
-### **crbug:778952**  
+## **crbug:778952**  
    
 **[Issue: DCHECK failure in raw_properties_or_hash()->IsDictionary() == map()->is_dictionary_map() in object](https://crbug.com/778952)**  
 **[Commit: Fix DCHECK in HasFastProperties](https://chromium.googlesource.com/v8/v8/+/a5b0d64)**  
@@ -3478,8 +3580,9 @@ assertThrows(function() {
 [src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=a5b0d64)  
 [test/mjsunit/regress/regress-crbug-778952.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-778952.js?cl=a5b0d64)  
   
+---   
 
-### **crbug:776511**  
+## **crbug:776511**  
    
 **[Issue: DCHECK failure in BackingStore::get(backing_store, i, isolate)->IsSmi() || (IsHoleyElementsKind(Ki](https://crbug.com/776511)**  
 **[Commit: [Turbofan] Reland Array.prototype.filter inlining.](https://chromium.googlesource.com/v8/v8/+/b3d8499)**  
@@ -3534,8 +3637,9 @@ function __getRandomProperty(obj, seed) {
 [test/mjsunit/regress/regress-crbug-766635.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-766635.js?cl=b3d8499)  
 [test/mjsunit/regress/regress-crbug-776511.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-776511.js?cl=b3d8499)  
   
+---   
 
-### **crbug:774994**  
+## **crbug:774994**  
    
 **[Issue: CHECK failure: args[1]->IsJSObject() in runtime-classes.cc](https://crbug.com/774994)**  
 **[Commit: [parser] Skipping inner funcs: accurately record NeedsHomeObject](https://chromium.googlesource.com/v8/v8/+/94a71d7)**  
@@ -3584,8 +3688,9 @@ assertThrows(h, TypeError);
 [test/cctest/test-parsing.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-parsing.cc?cl=94a71d7)  
 [test/mjsunit/regress/regress-crbug-774994.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-774994.js?cl=94a71d7)  
   
+---   
 
-### **crbug:774860**  
+## **crbug:774860**  
    
 **[Issue: CHECK failure: map->IsMap() in spaces.cc](https://crbug.com/774860)**  
 **[Commit: Fix slack tracking for function subclasses.](https://chromium.googlesource.com/v8/v8/+/b0fc245)**  
@@ -3611,8 +3716,9 @@ Regress: [mjsunit/regress/regress-crbug-774860.js](https://chromium.googlesource
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=b0fc245)  
 [test/mjsunit/regress/regress-crbug-774860.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-774860.js?cl=b0fc245)  
   
+---   
 
-### **crbug:774459**  
+## **crbug:774459**  
    
 **[Issue: Inbox won't load in 32 bit builds](https://crbug.com/774459)**  
 **[Commit: [turbofan] Re-enable FindOrderedHashMapEntryForInt32Key optimization.](https://chromium.googlesource.com/v8/v8/+/49e87d2)**  
@@ -3644,8 +3750,9 @@ Regress: [mjsunit/regress/regress-crbug-774459.js](https://chromium.googlesource
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=49e87d2)  
 [test/mjsunit/regress/regress-crbug-774459.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-774459.js?cl=49e87d2)  
   
+---   
 
-### **crbug:772897**  
+## **crbug:772897**  
    
 **[Issue: DCHECK failure in !has_pending_exception() in isolate.cc](https://crbug.com/772897)**  
 **[Commit: [proxy] Properly handle exceptions from Object::ToName().](https://chromium.googlesource.com/v8/v8/+/ef45d78)**  
@@ -3678,8 +3785,9 @@ function f(obj) {
 [src/runtime/runtime-proxy.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-proxy.cc?cl=ef45d78)  
 [test/mjsunit/regress/regress-crbug-772897.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-772897.js?cl=ef45d78)  
   
+---   
 
-### **crbug:772720**  
+## **crbug:772720**  
    
 **[Issue: CHECK failure: NodeProperties::GetType(val)->Is(NodeProperties::GetType(node)) in verifier.cc](https://crbug.com/772720)**  
 **[Commit: [turbofan] Fix type of inline cons-string allocation.](https://chromium.googlesource.com/v8/v8/+/93f855c)**  
@@ -3705,8 +3813,9 @@ f();
 [src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=93f855c)  
 [test/mjsunit/regress/regress-crbug-772720.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-772720.js?cl=93f855c)  
   
+---   
 
-### **crbug:772689**  
+## **crbug:772689**  
    
 **[Issue: CHECK failure: 0 == field_count_ in deoptimizer.cc](https://crbug.com/772689)**  
 **[Commit: [deoptimizer] Properly handle in-object properties on JSArrays.](https://chromium.googlesource.com/v8/v8/+/bed8853)**  
@@ -3740,8 +3849,9 @@ assertEquals(1, foo(true));
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=bed8853)  
 [test/mjsunit/regress/regress-crbug-772689.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-772689.js?cl=bed8853)  
   
+---   
 
-### **crbug:772672**  
+## **crbug:772672**  
    
 **[Issue: Null-dereference WRITE in raise](https://crbug.com/772672)**  
 **[Commit: Fix JSArray::kInitialMaxFastElementArray to make sense for 32-bit platforms.](https://chromium.googlesource.com/v8/v8/+/2bb704e)**  
@@ -3764,8 +3874,9 @@ foo();
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=2bb704e)  
 [test/mjsunit/regress/regress-crbug-772672.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-772672.js?cl=2bb704e)  
   
+---   
 
-### **crbug:772610**  
+## **crbug:772610**  
    
 **[Issue: Null-dereference READ in Relaxed_Load](https://crbug.com/772610)**  
 **[Commit: [deoptimizer] Fix JSFunction materialization instance size.](https://chromium.googlesource.com/v8/v8/+/c34a295)**  
@@ -3794,8 +3905,9 @@ gc();
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=c34a295)  
 [test/mjsunit/regress/regress-crbug-772610.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-772610.js?cl=c34a295)  
   
+---   
 
-### **crbug:772056**  
+## **crbug:772056**  
    
 **[Issue: DCHECK failure in new_len >= old_len in heap.cc](https://crbug.com/772056)**  
 **[Commit: [wasm] Fix undefined behavior in WebAssembly.Table.grow.](https://chromium.googlesource.com/v8/v8/+/158dbb8)**  
@@ -3823,8 +3935,9 @@ assertThrows(() => table.grow(Infinity), RangeError);
 [src/wasm/wasm-js.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-js.cc?cl=158dbb8)  
 [test/mjsunit/regress/regress-crbug-772056.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-772056.js?cl=158dbb8)  
   
+---   
 
-### **crbug:771971**  
+## **crbug:771971**  
    
 **[Issue: DCHECK failure in index < GetJSCallArity() in js-builtin-reducer.cc](https://crbug.com/771971)**  
 **[Commit: [turbofan] Properly check call arity for Object.is(o,o).](https://chromium.googlesource.com/v8/v8/+/c77dfda)**  
@@ -3847,8 +3960,9 @@ f();
 [src/compiler/js-builtin-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-builtin-reducer.cc?cl=c77dfda)  
 [test/mjsunit/regress/regress-crbug-771971.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-771971.js?cl=c77dfda)  
   
+---   
 
-### **crbug:771428**  
+## **crbug:771428**  
    
 **[Issue: Infinite loop in asm.js parser](https://crbug.com/771428)**  
 **[Commit: [asm.js] Fix infinite loop in parser on parse error.](https://chromium.googlesource.com/v8/v8/+/4f8a70a)**  
@@ -3885,8 +3999,9 @@ assertFalse(%IsAsmWasmCode(Module));
 [src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=4f8a70a)  
 [test/mjsunit/regress/regress-crbug-771428.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-771428.js?cl=4f8a70a)  
   
+---   
 
-### **crbug:770581**  
+## **crbug:770581**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/770581)**  
 **[Commit: [turbofan] Unify error message on non-callable callback.](https://chromium.googlesource.com/v8/v8/+/bb46a59)**  
@@ -3919,8 +4034,9 @@ assertEquals("TypeError: a teapot is not a function", message_of_f());
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=bb46a59)  
 [test/mjsunit/regress/regress-crbug-770581.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-770581.js?cl=bb46a59)  
   
+---   
 
-### **crbug:770543**  
+## **crbug:770543**  
    
 **[Issue: Null-dereference READ in v8::internal::TranslatedFrame::begin](https://crbug.com/770543)**  
 **[Commit: [deoptimizer] Fix TranslatedState inline frame indexing.](https://chromium.googlesource.com/v8/v8/+/631489b)**  
@@ -3962,8 +4078,9 @@ Regress: [mjsunit/regress/regress-crbug-770543.js](https://chromium.googlesource
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=631489b)  
 [test/mjsunit/regress/regress-crbug-770543.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-770543.js?cl=631489b)  
   
+---   
 
-### **crbug:769852**  
+## **crbug:769852**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/769852)**  
 **[Commit: [deoptimizer] Materialize objects with top-most stub frame.](https://chromium.googlesource.com/v8/v8/+/17d86d7)**  
@@ -3989,8 +4106,9 @@ assertDoesNotThrow(() => f({ x:0 }));
 [src/runtime/runtime-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-compiler.cc?cl=17d86d7)  
 [test/mjsunit/regress/regress-crbug-769852.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-769852.js?cl=17d86d7)  
   
+---   
 
-### **crbug:768875**  
+## **crbug:768875**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/768875)**  
 **[Commit: [ic] Introduce proper slow stub for StoreGlobalIC.](https://chromium.googlesource.com/v8/v8/+/3384a79)**  
@@ -4035,8 +4153,9 @@ assertEquals(42, y);
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=3384a79)  
 [test/mjsunit/regress/regress-crbug-768875.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-768875.js?cl=3384a79)  
   
+---   
 
-### **crbug:768367**  
+## **crbug:768367**  
    
 **[Issue: DCHECK failure in kMaxUInt32 != index_ in lookup.h](https://crbug.com/768367)**  
 **[Commit: [turbofan] Fix off-by-one in constant-folding of frozen elements.](https://chromium.googlesource.com/v8/v8/+/adfaf74)**  
@@ -4061,8 +4180,9 @@ assertEquals(undefined, foo());
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=adfaf74)  
 [test/mjsunit/regress/regress-crbug-768367.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-768367.js?cl=adfaf74)  
   
+---   
 
-### **crbug:768158**  
+## **crbug:768158**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/768158)**  
 **[Commit: [parser] Ensure for-in/of loop variables are marked maybe_assigned](https://chromium.googlesource.com/v8/v8/+/0717ff3)**  
@@ -4099,8 +4219,9 @@ Regress: [mjsunit/regress/regress-crbug-768158.js](https://chromium.googlesource
 [src/parsing/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.cc?cl=0717ff3)  
 [test/mjsunit/regress/regress-crbug-768158.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-768158.js?cl=0717ff3)  
   
+---   
 
-### **crbug:768080**  
+## **crbug:768080**  
    
 **[Issue: CHECK failure: args[1]->IsJSReceiver() in runtime-object.cc](https://crbug.com/768080)**  
 **[Commit: [turbofan] Fix new.target check in Reflect.construct.](https://chromium.googlesource.com/v8/v8/+/afd2f58)**  
@@ -4183,8 +4304,9 @@ Regress: [mjsunit/regress/regress-crbug-768080.js](https://chromium.googlesource
 [src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=afd2f58)  
 [test/mjsunit/regress/regress-crbug-768080.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-768080.js?cl=afd2f58)  
   
+---   
 
-### **crbug:766635**  
+## **crbug:766635**  
    
 **[Issue: No Permission](https://crbug.com/766635)**  
 **[Commit: [Turbofan] Array.prototype.filter inlining.](https://chromium.googlesource.com/v8/v8/+/9fd029e)**  
@@ -4234,8 +4356,9 @@ function __f_9(){ "use __f_9"; assertEquals( this); }
 [test/mjsunit/regress/regress-crbug-747062.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-747062.js?cl=9fd029e)  
 [test/mjsunit/regress/regress-crbug-766635.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-766635.js?cl=9fd029e)  
   
+---   
 
-### **crbug:764219**  
+## **crbug:764219**  
    
 **[Issue: Ill in v8::internal::__RT_impl_Runtime_AbortJS](https://crbug.com/764219)**  
 **[Commit: [ic] Do access checks when storing via JSGlobalProxy.](https://chromium.googlesource.com/v8/v8/+/5ea95fe)**  
@@ -4288,8 +4411,9 @@ Regress: [mjsunit/regress/regress-crbug-764219.js](https://chromium.googlesource
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=5ea95fe)  
 [test/mjsunit/regress/regress-crbug-764219.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-764219.js?cl=5ea95fe)  
   
+---   
 
-### **crbug:763683**  
+## **crbug:763683**  
    
 **[Issue: DCHECK failure in !__isolate__->has_pending_exception() in runtime-proxy.cc](https://crbug.com/763683)**  
 **[Commit: Improve error handling of proxies get property](https://chromium.googlesource.com/v8/v8/+/8a568bd)**  
@@ -4324,8 +4448,9 @@ assertThrows(function test() {
 [src/runtime/runtime-proxy.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-proxy.cc?cl=8a568bd)  
 [test/mjsunit/regress/regress-crbug-763683.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-763683.js?cl=8a568bd)  
   
+---   
 
-### **crbug:762874**  
+## **crbug:762874**  
    
 **[Issue: Security: off by one in TurboFan range optimization for String.indexOf](https://crbug.com/762874)**  
 **[Commit: [turbofan] Fix type of String#indexOf and String#lastIndexOf.](https://chromium.googlesource.com/v8/v8/+/b8f144e)**  
@@ -4355,8 +4480,9 @@ assertTrue(foo(s));
 [test/mjsunit/regress/regress-crbug-762874-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-762874-1.js?cl=b8f144e)  
 [test/mjsunit/regress/regress-crbug-762874-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-762874-2.js?cl=b8f144e)  
   
+---   
 
-### **crbug:762472**  
+## **crbug:762472**  
    
 **[Issue: DCHECK failure in !isolate->has_pending_exception() in asm-js.cc](https://crbug.com/762472)**  
 **[Commit: [asm.js] Gracefully handle stack overflow in start function.](https://chromium.googlesource.com/v8/v8/+/54a3027)**  
@@ -4393,8 +4519,9 @@ for (init_fuse = 0; init_fuse < 10; init_fuse++) {
 [src/asmjs/asm-js.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-js.cc?cl=54a3027)  
 [test/mjsunit/regress/regress-crbug-762472.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-762472.js?cl=54a3027)  
   
+---   
 
-### **crbug:759327**  
+## **crbug:759327**  
    
 **[Issue: <no crash state available>](https://crbug.com/759327)**  
 **[Commit: [asm.js] Correctly set minimum memory size to zero.](https://chromium.googlesource.com/v8/v8/+/89f839e)**  
@@ -4432,8 +4559,9 @@ assertTrue(%IsAsmWasmCode(Module));
 [src/wasm/wasm-module-builder.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-module-builder.h?cl=89f839e)  
 [test/mjsunit/regress/regress-crbug-759327.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-759327.js?cl=89f839e)  
   
+---   
 
-### **crbug:758773**  
+## **crbug:758773**  
    
 **[Issue: DCHECK failure in result_map_->is_dictionary_map() in map-updater.cc](https://crbug.com/758773)**  
 **[Commit: Don't look at abandoned prototype maps when looking for root maps](https://chromium.googlesource.com/v8/v8/+/8a7ce92)**  
@@ -4453,8 +4581,9 @@ Number.prototype[0] = "string";
 [test/mjsunit/regress/regress-crbug-757199.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-757199.js?cl=8a7ce92)  
 [test/mjsunit/regress/regress-crbug-758773.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-758773.js?cl=8a7ce92)  
   
+---   
 
-### **crbug:757199**  
+## **crbug:757199**  
    
 **[Issue: DCHECK failure in result->owns_descriptors() in objects.cc](https://crbug.com/757199)**  
 **[Commit: [runtime] Deprecate old prototype maps](https://chromium.googlesource.com/v8/v8/+/8974b75)**  
@@ -4497,8 +4626,9 @@ f();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=8974b75)  
 [test/mjsunit/regress/regress-crbug-757199.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-757199.js?cl=8974b75)  
   
+---   
 
-### **crbug:756332**  
+## **crbug:756332**  
    
 **[Issue: DCHECK failure in !node->is_rewritten() in pattern-rewriter.cc](https://crbug.com/756332)**  
 **[Commit: [pattern-rewriter] Handle already-rewritten RewritableExpressions as before](https://chromium.googlesource.com/v8/v8/+/cec289e)**  
@@ -4524,8 +4654,9 @@ Regress: [mjsunit/regress/regress-crbug-756332.js](https://chromium.googlesource
 [src/parsing/pattern-rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/pattern-rewriter.cc?cl=cec289e)  
 [test/mjsunit/regress/regress-crbug-756332.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-756332.js?cl=cec289e)  
   
+---   
 
-### **crbug:755044**  
+## **crbug:755044**  
    
 **[Issue: DCHECK failure in AllowHeapAllocation::IsAllowed() in heap-inl.h](https://crbug.com/755044)**  
 **[Commit: Handlify FrameFunctionIterator to allow for GCs.](https://chromium.googlesource.com/v8/v8/+/6dd1251)**  
@@ -4551,8 +4682,9 @@ bar(function() {});
 [src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=6dd1251)  
 [test/mjsunit/regress/regress-crbug-755044.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-755044.js?cl=6dd1251)  
   
+---   
 
-### **crbug:754177**  
+## **crbug:754177**  
    
 **[Issue: CHECK failure: args[0]->IsJSFunction() in runtime-test.cc](https://crbug.com/754177)**  
 **[Commit: [tests] Make %NeverOptimizeFunction ClusterFuzz safe](https://chromium.googlesource.com/v8/v8/+/89e5792)**  
@@ -4574,8 +4706,9 @@ assertThrows("%NeverOptimizeFunction()", SyntaxError);
 [src/runtime/runtime-test.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-test.cc?cl=89e5792)  
 [test/mjsunit/regress/regress-crbug-754177.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-754177.js?cl=89e5792)  
   
+---   
 
-### **crbug:754175**  
+## **crbug:754175**  
    
 **[Issue: CHECK failure: memory->byte_length()->ToUint32(&mem_size) in module-compiler.cc](https://crbug.com/754175)**  
 **[Commit: [asm.js] Fail gracefully on overly large buffers.](https://chromium.googlesource.com/v8/v8/+/8d2a8e0)**  
@@ -4605,8 +4738,9 @@ assertThrows(instantiate, RangeError);
 [src/asmjs/asm-js.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-js.cc?cl=8d2a8e0)  
 [test/mjsunit/regress/regress-crbug-754175.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-754175.js?cl=8d2a8e0)  
   
+---   
 
-### **crbug:752846**  
+## **crbug:752846**  
    
 **[Issue: CHECK failure: args[2]->IsJSReceiver() in runtime-proxy.cc](https://crbug.com/752846)**  
 **[Commit: Reland^2 "[builtins] Port getting property from Proxy to CSA"](https://chromium.googlesource.com/v8/v8/+/e86c066)**  
@@ -4653,8 +4787,9 @@ for (let val of values) {
 [test/mjsunit/regress/regress-crbug-752712.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-752712.js?cl=e86c066)  
 [test/mjsunit/regress/regress-crbug-752846.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-752846.js?cl=e86c066)  
   
+---   
 
-### **crbug:752826**  
+## **crbug:752826**  
    
 **[Issue: Fatal error: Tried to combine incompatible truncations](https://crbug.com/752826)**  
 **[Commit: [turbofan] Fix introduction of contradicting {TypeGuard}.](https://chromium.googlesource.com/v8/v8/+/d929cc7)**  
@@ -4688,8 +4823,9 @@ assertEquals(42, f());
 [test/mjsunit/regress/regress-crbug-752826.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-752826.js?cl=d929cc7)  
 [test/unittests/compiler/load-elimination-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/load-elimination-unittest.cc?cl=d929cc7)  
   
+---   
 
-### **crbug:752712**  
+## **crbug:752712**  
    
 **[Issue: Crash in v8::internal::Invoke](https://crbug.com/752712)**  
 **[Commit: Reland^2 "[builtins] Port getting property from Proxy to CSA"](https://chromium.googlesource.com/v8/v8/+/e86c066)**  
@@ -4739,8 +4875,9 @@ var number = 1;
 [test/mjsunit/regress/regress-crbug-752712.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-752712.js?cl=e86c066)  
 [test/mjsunit/regress/regress-crbug-752846.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-752846.js?cl=e86c066)  
   
+---   
 
-### **crbug:752481**  
+## **crbug:752481**  
    
 **[Issue: CHECK failure: args[1]->IsJSReceiver() in runtime-object.cc](https://crbug.com/752481)**  
 **[Commit: [turbofan] Properly check new.target parameter in inlined Reflect.construct.](https://chromium.googlesource.com/v8/v8/+/cb9402a)**  
@@ -4791,8 +4928,9 @@ test(function() { Reflect.construct(A, arguments, Symbol.species); });
 [src/builtins/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?cl=cb9402a)  
 [test/mjsunit/regress/regress-crbug-752481.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-752481.js?cl=cb9402a)  
   
+---   
 
-### **crbug:751715**  
+## **crbug:751715**  
    
 **[Issue: DCHECK failure in !is_constructor in frames.cc](https://crbug.com/751715)**  
 **[Commit: [deoptimizer] Fix bogus DCHECK in OptimizedFrame::Summarize.](https://chromium.googlesource.com/v8/v8/+/c8ee3fb)**  
@@ -4819,8 +4957,9 @@ assertThrows(() => Reflect.construct(Derived, [], proxy), TypeError);
 [src/frames.cc](https://cs.chromium.org/chromium/src/v8/src/frames.cc?cl=c8ee3fb)  
 [test/mjsunit/regress/regress-crbug-751715.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-751715.js?cl=c8ee3fb)  
   
+---   
 
-### **crbug:751109**  
+## **crbug:751109**  
    
 **[Issue: CHECK failure: !descriptors->GetKey(i)->IsInterestingSymbol() in objects-debug.cc](https://crbug.com/751109)**  
 **[Commit: [runtime] Properly forward the "interesting symbol" bit.](https://chromium.googlesource.com/v8/v8/+/7101248)**  
@@ -4838,8 +4977,9 @@ Regress: [mjsunit/regress/regress-crbug-751109.js](https://chromium.googlesource
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=7101248)  
 [test/mjsunit/regress/regress-crbug-751109.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-751109.js?cl=7101248)  
   
+---   
 
-### **crbug:748539**  
+## **crbug:748539**  
    
 **[Issue: CHECK failure: is_transitionable_fast_elements_kind implies !Map::IsInplaceGeneralizableField(d](https://crbug.com/748539)**  
 **[Commit: [runtime] Don't create class field types for arrays' fields.](https://chromium.googlesource.com/v8/v8/+/10e4fe3)**  
@@ -4876,8 +5016,9 @@ o1.a;
 [src/objects/map.h](https://cs.chromium.org/chromium/src/v8/src/objects/map.h?cl=10e4fe3)  
 [test/mjsunit/regress/regress-crbug-748539.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-748539.js?cl=10e4fe3)  
   
+---   
 
-### **crbug:747979**  
+## **crbug:747979**  
    
 **[Issue: DCHECK failure in !IsInplaceGeneralizableField(details.constness(), details.representation(), desc](https://crbug.com/747979)**  
 **[Commit: [runtime] Don't create "class" field types for arrays' fields.](https://chromium.googlesource.com/v8/v8/+/c558369a)**  
@@ -4921,8 +5062,9 @@ f(arr3);
 [src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=c558369a)  
 [test/mjsunit/regress/regress-crbug-747979.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-747979.js?cl=c558369a)  
   
+---   
 
-### **crbug:747062**  
+## **crbug:747062**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/747062)**  
 **[Commit: [turbofan] Fix missing callability check on Array callbacks](https://chromium.googlesource.com/v8/v8/+/44f88dc)**  
@@ -4995,8 +5137,9 @@ Regress: [mjsunit/regress/regress-crbug-747062.js](https://chromium.googlesource
 [src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=44f88dc)  
 [test/mjsunit/regress/regress-crbug-747062.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-747062.js?cl=44f88dc)  
   
+---   
 
-### **crbug:746835**  
+## **crbug:746835**  
    
 **[Issue: Crash in v8::internal::Heap::MergeAllocationSitePretenuringFeedback](https://crbug.com/746835)**  
 **[Commit: [literals] Introduce CreateEmptyArrayLiteral Bytecode](https://chromium.googlesource.com/v8/v8/+/0392eb2)**  
@@ -5143,8 +5286,9 @@ for (var v_43 = 0; v_43 < 100000; v_43++) try {
 [test/mjsunit/regress/regress-crbug-746835.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-746835.js?cl=0392eb2)  
 [test/unittests/interpreter/bytecode-array-builder-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/interpreter/bytecode-array-builder-unittest.cc?cl=0392eb2)  
   
+---   
 
-### **crbug:743154**  
+## **crbug:743154**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:arm,ignition](https://crbug.com/743154)**  
 **[Commit: [builtins] Array.prototype.sort bug](https://chromium.googlesource.com/v8/v8/+/c7854ed)**  
@@ -5179,8 +5323,9 @@ assertEquals(0, v[1073741824]);
 [src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=c7854ed)  
 [test/mjsunit/regress/regress-crbug-743154.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-743154.js?cl=c7854ed)  
   
+---   
 
-### **crbug:741078**  
+## **crbug:741078**  
    
 **[Issue: CHECK failure: map->IsMap() in spaces.cc](https://crbug.com/741078)**  
 **[Commit: [turbofan] Fix inline JSGeneratorObject allocation.](https://chromium.googlesource.com/v8/v8/+/0a4ad44)**  
@@ -5210,8 +5355,9 @@ gen();
 [src/compiler/js-create-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.cc?cl=0a4ad44)  
 [test/mjsunit/regress/regress-crbug-741078.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-741078.js?cl=0a4ad44)  
   
+---   
 
-### **crbug:740803**  
+## **crbug:740803**  
    
 **[Issue: Security: Use After Free  in v8](https://crbug.com/740803)**  
 **[Commit: [scope] Null out rare_data_ when aborting preparsing](https://chromium.googlesource.com/v8/v8/+/b56c0f7)**  
@@ -5243,8 +5389,9 @@ Regress: [mjsunit/regress/regress-crbug-740803.js](https://chromium.googlesource
 [src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=b56c0f7)  
 [test/mjsunit/regress/regress-crbug-740803.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-740803.js?cl=b56c0f7)  
   
+---   
 
-### **crbug:740591**  
+## **crbug:740591**  
    
 **[Issue: Function expressions in initializers of for-of/in loops are incorrectly scoped](https://crbug.com/740591)**  
 **[Commit: Rewrite scopes of initializers in for-in/of destructured declarations](https://chromium.googlesource.com/v8/v8/+/f1f2285)**  
@@ -5334,8 +5481,9 @@ Regress: [mjsunit/regress/regress-crbug-740591.js](https://chromium.googlesource
 [test/cctest/interpreter/bytecode_expectations/Generators.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/Generators.golden?cl=f1f2285)  
 [test/mjsunit/regress/regress-crbug-740591.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-740591.js?cl=f1f2285)  
   
+---   
 
-### **crbug:740398**  
+## **crbug:740398**  
    
 **[Issue: CHECK failure: (location_) != nullptr in handles.h](https://crbug.com/740398)**  
 **[Commit: Propagate exceptions from JSFunction::SetName as needed](https://chromium.googlesource.com/v8/v8/+/873d516)**  
@@ -5363,8 +5511,9 @@ assertThrows(() => { return { [Symbol(longString)]: () => {} } }, RangeError);
 [src/wasm/wasm-js.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-js.cc?cl=873d516)  
 [test/mjsunit/regress/regress-crbug-740398.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-740398.js?cl=873d516)  
   
+---   
 
-### **crbug:740116**  
+## **crbug:740116**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/740116)**  
 **[Commit: [turbofan] Fix Reflect.getPrototypeOf on primitives.](https://chromium.googlesource.com/v8/v8/+/933a874)**  
@@ -5404,8 +5553,9 @@ Regress: [mjsunit/regress/regress-crbug-740116.js](https://chromium.googlesource
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=933a874)  
 [test/mjsunit/regress/regress-crbug-740116.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-740116.js?cl=933a874)  
   
+---   
 
-### **crbug:738763**  
+## **crbug:738763**  
    
 **[Issue: CHECK failure: !field_type->NowStable() || field_type->NowContains(value) || (!FLAG_use_allocat](https://crbug.com/738763)**  
 **[Commit: [runtime] Add shortcuts for elements kinds transitions.](https://chromium.googlesource.com/v8/v8/+/b90e83f)**  
@@ -5453,8 +5603,9 @@ update_array(ar3);
 [test/cctest/test-field-type-tracking.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-field-type-tracking.cc?cl=b90e83f)  
 [test/mjsunit/regress/regress-crbug-738763.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-738763.js?cl=b90e83f)  
   
+---   
 
-### **crbug:737645**  
+## **crbug:737645**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition_turbo:ia32,ignition_turbo](https://crbug.com/737645)**  
 **[Commit: [runtime] Fix Array.prototype.sort for large entries](https://chromium.googlesource.com/v8/v8/+/78c74e6)**  
@@ -5498,8 +5649,9 @@ for (let i = 0; i < 100; i++) {
 [src/runtime/runtime-object.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-object.cc?cl=78c74e6)  
 [test/mjsunit/regress/regress-crbug-737645.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-737645.js?cl=78c74e6)  
   
+---   
 
-### **crbug:736633**  
+## **crbug:736633**  
    
 **[Issue: Use-after-poison in v8::internal::compiler::InstructionSelector::EmitTableSwitch](https://crbug.com/736633)**  
 **[Commit: [turbofan] Introduce upper limit for table switch size.](https://chromium.googlesource.com/v8/v8/+/4a4bcda)**  
@@ -5540,8 +5692,9 @@ assertEquals(3, f(2));
 [src/compiler/x87/instruction-selector-x87.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/x87/instruction-selector-x87.cc?cl=4a4bcda)  
 [test/mjsunit/regress/regress-crbug-736633.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-736633.js?cl=4a4bcda)  
   
+---   
 
-### **crbug:736575**  
+## **crbug:736575**  
    
 **[Issue: No Permission](https://crbug.com/736575)**  
 **[Commit: [turbofan] Fix type for HOLEY_DOUBLE_ELEMENTS loads.](https://chromium.googlesource.com/v8/v8/+/533f0e3)**  
@@ -5568,8 +5721,9 @@ assertEquals(undefined, f()[0]);
 [test/mjsunit/es6/array-iterator-turbo.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/array-iterator-turbo.js?cl=533f0e3)  
 [test/mjsunit/regress/regress-crbug-736575.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-736575.js?cl=533f0e3)  
   
+---   
 
-### **crbug:736451**  
+## **crbug:736451**  
    
 **[Issue: CHECK failure: ONE_BYTE == state_ in string.h](https://crbug.com/736451)**  
 **[Commit: [string] Handle two-byte contents in String.p.toLowerCase](https://chromium.googlesource.com/v8/v8/+/3c26076)**  
@@ -5593,8 +5747,9 @@ Regress: [mjsunit/regress/regress-crbug-736451.js](https://chromium.googlesource
 [src/intl.cc](https://cs.chromium.org/chromium/src/v8/src/intl.cc?cl=3c26076)  
 [test/mjsunit/regress/regress-crbug-736451.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-736451.js?cl=3c26076)  
   
+---   
 
-### **crbug:734162**  
+## **crbug:734162**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:ia32,ignition](https://crbug.com/734162)**  
 **[Commit: [literals] Perform a deep boilerplate copy for MutableHeapNumber fields](https://chromium.googlesource.com/v8/v8/+/7dcd046)**  
@@ -5656,8 +5811,9 @@ Regress: [mjsunit/regress/regress-crbug-734162.js](https://chromium.googlesource
 [test/mjsunit/regress/regress-crbug-734051.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-734051.js?cl=7dcd046)  
 [test/mjsunit/regress/regress-crbug-734162.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-734162.js?cl=7dcd046)  
   
+---   
 
-### **crbug:734051**  
+## **crbug:734051**  
    
 **[Issue: No Permission](https://crbug.com/734051)**  
 **[Commit: [literals] Perform a deep boilerplate copy for MutableHeapNumber fields](https://chromium.googlesource.com/v8/v8/+/7dcd046)**  
@@ -5687,8 +5843,9 @@ TestMutableHeapNumberLiteral();
 [test/mjsunit/regress/regress-crbug-734051.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-734051.js?cl=7dcd046)  
 [test/mjsunit/regress/regress-crbug-734162.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-734162.js?cl=7dcd046)  
   
+---   
 
-### **crbug:732169**  
+## **crbug:732169**  
    
 **[Issue: Ill in v8::internal::TranslatedState::MaterializeCapturedObjectAt](https://crbug.com/732169)**  
 **[Commit: [deoptimizer] Add support for materializing Generator objects.](https://chromium.googlesource.com/v8/v8/+/f555a69)**  
@@ -5728,8 +5885,9 @@ Regress: [mjsunit/regress/regress-crbug-732169.js](https://chromium.googlesource
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=f555a69)  
 [test/mjsunit/regress/regress-crbug-732169.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-732169.js?cl=f555a69)  
   
+---   
 
-### **crbug:731193**  
+## **crbug:731193**  
    
 **[Issue: undefined prototypal inherited properties [OpenStreetMap iD editor]](https://crbug.com/731193)**  
 **[Commit: [ic] Fix stub-cached access to use the dereffed thin-string.](https://chromium.googlesource.com/v8/v8/+/2325ef5)**  
@@ -5770,8 +5928,9 @@ assertEquals(100, access(o, p));
 [src/ic/accessor-assembler.h](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.h?cl=2325ef5)  
 [test/mjsunit/regress/regress-crbug-731193.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-731193.js?cl=2325ef5)  
   
+---   
 
-### **crbug:729597**  
+## **crbug:729597**  
    
 **[Issue: Null-dereference READ in heap](https://crbug.com/729597)**  
 **[Commit: [heap-verify] Relax arguments verification](https://chromium.googlesource.com/v8/v8/+/66fe2d4)**  
@@ -5800,8 +5959,9 @@ for (var i = 0; i < 12800; ++i) {
 [src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=66fe2d4)  
 [test/mjsunit/regress/regress-crbug-729597.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-729597.js?cl=66fe2d4)  
   
+---   
 
-### **crbug:729573**  
+## **crbug:729573**  
    
 **[Issue: No Permission](https://crbug.com/729573)**  
 **[Commit: [deoptimizer] Teach the Deoptimizer about bound functions.](https://chromium.googlesource.com/v8/v8/+/337bb36)**  
@@ -5880,8 +6040,9 @@ Regress: [mjsunit/regress/regress-crbug-729573-1.js](https://chromium.googlesour
 [test/mjsunit/regress/regress-crbug-729573-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-729573-1.js?cl=337bb36)  
 [test/mjsunit/regress/regress-crbug-729573-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-729573-2.js?cl=337bb36)  
   
+---   
 
-### **crbug:728813**  
+## **crbug:728813**  
    
 **[Issue: Ill in v8::Utils::ReportApiFailure](https://crbug.com/728813)**  
 **[Commit: Fix Array.indexOf for Proxies that throw](https://chromium.googlesource.com/v8/v8/+/8bc98b5)**  
@@ -5903,8 +6064,9 @@ assertThrows(() => Array.prototype.indexOf.call(p));
 [src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=8bc98b5)  
 [test/mjsunit/regress/regress-crbug-728813.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-728813.js?cl=8bc98b5)  
   
+---   
 
-### **crbug:725537**  
+## **crbug:725537**  
    
 **[Issue: CHECK failure: map()->is_callable() in objects-debug.cc](https://crbug.com/725537)**  
 **[Commit: [runtime] Set proper initial map for AsyncFunction constructor.](https://chromium.googlesource.com/v8/v8/+/397afc6)**  
@@ -5925,8 +6087,9 @@ gc();
 [src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=397afc6)  
 [test/mjsunit/regress/regress-crbug-725537.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-725537.js?cl=397afc6)  
   
+---   
 
-### **crbug:725201**  
+## **crbug:725201**  
    
 **[Issue: CHECK failure: fixed_array->IsDictionary() in objects-inl.h](https://crbug.com/725201)**  
 **[Commit: [literals] Set the proper Map on the elements store for object literals](https://chromium.googlesource.com/v8/v8/+/106226e)**  
@@ -5957,8 +6120,9 @@ for (var __v_6 in [(1.2)]) {  }
 [src/builtins/builtins-constructor-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-constructor-gen.cc?cl=106226e)  
 [test/mjsunit/regress/regress-crbug-725201.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-725201.js?cl=106226e)  
   
+---   
 
-### **crbug:724608**  
+## **crbug:724608**  
    
 **[Issue: CHECK failure: !map->is_deprecated() in compilation-dependencies.cc](https://crbug.com/724608)**  
 **[Commit: [turbofan] Try to update deprecated maps first.](https://chromium.googlesource.com/v8/v8/+/468446d)**  
@@ -5982,8 +6146,9 @@ foo();
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=468446d)  
 [test/mjsunit/regress/regress-crbug-724608.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-724608.js?cl=468446d)  
   
+---   
 
-### **crbug:724153**  
+## **crbug:724153**  
    
 **[Issue: CHECK failure: val <= std::min(static_cast<size_t>(std::numeric_limits<N>::max()), static_cast<](https://crbug.com/724153)**  
 **[Commit: [turbofan] Fix value output count range on Operator.](https://chromium.googlesource.com/v8/v8/+/f7f03da)**  
@@ -6016,8 +6181,9 @@ Regress: [mjsunit/regress/regress-crbug-724153.js](https://chromium.googlesource
 [src/compiler/pipeline.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/pipeline.cc?cl=f7f03da)  
 [test/mjsunit/regress/regress-crbug-724153.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-724153.js?cl=f7f03da)  
   
+---   
 
-### **crbug:723455**  
+## **crbug:723455**  
    
 **[Issue: CHECK failure: !map->is_stable() in access-info.cc](https://crbug.com/723455)**  
 **[Commit: [turbofan][crankshaft] Don't generate elements kind transitions from stable maps.](https://chromium.googlesource.com/v8/v8/+/ea55b87)**  
@@ -6047,8 +6213,9 @@ f(new Array(1));
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=ea55b87)  
 [test/mjsunit/regress/regress-crbug-723455.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-723455.js?cl=ea55b87)  
   
+---   
 
-### **crbug:723132**  
+## **crbug:723132**  
    
 **[Issue: Inconsistent binding of "this" in inline arrow function within a generator.](https://crbug.com/723132)**  
 **[Commit: [parser] Stop treating generators as "top level" for preparsing purposes](https://chromium.googlesource.com/v8/v8/+/0439100)**  
@@ -6077,8 +6244,9 @@ outer.call(expectedReceiver);
 [src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=0439100)  
 [test/mjsunit/regress/regress-crbug-723132.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-723132.js?cl=0439100)  
   
+---   
 
-### **crbug:722871**  
+## **crbug:722871**  
    
 **[Issue: Data race in v8::internal::ElementsAccessorBase<v8::internal::TypedElementsAccessor<](https://crbug.com/722871)**  
 **[Commit: Add TSAN annotations for TypedArray accesses](https://chromium.googlesource.com/v8/v8/+/181c03e)**  
@@ -6208,8 +6376,9 @@ while (running) {
 [src/v8.gyp](https://cs.chromium.org/chromium/src/v8/src/v8.gyp?cl=181c03e)  
 [test/mjsunit/regress/regress-crbug-722871.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-722871.js?cl=181c03e)  
   
+---   
 
-### **crbug:722783**  
+## **crbug:722783**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/722783)**  
 **[Commit: [ic] Properly handle reconfiguring of a global property to 'readonly'.](https://chromium.googlesource.com/v8/v8/+/b30ea16)**  
@@ -6243,8 +6412,9 @@ assertEquals(o, x);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=b30ea16)  
 [test/mjsunit/regress/regress-crbug-722783.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-722783.js?cl=b30ea16)  
   
+---   
 
-### **crbug:722756**  
+## **crbug:722756**  
    
 **[Issue: Type Confusion In Chrome Lead to RCE](https://crbug.com/722756)**  
 **[Commit: [crankshaft] Fix HAliasAnalyzer for constants](https://chromium.googlesource.com/v8/v8/+/e33fd30)**  
@@ -6295,8 +6465,9 @@ assertEquals(expected, double_arr2[1]);
 [src/crankshaft/hydrogen-alias-analysis.h](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen-alias-analysis.h?cl=e33fd30)  
 [test/mjsunit/regress/regress-crbug-722756.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-722756.js?cl=e33fd30)  
   
+---   
 
-### **crbug:722348**  
+## **crbug:722348**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_asm](https://crbug.com/722348)**  
 **[Commit: [asm.js] Properly handle unused function imports.](https://chromium.googlesource.com/v8/v8/+/d813f46)**  
@@ -6321,8 +6492,9 @@ assertFalse(%IsAsmWasmCode(Module));
 [src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=d813f46)  
 [test/mjsunit/regress/regress-crbug-722348.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-722348.js?cl=d813f46)  
   
+---   
 
-### **crbug:721835**  
+## **crbug:721835**  
    
 **[Issue: CHECK failure: !failed_ in asm-parser.cc](https://crbug.com/721835)**  
 **[Commit: [asm.js] Fix evaluation of first for-statement expression.](https://chromium.googlesource.com/v8/v8/+/f2b9c50)**  
@@ -6365,8 +6537,9 @@ Regress: [mjsunit/regress/regress-crbug-721835.js](https://chromium.googlesource
 [src/asmjs/asm-parser.h](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.h?cl=f2b9c50)  
 [test/mjsunit/regress/regress-crbug-721835.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-721835.js?cl=f2b9c50)  
   
+---   
 
-### **crbug:719479**  
+## **crbug:719479**  
    
 **[Issue: CHECK failure: LoadElement of kRepFloat64 (NumberOrHole) cannot be changed to kRepTagged in rep](https://crbug.com/719479)**  
 **[Commit: [turbofan] Don't mix element accesses with incompatible representations.](https://chromium.googlesource.com/v8/v8/+/d412cad)**  
@@ -6402,8 +6575,9 @@ foo();
 [src/compiler/load-elimination.h](https://cs.chromium.org/chromium/src/v8/src/compiler/load-elimination.h?cl=d412cad)  
 [test/mjsunit/regress/regress-crbug-719479.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-719479.js?cl=d412cad)  
   
+---   
 
-### **crbug:719384**  
+## **crbug:719384**  
    
 **[Issue: CHECK failure: !isolate->has_pending_exception() in compiler.cc](https://crbug.com/719384)**  
 **[Commit: [asm.js] Ensure lookups of imports are non-observable.](https://chromium.googlesource.com/v8/v8/+/ea48d83)**  
@@ -6452,8 +6626,9 @@ Regress: [mjsunit/regress/regress-crbug-719384.js](https://chromium.googlesource
 [test/mjsunit/regress/regress-crbug-719384.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-719384.js?cl=ea48d83)  
 [test/mjsunit/wasm/asm-wasm.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/asm-wasm.js?cl=ea48d83)  
   
+---   
 
-### **crbug:718779**  
+## **crbug:718779**  
    
 **[Issue: CHECK failure: !new_map->IsUnboxedDoubleField(index) in objects.cc](https://crbug.com/718779)**  
 **[Commit: [runtime] MigrateFastToFast: fix check for unboxed inobject doubles](https://chromium.googlesource.com/v8/v8/+/ceba405)**  
@@ -6487,8 +6662,9 @@ __f_1(__v_1);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=ceba405)  
 [test/mjsunit/regress/regress-crbug-718779.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-718779.js?cl=ceba405)  
   
+---   
 
-### **crbug:716912**  
+## **crbug:716912**  
    
 **[Issue: Crash in IsFlagSet](https://crbug.com/716912)**  
 **[Commit: Move delete-last-fast-property code from CSA to C++](https://chromium.googlesource.com/v8/v8/+/6cb995b)**  
@@ -6525,8 +6701,9 @@ __v_6.boom = __v_9[0];
 [test/mjsunit/regress/regress-crbug-714981.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-714981.js?cl=6cb995b)  
 [test/mjsunit/regress/regress-crbug-716912.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-716912.js?cl=6cb995b)  
   
+---   
 
-### **crbug:716804**  
+## **crbug:716804**  
    
 **[Issue: CHECK failure: pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/716804)**  
 **[Commit: [ic] Fix handling of JSArray.length accessor info.](https://chromium.googlesource.com/v8/v8/+/26cf06b)**  
@@ -6550,8 +6727,9 @@ v.stack;
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=26cf06b)  
 [test/mjsunit/regress/regress-crbug-716804.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-716804.js?cl=26cf06b)  
   
+---   
 
-### **crbug:716520**  
+## **crbug:716520**  
    
 **[Issue: Crash in v8::internal::JSObject::FastPropertyAt](https://crbug.com/716520)**  
 **[Commit: Fix FastAssign for self-assignment](https://chromium.googlesource.com/v8/v8/+/1f51f66)**  
@@ -6585,8 +6763,9 @@ try {
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=1f51f66)  
 [test/mjsunit/regress/regress-crbug-716520.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-716520.js?cl=1f51f66)  
   
+---   
 
-### **crbug:715862**  
+## **crbug:715862**  
    
 **[Issue: CHECK failure: !map->is_stable() in hydrogen.cc](https://crbug.com/715862)**  
 **[Commit: [ic] Filter out deprecated maps from polymorphic keyed ICs.](https://chromium.googlesource.com/v8/v8/+/0655ee8)**  
@@ -6614,8 +6793,9 @@ f(new Array(1));
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=0655ee8)  
 [test/mjsunit/regress/regress-crbug-715862.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-715862.js?cl=0655ee8)  
   
+---   
 
-### **crbug:715455**  
+## **crbug:715455**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_asm](https://crbug.com/715455)**  
 **[Commit: [asm.js] Fix excessive function table sizes.](https://chromium.googlesource.com/v8/v8/+/a621462)**  
@@ -6653,8 +6833,9 @@ for (var i = 0; i < test_set.length; ++i) {
 [src/wasm/wasm-module-builder.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-module-builder.cc?cl=a621462)  
 [test/mjsunit/regress/regress-crbug-715455.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-715455.js?cl=a621462)  
   
+---   
 
-### **crbug:715404**  
+## **crbug:715404**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/715404)**  
 **[Commit: [turbofan] Fix lowering of Array constructor with one argument.](https://chromium.googlesource.com/v8/v8/+/d06d4ce)**  
@@ -6676,8 +6857,9 @@ assertThrows(foo, RangeError);
 [src/compiler/js-create-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.cc?cl=d06d4ce)  
 [test/mjsunit/regress/regress-crbug-715404.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-715404.js?cl=d06d4ce)  
   
+---   
 
-### **crbug:715151**  
+## **crbug:715151**  
    
 **[Issue: CHECK failure: (map()->has_fast_smi_or_object_elements() || (elements() == GetHeap()->empty_fix](https://crbug.com/715151)**  
 **[Commit: [turbofan] Fix buggy implicit coercion in GetMapWitness.](https://chromium.googlesource.com/v8/v8/+/e913f9e)**  
@@ -6703,8 +6885,9 @@ foo();
 [src/compiler/js-builtin-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-builtin-reducer.cc?cl=e913f9e)  
 [test/mjsunit/regress/regress-crbug-715151.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-715151.js?cl=e913f9e)  
   
+---   
 
-### **crbug:714981**  
+## **crbug:714981**  
    
 **[Issue: CHECK failure: map()->unused_property_fields() == actual_unused_property_fields - JSObject::kFi](https://crbug.com/714981)**  
 **[Commit: Move delete-last-fast-property code from CSA to C++](https://chromium.googlesource.com/v8/v8/+/6cb995b)**  
@@ -6752,8 +6935,9 @@ for (var i = 0; i < 3; ++i) {
 [test/mjsunit/regress/regress-crbug-714981.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-714981.js?cl=6cb995b)  
 [test/mjsunit/regress/regress-crbug-716912.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-716912.js?cl=6cb995b)  
   
+---   
 
-### **crbug:714971**  
+## **crbug:714971**  
    
 **[Issue: Unreachable code in asm-types.cc](https://crbug.com/714971)**  
 **[Commit: [asm.js] Fix failure propagation of heap access validation.](https://chromium.googlesource.com/v8/v8/+/54818a6)**  
@@ -6783,8 +6967,9 @@ assertFalse(%IsAsmWasmCode(Module));
 [src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=54818a6)  
 [test/mjsunit/regress/regress-crbug-714971.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-714971.js?cl=54818a6)  
   
+---   
 
-### **crbug:714872**  
+## **crbug:714872**  
    
 **[Issue: 6.5%-107.1% regression in page_cycler_v2.intl_es_fr_pt-BR at 465627:465860](https://crbug.com/714872)**  
 **[Commit: Revert behavioral part of 84dc8ed4c3e6c8c1e3005b2d2445c64328b139a4](https://chromium.googlesource.com/v8/v8/+/86aa796)**  
@@ -6805,8 +6990,9 @@ f.prototype = {};
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=86aa796)  
 [test/mjsunit/regress/regress-crbug-714872.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-714872.js?cl=86aa796)  
   
+---   
 
-### **crbug:714696**  
+## **crbug:714696**  
    
 **[Issue: Fatal error in v8::FromJust](https://crbug.com/714696)**  
 **[Commit: [d8] console methods must not throw.](https://chromium.googlesource.com/v8/v8/+/87b5b53)**  
@@ -6832,8 +7018,9 @@ if (this.Intl) {
 [test/message/console.out](https://cs.chromium.org/chromium/src/v8/test/message/console.out?cl=87b5b53)  
 [test/mjsunit/regress/regress-crbug-714696.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-714696.js?cl=87b5b53)  
   
+---   
 
-### **crbug:712802**  
+## **crbug:712802**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/712802)**  
 **[Commit: [turbofan] Fix typing rule for JSCreateArguments.](https://chromium.googlesource.com/v8/v8/+/b89ddcf)**  
@@ -6858,8 +7045,9 @@ assertTrue(foo());
 [src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=b89ddcf)  
 [test/mjsunit/regress/regress-crbug-712802.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-712802.js?cl=b89ddcf)  
   
+---   
 
-### **crbug:711166**  
+## **crbug:711166**  
    
 **[Issue: CHECK failure: context->IsContext() in contexts-inl.h](https://crbug.com/711166)**  
 **[Commit: [turbofan] Fix translation containing arguments elements.](https://chromium.googlesource.com/v8/v8/+/e6590a3)**  
@@ -6892,8 +7080,9 @@ assertEquals(1, f(0));
 [src/compiler/instruction-selector.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction-selector.cc?cl=e6590a3)  
 [test/mjsunit/regress/regress-crbug-711166.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-711166.js?cl=e6590a3)  
   
+---   
 
-### **crbug:709753**  
+## **crbug:709753**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/709753)**  
 **[Commit: [turbofan] Properly represent the float64 hole.](https://chromium.googlesource.com/v8/v8/+/8c0c5e8)**  
@@ -6930,8 +7119,9 @@ assertThrows(() => foo(a, 0), TypeError);
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=8c0c5e8)  
 [test/mjsunit/regress/regress-crbug-709753.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-709753.js?cl=8c0c5e8)  
   
+---   
 
-### **crbug:709537**  
+## **crbug:709537**  
    
 **[Issue: CHECK failure: object.is_null() || *object == scope_site->transition_info() in allocation-site-](https://crbug.com/709537)**  
 **[Commit: [turbofan] Fix traversal order of boilerplate objects.](https://chromium.googlesource.com/v8/v8/+/1f3a863)**  
@@ -6957,8 +7147,9 @@ assertEquals(ref, foo());
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=1f3a863)  
 [test/mjsunit/regress/regress-crbug-709537.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-709537.js?cl=1f3a863)  
   
+---   
 
-### **crbug:708050**  
+## **crbug:708050**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/708050)**  
 **[Commit: [turbofan] Fix typing rule for CheckBounds.](https://chromium.googlesource.com/v8/v8/+/483812d)**  
@@ -6987,8 +7178,9 @@ assertEquals(27, foo());
 [test/mjsunit/regress/regress-crbug-708050-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-708050-1.js?cl=483812d)  
 [test/mjsunit/regress/regress-crbug-708050-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-708050-2.js?cl=483812d)  
   
+---   
 
-### **crbug:707580**  
+## **crbug:707580**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:arm,ignition](https://crbug.com/707580)**  
 **[Commit: [builtins] Make sure to perform ToPrimitive(key, hint string) in hasOwnProperty even if the receiver is a smi.](https://chromium.googlesource.com/v8/v8/+/fe04841)**  
@@ -7011,8 +7203,9 @@ assertThrows(() => smi_number.hasOwnProperty(thrower));
 [src/builtins/builtins-object-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-object-gen.cc?cl=fe04841)  
 [test/mjsunit/regress/regress-crbug-707580.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-707580.js?cl=fe04841)  
   
+---   
 
-### **crbug:706642**  
+## **crbug:706642**  
    
 **[Issue: Deoptimizing a derived constructor leaks the hole](https://crbug.com/706642)**  
 **[Commit: [turbofan] Disable inlining of derived class constructors.](https://chromium.googlesource.com/v8/v8/+/c019e53)**  
@@ -7060,8 +7253,9 @@ assertThrows(() => Reflect.construct(B, [], observer), TypeError);
 [src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=c019e53)  
 [test/mjsunit/regress/regress-crbug-706642.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-706642.js?cl=c019e53)  
   
+---   
 
-### **crbug:703610**  
+## **crbug:703610**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/703610)**  
 **[Commit: [turbofan] Fix lowering of Function.prototype accesses.](https://chromium.googlesource.com/v8/v8/+/37b9d65)**  
@@ -7088,8 +7282,9 @@ assertEquals(42, f());
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=37b9d65)  
 [test/mjsunit/regress/regress-crbug-703610.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-703610.js?cl=37b9d65)  
   
+---   
 
-### **crbug:702798**  
+## **crbug:702798**  
    
 **[Issue: CHECK failure: cell->value()->IsTheHole(isolate) in objects.cc](https://crbug.com/702798)**  
 **[Commit: [ic] Fix 'prototype chain checks' where the holder is the receiver](https://chromium.googlesource.com/v8/v8/+/6f52dfd)**  
@@ -7109,8 +7304,9 @@ Object;
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=6f52dfd)  
 [test/mjsunit/regress/regress-crbug-702798.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-702798.js?cl=6f52dfd)  
   
+---   
 
-### **crbug:702793**  
+## **crbug:702793**  
    
 **[Issue: No Permission](https://crbug.com/702793)**  
 **[Commit: Fix LoadGlobalIC for cleared WeakCells](https://chromium.googlesource.com/v8/v8/+/f89db5d)**  
@@ -7140,8 +7336,9 @@ assertEquals(undefined, f(this));
 [src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=f89db5d)  
 [test/mjsunit/regress/regress-crbug-702793.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-702793.js?cl=f89db5d)  
   
+---   
 
-### **crbug:702058**  
+## **crbug:702058**  
    
 **[Issue: Security: ZDI-CAN-4587 - chrome OOB read (pwn2own 2017)](https://crbug.com/702058)**  
 **[Commit: [csa] Bailout to the runtime for ToInteger conversion in Array.p.indexOf.](https://chromium.googlesource.com/v8/v8/+/9224d5d)**  
@@ -7165,8 +7362,9 @@ arr.indexOf(1, fromIndex);
 [test/mjsunit/regress/regress-crbug-702058-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-702058-2.js?cl=9224d5d)  
 [test/mjsunit/regress/regress-crbug-702058-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-702058-3.js?cl=9224d5d)  
   
+---   
 
-### **crbug:700733**  
+## **crbug:700733**  
    
 **[Issue: !field_type->NowStable() || field_type->NowContains(value) || (!FLAG_use_allocat](https://crbug.com/700733)**  
 **[Commit: [ic] Fix handling of elements kind transitions in polymorphic keyed ICs.](https://chromium.googlesource.com/v8/v8/+/2d85654)**  
@@ -7248,8 +7446,9 @@ Regress: [mjsunit/regress/regress-crbug-700733.js](https://chromium.googlesource
 [src/ic/ic.h](https://cs.chromium.org/chromium/src/v8/src/ic/ic.h?cl=2d85654)  
 [test/mjsunit/regress/regress-crbug-700733.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-700733.js?cl=2d85654)  
   
+---   
 
-### **crbug:700678**  
+## **crbug:700678**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/700678)**  
 **[Commit: [runtime] Fix KeyAccumulator for non-internalized keys.](https://chromium.googlesource.com/v8/v8/+/3b597bb)**  
@@ -7282,8 +7481,9 @@ Regress: [mjsunit/regress/regress-crbug-700678.js](https://chromium.googlesource
 [src/keys.cc](https://cs.chromium.org/chromium/src/v8/src/keys.cc?cl=3b597bb)  
 [test/mjsunit/regress/regress-crbug-700678.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-700678.js?cl=3b597bb)  
   
+---   
 
-### **crbug:699282**  
+## **crbug:699282**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/699282)**  
 **[Commit: [turbofan] Revert invalid optimization of flooring division.](https://chromium.googlesource.com/v8/v8/+/18be5d7)**  
@@ -7305,8 +7505,9 @@ assertEquals(-1, foo());
 [src/compiler/typed-optimization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typed-optimization.cc?cl=18be5d7)  
 [test/mjsunit/regress/regress-crbug-699282.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-699282.js?cl=18be5d7)  
   
+---   
 
-### **crbug:698607**  
+## **crbug:698607**  
    
 **[Issue: Encountered unaccounted use by #635 (ObjectIsNaN) in escape-analysis.cc](https://crbug.com/698607)**  
 **[Commit: [turbofan] Teach escape analysis about ObjectIsNaN.](https://chromium.googlesource.com/v8/v8/+/1e4a272)**  
@@ -7339,8 +7540,9 @@ foo(1);
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=1e4a272)  
 [test/mjsunit/regress/regress-crbug-698607.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-698607.js?cl=1e4a272)  
   
+---   
 
-### **crbug:697017**  
+## **crbug:697017**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSFunction()) in objects-i](https://crbug.com/697017)**  
 **[Commit: [runtime] Properly handle null constructor case when feeding back normalization.](https://chromium.googlesource.com/v8/v8/+/e003d21)**  
@@ -7361,8 +7563,9 @@ for (var i = 0; i < 100; i++) {
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=e003d21)  
 [test/mjsunit/regress/regress-crbug-697017.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-697017.js?cl=e003d21)  
   
+---   
 
-### **crbug:696622**  
+## **crbug:696622**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/696622)**  
 **[Commit: [turbofan] Fix lowering of %_GetSuperConstructor intrinsic.](https://chromium.googlesource.com/v8/v8/+/09a0703)**  
@@ -7388,8 +7591,9 @@ assertThrows(() => new D(), TypeError);
 [src/interpreter/bytecode-decoder.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-decoder.cc?cl=09a0703)  
 [test/mjsunit/regress/regress-crbug-696622.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-696622.js?cl=09a0703)  
   
+---   
 
-### **crbug:694709**  
+## **crbug:694709**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/694709)**  
 **[Commit: [turbofan] Fix Object.prototype.__proto__ getter reduction.](https://chromium.googlesource.com/v8/v8/+/beb94c5)**  
@@ -7413,8 +7617,9 @@ assertEquals(Symbol.prototype, f(Symbol()));
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=beb94c5)  
 [test/mjsunit/regress/regress-crbug-694709.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-694709.js?cl=beb94c5)  
   
+---   
 
-### **crbug:694416**  
+## **crbug:694416**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/694416)**  
 **[Commit: [turbofan] Fix missing name check for keyed global load.](https://chromium.googlesource.com/v8/v8/+/875ccb4)**  
@@ -7443,8 +7648,9 @@ assertEquals(42, foo('boom'));
 [src/compiler/js-native-context-specialization.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.h?cl=875ccb4)  
 [test/mjsunit/regress/regress-crbug-694416.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-694416.js?cl=875ccb4)  
   
+---   
 
-### **crbug:691687**  
+## **crbug:691687**  
    
 **[Issue: new_it.done() == old_it.done() in objects-debug.cc](https://crbug.com/691687)**  
 **[Commit: Accurately record eval calls in arrow parameter lists](https://chromium.googlesource.com/v8/v8/+/fc02366)**  
@@ -7470,8 +7676,9 @@ assertEquals(42, f({x: 42}));
 [src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=fc02366)  
 [test/mjsunit/regress/regress-crbug-691687.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-691687.js?cl=fc02366)  
   
+---   
 
-### **crbug:691323**  
+## **crbug:691323**  
    
 **[Issue: Security: Information Leak in Array indexOf](https://crbug.com/691323)**  
 **[Commit: [elements] Check if the backing store has been neutered for indexOf](https://chromium.googlesource.com/v8/v8/+/3a43be9)**  
@@ -7518,8 +7725,9 @@ assertEquals(true, Array.prototype.includes.call(array, undefined, tmp));
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=3a43be9)  
 [test/mjsunit/regress/regress-crbug-691323.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-691323.js?cl=3a43be9)  
   
+---   
 
-### **crbug:688734**  
+## **crbug:688734**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/688734)**  
 **[Commit: [ic] KeyedStoreIC should use a slow stub when a prototype chain contains dictionary elements.](https://chromium.googlesource.com/v8/v8/+/9760851)**  
@@ -7548,8 +7756,9 @@ assertEquals(1, count);
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=9760851)  
 [test/mjsunit/regress/regress-crbug-688734.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-688734.js?cl=9760851)  
   
+---   
 
-### **crbug:688567**  
+## **crbug:688567**  
    
 **[Issue: Sloppy block function hoisting does not maintain declaration order](https://crbug.com/688567)**  
 **[Commit: Retain source order when hoisting sloppy block functions](https://chromium.googlesource.com/v8/v8/+/fb16583)**  
@@ -7599,8 +7808,9 @@ assertEquals("i,j", names.join());
 [src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=fb16583)  
 [test/mjsunit/regress/regress-crbug-688567.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-688567.js?cl=fb16583)  
   
+---   
 
-### **crbug:687990**  
+## **crbug:687990**  
    
 **[Issue: We should never get here - unexpected deopt info in deoptimizer.cc](https://crbug.com/687990)**  
 **[Commit: [turbofan] Properly ensure that deoptimization is enabled.](https://chromium.googlesource.com/v8/v8/+/c21d128)**  
@@ -7627,8 +7837,9 @@ foo();
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=c21d128)  
 [test/mjsunit/regress/regress-crbug-687990.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-687990.js?cl=c21d128)  
   
+---   
 
-### **crbug:687063**  
+## **crbug:687063**  
    
 **[Issue: V8 correctness failure in configs: x64,fullcode:x64,ignition_staging](https://crbug.com/687063)**  
 **[Commit: [es2015] Fix ToPrimitive conversions in relational comparisons.](https://chromium.googlesource.com/v8/v8/+/08aec7d)**  
@@ -7669,8 +7880,9 @@ assertEquals([Symbol.toPrimitive, 'valueOf', 'toString'], actual);
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=08aec7d)  
 [test/mjsunit/regress/regress-crbug-687063.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-687063.js?cl=08aec7d)  
   
+---   
 
-### **crbug:687029**  
+## **crbug:687029**  
    
 **[Issue: No Permission](https://crbug.com/687029)**  
 **[Commit: [turbofan] Introduce ChangeTaggedToTaggedSigned operator.](https://chromium.googlesource.com/v8/v8/+/68ae57c)**  
@@ -7701,8 +7913,9 @@ foo();
 [src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=68ae57c)  
 [test/mjsunit/regress/regress-crbug-687029.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-687029.js?cl=68ae57c)  
   
+---   
 
-### **crbug:686737**  
+## **crbug:686737**  
    
 **[Issue: V8 correctness failure in configs: x64,fullcode:x64,ignition_turbo](https://crbug.com/686737)**  
 **[Commit: [turbofan] Don't eliminate unused CheckFloat64Hole.](https://chromium.googlesource.com/v8/v8/+/b8df954)**  
@@ -7726,8 +7939,9 @@ assertThrows(() => foo(0), Error);
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=b8df954)  
 [test/mjsunit/regress/regress-crbug-686737.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-686737.js?cl=b8df954)  
   
+---   
 
-### **crbug:686427**  
+## **crbug:686427**  
    
 **[Issue: No Permission](https://crbug.com/686427)**  
 **[Commit: [crankshaft] Fix Smi overflow in {HMaybeGrowElements}.](https://chromium.googlesource.com/v8/v8/+/6c12d57)**  
@@ -7757,8 +7971,9 @@ assertEquals(23, f({}, i)[i + 4]);
 [src/crankshaft/mips64/lithium-codegen-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/mips64/lithium-codegen-mips64.cc?cl=6c12d57)  
 [test/mjsunit/regress/regress-crbug-686427.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-686427.js?cl=6c12d57)  
   
+---   
 
-### **crbug:686102**  
+## **crbug:686102**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/686102)**  
 **[Commit: [turbofan] Don't constant-fold ACCESSOR properties.](https://chromium.googlesource.com/v8/v8/+/b912851)**  
@@ -7784,8 +7999,9 @@ assertEquals(0, foo());
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=b912851)  
 [test/mjsunit/regress/regress-crbug-686102.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-686102.js?cl=b912851)  
   
+---   
 
-### **crbug:685965**  
+## **crbug:685965**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/685965)**  
 **[Commit: ThinStrings: fix CodeStubAssembler::SubString](https://chromium.googlesource.com/v8/v8/+/9ea3e56)**  
@@ -7811,8 +8027,9 @@ assertEquals("bcdefg", __v_4.substring(7, 1));
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=9ea3e56)  
 [test/mjsunit/regress/regress-crbug-685965.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-685965.js?cl=9ea3e56)  
   
+---   
 
-### **crbug:685680**  
+## **crbug:685680**  
    
 **[Issue: Encountered unaccounted use by #350 (Call) in escape-analysis.cc](https://crbug.com/685680)**  
 **[Commit: [turbofan] Introduce dedicated StringIndexOf operator.](https://chromium.googlesource.com/v8/v8/+/b975441)**  
@@ -7848,8 +8065,9 @@ assertEquals(0, foo('0'));
 [src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=b975441)  
 [test/mjsunit/regress/regress-crbug-685680.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-685680.js?cl=b975441)  
   
+---   
 
-### **crbug:685634**  
+## **crbug:685634**  
    
 **[Issue: !AreAliased(args_reg, scratch1, scratch2, scratch3) in code-generator-x64.cc](https://crbug.com/685634)**  
 **[Commit: [turbofan] Don't try to optimize tail calls to .apply.](https://chromium.googlesource.com/v8/v8/+/7be3b4c)**  
@@ -7874,8 +8092,9 @@ foo(bar);
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=7be3b4c)  
 [test/mjsunit/regress/regress-crbug-685634.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-685634.js?cl=7be3b4c)  
   
+---   
 
-### **crbug:685506**  
+## **crbug:685506**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/685506)**  
 **[Commit: [turbofan] Ensure {CheckMaps} is not used accross mutations.](https://chromium.googlesource.com/v8/v8/+/e752bcc)**  
@@ -7912,8 +8131,9 @@ assertEquals(23, foo()[10019]);
 [src/compiler/js-builtin-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-builtin-reducer.cc?cl=e752bcc)  
 [test/mjsunit/regress/regress-crbug-685506.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-685506.js?cl=e752bcc)  
   
+---   
 
-### **crbug:685504**  
+## **crbug:685504**  
    
 **[Issue: str->IsSeqString() || str->IsExternalString() in factory.cc](https://crbug.com/685504)**  
 **[Commit: ThinStrings: fix Factory::NewProperSubString](https://chromium.googlesource.com/v8/v8/+/7438304)**  
@@ -7944,8 +8164,9 @@ f8("CaptureGlobal", v5, v13, []["anama"]);
 [src/factory.cc](https://cs.chromium.org/chromium/src/v8/src/factory.cc?cl=7438304)  
 [test/mjsunit/regress/regress-crbug-685504.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-685504.js?cl=7438304)  
   
+---   
 
-### **crbug:685050**  
+## **crbug:685050**  
    
 **[Issue: STANDARD_STORE == store_mode in js-native-context-specialization.cc](https://crbug.com/685050)**  
 **[Commit: [turbofan] Remove over-restrictive DCHECKs.](https://chromium.googlesource.com/v8/v8/+/64eae6e)**  
@@ -7975,8 +8196,9 @@ foo();
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=64eae6e)  
 [test/mjsunit/regress/regress-crbug-685050.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-685050.js?cl=64eae6e)  
   
+---   
 
-### **crbug:684208**  
+## **crbug:684208**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/684208)**  
 **[Commit: [deoptimizer] Preserve double bit patterns correctly.](https://chromium.googlesource.com/v8/v8/+/7376e12)**  
@@ -8012,8 +8234,9 @@ assertSame(undefined, foo());
 [src/x87/deoptimizer-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/deoptimizer-x87.cc?cl=7376e12)  
 [test/mjsunit/regress/regress-crbug-684208.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-684208.js?cl=7376e12)  
   
+---   
 
-### **crbug:683667**  
+## **crbug:683667**  
    
 **[Issue: !field_type->NowStable() || field_type->NowContains(value) || (!FLAG_use_allocat](https://crbug.com/683667)**  
 **[Commit: [runtime] Mark old JSGlobalProxy's map as unstable when an iframe navigates away.](https://chromium.googlesource.com/v8/v8/+/1c7f839)**  
@@ -8041,8 +8264,9 @@ gc();
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=1c7f839)  
 [test/mjsunit/regress/regress-crbug-683667.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-683667.js?cl=1c7f839)  
   
+---   
 
-### **crbug:683581**  
+## **crbug:683581**  
    
 **[Issue: V8 correctness failure in configs: x64,fullcode:x64,ignition_turbo](https://crbug.com/683581)**  
 **[Commit: [turbofan] Fix accumulator use in bytecode analysis.](https://chromium.googlesource.com/v8/v8/+/efc8cb1)**  
@@ -8068,8 +8292,9 @@ assertEquals(2449965000, v);
 [src/compiler/bytecode-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/bytecode-analysis.cc?cl=efc8cb1)  
 [test/mjsunit/regress/regress-crbug-683581.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-683581.js?cl=efc8cb1)  
   
+---   
 
-### **crbug:682194**  
+## **crbug:682194**  
    
 **[Issue: Security: Out-of-bounds read in V8 Array.concat](https://crbug.com/682194)**  
 **[Commit: [runtime] Fix Array.prototype.concat with complex @@species](https://chromium.googlesource.com/v8/v8/+/e560815)**  
@@ -8115,8 +8340,9 @@ for (var i = 2; i < 200; i++) {
 [src/builtins/builtins-array.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-array.cc?cl=e560815)  
 [test/mjsunit/regress/regress-crbug-682194.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-682194.js?cl=e560815)  
   
+---   
 
-### **crbug:681983**  
+## **crbug:681983**  
    
 **[Issue: V8 correctness failure in configs: x64,fullcode:x64,ignition_staging](https://crbug.com/681983)**  
 **[Commit: [turbofan] Fix translation of uint32 deopt immediates.](https://chromium.googlesource.com/v8/v8/+/7682837)**  
@@ -8145,8 +8371,9 @@ assertEquals(4294967295, f());
 [src/compiler/code-generator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/code-generator.cc?cl=7682837)  
 [test/mjsunit/regress/regress-crbug-681983.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-681983.js?cl=7682837)  
   
+---   
 
-### **crbug:679841**  
+## **crbug:679841**  
    
 **[Issue: Stack-buffer-overflow in v8::internal::DoubleToRadixCString](https://crbug.com/679841)**  
 **[Commit: Add test case for Number.prototype.toString (r42364).](https://chromium.googlesource.com/v8/v8/+/d33dc16)**  
@@ -8163,8 +8390,9 @@ Regress: [mjsunit/regress/regress-crbug-679841.js](https://chromium.googlesource
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d33dc16^!)  
 [test/mjsunit/regress/regress-crbug-679841.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-679841.js?cl=d33dc16)  
   
+---   
 
-### **crbug:679378**  
+## **crbug:679378**  
    
 **[Issue: Crash in heap](https://crbug.com/679378)**  
 **[Commit: [turbofan] Don't merge PropertyAccessInfos with different field maps.](https://chromium.googlesource.com/v8/v8/+/64963e1)**  
@@ -8194,8 +8422,9 @@ foo(x);
 [src/compiler/access-info.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-info.cc?cl=64963e1)  
 [test/mjsunit/regress/regress-crbug-679378.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-679378.js?cl=64963e1)  
   
+---   
 
-### **crbug:679202**  
+## **crbug:679202**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in objects-inl](https://crbug.com/679202)**  
 **[Commit: [crankshaft] Properly deal with null prototype.](https://chromium.googlesource.com/v8/v8/+/5f418c8)**  
@@ -8220,8 +8449,9 @@ f();
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=5f418c8)  
 [test/mjsunit/regress/regress-crbug-679202.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-679202.js?cl=5f418c8)  
   
+---   
 
-### **crbug:677757**  
+## **crbug:677757**  
    
 **[Issue: Fatal error in](https://crbug.com/677757)**  
 **[Commit: [turbofan] Teach escape analysis about StringCharAt](https://chromium.googlesource.com/v8/v8/+/5662f99)**  
@@ -8241,8 +8471,9 @@ for (var i = 0; i < 50000; i++) {
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=5662f99)  
 [test/mjsunit/regress/regress-crbug-677757.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-677757.js?cl=5662f99)  
   
+---   
 
-### **crbug:673008**  
+## **crbug:673008**  
    
 **[Issue: hasOwnProperty returning inconsistent results](https://crbug.com/673008)**  
 **[Commit: [stubs] Fix negative index lookup in hasOwnProperty](https://chromium.googlesource.com/v8/v8/+/bb753b6)**  
@@ -8279,8 +8510,9 @@ keys.forEach(function(k) {
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=bb753b6)  
 [test/mjsunit/regress/regress-crbug-673008.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-673008.js?cl=bb753b6)  
   
+---   
 
-### **crbug:672792**  
+## **crbug:672792**  
    
 **[Issue: size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/672792)**  
 **[Commit: Fix usage of literal cloning for large double arrays.](https://chromium.googlesource.com/v8/v8/+/6c620e5)**  
@@ -8316,8 +8548,9 @@ assertEquals(65535, f().length);
 [src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=6c620e5)  
 [test/mjsunit/regress/regress-crbug-672792.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-672792.js?cl=6c620e5)  
   
+---   
 
-### **crbug:671576**  
+## **crbug:671576**  
    
 **[Issue: map_index >= Context::TYPED_ARRAY_KEY_ITERATOR_MAP_INDEX in js-builtin-reducer.c](https://crbug.com/671576)**  
 **[Commit: Fix assertion failure in JSBuiltinReducer::ReduceArrayIterator.](https://chromium.googlesource.com/v8/v8/+/a610155)**  
@@ -8341,8 +8574,9 @@ f();
 [src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=a610155)  
 [test/mjsunit/regress/regress-crbug-671576.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-671576.js?cl=a610155)  
   
+---   
 
-### **crbug:669850**  
+## **crbug:669850**  
    
 **[Issue: size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/669850)**  
 **[Commit: [turbofan] Workaround for unknown array literal length.](https://chromium.googlesource.com/v8/v8/+/f8fec66)**  
@@ -8364,8 +8598,9 @@ assertEquals(65, f(65)[1 << 17]);
 [src/compiler/bytecode-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/bytecode-graph-builder.cc?cl=f8fec66)  
 [test/mjsunit/regress/regress-crbug-669850.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-669850.js?cl=f8fec66)  
   
+---   
 
-### **crbug:669540**  
+## **crbug:669540**  
    
 **[Issue: Missing hole check in computed property names](https://crbug.com/669540)**  
 **[Commit: [ignition] Fix hole check for dynamic local variables](https://chromium.googlesource.com/v8/v8/+/f6ee3b5)**  
@@ -8393,8 +8628,9 @@ f({});
 [src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=f6ee3b5)  
 [test/mjsunit/regress/regress-crbug-669540.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-669540.js?cl=f6ee3b5)  
   
+---   
 
-### **crbug:669451**  
+## **crbug:669451**  
    
 **[Issue: Fatal error in ../../v8/src/compiler/escape-analysis.cc, line 824](https://crbug.com/669451)**  
 **[Commit: [turbofan] Teach escape analysis about ConvertTaggedHoleToUndefined.](https://chromium.googlesource.com/v8/v8/+/d6752d9)**  
@@ -8420,8 +8656,9 @@ try { foo(); } catch (e) {}
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=d6752d9)  
 [test/mjsunit/regress/regress-crbug-669451.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-669451.js?cl=d6752d9)  
   
+---   
 
-### **crbug:669411**  
+## **crbug:669411**  
    
 **[Issue: Crash in v8::internal::Factory::NewTuple2](https://crbug.com/669411)**  
 **[Commit: [ic] Use validity cells to protect keyed element stores against object's prototype chain modifications.](https://chromium.googlesource.com/v8/v8/+/39e6f2ca)**  
@@ -8469,8 +8706,9 @@ f(o);
 [test/mjsunit/regress/regress-crbug-662907.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-662907.js?cl=39e6f2ca)  
 [test/mjsunit/regress/regress-crbug-669411.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-669411.js?cl=39e6f2ca)  
   
+---   
 
-### **crbug:668795**  
+## **crbug:668795**  
    
 **[Issue: length == previously_materialized_objects->length() in deoptimizer.cc](https://crbug.com/668795)**  
 **[Commit: [deoptimizer] Fix deoptimization in {TranslatedState}.](https://chromium.googlesource.com/v8/v8/+/204babf)**  
@@ -8505,8 +8743,9 @@ assertEquals("R:121212", f());
 [src/runtime/runtime-scopes.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-scopes.cc?cl=204babf)  
 [test/mjsunit/regress/regress-crbug-668795.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-668795.js?cl=204babf)  
   
+---   
 
-### **crbug:668414**  
+## **crbug:668414**  
    
 **[Issue: Difference between x64 and ia32: array concat](https://crbug.com/668414)**  
 **[Commit: [runtime] Add missing @@IsConcatSpreadable check for FAST_DOUBLE_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/a09e5ed)**  
@@ -8577,8 +8816,9 @@ Array.prototype[Symbol.isConcatSpreadable] = false;
 [src/builtins/builtins-array.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-array.cc?cl=a09e5ed)  
 [test/mjsunit/regress/regress-crbug-668414.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-668414.js?cl=a09e5ed)  
   
+---   
 
-### **crbug:668101**  
+## **crbug:668101**  
    
 **[Issue: pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/668101)**  
 **[Commit: [stubs] Fix AccessorInfo mixup in KeyedStoreGeneric](https://chromium.googlesource.com/v8/v8/+/2661b3e)**  
@@ -8611,8 +8851,9 @@ assertEquals(1, a.length);
 [src/ic/keyed-store-generic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/keyed-store-generic.cc?cl=2661b3e)  
 [test/mjsunit/regress/regress-crbug-668101.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-668101.js?cl=2661b3e)  
   
+---   
 
-### **crbug:667689**  
+## **crbug:667689**  
    
 **[Issue: Difference between fullcode and ignition_turbo: instanceof and Symbol.hasInstance](https://crbug.com/667689)**  
 **[Commit: [turbofan] Fix broken effect chain for instanceof.](https://chromium.googlesource.com/v8/v8/+/84c9360)**  
@@ -8639,8 +8880,9 @@ assertTrue(baz());
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=84c9360)  
 [test/mjsunit/regress/regress-crbug-667689.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-667689.js?cl=84c9360)  
   
+---   
 
-### **crbug:666742**  
+## **crbug:666742**  
    
 **[Issue: pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/666742)**  
 **[Commit: [ic] Ensure prototype validity cell guards global object's prototype changes for LoadGlobalIC.](https://chromium.googlesource.com/v8/v8/+/8ca50a8)**  
@@ -8666,8 +8908,9 @@ assertEquals(x, 42);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=8ca50a8)  
 [test/mjsunit/regress/regress-crbug-666742.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-666742.js?cl=8ca50a8)  
   
+---   
 
-### **crbug:666308**  
+## **crbug:666308**  
    
 **[Issue: Difference between fullcode and crankshaft_opt: prototype and instanceof](https://crbug.com/666308)**  
 **[Commit: [crankshaft] Don't inline the fast path for instanceof if the function has a non-instance .prototype](https://chromium.googlesource.com/v8/v8/+/0c70f37)**  
@@ -8689,8 +8932,9 @@ assertThrows(bar);
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=0c70f37)  
 [test/mjsunit/regress/regress-crbug-666308.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-666308.js?cl=0c70f37)  
   
+---   
 
-### **crbug:665886**  
+## **crbug:665886**  
    
 **[Issue: pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/665886)**  
 **[Commit: [ic] Invalidate prototype validity cell when a slow prototype becomes fast.](https://chromium.googlesource.com/v8/v8/+/f718cd1)**  
@@ -8719,8 +8963,9 @@ a.toLocaleString();
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=f718cd1)  
 [test/mjsunit/regress/regress-crbug-665886.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-665886.js?cl=f718cd1)  
   
+---   
 
-### **crbug:665793**  
+## **crbug:665793**  
    
 **[Issue: [crankshaft] OOB string access returns wrong value](https://crbug.com/665793)**  
 **[Commit: [crankshaft] Properly handle OOB string accesses.](https://chromium.googlesource.com/v8/v8/+/576a46f)**  
@@ -8743,8 +8988,9 @@ assertEquals(undefined, foo());
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=576a46f)  
 [test/mjsunit/regress/regress-crbug-665793.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-665793.js?cl=576a46f)  
   
+---   
 
-### **crbug:665587**  
+## **crbug:665587**  
    
 **[Issue: Crash in v8::internal::Simulator::DecodeType2](https://crbug.com/665587)**  
 **[Commit: [turbofan] Fix bogus representation for {kCheckTaggedHole}.](https://chromium.googlesource.com/v8/v8/+/31a8ec7)**  
@@ -8771,8 +9017,9 @@ f();
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=31a8ec7)  
 [test/mjsunit/regress/regress-crbug-665587.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-665587.js?cl=31a8ec7)  
   
+---   
 
-### **crbug:664974**  
+## **crbug:664974**  
    
 **[Issue: NameDictionary::kNotFound == current->property_dictionary()->FindEntry(name) in](https://crbug.com/664974)**  
 **[Commit: [ic] Don't check full prototype chain if name is a private symbol.](https://chromium.googlesource.com/v8/v8/+/4513532)**  
@@ -8800,8 +9047,9 @@ m.set(o, 42);
 [test/mjsunit/regress/regress-crbug-664802.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664802.js?cl=4513532)  
 [test/mjsunit/regress/regress-crbug-664974.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664974.js?cl=4513532)  
   
+---   
 
-### **crbug:664942**  
+## **crbug:664942**  
    
 **[Issue: Difference between fullcode and ignition_staging_turbo: string vs. array access](https://crbug.com/664942)**  
 **[Commit: [turbofan] Properly allocate constant-folded string.](https://chromium.googlesource.com/v8/v8/+/5667280)**  
@@ -8824,8 +9072,9 @@ assertEquals("x", foo());
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=5667280)  
 [test/mjsunit/regress/regress-crbug-664942.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664942.js?cl=5667280)  
   
+---   
 
-### **crbug:664802**  
+## **crbug:664802**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in objects-inl](https://crbug.com/664802)**  
 **[Commit: [ic] Don't check full prototype chain if name is a private symbol.](https://chromium.googlesource.com/v8/v8/+/4513532)**  
@@ -8850,8 +9099,9 @@ m.set(o);
 [test/mjsunit/regress/regress-crbug-664802.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664802.js?cl=4513532)  
 [test/mjsunit/regress/regress-crbug-664974.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664974.js?cl=4513532)  
   
+---   
 
-### **crbug:664506**  
+## **crbug:664506**  
    
 **[Issue: Difference between fullcode and ignition_staging: array toString and gc](https://crbug.com/664506)**  
 **[Commit: [builtins] Fix pointer comparison in ToString builtin.](https://chromium.googlesource.com/v8/v8/+/79aee39)**  
@@ -8873,8 +9123,9 @@ assertEquals("[object Array]", Object.prototype.toString.call([]));
 [src/builtins/builtins-object.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-object.cc?cl=79aee39)  
 [test/mjsunit/regress/regress-crbug-664506.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664506.js?cl=79aee39)  
   
+---   
 
-### **crbug:664469**  
+## **crbug:664469**  
    
 **[Issue: Crash in v8::internal::Simulator::DecodeType3](https://crbug.com/664469)**  
 **[Commit: [ic] Fix elements conversion in KeyedStoreGeneric](https://chromium.googlesource.com/v8/v8/+/567904f)**  
@@ -8908,8 +9159,9 @@ for (var i = 1; i < kLength; i++) {
 [src/ic/keyed-store-generic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/keyed-store-generic.cc?cl=567904f)  
 [test/mjsunit/regress/regress-crbug-664469.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664469.js?cl=567904f)  
   
+---   
 
-### **crbug:664084**  
+## **crbug:664084**  
    
 **[Issue: Missing ToNumber conversion in Crankshaft.](https://crbug.com/664084)**  
 **[Commit: [crankshaft] Not all HAdd instructions produce a number.](https://chromium.googlesource.com/v8/v8/+/6d53340)**  
@@ -8934,8 +9186,9 @@ assertEquals(NaN, foo());
 [src/crankshaft/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen-instructions.h?cl=6d53340)  
 [test/mjsunit/regress/regress-crbug-664084.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-664084.js?cl=6d53340)  
   
+---   
 
-### **crbug:663750**  
+## **crbug:663750**  
    
 **[Issue: Object.freeze doesn't deoptimize properly](https://crbug.com/663750)**  
 **[Commit: [runtime] Ensure Object.freeze() deoptimizes code that depends on global property cells.](https://chromium.googlesource.com/v8/v8/+/6aa16ed)**  
@@ -8972,8 +9225,9 @@ assertEquals(undefined, v);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=6aa16ed)  
 [test/mjsunit/regress/regress-crbug-663750.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-663750.js?cl=6aa16ed)  
   
+---   
 
-### **crbug:663410**  
+## **crbug:663410**  
    
 **[Issue: Function arugment evasion](https://crbug.com/663410)**  
 **[Commit: Fix 'combo breaker' in CreateDynamicFunction to handle template literals.](https://chromium.googlesource.com/v8/v8/+/e0d608a)**  
@@ -8994,8 +9248,9 @@ assertThrows(
 [src/builtins/builtins-function.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-function.cc?cl=e0d608a)  
 [test/mjsunit/regress-crbug-663410.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-crbug-663410.js?cl=e0d608a)  
   
+---   
 
-### **crbug:663402**  
+## **crbug:663402**  
    
 **[Issue: Security: [arm] OOB r/w due to size computation bug in MacroAssembler::Allocate](https://crbug.com/663402)**  
 **[Commit: [arm] Fix custom addition in MacroAssembler::[Fast]Allocate](https://chromium.googlesource.com/v8/v8/+/87332fd)**  
@@ -9046,8 +9301,9 @@ for (var i = 0; i < 300; i++) {
 [src/arm/macro-assembler-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.cc?cl=87332fd)  
 [test/mjsunit/regress/regress-crbug-663402.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-663402.js?cl=87332fd)  
   
+---   
 
-### **crbug:663340**  
+## **crbug:663340**  
    
 **[Issue: Difference between fullcode and ignition_staging_turbo_opt: array shift](https://crbug.com/663340)**  
 **[Commit: [crankshaft] Ensure that we use inlined Array.prototype.shift only when there's no elements in the prototype chain.](https://chromium.googlesource.com/v8/v8/+/faf80b4)**  
@@ -9092,8 +9348,9 @@ bar();
 [src/prototype.h](https://cs.chromium.org/chromium/src/v8/src/prototype.h?cl=faf80b4)  
 [test/mjsunit/regress/regress-crbug-663340.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-663340.js?cl=faf80b4)  
   
+---   
 
-### **crbug:662907**  
+## **crbug:662907**  
    
 **[Issue: Difference between fullcode and crankshaft_opt: array prototype setter](https://crbug.com/662907)**  
 **[Commit: [ic] Use validity cells to protect keyed element stores against object's prototype chain modifications.](https://chromium.googlesource.com/v8/v8/+/a39522f)**  
@@ -9180,8 +9437,9 @@ Regress: [mjsunit/regress/regress-crbug-662907.js](https://chromium.googlesource
 [src/value-serializer.cc](https://cs.chromium.org/chromium/src/v8/src/value-serializer.cc?cl=a39522f)  
 [test/mjsunit/regress/regress-crbug-662907.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-662907.js?cl=a39522f)  
   
+---   
 
-### **crbug:662854**  
+## **crbug:662854**  
    
 **[Issue: Difference between fullcode and crankshaft_opt: missing reference error](https://crbug.com/662854)**  
 **[Commit: [ic] Support data handlers in LoadGlobalIC.](https://chromium.googlesource.com/v8/v8/+/937b8cb)**  
@@ -9214,8 +9472,9 @@ assertThrows(()=>f());
 [src/type-feedback-vector.h](https://cs.chromium.org/chromium/src/v8/src/type-feedback-vector.h?cl=937b8cb)  
 [test/mjsunit/regress/regress-crbug-662854.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-662854.js?cl=937b8cb)  
   
+---   
 
-### **crbug:662830**  
+## **crbug:662830**  
    
 **[Issue: fixed_size_above_fp + (stack_slots * kPointerSize) - CommonFrameConstants::kFixe](https://crbug.com/662830)**  
 **[Commit: [interpreter] Fix stack unwinding of deoptimized frames.](https://chromium.googlesource.com/v8/v8/+/a90671f)**  
@@ -9245,8 +9504,9 @@ g();
 [src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=a90671f)  
 [test/mjsunit/regress/regress-crbug-662830.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-662830.js?cl=a90671f)  
   
+---   
 
-### **crbug:662410**  
+## **crbug:662410**  
    
 **[Issue: Crash in v8::internal::Invoke](https://crbug.com/662410)**  
 **[Commit: [turbofan] Properly rename receiver on CheckHeapObject.](https://chromium.googlesource.com/v8/v8/+/a758c19)**  
@@ -9282,8 +9542,9 @@ f();
 [src/compiler/js-native-context-specialization.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.h?cl=a758c19)  
 [test/mjsunit/regress/regress-crbug-662410.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-662410.js?cl=a758c19)  
   
+---   
 
-### **crbug:662367**  
+## **crbug:662367**  
    
 **[Issue: Different division results with Infinity and NaN between default and ignition](https://crbug.com/662367)**  
 **[Commit: [crankshaft] Fix constant folding of HDiv instruction.](https://chromium.googlesource.com/v8/v8/+/9906b3e)**  
@@ -9331,8 +9592,9 @@ var zero = 0;
 [src/crankshaft/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen-instructions.cc?cl=9906b3e)  
 [test/mjsunit/regress/regress-crbug-662367.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-662367.js?cl=9906b3e)  
   
+---   
 
-### **crbug:661949**  
+## **crbug:661949**  
    
 **[Issue: We should never get here - unexpected deopt info in deoptimizer.cc](https://crbug.com/661949)**  
 **[Commit: [turbofan] CheckBounds cannot be used within asm.js.](https://chromium.googlesource.com/v8/v8/+/1003374)**  
@@ -9359,8 +9621,9 @@ foo();
 [src/compiler/node-matchers.h](https://cs.chromium.org/chromium/src/v8/src/compiler/node-matchers.h?cl=1003374)  
 [test/mjsunit/regress/regress-crbug-661949.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-661949.js?cl=1003374)  
   
+---   
 
-### **crbug:660379**  
+## **crbug:660379**  
    
 **[Issue: Difference between default and ignition with natives](https://crbug.com/660379)**  
 **[Commit: [turbofan] Advance bytecode offset after lazy deopt.](https://chromium.googlesource.com/v8/v8/+/93c6595)**  
@@ -9426,8 +9689,9 @@ Regress: [mjsunit/regress/regress-crbug-660379.js](https://chromium.googlesource
 [test/debugger/debugger.status](https://cs.chromium.org/chromium/src/v8/test/debugger/debugger.status?cl=93c6595)  
 [test/mjsunit/regress/regress-crbug-660379.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-660379.js?cl=93c6595)  
   
+---   
 
-### **crbug:659967**  
+## **crbug:659967**  
    
 **[Issue: right->IsUndefined(isolate_) || right->IsBoolean() in ic-state.cc](https://crbug.com/659967)**  
 **[Commit: [ic] Properly deal with all oddballs when updating BinaryOpIC state.](https://chromium.googlesource.com/v8/v8/+/305948f)**  
@@ -9448,8 +9712,9 @@ f();
 [src/ic/ic-state.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic-state.cc?cl=305948f)  
 [test/mjsunit/regress/regress-crbug-659967.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-659967.js?cl=305948f)  
   
+---   
 
-### **crbug:659915**  
+## **crbug:659915**  
    
 **[Issue: Bug with let variable in Chrome](https://crbug.com/659915)**  
 **[Commit: [turbofan] Disable usage of {maybe_assigned} variable flag.](https://chromium.googlesource.com/v8/v8/+/b02e7fb)**  
@@ -9485,8 +9750,9 @@ assertEquals(4, boom());
 [test/mjsunit/regress/regress-crbug-659915a.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-659915a.js?cl=b02e7fb)  
 [test/mjsunit/regress/regress-crbug-659915b.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-659915b.js?cl=b02e7fb)  
   
+---   
 
-### **crbug:659475**  
+## **crbug:659475**  
    
 **[Issue: Pwn2Own: V8 OOB Bug.](https://crbug.com/659475)**  
 **[Commit: [compiler] Properly validate stable map assumption for globals.](https://chromium.googlesource.com/v8/v8/+/3aa57eb)**  
@@ -9531,8 +9797,9 @@ parseInt('AAAAAAAA');
 [test/mjsunit/regress/regress-crbug-659475-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-659475-1.js?cl=3aa57eb)  
 [test/mjsunit/regress/regress-crbug-659475-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-659475-2.js?cl=3aa57eb)  
   
+---   
 
-### **crbug:658691**  
+## **crbug:658691**  
    
 **[Issue: Stack-overflow in v8::internal::Invoke](https://crbug.com/658691)**  
 **[Commit: [turbofan] Disable bogus lowering of builtin tail-calls.](https://chromium.googlesource.com/v8/v8/+/2ab2ec2)**  
@@ -9564,8 +9831,9 @@ assertEquals("true-no-tail", g());
 [src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=2ab2ec2)  
 [test/mjsunit/regress/regress-crbug-658691.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-658691.js?cl=2ab2ec2)  
   
+---   
 
-### **crbug:658528**  
+## **crbug:658528**  
    
 **[Issue: variable->is_this() && variable->mode() == CONST && op == Token::INIT in bytecod](https://crbug.com/658528)**  
 **[Commit: [ignition] Use more-targeted check for CONST-this-initialization hole check](https://chromium.googlesource.com/v8/v8/+/56626f3)**  
@@ -9588,8 +9856,9 @@ assertThrows(f, SyntaxError);
 [src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=56626f3)  
 [test/mjsunit/regress/regress-crbug-658528.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-658528.js?cl=56626f3)  
   
+---   
 
-### **crbug:658185**  
+## **crbug:658185**  
    
 **[Issue: !escape_analysis_->IsVirtual(node) in escape-analysis-reducer.cc](https://crbug.com/658185)**  
 **[Commit: [turbofan] Properly deal with out-of-bounds fields in EscapeAnalysis.](https://chromium.googlesource.com/v8/v8/+/7201bad)**  
@@ -9620,8 +9889,9 @@ foo();
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=7201bad)  
 [test/mjsunit/regress/regress-crbug-658185.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-658185.js?cl=7201bad)  
   
+---   
 
-### **crbug:657478**  
+## **crbug:657478**  
    
 **[Issue: Phi of kRepFloat64 ((Unsigned32 | Negative31)) cannot be changed to kRepWord32 i](https://crbug.com/657478)**  
 **[Commit: [turbofan] Fix typed lowering of JSToLength.](https://chromium.googlesource.com/v8/v8/+/a58d790)**  
@@ -9645,8 +9915,9 @@ foo({length: 10});
 [src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=a58d790)  
 [test/mjsunit/regress/regress-crbug-657478.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-657478.js?cl=a58d790)  
   
+---   
 
-### **crbug:656275**  
+## **crbug:656275**  
    
 **[Issue: NumberFround of kRepFloat32 (Number) cannot be changed to kRepTaggedSigned in re](https://crbug.com/656275)**  
 **[Commit: [turbofan] Add missing Float32 -> TaggedSigned conversion.](https://chromium.googlesource.com/v8/v8/+/96f1327)**  
@@ -9671,8 +9942,9 @@ foo(1.3);
 [src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=96f1327)  
 [test/mjsunit/regress/regress-crbug-656275.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-656275.js?cl=96f1327)  
   
+---   
 
-### **crbug:656037**  
+## **crbug:656037**  
    
 **[Issue: Array.push sometimes returns the wrong thing](https://crbug.com/656037)**  
 **[Commit: [turbofan] Fix return value of Array.prototype.push.](https://chromium.googlesource.com/v8/v8/+/8584442)**  
@@ -9699,8 +9971,9 @@ assertEquals(3, foo(a));
 [src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=8584442)  
 [test/mjsunit/regress/regress-crbug-656037.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-656037.js?cl=8584442)  
   
+---   
 
-### **crbug:655004**  
+## **crbug:655004**  
    
 **[Issue: map == GetHeap()->fixed_array_map() || map == GetHeap()->fixed_cow_array_map() i](https://crbug.com/655004)**  
 **[Commit: [turbofan] Fix effect chain for polymorphic array access.](https://chromium.googlesource.com/v8/v8/+/edfe391)**  
@@ -9726,8 +9999,9 @@ foo(new Array(1));
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=edfe391)  
 [test/mjsunit/regress/regress-crbug-655004.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-655004.js?cl=edfe391)  
   
+---   
 
-### **crbug:654723**  
+## **crbug:654723**  
    
 **[Issue: this->first()->IsSeqString() || this->first()->IsExternalString() in objects-deb](https://crbug.com/654723)**  
 **[Commit: [turbofan] Respect ConsString invariant.](https://chromium.googlesource.com/v8/v8/+/a4f37da)**  
@@ -9754,8 +10028,9 @@ var x = foo("");
 [src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=a4f37da)  
 [test/mjsunit/regress/regress-crbug-654723.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-654723.js?cl=a4f37da)  
   
+---   
 
-### **crbug:652186**  
+## **crbug:652186**  
    
 **[Issue: No Permission](https://crbug.com/652186)**  
 **[Commit: [ignition] Fix building lookup graph when search depth is 0](https://chromium.googlesource.com/v8/v8/+/4ad3579)**  
@@ -9775,8 +10050,9 @@ print(eval("eval('var x = 2'); x;"));
 [test/mjsunit/regress/regress-crbug-652186-global.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-652186-global.js?cl=4ad3579)  
 [test/mjsunit/regress/regress-crbug-652186-local.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-652186-local.js?cl=4ad3579)  
   
+---   
 
-### **crbug:651403**  
+## **crbug:651403**  
    
 **[Issue: Unreachable code in verifier.cc](https://crbug.com/651403)**  
 **[Commit: [ignition] BytecodeGraphBuilder: Merge correct environment in try block](https://chromium.googlesource.com/v8/v8/+/537c855)**  
@@ -9808,8 +10084,9 @@ f();
 [test/mjsunit/regress/regress-crbug-651403-global.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-651403-global.js?cl=537c855)  
 [test/mjsunit/regress/regress-crbug-651403.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-651403.js?cl=537c855)  
   
+---   
 
-### **crbug:650973**  
+## **crbug:650973**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/650973)**  
 **[Commit: [ic][mips][mips64] Ensure store handlers return value in proper register.](https://chromium.googlesource.com/v8/v8/+/8d8c134)**  
@@ -9841,8 +10118,9 @@ f();
 [src/ic/mips64/ic-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/ic/mips64/ic-mips64.cc?cl=8d8c134)  
 [test/mjsunit/regress/regress-crbug-650973.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-650973.js?cl=8d8c134)  
   
+---   
 
-### **crbug:650933**  
+## **crbug:650933**  
    
 **[Issue: length_obj->IsSmi() in runtime-typedarray.cc](https://crbug.com/650933)**  
 **[Commit: [typedarray] Properly initialize JSTypedArray::length with Smi.](https://chromium.googlesource.com/v8/v8/+/15a449b)**  
@@ -9863,8 +10141,9 @@ new Float64Array(a);
 [src/runtime/runtime-typedarray.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-typedarray.cc?cl=15a449b)  
 [test/mjsunit/regress/regress-crbug-650933.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-650933.js?cl=15a449b)  
   
+---   
 
-### **crbug:650404**  
+## **crbug:650404**  
    
 **[Issue: Security: OOB read/write in V8 using TypedArrays+Crankshaft+Turbofan](https://crbug.com/650404)**  
 **[Commit: [crankshaft] TypedArrayInitialize: force length to be a Smi](https://chromium.googlesource.com/v8/v8/+/142f9df)**  
@@ -9911,8 +10190,9 @@ for (var i = bomb.length; i < 100; i++) {
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=142f9df)  
 [test/mjsunit/regress/regress-crbug-650404.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-650404.js?cl=142f9df)  
   
+---   
 
-### **crbug:648740**  
+## **crbug:648740**  
    
 **[Issue: arguments() != nullptr == migrate_to->arguments() != nullptr in scopes.cc](https://crbug.com/648740)**  
 **[Commit: Add regression test for crbug.com/648740.](https://chromium.googlesource.com/v8/v8/+/68ee0a4)**  
@@ -9933,8 +10213,9 @@ Regress: [mjsunit/regress/regress-crbug-648740.js](https://chromium.googlesource
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/68ee0a4^!)  
 [test/mjsunit/regress/regress-crbug-648740.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-648740.js?cl=68ee0a4)  
   
+---   
 
-### **crbug:648737**  
+## **crbug:648737**  
    
 **[Issue: JSFunction::kCodeEntryOffset == FieldAccessOf(node->op()).offset in escape-analy](https://crbug.com/648737)**  
 **[Commit: [turbofan] Support for ConsString by escape analysis.](https://chromium.googlesource.com/v8/v8/+/b097c6c)**  
@@ -9970,8 +10251,9 @@ assertEquals(43, g("c"));
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=b097c6c)  
 [test/mjsunit/regress/regress-crbug-648737.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-648737.js?cl=b097c6c)  
   
+---   
 
-### **crbug:648539**  
+## **crbug:648539**  
    
 **[Issue: Crash in v8::internal::Factory::NewTypeError](https://crbug.com/648539)**  
 **[Commit: [turbofan] Remove bogus constant materialization from frame.](https://chromium.googlesource.com/v8/v8/+/81f4342)**  
@@ -10009,8 +10291,9 @@ assertThrows(g, TypeError);
 [src/compiler/x87/code-generator-x87.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/x87/code-generator-x87.cc?cl=81f4342)  
 [test/mjsunit/regress/regress-crbug-648539.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-648539.js?cl=81f4342)  
   
+---   
 
-### **crbug:647887**  
+## **crbug:647887**  
    
 **[Issue: Iterating object properties in a function that has a try...catch produces incorrect result](https://crbug.com/647887)**  
 **[Commit: [turbofan] Fix loop assignment analysis on ForInStatements.](https://chromium.googlesource.com/v8/v8/+/4dab7b5)**  
@@ -10035,8 +10318,9 @@ assertFalse(f({ foo:0 }));
 [src/compiler/ast-loop-assignment-analyzer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-loop-assignment-analyzer.cc?cl=4dab7b5)  
 [test/mjsunit/regress/regress-crbug-647887.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-647887.js?cl=4dab7b5)  
   
+---   
 
-### **crbug:647217**  
+## **crbug:647217**  
    
 **[Issue: !info_->isolate()->has_pending_exception() in js-inlining.cc](https://crbug.com/647217)**  
 **[Commit: [turbofan] Handle stack overflow during inlining.](https://chromium.googlesource.com/v8/v8/+/c2cf8b1)**  
@@ -10059,8 +10343,9 @@ try { f(0) } catch(e) {}
 [src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=c2cf8b1)  
 [test/mjsunit/regress/regress-crbug-647217.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-647217.js?cl=c2cf8b1)  
   
+---   
 
-### **crbug:645888**  
+## **crbug:645888**  
    
 **[Issue: IrOpcode::kLoop == GetControlDependency()->opcode() in bytecode-graph-builder.cc](https://crbug.com/645888)**  
 **[Commit: [interpreter] Add regression test for bogus OSR entry.](https://chromium.googlesource.com/v8/v8/+/8528974)**  
@@ -10088,8 +10373,9 @@ assertThrows(f);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/8528974^!)  
 [test/mjsunit/regress/regress-crbug-645888.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-645888.js?cl=8528974)  
   
+---   
 
-### **crbug:645438**  
+## **crbug:645438**  
    
 **[Issue: Security: js input crashes Chrome on FPE; seemingly non-deterministic in the v8 shell?](https://crbug.com/645438)**  
 **[Commit: [crankshaft] Range analysis should not rely on overflowed ranges.](https://chromium.googlesource.com/v8/v8/+/9a0109d)**  
@@ -10117,8 +10403,9 @@ assertEquals(x, n(x,y));
 [src/crankshaft/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen-instructions.h?cl=9a0109d)  
 [test/mjsunit/regress/regress-crbug-645438.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-645438.js?cl=9a0109d)  
   
+---   
 
-### **crbug:645103**  
+## **crbug:645103**  
    
 **[Issue: args[1]->IsJSReceiver() in runtime-object.cc](https://crbug.com/645103)**  
 **[Commit: [interpreter] Fix destroyed new.target register use.](https://chromium.googlesource.com/v8/v8/+/0681deb)**  
@@ -10148,8 +10435,9 @@ new Subclass();
 [test/cctest/interpreter/bytecode_expectations/NewTarget.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/NewTarget.golden?cl=0681deb)  
 [test/mjsunit/regress/regress-crbug-645103.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-645103.js?cl=0681deb)  
   
+---   
 
-### **crbug:644689**  
+## **crbug:644689**  
    
 **[Issue: map->is_stable() in compilation-dependencies.cc](https://crbug.com/644689)**  
 **[Commit: [turbofan] Ensure that all prototypes are stable for push/pop.](https://chromium.googlesource.com/v8/v8/+/4ed27fc)**  
@@ -10175,8 +10463,9 @@ foo();
 [test/mjsunit/regress/regress-crbug-644689-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-644689-1.js?cl=4ed27fc)  
 [test/mjsunit/regress/regress-crbug-644689-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-644689-2.js?cl=4ed27fc)  
   
+---   
 
-### **crbug:644631**  
+## **crbug:644631**  
    
 **[Issue: Inline calls to runtime functions in TurboFan that throw exceptions result in missing frame state](https://crbug.com/644631)**  
 **[Commit: [turbofan] Switch from a whitelist to a blacklist for NeedsFrameStateInput](https://chromium.googlesource.com/v8/v8/+/58325e6)**  
@@ -10200,8 +10489,9 @@ assertThrows(f, TypeError);
 [src/compiler/linkage.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/linkage.cc?cl=58325e6)  
 [test/mjsunit/regress/regress-crbug-644631.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-644631.js?cl=58325e6)  
   
+---   
 
-### **crbug:644245**  
+## **crbug:644245**  
    
 **[Issue: isolate->context() == nullptr || isolate->context()->IsContext() in runtime-comp](https://crbug.com/644245)**  
 **[Commit: [deoptimizer] Support materialization of ContextExtension.](https://chromium.googlesource.com/v8/v8/+/9984d6f)**  
@@ -10230,8 +10520,9 @@ f();
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=9984d6f)  
 [test/mjsunit/regress/regress-crbug-644245.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-644245.js?cl=9984d6f)  
   
+---   
 
-### **crbug:644215**  
+## **crbug:644215**  
    
 **[Issue: Security: ILL_ILLOPN/Segfault; crashes Chrome Dev/Beta/Stable](https://crbug.com/644215)**  
 **[Commit: Properly handle holes following spreads in array literals](https://chromium.googlesource.com/v8/v8/+/e427300)**  
@@ -10257,8 +10548,9 @@ assertThrows(() => arr[0][0], TypeError);
 [src/runtime/runtime-object.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-object.cc?cl=e427300)  
 [test/mjsunit/regress/regress-crbug-644215.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-644215.js?cl=e427300)  
   
+---   
 
-### **crbug:644111**  
+## **crbug:644111**  
    
 **[Issue: info->shared_info()->HasBytecodeArray() in compiler.cc](https://crbug.com/644111)**  
 **[Commit: [compiler] Bytecode preparation fails for asm.js modules.](https://chromium.googlesource.com/v8/v8/+/cc1249b)**  
@@ -10280,8 +10572,9 @@ var m = Module();
 [src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=cc1249b)  
 [test/mjsunit/regress/regress-crbug-644111.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-644111.js?cl=cc1249b)  
   
+---   
 
-### **crbug:643073**  
+## **crbug:643073**  
    
 **[Issue: TypeGuard of kRepWord32 (None) cannot be changed to kRepBit in representation-ch](https://crbug.com/643073)**  
 **[Commit: [turbofan] Only check semantic axis for Type::None.](https://chromium.googlesource.com/v8/v8/+/432790c)**  
@@ -10305,8 +10598,9 @@ foo();
 [src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=432790c)  
 [test/mjsunit/regress/regress-crbug-643073.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-643073.js?cl=432790c)  
   
+---   
 
-### **crbug:642056**  
+## **crbug:642056**  
    
 **[Issue: No Permission](https://crbug.com/642056)**  
 **[Commit: [test] Add regression test for http://crbug.com/642056.](https://chromium.googlesource.com/v8/v8/+/86af343)**  
@@ -10333,8 +10627,9 @@ f(o);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/86af343^!)  
 [test/mjsunit/regress/regress-crbug-642056.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-642056.js?cl=86af343)  
   
+---   
 
-### **crbug:640497**  
+## **crbug:640497**  
    
 **[Issue: HeapConstant of kRepTagged (Constant(1CNUMBER <FixedArray[0]>)) cannot be change](https://crbug.com/640497)**  
 **[Commit: [turbofan] Add proper type guards to escape analysis.](https://chromium.googlesource.com/v8/v8/+/4b2c6d0)**  
@@ -10364,8 +10659,9 @@ f();
 [test/mjsunit/regress/regress-crbug-640497.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-640497.js?cl=4b2c6d0)  
 [test/unittests/compiler/escape-analysis-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/escape-analysis-unittest.cc?cl=4b2c6d0)  
   
+---   
 
-### **crbug:640369**  
+## **crbug:640369**  
    
 **[Issue: IrOpcode::kLoop == loop->opcode() in verifier.cc](https://crbug.com/640369)**  
 **[Commit: [turbofan] Use ObjectIsReceiver directly for inlining.](https://chromium.googlesource.com/v8/v8/+/6646d73)**  
@@ -10392,8 +10688,9 @@ try { foo(); } catch (e) { }
 [src/compiler/js-inlining.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.h?cl=6646d73)  
 [test/mjsunit/regress/regress-crbug-640369.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-640369.js?cl=6646d73)  
   
+---   
 
-### **crbug:638551**  
+## **crbug:638551**  
    
 **[Issue: !shared->HasBytecodeArray() in compiler.cc](https://crbug.com/638551)**  
 **[Commit: [interpreter] Fix canonicalization when preserving bytecode.](https://chromium.googlesource.com/v8/v8/+/8ab555c)**  
@@ -10422,8 +10719,9 @@ f();
 [src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=8ab555c)  
 [test/mjsunit/regress/regress-crbug-638551.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-638551.js?cl=8ab555c)  
   
+---   
 
-### **crbug:635923**  
+## **crbug:635923**  
    
 **[Issue: !info->shared_info()->is_compiled() in compiler.cc](https://crbug.com/635923)**  
 **[Commit: [compiler] Make Compiler::EnsureBytecode not switch tiers.](https://chromium.googlesource.com/v8/v8/+/b52aeca)**  
@@ -10455,8 +10753,9 @@ assertEquals(23, f(0));
 [src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=b52aeca)  
 [test/mjsunit/regress/regress-crbug-635923.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-635923.js?cl=b52aeca)  
   
+---   
 
-### **crbug:635798**  
+## **crbug:635798**  
    
 **[Issue: Crash in v8::internal::Context::native_context](https://crbug.com/635798)**  
 **[Commit: [runtime] %GrowArrayElements doesn't have a native context in TurboFan.](https://chromium.googlesource.com/v8/v8/+/78727d4)**  
@@ -10482,8 +10781,9 @@ foo();
 [src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=78727d4)  
 [test/mjsunit/regress/regress-crbug-635798.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-635798.js?cl=78727d4)  
   
+---   
 
-### **crbug:633884**  
+## **crbug:633884**  
    
 **[Issue: !value->IsTheHole(isolate) in runtime-scopes.cc](https://crbug.com/633884)**  
 **[Commit: Properly pass InitializationFlag back from ScriptContextTable lookups](https://chromium.googlesource.com/v8/v8/+/e6d2c9b)**  
@@ -10511,8 +10811,9 @@ assertThrows(function() {
 [src/contexts.cc](https://cs.chromium.org/chromium/src/v8/src/contexts.cc?cl=e6d2c9b)  
 [test/mjsunit/regress/regress-crbug-633884.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-633884.js?cl=e6d2c9b)  
   
+---   
 
-### **crbug:633585**  
+## **crbug:633585**  
    
 **[Issue: Crash in v8::internal::InnerPointerToCodeCache::GcSafeFindCodeForInnerPointer](https://crbug.com/633585)**  
 **[Commit: [turbofan] Fix missing bailout for accessors in literals.](https://chromium.googlesource.com/v8/v8/+/667d8ad)**  
@@ -10551,8 +10852,9 @@ g();
 [src/full-codegen/x87/full-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/x87/full-codegen-x87.cc?cl=667d8ad)  
 [test/mjsunit/regress/regress-crbug-633585.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-633585.js?cl=667d8ad)  
   
+---   
 
-### **crbug:632800**  
+## **crbug:632800**  
    
 **[Issue: next_tier == Compiler::OPTIMIZED in runtime-profiler.cc](https://crbug.com/632800)**  
 **[Commit: [interpreter] Fix profiler when hitting OSR frame.](https://chromium.googlesource.com/v8/v8/+/f00b42a)**  
@@ -10574,8 +10876,9 @@ osr();
 [src/runtime-profiler.h](https://cs.chromium.org/chromium/src/v8/src/runtime-profiler.h?cl=f00b42a)  
 [test/mjsunit/regress/regress-crbug-632800.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-632800.js?cl=f00b42a)  
   
+---   
 
-### **crbug:631917**  
+## **crbug:631917**  
    
 **[Issue: args[1]->IsJSObject() in runtime-classes.cc](https://crbug.com/631917)**  
 **[Commit: [fullcode][mips][mips64][ppc][s390] Avoid trashing of a home object when doing a count operation with keyed load/store to a super.](https://chromium.googlesource.com/v8/v8/+/fc66694)**  
@@ -10629,8 +10932,9 @@ var c = { toString: function() { return "c"; } };
 [src/full-codegen/s390/full-codegen-s390.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/s390/full-codegen-s390.cc?cl=fc66694)  
 [test/mjsunit/regress/regress-crbug-631917.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-631917.js?cl=fc66694)  
   
+---   
 
-### **crbug:631318**  
+## **crbug:631318**  
    
 **[Issue: Dead-code elimination during representation selection is too aggressive](https://crbug.com/631318)**  
 **[Commit: [turbofan] Fix overly aggressive dead code elimination.](https://chromium.googlesource.com/v8/v8/+/32346aa)**  
@@ -10670,8 +10974,9 @@ assertThrows(() => bar(Symbol.toPrimitive));
 [test/mjsunit/regress/regress-crbug-631318-8.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-631318-8.js?cl=32346aa)  
 [test/mjsunit/regress/regress-crbug-631318-9.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-631318-9.js?cl=32346aa)  
   
+---   
 
-### **crbug:631027**  
+## **crbug:631027**  
    
 **[Issue: Unreachable code in escape-analysis.cc](https://crbug.com/631027)**  
 **[Commit: [turbofan] Handle ObjectIsReceiver in escape analysis.](https://chromium.googlesource.com/v8/v8/+/553d504)**  
@@ -10694,8 +10999,9 @@ assertEquals("foo", f());
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=553d504)  
 [test/mjsunit/regress/regress-crbug-631027.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-631027.js?cl=553d504)  
   
+---   
 
-### **crbug:630952**  
+## **crbug:630952**  
    
 **[Issue: IsUseLessGeneral(input_use_infos_[index], use_info) in simplified-lowering.cc](https://crbug.com/630952)**  
 **[Commit: [Turbofan] IsUseLessGeneral shouldn't consider machine representation.](https://chromium.googlesource.com/v8/v8/+/480f155)**  
@@ -10732,8 +11038,9 @@ __v_14.toSingle();
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=480f155)  
 [test/mjsunit/regress/regress-crbug-630952.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-630952.js?cl=480f155)  
   
+---   
 
-### **crbug:630951**  
+## **crbug:630951**  
    
 **[Issue: Unreachable code in verifier.cc](https://crbug.com/630951)**  
 **[Commit: [turbofan] Avoid introducing machine operators during typed lowering.](https://chromium.googlesource.com/v8/v8/+/5bed151)**  
@@ -10761,8 +11068,9 @@ assertThrows(foo());
 [test/unittests/compiler/js-intrinsic-lowering-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/js-intrinsic-lowering-unittest.cc?cl=5bed151)  
 [test/unittests/compiler/js-typed-lowering-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/js-typed-lowering-unittest.cc?cl=5bed151)  
   
+---   
 
-### **crbug:630923**  
+## **crbug:630923**  
    
 **[Issue: 0 == node->op()->ControlInputCount() in simplified-lowering.cc](https://crbug.com/630923)**  
 **[Commit: [turbofan] Remove overly restrictive DCHECK.](https://chromium.googlesource.com/v8/v8/+/e3e347b)**  
@@ -10789,8 +11097,9 @@ foo();
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=e3e347b)  
 [test/mjsunit/regress/regress-crbug-630923.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-630923.js?cl=e3e347b)  
   
+---   
 
-### **crbug:630561**  
+## **crbug:630561**  
    
 **[Issue: collector->heap()->Contains(obj) in mark-compact.cc](https://crbug.com/630561)**  
 **[Commit: [elements] Omit fast path in PrependElementIndices](https://chromium.googlesource.com/v8/v8/+/7ede61e)**  
@@ -10814,8 +11123,9 @@ var keys = Object.keys(dict_elements);
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=7ede61e)  
 [test/mjsunit/regress/regress-crbug-630561.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-630561.js?cl=7ede61e)  
   
+---   
 
-### **crbug:630559**  
+## **crbug:630559**  
    
 **[Issue: Token::CATCH == tok in parser.cc](https://crbug.com/630559)**  
 **[Commit: Native try-catch syntax parsing should not crash.](https://chromium.googlesource.com/v8/v8/+/9868142)**  
@@ -10833,8 +11143,9 @@ assertThrows("try{}%");
 [src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=9868142)  
 [test/mjsunit/regress/regress-crbug-630559.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-630559.js?cl=9868142)  
   
+---   
 
-### **crbug:629823**  
+## **crbug:629823**  
    
 **[Issue: args[0]->IsJSArray() in runtime-array.cc](https://crbug.com/629823)**  
 **[Commit: [runtime] %TransitionElementsKind works for any kind of JSObject.](https://chromium.googlesource.com/v8/v8/+/f793cb1)**  
@@ -10862,8 +11173,9 @@ foo();
 [src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=f793cb1)  
 [test/mjsunit/regress/regress-crbug-629823.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-629823.js?cl=f793cb1)  
   
+---   
 
-### **crbug:629435**  
+## **crbug:629435**  
    
 **[Issue: Crash in v8::internal::Invoke](https://crbug.com/629435)**  
 **[Commit: [turbofan] Fix typing rule for number addition.](https://chromium.googlesource.com/v8/v8/+/e0b8707)**  
@@ -10893,8 +11205,9 @@ foo();
 [src/compiler/operation-typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operation-typer.cc?cl=e0b8707)  
 [test/mjsunit/regress/regress-crbug-629435.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-629435.js?cl=e0b8707)  
   
+---   
 
-### **crbug:629062**  
+## **crbug:629062**  
    
 **[Issue: NumberEqual of kRepBit (Constant(ADDRESS <false>)) cannot be changed to kRepFloa](https://crbug.com/629062)**  
 **[Commit: [turbofan] Properly handle bit->float64 representation changes.](https://chromium.googlesource.com/v8/v8/+/15f99cd)**  
@@ -10920,8 +11233,9 @@ foo(true);
 [test/cctest/compiler/test-representation-change.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-representation-change.cc?cl=15f99cd)  
 [test/mjsunit/regress/regress-crbug-629062.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-629062.js?cl=15f99cd)  
   
+---   
 
-### **crbug:628573**  
+## **crbug:628573**  
    
 **[Issue: Crash in v8::internal::Context::native_context](https://crbug.com/628573)**  
 **[Commit: [fullcode] Restore context after calling ToNumber builtin.](https://chromium.googlesource.com/v8/v8/+/5d66a7f)**  
@@ -10957,8 +11271,9 @@ var z = {valueOf: function() { return 3; }};
 [src/full-codegen/x87/full-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/x87/full-codegen-x87.cc?cl=5d66a7f)  
 [test/mjsunit/regress/regress-crbug-628573.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-628573.js?cl=5d66a7f)  
   
+---   
 
-### **crbug:627935**  
+## **crbug:627935**  
    
 **[Issue: args[0]->IsString() in runtime-strings.cc](https://crbug.com/627935)**  
 **[Commit: [i18n] Ensure [[ToString]] conversion of time zone names.](https://chromium.googlesource.com/v8/v8/+/8226c88)**  
@@ -10983,8 +11298,9 @@ if (this.Intl) {
 [src/js/i18n.js](https://cs.chromium.org/chromium/src/v8/src/js/i18n.js?cl=8226c88)  
 [test/mjsunit/regress/regress-crbug-627935.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-627935.js?cl=8226c88)  
   
+---   
 
-### **crbug:627934**  
+## **crbug:627934**  
    
 **[Issue: args[1]->IsString() in runtime-strings.cc](https://crbug.com/627934)**  
 **[Commit: [stubs] Properly handle length overflow in StringAddStub.](https://chromium.googlesource.com/v8/v8/+/6530a16)**  
@@ -11011,8 +11327,9 @@ for (var z = x;;) {
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=6530a16)  
 [test/mjsunit/regress/regress-crbug-627934.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-627934.js?cl=6530a16)  
   
+---   
 
-### **crbug:627828**  
+## **crbug:627828**  
    
 **[Issue: args[1]->IsName() in runtime-object.cc](https://crbug.com/627828)**  
 **[Commit: [turbofan] Fix deopt point for [[ToName]] lazy bailout.](https://chromium.googlesource.com/v8/v8/+/a2f1519)**  
@@ -11095,8 +11412,9 @@ Regress: [mjsunit/regress/regress-crbug-627828.js](https://chromium.googlesource
 [src/full-codegen/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/full-codegen.cc?cl=a2f1519)  
 [test/mjsunit/regress/regress-crbug-627828.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-627828.js?cl=a2f1519)  
   
+---   
 
-### **crbug:626715**  
+## **crbug:626715**  
    
 **[Issue: No Permission](https://crbug.com/626715)**  
 **[Commit: [runtime] Follow-up fix for "Better encapsulation of dictionary objects handling in lookup iterator."](https://chromium.googlesource.com/v8/v8/+/b030a6f)**  
@@ -11136,8 +11454,9 @@ for (var i = 0; i < 100; i++) {
 [src/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/lookup.cc?cl=b030a6f)  
 [test/mjsunit/regress/regress-crbug-626715.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-626715.js?cl=b030a6f)  
   
+---   
 
-### **crbug:625590**  
+## **crbug:625590**  
    
 **[Issue: RUNTIME_ASSERT in args[1]->IsJSObject() in runtime-classes.cc](https://crbug.com/625590)**  
 **[Commit: [fullcode][mips][mips64][ppc][s390] Avoid trashing of a home object when doing a keyed store to a super.](https://chromium.googlesource.com/v8/v8/+/43aee03)**  
@@ -11165,8 +11484,9 @@ new f().mSloppy();
 [src/full-codegen/s390/full-codegen-s390.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/s390/full-codegen-s390.cc?cl=43aee03)  
 [test/mjsunit/regress/regress-crbug-625590.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-625590.js?cl=43aee03)  
   
+---   
 
-### **crbug:625547**  
+## **crbug:625547**  
    
 **[Issue: ho->GetHeap()->Contains(ho) in objects-debug.cc](https://crbug.com/625547)**  
 **[Commit: [crankshaft] Use canonical nan_value or minus_zero_value objects instead of constant heap numbers with NaN or -0.0 values.](https://chromium.googlesource.com/v8/v8/+/acd674d)**  
@@ -11198,8 +11518,9 @@ gc();
 [src/crankshaft/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen-instructions.cc?cl=acd674d)  
 [test/mjsunit/regress/regress-crbug-625547.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-625547.js?cl=acd674d)  
   
+---   
 
-### **crbug:624919**  
+## **crbug:624919**  
    
 **[Issue: V8 Crash - unable to find pc offset during deoptimization](https://crbug.com/624919)**  
 **[Commit: [turbofan] Fix eager bailout point after comma expression.](https://chromium.googlesource.com/v8/v8/+/920bc17)**  
@@ -11224,8 +11545,9 @@ f();
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=920bc17)  
 [test/mjsunit/regress/regress-crbug-624919.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-624919.js?cl=920bc17)  
   
+---   
 
-### **crbug:624747**  
+## **crbug:624747**  
    
 **[Issue: IrOpcode::kFrameState == state->op()->opcode() in instruction-selector.cc](https://crbug.com/624747)**  
 **[Commit: [turbofan] Broaden checkpoint elimination on returns.](https://chromium.googlesource.com/v8/v8/+/a757a62)**  
@@ -11258,8 +11580,9 @@ foo();
 [src/compiler/checkpoint-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/checkpoint-elimination.cc?cl=a757a62)  
 [test/mjsunit/regress/regress-crbug-624747.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-624747.js?cl=a757a62)  
   
+---   
 
-### **crbug:621868**  
+## **crbug:621868**  
    
 **[Issue: Crash in v8::internal::NewSpace::Verify](https://crbug.com/621868)**  
 **[Commit: [crankshaft] Disable further folding already folded allocations.](https://chromium.googlesource.com/v8/v8/+/7b79224)**  
@@ -11291,8 +11614,9 @@ g();
 [src/crankshaft/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen-instructions.h?cl=7b79224)  
 [test/mjsunit/regress/regress-crbug-621868.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-621868.js?cl=7b79224)  
   
+---   
 
-### **crbug:621816**  
+## **crbug:621816**  
    
 **[Issue: safe_to_deopt_topmost_optimized_code in deoptimizer.cc](https://crbug.com/621816)**  
 **[Commit: [turbofan] Fix missing lazy deopt in object literals.](https://chromium.googlesource.com/v8/v8/+/4af8029)**  
@@ -11331,8 +11655,9 @@ g();
 [src/full-codegen/x87/full-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/x87/full-codegen-x87.cc?cl=4af8029)  
 [test/mjsunit/regress/regress-crbug-621816.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-621816.js?cl=4af8029)  
   
+---   
 
-### **crbug:621611**  
+## **crbug:621611**  
    
 **[Issue: v8 regression or user land bug around rounding numbers / exp form](https://crbug.com/621611)**  
 **[Commit: [builtins] Make sure the Math functions and constants agree.](https://chromium.googlesource.com/v8/v8/+/7877dde)**  
@@ -11359,8 +11684,9 @@ assertEquals(Math.SQRT2, Math.sqrt(2));
 [test/mjsunit/regress/regress-crbug-621611.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-621611.js?cl=7877dde)  
 [test/unittests/base/ieee754-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/base/ieee754-unittest.cc?cl=7877dde)  
   
+---   
 
-### **crbug:621496**  
+## **crbug:621496**  
    
 **[Issue: Fatal error in v8::internal::Parser::PatternRewriter::VisitBinaryOperation()](https://crbug.com/621496)**  
 **[Commit: Fix bug with illegal spread as single arrow parameter](https://chromium.googlesource.com/v8/v8/+/b9f682b)**  
@@ -11380,8 +11706,9 @@ Regress: [mjsunit/harmony/regress/regress-crbug-621496.js](https://chromium.goog
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=b9f682b)  
 [test/mjsunit/harmony/regress/regress-crbug-621496.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/harmony/regress/regress-crbug-621496.js?cl=b9f682b)  
   
+---   
 
-### **crbug:621111**  
+## **crbug:621111**  
    
 **[Issue: Fatal error in v8::internal::List<T, P>::Add()](https://crbug.com/621111)**  
 **[Commit: Fix classifier related bug](https://chromium.googlesource.com/v8/v8/+/2cabc86)**  
@@ -11400,8 +11727,9 @@ Regress: [mjsunit/harmony/regress/regress-crbug-621111.js](https://chromium.goog
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=2cabc86)  
 [test/mjsunit/harmony/regress/regress-crbug-621111.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/harmony/regress/regress-crbug-621111.js?cl=2cabc86)  
   
+---   
 
-### **crbug:620650**  
+## **crbug:620650**  
    
 **[Issue: (value & V8_UINT64_C(ADDRESS)) != unexpected || (value & V8_UINT64_C(ADDRESS)) =](https://crbug.com/620650)**  
 **[Commit: [mips] Fix using signaling NaN for holes in fixed double arrays.](https://chromium.googlesource.com/v8/v8/+/a81c665)**  
@@ -11431,8 +11759,9 @@ Regress: [mjsunit/regress/regress-crbug-620650.js](https://chromium.googlesource
 [src/mips/macro-assembler-mips.h](https://cs.chromium.org/chromium/src/v8/src/mips/macro-assembler-mips.h?cl=a81c665)  
 [test/mjsunit/regress/regress-crbug-620650.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-620650.js?cl=a81c665)  
   
+---   
 
-### **crbug:620253**  
+## **crbug:620253**  
    
 **[Issue: Fatal error in v8::FromJust](https://crbug.com/620253)**  
 **[Commit: [d8] Make exception reporting more resilient.](https://chromium.googlesource.com/v8/v8/+/e55384b)**  
@@ -11450,8 +11779,9 @@ load("test/mjsunit/regress/regress-crbug-620253.js");
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=e55384b)  
 [test/mjsunit/regress/regress-crbug-620253.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-620253.js?cl=e55384b)  
   
+---   
 
-### **crbug:620119**  
+## **crbug:620119**  
    
 **[Issue: No Permission](https://crbug.com/620119)**  
 **[Commit: Rewrite scopes in computed properties in destructured parameters](https://chromium.googlesource.com/v8/v8/+/f795a79)**  
@@ -11471,8 +11801,9 @@ assertEquals(0, (function (x, {[(x = function() { y = 0 }, "foo")]: y = eval(1)}
 [src/parsing/pattern-rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/pattern-rewriter.cc?cl=f795a79)  
 [test/mjsunit/regress/regress-crbug-620119.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-620119.js?cl=f795a79)  
   
+---   
 
-### **crbug:619476**  
+## **crbug:619476**  
    
 **[Issue: reported_errors_end_ <= i in expression-classifier.h](https://crbug.com/619476)**  
 **[Commit: Remove erroneous DCHECK related to expression classifiers](https://chromium.googlesource.com/v8/v8/+/cdec5e8)**  
@@ -11492,8 +11823,9 @@ eval, x[eval];
 [src/parsing/expression-classifier.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-classifier.h?cl=cdec5e8)  
 [test/mjsunit/regress-crbug-619476.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-crbug-619476.js?cl=cdec5e8)  
   
+---   
 
-### **crbug:618845**  
+## **crbug:618845**  
    
 **[Issue: No Permission](https://crbug.com/618845)**  
 **[Commit: Fix stale IC::receiver_map_ after prototype fastification](https://chromium.googlesource.com/v8/v8/+/3b87e9a)**  
@@ -11520,8 +11852,9 @@ assertEquals("FooName", ic(Foo));
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=3b87e9a)  
 [test/mjsunit/regress/regress-crbug-618845.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-618845.js?cl=3b87e9a)  
   
+---   
 
-### **crbug:618788**  
+## **crbug:618788**  
    
 **[Issue: !array->HasFixedTypedArrayElements() in runtime-array.cc](https://crbug.com/618788)**  
 **[Commit: Array.prototype.slice should only normalize result if it's an array](https://chromium.googlesource.com/v8/v8/+/56ea2f9)**  
@@ -11553,8 +11886,9 @@ Object.defineProperty(Int32Array.prototype, 'length', { set(v) { } });
 [src/js/array.js](https://cs.chromium.org/chromium/src/v8/src/js/array.js?cl=56ea2f9)  
 [test/mjsunit/regress/regress-crbug-618788.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-618788.js?cl=56ea2f9)  
   
+---   
 
-### **crbug:617567**  
+## **crbug:617567**  
    
 **[Issue: 1 == effect->op()->EffectInputCount() in node-properties.cc](https://crbug.com/617567)**  
 **[Commit: [turbofan] Make FindFrameStateBefore handle dead paths.](https://chromium.googlesource.com/v8/v8/+/826627d)**  
@@ -11589,8 +11923,9 @@ assertThrows(f);
 [src/compiler/node-properties.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/node-properties.cc?cl=826627d)  
 [test/mjsunit/regress/regress-crbug-617567.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-617567.js?cl=826627d)  
   
+---   
 
-### **crbug:617527**  
+## **crbug:617527**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/617527)**  
 **[Commit: Add test case for 85b8c2dc (fix observable array access in messages.js).](https://chromium.googlesource.com/v8/v8/+/ada6fa1)**  
@@ -11608,8 +11943,9 @@ assertThrows(_ => new RegExp(0, 0));
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/ada6fa1^!)  
 [test/mjsunit/regress/regress-crbug-617527.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-617527.js?cl=ada6fa1)  
   
+---   
 
-### **crbug:617524**  
+## **crbug:617524**  
    
 **[Issue: value->IsMutableHeapNumber() in objects-debug.cc](https://crbug.com/617524)**  
 **[Commit: [runtime] Don't use ElementsTransitionAndStoreStub for transitions that involve instance rewriting.](https://chromium.googlesource.com/v8/v8/+/3e0be8d)**  
@@ -11639,8 +11975,9 @@ assertEquals(0, o3.a);
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=3e0be8d)  
 [test/mjsunit/regress/regress-crbug-617524.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-617524.js?cl=3e0be8d)  
   
+---   
 
-### **crbug:616709**  
+## **crbug:616709**  
    
 **[Issue: map->is_stable() in src/compilation-dependencies.cc](https://crbug.com/616709)**  
 **[Commit: [turbofan] Remove unnecessary prototype checks for element access.](https://chromium.googlesource.com/v8/v8/+/cad5b29)**  
@@ -11675,8 +12012,9 @@ boom(a);
 [test/mjsunit/regress/regress-crbug-616709-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-616709-1.js?cl=cad5b29)  
 [test/mjsunit/regress/regress-crbug-616709-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-616709-2.js?cl=cad5b29)  
   
+---   
 
-### **crbug:615774**  
+## **crbug:615774**  
    
 **[Issue: index < GetInternalFieldCount() && index >= 0 in src/objects-inl.h](https://crbug.com/615774)**  
 **[Commit: Check CallSite arguments more rigorously](https://chromium.googlesource.com/v8/v8/+/25c2203)**  
@@ -11706,8 +12044,9 @@ try {
 [src/wasm/wasm-module.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-module.h?cl=25c2203)  
 [test/mjsunit/regress/regress-crbug-615774.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-615774.js?cl=25c2203)  
   
+---   
 
-### **crbug:614727**  
+## **crbug:614727**  
    
 **[Issue: RUNTIME_ASSERT in size <= Page::kMaxRegularHeapObjectSize in src/runtime/runtime-internal.cc](https://crbug.com/614727)**  
 **[Commit: Fix arguments object stubs for large arrays.](https://chromium.googlesource.com/v8/v8/+/e95cfaf)**  
@@ -11749,8 +12088,9 @@ try { g.apply(null, args) } catch(e) {}
 [src/x64/code-stubs-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/code-stubs-x64.cc?cl=e95cfaf)  
 [test/mjsunit/regress/regress-crbug-614727.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-614727.js?cl=e95cfaf)  
   
+---   
 
-### **crbug:614644**  
+## **crbug:614644**  
    
 **[Issue: Fatal error in v8::HandleScope::CreateHandle](https://crbug.com/614644)**  
 **[Commit: [crankshaft] Guard against side effects in Array.prototype.shift lowering.](https://chromium.googlesource.com/v8/v8/+/173313e)**  
@@ -11776,8 +12116,9 @@ f([1], 1.1);
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=173313e)  
 [test/mjsunit/regress/regress-crbug-614644.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-614644.js?cl=173313e)  
   
+---   
 
-### **crbug:614292**  
+## **crbug:614292**  
    
 **[Issue: IrOpcode::kMerge == control->opcode() in src/compiler/memory-optimizer.cc](https://crbug.com/614292)**  
 **[Commit: [turbofan] MemoryOptimizer cannot deal with dead nodes in use lists.](https://chromium.googlesource.com/v8/v8/+/5e0cd38)**  
@@ -11802,8 +12143,9 @@ try {
 [src/compiler/pipeline.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/pipeline.cc?cl=5e0cd38)  
 [test/mjsunit/regress/regress-crbug-614292.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-614292.js?cl=5e0cd38)  
   
+---   
 
-### **crbug:613919**  
+## **crbug:613919**  
    
 **[Issue: Unreachable code in src/objects-inl.h](https://crbug.com/613919)**  
 **[Commit: [deoptimizer] Fix materialization of sloppy arguments.](https://chromium.googlesource.com/v8/v8/+/3cc2adb)**  
@@ -11832,8 +12174,9 @@ assertEquals(23, f());
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=3cc2adb)  
 [test/mjsunit/regress/regress-crbug-613919.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-613919.js?cl=3cc2adb)  
   
+---   
 
-### **crbug:613905**  
+## **crbug:613905**  
    
 **[Issue: Crash in v8::base::NoBarrier_Load](https://crbug.com/613905)**  
 **[Commit: [runtime] Don't crash when trying to access manually constructed CallSite object.](https://chromium.googlesource.com/v8/v8/+/a7a14fd)**  
@@ -11857,8 +12200,9 @@ try {
 [src/messages.cc](https://cs.chromium.org/chromium/src/v8/src/messages.cc?cl=a7a14fd)  
 [test/mjsunit/regress/regress-crbug-613905.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-613905.js?cl=a7a14fd)  
   
+---   
 
-### **crbug:613570**  
+## **crbug:613570**  
    
 **[Issue: AllowHeapAllocation::IsAllowed() in src/heap/heap-inl.h](https://crbug.com/613570)**  
 **[Commit: [json] fix encoding change for two-byte gap strings.](https://chromium.googlesource.com/v8/v8/+/46aeb2a)**  
@@ -11877,8 +12221,9 @@ assertEquals("[\n\u26031,\n\u26032\n]",
 [src/json-stringifier.h](https://cs.chromium.org/chromium/src/v8/src/json-stringifier.h?cl=46aeb2a)  
 [test/mjsunit/regress/regress-crbug-613570.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-613570.js?cl=46aeb2a)  
   
+---   
 
-### **crbug:613494**  
+## **crbug:613494**  
    
 **[Issue: Int64Constant of kRepWord64 (Internal) cannot be changed to kRepTagged in src/co](https://crbug.com/613494)**  
 **[Commit: [turbofan] Skip data-flow analysis of code entry field.](https://chromium.googlesource.com/v8/v8/+/dbd7d5a)**  
@@ -11904,8 +12249,9 @@ f();
 [src/compiler/escape-analysis.h](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.h?cl=dbd7d5a)  
 [test/mjsunit/regress/regress-crbug-613494.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-613494.js?cl=dbd7d5a)  
   
+---   
 
-### **crbug:612142**  
+## **crbug:612142**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (IsDereferenceAllowed(INCLUDE_DEFERRE](https://crbug.com/612142)**  
 **[Commit: [turbofan] Kill type Guard nodes during effect/control linearization.](https://chromium.googlesource.com/v8/v8/+/33e571f)**  
@@ -11931,8 +12277,9 @@ try {
 [src/compiler/instruction-selector.h](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction-selector.h?cl=33e571f)  
 [test/mjsunit/regress/regress-crbug-612142.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-612142.js?cl=33e571f)  
   
+---   
 
-### **crbug:612109**  
+## **crbug:612109**  
    
 **[Issue: Crash in v8::internal::Heap::CreateFillerObjectAt](https://crbug.com/612109)**  
 **[Commit: [builtins] Rewrite uri.js as builtin functions.](https://chromium.googlesource.com/v8/v8/+/8c31bd8)**  
@@ -11978,8 +12325,9 @@ decodeURI(encodeURI(s));
 [test/mjsunit/regress/string-set-char-deopt.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/string-set-char-deopt.js?cl=8c31bd8)  
 [test/mjsunit/string-natives.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/string-natives.js?cl=8c31bd8)  
   
+---   
 
-### **crbug:610207**  
+## **crbug:610207**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsSharedFunctionInfo()) in s](https://crbug.com/610207)**  
 **[Commit: Don't crash when load eval origin of a call site.](https://chromium.googlesource.com/v8/v8/+/8758245)**  
@@ -12005,8 +12353,9 @@ try {
 [src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=8758245)  
 [test/mjsunit/regress/regress-crbug-610207.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-610207.js?cl=8758245)  
   
+---   
 
-### **crbug:609029**  
+## **crbug:609029**  
    
 **[Issue: data()->IsUndefined() || data()->IsFixedArray() in v8/src/objects-debug.cc](https://crbug.com/609029)**  
 **[Commit: [turbofan] Implement %_NewObject using FastNewObjectStub.](https://chromium.googlesource.com/v8/v8/+/c321837)**  
@@ -12024,8 +12373,9 @@ Regress: [mjsunit/regress/regress-crbug-609029.js](https://chromium.googlesource
 [src/compiler/js-intrinsic-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-intrinsic-lowering.cc?cl=c321837)  
 [test/mjsunit/regress/regress-crbug-609029.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-609029.js?cl=c321837)  
   
+---   
 
-### **crbug:608279**  
+## **crbug:608279**  
    
 **[Issue: !info->shared_info()->feedback_vector()->metadata()->SpecDiffersFrom( info->lite](https://crbug.com/608279)**  
 **[Commit: Don't treat catch scopes as possibly-shadowing for sloppy eval](https://chromium.googlesource.com/v8/v8/+/75f2d65)**  
@@ -12054,8 +12404,9 @@ __v_40.m();
 [src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=75f2d65)  
 [test/mjsunit/regress/regress-crbug-608279.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-608279.js?cl=75f2d65)  
   
+---   
 
-### **crbug:608278**  
+## **crbug:608278**  
    
 **[Issue: 1 == translation_size in src/crankshaft/lithium-codegen.cc](https://crbug.com/608278)**  
 **[Commit: [es6] Properly handle the case when an inlined getter/setter/constructor does a tail call.](https://chromium.googlesource.com/v8/v8/+/e17a283)**  
@@ -12140,8 +12491,9 @@ f3();
 [test/mjsunit/es6/tail-call.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/tail-call.js?cl=e17a283)  
 [test/mjsunit/regress/regress-crbug-608278.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-608278.js?cl=e17a283)  
   
+---   
 
-### **crbug:605862**  
+## **crbug:605862**  
    
 **[Issue: Unreachable code in src/regexp/jsregexp.h](https://crbug.com/605862)**  
 **[Commit: [regexp] Fix non-match and max match length in RegExpCharacterClass.](https://chromium.googlesource.com/v8/v8/+/6f67d17)**  
@@ -12161,8 +12513,9 @@ Regress: [mjsunit/regress/regress-crbug-605862.js](https://chromium.googlesource
 [src/regexp/regexp-ast.h](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-ast.h?cl=6f67d17)  
 [test/mjsunit/regress/regress-crbug-605862.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-605862.js?cl=6f67d17)  
   
+---   
 
-### **crbug:605060**  
+## **crbug:605060**  
    
 **[Issue: map->is_stable() in v8/src/compilation-dependencies.cc](https://crbug.com/605060)**  
 **[Commit: Make sure we always try to make prototypes fast again when transitioning accessors](https://chromium.googlesource.com/v8/v8/+/4a6a0f5)**  
@@ -12183,8 +12536,9 @@ assertTrue(%HasFastProperties(Array.prototype));
 [src/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/lookup.cc?cl=4a6a0f5)  
 [test/mjsunit/regress/regress-crbug-605060.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-605060.js?cl=4a6a0f5)  
   
+---   
 
-### **crbug:604680**  
+## **crbug:604680**  
    
 **[Issue: !removed || frame->LookupCode()->marked_for_deoptimization() in src/isolate.cc](https://crbug.com/604680)**  
 **[Commit: [deoptimizer] Do not modify stack_fp which is used as a key for lookup of previously materialized objects.](https://chromium.googlesource.com/v8/v8/+/b4dbb2f)**  
@@ -12240,8 +12594,9 @@ try {
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=b4dbb2f)  
 [test/mjsunit/regress/regress-crbug-604680.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-604680.js?cl=b4dbb2f)  
   
+---   
 
-### **crbug:604299**  
+## **crbug:604299**  
    
 **[Issue: RUNTIME_ASSERT in args[0]->IsString() in src/runtime/runtime-regexp.cc](https://crbug.com/604299)**  
 **[Commit: Use InternalArrays from certain Intl code](https://chromium.googlesource.com/v8/v8/+/4f374bb)**  
@@ -12265,8 +12620,9 @@ if (this.Intl) {
 [test/mjsunit/regress/regress-crbug-604299.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-604299.js?cl=4f374bb)  
 [test/test262/test262.status](https://cs.chromium.org/chromium/src/v8/test/test262/test262.status?cl=4f374bb)  
   
+---   
 
-### **crbug:603463**  
+## **crbug:603463**  
    
 **[Issue: marker->IsSmi() in src/frames.cc](https://crbug.com/603463)**  
 **[Commit: Fix polymorphic keyed load handler selection for proxies.](https://chromium.googlesource.com/v8/v8/+/2811388)**  
@@ -12295,8 +12651,9 @@ f();
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=2811388)  
 [test/mjsunit/regress/regress-crbug-603463.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-603463.js?cl=2811388)  
   
+---   
 
-### **crbug:602595**  
+## **crbug:602595**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsSmi()) in src/objects-inl.](https://crbug.com/602595)**  
 **[Commit: [turbofan] Escape analysis treats guard nodes as escaping.](https://chromium.googlesource.com/v8/v8/+/7cef559)**  
@@ -12319,8 +12676,9 @@ assertEquals([65], f(65));
 [src/compiler/escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/escape-analysis.cc?cl=7cef559)  
 [test/mjsunit/regress/regress-crbug-602595.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-602595.js?cl=7cef559)  
   
+---   
 
-### **crbug:602184**  
+## **crbug:602184**  
    
 **[Issue: DICTIONARY_ELEMENTS == elements_kind in src/code-stubs.h](https://crbug.com/602184)**  
 **[Commit: [tests] Add testcase for r35397](https://chromium.googlesource.com/v8/v8/+/f4a9a50)**  
@@ -12349,8 +12707,9 @@ f(true, v);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f4a9a50^!)  
 [test/mjsunit/regress/regress-crbug-602184.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-602184.js?cl=f4a9a50)  
   
+---   
 
-### **crbug:601617**  
+## **crbug:601617**  
    
 **[Issue: frames_[0].kind() == TranslatedFrame::kFunction || frames_[0].kind() == Translat](https://crbug.com/601617)**  
 **[Commit: [deoptimizer] Extend assert to also expect kTailCallerFunction as bottommost frame when accessing arguments for inlined function.](https://chromium.googlesource.com/v8/v8/+/26c480d)**  
@@ -12393,8 +12752,9 @@ assertEquals(1, f0());
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=26c480d)  
 [test/mjsunit/regress/regress-crbug-601617.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-601617.js?cl=26c480d)  
   
+---   
 
-### **crbug:600257**  
+## **crbug:600257**  
    
 **[Issue: unicode() in src/regexp/regexp-parser.cc](https://crbug.com/600257)**  
 **[Commit: [regexp] fix assertion failure when parsing close to stack overflow.](https://chromium.googlesource.com/v8/v8/+/93135d8)**  
@@ -12418,8 +12778,9 @@ Regress: [mjsunit/regress/regress-crbug-600257.js](https://chromium.googlesource
 [src/regexp/regexp-parser.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-parser.cc?cl=93135d8)  
 [test/mjsunit/regress/regress-crbug-600257.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-600257.js?cl=93135d8)  
   
+---   
 
-### **crbug:599714**  
+## **crbug:599714**  
    
 **[Issue: code->kind() == Code::OPTIMIZED_FUNCTION in src/frames.cc](https://crbug.com/599714)**  
 **[Commit: [frames] Also properly deal with TF builtins in OptimizedFrame::GetFunctions().](https://chromium.googlesource.com/v8/v8/+/e5724d9)**  
@@ -12445,8 +12806,9 @@ try { Object.hasOwnProperty(object); } catch (e) {}
 [src/frames.cc](https://cs.chromium.org/chromium/src/v8/src/frames.cc?cl=e5724d9)  
 [test/mjsunit/regress/regress-crbug-599714.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-599714.js?cl=e5724d9)  
   
+---   
 
-### **crbug:599073**  
+## **crbug:599073**  
    
 **[Issue: args.receiver()->IsJSReceiver() in src/builtins.cc](https://crbug.com/599073)**  
 **[Commit: [ic] Use the CallFunction builtin to invoke accessors.](https://chromium.googlesource.com/v8/v8/+/6df9a22)**  
@@ -12478,8 +12840,9 @@ foo(true);
 [test/mjsunit/regress/regress-crbug-599073-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-599073-3.js?cl=6df9a22)  
 [test/mjsunit/regress/regress-crbug-599073-4.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-599073-4.js?cl=6df9a22)  
   
+---   
 
-### **crbug:599067**  
+## **crbug:599067**  
    
 **[Issue: RUNTIME_ASSERT in args[0]->IsJSObject() in src/runtime/runtime-internal.cc](https://crbug.com/599067)**  
 **[Commit: Display a meaningfull error message when trying to capture a stack trace to a proxy.](https://chromium.googlesource.com/v8/v8/+/c7ff576)**  
@@ -12505,8 +12868,9 @@ try {
 [src/runtime/runtime-internal.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-internal.cc?cl=c7ff576)  
 [test/mjsunit/regress/regress-crbug-599067.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-599067.js?cl=c7ff576)  
   
+---   
 
-### **crbug:599003**  
+## **crbug:599003**  
    
 **[Issue: RUNTIME_ASSERT in map->IsMap() in src/heap/spaces.cc](https://crbug.com/599003)**  
 **[Commit: Properly complete in-object slack tracking.](https://chromium.googlesource.com/v8/v8/+/4598356)**  
@@ -12556,8 +12920,9 @@ gc();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=4598356)  
 [test/mjsunit/regress/regress-crbug-599003.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-599003.js?cl=4598356)  
   
+---   
 
-### **crbug:598998**  
+## **crbug:598998**  
    
 **[Issue: output_count_ - 1 != frame_index in src/deoptimizer.cc](https://crbug.com/598998)**  
 **[Commit: [crankshaft] [turbofan] Fix environment handling when generating a tail call from inlined function.](https://chromium.googlesource.com/v8/v8/+/ecb8fcf)**  
@@ -12607,8 +12972,9 @@ h(1);
 [src/crankshaft/x87/lithium-x87.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/x87/lithium-x87.cc?cl=ecb8fcf)  
 [test/mjsunit/regress/regress-crbug-598998.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-598998.js?cl=ecb8fcf)  
   
+---   
 
-### **crbug:596394**  
+## **crbug:596394**  
    
 **[Issue: has_property_ in src/lookup.h](https://crbug.com/596394)**  
 **[Commit: Ensure CreateDataProperty works correctly on TypedArrays](https://chromium.googlesource.com/v8/v8/+/7a38462)**  
@@ -12629,8 +12995,9 @@ assertThrows(() => Array.prototype.concat.call(array), TypeError);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=7a38462)  
 [test/mjsunit/regress/regress-crbug-596394.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-596394.js?cl=7a38462)  
   
+---   
 
-### **crbug:595738**  
+## **crbug:595738**  
    
 **[Issue: JSON.stringify() throws error about circular structures in a Backbone Model](https://crbug.com/595738)**  
 **[Commit: [json] Allow any callable object for toJSON.](https://chromium.googlesource.com/v8/v8/+/cc04776)**  
@@ -12650,8 +13017,9 @@ assertEquals("1", JSON.stringify(x));
 [src/json-stringifier.h](https://cs.chromium.org/chromium/src/v8/src/json-stringifier.h?cl=cc04776)  
 [test/mjsunit/regress/regress-crbug-595738.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-595738.js?cl=cc04776)  
   
+---   
 
-### **crbug:595657**  
+## **crbug:595657**  
    
 **[Issue: index <= know_captures in src/regexp/regexp-parser.cc](https://crbug.com/595657)**  
 **[Commit: [regexp] catch stack overflow when parsing back references.](https://chromium.googlesource.com/v8/v8/+/1e2d0e1)**  
@@ -12677,8 +13045,9 @@ test();
 [src/regexp/regexp-parser.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-parser.cc?cl=1e2d0e1)  
 [test/mjsunit/regress/regress-crbug-595657.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-595657.js?cl=1e2d0e1)  
   
+---   
 
-### **crbug:595615**  
+## **crbug:595615**  
    
 **[Issue: *deopt_index != Safepoint::kNoDeoptimizationIndex in src/frames.cc](https://crbug.com/595615)**  
 **[Commit: [crankshaft] Check if the function is callable before generating a tail call via Call builtin.](https://chromium.googlesource.com/v8/v8/+/e6dca37)**  
@@ -12705,8 +13074,9 @@ try { f({ x: 1 }); } catch(e) {}
 [src/crankshaft/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.h?cl=e6dca37)  
 [test/mjsunit/regress/regress-crbug-595615.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-595615.js?cl=e6dca37)  
   
+---   
 
-### **crbug:594955**  
+## **crbug:594955**  
    
 **[Issue: elements_kind == DICTIONARY_ELEMENTS in src/ic/handler-compiler.cc](https://crbug.com/594955)**  
 **[Commit: Fix polymorphic keyed load handler selection for string elements](https://chromium.googlesource.com/v8/v8/+/84dd29b)**  
@@ -12730,8 +13100,9 @@ assertEquals(g(new String("a"), "length"), 1);
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=84dd29b)  
 [test/mjsunit/regress/regress-crbug-594955.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-594955.js?cl=84dd29b)  
   
+---   
 
-### **crbug:594574**  
+## **crbug:594574**  
    
 **[Issue: Security: v8 Array.concat OOB access writeup](https://crbug.com/594574)**  
 **[Commit: [builtins] Fix Array.prototype.concat bug](https://chromium.googlesource.com/v8/v8/+/96a2bd8)**  
@@ -12783,8 +13154,9 @@ assertEquals(concatted_array[3], undefined);
 [test/mjsunit/regress/regress-crbug-594574-concat-leak-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-594574-concat-leak-1.js?cl=96a2bd8)  
 [test/mjsunit/regress/regress-crbug-594574-concat-leak-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-594574-concat-leak-2.js?cl=96a2bd8)  
   
+---   
 
-### **crbug:594183**  
+## **crbug:594183**  
    
 **[Issue: Performance Regression: 5-20% WebGLAquarium 1000 Fishes time across most boards](https://crbug.com/594183)**  
 **[Commit: [ic] Restore PROPERTY key tracking in keyed ICs](https://chromium.googlesource.com/v8/v8/+/9bebebd)**  
@@ -12885,8 +13257,9 @@ if (!isTurboFanned(inferrable_store)) {
 [src/type-info.cc](https://cs.chromium.org/chromium/src/v8/src/type-info.cc?cl=9bebebd)  
 [test/mjsunit/regress/regress-crbug-594183.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-594183.js?cl=9bebebd)  
   
+---   
 
-### **crbug:593697**  
+## **crbug:593697**  
    
 **[Issue: !is_bottommost || stack_fp_ == fp_value in src/deoptimizer.cc](https://crbug.com/593697)**  
 **[Commit: [turbofan] Avoid dereferencing empty handle when inlining a tail call.](https://chromium.googlesource.com/v8/v8/+/690c7a8)**  
@@ -12913,8 +13286,9 @@ var f5 = (function f6(stdlib) {
 [src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=690c7a8)  
 [test/mjsunit/regress/regress-crbug-593697-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-593697-2.js?cl=690c7a8)  
   
+---   
 
-### **crbug:593282**  
+## **crbug:593282**  
    
 **[Issue: 0 <= from && to <= String::kMaxCodePoint in src/regexp/regexp-ast.h](https://crbug.com/593282)**  
 **[Commit: [regexp] fix bogus assertion in CharacterRange constructor.](https://chromium.googlesource.com/v8/v8/+/d1f68f7)**  
@@ -12965,8 +13339,9 @@ __f_4();
 [test/cctest/test-regexp.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-regexp.cc?cl=d1f68f7)  
 [test/mjsunit/regress/regress-crbug-593282.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-593282.js?cl=d1f68f7)  
   
+---   
 
-### **crbug:592343**  
+## **crbug:592343**  
    
 **[Issue: entry->to() + 1 > current.from() in src/regexp/jsregexp.cc](https://crbug.com/592343)**  
 **[Commit: [regexp] Fix off-by-one in CharacterRange::Negate.](https://chromium.googlesource.com/v8/v8/+/f9d7c71)**  
@@ -12993,8 +13368,9 @@ assertTrue(r.test("\u{2001}"));
 [src/regexp/regexp-ast.h](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-ast.h?cl=f9d7c71)  
 [test/mjsunit/regress/regress-crbug-592343.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-592343.js?cl=f9d7c71)  
   
+---   
 
-### **crbug:592340**  
+## **crbug:592340**  
    
 **[Issue: Crash in v8::internal::LookupIterator::UpdateProtector](https://crbug.com/592340)**  
 **[Commit: Ensure appropriate bounds checking for Array subclass concat](https://chromium.googlesource.com/v8/v8/+/ca5deb1)**  
@@ -13020,8 +13396,9 @@ assertThrows(() => __v_2.concat(__v_4), RangeError);
 [src/builtins.cc](https://cs.chromium.org/chromium/src/v8/src/builtins.cc?cl=ca5deb1)  
 [test/mjsunit/regress/regress-crbug-592340.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-592340.js?cl=ca5deb1)  
   
+---   
 
-### **crbug:590989**  
+## **crbug:590989**  
    
 **[Issue: callback function not called any more after called lots of times and in different place.](https://crbug.com/590989)**  
 **[Commit: [crankshaft] Fix invalid ToNumber optimization.](https://chromium.googlesource.com/v8/v8/+/0c35579)**  
@@ -13052,8 +13429,9 @@ assertEquals(false, g(o));
 [test/mjsunit/regress/regress-crbug-590989-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-590989-1.js?cl=0c35579)  
 [test/mjsunit/regress/regress-crbug-590989-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-590989-2.js?cl=0c35579)  
   
+---   
 
-### **crbug:589792**  
+## **crbug:589792**  
    
 **[Issue: Security: [v8] Out of bound(??) memory write with asm.js](https://crbug.com/589792)**  
 **[Commit: [turbofan] Bailout if LoadBuffer typing assumption doesn't hold.](https://chromium.googlesource.com/v8/v8/+/58ab990)**  
@@ -13088,8 +13466,9 @@ boom(0, 0x1000);
 [test/cctest/compiler/test-run-properties.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-properties.cc?cl=58ab990)  
 [test/mjsunit/regress/regress-crbug-589792.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-589792.js?cl=58ab990)  
   
+---   
 
-### **crbug:589472**  
+## **crbug:589472**  
    
 **[Issue: operand_stack_depth_ >= count in src/full-codegen/full-codegen.cc](https://crbug.com/589472)**  
 **[Commit: [fullcodegen] Fix assert for operand stack depth tracking.](https://chromium.googlesource.com/v8/v8/+/3baa290)**  
@@ -13193,8 +13572,9 @@ function f() {
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=3baa290)  
 [test/mjsunit/regress/regress-crbug-589472.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-589472.js?cl=3baa290)  
   
+---   
 
-### **crbug:587068**  
+## **crbug:587068**  
    
 **[Issue: 10.6%-15.6% regression in webrtc.datachannel at 375196:375247](https://crbug.com/587068)**  
 **[Commit: [crankshaft] Fix deopt loop in String.fromCharCode on non-int32 inputs.](https://chromium.googlesource.com/v8/v8/+/6cc5c60)**  
@@ -13217,8 +13597,9 @@ assertOptimized(foo);
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=6cc5c60)  
 [test/mjsunit/regress/regress-crbug-587068.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-587068.js?cl=6cc5c60)  
   
+---   
 
-### **crbug:584188**  
+## **crbug:584188**  
    
 **[Issue: object->HasFastSmiOrObjectElements() || object->HasFastDoubleElements() in src/o](https://crbug.com/584188)**  
 **[Commit: Fix Array.prototype.sort for *_STRING_WRAPPER_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/5d2c09a)**  
@@ -13242,8 +13623,9 @@ assertThrows("Array.prototype.sort.call(string);", TypeError);
 [src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=5d2c09a)  
 [test/mjsunit/regress/regress-crbug-584188.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-584188.js?cl=5d2c09a)  
   
+---   
 
-### **crbug:583257**  
+## **crbug:583257**  
    
 **[Issue: transition_map->has_dictionary_elements() || transition_map->has_fixed_typed_arr](https://crbug.com/583257)**  
 **[Commit: More *_STRING_WRAPPER_ELEMENTS fixes](https://chromium.googlesource.com/v8/v8/+/d582d2b)**  
@@ -13284,8 +13666,9 @@ __f_11();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d582d2b)  
 [test/mjsunit/regress/regress-crbug-583257.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-583257.js?cl=d582d2b)  
   
+---   
 
-### **crbug:581577**  
+## **crbug:581577**  
    
 **[Issue: RegExp flag/source getters cause app.jiff.com to fail](https://crbug.com/581577)**  
 **[Commit: ES2015 web compat workaround: RegExp.prototype.flags => ""](https://chromium.googlesource.com/v8/v8/+/b22b258)**  
@@ -13307,8 +13690,9 @@ assertEquals("", RegExp.prototype.flags);
 [test/test262/test262.status](https://cs.chromium.org/chromium/src/v8/test/test262/test262.status?cl=b22b258)  
 [test/webkit/fast/regex/toString-expected.txt](https://cs.chromium.org/chromium/src/v8/test/webkit/fast/regex/toString-expected.txt?cl=b22b258)  
   
+---   
 
-### **crbug:580934**  
+## **crbug:580934**  
    
 **[Issue: Block-scope (let) sibling functions becoming undefined / garbage-collected](https://crbug.com/580934)**  
 **[Commit: Ensure arrow functions can close over lexically-scoped variables](https://chromium.googlesource.com/v8/v8/+/953bb41)**  
@@ -13337,8 +13721,9 @@ Regress: [mjsunit/regress/regress-crbug-580934.js](https://chromium.googlesource
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=953bb41)  
 [test/mjsunit/regress/regress-crbug-580934.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-580934.js?cl=953bb41)  
   
+---   
 
-### **crbug:580584**  
+## **crbug:580584**  
    
 **[Issue: Chr-48 regression, w bisect: Object.defineProperty broken for window.localStorage, sessionStorage, etc](https://crbug.com/580584)**  
 **[Commit: [api] Default native data property setter to replace the setter if the property is writable.](https://chromium.googlesource.com/v8/v8/+/997cd3d)**  
@@ -13377,8 +13762,9 @@ assertEquals({value: 10, writable: true, configurable: true, enumerable: false},
 [src/snapshot/serialize.cc](https://cs.chromium.org/chromium/src/v8/src/snapshot/serialize.cc?cl=997cd3d)  
 [test/mjsunit/regress/regress-crbug-580584.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-580584.js?cl=997cd3d)  
   
+---   
 
-### **crbug:580506**  
+## **crbug:580506**  
    
 **[Issue: memcmp(fresh->address(), new_map->address(), Map::kCodeCacheOffset) == 0 in src/](https://crbug.com/580506)**  
 **[Commit: Also check new_target_is_base() bit when comparing two maps for equivalence.](https://chromium.googlesource.com/v8/v8/+/ac03ef0)**  
@@ -13412,8 +13798,9 @@ Regress: [mjsunit/regress/regress-crbug-580506.js](https://chromium.googlesource
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=ac03ef0)  
 [test/mjsunit/regress/regress-crbug-580506.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-580506.js?cl=ac03ef0)  
   
+---   
 
-### **crbug:578039**  
+## **crbug:578039**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsMap()) in src/objects-inl.](https://crbug.com/578039)**  
 **[Commit: [proxy] Reload the initial map after prototype lookup on constructable Proxy.](https://chromium.googlesource.com/v8/v8/+/ec30425)**  
@@ -13439,8 +13826,9 @@ new proxy();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=ec30425)  
 [test/mjsunit/regress/regress-crbug-578039-Proxy_construct_prototype_change.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-578039-Proxy_construct_prototype_change.js?cl=ec30425)  
   
+---   
 
-### **crbug:577112**  
+## **crbug:577112**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/577112)**  
 **[Commit: [crankshaft] Don't inline array indexOf operations if receiver's proto is not a JSObject.](https://chromium.googlesource.com/v8/v8/+/1bb7cfd)**  
@@ -13466,8 +13854,9 @@ f();
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=1bb7cfd)  
 [test/mjsunit/regress/regress-crbug-577112.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-577112.js?cl=1bb7cfd)  
   
+---   
 
-### **crbug:575314**  
+## **crbug:575314**  
    
 **[Issue: How to find the cause of the new " promiseCapability.[[Resolve]] is not a function" error](https://crbug.com/575314)**  
 **[Commit: Partial rollback of Promise error checking](https://chromium.googlesource.com/v8/v8/+/ee9d7ac)**  
@@ -13489,8 +13878,9 @@ Promise.resolve(test).catch(e => %AbortJS(e + " FAILED!"));
 [test/mjsunit/regress/regress-crbug-575314.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-575314.js?cl=ee9d7ac)  
 [test/test262/test262.status](https://cs.chromium.org/chromium/src/v8/test/test262/test262.status?cl=ee9d7ac)  
   
+---   
 
-### **crbug:575082**  
+## **crbug:575082**  
    
 **[Issue: DaysFromYearMonth(*year, 0) + days == save_days in src/date.cc](https://crbug.com/575082)**  
 **[Commit: [date] Date parser says true even for wrong dates, check twice.](https://chromium.googlesource.com/v8/v8/+/b0d0d57)**  
@@ -13509,8 +13899,9 @@ var y = new Date("-1073741824");
 [src/date.cc](https://cs.chromium.org/chromium/src/v8/src/date.cc?cl=b0d0d57)  
 [test/mjsunit/regress/regress-crbug-575082.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-575082.js?cl=b0d0d57)  
   
+---   
 
-### **crbug:575080**  
+## **crbug:575080**  
    
 **[Issue: tagged_expected == tagged_actual in src/layout-descriptor.cc](https://crbug.com/575080)**  
 **[Commit: Generalize all representations when reconfiguring a property of a strict Function subclass.](https://chromium.googlesource.com/v8/v8/+/405c7a6)**  
@@ -13539,8 +13930,9 @@ obj.o = 0.1;
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=405c7a6)  
 [test/mjsunit/regress/regress-crbug-575080.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-575080.js?cl=405c7a6)  
   
+---   
 
-### **crbug:573858**  
+## **crbug:573858**  
    
 **[Issue: constructor->shared()->construct_stub() == isolate()->builtins()->builtin(Builti](https://crbug.com/573858)**  
 **[Commit: ThrowTypeError should not be constructable, so shouldn't have a prototype.](https://chromium.googlesource.com/v8/v8/+/09c41d9)**  
@@ -13568,8 +13960,9 @@ assertThrows(test);
 [test/mjsunit/regress/regress-crbug-573858.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-573858.js?cl=09c41d9)  
 [test/mjsunit/strict-mode.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/strict-mode.js?cl=09c41d9)  
   
+---   
 
-### **crbug:573857**  
+## **crbug:573857**  
    
 **[Issue: p->IsSmi() in src/objects-debug.cc](https://crbug.com/573857)**  
 **[Commit: Use JSObjectVerify instead of trying to reimplement parts of it.](https://chromium.googlesource.com/v8/v8/+/fed2c41)**  
@@ -13594,8 +13987,9 @@ gc();
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=fed2c41)  
 [test/mjsunit/regress/regress-crbug-573857.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-573857.js?cl=fed2c41)  
   
+---   
 
-### **crbug:572590**  
+## **crbug:572590**  
    
 **[Issue: p->IsSmi() in src/objects-debug.cc](https://crbug.com/572590)**  
 **[Commit: Only verify in-object fields in fast properties case.](https://chromium.googlesource.com/v8/v8/+/2fcf3aa)**  
@@ -13617,8 +14011,9 @@ gc();
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=2fcf3aa)  
 [test/mjsunit/regress/regress-crbug-572590.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-572590.js?cl=2fcf3aa)  
   
+---   
 
-### **crbug:571517**  
+## **crbug:571517**  
    
 **[Issue: Crash in v8::internal::JSObject::UnregisterPrototypeUser](https://crbug.com/571517)**  
 **[Commit: [prototype user tracking] Don't skip JSGlobalProxies](https://chromium.googlesource.com/v8/v8/+/b4583c0)**  
@@ -13672,8 +14067,9 @@ assertEquals(undefined, f(rec));
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=b4583c0)  
 [test/mjsunit/regress/regress-crbug-571517.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-571517.js?cl=b4583c0)  
   
+---   
 
-### **crbug:571370**  
+## **crbug:571370**  
    
 **[Issue: properties()->IsDictionary() == map()->is_dictionary_map() in src/objects-inl.h](https://crbug.com/571370)**  
 **[Commit: [ic] Fixed receiver_map register trashing in KeyedStoreIC megamorphic.](https://chromium.googlesource.com/v8/v8/+/c1aded3)**  
@@ -13706,8 +14102,9 @@ assertEquals(val, arr[-1]);
 [src/ppc/macro-assembler-ppc.h](https://cs.chromium.org/chromium/src/v8/src/ppc/macro-assembler-ppc.h?cl=c1aded3)  
 [test/mjsunit/regress/regress-crbug-571370.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-571370.js?cl=c1aded3)  
   
+---   
 
-### **crbug:571149**  
+## **crbug:571149**  
    
 **[Issue: Uninitialized closed over variable within a function with rest parameters causes assertion failure in ToBoolean IC.](https://crbug.com/571149)**  
 **[Commit: Don't pre-initialise block contexts with holes](https://chromium.googlesource.com/v8/v8/+/92e6f7a)**  
@@ -13739,8 +14136,9 @@ Regress: [mjsunit/harmony/regress/regress-crbug-571149.js](https://chromium.goog
 [src/factory.cc](https://cs.chromium.org/chromium/src/v8/src/factory.cc?cl=92e6f7a)  
 [test/mjsunit/harmony/regress/regress-crbug-571149.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/harmony/regress/regress-crbug-571149.js?cl=92e6f7a)  
   
+---   
 
-### **crbug:571064**  
+## **crbug:571064**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/571064)**  
 **[Commit: [crankshaft] Don't inline array resize operations if receiver's proto is not a JSObject.](https://chromium.googlesource.com/v8/v8/+/bae0d6c)**  
@@ -13770,8 +14168,9 @@ CallFuncWithPrototype();
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=bae0d6c)  
 [test/mjsunit/regress/regress-crbug-571064.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-571064.js?cl=bae0d6c)  
   
+---   
 
-### **crbug:570241**  
+## **crbug:570241**  
    
 **[Issue: Stack-buffer-underflow in v8::internal::QuickCheckDetails::Advance](https://crbug.com/570241)**  
 **[Commit: [regexp] clear QuickCheckDetails for backward reads.](https://chromium.googlesource.com/v8/v8/+/65d3009)**  
@@ -13790,8 +14189,9 @@ assertTrue(/(?<=12345123451234512345)/.test("12345123451234512345"));
 [src/regexp/jsregexp.h](https://cs.chromium.org/chromium/src/v8/src/regexp/jsregexp.h?cl=65d3009)  
 [test/mjsunit/regress/regress-crbug-570241.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-570241.js?cl=65d3009)  
   
+---   
 
-### **crbug:569534**  
+## **crbug:569534**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsFixedDoubleArray()) in src](https://crbug.com/569534)**  
 **[Commit: Fix^3 cast in HasEnumerableElements](https://chromium.googlesource.com/v8/v8/+/a0d03d7)**  
@@ -13811,8 +14211,9 @@ for (var i in array) {}
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=a0d03d7)  
 [test/mjsunit/regress/regress-crbug-569534.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-569534.js?cl=a0d03d7)  
   
+---   
 
-### **crbug:568525**  
+## **crbug:568525**  
    
 **[Issue: object->IsJSArray() in src/objects.cc](https://crbug.com/568525)**  
 **[Commit: Fix mix-up in HasEnumerableElements()](https://chromium.googlesource.com/v8/v8/+/989f44f)**  
@@ -13832,8 +14233,9 @@ for (var x in a) {}
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=989f44f)  
 [test/mjsunit/regress/regress-crbug-568525.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-568525.js?cl=989f44f)  
   
+---   
 
-### **crbug:565917**  
+## **crbug:565917**  
    
 **[Issue: 2 == args.length() in src/builtins.cc](https://crbug.com/565917)**  
 **[Commit: [es6] Unify ArrayBuffer and SharedArrayBuffer constructors.](https://chromium.googlesource.com/v8/v8/+/cb21144)**  
@@ -13860,8 +14262,9 @@ new ArrayBuffer();
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=cb21144)  
 [test/mjsunit/regress/regress-crbug-565917.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-565917.js?cl=cb21144)  
   
+---   
 
-### **crbug:563929**  
+## **crbug:563929**  
    
 **[Issue: is_int8(disp) in src/x64/assembler-x64.cc](https://crbug.com/563929)**  
 **[Commit: [x86] Sane default for Label::Distance on JumpIfRoot/JumpIfNotRoot.](https://chromium.googlesource.com/v8/v8/+/c83db2d)**  
@@ -13906,8 +14309,9 @@ assertEquals(a(), 0);
 [src/x64/macro-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/macro-assembler-x64.h?cl=c83db2d)  
 [test/mjsunit/regress/regress-crbug-563929.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-563929.js?cl=c83db2d)  
   
+---   
 
-### **crbug:561973**  
+## **crbug:561973**  
    
 **[Issue: result == value >= kMinValue && value <= kMaxValue in src/objects.h](https://crbug.com/561973)**  
 **[Commit: Fix UTC offset computation in date parser.](https://chromium.googlesource.com/v8/v8/+/37b5ebc)**  
@@ -13925,8 +14329,9 @@ Date.parse('Sat, 01 Jan 100 08:00:00 UT-59011430400000');
 [src/dateparser.cc](https://cs.chromium.org/chromium/src/v8/src/dateparser.cc?cl=37b5ebc)  
 [test/mjsunit/regress/regress-crbug-561973.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-561973.js?cl=37b5ebc)  
   
+---   
 
-### **crbug:557807**  
+## **crbug:557807**  
    
 **[Issue: map->is_stable() in src/compilation-dependencies.cc](https://crbug.com/557807)**  
 **[Commit: [turbofan] Unstable prototype maps are not supported currently.](https://chromium.googlesource.com/v8/v8/+/3c9ac97)**  
@@ -13948,8 +14353,9 @@ foo(bar());
 [src/compiler/access-info.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-info.cc?cl=3c9ac97)  
 [test/mjsunit/regress/regress-crbug-557807.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-557807.js?cl=3c9ac97)  
   
+---   
 
-### **crbug:554946**  
+## **crbug:554946**  
    
 **[Issue: Security: Pwn2Own mobile case, out-of-bound access in json stringifier](https://crbug.com/554946)**  
 **[Commit: [JSON stringifier] Correctly load array elements.](https://chromium.googlesource.com/v8/v8/+/6df9a1d)**  
@@ -14023,8 +14429,9 @@ assertEquals('[0,1,2,{"value":"funky"},4,5,6,7,8,9]', JSON.stringify(array));
 [src/json-stringifier.h](https://cs.chromium.org/chromium/src/v8/src/json-stringifier.h?cl=6df9a1d)  
 [test/mjsunit/regress/regress-crbug-554946.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-554946.js?cl=6df9a1d)  
   
+---   
 
-### **crbug:554831**  
+## **crbug:554831**  
    
 **[Issue: No Permission](https://crbug.com/554831)**  
 **[Commit: [crankshaft] only compile string index access with element key.](https://chromium.googlesource.com/v8/v8/+/5bcddae)**  
@@ -14050,8 +14457,9 @@ Regress: [mjsunit/regress/regress-crbug-554831.js](https://chromium.googlesource
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=5bcddae)  
 [test/mjsunit/regress/regress-crbug-554831.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-554831.js?cl=5bcddae)  
   
+---   
 
-### **crbug:552304**  
+## **crbug:552304**  
    
 **[Issue: -1 <= index && index < param_count in src/frames-inl.h](https://crbug.com/552304)**  
 **[Commit: [turbofan] Fix wrong parameter indices in JSFrameSpecialization.](https://chromium.googlesource.com/v8/v8/+/925a200)**  
@@ -14075,8 +14483,9 @@ Regress: [mjsunit/regress/regress-crbug-552304.js](https://chromium.googlesource
 [src/compiler/js-frame-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-frame-specialization.cc?cl=925a200)  
 [test/mjsunit/regress/regress-crbug-552304.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-552304.js?cl=925a200)  
   
+---   
 
-### **crbug:551287**  
+## **crbug:551287**  
    
 **[Issue: block->IsFinished() in src/crankshaft/hydrogen.cc](https://crbug.com/551287)**  
 **[Commit: [crankshaft] Fix crash when case labels inline endless loops](https://chromium.googlesource.com/v8/v8/+/3cb3a6f)**  
@@ -14105,8 +14514,9 @@ boom(1);
 [src/crankshaft/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/hydrogen.cc?cl=3cb3a6f)  
 [test/mjsunit/regress/regress-crbug-551287.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-551287.js?cl=3cb3a6f)  
   
+---   
 
-### **crbug:549162**  
+## **crbug:549162**  
    
 **[Issue: index >= 0 && index < this->length() in src/objects-inl.h](https://crbug.com/549162)**  
 **[Commit: Fix cached EnumLength retrieval in JSObject::NumberOfOwnProperties](https://chromium.googlesource.com/v8/v8/+/70a2f53)**  
@@ -14130,8 +14540,9 @@ var __v_14 = Object.create(Object.prototype, __v_13)
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=70a2f53)  
 [test/mjsunit/regress/regress-crbug-549162.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-549162.js?cl=70a2f53)  
   
+---   
 
-### **crbug:548580**  
+## **crbug:548580**  
    
 **[Issue: value->IsHeapObject() in src/objects-debug.cc](https://crbug.com/548580)**  
 **[Commit: Regression test for JSRegExp literals sharing.](https://chromium.googlesource.com/v8/v8/+/37a9be5)**  
@@ -14158,8 +14569,9 @@ assertEquals(re2.a, 42);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/37a9be5^!)  
 [test/mjsunit/regress/regress-crbug-548580.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-548580.js?cl=37a9be5)  
   
+---   
 
-### **crbug:545364**  
+## **crbug:545364**  
    
 **[Issue: AllowHeapAllocation::IsAllowed() in src/objects.cc](https://crbug.com/545364)**  
 **[Commit: [turbofan] We cannot unconditionally flatten cons strings in the JSGraph.](https://chromium.googlesource.com/v8/v8/+/d168a1e)**  
@@ -14183,8 +14595,9 @@ Regress: [mjsunit/regress/regress-crbug-545364.js](https://chromium.googlesource
 [src/compiler/js-graph.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.cc?cl=d168a1e)  
 [test/mjsunit/regress/regress-crbug-545364.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-545364.js?cl=d168a1e)  
   
+---   
 
-### **crbug:542101**  
+## **crbug:542101**  
    
 **[Issue: !HasFastProperties() in src/objects-inl.h](https://crbug.com/542101)**  
 **[Commit: Fix Error object value lookups.](https://chromium.googlesource.com/v8/v8/+/1a94bc2)**  
@@ -14207,8 +14620,9 @@ Regress: [mjsunit/regress/regress-crbug-542101.js](https://chromium.googlesource
 [src/messages.cc](https://cs.chromium.org/chromium/src/v8/src/messages.cc?cl=1a94bc2)  
 [test/mjsunit/regress/regress-crbug-542101.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-542101.js?cl=1a94bc2)  
   
+---   
 
-### **crbug:540593**  
+## **crbug:540593**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsScript()) in src/objects-i](https://crbug.com/540593)**  
 **[Commit: [turbofan] Don't try to inline non-inlineable functions.](https://chromium.googlesource.com/v8/v8/+/a916059)**  
@@ -14233,8 +14647,9 @@ __f_2();
 [src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=a916059)  
 [test/mjsunit/compiler/regress-crbug-540593.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-crbug-540593.js?cl=a916059)  
   
+---   
 
-### **crbug:538086**  
+## **crbug:538086**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsFixedArray()) in src/objec](https://crbug.com/538086)**  
 **[Commit: Fix FixedArrayBase cast in NumberOfOwnElements](https://chromium.googlesource.com/v8/v8/+/ecf2327)**  
@@ -14253,8 +14668,9 @@ for (var x in this) {};
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=ecf2327)  
 [test/mjsunit/regress/regress-crbug-538086.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-538086.js?cl=ecf2327)  
   
+---   
 
-### **crbug:537444**  
+## **crbug:537444**  
    
 **[Issue: No Permission](https://crbug.com/537444)**  
 **[Commit: [crankshaft] Fix environment handling after leaving inlined tail call.](https://chromium.googlesource.com/v8/v8/+/792bf2a)**  
@@ -14294,8 +14710,9 @@ h("a");
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=792bf2a)  
 [test/mjsunit/regress/regress-crbug-537444.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-537444.js?cl=792bf2a)  
   
+---   
 
-### **crbug:530598**  
+## **crbug:530598**  
    
 **[Issue: 0u != values.size() in src/compiler/js-inlining.cc](https://crbug.com/530598)**  
 **[Commit: [turbofan] Fix JSInliner to handle non-returning bodies.](https://chromium.googlesource.com/v8/v8/+/9e47ec6)**  
@@ -14331,8 +14748,9 @@ assertTrue(f2(true));
 [src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=9e47ec6)  
 [test/mjsunit/regress/regress-crbug-530598.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-530598.js?cl=9e47ec6)  
   
+---   
 
-### **crbug:528379**  
+## **crbug:528379**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSFunction()) in src/objec](https://crbug.com/528379)**  
 **[Commit: Check for validity when accessing call site objects in runtime.](https://chromium.googlesource.com/v8/v8/+/82b3082)**  
@@ -14353,8 +14771,9 @@ assertThrows(function() { new Error().stack[0].getMethodName.call({}); });
 [src/runtime/runtime-internal.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-internal.cc?cl=82b3082)  
 [test/mjsunit/regress-crbug-528379.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-crbug-528379.js?cl=82b3082)  
   
+---   
 
-### **crbug:527364**  
+## **crbug:527364**  
    
 **[Issue: !isolate->has_pending_exception() in src/compiler.cc](https://crbug.com/527364)**  
 **[Commit: [turbofan] Handle stack overflow exceptions in JSInliner.](https://chromium.googlesource.com/v8/v8/+/c505907)**  
@@ -14391,8 +14810,9 @@ run_close_to_stack_limit(boom);
 [src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=c505907)  
 [test/mjsunit/regress/regress-crbug-527364.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-527364.js?cl=c505907)  
   
+---   
 
-### **crbug:523919**  
+## **crbug:523919**  
    
 **[Issue: No Permission](https://crbug.com/523919)**  
 **[Commit: Serializer: attach alignment to deferred objects.](https://chromium.googlesource.com/v8/v8/+/ee9020d)**  
@@ -14435,8 +14855,9 @@ Regress: [mjsunit/regress/regress-crbug-523919.js](https://chromium.googlesource
 [src/snapshot/serialize.h](https://cs.chromium.org/chromium/src/v8/src/snapshot/serialize.h?cl=ee9020d)  
 [test/mjsunit/regress/regress-crbug-523919.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-523919.js?cl=ee9020d)  
   
+---   
 
-### **crbug:523308**  
+## **crbug:523308**  
    
 **[Issue: IsFound() in src/lookup.h](https://crbug.com/523308)**  
 **[Commit: Message formatting: handle unexpected case of failing property lookup.](https://chromium.googlesource.com/v8/v8/+/2454469)**  
@@ -14458,8 +14879,9 @@ assertEquals("Error: reference_error is not defined", toString.call(error));
 [src/messages.cc](https://cs.chromium.org/chromium/src/v8/src/messages.cc?cl=2454469)  
 [test/mjsunit/regress/regress-crbug-523308.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-523308.js?cl=2454469)  
   
+---   
 
-### **crbug:523307**  
+## **crbug:523307**  
    
 **[Issue: !found in src/lithium-allocator.cc](https://crbug.com/523307)**  
 **[Commit: [arm64] Don't try convert binary operation to shifted form when both operands are the same.](https://chromium.googlesource.com/v8/v8/+/85f6e16)**  
@@ -14486,8 +14908,9 @@ f(1);
 [src/arm64/lithium-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-arm64.cc?cl=85f6e16)  
 [test/mjsunit/regress/regress-crbug-523307.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-523307.js?cl=85f6e16)  
   
+---   
 
-### **crbug:523213**  
+## **crbug:523213**  
    
 **[Issue: DescriptorArray::kNotFound != number in src/hydrogen.cc](https://crbug.com/523213)**  
 **[Commit: Do not inline array resize operations for outdated prototype maps.](https://chromium.googlesource.com/v8/v8/+/590b3be)**  
@@ -14520,8 +14943,9 @@ f();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=590b3be)  
 [test/mjsunit/regress/regress-crbug-523213.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-523213.js?cl=590b3be)  
   
+---   
 
-### **crbug:522895**  
+## **crbug:522895**  
    
 **[Issue: old_target == new_target in src/objects-debug.cc](https://crbug.com/522895)**  
 **[Commit: Fix bug in Code::VerifyRecompiledCode.](https://chromium.googlesource.com/v8/v8/+/a683f83)**  
@@ -14554,8 +14978,9 @@ gen()();
 [src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=a683f83)  
 [test/mjsunit/regress/regress-crbug-522895.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-522895.js?cl=a683f83)  
   
+---   
 
-### **crbug:522496**  
+## **crbug:522496**  
    
 **[Issue: data != NULL in src/api.cc](https://crbug.com/522496)**  
 **[Commit: [api] Relax CHECK for ArrayBuffer API abuse](https://chromium.googlesource.com/v8/v8/+/de26ce0)**  
@@ -14577,8 +15002,9 @@ if (this.Worker) {
 [src/api.cc](https://cs.chromium.org/chromium/src/v8/src/api.cc?cl=de26ce0)  
 [test/mjsunit/regress/regress-crbug-522496.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-522496.js?cl=de26ce0)  
   
+---   
 
-### **crbug:522380**  
+## **crbug:522380**  
    
 **[Issue: Stack-overflow in v8::base::Mutex::Lock](https://crbug.com/522380)**  
 **[Commit: Make Simulator respect C stack limits as well.](https://chromium.googlesource.com/v8/v8/+/7fb31bd)**  
@@ -14607,8 +15033,9 @@ assertThrows("global.x = 0", RangeError);
 [src/mips64/simulator-mips64.h](https://cs.chromium.org/chromium/src/v8/src/mips64/simulator-mips64.h?cl=7fb31bd)  
 [test/mjsunit/regress/regress-crbug-522380.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-522380.js?cl=7fb31bd)  
   
+---   
 
-### **crbug:518747**  
+## **crbug:518747**  
    
 **[Issue: Fatal error in v8::Object::SetAlignedPointerInInternalField](https://crbug.com/518747)**  
 **[Commit: [d8 Workers] Make Worker prototype read-only](https://chromium.googlesource.com/v8/v8/+/cd92934)**  
@@ -14630,8 +15057,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=cd92934)  
 [test/mjsunit/regress/regress-crbug-518747.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-518747.js?cl=cd92934)  
   
+---   
 
-### **crbug:516775**  
+## **crbug:516775**  
    
 **[Issue: IsNumber() in src/objects-inl.h:1105](https://crbug.com/516775)**  
 **[Commit: Fix Array.prototype.concat for arguments object with getter.](https://chromium.googlesource.com/v8/v8/+/2e0d55a)**  
@@ -14695,8 +15123,9 @@ assertEquals(4, count);
 [src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=2e0d55a)  
 [test/mjsunit/regress/regress-crbug-516775.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-516775.js?cl=2e0d55a)  
   
+---   
 
-### **crbug:516592**  
+## **crbug:516592**  
    
 **[Issue: kMaxUInt32 != index_ in src/lookup.h:110](https://crbug.com/516592)**  
 **[Commit: Fix off-by-one in Array.concat's max index check](https://chromium.googlesource.com/v8/v8/+/087ae1b)**  
@@ -14728,8 +15157,9 @@ try {
 [test/mjsunit/regress/regress-581.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-581.js?cl=087ae1b)  
 [test/mjsunit/regress/regress-crbug-516592.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-516592.js?cl=087ae1b)  
   
+---   
 
-### **crbug:515897**  
+## **crbug:515897**  
    
 **[Issue: Wrong escaping of forward slashes in RegExp.source](https://crbug.com/515897)**  
 **[Commit: [regexp] Fix regexp source escaping with preceding backslashes.](https://chromium.googlesource.com/v8/v8/+/bbb2159)**  
@@ -14753,8 +15183,9 @@ assertEquals("\\\\\\/", r2.source);
 [test/mjsunit/regress/regress-crbug-515897.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-515897.js?cl=bbb2159)  
 [test/webkit/fast/regex/toString-expected.txt](https://cs.chromium.org/chromium/src/v8/test/webkit/fast/regex/toString-expected.txt?cl=bbb2159)  
   
+---   
 
-### **crbug:514081**  
+## **crbug:514081**  
    
 **[Issue: IsNumber() in src/objects-inl.h:1117](https://crbug.com/514081)**  
 **[Commit: [d8 worker] Fix regression when serializing very large arraybuffer](https://chromium.googlesource.com/v8/v8/+/df1f72b)**  
@@ -14785,8 +15216,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=df1f72b)  
 [test/mjsunit/regress/regress-crbug-514081.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-514081.js?cl=df1f72b)  
   
+---   
 
-### **crbug:513602**  
+## **crbug:513602**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/513602)**  
 **[Commit: Fix prototype registration upon SlowToFast migration](https://chromium.googlesource.com/v8/v8/+/c906efd)**  
@@ -14825,8 +15257,9 @@ crash();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=c906efd)  
 [test/mjsunit/regress/regress-crbug-513602.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-513602.js?cl=c906efd)  
   
+---   
 
-### **crbug:513507**  
+## **crbug:513507**  
    
 **[Issue: V8: Check failed: new_code_map->get(i + kContextOffset)->IsNativeContext().](https://crbug.com/513507)**  
 **[Commit: Introduce safe interface to "copy and grow" FixedArray.](https://chromium.googlesource.com/v8/v8/+/bcad9b5)**  
@@ -14864,8 +15297,9 @@ makeFun()(1);
 [test/cctest/test-heap.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-heap.cc?cl=bcad9b5)  
 [test/mjsunit/regress/regress-crbug-513507.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-513507.js?cl=bcad9b5)  
   
+---   
 
-### **crbug:513472**  
+## **crbug:513472**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsJSGlobalObject()) in src/o](https://crbug.com/513472)**  
 **[Commit: Rewrite Error.prototype.toString in C++.](https://chromium.googlesource.com/v8/v8/+/2e2765a)**  
@@ -14893,8 +15327,9 @@ assertThrows(function() { NaN = 1; });
 [test/mjsunit/error-constructors.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/error-constructors.js?cl=2e2765a)  
 [test/mjsunit/regress/regress-crbug-513472.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-513472.js?cl=2e2765a)  
   
+---   
 
-### **crbug:513471**  
+## **crbug:513471**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (object->IsOddball()) in src/objects-](https://crbug.com/513471)**  
 **[Commit: Fix resuming generator marked for optimization.](https://chromium.googlesource.com/v8/v8/+/6ab9c18)**  
@@ -14915,8 +15350,9 @@ f.next();
 [src/runtime/runtime-generator.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-generator.cc?cl=6ab9c18)  
 [test/mjsunit/regress/regress-crbug-513471.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-513471.js?cl=6ab9c18)  
   
+---   
 
-### **crbug:511880**  
+## **crbug:511880**  
    
 **[Issue: Fatal error in v8::External::Cast](https://crbug.com/511880)**  
 **[Commit: [d8 Workers] Fix bug creating Worker during main thread termination](https://chromium.googlesource.com/v8/v8/+/a87db3d)**  
@@ -14943,8 +15379,9 @@ if (this.Worker) {
 [src/d8.h](https://cs.chromium.org/chromium/src/v8/src/d8.h?cl=a87db3d)  
 [test/mjsunit/regress/regress-crbug-511880.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-511880.js?cl=a87db3d)  
   
+---   
 
-### **crbug:510738**  
+## **crbug:510738**  
    
 **[Issue: length() >= kReservedIndexCount in src/type-feedback-vector.h:102](https://crbug.com/510738)**  
 **[Commit: Crankshaft part of the 'loads and stores to global vars through property cell shortcuts' feature.](https://chromium.googlesource.com/v8/v8/+/cc66a1c)**  
@@ -14998,8 +15435,9 @@ check(generic_store, 13);
 [src/x87/lithium-x87.h](https://cs.chromium.org/chromium/src/v8/src/x87/lithium-x87.h?cl=cc66a1c)  
 [test/mjsunit/regress/regress-crbug-510738.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-510738.js?cl=cc66a1c)  
   
+---   
 
-### **crbug:510426**  
+## **crbug:510426**  
    
 **[Issue: ContainsOnlyValidKeys(content) in src/objects.cc:6159](https://crbug.com/510426)**  
 **[Commit: Fix element enumeration on String wrappers with dictionary elements](https://chromium.googlesource.com/v8/v8/+/e6cb6bb)**  
@@ -15019,8 +15457,9 @@ assertEquals(['0', '10000000'], Object.keys(s));
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=e6cb6bb)  
 [test/mjsunit/regress/regress-crbug-510426.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-510426.js?cl=e6cb6bb)  
   
+---   
 
-### **crbug:506956**  
+## **crbug:506956**  
    
 **[Issue: !isolate->has_pending_exception() in src/compiler.cc:857](https://crbug.com/506956)**  
 **[Commit: Fixed a couple of proxies-related unhandled exceptions.](https://chromium.googlesource.com/v8/v8/+/52b3e41)**  
@@ -15047,8 +15486,9 @@ try {
 [test/mjsunit/regress/regress-crbug-505907.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-505907.js?cl=52b3e41)  
 [test/mjsunit/regress/regress-crbug-506956.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-506956.js?cl=52b3e41)  
   
+---   
 
-### **crbug:506549**  
+## **crbug:506549**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (static_cast<unsigned>(i) < static_ca](https://crbug.com/506549)**  
 **[Commit: Fix cluster-fuzz found regression with d8 Workers](https://chromium.googlesource.com/v8/v8/+/54920cd)**  
@@ -15071,8 +15511,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=54920cd)  
 [test/mjsunit/regress/regress-crbug-506549.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-506549.js?cl=54920cd)  
   
+---   
 
-### **crbug:505907**  
+## **crbug:505907**  
    
 **[Issue: !isolate->has_pending_exception() in src/contexts.cc:273](https://crbug.com/505907)**  
 **[Commit: Fixed a couple of proxies-related unhandled exceptions.](https://chromium.googlesource.com/v8/v8/+/52b3e41)**  
@@ -15099,8 +15540,9 @@ try {
 [test/mjsunit/regress/regress-crbug-505907.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-505907.js?cl=52b3e41)  
 [test/mjsunit/regress/regress-crbug-506956.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-506956.js?cl=52b3e41)  
   
+---   
 
-### **crbug:505778**  
+## **crbug:505778**  
    
 **[Issue: !v8::internal::FLAG_enable_slow_asserts || (static_cast<unsigned>(i) < static_ca](https://crbug.com/505778)**  
 **[Commit: Fix cluster-fuzz found regression in d8 Workers](https://chromium.googlesource.com/v8/v8/+/abaa094)**  
@@ -15121,8 +15563,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=abaa094)  
 [test/mjsunit/regress/regress-crbug-505778.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-505778.js?cl=abaa094)  
   
+---   
 
-### **crbug:505370**  
+## **crbug:505370**  
    
 **[Issue: !name->AsArrayIndex(&index) in src/lookup.h:65](https://crbug.com/505370)**  
 **[Commit: Use correct LookupIterator in CallSite::GetMethodName.](https://chromium.googlesource.com/v8/v8/+/4f9cf2b)**  
@@ -15157,8 +15600,9 @@ assertEquals("0", method_name);
 [src/messages.cc](https://cs.chromium.org/chromium/src/v8/src/messages.cc?cl=4f9cf2b)  
 [test/mjsunit/regress/regress-crbug-505370.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-505370.js?cl=4f9cf2b)  
   
+---   
 
-### **crbug:505354**  
+## **crbug:505354**  
    
 **[Issue: UNKNOWN in v8::internal::Execution::ToObject](https://crbug.com/505354)**  
 **[Commit: [turbofan] Fix exit control flow in TryCatchBuilder.](https://chromium.googlesource.com/v8/v8/+/df06f1c)**  
@@ -15183,8 +15627,9 @@ f();
 [src/compiler/control-builders.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/control-builders.cc?cl=df06f1c)  
 [test/mjsunit/regress/regress-crbug-505354.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-505354.js?cl=df06f1c)  
   
+---   
 
-### **crbug:504787**  
+## **crbug:504787**  
    
 **[Issue: script->FindSharedFunctionInfo(literal).is_null() in src/compiler.cc:1339](https://crbug.com/504787)**  
 **[Commit: Mark function info as compiled after EnsureDeoptimizationSupport.](https://chromium.googlesource.com/v8/v8/+/8c72792)**  
@@ -15211,8 +15656,9 @@ f()();
 [src/compiler.h](https://cs.chromium.org/chromium/src/v8/src/compiler.h?cl=8c72792)  
 [test/mjsunit/regress/regress-crbug-504787.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-504787.js?cl=8c72792)  
   
+---   
 
-### **crbug:504729**  
+## **crbug:504729**  
    
 **[Issue: UNKNOWN in strlen](https://crbug.com/504729)**  
 **[Commit: Fix cluster-fuzz found regression in d8 Workers.](https://chromium.googlesource.com/v8/v8/+/e291b78)**  
@@ -15234,8 +15680,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=e291b78)  
 [test/mjsunit/regress/regress-crbug-504729.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-504729.js?cl=e291b78)  
   
+---   
 
-### **crbug:504727**  
+## **crbug:504727**  
    
 **[Issue: UNKNOWN in v8::internal::Object::GetProperty](https://crbug.com/504727)**  
 **[Commit: Fix cluster-fuzz found regression in d8 Workers.](https://chromium.googlesource.com/v8/v8/+/93c4352)**  
@@ -15255,8 +15702,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=93c4352)  
 [test/mjsunit/regress/regress-crbug-504727.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-504727.js?cl=93c4352)  
   
+---   
 
-### **crbug:504136**  
+## **crbug:504136**  
    
 **[Issue: UNKNOWN in RtlEncodePointer+0x1eb](https://crbug.com/504136)**  
 **[Commit: Fix cluster-fuzz regression when getting message from Worker](https://chromium.googlesource.com/v8/v8/+/28b0129)**  
@@ -15281,8 +15729,9 @@ if (this.Worker) {
 [test/mjsunit/d8-worker.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/d8-worker.js?cl=28b0129)  
 [test/mjsunit/regress/regress-crbug-504136.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-504136.js?cl=28b0129)  
   
+---   
 
-### **crbug:503991**  
+## **crbug:503991**  
    
 **[Issue: Fatal error in ../../src/vector.h,](https://crbug.com/503991)**  
 **[Commit: Fix cluster-fuzz regression with Workers when serializing empty string](https://chromium.googlesource.com/v8/v8/+/b3bd728)**  
@@ -15304,8 +15753,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=b3bd728)  
 [test/mjsunit/regress/regress-crbug-503991.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-503991.js?cl=b3bd728)  
   
+---   
 
-### **crbug:503968**  
+## **crbug:503968**  
    
 **[Issue: UNKNOWN in v8::internal::MemoryChunk::heap](https://crbug.com/503968)**  
 **[Commit: Fix cluster-fuzz regression with Workers and recursive serialization](https://chromium.googlesource.com/v8/v8/+/5023335)**  
@@ -15331,8 +15781,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=5023335)  
 [test/mjsunit/regress/regress-crbug-503968.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-503968.js?cl=5023335)  
   
+---   
 
-### **crbug:503698**  
+## **crbug:503698**  
    
 **[Issue: Fatal error in ../../src/isolate.h,](https://crbug.com/503698)**  
 **[Commit: Fix cluster-fuzz regression with Workers on mips.debug](https://chromium.googlesource.com/v8/v8/+/627627b)**  
@@ -15352,8 +15803,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=627627b)  
 [test/mjsunit/regress/regress-crbug-503698.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-503698.js?cl=627627b)  
   
+---   
 
-### **crbug:503578**  
+## **crbug:503578**  
    
 **[Issue: Fatal error in ../../src/d8.cc,](https://crbug.com/503578)**  
 **[Commit: Fix cluster-fuzz found regression in d8 when deserializing ArrayBuffer](https://chromium.googlesource.com/v8/v8/+/10b6af7)**  
@@ -15380,8 +15832,9 @@ if (this.Worker) {
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=10b6af7)  
 [test/mjsunit/regress/regress-crbug-503578.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-503578.js?cl=10b6af7)  
   
+---   
 
-### **crbug:502930**  
+## **crbug:502930**  
    
 **[Issue: Fatal error in ../../src/objects-debug.cc,](https://crbug.com/502930)**  
 **[Commit: Map::ReconfigureProperty() should mark map as unstable when it returns a different map.](https://chromium.googlesource.com/v8/v8/+/4742176)**  
@@ -15422,8 +15875,9 @@ var data_to_accessor_case = (function() {
 [test/cctest/test-migrations.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-migrations.cc?cl=4742176)  
 [test/mjsunit/regress/regress-crbug-502930.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-502930.js?cl=4742176)  
   
+---   
 
-### **crbug:501809**  
+## **crbug:501809**  
    
 **[Issue: UNKNOWN in int v8::internal::CompareExchangeSeqCst<int>](https://crbug.com/501809)**  
 **[Commit: Fix cluster-fuzz bug introduced in refs/heads/master@{#28796}](https://chromium.googlesource.com/v8/v8/+/e6fed5e)**  
@@ -15446,8 +15900,9 @@ assertThrows(function() {
 [src/runtime/runtime-atomics.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-atomics.cc?cl=e6fed5e)  
 [test/mjsunit/regress/regress-crbug-501809.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-501809.js?cl=e6fed5e)  
   
+---   
 
-### **crbug:501808**  
+## **crbug:501808**  
    
 **[Issue: Direct-leak in uprv_malloc_54](https://crbug.com/501808)**  
 **[Commit: Global handle leak in Realm.create() fixed.](https://chromium.googlesource.com/v8/v8/+/5c4aae3)**  
@@ -15466,8 +15921,9 @@ assertEquals(0, "a".localeCompare("a"));
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=5c4aae3)  
 [test/mjsunit/regress/regress-crbug-501808.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-501808.js?cl=5c4aae3)  
   
+---   
 
-### **crbug:501711**  
+## **crbug:501711**  
    
 **[Issue: Fatal error in ../../src/compiler.cc,](https://crbug.com/501711)**  
 **[Commit: Fixed exception handling in Realm.create().](https://chromium.googlesource.com/v8/v8/+/bcb276c)**  
@@ -15497,8 +15953,9 @@ f();
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=bcb276c)  
 [test/mjsunit/regress/regress-crbug-501711.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-501711.js?cl=bcb276c)  
   
+---   
 
-### **crbug:500824**  
+## **crbug:500824**  
    
 **[Issue: Fatal error in ../../src/zone.h,](https://crbug.com/500824)**  
 **[Commit: [turbofan] Work around negative parameter count.](https://chromium.googlesource.com/v8/v8/+/21a1975)**  
@@ -15532,8 +15989,9 @@ f();
 [src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=21a1975)  
 [test/mjsunit/regress/regress-crbug-500824.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-500824.js?cl=21a1975)  
   
+---   
 
-### **crbug:500497**  
+## **crbug:500497**  
    
 **[Issue: No Permission](https://crbug.com/500497)**  
 **[Commit: Hydrogen object literals: always initialize in-object properties](https://chromium.googlesource.com/v8/v8/+/5fca394)**  
@@ -15580,8 +16038,9 @@ for (var i = 0; i < 10000; i++) {
 [src/runtime/runtime-test.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-test.cc?cl=5fca394)  
 [test/mjsunit/regress/regress-crbug-500497.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-500497.js?cl=5fca394)  
   
+---   
 
-### **crbug:500435**  
+## **crbug:500435**  
    
 **[Issue: Regression: 'Letterless' app is not working properly.](https://crbug.com/500435)**  
 **[Commit: [crankshaft] Fix wrong bailout points in for-in loop body.](https://chromium.googlesource.com/v8/v8/+/45439b9)**  
@@ -15614,8 +16073,9 @@ foo([1,2]);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=45439b9)  
 [test/mjsunit/regress/regress-crbug-500435.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-500435.js?cl=45439b9)  
   
+---   
 
-### **crbug:498811**  
+## **crbug:498811**  
    
 **[Issue: Unresolved "this" reference.](https://crbug.com/498811)**  
 **[Commit: Add script context with context-allocated "const this"](https://chromium.googlesource.com/v8/v8/+/103fcfa)**  
@@ -15654,8 +16114,9 @@ eval("eval('this')");
 [test/mjsunit/regress/regress-crbug-498811.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-498811.js?cl=103fcfa)  
 [test/unittests/compiler/js-type-feedback-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/js-type-feedback-unittest.cc?cl=103fcfa)  
   
+---   
 
-### **crbug:498022**  
+## **crbug:498022**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/498022)**  
 **[Commit: Fix clobbered register when setting this_function variable.](https://chromium.googlesource.com/v8/v8/+/bf2bbc8)**  
@@ -15688,8 +16149,9 @@ assertThrows("new Derived()", ReferenceError);
 [src/x87/full-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/full-codegen-x87.cc?cl=bf2bbc8)  
 [test/mjsunit/regress/regress-crbug-498022.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-498022.js?cl=bf2bbc8)  
   
+---   
 
-### **crbug:495493**  
+## **crbug:495493**  
    
 **[Issue: UNKNOWN in v8::internal::Context::global_object](https://crbug.com/495493)**  
 **[Commit: [crankshaft] do not sign-extend int32 immediate in DoMathMinMax.](https://chromium.googlesource.com/v8/v8/+/7c3cad2)**  
@@ -15712,8 +16174,9 @@ foo(0);
 [src/crankshaft/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/crankshaft/x64/lithium-codegen-x64.cc?cl=7c3cad2)  
 [test/mjsunit/regress/regress-crbug-495493.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-495493.js?cl=7c3cad2)  
   
+---   
 
-### **crbug:493779**  
+## **crbug:493779**  
    
 **[Issue: UNKNOWN in v8::internal::Heap::CreateFillerObjectAt](https://crbug.com/493779)**  
 **[Commit: Fix bogus insertion of filler in LO-space by String#replace.](https://chromium.googlesource.com/v8/v8/+/d207fce)**  
@@ -15735,8 +16198,9 @@ s.replace(/[\u1234]/g, "");
 [src/runtime/runtime-regexp.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-regexp.cc?cl=d207fce)  
 [test/mjsunit/regress/regress-crbug-493779.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-493779.js?cl=d207fce)  
   
+---   
 
-### **crbug:493290**  
+## **crbug:493290**  
    
 **[Issue: Fatal error in ../../src/objects-inl.h,](https://crbug.com/493290)**  
 **[Commit: Drop computed handler count and index from AST.](https://chromium.googlesource.com/v8/v8/+/c14ba5e)**  
@@ -15770,8 +16234,9 @@ assertThrows(f);
 [src/x87/full-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/full-codegen-x87.cc?cl=c14ba5e)  
 [test/mjsunit/regress/regress-crbug-493290.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-493290.js?cl=c14ba5e)  
   
+---   
 
-### **crbug:493284**  
+## **crbug:493284**  
    
 **[Issue: Direct-leak in uprv_malloc_54](https://crbug.com/493284)**  
 **[Commit: Fixed memory-leak in d8. It did not clean evaluation context used for executing shell commands.](https://chromium.googlesource.com/v8/v8/+/405844b)**  
@@ -15793,8 +16258,9 @@ if (this.Intl) {
 [src/d8.h](https://cs.chromium.org/chromium/src/v8/src/d8.h?cl=405844b)  
 [test/mjsunit/regress/regress-crbug-493284.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-493284.js?cl=405844b)  
   
+---   
 
-### **crbug:491062**  
+## **crbug:491062**  
    
 **[Issue: Fatal error in ../../v8/src/isolate.cc,](https://crbug.com/491062)**  
 **[Commit: Fixed a couple of failing DCHECK(has_pending_exception()).](https://chromium.googlesource.com/v8/v8/+/62b5650)**  
@@ -15829,8 +16295,9 @@ g();
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=62b5650)  
 [test/mjsunit/regress/regress-crbug-491062.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-491062.js?cl=62b5650)  
   
+---   
 
-### **crbug:490680**  
+## **crbug:490680**  
    
 **[Issue: toString() is called on values when they are thrown](https://crbug.com/490680)**  
 **[Commit: Do not eagerly convert exception to string when creating a message object](https://chromium.googlesource.com/v8/v8/+/36d8363)**  
@@ -15865,8 +16332,9 @@ assertNull(sentinel);
 [test/cctest/test-api.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-api.cc?cl=36d8363)  
 [test/mjsunit/regress/regress-crbug-490680.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-490680.js?cl=36d8363)  
   
+---   
 
-### **crbug:490021**  
+## **crbug:490021**  
    
 **[Issue: Fatal error in ../../v8/src/lithium-codegen.cc,](https://crbug.com/490021)**  
 **[Commit: [arm64] Fixed unnecessary environment assignment to LSmiTag instruction.](https://chromium.googlesource.com/v8/v8/+/b625d4d)**  
@@ -15892,8 +16360,9 @@ f();
 [src/arm64/lithium-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-arm64.cc?cl=b625d4d)  
 [test/mjsunit/regress/regress-crbug-490021.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-490021.js?cl=b625d4d)  
   
+---   
 
-### **crbug:489597**  
+## **crbug:489597**  
    
 **[Issue: Fatal error in ../../v8/src/ic/ic.cc,](https://crbug.com/489597)**  
 **[Commit: Fixed DCHECK in StoreIC::CompileHandler().](https://chromium.googlesource.com/v8/v8/+/1c673a5)**  
@@ -15919,8 +16388,9 @@ o.stack;
 [test/mjsunit/regress/regress-crbug-489597.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-489597.js?cl=1c673a5)  
 [test/mjsunit/regress/regress-crbug-489597.js-script](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-489597.js-script?cl=1c673a5)  
   
+---   
 
-### **crbug:489293**  
+## **crbug:489293**  
    
 **[Issue: Fatal error in ../../v8/src/compiler/code-generator.cc,](https://crbug.com/489293)**  
 **[Commit: [turbofan] Fix over-restictive assertion in code generator.](https://chromium.googlesource.com/v8/v8/+/7bd2d3e)**  
@@ -15946,8 +16416,9 @@ assertThrows(f, ReferenceError);
 [src/compiler/code-generator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/code-generator.cc?cl=7bd2d3e)  
 [test/mjsunit/regress/regress-crbug-489293.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-489293.js?cl=7bd2d3e)  
   
+---   
 
-### **crbug:487608**  
+## **crbug:487608**  
    
 **[Issue: WebGL three.js example runs into V8 exception](https://crbug.com/487608)**  
 **[Commit: Fix harmless HGraph verification failure after hoisting inlined bounds checks](https://chromium.googlesource.com/v8/v8/+/f817520)**  
@@ -15980,8 +16451,9 @@ foo(0);
 [src/hydrogen-bce.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-bce.cc?cl=f817520)  
 [test/mjsunit/regress/regress-crbug-487608.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-487608.js?cl=f817520)  
   
+---   
 
-### **crbug:487322**  
+## **crbug:487322**  
    
 **[Issue: DateTimeFormat does not resolve IANA time zone](https://crbug.com/487322)**  
 **[Commit: Timezone name check fix](https://chromium.googlesource.com/v8/v8/+/4e18190)**  
@@ -16022,8 +16494,9 @@ if (this.Intl) {
 [test/mjsunit/regress/regress-crbug-364374.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-364374.js?cl=4e18190)  
 [test/mjsunit/regress/regress-crbug-487322.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-487322.js?cl=4e18190)  
   
+---   
 
-### **crbug:487105**  
+## **crbug:487105**  
    
 **[Issue: Fatal error in ../../v8/src/x64/full-codegen-x64.cc,](https://crbug.com/487105)**  
 **[Commit: Another regression test for resolving references to "this" in strict mode.](https://chromium.googlesource.com/v8/v8/+/18b6059)**  
@@ -16044,8 +16517,9 @@ eval("delete this;")
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/18b6059^!)  
 [test/mjsunit/regress/regress-crbug-487105.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-487105.js?cl=18b6059)  
   
+---   
 
-### **crbug:485548**  
+## **crbug:485548**  
    
 **[Issue: Fatal error in ../../v8/src/objects-debug.cc,](https://crbug.com/485548)**  
 **[Commit: Map::ReconfigureProperty() should mark map as unstable when there is an element kind transition somewhere in the middle of the transition tree.](https://chromium.googlesource.com/v8/v8/+/3c1487d)**  
@@ -16090,8 +16564,9 @@ assertEquals(0x7fffffff, boom);
 [test/mjsunit/regress/regress-crbug-485548-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-485548-1.js?cl=3c1487d)  
 [test/mjsunit/regress/regress-crbug-485548-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-485548-2.js?cl=3c1487d)  
   
+---   
 
-### **crbug:485410**  
+## **crbug:485410**  
    
 **[Issue: Google Sheets crashes when scrolling with "illegal access"](https://crbug.com/485410)**  
 **[Commit: Let Runtime_GrowArrayElements accept non-Smi numbers as |key|.](https://chromium.googlesource.com/v8/v8/+/f10b992)**  
@@ -16125,8 +16600,9 @@ Fail(new Array(1), ToHeapNumber(1050), 3);
 [src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=f10b992)  
 [test/mjsunit/regress/regress-crbug-485410.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-485410.js?cl=f10b992)  
   
+---   
 
-### **crbug:484077**  
+## **crbug:484077**  
    
 **[Issue: Bogus expectation for inspector/sources/debugger/properties-special.html](https://crbug.com/484077)**  
 **[Commit: Set inferred name of bound function to empty string.](https://chromium.googlesource.com/v8/v8/+/f42544b)**  
@@ -16144,8 +16620,9 @@ assertEquals("", %FunctionGetInferredName((function(){}).bind({})));
 [src/runtime/runtime-function.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-function.cc?cl=f42544b)  
 [test/mjsunit/regress/regress-crbug-484077.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-484077.js?cl=f42544b)  
   
+---   
 
-### **crbug:482998**  
+## **crbug:482998**  
    
 **[Issue: Regexp performance tanks on unicode inputs](https://crbug.com/482998)**  
 **[Commit: Reland II of 'Optimize trivial regexp disjunctions' CL 1176453002](https://chromium.googlesource.com/v8/v8/+/05507cc)**  
@@ -16186,8 +16663,9 @@ collapse("");
 [test/cctest/test-heap.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-heap.cc?cl=05507cc)  
 [test/mjsunit/regress/regress-crbug-482998.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-482998.js?cl=05507cc)  
   
+---   
 
-### **crbug:480819**  
+## **crbug:480819**  
    
 **[Issue: Fatal error in ../../v8/src/compiler/verifier.cc,](https://crbug.com/480819)**  
 **[Commit: [turbofan] Fix frame state for class literal definition.](https://chromium.googlesource.com/v8/v8/+/6b60f19)**  
@@ -16210,8 +16688,9 @@ Regress: [mjsunit/regress/regress-crbug-480819.js](https://chromium.googlesource
 [src/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen.cc?cl=6b60f19)  
 [test/mjsunit/regress/regress-crbug-480819.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-480819.js?cl=6b60f19)  
   
+---   
 
-### **crbug:480807**  
+## **crbug:480807**  
    
 **[Issue: UNKNOWN in v8::internal::compiler::Node::mark](https://crbug.com/480807)**  
 **[Commit: [turbofan] Ignore dead cached nodes in the JSGraph.](https://chromium.googlesource.com/v8/v8/+/4f9bc2d)**  
@@ -16244,8 +16723,9 @@ try {
 [src/compiler/js-graph.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.cc?cl=4f9bc2d)  
 [test/mjsunit/regress/regress-crbug-480807.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-480807.js?cl=4f9bc2d)  
   
+---   
 
-### **crbug:478612**  
+## **crbug:478612**  
    
 **[Issue: Fatal error in ../../v8/src/x64/lithium-codegen-x64.cc,](https://crbug.com/478612)**  
 **[Commit: [x64] Fix handling of Smi constants in LSubI and LBitI](https://chromium.googlesource.com/v8/v8/+/5379d8b)**  
@@ -16307,8 +16787,9 @@ assertEquals(3, i());
 [src/x64/lithium-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-x64.cc?cl=5379d8b)  
 [test/mjsunit/regress/regress-crbug-478612.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-478612.js?cl=5379d8b)  
   
+---   
 
-### **crbug:478011**  
+## **crbug:478011**  
    
 **[Issue: Fatal error in ../../v8/src/handles.h,](https://crbug.com/478011)**  
 **[Commit: Throw when attaching a stack trace to an object fails.](https://chromium.googlesource.com/v8/v8/+/8cf289c)**  
@@ -16330,8 +16811,9 @@ assertThrows(function() { Error.captureStackTrace(e) });
 [src/runtime/runtime-internal.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-internal.cc?cl=8cf289c)  
 [test/mjsunit/regress/regress-crbug-478011.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-478011.js?cl=8cf289c)  
   
+---   
 
-### **crbug:477924**  
+## **crbug:477924**  
    
 **[Issue: UNKNOWN in v8::internal::MemoryChunk::heap](https://crbug.com/477924)**  
 **[Commit: Don't use normalized map cache for prototype maps](https://chromium.googlesource.com/v8/v8/+/4204c72)**  
@@ -16361,8 +16843,9 @@ for (var i in constructors) {
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=4204c72)  
 [test/mjsunit/regress/regress-crbug-477924.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-477924.js?cl=4204c72)  
   
+---   
 
-### **crbug:476477**  
+## **crbug:476477**  
    
 **[Issue: Renderer crashed in V8 generated code, arm64 only, 100% reproducible](https://crbug.com/476477)**  
 **[Commit: [crankshaft] Address the deoptimization loops of Math.floor, Math.round and Math.ceil.](https://chromium.googlesource.com/v8/v8/+/978ad03)**  
@@ -16404,8 +16887,9 @@ for (var i = 0; i < 1000; i++) {
 [test/mjsunit/regress/regress-crbug-476477-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-476477-1.js?cl=978ad03)  
 [test/mjsunit/regress/regress-crbug-476477-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-476477-2.js?cl=978ad03)  
   
+---   
 
-### **crbug:471659**  
+## **crbug:471659**  
    
 **[Issue: Fatal error in ../../v8/src/runtime/runtime-strings.cc,](https://crbug.com/471659)**  
 **[Commit: A couple of other "stack overflow" vs. "has_pending_exception()" issues fixed.](https://chromium.googlesource.com/v8/v8/+/050e888)**  
@@ -16445,8 +16929,9 @@ f();
 [test/mjsunit/regress/regress-crbug-471659.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-471659.js?cl=050e888)  
 [test/mjsunit/regress/regress-crbug-491062.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-491062.js?cl=050e888)  
   
+---   
 
-### **crbug:469768**  
+## **crbug:469768**  
    
 **[Issue: Crash with signature v8::internal::Invoke](https://crbug.com/469768)**  
 **[Commit: JSEntryTrampoline: check for stack space before pushing arguments](https://chromium.googlesource.com/v8/v8/+/146598f)**  
@@ -16492,8 +16977,9 @@ try {
 [src/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/builtins-x64.cc?cl=146598f)  
 [test/mjsunit/regress/regress-crbug-469768.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-469768.js?cl=146598f)  
   
+---   
 
-### **crbug:467531**  
+## **crbug:467531**  
    
 **[Issue: UNKNOWN in v8::internal::compiler::Node::AppendUse](https://crbug.com/467531)**  
 **[Commit: [turbofan] Fix C++ evaluation order in AstGraphBuilder.](https://chromium.googlesource.com/v8/v8/+/7e8a62e)**  
@@ -16529,8 +17015,9 @@ assertThrows(function() {
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=7e8a62e)  
 [test/mjsunit/regress/regress-crbug-467531.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-467531.js?cl=7e8a62e)  
   
+---   
 
-### **crbug:467047**  
+## **crbug:467047**  
    
 **[Issue: Fatal error in ../../v8/src/frames.cc,](https://crbug.com/467047)**  
 **[Commit: Delegate throwing in RegExpExecStub to CEntryStub.](https://chromium.googlesource.com/v8/v8/+/86b391e)**  
@@ -16567,8 +17054,9 @@ assertThrows(function() { captureMatch(/(bc)/) }, RangeError);
 [src/x87/code-stubs-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/code-stubs-x87.cc?cl=86b391e)  
 [test/mjsunit/regress/regress-crbug-467047.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-467047.js?cl=86b391e)  
   
+---   
 
-### **crbug:465671**  
+## **crbug:465671**  
    
 **[Issue: Fatal error in ../../v8/src/parser.cc,](https://crbug.com/465671)**  
 **[Commit: Parser: Fix crash on stack overflow when lazy-parsing arrow functions](https://chromium.googlesource.com/v8/v8/+/3c3ce1b)**  
@@ -16595,8 +17083,9 @@ f();
 [test/mjsunit/regress/regress-crbug-465671-null.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-465671-null.js?cl=3c3ce1b)  
 [test/mjsunit/regress/regress-crbug-465671.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-465671.js?cl=3c3ce1b)  
   
+---   
 
-### **crbug:465564**  
+## **crbug:465564**  
    
 **[Issue: UNKNOWN in v8::internal::ExternalReferenceEncoder::Encode](https://crbug.com/465564)**  
 **[Commit: Add test case for serializing external references to runtime functions.](https://chromium.googlesource.com/v8/v8/+/3ed5dea)**  
@@ -16613,8 +17102,9 @@ assertTrue(%StringLessThan("a", "b"));
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/3ed5dea^!)  
 [test/mjsunit/regress/regress-crbug-465564.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-465564.js?cl=3ed5dea)  
   
+---   
 
-### **crbug:461520**  
+## **crbug:461520**  
    
 **[Issue: Fatal error in ../../v8/src/runtime/runtime-scopes.cc,](https://crbug.com/461520)**  
 **[Commit: Remove effectful assertion](https://chromium.googlesource.com/v8/v8/+/68c8073)**  
@@ -16645,8 +17135,9 @@ with (o) { f() }
 [src/runtime/runtime-scopes.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-scopes.cc?cl=68c8073)  
 [test/mjsunit/harmony/regress/regress-crbug-461520.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/harmony/regress/regress-crbug-461520.js?cl=68c8073)  
   
+---   
 
-### **crbug:455644**  
+## **crbug:455644**  
    
 **[Issue: UNKNOWN in v8::internal::compiler::Node::AppendUse](https://crbug.com/455644)**  
 **[Commit: Fix try-finally for dead AST-branches in TurboFan.](https://chromium.googlesource.com/v8/v8/+/df986d0)**  
@@ -16674,8 +17165,9 @@ Regress: [mjsunit/regress/regress-crbug-455644.js](https://chromium.googlesource
 [src/compiler/control-builders.h](https://cs.chromium.org/chromium/src/v8/src/compiler/control-builders.h?cl=df986d0)  
 [test/mjsunit/regress/regress-crbug-455644.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-455644.js?cl=df986d0)  
   
+---   
 
-### **crbug:454091**  
+## **crbug:454091**  
    
 **[Issue: Fatal error in ../../v8/src/handles.h,](https://crbug.com/454091)**  
 **[Commit: Check global object behind global proxy for extensibility](https://chromium.googlesource.com/v8/v8/+/1de7dff)**  
@@ -16698,8 +17190,9 @@ assertEquals(Array.prototype, this.__proto__);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=1de7dff)  
 [test/mjsunit/regress/regress-crbug-454091.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-454091.js?cl=1de7dff)  
   
+---   
 
-### **crbug:451770**  
+## **crbug:451770**  
    
 **[Issue: UNKNOWN in v8::internal::SharedFunctionInfo::code](https://crbug.com/451770)**  
 **[Commit: Add missing FrameState to JSToName nodes.](https://chromium.googlesource.com/v8/v8/+/c5833e8)**  
@@ -16739,8 +17232,9 @@ assertThrows(function f() {
 [test/mjsunit/regress/regress-crbug-451770.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-451770.js?cl=c5833e8)  
 [test/unittests/compiler/js-operator-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/js-operator-unittest.cc?cl=c5833e8)  
   
+---   
 
-### **crbug:451016**  
+## **crbug:451016**  
    
 **[Issue: CHECK(IsBootstrappingOrGlobalObject(this->GetIsolate(), result)) failed: ..](https://crbug.com/451016)**  
 **[Commit: Avoid unintentional optimization of hot builtins by TurboFan.](https://chromium.googlesource.com/v8/v8/+/d2e424a)**  
@@ -16764,8 +17258,9 @@ for (i = 0; i < 256; i++) {
 [src/compiler/pipeline.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/pipeline.cc?cl=d2e424a)  
 [test/mjsunit/regress/regress-crbug-451016.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-451016.js?cl=d2e424a)  
   
+---   
 
-### **crbug:451013**  
+## **crbug:451013**  
    
 **[Issue: CHECK(*deopt_index != Safepoint::kNoDeoptimizationIndex) failed: ../../v8/s](https://crbug.com/451013)**  
 **[Commit: Add missing FrameState for Runtime_CreateArrayLiteral.](https://chromium.googlesource.com/v8/v8/+/00f3f99)**  
@@ -16799,8 +17294,9 @@ assertThrows(function testDeepObjectLiteral() {
 [src/x87/full-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/full-codegen-x87.cc?cl=00f3f99)  
 [test/mjsunit/regress/regress-crbug-451013.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-451013.js?cl=00f3f99)  
   
+---   
 
-### **crbug:450960**  
+## **crbug:450960**  
    
 **[Issue: CHECK(!isolate->has_pending_exception()) failed: ../../v8/src/compiler.cc(9](https://crbug.com/450960)**  
 **[Commit: Clear pending exception on stack overflow in the parser](https://chromium.googlesource.com/v8/v8/+/9cce4ff)**  
@@ -16835,8 +17331,9 @@ try {
 [src/runtime/runtime-internal.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-internal.cc?cl=9cce4ff)  
 [test/mjsunit/regress/regress-crbug-450960.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-450960.js?cl=9cce4ff)  
   
+---   
 
-### **crbug:450642**  
+## **crbug:450642**  
    
 **[Issue: UNKNOWN in v8::internal::Code::deoptimization_data](https://crbug.com/450642)**  
 **[Commit: Add missing BailoutId and FrameState to with statements.](https://chromium.googlesource.com/v8/v8/+/558efe2)**  
@@ -16860,8 +17357,9 @@ assertThrows(function() { with (undefined) {} }, TypeError);
 [test/mjsunit/regress/regress-crbug-450642.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-450642.js?cl=558efe2)  
 [test/unittests/compiler/js-operator-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/js-operator-unittest.cc?cl=558efe2)  
   
+---   
 
-### **crbug:448730**  
+## **crbug:448730**  
    
 **[Issue: CHECK(field_type_.IsHeapObject()) failed: ../../v8/src/hydrogen.cc(6092)](https://crbug.com/448730)**  
 **[Commit: Add proper support for proxies to HType.](https://chromium.googlesource.com/v8/v8/+/e1d878d)**  
@@ -16887,8 +17385,9 @@ foo(x);
 [src/hydrogen-types.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-types.h?cl=e1d878d)  
 [test/mjsunit/regress/regress-crbug-448730.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-448730.js?cl=e1d878d)  
   
+---   
 
-### **crbug:436820**  
+## **crbug:436820**  
    
 **[Issue: CHECK(value->IsMutableHeapNumber()) failed: ../../v8/src/objects.cc(2135)](https://crbug.com/436820)**  
 **[Commit: Map::CopyGeneralizeAllRepresentations() left incorrect layout descriptor in a new map.](https://chromium.googlesource.com/v8/v8/+/1a2e4b2)**  
@@ -16912,8 +17411,9 @@ Object.defineProperty(p, "x", { writable: false });
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=1a2e4b2)  
 [test/mjsunit/regress/regress-crbug-436820.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-436820.js?cl=1a2e4b2)  
   
+---   
 
-### **crbug:435825**  
+## **crbug:435825**  
    
 **[Issue: UNKNOWN in v8::internal::String::length](https://crbug.com/435825)**  
 **[Commit: Fix RegExp.source for uncompiled regexp.](https://chromium.googlesource.com/v8/v8/+/14a3b91)**  
@@ -16937,8 +17437,9 @@ try {
 [src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=14a3b91)  
 [test/mjsunit/regress/regress-crbug-435825.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-435825.js?cl=14a3b91)  
   
+---   
 
-### **crbug:433766**  
+## **crbug:433766**  
    
 **[Issue: CHECK failure in CHECK(entry.is_valid()) failed: ../../v8/src/parser.cc(3823)](https://crbug.com/433766)**  
 **[Commit: Fix one more missing c0_ < 0 check in scanner](https://chromium.googlesource.com/v8/v8/+/bf22724)**  
@@ -16967,8 +17468,9 @@ eval(
 [src/scanner.cc](https://cs.chromium.org/chromium/src/v8/src/scanner.cc?cl=bf22724)  
 [test/mjsunit/regress/regress-crbug-433766.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-433766.js?cl=bf22724)  
   
+---   
 
-### **crbug:433332**  
+## **crbug:433332**  
    
 **[Issue: CHECK failure in CHECK(lower->Is(upper)) failed: ../../v8/src/types.h(1025)](https://crbug.com/433332)**  
 **[Commit: Fix lower bound violation](https://chromium.googlesource.com/v8/v8/+/4f63564)**  
@@ -16995,8 +17497,9 @@ f(1.4);
 [src/types.h](https://cs.chromium.org/chromium/src/v8/src/types.h?cl=4f63564)  
 [test/mjsunit/regress/regress-crbug-433332.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-433332.js?cl=4f63564)  
   
+---   
 
-### **crbug:431602**  
+## **crbug:431602**  
    
 **[Issue: UNKNOWN in v8::internal::RootMarkingVisitor::MarkObjectByPointer](https://crbug.com/431602)**  
 **[Commit: Fix has_constant_parameter_count() confusion in LReturn](https://chromium.googlesource.com/v8/v8/+/d3b68cf)**  
@@ -17037,8 +17540,9 @@ assertEquals(9, BreakIt());
 [src/x87/lithium-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/lithium-codegen-x87.cc?cl=d3b68cf)  
 [test/mjsunit/regress/regress-crbug-431602.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-431602.js?cl=d3b68cf)  
   
+---   
 
-### **crbug:430846**  
+## **crbug:430846**  
    
 **[Issue: Hangouts fails on Linux Debug after V8 roll.](https://crbug.com/430846)**  
 **[Commit: Fix for an assertion failure in Map::FindTransitionToField(...). Appeared after r25136.](https://chromium.googlesource.com/v8/v8/+/e1f93a8)**  
@@ -17063,8 +17567,9 @@ assertTrue(%HaveSameMap(o2, o3));
 [src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=e1f93a8)  
 [test/mjsunit/regress/regress-crbug-430846.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-430846.js?cl=e1f93a8)  
   
+---   
 
-### **crbug:429159**  
+## **crbug:429159**  
    
 **[Issue: CHECK failure in CHECK(stack_height() > 0) failed: .././src/compiler/ast-graph-builder.h(252](https://crbug.com/429159)**  
 **[Commit: Properly handle stack overflows in the AST graph builder.](https://chromium.googlesource.com/v8/v8/+/cd3273b)**  
@@ -17091,8 +17596,9 @@ try {
 [src/compiler/pipeline.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/pipeline.cc?cl=cd3273b)  
 [test/mjsunit/regress/regress-crbug-429159.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-429159.js?cl=cd3273b)  
   
+---   
 
-### **crbug:425585**  
+## **crbug:425585**  
    
 **[Issue: Use-of-uninitialized-value in v8::internal::Decoder<v8::internal::Simulator>::DecodeBranchSystemException](https://crbug.com/425585)**  
 **[Commit: ARM64: Fix stack manipulation.](https://chromium.googlesource.com/v8/v8/+/ecbfc43)**  
@@ -17129,8 +17635,9 @@ test(100);
 [src/arm64/builtins-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/builtins-arm64.cc?cl=ecbfc43)  
 [test/mjsunit/regress/regress-crbug-425585.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-425585.js?cl=ecbfc43)  
   
+---   
 
-### **crbug:425519**  
+## **crbug:425519**  
    
 **[Issue: UNKNOWN in v8::internal::HEnvironment::Pop](https://crbug.com/425519)**  
 **[Commit: The issue is that by handling strings with map/handler pairs instead of a special](https://chromium.googlesource.com/v8/v8/+/8330178)**  
@@ -17156,8 +17663,9 @@ load([], 0);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=8330178)  
 [test/mjsunit/regress/regress-crbug-425519.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-425519.js?cl=8330178)  
   
+---   
 
-### **crbug:423687**  
+## **crbug:423687**  
    
 **[Issue: JSON.parse sometimes crashes chrome 38 ('Aw, snap')](https://crbug.com/423687)**  
 **[Commit: Fixed mutable heap numbers leak in JSON parser.](https://chromium.googlesource.com/v8/v8/+/5509cc2)**  
@@ -17178,8 +17686,9 @@ data.b.c++;
 [src/json-parser.h](https://cs.chromium.org/chromium/src/v8/src/json-parser.h?cl=5509cc2)  
 [test/mjsunit/regress/regress-crbug-423687.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-423687.js?cl=5509cc2)  
   
+---   
 
-### **crbug:422858**  
+## **crbug:422858**  
    
 **[Issue: Date.toLocalString() and new Date("str") are not complementary](https://crbug.com/422858)**  
 **[Commit: Accept time zones like GMT-8 in the legacy date parser](https://chromium.googlesource.com/v8/v8/+/acbd64b)**  
@@ -17215,8 +17724,9 @@ assertEquals(NaN, date.getUTCHours());
 [src/dateparser-inl.h](https://cs.chromium.org/chromium/src/v8/src/dateparser-inl.h?cl=acbd64b)  
 [test/mjsunit/regress/regress-crbug-422858.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-422858.js?cl=acbd64b)  
   
+---   
 
-### **crbug:417508**  
+## **crbug:417508**  
    
 **[Issue: No Permission](https://crbug.com/417508)**  
 **[Commit: Fix Hydrogen's BuildStore()](https://chromium.googlesource.com/v8/v8/+/1bb52d0)**  
@@ -17256,8 +17766,9 @@ try { bar(obj2); } catch(e) {}
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=1bb52d0)  
 [test/mjsunit/regress/regress-crbug-417508.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-417508.js?cl=1bb52d0)  
   
+---   
 
-### **crbug:416558**  
+## **crbug:416558**  
    
 **[Issue: UNKNOWN in v8::internal::Map::instance_type](https://crbug.com/416558)**  
 **[Commit: Non-JSArrays must always have holey elements.](https://chromium.googlesource.com/v8/v8/+/1903e56)**  
@@ -17388,8 +17899,9 @@ Regress: [mjsunit/regress/regress-crbug-416558.js](https://chromium.googlesource
 [src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=1903e56)  
 [test/mjsunit/regress/regress-crbug-416558.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-416558.js?cl=1903e56)  
   
+---   
 
-### **crbug:412319**  
+## **crbug:412319**  
    
 **[Issue: CHECK failure in CHECK(receiver_map->is_extensible()) failed: ../../v8/src/hydrogen.cc(8293)](https://crbug.com/412319)**  
 **[Commit: Don't inline Array functions if receiver map is not extensible.](https://chromium.googlesource.com/v8/v8/+/d66ed11)**  
@@ -17419,8 +17931,9 @@ function __f_7(__v_7) {
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=d66ed11)  
 [test/mjsunit/regress/regress-crbug-412319.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-412319.js?cl=d66ed11)  
   
+---   
 
-### **crbug:412215**  
+## **crbug:412215**  
    
 **[Issue: CHECK failure in CHECK(value->IsHeapObject()) failed: ../../v8/src/objects-debug.cc(271)](https://crbug.com/412215)**  
 **[Commit: Fix Smi vs. HeapObject confusion in HConstants.](https://chromium.googlesource.com/v8/v8/+/b4375b7)**  
@@ -17466,8 +17979,9 @@ g(x);
 [src/hydrogen-types.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-types.cc?cl=b4375b7)  
 [test/mjsunit/regress/regress-crbug-412215.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-412215.js?cl=b4375b7)  
   
+---   
 
-### **crbug:412210**  
+## **crbug:412210**  
    
 **[Issue: CHECK failure in CHECK(right_type->Is(Type::String())) failed: ../../v8/src/hydrogen.cc(1028](https://crbug.com/412210)**  
 **[Commit: Fix inaccurate type condition in Hydrogen](https://chromium.googlesource.com/v8/v8/+/fc71f7f)**  
@@ -17490,8 +18004,9 @@ f();
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=fc71f7f)  
 [test/mjsunit/regress/regress-crbug-412210.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-412210.js?cl=fc71f7f)  
   
+---   
 
-### **crbug:412208**  
+## **crbug:412208**  
    
 **[Issue: CHECK failure in CHECK(ast_context()->IsEffect()) failed: ../../v8/src/hydrogen.cc(6760)](https://crbug.com/412208)**  
 **[Commit: Hydrogen: bailout when there is a throw statement in a non-effect context.](https://chromium.googlesource.com/v8/v8/+/fd3e505)**  
@@ -17518,8 +18033,9 @@ assertTrue(f());
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=fd3e505)  
 [test/mjsunit/regress/regress-crbug-412208.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-412208.js?cl=fd3e505)  
   
+---   
 
-### **crbug:412203**  
+## **crbug:412203**  
    
 **[Issue: Unreachable code in ../../v8/src/runtime.cc(10277)](https://crbug.com/412203)**  
 **[Commit: Fix ElementsKind handling of prototypes in Array.concat](https://chromium.googlesource.com/v8/v8/+/11f7584)**  
@@ -17566,8 +18082,9 @@ foo(2, 3, 4);
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=11f7584)  
 [test/mjsunit/regress/regress-crbug-412203.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-412203.js?cl=11f7584)  
   
+---   
 
-### **crbug:407946**  
+## **crbug:407946**  
    
 **[Issue: array indexOf unreliable](https://crbug.com/407946)**  
 **[Commit: Enforce correct number comparisons when inlining Array.indexOf.](https://chromium.googlesource.com/v8/v8/+/0baf275)**  
@@ -17590,8 +18107,9 @@ assertEquals(0, f(.1));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=0baf275)  
 [test/mjsunit/regress/regress-crbug-407946.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-407946.js?cl=0baf275)  
   
+---   
 
-### **crbug:405517**  
+## **crbug:405517**  
    
 **[Issue: CHECK failure in CHECK(receiver_map->is_extensible()) failed: ../../v8/src/hydrogen.cc(8338)](https://crbug.com/405517)**  
 **[Commit: Don't inline Array.shift() if receiver map is not extensible.](https://chromium.googlesource.com/v8/v8/+/0142786)**  
@@ -17618,8 +18136,9 @@ f();
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=0142786)  
 [test/mjsunit/regress/regress-crbug-405517.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-405517.js?cl=0142786)  
   
+---   
 
-### **crbug:403409**  
+## **crbug:403409**  
    
 **[Issue: V8 Runtime_ArrayConcat uninitialized memory leak](https://crbug.com/403409)**  
 **[Commit: Correctly handle holes when concat()ing double arrays](https://chromium.googlesource.com/v8/v8/+/dacca11)**  
@@ -17650,8 +18169,9 @@ for (var j = 1; j < kElements; j++) {
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=dacca11)  
 [test/mjsunit/regress/regress-crbug-403409.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-403409.js?cl=dacca11)  
   
+---   
 
-### **crbug:393988**  
+## **crbug:393988**  
    
 **[Issue: TypeError: Cannot redefine property: stack](https://crbug.com/393988)**  
 **[Commit: Error.captureStackTrace should define "stack" property as configurable.](https://chromium.googlesource.com/v8/v8/+/49ae308)**  
@@ -17672,8 +18192,9 @@ assertEquals(1, o.stack);
 [src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=49ae308)  
 [test/mjsunit/regress/regress-crbug-393988.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-393988.js?cl=49ae308)  
   
+---   
 
-### **crbug:390918**  
+## **crbug:390918**  
    
 **[Issue: CHECK failure in CHECK_EQ(map()->unused_property_fields(), (map()->inobject_properties() + p](https://crbug.com/390918)**  
 **[Commit: One of the fast cases in JSObject::MigrateFastToFast() should not be taken if the number of fields did not change.](https://chromium.googlesource.com/v8/v8/+/2fba190)**  
@@ -17703,8 +18224,9 @@ f(1004);
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=2fba190)  
 [test/mjsunit/regress/regress-crbug-390918.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-390918.js?cl=2fba190)  
   
+---   
 
-### **crbug:387636**  
+## **crbug:387636**  
    
 **[Issue: CHECK failure in CHECK(!right->IsConstant() || (!HConstant::cast(right)->HasInteger32Value()](https://crbug.com/387636)**  
 **[Commit: Remove bogus assertions in HCompareObjectEqAndBranch.](https://chromium.googlesource.com/v8/v8/+/58bf19e)**  
@@ -17729,8 +18251,9 @@ f();
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=58bf19e)  
 [test/mjsunit/regress/regress-crbug-387636.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-387636.js?cl=58bf19e)  
   
+---   
 
-### **crbug:387031**  
+## **crbug:387031**  
    
 **[Issue: Security: V8 Array length getter override](https://crbug.com/387031)**  
 **[Commit: Array.concat: properly go to dictionary mode when required](https://chromium.googlesource.com/v8/v8/+/1d35d6d)**  
@@ -17756,8 +18279,9 @@ for (var i = 0; i < 20; i++) {
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=1d35d6d)  
 [test/mjsunit/regress/regress-crbug-387031.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-387031.js?cl=1d35d6d)  
   
+---   
 
-### **crbug:385002**  
+## **crbug:385002**  
    
 **[Issue: Heap-buffer-overflow in v8::internal::Simulator::HandleRList](https://crbug.com/385002)**  
 **[Commit: Interrupts must not mask stack overflow.](https://chromium.googlesource.com/v8/v8/+/11368af)**  
@@ -17795,8 +18319,9 @@ assertThrows("g()", RangeError);
 [src/x64/regexp-macro-assembler-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/regexp-macro-assembler-x64.cc?cl=11368af)  
 [test/mjsunit/regress/regress-crbug-385002.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-385002.js?cl=11368af)  
   
+---   
 
-### **crbug:382513**  
+## **crbug:382513**  
    
 **[Issue: UNKNOWN in v8::internal::Simulator::DecodeType2](https://crbug.com/382513)**  
 **[Commit: Fix missing smi check in inlined indexOf/lastIndexOf.](https://chromium.googlesource.com/v8/v8/+/7eea77b)**  
@@ -17818,8 +18343,9 @@ foo();
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=7eea77b)  
 [test/mjsunit/regress/regress-crbug-382513.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-382513.js?cl=7eea77b)  
   
+---   
 
-### **crbug:382143**  
+## **crbug:382143**  
    
 **[Issue: [REGRESSION] Methods become non-enumerable if first introduced via a parent constructor that defines a property](https://crbug.com/382143)**  
 **[Commit: Fix invalid attributes when generalizing because of incompatible map change.](https://chromium.googlesource.com/v8/v8/+/0fcd891)**  
@@ -17849,8 +18375,9 @@ assertTrue(Object.getOwnPropertyDescriptor(b, "a").enumerable);
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=0fcd891)  
 [test/mjsunit/regress/regress-crbug-382143.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-382143.js?cl=0fcd891)  
   
+---   
 
-### **crbug:381534**  
+## **crbug:381534**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/381534)**  
 **[Commit: Bugfix in inlined versions of Array.indexOf() and Array.lastIndexOf() with a regression test.](https://chromium.googlesource.com/v8/v8/+/6dc967e)**  
@@ -17902,8 +18429,9 @@ g(0, 1.1, 1);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=6dc967e)  
 [test/mjsunit/regress/regress-crbug-381534.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-381534.js?cl=6dc967e)  
   
+---   
 
-### **crbug:380512**  
+## **crbug:380512**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/380512)**  
 **[Commit: Fix invalid loop condition for Array.lastIndexOf().](https://chromium.googlesource.com/v8/v8/+/9244429)**  
@@ -17926,8 +18454,9 @@ f();
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=9244429)  
 [test/mjsunit/regress/regress-crbug-380512.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-380512.js?cl=9244429)  
   
+---   
 
-### **crbug:374838**  
+## **crbug:374838**  
    
 **[Issue: No Permission](https://crbug.com/374838)**  
 **[Commit: Fix ArrayShift hydrogen support](https://chromium.googlesource.com/v8/v8/+/58661c1)**  
@@ -17959,8 +18488,9 @@ assertEquals(1, foo());
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=58661c1)  
 [test/mjsunit/regress/regress-crbug-374838.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-374838.js?cl=58661c1)  
   
+---   
 
-### **crbug:364374**  
+## **crbug:364374**  
    
 **[Issue: Some official time zone IDs  are not accepted by Intl.DateTimeFormat.](https://crbug.com/364374)**  
 **[Commit: Timezone name check fix](https://chromium.googlesource.com/v8/v8/+/4e18190)**  
@@ -18032,8 +18562,9 @@ if (this.Intl) {
 [test/mjsunit/regress/regress-crbug-364374.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-364374.js?cl=4e18190)  
 [test/mjsunit/regress/regress-crbug-487322.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-487322.js?cl=4e18190)  
   
+---   
 
-### **crbug:357330**  
+## **crbug:357330**  
    
 **[Issue: CHECK fail in ../../v8/src/list-inl.h while watching Youtube video.](https://crbug.com/357330)**  
 **[Commit: Fix Type::Intersect to skip uninhabited bitsets](https://chromium.googlesource.com/v8/v8/+/282a7ca)**  
@@ -18060,8 +18591,9 @@ f(1.4);
 [src/types.cc](https://cs.chromium.org/chromium/src/v8/src/types.cc?cl=282a7ca)  
 [test/mjsunit/regress/regress-crbug-357330.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-357330.js?cl=282a7ca)  
   
+---   
 
-### **crbug:357137**  
+## **crbug:357137**  
    
 **[Issue: No Permission](https://crbug.com/357137)**  
 **[Commit: Do not check for interrupt when allocating stack locals.](https://chromium.googlesource.com/v8/v8/+/c0fa861)**  
@@ -18087,8 +18619,9 @@ assertThrows("f()", RangeError);
 [test/cctest/test-heap.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-heap.cc?cl=c0fa861)  
 [test/mjsunit/regress/regress-crbug-357137.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-357137.js?cl=c0fa861)  
   
+---   
 
-### **crbug:357052**  
+## **crbug:357052**  
    
 **[Issue: CHECK failure in CHECK(!CpuFeatures::IsSupported(SSE2)) failed: ../../v8/src/ic.cc(2318)](https://crbug.com/357052)**  
 **[Commit: Fix HGraphBuilder::BuildAddStringLengths](https://chromium.googlesource.com/v8/v8/+/511edab)**  
@@ -18113,8 +18646,9 @@ assertThrows(f);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=511edab)  
 [test/mjsunit/regress/regress-crbug-357052.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-357052.js?cl=511edab)  
   
+---   
 
-### **crbug:354391**  
+## **crbug:354391**  
    
 **[Issue: CHECK failure in CHECK(IsFastElementsKind(elements_kind) || IsExternalArrayElementsKind(elements_kind)) failed: ../sr](https://crbug.com/354391)**  
 **[Commit: Fix polymorphic hydrogen handling of SLOPPY_ARGUMENTS_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/2b722b6)**  
@@ -18146,8 +18680,9 @@ assertEquals(11, f2(11, 22, 33, 44, 0));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=2b722b6)  
 [test/mjsunit/regress/regress-crbug-354391.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-354391.js?cl=2b722b6)  
   
+---   
 
-### **crbug:352929**  
+## **crbug:352929**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/352929)**  
 **[Commit: Fix typo in r19923 (bounds check offset propagation)](https://chromium.googlesource.com/v8/v8/+/dc45852)**  
@@ -18191,8 +18726,9 @@ for (var i = 0; i < dummy2.length; i++) {
 [src/hydrogen-bce.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-bce.cc?cl=dc45852)  
 [test/mjsunit/regress/regress-crbug-352929.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-352929.js?cl=dc45852)  
   
+---   
 
-### **crbug:352586**  
+## **crbug:352586**  
    
 **[Issue: CHECK failure in CHECK((check == ENABLE_INLINED_SMI_CHECK) ? (*jmp_address == Assembler::kJncShortOpcode || *jmp_addr](https://crbug.com/352586)**  
 **[Commit: Fix ASSERT violation when BinaryOpIC::Transition recurses into itself](https://chromium.googlesource.com/v8/v8/+/e4a18df)**  
@@ -18221,8 +18757,9 @@ assertThrows(()=>a.message, RangeError);
 [src/ic.h](https://cs.chromium.org/chromium/src/v8/src/ic.h?cl=e4a18df)  
 [test/mjsunit/regress/regress-crbug-352586.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-352586.js?cl=e4a18df)  
   
+---   
 
-### **crbug:352058**  
+## **crbug:352058**  
    
 **[Issue: CHECK failure in CHECK(old_entry->maps_->size() > 0) failed: ../src/hydrogen-check-elimination.cc(156)](https://crbug.com/352058)**  
 **[Commit: Check elimination now sets known successor branch of HCompareObjectEqAndBranch (correctness fix).](https://chromium.googlesource.com/v8/v8/+/f77c51b)**  
@@ -18252,8 +18789,9 @@ f();
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=f77c51b)  
 [test/mjsunit/regress/regress-crbug-352058.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-352058.js?cl=f77c51b)  
   
+---   
 
-### **crbug:351787**  
+## **crbug:351787**  
    
 **[Issue: Pwnium 4: v8 OOB read/write with __defineGetter__ and bytesLength](https://crbug.com/351787)**  
 **[Commit: Use intrinsics for builtin ArrayBuffer property accesses](https://chromium.googlesource.com/v8/v8/+/f9ee4f1)**  
@@ -18308,8 +18846,9 @@ assertEquals(2, aaaa.length);
 [src/typedarray.js](https://cs.chromium.org/chromium/src/v8/src/typedarray.js?cl=f9ee4f1)  
 [test/mjsunit/regress/regress-crbug-351787.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-351787.js?cl=f9ee4f1)  
   
+---   
 
-### **crbug:351658**  
+## **crbug:351658**  
    
 **[Issue: CHECK failure in CHECK(op < BinaryOpIC::State::FIRST_TOKEN || op > BinaryOpIC::State::LAST_TOKEN) failed: ../src/type](https://crbug.com/351658)**  
 **[Commit: Make invalid LHSs a parse-time (reference) error](https://chromium.googlesource.com/v8/v8/+/c3c185c)**  
@@ -18347,8 +18886,9 @@ try {
 [test/mjsunit/invalid-lhs.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/invalid-lhs.js?cl=c3c185c)  
 [test/mjsunit/regress/regress-crbug-351658.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-351658.js?cl=c3c185c)  
   
+---   
 
-### **crbug:351320**  
+## **crbug:351320**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/351320)**  
 **[Commit: Fix HIsSmiAndBranch::KnownSuccessorBlock() by deleting it](https://chromium.googlesource.com/v8/v8/+/105c1e0)**  
@@ -18381,8 +18921,9 @@ crash();
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=105c1e0)  
 [test/mjsunit/regress/regress-crbug-351320.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-351320.js?cl=105c1e0)  
   
+---   
 
-### **crbug:351262**  
+## **crbug:351262**  
    
 **[Issue: CHECK failure in CHECK(!curr->IsAccessCheckNeeded()) failed: ../src/objects.cc(5919)](https://crbug.com/351262)**  
 **[Commit: fix bad access check check](https://chromium.googlesource.com/v8/v8/+/62fc099)**  
@@ -18401,8 +18942,9 @@ JSON.stringify(this);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=62fc099)  
 [test/mjsunit/regress/regress-crbug-351262.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-351262.js?cl=62fc099)  
   
+---   
 
-### **crbug:350890**  
+## **crbug:350890**  
    
 **[Issue: CHECK failure in CHECK(debug_lookup.IsPropertyCallbacks() && !debug_lookup.IsReadOnly()) failed: ../src/ic.cc(1808)](https://crbug.com/350890)**  
 **[Commit: Fixed spec violation of storing to length of a frozen object.](https://chromium.googlesource.com/v8/v8/+/3b257c3)**  
@@ -18466,8 +19008,9 @@ test3();
 [src/x64/stub-cache-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/stub-cache-x64.cc?cl=3b257c3)  
 [test/mjsunit/regress/regress-crbug-350890.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-350890.js?cl=3b257c3)  
   
+---   
 
-### **crbug:350867**  
+## **crbug:350867**  
    
 **[Issue: CHECK failure in CHECK(elements_kind == DICTIONARY_ELEMENTS) failed: ../src/stub-cache.cc(1309)](https://crbug.com/350867)**  
 **[Commit: Fix polymorphic keyed loads for SLOPPY_ARGUMENTS_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/d9b6b64)**  
@@ -18496,8 +19039,9 @@ assertEquals(22, f2(22, 33, 44, 0));
 [src/stub-cache.cc](https://cs.chromium.org/chromium/src/v8/src/stub-cache.cc?cl=d9b6b64)  
 [test/mjsunit/regress/regress-crbug-350867.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-350867.js?cl=d9b6b64)  
   
+---   
 
-### **crbug:350864**  
+## **crbug:350864**  
    
 **[Issue: CHECK failure in CHECK(index >= 0 && index < this->length()) failed: ../src/objects-inl.h(2124)](https://crbug.com/350864)**  
 **[Commit: Fix issue with getOwnPropertySymbols and hidden properties](https://chromium.googlesource.com/v8/v8/+/85800ef)**  
@@ -18521,8 +19065,9 @@ assertArrayEquals([sym], symbols);
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=85800ef)  
 [test/mjsunit/regress/regress-crbug-350864.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-350864.js?cl=85800ef)  
   
+---   
 
-### **crbug:350434**  
+## **crbug:350434**  
    
 **[Issue: [LangFuzz] Crash with jump to invalid address](https://crbug.com/350434)**  
 **[Commit: Fix lazy deopt after tagged binary ops](https://chromium.googlesource.com/v8/v8/+/8a1812f)**  
@@ -18589,8 +19134,9 @@ crash({}, 0);
 [src/x64/lithium-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-x64.h?cl=8a1812f)  
 [test/mjsunit/regress/regress-crbug-350434.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-350434.js?cl=8a1812f)  
   
+---   
 
-### **crbug:349878**  
+## **crbug:349878**  
    
 **[Issue: No Permission](https://crbug.com/349878)**  
 **[Commit: Fix HConstants with Smi-ranged HeapNumber values](https://chromium.googlesource.com/v8/v8/+/1cc0baf)**  
@@ -18634,8 +19180,9 @@ g();
 [src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=1cc0baf)  
 [test/mjsunit/regress/regress-crbug-349878.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-349878.js?cl=1cc0baf)  
   
+---   
 
-### **crbug:349853**  
+## **crbug:349853**  
    
 **[Issue: CHECK failure in CHECK(!found) failed: ../src/lithium-allocator.cc(1381)](https://crbug.com/349853)**  
 **[Commit: Let HTransitionElementsKind take part in RestoreActualValues phase](https://chromium.googlesource.com/v8/v8/+/5ea3f00)**  
@@ -18667,8 +19214,9 @@ crash();
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=5ea3f00)  
 [test/mjsunit/regress/regress-crbug-349853.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-349853.js?cl=5ea3f00)  
   
+---   
 
-### **crbug:349465**  
+## **crbug:349465**  
    
 **[Issue: UNKNOWN in v8::internal::JSFunction::context](https://crbug.com/349465)**  
 **[Commit: Fix for failing asserts in HBoundsCheck code generation on x64: use proper cmp operation width instead of asserting that Integer32 values should be zero extended. Similar to chromium:345820.](https://chromium.googlesource.com/v8/v8/+/997ce05)**  
@@ -18696,8 +19244,9 @@ f(a1, -2);
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=997ce05)  
 [test/mjsunit/regress/regress-crbug-349465.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-349465.js?cl=997ce05)  
   
+---   
 
-### **crbug:349079**  
+## **crbug:349079**  
    
 **[Issue: UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/349079)**  
 **[Commit: x64: Fix LMathMinMax for constant Smi right-hand operands](https://chromium.googlesource.com/v8/v8/+/3df5573)**  
@@ -18731,8 +19280,9 @@ crash();
 [src/x64/lithium-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-x64.cc?cl=3df5573)  
 [test/mjsunit/regress/regress-crbug-349079.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-349079.js?cl=3df5573)  
   
+---   
 
-### **crbug:347903**  
+## **crbug:347903**  
    
 **[Issue: CHECK failure in CHECK((IsFastSmiOrObjectElementsKind(kind) && (map == GetHeap()->fixed_array_map() || map == GetHeap](https://crbug.com/347903)**  
 **[Commit: A JSArray may have a filler map in the elements pointer.](https://chromium.googlesource.com/v8/v8/+/b1ffc79)**  
@@ -18762,8 +19312,9 @@ for(var i = 0; i < 10; i++) {
 [src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=b1ffc79)  
 [test/mjsunit/regress/regress-crbug-347903.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-347903.js?cl=b1ffc79)  
   
+---   
 
-### **crbug:347528**  
+## **crbug:347528**  
    
 **[Issue: CHECK failure in CHECK(IsNativeContext()) failed: ../src/contexts.h(462)](https://crbug.com/347528)**  
 **[Commit: Get array_function from NativeContext](https://chromium.googlesource.com/v8/v8/+/98d1ced)**  
@@ -18788,8 +19339,9 @@ __f_12();
 [src/type-info.cc](https://cs.chromium.org/chromium/src/v8/src/type-info.cc?cl=98d1ced)  
 [test/mjsunit/regress/regress-crbug-347528.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-347528.js?cl=98d1ced)  
   
+---   
 
-### **crbug:346636**  
+## **crbug:346636**  
    
 **[Issue: UNKNOWN in v8::internal::Range::CanBeZero](https://crbug.com/346636)**  
 **[Commit: Mark HCompareMap as having Tagged representation](https://chromium.googlesource.com/v8/v8/+/e7e93cd)**  
@@ -18831,8 +19383,9 @@ foo(o2);
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=e7e93cd)  
 [test/mjsunit/regress/regress-crbug-346636.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-346636.js?cl=e7e93cd)  
   
+---   
 
-### **crbug:346141**  
+## **crbug:346141**  
    
 **[Issue: Global-buffer-overflow in GetVisitor](https://crbug.com/346141)**  
 **[Commit: Fix crasher in Object.getOwnPropertySymbols](https://chromium.googlesource.com/v8/v8/+/63f1970)**  
@@ -18854,8 +19407,9 @@ Object.getOwnPropertySymbols(o)
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=63f1970)  
 [test/mjsunit/regress/regress-crbug-346141.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-346141.js?cl=63f1970)  
   
+---   
 
-### **crbug:345820**  
+## **crbug:345820**  
    
 **[Issue: UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/345820)**  
 **[Commit: Fix for failing asserts in HBoundsCheck code generation on x64: index register should be zero extended.](https://chromium.googlesource.com/v8/v8/+/1ae7e8a)**  
@@ -18885,8 +19439,9 @@ __f_7(__v_6.length);
 [src/x64/lithium-gap-resolver-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-gap-resolver-x64.cc?cl=1ae7e8a)  
 [test/mjsunit/regress/regress-crbug-345820.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-345820.js?cl=1ae7e8a)  
   
+---   
 
-### **crbug:345715**  
+## **crbug:345715**  
    
 **[Issue: UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/345715)**  
 **[Commit: Fix for a smi stores optimization on x64 with a regression test.](https://chromium.googlesource.com/v8/v8/+/6c1659b)**  
@@ -18923,8 +19478,9 @@ assertEquals(1, g()[1].x);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=6c1659b)  
 [test/mjsunit/regress/regress-crbug-345715.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-345715.js?cl=6c1659b)  
   
+---   
 
-### **crbug:344186**  
+## **crbug:344186**  
    
 **[Issue: OOB write due to invalid bounds check in v8](https://crbug.com/344186)**  
 **[Commit: Fix Hydrogen bounds check elimination](https://chromium.googlesource.com/v8/v8/+/6e3b81a)**  
@@ -18955,8 +19511,9 @@ for (var i = 0; i < dummy.length; i++) {
 [src/hydrogen-bce.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-bce.cc?cl=6e3b81a)  
 [test/mjsunit/regress/regress-crbug-344186.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-344186.js?cl=6e3b81a)  
   
+---   
 
-### **crbug:340064**  
+## **crbug:340064**  
    
 **[Issue: Chrome: Crash Report - Magic Signature: v8::internal::HOptimizedGraphBuilder::Prope...](https://crbug.com/340064)**  
 **[Commit: Return a valid map for PropertyAccessInfos with Boolean type.](https://chromium.googlesource.com/v8/v8/+/db7124d)**  
@@ -18982,8 +19539,9 @@ assertEquals(undefined, f(true));
 [src/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen.h?cl=db7124d)  
 [test/mjsunit/regress/regress-crbug-340064.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-340064.js?cl=db7124d)  
   
+---   
 
-### **crbug:336148**  
+## **crbug:336148**  
    
 **[Issue: TypeError as a result of undefined variable from a RegEx exec](https://crbug.com/336148)**  
 **[Commit: Fix short-circuiting logical and/or in HOptimizedGraphBuilder.](https://chromium.googlesource.com/v8/v8/+/9e70f6a)**  
@@ -19027,8 +19585,9 @@ test();
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=9e70f6a)  
 [test/mjsunit/regress/regress-crbug-336148.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-336148.js?cl=9e70f6a)  
   
+---   
 
-### **crbug:329709**  
+## **crbug:329709**  
    
 **[Issue: Maps test crashing on GPU bots after V8 roll](https://crbug.com/329709)**  
 **[Commit: Fix switch statements with non-Smi integer labels and no type feedback](https://chromium.googlesource.com/v8/v8/+/3c76ecd)**  
@@ -19057,8 +19616,9 @@ assertEquals("non-smi int32", boom(1500000000));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=3c76ecd)  
 [test/mjsunit/regress/regress-crbug-329709.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-329709.js?cl=3c76ecd)  
   
+---   
 
-### **crbug:325225**  
+## **crbug:325225**  
    
 **[Issue: Crash on keyed load invocation](https://crbug.com/325225)**  
 **[Commit: Check whether the receiver to a keyed-call is actually a heapobject.](https://chromium.googlesource.com/v8/v8/+/d4eaae3)**  
@@ -19094,8 +19654,9 @@ assertThrows(do2, TypeError);
 [src/code-stubs-hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/code-stubs-hydrogen.cc?cl=d4eaae3)  
 [test/mjsunit/regress/regress-crbug-325225.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-325225.js?cl=d4eaae3)  
   
+---   
 
-### **crbug:323942**  
+## **crbug:323942**  
    
 **[Issue: No Permission](https://crbug.com/323942)**  
 **[Commit: Fix bug in inlining Function.apply.](https://chromium.googlesource.com/v8/v8/+/f235194)**  
@@ -19140,8 +19701,9 @@ assertEquals(42, g(receiver));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=f235194)  
 [test/mjsunit/regress/regress-crbug-323942.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-323942.js?cl=f235194)  
   
+---   
 
-### **crbug:319860**  
+## **crbug:319860**  
    
 **[Issue: OOB read in V8](https://crbug.com/319860)**  
 **[Commit: Limit size of dehoistable array indices](https://chromium.googlesource.com/v8/v8/+/c9b41c6)**  
@@ -19182,8 +19744,9 @@ for (var i = 0; i > -1000000; --i) {
 [test/mjsunit/regress/regress-crbug-319835.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-319835.js?cl=c9b41c6)  
 [test/mjsunit/regress/regress-crbug-319860.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-319860.js?cl=c9b41c6)  
   
+---   
 
-### **crbug:319835**  
+## **crbug:319835**  
    
 **[Issue: OOB write in V8 (only 64bit)](https://crbug.com/319835)**  
 **[Commit: Limit size of dehoistable array indices](https://chromium.googlesource.com/v8/v8/+/c9b41c6)**  
@@ -19228,8 +19791,9 @@ for (var i = -0x20000000; i < -0x20000000 + size; i++) {
 [test/mjsunit/regress/regress-crbug-319835.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-319835.js?cl=c9b41c6)  
 [test/mjsunit/regress/regress-crbug-319860.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-319860.js?cl=c9b41c6)  
   
+---   
 
-### **crbug:318671**  
+## **crbug:318671**  
    
 **[Issue: Weird illegal access exception](https://crbug.com/318671)**  
 **[Commit: Fix missing type feedback check for Generic*String addition.](https://chromium.googlesource.com/v8/v8/+/2ee5aa9)**  
@@ -19255,8 +19819,9 @@ print(add("a", 1));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=2ee5aa9)  
 [test/mjsunit/regress/regress-crbug-318671.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-318671.js?cl=2ee5aa9)  
   
+---   
 
-### **crbug:315252**  
+## **crbug:315252**  
    
 **[Issue: No Permission](https://crbug.com/315252)**  
 **[Commit: Turn Runtime_MigrateInstance into Runtime_TryMigrateInstance](https://chromium.googlesource.com/v8/v8/+/1ed94ac)**  
@@ -19310,8 +19875,9 @@ store_transition(o3);
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=1ed94ac)  
 [test/mjsunit/regress/regress-crbug-315252.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-315252.js?cl=1ed94ac)  
   
+---   
 
-### **crbug:309623**  
+## **crbug:309623**  
    
 **[Issue: Wrong WebGL display](https://crbug.com/309623)**  
 **[Commit: Fix uint32-to-smi conversion in Lithium](https://chromium.googlesource.com/v8/v8/+/316271f)**  
@@ -19354,8 +19920,9 @@ assertEquals(u[1], foo(1));
 [src/x64/lithium-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-x64.h?cl=316271f)  
 [test/mjsunit/regress/regress-crbug-309623.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-309623.js?cl=316271f)  
   
+---   
 
-### **crbug:306851**  
+## **crbug:306851**  
    
 **[Issue: Object.defineProperty with postfix increment or decrement operator stalls after 132 iterations.](https://crbug.com/306851)**  
 **[Commit: Add regression test for optimized count operation.](https://chromium.googlesource.com/v8/v8/+/0a2b4ec)**  
@@ -19394,8 +19961,9 @@ assertEquals(6, bummer());
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/0a2b4ec^!)  
 [test/mjsunit/regress/regress-crbug-306851.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-306851.js?cl=0a2b4ec)  
   
+---   
 
-### **crbug:306220**  
+## **crbug:306220**  
    
 **[Issue: Error.prototype.toString calls message getter with wrong this object](https://crbug.com/306220)**  
 **[Commit: Correctly load message from an Error object.](https://chromium.googlesource.com/v8/v8/+/a5ed9a7)**  
@@ -19423,8 +19991,9 @@ assertEquals("Error: instance", String(new CustomError("instance")));
 [src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=a5ed9a7)  
 [test/mjsunit/regress/regress-crbug-306220.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-306220.js?cl=a5ed9a7)  
   
+---   
 
-### **crbug:305309**  
+## **crbug:305309**  
    
 **[Issue: Property lookups sometimes return the wrong property's value](https://crbug.com/305309)**  
 **[Commit: Fix HObjectAccess for loads from migrating prototypes](https://chromium.googlesource.com/v8/v8/+/8259439)**  
@@ -19461,8 +20030,9 @@ assertEquals(2, Two(a));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=8259439)  
 [test/mjsunit/regress/regress-crbug-305309.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-305309.js?cl=8259439)  
   
+---   
 
-### **crbug:285355**  
+## **crbug:285355**  
    
 **[Issue: Chrome_Linux: Crash Report - Magic Signature: v8::internal::Runtime_LazyRecompile](https://crbug.com/285355)**  
 **[Commit: Fix bitwise negation on x64](https://chromium.googlesource.com/v8/v8/+/daee0d8)**  
@@ -19493,8 +20063,9 @@ assertEquals(2, crash(new Array(1)));
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=daee0d8)  
 [test/mjsunit/regress/regress-crbug-285355.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-285355.js?cl=daee0d8)  
   
+---   
 
-### **crbug:280333**  
+## **crbug:280333**  
    
 **[Issue: No Permission](https://crbug.com/280333)**  
 **[Commit: Always visit branches during HGraph building](https://chromium.googlesource.com/v8/v8/+/2c9ac9c)**  
@@ -19529,8 +20100,9 @@ assertEquals(2, foo(1, function() { return true; }));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=2c9ac9c)  
 [test/mjsunit/regress/regress-crbug-280333.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-280333.js?cl=2c9ac9c)  
   
+---   
 
-### **crbug:274438**  
+## **crbug:274438**  
    
 **[Issue: Chrome: Crash Report - Magic Signature: V8_Fatal](https://crbug.com/274438)**  
 **[Commit: Mark HStringCompareAndBranch as potentially causing GCs.](https://chromium.googlesource.com/v8/v8/+/3e4fbd0)**  
@@ -19565,8 +20137,9 @@ assertEquals("boom", killer.b);
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=3e4fbd0)  
 [test/mjsunit/regress/regress-crbug-274438.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-274438.js?cl=3e4fbd0)  
   
+---   
 
-### **crbug:272564**  
+## **crbug:272564**  
    
 **[Issue: Chrome_Mac: Crash Report - Magic Signature: v8::internal::TypeInfo::FromValue](https://crbug.com/272564)**  
 **[Commit: Fix Math.round/floor that had bogus Smi representation](https://chromium.googlesource.com/v8/v8/+/e71a91c)**  
@@ -19604,8 +20177,9 @@ pe(a, b, 0);
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=e71a91c)  
 [test/mjsunit/regress/regress-crbug-272564.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-272564.js?cl=e71a91c)  
   
+---   
 
-### **crbug:263276**  
+## **crbug:263276**  
    
 **[Issue: No Permission](https://crbug.com/263276)**  
 **[Commit: Fix JSArray-specific length lookup in polymorphic array handling](https://chromium.googlesource.com/v8/v8/+/32e2e37)**  
@@ -19639,8 +20213,9 @@ assertEquals(3, array2.length);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=32e2e37)  
 [test/mjsunit/regress/regress-crbug-263276.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-263276.js?cl=32e2e37)  
   
+---   
 
-### **crbug:260345**  
+## **crbug:260345**  
    
 **[Issue: [Crash] v8::internal::StackFrameIterator::AdvanceWithHandler](https://crbug.com/260345)**  
 **[Commit: Synchronize Compare-Literal behavior in FullCodegen and Hydrogen](https://chromium.googlesource.com/v8/v8/+/22f2fd8)**  
@@ -19690,8 +20265,9 @@ assertEquals(steps, test_null());
 [src/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen.h?cl=22f2fd8)  
 [test/mjsunit/regress/regress-crbug-260345.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-260345.js?cl=22f2fd8)  
   
+---   
 
-### **crbug:258519**  
+## **crbug:258519**  
    
 **[Issue: Impossible "Cannot call method 'l$' of undefined" error](https://crbug.com/258519)**  
 **[Commit: Add regression test for recently fixed bug](https://chromium.googlesource.com/v8/v8/+/3619dcf)**  
@@ -19723,8 +20299,9 @@ assertEquals("ok", crash(1));
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/3619dcf^!)  
 [test/mjsunit/regress/regress-crbug-258519.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-258519.js?cl=3619dcf)  
   
+---   
 
-### **crbug:248025**  
+## **crbug:248025**  
    
 **[Issue: No Permission](https://crbug.com/248025)**  
 **[Commit: Fix crasher when checking for "of", but next token has no literal buffer](https://chromium.googlesource.com/v8/v8/+/f68d6a1)**  
@@ -19752,8 +20329,9 @@ try {
 [src/scanner.h](https://cs.chromium.org/chromium/src/v8/src/scanner.h?cl=f68d6a1)  
 [test/mjsunit/regress/regress-crbug-248025.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-248025.js?cl=f68d6a1)  
   
+---   
 
-### **crbug:245480**  
+## **crbug:245480**  
    
 **[Issue: No Permission](https://crbug.com/245480)**  
 **[Commit: Fix for bug 245480. Calling new Array(a) with a single argument could result in creating a holey array with a packed elements kind.](https://chromium.googlesource.com/v8/v8/+/75afb8c)**  
@@ -19810,8 +20388,9 @@ assertEquals(undefined, g(a));
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=75afb8c)  
 [test/mjsunit/regress/regress-crbug-245480.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-245480.js?cl=75afb8c)  
   
+---   
 
-### **crbug:245424**  
+## **crbug:245424**  
    
 **[Issue: Chrome: Crash Report - Stack Signature: v8::internal::FlexibleBodyVisitor<v8::internal::IncrementalMarkingMarking](https://crbug.com/245424)**  
 **[Commit: Fast literals: fixed initialization of non-copied in-object property fields](https://chromium.googlesource.com/v8/v8/+/b4058a3)**  
@@ -19840,8 +20419,9 @@ assertEquals("baz", boom().foo);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=b4058a3)  
 [test/mjsunit/regress/regress-crbug-245424.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-245424.js?cl=b4058a3)  
   
+---   
 
-### **crbug:244461**  
+## **crbug:244461**  
    
 **[Issue: Chrome: Crash Report - Stack Signature: v8::internal::HOptimizedGraphBuilder::TryInlineBuiltinFunctionCall...](https://crbug.com/244461)**  
 **[Commit: Special Array constructor type feedback erroneously recorded when Array](https://chromium.googlesource.com/v8/v8/+/3d3c6b1)**  
@@ -19874,8 +20454,9 @@ foo(Array);
 [test/mjsunit/allocation-site-info.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/allocation-site-info.js?cl=3d3c6b1)  
 [test/mjsunit/regress/regress-crbug-244461.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-244461.js?cl=3d3c6b1)  
   
+---   
 
-### **crbug:243868**  
+## **crbug:243868**  
    
 **[Issue: Chrome: Crash Report - Stack Signature: v8::internal::HOptimizedGraphBuilder::VisitLogicalExpression...](https://crbug.com/243868)**  
 **[Commit: Fix IfBuilder::Deopt to clear the current block.](https://chromium.googlesource.com/v8/v8/+/3b114cd)**  
@@ -19909,8 +20490,9 @@ assertFalse(f(realmObject));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=3b114cd)  
 [test/mjsunit/regress/regress-crbug-243868.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-243868.js?cl=3b114cd)  
   
+---   
 
-### **crbug:242924**  
+## **crbug:242924**  
    
 **[Issue: [LangFuzz] Crash at v8::internal::HeapObject::Size() on 64 bit with invalid read](https://crbug.com/242924)**  
 **[Commit: Fix bogus deopt in BuildEmitDeepCopy for holey arrays.](https://chromium.googlesource.com/v8/v8/+/b704cb9)**  
@@ -19946,8 +20528,9 @@ gc();
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=b704cb9)  
 [test/mjsunit/regress/regress-crbug-242924.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-242924.js?cl=b704cb9)  
   
+---   
 
-### **crbug:242870**  
+## **crbug:242870**  
    
 **[Issue: UNKNOWN in v8::internal::HOptimizedGraphBuilder::VisitLogicalExpression](https://crbug.com/242870)**  
 **[Commit: Fix VisitLogicalExpression for empty blocks on RHS.](https://chromium.googlesource.com/v8/v8/+/bf413b5)**  
@@ -19978,8 +20561,9 @@ assertTrue(f());
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=bf413b5)  
 [test/mjsunit/regress/regress-crbug-242870.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-242870.js?cl=bf413b5)  
   
+---   
 
-### **crbug:242502**  
+## **crbug:242502**  
    
 **[Issue: UNKNOWN in v8::internal::TypeFeedbackOracle::CanRetainOtherContext](https://crbug.com/242502)**  
 **[Commit: Add regression test for fix from r14732.](https://chromium.googlesource.com/v8/v8/+/db4a770)**  
@@ -20032,8 +20616,9 @@ assertEquals(23, call(oboom));
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/db4a770^!)  
 [test/mjsunit/regress/regress-crbug-242502.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-242502.js?cl=db4a770)  
   
+---   
 
-### **crbug:240032**  
+## **crbug:240032**  
    
 **[Issue: Security: chrome_70ee0000!v8::internal::ScavengingVisitor<1,1>::EvacuateShortcutCandidate crash](https://crbug.com/240032)**  
 **[Commit: Fix embedded new-space pointer in LCmpObjectEqAndBranch.](https://chromium.googlesource.com/v8/v8/+/8fb2086)**  
@@ -20073,8 +20658,9 @@ assertTrue(cmp(o, o.func));
 [src/x64/macro-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/macro-assembler-x64.h?cl=8fb2086)  
 [test/mjsunit/regress/regress-crbug-240032.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-240032.js?cl=8fb2086)  
   
+---   
 
-### **crbug:233737**  
+## **crbug:233737**  
    
 **[Issue: JavaScript performs a calculation incorrectly](https://crbug.com/233737)**  
 **[Commit: Fix missing hole check for loads from Smi arrays when all uses are changes](https://chromium.googlesource.com/v8/v8/+/7636fde)**  
@@ -20104,8 +20690,9 @@ assertEquals(0, hole(1));
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=7636fde)  
 [test/mjsunit/regress/regress-crbug-233737.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-233737.js?cl=7636fde)  
   
+---   
 
-### **crbug:229923**  
+## **crbug:229923**  
    
 **[Issue: Crash while loading pages due to V8 roll](https://crbug.com/229923)**  
 **[Commit: Fix JSON.stringify's slow path wrt sliced strings.](https://chromium.googlesource.com/v8/v8/+/da5c11a)**  
@@ -20134,8 +20721,9 @@ assertEquals('"' + slice_of_external + '"',
 [src/json-stringifier.h](https://cs.chromium.org/chromium/src/v8/src/json-stringifier.h?cl=da5c11a)  
 [test/mjsunit/regress/regress-crbug-229923.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-229923.js?cl=da5c11a)  
   
+---   
 
-### **crbug:217858**  
+## **crbug:217858**  
    
 **[Issue: [LangFuzz] Crash on Heap with invalid read (possibly due to uninitialized value) on 64 bit](https://crbug.com/217858)**  
 **[Commit: Add test case for missing deopt sequence after forced deopt.](https://chromium.googlesource.com/v8/v8/+/a942fcd)**  
@@ -20160,8 +20748,9 @@ for (var i = 0; i < 300; i++) {
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a942fcd^!)  
 [test/mjsunit/regress/regress-crbug-217858.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-217858.js?cl=a942fcd)  
   
+---   
 
-### **crbug:196583**  
+## **crbug:196583**  
    
 **[Issue: No Permission](https://crbug.com/196583)**  
 **[Commit: Fix detection of |handle_smi| case in HOptimizedGraphBuilder::HandlePolymorphicCallNamed](https://chromium.googlesource.com/v8/v8/+/e2cd7aa)**  
@@ -20201,8 +20790,9 @@ assertEquals(1, crash(a));
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=e2cd7aa)  
 [test/mjsunit/regress/regress-crbug-196583.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-196583.js?cl=e2cd7aa)  
   
+---   
 
-### **crbug:181422**  
+## **crbug:181422**  
    
 **[Issue: Special character \s in RegExp does not match \u00a0 (NBSP)](https://crbug.com/181422)**  
 **[Commit: Fix white space matching in latin-1 strings wrt \u00a0.](https://chromium.googlesource.com/v8/v8/+/b85237a)**  
@@ -20226,8 +20816,9 @@ assertArrayEquals(["\u2604", "b", "c", "d"], "\u2604b\u00a0cd".match(/\S/g));
 [src/x64/regexp-macro-assembler-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/regexp-macro-assembler-x64.cc?cl=b85237a)  
 [test/mjsunit/regress/regress-crbug-181422.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-181422.js?cl=b85237a)  
   
+---   
 
-### **crbug:178790**  
+## **crbug:178790**  
    
 **[Issue: Regex causing browser to become unresponsive](https://crbug.com/178790)**  
 **[Commit: Limit EatAtLeast recursion by a budget.](https://chromium.googlesource.com/v8/v8/+/358311e)**  
@@ -20267,8 +20858,9 @@ for (var i = 0; i < 1000; i++) {
 [src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=358311e)  
 [test/mjsunit/regress/regress-crbug-178790.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-178790.js?cl=358311e)  
   
+---   
 
-### **crbug:173974**  
+## **crbug:173974**  
    
 **[Issue: Type-feedback oracle in V8 gets confused aoubt monomorphic IC](https://crbug.com/173974)**  
 **[Commit: Tag stubs that rely on instance types as MEGAMORPHIC.](https://chromium.googlesource.com/v8/v8/+/aca87c2)**  
@@ -20293,8 +20885,9 @@ f();
 [src/code-stubs.h](https://cs.chromium.org/chromium/src/v8/src/code-stubs.h?cl=aca87c2)  
 [test/mjsunit/regress/regress-crbug-173974.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-173974.js?cl=aca87c2)  
   
+---   
 
-### **crbug:173907**  
+## **crbug:173907**  
    
 **[Issue: CryptoJS show different behavior when debugged](https://crbug.com/173907)**  
 **[Commit: Add regression test for r13617](https://chromium.googlesource.com/v8/v8/+/e83ff19)**  
@@ -20369,8 +20962,9 @@ test();
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e83ff19^!)  
 [test/mjsunit/regress/regress-crbug-173907.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-173907.js?cl=e83ff19)  
   
+---   
 
-### **crbug:172345**  
+## **crbug:172345**  
    
 **[Issue: No Permission](https://crbug.com/172345)**  
 **[Commit: Do not try to collect the map if the monomorphic IC stub has no map.](https://chromium.googlesource.com/v8/v8/+/c8636a2)**  
@@ -20394,8 +20988,9 @@ f([1,2,3], 2);
 [src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=c8636a2)  
 [test/mjsunit/regress/regress-crbug-172345.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-172345.js?cl=c8636a2)  
   
+---   
 
-### **crbug:170856**  
+## **crbug:170856**  
    
 **[Issue: Chrome Canary snaps when rendering Google AppScript pages](https://crbug.com/170856)**  
 **[Commit: Correctly reset lastIndex in an RegExp object.](https://chromium.googlesource.com/v8/v8/+/9296975)**  
@@ -20420,8 +21015,9 @@ assertEquals(0, r.lastIndex);
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=9296975)  
 [test/mjsunit/regress/regress-crbug-170856.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-170856.js?cl=9296975)  
   
+---   
 
-### **crbug:168545**  
+## **crbug:168545**  
    
 **[Issue: No Permission](https://crbug.com/168545)**  
 **[Commit: Fix missing exception check in typed array constructor.](https://chromium.googlesource.com/v8/v8/+/0e46919)**  
@@ -20445,8 +21041,9 @@ assertThrows("new Int16Array(a);");
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=0e46919)  
 [test/mjsunit/regress/regress-crbug-168545.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-168545.js?cl=0e46919)  
   
+---   
 
-### **crbug:163530**  
+## **crbug:163530**  
    
 **[Issue: arguments occasionally contains arguments of callee.](https://crbug.com/163530)**  
 **[Commit: Fix materialization of arguments objects with unknown values.](https://chromium.googlesource.com/v8/v8/+/ea5e9ed)**  
@@ -20520,8 +21117,9 @@ Regress: [mjsunit/regress/regress-crbug-163530.js](https://chromium.googlesource
 [src/x64/lithium-codegen-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.h?cl=ea5e9ed)  
 [test/mjsunit/regress/regress-crbug-163530.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-163530.js?cl=ea5e9ed)  
   
+---   
 
-### **crbug:162085**  
+## **crbug:162085**  
    
 **[Issue: Google Calendar leaks tons of memory](https://crbug.com/162085)**  
 **[Commit: Ensure double arrays are filled with holes when extended from variations of empty arrays.](https://chromium.googlesource.com/v8/v8/+/ebeaad6)**  
@@ -20585,8 +21183,9 @@ assertEquals(undefined, a4[3]);
 [test/mjsunit/array-natives-elements.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/array-natives-elements.js?cl=ebeaad6)  
 [test/mjsunit/regress/regress-crbug-162085.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-162085.js?cl=ebeaad6)  
   
+---   
 
-### **crbug:160010**  
+## **crbug:160010**  
    
 **[Issue: [LangFuzz] Crash at v8::internal::BasicJsonStringifier::SerializeString](https://crbug.com/160010)**  
 **[Commit: Fix length check in JSON.stringify.](https://chromium.googlesource.com/v8/v8/+/ef1b3d3)**  
@@ -20609,8 +21208,9 @@ JSON.stringify(str);
 [src/json-stringifier.h](https://cs.chromium.org/chromium/src/v8/src/json-stringifier.h?cl=ef1b3d3)  
 [test/mjsunit/regress/regress-crbug-160010.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-160010.js?cl=ef1b3d3)  
   
+---   
 
-### **crbug:158185**  
+## **crbug:158185**  
    
 **[Issue: JSON.parse](https://crbug.com/158185)**  
 **[Commit: Treat leading zeros in JSON.parse correctly.](https://chromium.googlesource.com/v8/v8/+/8ed2e56)**  
@@ -20638,8 +21238,9 @@ assertEquals(undefined, JSON.parse('{"00":1}')[0]);
 [src/json-parser.h](https://cs.chromium.org/chromium/src/v8/src/json-parser.h?cl=8ed2e56)  
 [test/mjsunit/regress/regress-crbug-158185.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-158185.js?cl=8ed2e56)  
   
+---   
 
-### **crbug:157520**  
+## **crbug:157520**  
    
 **[Issue: Arguments collection not updated intermittently](https://crbug.com/157520)**  
 **[Commit: Fix ugly typo in GenerateNewNonStrictFast.](https://chromium.googlesource.com/v8/v8/+/e363cd3)**  
@@ -20666,8 +21267,9 @@ Regress: [mjsunit/regress/regress-crbug-157520.js](https://chromium.googlesource
 [src/x64/code-stubs-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/code-stubs-x64.cc?cl=e363cd3)  
 [test/mjsunit/regress/regress-crbug-157520.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-157520.js?cl=e363cd3)  
   
+---   
 
-### **crbug:157019**  
+## **crbug:157019**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/157019)**  
 **[Commit: Fix slack tracking when instance prototype changes.](https://chromium.googlesource.com/v8/v8/+/a31889e)**  
@@ -20715,8 +21317,9 @@ for (var i = 0; i < 50000; i++) {
 [src/x64/stub-cache-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/stub-cache-x64.cc?cl=a31889e)  
 [test/mjsunit/regress/regress-crbug-157019.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-157019.js?cl=a31889e)  
   
+---   
 
-### **crbug:150729**  
+## **crbug:150729**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/150729)**  
 **[Commit: Fix LBoundsCheck on x64 to handle (stack slot + constant) correctly](https://chromium.googlesource.com/v8/v8/+/a8e502f)**  
@@ -20743,8 +21346,9 @@ for (var j = 0; j < 5; j++) {
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=a8e502f)  
 [test/mjsunit/regress/regress-crbug-150729.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-150729.js?cl=a8e502f)  
   
+---   
 
-### **crbug:150545**  
+## **crbug:150545**  
    
 **[Issue: UNKNOWN in v8::internal::RootMarkingVisitor::MarkObjectByPointer](https://crbug.com/150545)**  
 **[Commit: Fix lost arguments dropping in HLeaveInlined.](https://chromium.googlesource.com/v8/v8/+/f0dcaf9)**  
@@ -20785,8 +21389,9 @@ Regress: [mjsunit/regress/regress-crbug-150545.js](https://chromium.googlesource
 [src/x64/lithium-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-x64.cc?cl=f0dcaf9)  
 [test/mjsunit/regress/regress-crbug-150545.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-150545.js?cl=f0dcaf9)  
   
+---   
 
-### **crbug:148376**  
+## **crbug:148376**  
    
 **[Issue: [LangFuzz] Crash at v8::internal::MarkCompactCollector::EvacuateNewSpace with invalid read](https://crbug.com/148376)**  
 **[Commit: Ensure correct enumeration indices in the dict](https://chromium.googlesource.com/v8/v8/+/1d1adaf)**  
@@ -20811,8 +21416,9 @@ var keys = Object.keys(this);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=1d1adaf)  
 [test/mjsunit/regress/regress-crbug-148376.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-148376.js?cl=1d1adaf)  
   
+---   
 
-### **crbug:147475**  
+## **crbug:147475**  
    
 **[Issue: UNKNOWN in v8::internal::Deoptimizer::DoComputeOutputFrames](https://crbug.com/147475)**  
 **[Commit: Fix deoptimizer for shared optimized code.](https://chromium.googlesource.com/v8/v8/+/f6cd240)**  
@@ -20848,8 +21454,9 @@ assertEquals(102, f2(2));
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=f6cd240)  
 [test/mjsunit/regress/regress-crbug-147475.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-147475.js?cl=f6cd240)  
   
+---   
 
-### **crbug:146910**  
+## **crbug:146910**  
    
 **[Issue: setting an array's .length can delete non-configurable properties](https://crbug.com/146910)**  
 **[Commit: Fix setting array length to zero for slow elements.](https://chromium.googlesource.com/v8/v8/+/c012afb)**  
@@ -20877,8 +21484,9 @@ assertSame(7, x[0]);
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=c012afb)  
 [test/mjsunit/regress/regress-crbug-146910.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-146910.js?cl=c012afb)  
   
+---   
 
-### **crbug:145961**  
+## **crbug:145961**  
    
 **[Issue: Trix / google spreadsheets have selection issues on ChromeOS](https://crbug.com/145961)**  
 **[Commit: Support register as right operand in min/max support.](https://chromium.googlesource.com/v8/v8/+/a8638c1)**  
@@ -20905,8 +21513,9 @@ assertEquals(0, test());
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=a8638c1)  
 [test/mjsunit/regress/regress-crbug-145961.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-145961.js?cl=a8638c1)  
   
+---   
 
-### **crbug:142218**  
+## **crbug:142218**  
    
 **[Issue: LLVM cPython no longer works](https://crbug.com/142218)**  
 **[Commit: Check that index and length are Smi in bounds check.](https://chromium.googlesource.com/v8/v8/+/5df5eea)**  
@@ -20943,8 +21552,9 @@ assertEquals(1, count);
 [src/x64/lithium-codegen-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.h?cl=5df5eea)  
 [test/mjsunit/regress/regress-crbug-142218.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-142218.js?cl=5df5eea)  
   
+---   
 
-### **crbug:142087**  
+## **crbug:142087**  
    
 **[Issue: UNKNOWN in void v8::internal::String::WriteToFlat<char>](https://crbug.com/142087)**  
 **[Commit: Fix wrong indexing in global regexp.](https://chromium.googlesource.com/v8/v8/+/960b1af)**  
@@ -20972,8 +21582,9 @@ assertArrayEquals(expected_match, string.match(/(_)|(_|)/g, ""));
 [src/jsregexp.cc](https://cs.chromium.org/chromium/src/v8/src/jsregexp.cc?cl=960b1af)  
 [test/mjsunit/regress/regress-crbug-142087.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-142087.js?cl=960b1af)  
   
+---   
 
-### **crbug:140083**  
+## **crbug:140083**  
    
 **[Issue: [LangFuzz] Crash on heap trying to execute address 0x0000000200000000.](https://crbug.com/140083)**  
 **[Commit: Fixed compound/count operations with getter-only accessor properties.](https://chromium.googlesource.com/v8/v8/+/83fc420)**  
@@ -21003,8 +21614,9 @@ bar(baz);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=83fc420)  
 [test/mjsunit/regress/regress-crbug-140083.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-140083.js?cl=83fc420)  
   
+---   
 
-### **crbug:138887**  
+## **crbug:138887**  
    
 **[Issue: AirAsia.com is broken: Chrome is throwing an "Uncaught RangeError: Maximum call stack size exceeded" since build 143896](https://crbug.com/138887)**  
 **[Commit: Always set the callee's context when calling a function from optimized code.](https://chromium.googlesource.com/v8/v8/+/80c35c6)**  
@@ -21043,8 +21655,9 @@ assertEquals(102, f2(1000));
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=80c35c6)  
 [test/mjsunit/regress/regress-crbug-138887.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-138887.js?cl=80c35c6)  
   
+---   
 
-### **crbug:137689**  
+## **crbug:137689**  
    
 **[Issue: REGRESSION: about:gpu broken](https://crbug.com/137689)**  
 **[Commit: When following an accessor transition for an already existing accessor, don't load the last added descriptor but the same descriptor as we already found previously.](https://chromium.googlesource.com/v8/v8/+/90c7cb1)**  
@@ -21080,8 +21693,9 @@ assertTrue(%HaveSameMap(o, o2));
 [src/property.h](https://cs.chromium.org/chromium/src/v8/src/property.h?cl=90c7cb1)  
 [test/mjsunit/regress/regress-crbug-137689.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-137689.js?cl=90c7cb1)  
   
+---   
 
-### **crbug:135066**  
+## **crbug:135066**  
    
 **[Issue: No Permission](https://crbug.com/135066)**  
 **[Commit: Fix lazy compilation for strict eval scopes.](https://chromium.googlesource.com/v8/v8/+/7da6d2b)**  
@@ -21126,8 +21740,9 @@ assertEquals(42, (function() {
 [src/scopes.h](https://cs.chromium.org/chromium/src/v8/src/scopes.h?cl=7da6d2b)  
 [test/mjsunit/regress/regress-crbug-135066.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-135066.js?cl=7da6d2b)  
   
+---   
 
-### **crbug:135008**  
+## **crbug:135008**  
    
 **[Issue: Chrome: Crash Report -         Stack Signature: v8::internal::AstVisitor::VisitDeclarations...](https://crbug.com/135008)**  
 **[Commit: Fix lazy parsing heuristics to respect outer scope.](https://chromium.googlesource.com/v8/v8/+/a691c69)**  
@@ -21161,8 +21776,9 @@ assertSame(23, scope.f());
 [src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=a691c69)  
 [test/mjsunit/regress/regress-crbug-135008.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-135008.js?cl=a691c69)  
   
+---   
 
-### **crbug:134609**  
+## **crbug:134609**  
    
 **[Issue: Chrome: Crash Report -         Stack Signature: v8::internal::JSReceiver::Lookup(v8::intern...](https://crbug.com/134609)**  
 **[Commit: Fixed deoptimization of inlined getters.](https://chromium.googlesource.com/v8/v8/+/7af6883)**  
@@ -21232,8 +21848,9 @@ assertEquals("good", test());
 [src/x64/stub-cache-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/stub-cache-x64.cc?cl=7af6883)  
 [test/mjsunit/regress/regress-crbug-134609.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-134609.js?cl=7af6883)  
   
+---   
 
-### **crbug:134055**  
+## **crbug:134055**  
    
 **[Issue: No Permission](https://crbug.com/134055)**  
 **[Commit: Make near-jump check more strict in LoadNamedFieldPolymorphic on ia32/x64](https://chromium.googlesource.com/v8/v8/+/9ce4133)**  
@@ -21285,8 +21902,9 @@ crash(a);
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=9ce4133)  
 [test/mjsunit/regress/regress-crbug-134055.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-134055.js?cl=9ce4133)  
   
+---   
 
-### **crbug:126414**  
+## **crbug:126414**  
    
 **[Issue: [LangFuzz] Crash on heap with invalid read from random address (32 bit)](https://crbug.com/126414)**  
 **[Commit: Fix unsigned-Smi check in MappedArgumentsLookup](https://chromium.googlesource.com/v8/v8/+/63263a9)**  
@@ -21310,8 +21928,9 @@ foo(-536870912);
 [src/mips/ic-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/ic-mips.cc?cl=63263a9)  
 [test/mjsunit/regress/regress-crbug-126414.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-126414.js?cl=63263a9)  
   
+---   
 
-### **crbug:125148**  
+## **crbug:125148**  
    
 **[Issue: Javascript engine sometimes calls incorrect constructor](https://crbug.com/125148)**  
 **[Commit: Perform HasFastProperties check on prototypes when computing call targets in Crankshaft.](https://chromium.googlesource.com/v8/v8/+/432576b)**  
@@ -21389,8 +22008,9 @@ assertEquals(111, fuu(C));
 [src/ast.cc](https://cs.chromium.org/chromium/src/v8/src/ast.cc?cl=432576b)  
 [test/mjsunit/regress/regress-crbug-125148.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-125148.js?cl=432576b)  
   
+---   
 
-### **crbug:122271**  
+## **crbug:122271**  
    
 **[Issue: Page starts rendering incorrectly after V8 roll](https://crbug.com/122271)**  
 **[Commit: Fix regular and ElementsKind transitions interfering with each other](https://chromium.googlesource.com/v8/v8/+/14e1817)**  
@@ -21427,8 +22047,9 @@ assertTrue(%HasObjectElements(b));
 [src/x64/stub-cache-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/stub-cache-x64.cc?cl=14e1817)  
 [test/mjsunit/regress/regress-crbug-122271.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-122271.js?cl=14e1817)  
   
+---   
 
-### **crbug:119926**  
+## **crbug:119926**  
    
 **[Issue: Use after free in v8::internal::IncrementalMarking::Step](https://crbug.com/119926)**  
 **[Commit: Fix missing write barrier in CopyObjectToObjectElements.](https://chromium.googlesource.com/v8/v8/+/4e405b6)**  
@@ -21451,8 +22072,9 @@ for (var i = 0; i < 100000; i++) {
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=4e405b6)  
 [test/mjsunit/regress/regress-crbug-119926.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-119926.js?cl=4e405b6)  
   
+---   
 
-### **crbug:109362**  
+## **crbug:109362**  
    
 **[Issue: Line number mismatch in functions created with Function constructor](https://crbug.com/109362)**  
 **[Commit: Correctly compute line numbers in functions from the function constructor.](https://chromium.googlesource.com/v8/v8/+/1dbd636)**  
@@ -21531,8 +22153,9 @@ test("2:6", eval(
 [test/message/single-function-literal.js](https://cs.chromium.org/chromium/src/v8/test/message/single-function-literal.js?cl=1dbd636)  
 [test/mjsunit/regress/regress-crbug-109362.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-109362.js?cl=1dbd636)  
   
+---   
 
-### **crbug:100859**  
+## **crbug:100859**  
    
 **[Issue: [LangFuzz] Crash on Heap with null deref](https://crbug.com/100859)**  
 **[Commit: Fix crash in d8 when external array ctor hits stack overflow](https://chromium.googlesource.com/v8/v8/+/91efb31)**  
@@ -21560,8 +22183,9 @@ assertTrue(exception);
 [src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=91efb31)  
 [test/mjsunit/regress/regress-crbug-100859.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-100859.js?cl=91efb31)  
   
+---   
 
-### **crbug:90771**  
+## **crbug:90771**  
    
 **[Issue: DOMUI: Sync errors surfacing on NTP, Preferences and Bookmarks Bar are completely out of sync](https://crbug.com/90771)**  
 **[Commit: Fix Reflect.construct with constructors without a prototype slot](https://chromium.googlesource.com/v8/v8/+/7a3cb59)**  
@@ -21587,8 +22211,9 @@ for (let key of Object.getOwnPropertyNames(this)) {
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=7a3cb59)  
 [test/mjsunit/regress/regress-crbug-90771.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-90771.js?cl=7a3cb59)  
   
+---   
 
-### **crbug:87478**  
+## **crbug:87478**  
    
 **[Issue: [LangFuzz] Crash on heap with invalid read](https://crbug.com/87478)**  
 **[Commit: Fix receiver check in arguments ICs.](https://chromium.googlesource.com/v8/v8/+/89cc886)**  
@@ -21614,8 +22239,9 @@ f('123');
 [src/x64/ic-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/ic-x64.cc?cl=89cc886)  
 [test/mjsunit/regress/regress-crbug-87478.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-87478.js?cl=89cc886)  
   
+---   
 
-### **crbug:72736**  
+## **crbug:72736**  
    
 **[Issue: Object.defineProperty does not override existing properties](https://crbug.com/72736)**  
 **[Commit: Use ForceSetObjectProperty in DefineOrRedefineDataProperty (fixes crbug 72736).](https://chromium.googlesource.com/v8/v8/+/34eeb88)**  
@@ -21638,8 +22264,9 @@ assertEquals(obj.foo, 20);
 [src/v8natives.js](https://cs.chromium.org/chromium/src/v8/src/v8natives.js?cl=34eeb88)  
 [test/mjsunit/regress/regress-crbug-72736.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-72736.js?cl=34eeb88)  
   
+---   
 
-### **crbug:40931**  
+## **crbug:40931**  
    
 **[Issue: Javascript split method of string object returns array with some additional strange keys](https://crbug.com/40931)**  
 **[Commit: Added regression test for crbug 40931 http://crbug.com/40931](https://chromium.googlesource.com/v8/v8/+/f066a9a)**  
@@ -21667,8 +22294,9 @@ for(var i = 0; i < 10; i++) {
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f066a9a^!)  
 [test/mjsunit/regress/regress-crbug-40931.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-40931.js?cl=f066a9a)  
   
+---   
 
-### **crbug:39160**  
+## **crbug:39160**  
    
 **[Issue: Reliability failure in V8 generated code](https://crbug.com/39160)**  
 **[Commit: Re-apply "Inline floating point compare"](https://chromium.googlesource.com/v8/v8/+/6a63910)**  
@@ -21700,8 +22328,9 @@ f(5)
 [src/x64/codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/codegen-x64.cc?cl=6a63910)  
 [test/mjsunit/regress/regress-crbug-39160.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-39160.js?cl=6a63910)  
   
+---   
 
-### **crbug:37853**  
+## **crbug:37853**  
    
 **[Issue: CHECK fail when editing a sites page](https://crbug.com/37853)**  
 **[Commit: Fix code cache lookup for keyed IC's](https://chromium.googlesource.com/v8/v8/+/b0c9738)**  
@@ -21725,8 +22354,9 @@ f(a, 1);
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=b0c9738)  
 [test/mjsunit/regress/regress-crbug-37853.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-37853.js?cl=b0c9738)  
   
+---   
 
-### **crbug:18639**  
+## **crbug:18639**  
    
 **[Issue: Crash [@ 0xffffffff]](https://crbug.com/18639)**  
 **[Commit: Add regression test case for http://crbug.com/18639 which](https://chromium.googlesource.com/v8/v8/+/6621a43)**  
@@ -21753,8 +22383,9 @@ try {
 [test/mjsunit/regress/regress-254.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-254.js?cl=6621a43)  
 [test/mjsunit/regress/regress-crbug-18639.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-18639.js?cl=6621a43)  
   
+---   
 
-### **crbug:7907**  
+## **crbug:7907**  
    
 **[Issue: Crash - WebCore::FrameView::contentsResized()](https://crbug.com/7907)**  
 **[Commit: [array] Fix read-only property in NumberDictionary fast-path](https://chromium.googlesource.com/v8/v8/+/327668d)**  
@@ -21776,8 +22407,9 @@ assertThrows(() => arr.sort(), TypeError);
 [src/builtins/array-sort.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-sort.tq?cl=327668d)  
 [test/mjsunit/regress/regress-crbug-7907.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-7907.js?cl=327668d)  
   
+---   
 
-### **crbug:3867**  
+## **crbug:3867**  
    
 **[Issue: Objects not created or called in order!!](https://crbug.com/3867)**  
 **[Commit: Handle insertion order for simple constructors](https://chromium.googlesource.com/v8/v8/+/1091039)**  
@@ -21844,8 +22476,9 @@ assertArrayEquals(["s3", "s2", "s1", "s4", "s0"], props(o2));
 [src/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap.cc?cl=1091039)  
 [test/mjsunit/regress/regress-crbug-3867.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-3867.js?cl=1091039)  
   
+---   
 
-### **crbug:3184**  
+## **crbug:3184**  
    
 **[Issue: apply and call does not applied on this object](https://crbug.com/3184)**  
 **[Commit: Ensure correct boxing of values when calling functions on them](https://chromium.googlesource.com/v8/v8/+/562f90d)**  
@@ -21935,3 +22568,4 @@ assertEquals("Test2 Test2", "test2 test2".cap(true));
 [test/mjsunit/regress/regress-crbug-3184.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-3184.js?cl=562f90d)  
 [test/mjsunit/value-wrapper.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/value-wrapper.js?cl=562f90d)  
   
+---   
