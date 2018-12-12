@@ -2,6 +2,57 @@
 The Harvest of V8 regress.  
   
 
+## **crbug:913296**  
+   
+**[Issue: No Permission](https://crbug.com/913296)**  
+**[Commit: [turbofan] Fix wrong typing of SpeculativeSafeIntegerSubtract.](https://chromium.googlesource.com/v8/v8/+/e3c9239)**  
+  
+Date(Commit): Tue Dec 11 10:21:35 2018  
+Components/Type: None/None  
+Labels: "No Permission"  
+Regress: [mjsunit/regress/regress-crbug-913296.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-913296.js)  
+```javascript
+function foo(trigger) {
+  return Object.is((trigger ? -0 : 0) - 0, -0);
+}
+
+assertFalse(foo(false));
+%OptimizeFunctionOnNextCall(foo);
+assertTrue(foo(true));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e3c9239^!)  
+[src/compiler/operation-typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operation-typer.cc?cl=e3c9239)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=e3c9239)  
+[test/mjsunit/regress/regress-crbug-913296.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-913296.js?cl=e3c9239)  
+  
+---   
+
+## **crbug:913212**  
+   
+**[Issue: No Permission](https://crbug.com/913212)**  
+**[Commit: [ic] do not expose global object](https://chromium.googlesource.com/v8/v8/+/e5fcd33)**  
+  
+Date(Commit): Tue Dec 11 16:01:48 2018  
+Components/Type: None/None  
+Labels: "No Permission"  
+Regress: [mjsunit/regress/regress-crbug-913212.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-913212.js)  
+```javascript
+const globalThis = this;
+Object.setPrototypeOf(this, new Proxy({}, {
+  get(target, prop, receiver) {
+    assertTrue(receiver === globalThis);
+  }
+}));
+undefined_name_access  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e5fcd33^!)  
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=e5fcd33)  
+[test/mjsunit/regress/regress-crbug-913212.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-913212.js?cl=e5fcd33)  
+  
+---   
+
 ## **crbug:911416**  
    
 **[Issue: No Permission](https://crbug.com/911416)**  
@@ -1409,7 +1460,7 @@ for (var i = 0; i < 3; i++) {
   var array = new BigInt64Array(200);
 
   function evil_callback() {
-    %ArrayBufferNeuter(array.buffer);
+    %ArrayBufferDetach(array.buffer);
     gc();
     return 1094795585n;
   }
@@ -7503,7 +7554,7 @@ var buffer = new ArrayBuffer(0x100);
 var array = new Uint8Array(buffer).fill(55);
 var tmp = {};
 tmp[Symbol.toPrimitive] = function () {
-  %ArrayBufferNeuter(array.buffer)
+  %ArrayBufferDetach(array.buffer)
   return 0;
 };
 
@@ -7514,7 +7565,7 @@ buffer = new ArrayBuffer(0x100);
 array = new Uint8Array(buffer).fill(55);
 tmp = {};
 tmp[Symbol.toPrimitive] = function () {
-  %ArrayBufferNeuter(array.buffer)
+  %ArrayBufferDetach(array.buffer)
   return 0;
 };
 
@@ -7525,7 +7576,7 @@ buffer = new ArrayBuffer(0x100);
 array = new Uint8Array(buffer).fill(55);
 tmp = {};
 tmp[Symbol.toPrimitive] = function () {
-  %ArrayBufferNeuter(array.buffer)
+  %ArrayBufferDetach(array.buffer)
   return 0;
 };
 assertEquals(true, Array.prototype.includes.call(array, undefined, tmp));  
