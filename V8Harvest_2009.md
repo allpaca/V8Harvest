@@ -24,11 +24,6 @@ for (var j = 0; j < i; j++) { var o = {}; o.x = 42; delete o.x; a[j] = o; }
 [src/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap.h?cl=44b7c59)  
 [src/mark-compact.cc](https://cs.chromium.org/chromium/src/v8/src/mark-compact.cc?cl=44b7c59)  
 [src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=44b7c59)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=44b7c59)  
-[src/serialize.cc](https://cs.chromium.org/chromium/src/v8/src/serialize.cc?cl=44b7c59)  
-[src/spaces.cc](https://cs.chromium.org/chromium/src/v8/src/spaces.cc?cl=44b7c59)  
-[src/spaces.h](https://cs.chromium.org/chromium/src/v8/src/spaces.h?cl=44b7c59)  
-[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=44b7c59)  
 ...  
   
 
@@ -47,7 +42,6 @@ Regress: [mjsunit/regress/regress-545.js](https://chromium.googlesource.com/v8/v
 try {
  new IsPrimitive(load())?this.join():String('&#10;').charCodeAt((!this>Math));
 } catch (e) {}
-
 
 
 this + !this;
@@ -157,7 +151,10 @@ print("ok");
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a0e12a3^!)  
-
+[src/array.js](https://cs.chromium.org/chromium/src/v8/src/array.js?cl=a0e12a3)  
+[test/mjsunit/regress/regress-r3391.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-r3391.js?cl=a0e12a3)  
+  
+  
 ---   
 
 ## **regress-526.js (v8 issue)**  
@@ -290,7 +287,9 @@ top();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/2e3e770^!)  
-
+[test/mjsunit/regress/regress-2249423.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-2249423.js?cl=2e3e770)  
+  
+  
 ---   
 
 ## **regress-502.js (v8 issue)**  
@@ -318,8 +317,7 @@ assertEquals(42, b.x);
 [src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=2252cc1)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=2252cc1)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=2252cc1)  
-[src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=2252cc1)  
-[test/mjsunit/regress/regress-502.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-502.js?cl=2252cc1)  
+...  
   
 
 ---   
@@ -334,8 +332,8 @@ Type: ----
 Code Review: [http://codereview.chromium.org/361033](http://codereview.chromium.org/361033)  
 Regress: [mjsunit/regress/regress-486.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-486.js)  
 ```javascript
-var st = "\u0422\u0435\u0441\u0442";  
-var cyrillicMatch = /^[\u0430-\u044fa-z]+$/i.test(st);  
+var st = "\u0422\u0435\u0441\u0442";  // Test in Cyrillic characters.
+var cyrillicMatch = /^[\u0430-\u044fa-z]+$/i.test(st);  // a-ja a-z.
 assertTrue(cyrillicMatch);  
 ```  
   
@@ -409,8 +407,7 @@ for (i = 1100; i < 1200; i++) {
 [src/arm/codegen-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/codegen-arm.h?cl=77a71c9)  
 [src/arm/debug-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/debug-arm.cc?cl=77a71c9)  
 [src/arm/fast-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/fast-codegen-arm.cc?cl=77a71c9)  
-[src/debug.h](https://cs.chromium.org/chromium/src/v8/src/debug.h?cl=77a71c9)  
-[test/mjsunit/regress/regress-491.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-491.js?cl=77a71c9)  
+...  
   
 
 ---   
@@ -507,23 +504,18 @@ Code Review: [http://codereview.chromium.org/342015.](http://codereview.chromium
 Regress: [mjsunit/regress/regress-490.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-490.js)  
 ```javascript
 var kXXX = 11
-
-
-
 var a = '';
 while (a.length < (2 << 11)) { a+= 'x'; }
 
-
 a.replace(/^(.*)/, '$1$1$1');
-
 
 for (var i = 0; i < 10; i++) {
   var  b = '';
   for (var j = 0; j < 10; j++) {
     b += '$1';
 
-    
-    
+    // TODO(machenbach): Do we need all these replacements? Wouldn't corner
+    // cases like smallest and biggest suffice?
     a.replace(/^(.*)/, b);
   }
   a += a;
@@ -552,10 +544,7 @@ var global = this;
 var global2 = (function(){return this;})();
 assertEquals(global, global2, "direct call to local function returns global");
 
-
 var builtin2 = Object.prototype.toString;
-
-
 
 assertTrue("[object builtins]" != builtin2(), "Direct call to toString");
 assertTrue("[object builtins]" != builtin2.call(), "call() to toString");
@@ -692,9 +681,9 @@ A = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
 function foo() {
   x = 1 << 26;
   x = x * x;
-  
-  
-  
+  // The following floating-point heap number has a second word similar
+  // to that of the string "5":
+  // 2^52 + index << cached_index_shift + cached_index_tag
   x = x + (5 << 2) + (1 << 1);
   return A[x];
 }
@@ -724,7 +713,6 @@ Regress: [mjsunit/regress/regress-406.js](https://chromium.googlesource.com/v8/v
 assertFalse(typeof(0) == "zero");
 assertTrue(typeof(0) != "zero");
 
-
 assertFalse(typeof(0) == "zero" && typeof(0) == "zero");
 assertFalse(typeof(0) == "zero" && typeof(0) != "zero");
 assertFalse(typeof(0) != "zero" && typeof(0) == "zero");
@@ -734,8 +722,6 @@ assertFalse(typeof(0) == "zero" || typeof(0) == "zero");
 assertTrue(typeof(0) == "zero" || typeof(0) != "zero");
 assertTrue(typeof(0) != "zero" || typeof(0) == "zero");
 assertTrue(typeof(0) != "zero" || typeof(0) != "zero");
-
-
 
 function one() { return 1; }
 
@@ -748,7 +734,6 @@ assertFalse(typeof(0) == "zero" || one() < 0);
 assertTrue(typeof(0) == "zero" || one() > 0);
 assertTrue(typeof(0) != "zero" || one() < 0);
 assertTrue(typeof(0) != "zero" || one() > 0);
-
 
 assertFalse(one() < 0 && typeof(0) == "zero");
 assertFalse(one() < 0 && typeof(0) != "zero");
@@ -961,18 +946,20 @@ Regress: [mjsunit/regress/regress-1919169.js](https://chromium.googlesource.com/
 function test() {
  var s2 = "s2";
  for (var i = 0; i < 2; i++) {
-   
+   // Crashes in round i==1 with IllegalAccess in %StringAdd(x,y)
    var res = 1 + s2;
    s2 = 2;
  }
 }
 
-
 test();  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/2dd9717^!)  
-
+[src/ia32/virtual-frame-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/virtual-frame-ia32.cc?cl=2dd9717)  
+[test/mjsunit/regress/regress-1919169.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1919169.js?cl=2dd9717)  
+  
+  
 ---   
 
 ## **regress-386.js (v8 issue)**  
@@ -1016,7 +1003,10 @@ assertFalse(/[6-9]/.test('2'));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e2a01ed^!)  
-
+[src/jsregexp.cc](https://cs.chromium.org/chromium/src/v8/src/jsregexp.cc?cl=e2a01ed)  
+[test/mjsunit/regress/regress-6-9-regexp.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-6-9-regexp.js?cl=e2a01ed)  
+  
+  
 ---   
 
 ## **regress-351.js (v8 issue)**  
@@ -1128,7 +1118,6 @@ function enumerable(obj) {
   return res;
 }
 
-
 assertArrayEquals(["baz", "bif"], enumerable(object), "enum0");
 assertFalse(delete object.foo, "delete foo");
 assertFalse(delete object.baz, "delete baz");
@@ -1137,16 +1126,13 @@ assertEquals(func1, object.bar, "read bar");
 assertEquals(func1, object.baz, "read baz");
 assertEquals(func2, object.bif, "read bif");
 
-
 object.bar = "NO WAY";
 assertEquals(func1, object.bar, "read bar 2");
 assertArrayEquals(["baz", "bif"], enumerable(object), "enum1");
 
-
 object.foo = func2;
 assertArrayEquals(["baz", "bif"], enumerable(object), "enum2");
 assertFalse(delete object.foo, "delete foo 2");
-
 
 assertTrue(delete object.bar, "delete bar");
 assertFalse("bar" in object, "has bar");
@@ -1156,11 +1142,9 @@ assertEquals(func2, object.bar, "read bar 3");
 
 assertArrayEquals(["bar", "baz", "bif"], enumerable(object), "enum3");
 
-
 assertTrue(delete object.bif, "delete bif");
 assertArrayEquals(["bar", "baz"], enumerable(object), "enum4");
 assertEquals(func1, object.bif, "read bif 2");
-
 assertTrue(delete object.bif, "delete bif 2");
 assertArrayEquals(["bar", "baz"], enumerable(object), "enum5");
 assertEquals(func1, object.bif, "read bif3");  
@@ -1201,8 +1185,7 @@ assertEquals(0, nonArray[4], "don't affect after length.");
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=889eac7)  
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=889eac7)  
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=889eac7)  
-[test/mjsunit/array-sort.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/array-sort.js?cl=889eac7)  
-[test/mjsunit/regress/regress-326.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-326.js?cl=889eac7)  
+...  
   
 
 ---   
@@ -1425,11 +1408,7 @@ assertEquals(0, b[0].length, "Array in array");
 [src/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/codegen-ia32.cc?cl=3aa57f7)  
 [src/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap.h?cl=3aa57f7)  
 [src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=3aa57f7)  
-[src/parser.h](https://cs.chromium.org/chromium/src/v8/src/parser.h?cl=3aa57f7)  
-[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=3aa57f7)  
-[src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=3aa57f7)  
-[test/mjsunit/fuzz-natives.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/fuzz-natives.js?cl=3aa57f7)  
-[test/mjsunit/regress/regress-279.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-279.js?cl=3aa57f7)  
+...  
   
 
 ---   
@@ -1585,19 +1564,13 @@ Regress: [mjsunit/regress/regress-1493017.js](https://chromium.googlesource.com/
 function C() {}
 
 
-
-
 var o = new C();
 o.x = 42;
 o = null;
 
-
-
 gc();
 
-
 o = new C();
-
 
 for (var p in o) {
   assertTrue(false);
@@ -1605,7 +1578,15 @@ for (var p in o) {
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/7977c6c6^!)  
-
+[src/factory.cc](https://cs.chromium.org/chromium/src/v8/src/factory.cc?cl=7977c6c6)  
+[src/flag-definitions.h](https://cs.chromium.org/chromium/src/v8/src/flag-definitions.h?cl=7977c6c6)  
+[src/handles.cc](https://cs.chromium.org/chromium/src/v8/src/handles.cc?cl=7977c6c6)  
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=7977c6c6)  
+[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=7977c6c6)  
+[src/property.h](https://cs.chromium.org/chromium/src/v8/src/property.h?cl=7977c6c6)  
+...  
+  
+  
 ---   
 
 ## **regress-260.js (v8 issue)**  
@@ -1699,7 +1680,6 @@ assertEquals(1, re.lastIndex, "Global, lastIndex after exec 1");
 assertEquals(null, re.exec("x"), "Global, exec 2");
 assertEquals(0, re.lastIndex, "Global, lastIndex after exec 2");
 
-
 var re2 = /x/;
 
 assertEquals(0, re2.lastIndex, "Non-global, initial lastIndex");
@@ -1782,7 +1762,7 @@ function loop(s) {
 try {
   loop("No");
 } catch(e) {
-  
+  // Stack overflow caught.
 }  
 ```  
   
@@ -1860,7 +1840,6 @@ var str = 'GgcyDGgcy.saaaa.aDGaaa.aynaaaaaaaaacaaaaagcaaaaaaaancaDGgnayr' +
     'aaanyara.anyataaagacaDGaDacynag_aanargraaGIaDGIgaDGIgaDGIgcyDGgaDGg' +
     'a.aynaaaaaaaaacaaaaagcaaaaaaaraaaa.anyataaagacaDaGgaaa.trgGragaaaac' +
     'gGaaaaaaaG';
-
 
 
 var res = re.test(str);
@@ -1991,7 +1970,6 @@ re = RegExp("a", "gim");
 assertFlags(re, true, true, true)
 
 
-
 assertThrows("/a/ii");
 
 assertThrows("/a/gii");
@@ -2021,7 +1999,6 @@ assertThrows(function(){ return RegExp("a", "giim"); })
 assertThrows(function(){ return RegExp("a", "igim"); })
 
 
-
 assertThrows("/a/iii");
 
 assertThrows("/a/giii");
@@ -2047,7 +2024,6 @@ assertThrows(function(){ return RegExp("a", "iiig"); })
 assertThrows(function(){ return RegExp("a", "miiig"); })
 
 
-
 assertThrows("/a/arglebargleglopglyf");
 
 assertThrows("/a/arglebargleglopglif");
@@ -2055,7 +2031,6 @@ assertThrows("/a/arglebargleglopglif");
 assertThrows("/a/arglebargleglopglym");
 
 assertThrows("/a/arglebargleglopglim");
-
 
 
 var re = /a/gmi;
@@ -2074,7 +2049,6 @@ assertThrows("/a/GmI");
 assertThrows("/a/gMI");
 
 assertThrows("/a/GMI");
-
 
 
 assertThrows("/a/\\u0067");
@@ -2103,8 +2077,6 @@ Regress: [mjsunit/regress/regress-192.js](https://chromium.googlesource.com/v8/v
 Object.prototype.__defineGetter__("x", function() {});
 Object.prototype.__defineSetter__("y",
                                   function() { assertUnreachable("setter"); });
-
-
 
 var x = ({ x: 42, y: 37 });
 assertEquals(42, x.x);
@@ -2160,10 +2132,7 @@ function f() {
   return eval("var x; constructor");
 }
 
-
 f()();
-
-
 
 assertEquals(constructor, f());  
 ```  
@@ -2230,11 +2199,6 @@ test();
 [src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=47d1298)  
 [src/prettyprinter.cc](https://cs.chromium.org/chromium/src/v8/src/prettyprinter.cc?cl=47d1298)  
 [src/rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/rewriter.cc?cl=47d1298)  
-[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=47d1298)  
-[src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=47d1298)  
-[src/usage-analyzer.cc](https://cs.chromium.org/chromium/src/v8/src/usage-analyzer.cc?cl=47d1298)  
-[test/cctest/test-debug.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-debug.cc?cl=47d1298)  
-[test/mjsunit/regress/regress-74.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-74.js?cl=47d1298)  
 ...  
   
 
@@ -2290,11 +2254,6 @@ assertEquals(["f", undefined], "foo".match(/(?:(?=(f)o)fx|)./));
 [src/jsregexp.h](https://cs.chromium.org/chromium/src/v8/src/jsregexp.h?cl=d6e6508)  
 [src/regexp-macro-assembler-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-ia32.cc?cl=d6e6508)  
 [src/regexp-macro-assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-ia32.h?cl=d6e6508)  
-[src/regexp-macro-assembler-irregexp.cc](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-irregexp.cc?cl=d6e6508)  
-[src/regexp-macro-assembler-irregexp.h](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-irregexp.h?cl=d6e6508)  
-[src/regexp-macro-assembler-tracer.cc](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-tracer.cc?cl=d6e6508)  
-[src/regexp-macro-assembler-tracer.h](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-tracer.h?cl=d6e6508)  
-[src/regexp-macro-assembler.h](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler.h?cl=d6e6508)  
 ...  
   
 
@@ -2321,18 +2280,18 @@ function runTest(test) {
 }
 
 function testLocal() {
-  
+  // Add property called __proto__ to the extension object.
   eval("var __proto__ = o");
-  
+  // Check that the extension object's prototype did not change.
   eval("var x = 27");
   assertFalse(setterCalled, "prototype of extension object changed");
   assertEquals(o, eval("__proto__"));
 }
 
 function testGlobal() {
-  
+  // Assign to the global __proto__ property.
   eval("__proto__ = o");
-  
+  // Check that the prototype of the global object changed.
   eval("x = 27");
   assertTrue(setterCalled, "prototype of global object did not change");
   setterCalled = false;

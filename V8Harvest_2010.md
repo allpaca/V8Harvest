@@ -50,7 +50,12 @@ assertEquals(-2147483650, testSub(-0x40000000, 1));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/73737fc^!)  
-
+[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=73737fc)  
+[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=73737fc)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=73737fc)  
+[test/mjsunit/compiler/regress-intoverflow.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-intoverflow.js?cl=73737fc)  
+  
+  
 ---   
 
 ## **regress-995.js (v8 issue)**  
@@ -69,7 +74,6 @@ function f(value) {
   }
 }
 f(new String("bar"));
-
 
 function h(value) {
   if (value == null) {
@@ -119,7 +123,6 @@ var create = Object.create(proto);
 assertEquals(create.value, undefined);
 assertDoesNotThrow(create.value = 4);
 assertEquals(create.value, 4);
-
 
 var obj1 = {};
 Object.defineProperty(obj1, 'p', {get: undefined, set: undefined});
@@ -251,7 +254,13 @@ test();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/5f962f2^!)  
-
+[src/arm/codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/codegen-arm.cc?cl=5f962f2)  
+[src/ia32/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.cc?cl=5f962f2)  
+[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=5f962f2)  
+[src/x64/codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/codegen-x64.cc?cl=5f962f2)  
+[test/mjsunit/regress/regress-swapelements.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-swapelements.js?cl=5f962f2)  
+  
+  
 ---   
 
 ## **regress-969.js (v8 issue)**  
@@ -270,22 +279,17 @@ var o = {};
 o.x = 0;
 o[0] = 0;
 
-
 x0 = 0;
 function test0() { return first((y = 1, typeof x0), 2); }
-
 assertEquals('number', test0());
-
 delete x0;
 assertEquals('undefined', test0());
-
 
 x1 = 0;
 function test1() { return first((y += 1, typeof x1), 2); }
 assertEquals('number', test1(), 'test1 before');
 delete x1;
 assertEquals('undefined', test1(), 'test1 after');
-
 
 x2 = 0;
 function test2() { return first((++y, typeof x2), 2); }
@@ -298,8 +302,6 @@ function test3() { return first((y++, typeof x3), 2); }
 assertEquals('number', test3(), 'test3 before');
 delete x3;
 assertEquals('undefined', test3(), 'test3 after');
-
-
 
 
 x4 = 0;
@@ -325,8 +327,6 @@ function test7() { return first((o.x++, typeof x7), 2); }
 assertEquals('number', test7());
 delete x7;
 assertEquals('undefined', test7());
-
-
 
 
 x8 = 0;
@@ -361,7 +361,7 @@ assertEquals('undefined', test11());
 [src/full-codegen.h](https://cs.chromium.org/chromium/src/v8/src/full-codegen.h?cl=49f4c39)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=49f4c39)  
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=49f4c39)  
-[test/mjsunit/regress/regress-989.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-989.js?cl=49f4c39)  
+...  
   
 
 ---   
@@ -429,7 +429,10 @@ assertEquals(1, test());
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e0d3f6a^!)  
-
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=e0d3f6a)  
+[test/mjsunit/compiler/regress-3260426.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-3260426.js?cl=e0d3f6a)  
+  
+  
 ---   
 
 ## **regress-stacktrace-methods.js (other issue)**  
@@ -482,7 +485,15 @@ try {
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-stacktrace.js (other issue)**  
@@ -519,7 +530,15 @@ try {
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-rep-change.js (other issue)**  
@@ -548,7 +567,15 @@ test(0);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-or.js (other issue)**  
@@ -593,7 +620,15 @@ assertEquals(-1, f2(""));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-max.js (other issue)**  
@@ -612,7 +647,15 @@ assertEquals(-Infinity, 1 / r);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-loop-deopt.js (other issue)**  
@@ -639,7 +682,15 @@ assertEquals(2, h());
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-gvn.js (other issue)**  
@@ -674,7 +725,15 @@ assertEquals(n, result);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-gap.js (other issue)**  
@@ -789,7 +848,15 @@ assertEquals(5 + 10, two_cycles_while(9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-funcaller.js (other issue)**  
@@ -821,7 +888,6 @@ for (var i=0; i<5; i++) {
 assertEquals(gee, o.g(0));
 assertEquals(null, o.g(1));
 
-
 function hej(x) {
   if (x == 0) return o.g(x);
   if (x == 1) return o.g(x);
@@ -834,7 +900,6 @@ for (var j=0; j<5; j++) {
 %OptimizeFunctionOnNextCall(hej);
 assertEquals(gee, hej(0));
 assertEquals(hej, hej(1));
-
 
 function from_eval(x) {
   if (x == 0) return eval("o.g(x);");
@@ -851,7 +916,15 @@ assertEquals(from_eval, from_eval(1));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-funarguments.js (other issue)**  
@@ -920,7 +993,15 @@ assertArrayEquals([1, "h"], hej(1));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-arrayliteral.js (other issue)**  
@@ -938,7 +1019,15 @@ assertEquals(42, f());
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-arguments.js (other issue)**  
@@ -984,7 +1073,15 @@ assertEquals(void 0, u());
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3252443.js (other issue)**  
@@ -1016,7 +1113,15 @@ x(1, "xxx", 10000, 1)
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3249650.js (other issue)**  
@@ -1053,7 +1158,15 @@ for (var i = 0; i < 20000; i++) test(x);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3247124.js (other issue)**  
@@ -1093,7 +1206,15 @@ for (var i = 0; i < 100; i++) bar(foo);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3230771.js (other issue)**  
@@ -1112,7 +1233,15 @@ f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3218915.js (other issue)**  
@@ -1141,7 +1270,15 @@ withCommaExpressionInConditional("1")
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3218915.js (other issue)**  
@@ -1154,27 +1291,27 @@ Regress: [mjsunit/compiler/regress-3218915.js](https://chromium.googlesource.com
 ```javascript
 function side_effect() { try {} finally {} return "wrong"; }
 
-
 function observe(x, y) { try {} finally {} return x; }
 
-
-
-
 function test(x) { return observe(this, ((0, side_effect()), x + 1)); }
-
 
 for (var i = 0; i < 5; ++i) test(0);
 %OptimizeFunctionOnNextCall(test);
 test(0);
 
-
-
-
 assertFalse(test("a") === "wrong");  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3218530.js (other issue)**  
@@ -1197,7 +1334,15 @@ test();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3199913.js (other issue)**  
@@ -1225,7 +1370,15 @@ assertEquals('called b(0, 1)', obj.f())
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3185905.js (other issue)**  
@@ -1272,7 +1425,15 @@ test4(0)
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3185901.js (other issue)**  
@@ -1292,7 +1453,15 @@ f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3136962.js (other issue)**  
@@ -1327,7 +1496,15 @@ assertEquals(13, count);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3006390.js (other issue)**  
@@ -1347,7 +1524,15 @@ assertEquals(1, f(8, new X()));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-8.js (other issue)**  
@@ -1442,7 +1627,15 @@ Nob(2, { Un: "" , Im: "" , total: 42});
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-7.js (other issue)**  
@@ -1469,7 +1662,15 @@ assertEquals(G, f());
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-6.js (other issue)**  
@@ -1490,15 +1691,20 @@ assertEquals(0, f(0, 1, 0));
 assertEquals(1, f(1, 0, 0));
 assertEquals(2, f(2, 1, 0));
 
-
-
-
 assertEquals(1.5, f(1, 1, 0.5));
 assertEquals(2.5, f(2, 1, 0.5));  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-5.js (other issue)**  
@@ -1527,7 +1733,15 @@ assertEquals(1, f(1));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-4.js (other issue)**  
@@ -1553,7 +1767,15 @@ assertEquals("0foo6", result);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-3.js (other issue)**  
@@ -1577,7 +1799,15 @@ assertEquals(2111485077978050, fib(75));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-2.js (other issue)**  
@@ -1606,7 +1836,15 @@ assertEquals("rrrrrrrr", TestCreateString(6));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-1.js (other issue)**  
@@ -1628,7 +1866,15 @@ assertEquals(366, DaysInYear(2000));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-0.js (other issue)**  
@@ -1652,7 +1898,15 @@ assertEquals(200 * 200, TestNestedLoops());
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e5860bd^!)  
-
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=e5860bd)  
+[include/v8-debug.h](https://cs.chromium.org/chromium/src/v8/include/v8-debug.h?cl=e5860bd)  
+[include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
+[samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
+[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
+...  
+  
+  
 ---   
 
 ## **regress-944.js (v8 issue)**  
@@ -1667,18 +1921,13 @@ Regress: [mjsunit/regress/regress-944.js](https://chromium.googlesource.com/v8/v
 ```javascript
 assertEquals(1290722550521, Date.parse("2010-11-25T22:02:30.521Z"));
 
-
-
 assertEquals(1290722550500, Date.parse("2010-11-25T22:02:30.5Z"));
 assertEquals(1290722550520, Date.parse("2010-11-25T22:02:30.52Z"));
 assertFalse(Date.parse("2010-11-25T22:02:30.5Z") === Date.parse("2010-11-25T22:02:30.005Z"));
 
-
 assertEquals(Date.parse("2010-11-25T22:02:30.1005Z"), Date.parse("2010-11-25T22:02:30.100Z"));
 
-
 assertEquals(Date.parse("2010-11-25T22:02:30.999Z"), Date.parse("2010-11-25T22:02:30.99999999999999999999999999999999999999999999999999999999999999999999999999999999999999Z"));
-
 
 assertTrue(isNaN(Date.parse("2010-11-25T22:02:30.Z")));  
 ```  
@@ -1729,7 +1978,7 @@ assertEquals("123412'34", sequence);
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=010f35f)  
 [src/x64/codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/codegen-x64.cc?cl=010f35f)  
 [src/x64/full-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/full-codegen-x64.cc?cl=010f35f)  
-[test/mjsunit/regress/regress-931.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-931.js?cl=010f35f)  
+...  
   
 
 ---   
@@ -1846,9 +2095,9 @@ test(test1, 58);
 test(test2, 65);
 test(test3, 72);
 
-eval(test1.toString() + "
-eval(test2.toString() + "
-eval(test3.toString() + "
+eval(test1.toString() + "//@ sourceUrl=foo");
+eval(test2.toString() + "//@ sourceUrl=foo");
+eval(test3.toString() + "//@ sourceUrl=foo");
 
 test(test1, 2);
 test(test2, 3);
@@ -1856,7 +2105,15 @@ test(test3, 3);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/746d724^!)  
-
+[src/arm/assembler-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/assembler-arm.cc?cl=746d724)  
+[src/arm/assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/assembler-arm.h?cl=746d724)  
+[src/arm/full-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/full-codegen-arm.cc?cl=746d724)  
+[src/arm/macro-assembler-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.cc?cl=746d724)  
+[src/assembler.cc](https://cs.chromium.org/chromium/src/v8/src/assembler.cc?cl=746d724)  
+[src/assembler.h](https://cs.chromium.org/chromium/src/v8/src/assembler.h?cl=746d724)  
+...  
+  
+  
 ---   
 
 ## **regress-create-exception.js (other issue)**  
@@ -1869,26 +2126,25 @@ Regress: [mjsunit/regress/regress-create-exception.js](https://chromium.googleso
 ```javascript
 "use strict";
 
-
 var v = [1, 2, 3, 4]
 
 Object.preventExtensions(v);
 
 function foo() {
-  var re = /2147483647/;  
+  var re = /2147483647/;  // Equal to 0x7fffffff.
   for  (var i = 0; i < 10000; i++) {
     var ok = false;
     try {
       var j = 1;
-      
-      
-      
+      // Allocate some heap numbers in order to randomize the behaviour of the
+      // garbage collector.  93 is chosen to be a prime number to avoid the
+      // allocation settling into a too neat pattern.
       for (var j = 0; j < i % 93; j++) {
-        j *= 1.123567;  
+        j *= 1.123567;  // An arbitrary floating point number.
       }
-      v[0x7fffffff] = 0;  
+      v[0x7fffffff] = 0;  // Trigger exception.
       assertTrue(false);
-      return j;  
+      return j;  // Make sure that future optimizations don't eliminate j.
     } catch(e) {
       ok = true;
       assertTrue(re.test(e), 'e: ' + e);
@@ -1901,7 +2157,10 @@ foo();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d22965c^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d22965c)  
+[test/mjsunit/regress/regress-create-exception.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-create-exception.js?cl=d22965c)  
+  
+  
 ---   
 
 ## **regress-58740.js (chromium issue)**  
@@ -1978,18 +2237,16 @@ var re = /a/g;
 var str = "bbbbabbbbabbbb";
 
 
-
 re.test(str);
 assertEquals(5, re.lastIndex);
 
 re.lastIndex = 0;
 re.test(str);
-assertEquals(5, re.lastIndex);  
+assertEquals(5, re.lastIndex);  // Fails if caching.
 
 re.lastIndex = 0;
 re.test(str);
-assertEquals(5, re.lastIndex);  
-
+assertEquals(5, re.lastIndex);  // Fails if caching.
 
 
 re = /a/g;
@@ -1999,11 +2256,11 @@ assertEquals(5, re.lastIndex);
 
 re.lastIndex = 0;
 re.exec(str);
-assertEquals(5, re.lastIndex);  
+assertEquals(5, re.lastIndex);  // Fails if caching.
 
 re.lastIndex = 0;
 re.exec(str);
-assertEquals(5, re.lastIndex);  
+assertEquals(5, re.lastIndex);  // Fails if caching.  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/0dece53^!)  
@@ -2027,8 +2284,6 @@ assertEquals(1283326536000, Date.parse("2010-08-31T22:35:36-09:00"));
 assertEquals(1283261736000, Date.parse("2010-08-31T22:35:36+09:00"));
 assertEquals(1283326536000, Date.parse("2010-08-31T22:35:36.0-09:00"));
 assertEquals(1283261736000, Date.parse("2010-08-31T22:35:36.0+09:00"));
-
-
 assertEquals(1283326536000, Date.parse("2010-08-31T22:35:36-0900"));
 assertEquals(1283261736000, Date.parse("2010-08-31T22:35:36+0900"));  
 ```  
@@ -2058,7 +2313,10 @@ try {
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/73c0239^!)  
-
+[src/ia32/code-stubs-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/code-stubs-ia32.cc?cl=73c0239)  
+[test/mjsunit/regress/regress-push-args-twice.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-push-args-twice.js?cl=73c0239)  
+  
+  
 ---   
 
 ## **regress-851.js (v8 issue)**  
@@ -2127,18 +2385,14 @@ Regress: [mjsunit/regress/regress-815.js](https://chromium.googlesource.com/v8/v
 ```javascript
 var o = new Object();
 
-
-
 for (x in +o) { }
 
-
 for (a[+o] in o) {}
-
 
 try {
   o[+o](1,2,3)
 } catch(e) {
-  
+  // It's OK as long as it does not hit an assert.
 }  
 ```  
   
@@ -2161,7 +2415,6 @@ Regress: [mjsunit/regress/regress-798.js](https://chromium.googlesource.com/v8/v
 ```javascript
 var x = {};
 
-
 x.__defineGetter__("a", function() {
   try {
     y.x = 40;
@@ -2178,7 +2431,6 @@ x.__defineSetter__("a", function(val) {
     assertEquals(3, e.stack.split('\n').length);
   }
 });
-
 
 function getB() {
   try {
@@ -2200,7 +2452,6 @@ function setB(val) {
 x.__defineGetter__("b", getB);
 x.__defineSetter__("b", setB);
 
-
 var descriptor  = {
   get: function() {
     try {
@@ -2221,15 +2472,12 @@ var descriptor  = {
 
 Object.defineProperty(x, 'c', descriptor)
 
-
-
 x.a;
 x.b;
 x.c;
 x.a = 1;
 x.b = 1;
 x.c = 1;
-
 
 xx = {}
 xx.__proto__ = x
@@ -2285,11 +2533,6 @@ for (var i = 0; i < 10; i++) {
 [src/arm/macro-assembler-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.cc?cl=8e0cd6d)  
 [src/arm/macro-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.h?cl=8e0cd6d)  
 [src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=8e0cd6d)  
-[src/codegen.h](https://cs.chromium.org/chromium/src/v8/src/codegen.h?cl=8e0cd6d)  
-[src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=8e0cd6d)  
-[src/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen.cc?cl=8e0cd6d)  
-[src/full-codegen.h](https://cs.chromium.org/chromium/src/v8/src/full-codegen.h?cl=8e0cd6d)  
-[src/ia32/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.cc?cl=8e0cd6d)  
 ...  
   
 
@@ -2405,13 +2648,13 @@ function bar() {
   x12 = 268;
   x13 = 269;
 
-  
-  
-  
-  
-  
-  
-  
+  // The loop variable x7 is initialized to 3,
+  // and then MakeMergeable is called on the virtual frame.
+  // MakeMergeable has forced the loop variable x7 to be spilled,
+  // so it is marked as synced
+  // The back edge then merges its virtual frame, which incorrectly
+  // claims that x7 is synced, and does not save the modified
+  // value.
   for (x7 = 3; x7 < 10; ++x7) {
     foo();
   }
@@ -2434,7 +2677,10 @@ aliasing();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/cb1eedd^!)  
-
+[src/x64/codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/codegen-x64.cc?cl=cb1eedd)  
+[test/mjsunit/regress/regress-r4998.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-r4998.js?cl=cb1eedd)  
+  
+  
 ---   
 
 ## **regress-753.js (v8 issue)**  
@@ -2598,20 +2844,14 @@ Regress: [mjsunit/regress/regress-732.js](https://chromium.googlesource.com/v8/v
 ```javascript
 var idx = 10000000;
 
-
 var obj = { };
 for (var i = 0; i < 100000; i += 100) { obj[i] = "obj" + i; }
 
-
 obj[idx] = "obj" + idx;
-
 
 var str = "" + idx;
 
-
 for (var i = 0; i < 10; i++) { ({})[str]; }
-
-
 
 assertEquals(obj[str], obj[idx])  
 ```  
@@ -2635,12 +2875,10 @@ Regress: [mjsunit/regress/regress-728.js](https://chromium.googlesource.com/v8/v
 ```javascript
 var obj = { 0: "obj0" };
 
-
 var k = 16777217;
 var h = "" + k;
 
 obj[k] = "obj" + k;
-
 
 for (var i = 0; i < 10; i++) { ({})[h]; }
 
@@ -2799,13 +3037,10 @@ Regress: [mjsunit/regress/regress-681.js](https://chromium.googlesource.com/v8/v
 var x = {};
 function f() { return x.y; }
 
-
 f();
 f();
-
 
 x = 23;
-
 
 assertEquals(undefined, f());  
 ```  
@@ -2831,30 +3066,21 @@ Regress: [mjsunit/regress/regress-675.js](https://chromium.googlesource.com/v8/v
 ```javascript
 function f() { return this.x; }
 
-
 f();
 f();
-
 
 this.x = 23;
 
-
 assertEquals(23, f());
-
-
-
 
 
 this.__proto__ = null;
 function g() { return this.y; }
 
-
 g();
 g();
-
 
 this.y = 42;
-
 
 assertEquals(42, g());  
 ```  
@@ -2866,8 +3092,7 @@ assertEquals(42, g());
 [src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=afc15bb)  
 [src/stub-cache.cc](https://cs.chromium.org/chromium/src/v8/src/stub-cache.cc?cl=afc15bb)  
 [src/stub-cache.h](https://cs.chromium.org/chromium/src/v8/src/stub-cache.h?cl=afc15bb)  
-[src/x64/stub-cache-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/stub-cache-x64.cc?cl=afc15bb)  
-[test/mjsunit/regress/regress-675.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-675.js?cl=afc15bb)  
+...  
   
 
 ---   
@@ -2901,8 +3126,7 @@ f(5)
 [src/ia32/codegen-ia32.h](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.h?cl=6a63910)  
 [src/jump-target.cc](https://cs.chromium.org/chromium/src/v8/src/jump-target.cc?cl=6a63910)  
 [src/jump-target.h](https://cs.chromium.org/chromium/src/v8/src/jump-target.h?cl=6a63910)  
-[src/x64/codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/codegen-x64.cc?cl=6a63910)  
-[test/mjsunit/regress/regress-crbug-39160.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-39160.js?cl=6a63910)  
+...  
   
 
 ---   
@@ -3028,10 +3252,8 @@ assertEquals(42, obj[1]);
 Object.defineProperty(obj, '1', {value:10, writable:false});
 assertEquals(10, obj[1]);
 
-
 obj[1] = 5;
 assertEquals(10, obj[1]);
-
 
 for(var i = 0; i < 1024; i++) {
   obj[i] = 42;
@@ -3077,13 +3299,10 @@ var c1 = new C1();
 assertEquals(23, c1.x);
 assertEquals("undefined", typeof c1.y);
 
-
-
 C1.prototype = { set x(value) { this.y = 23; } };
 var c1 = new C1();
 assertEquals("undefined", typeof c1.x);
 assertEquals(23, c1.y);
-
 
 function C2() {
   this.x = 23;
@@ -3092,13 +3311,10 @@ var c2 = new C2();
 assertEquals(23, c2.x);
 assertEquals("undefined", typeof c2.y);
 
-
-
 C2.prototype.__proto__ = { set x(value) { this.y = 23; } };
 var c2 = new C2();
 assertEquals("undefined", typeof c2.x);
 assertEquals(23, c2.y);
-
 
 function C3() {
   this.x = 23;
@@ -3107,13 +3323,10 @@ var c3 = new C3();
 assertEquals(23, c3.x);
 assertEquals("undefined", typeof c3.y);
 
-
-
 C3.prototype.__defineSetter__('x', function(value) { this.y = 23; });
 var c3 = new C3();
 assertEquals("undefined", typeof c3.x);
 assertEquals(23, c3.y);
-
 
 function C4() {
   this.x = 23;
@@ -3121,8 +3334,6 @@ function C4() {
 var c4 = new C4();
 assertEquals(23, c4.x);
 assertEquals("undefined", typeof c4.y);
-
-
 
 C4.prototype.__proto__.__defineSetter__('x', function(value) { this.y = 23; });
 var c4 = new C4();
@@ -3189,10 +3400,7 @@ assertThrows(function() {
 [src/ia32/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.cc?cl=3c0d77f)  
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=3c0d77f)  
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=3c0d77f)  
-[src/runtime.js](https://cs.chromium.org/chromium/src/v8/src/runtime.js?cl=3c0d77f)  
-[src/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/builtins-x64.cc?cl=3c0d77f)  
-[src/x64/codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/codegen-x64.cc?cl=3c0d77f)  
-[test/mjsunit/regress/regress-603.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-603.js?cl=3c0d77f)  
+...  
   
 
 ---   
@@ -3209,15 +3417,11 @@ Regress: [mjsunit/regress/regress-612.js](https://chromium.googlesource.com/v8/v
 ```javascript
 obj = {}
 
-
 obj.__defineGetter__('foobar', function() { return 42; })
-
 
 obj.a = 1
 obj.b = 2;
 obj.c = 3;
-
-
 
 obj.__defineGetter__('foobar', function() { return 42; })  
 ```  
@@ -3416,11 +3620,6 @@ assertEquals("Test2 Test2", "test2 test2".cap(true));
 [src/arm/stub-cache-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/stub-cache-arm.cc?cl=562f90d)  
 [src/codegen.h](https://cs.chromium.org/chromium/src/v8/src/codegen.h?cl=562f90d)  
 [src/debug.cc](https://cs.chromium.org/chromium/src/v8/src/debug.cc?cl=562f90d)  
-[src/globals.h](https://cs.chromium.org/chromium/src/v8/src/globals.h?cl=562f90d)  
-[src/ia32/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.cc?cl=562f90d)  
-[src/ia32/codegen-ia32.h](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.h?cl=562f90d)  
-[src/ia32/fast-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/fast-codegen-ia32.cc?cl=562f90d)  
-[src/ia32/stub-cache-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/stub-cache-ia32.cc?cl=562f90d)  
 ...  
   
 

@@ -101,7 +101,7 @@ Regress: [mjsunit/compiler/regress-444508.js](https://chromium.googlesource.com/
 ```javascript
 (function Module(stdlib, foreign, heap) {
   "use asm";
-  
+  // This is not valid asm.js, but should nevertheless work.
   var MEM = new Uint8ClampedArray(heap);
   function foo(i) { MEM[0] = 1; }
   return {foo: foo};
@@ -177,7 +177,7 @@ function callRuntimeCallbacks(callbacks) {
       func();
     }
 }
-var __ATINIT__    = []; 
+var __ATINIT__    = []; // functions called during startup
 function ensureInitRuntime() {
   callRuntimeCallbacks(__ATINIT__);
 }
@@ -203,7 +203,7 @@ function _free() {
 })
 ();
 var runPostSets = Module["runPostSets"] = asm["runPostSets"];
-var i64Math = (function() { 
+var i64Math = (function() { // Emscripten wrapper
   /**
    */
 })();
@@ -217,11 +217,7 @@ var i64Math = (function() {
 [src/compiler/instruction-selector-impl.h](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction-selector-impl.h?cl=cbf3b0b)  
 [src/compiler/instruction-selector.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction-selector.cc?cl=cbf3b0b)  
 [src/compiler/mips/instruction-selector-mips.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/mips/instruction-selector-mips.cc?cl=cbf3b0b)  
-[src/compiler/mips64/instruction-selector-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/mips64/instruction-selector-mips64.cc?cl=cbf3b0b)  
-[src/compiler/operator.h](https://cs.chromium.org/chromium/src/v8/src/compiler/operator.h?cl=cbf3b0b)  
-[src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=cbf3b0b)  
-[src/compiler/x64/instruction-selector-x64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/x64/instruction-selector-x64.cc?cl=cbf3b0b)  
-[test/mjsunit/regress/regress-441099.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-441099.js?cl=cbf3b0b)  
+...  
   
 
 ---   
@@ -237,7 +233,7 @@ Code Review: [https://codereview.chromium.org/802313003](https://codereview.chro
 Regress: [mjsunit/regress/regress-3756.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3756.js)  
 ```javascript
 (function TestIdentityEscapes() {
-  
+  // \u not followed by 4 hex digits is treated as an identity escape.
   var r0 = /\u/;
   assertTrue(r0.test("u"));
 
@@ -252,12 +248,12 @@ Regress: [mjsunit/regress/regress-3756.js](https://chromium.googlesource.com/v8/
 
   var r2 = /first\u/;
   assertTrue(r2.test("firstu"));
-  
+  // This used to return true (which was a bug).
   assertFalse(r2.test("first\\u"));
 
   r2 = RegExp("first\\u");
   assertTrue(r2.test("firstu"));
-  
+  // This used to return true (which was a bug).
   assertFalse(r2.test("first\\u"));
 
   var r3 = /first\usecond/;
@@ -276,8 +272,8 @@ Regress: [mjsunit/regress/regress-3756.js](https://chromium.googlesource.com/v8/
   assertTrue(r4.test("firstu123second"));
   assertFalse(r4.test("first\\u123second"));
 
-  
-  
+  // \X where X is not a legal escape character is treated as identity escape
+  // too.
   var r5 = /\a/;
   assertTrue(r5.test("a"));
 
@@ -339,7 +335,10 @@ assertEquals(NaN, foo(4));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/14409ab^!)  
-
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=14409ab)  
+[test/mjsunit/compiler/regress-int32array-outofbounds-nan.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-int32array-outofbounds-nan.js?cl=14409ab)  
+  
+  
 ---   
 
 ## **regress-ntl.js (other issue)**  
@@ -388,7 +387,10 @@ assertThrows(bug2);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/aeda76c^!)  
-
+[src/compiler/control-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/control-reducer.cc?cl=aeda76c)  
+[test/mjsunit/regress-ntl.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-ntl.js?cl=aeda76c)  
+  
+  
 ---   
 
 ## **regress-439743.js (chromium issue)**  
@@ -543,7 +545,6 @@ var x = 11;
 function foo() {
   return 42;
 }
-
 function g() { return foo.apply(null, x()++); }
 %OptimizeFunctionOnNextCall(g);
 assertThrows(g);  
@@ -679,7 +680,11 @@ assertEquals(8, f(1, 2, 3));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d9cabb9^!)  
-
+[src/compiler/node-matchers.h](https://cs.chromium.org/chromium/src/v8/src/compiler/node-matchers.h?cl=d9cabb9)  
+[test/mjsunit/regress/regress-lea-matching.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-lea-matching.js?cl=d9cabb9)  
+[test/unittests/compiler/x64/instruction-selector-x64-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/x64/instruction-selector-x64-unittest.cc?cl=d9cabb9)  
+  
+  
 ---   
 
 ## **regress-crbug-435825.js (chromium issue)**  
@@ -724,18 +729,17 @@ function testEscapes(expected, regexp) {
   assertEquals("/" + expected + "/", regexp.toString());
 }
 
-testEscapes("\\/", /\
-testEscapes("\\/\\/", /\/\
+testEscapes("\\/", /\//);
+testEscapes("\\/\\/", /\/\//);
 testEscapes("\\/", new RegExp("/"));
 testEscapes("\\/", new RegExp("\\/"));
 testEscapes("\\\\\\/", new RegExp("\\\\/"));
 testEscapes("\\/\\/", new RegExp("\\/\\/"));
-testEscapes("\\/\\/\\/\\/", new RegExp("
-testEscapes("\\/\\/\\/\\/", new RegExp("\\
+testEscapes("\\/\\/\\/\\/", new RegExp("////"));
+testEscapes("\\/\\/\\/\\/", new RegExp("\\//\\//"));
 testEscapes("(?:)", new RegExp(""));
 
-
-var r = /\/\
+var r = /\/\//;
 testEscapes("\\/\\/", r);
 r.source = "garbage";
 testEscapes("\\/\\/", r);  
@@ -748,10 +752,7 @@ testEscapes("\\/\\/", r);
 [src/json-stringifier.h](https://cs.chromium.org/chromium/src/v8/src/json-stringifier.h?cl=61bee5c)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=61bee5c)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=61bee5c)  
-[src/runtime/runtime-regexp.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-regexp.cc?cl=61bee5c)  
-[test/mjsunit/compiler/literals.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/literals.js?cl=61bee5c)  
-[test/mjsunit/regress/regress-3229.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3229.js?cl=61bee5c)  
-[test/webkit/fast/regex/toString-expected.txt](https://cs.chromium.org/chromium/src/v8/test/webkit/fast/regex/toString-expected.txt?cl=61bee5c)  
+...  
   
 
 ---   
@@ -856,7 +857,7 @@ assertUnoptimized(foo);
 [src/type-info.cc](https://cs.chromium.org/chromium/src/v8/src/type-info.cc?cl=dc88962)  
 [src/type-info.h](https://cs.chromium.org/chromium/src/v8/src/type-info.h?cl=dc88962)  
 [src/typing.cc](https://cs.chromium.org/chromium/src/v8/src/typing.cc?cl=dc88962)  
-[test/mjsunit/regress/regress-3709.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3709.js?cl=dc88962)  
+...  
   
 
 ---   
@@ -902,8 +903,7 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/731953003](https://codereview.chromium.org/731953003)  
 Regress: [mjsunit/regress/regress-crbug-433766.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-433766.js)  
 ```javascript
-var filler = "
-
+var filler = "//" + new Array(('@')).join('x');
 
 eval(
   "'use strict';" +
@@ -940,7 +940,11 @@ assertEquals(-2, f(-1));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/c3af691^!)  
-
+[src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=c3af691)  
+[test/cctest/compiler/test-js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-js-typed-lowering.cc?cl=c3af691)  
+[test/mjsunit/regress/regress-unsigned-mul-add.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-unsigned-mul-add.js?cl=c3af691)  
+  
+  
 ---   
 
 ## **regress-3683.js (v8 issue)**  
@@ -955,7 +959,6 @@ Regress: [mjsunit/es6/regress/regress-3683.js](https://chromium.googlesource.com
 ```javascript
 "use strict";
 
-
 var count = 0;
 for (let x = 0; x < 10;) {
   x++;
@@ -963,7 +966,6 @@ for (let x = 0; x < 10;) {
   continue;
 }
 assertEquals(10, count);
-
 
 count = 0;
 label: for (let x = 0; x < 10;) {
@@ -975,7 +977,6 @@ label: for (let x = 0; x < 10;) {
 }
 assertEquals(10, count);
 
-
 count = 0;
 label: for (let x = 0; x < 10;) {
   x++;
@@ -983,7 +984,6 @@ label: for (let x = 0; x < 10;) {
   continue label;
 }
 assertEquals(10, count);
-
 
 count = 0;
 for (let x = 0; x < 10;) {
@@ -996,7 +996,6 @@ for (let x = 0; x < 10;) {
 }
 assertEquals(10, count);
 
-
 count = 0;
 for (let x = 0; x < 10;) {
   x++;
@@ -1008,7 +1007,6 @@ for (let x = 0; x < 10;) {
 }
 assertEquals(20, count);
 
-
 count = 0;
 for (let x = 0; x < 10;) {
   x++;
@@ -1019,7 +1017,6 @@ for (let x = 0; x < 10;) {
   continue;
 }
 assertEquals(20, count);
-
 
 count = 0;
 outer: for (let x = 0; x < 10;) {
@@ -1096,7 +1093,13 @@ f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/4c1f4b7^!)  
-
+[src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=4c1f4b7)  
+[src/types.cc](https://cs.chromium.org/chromium/src/v8/src/types.cc?cl=4c1f4b7)  
+[src/types.h](https://cs.chromium.org/chromium/src/v8/src/types.h?cl=4c1f4b7)  
+[test/cctest/test-types.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-types.cc?cl=4c1f4b7)  
+[test/mjsunit/regress/regress-weakening-multiplication.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-weakening-multiplication.js?cl=4c1f4b7)  
+  
+  
 ---   
 
 ## **regress-crbug-109362.js (chromium issue)**  
@@ -1123,48 +1126,48 @@ function test(expectation, f) {
 /*
 (function(
 ) {
-1 + reference_error 
+1 + reference_error //@ sourceURL=evaltest
 })
 */
 test("3:5", new Function(
-    '1 + reference_error 
+    '1 + reference_error //@ sourceURL=evaltest'));
 /*
 (function(x
 ) {
 
- 1 + reference_error 
+ 1 + reference_error //@ sourceURL=evaltest
 })
 */
 test("4:6", new Function(
-    'x', '\n 1 + reference_error 
+    'x', '\n 1 + reference_error //@ sourceURL=evaltest'));
 /*
 (function(x
 
-,z
+,z//
 ,y
 ) {
 
- 1 + reference_error 
+ 1 + reference_error //@ sourceURL=evaltest
 })
 */
 test("7:6", new Function(
-    'x\n\n', "z
+    'x\n\n', "z//\n", "y", '\n 1 + reference_error //@ sourceURL=evaltest'));
 /*
-(function(x/\*,z
+(function(x/\*,z//
 ,y*\/
 ) {
-1 + reference_error 
+1 + reference_error //@ sourceURL=evaltest
 })
 */
 test("4:5", new Function(
-    'x/*', "z
+    'x/*', "z//\n", "y*/", '1 + reference_error //@ sourceURL=evaltest'));
 /*
 (function () {
- 1 + reference_error 
+ 1 + reference_error //@ sourceURL=evaltest5
 })
 */
 test("2:6", eval(
-    '(function () {\n 1 + reference_error  
+    '(function () {\n 1 + reference_error //@ sourceURL=evaltest\n})'));  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/1dbd636^!)  
@@ -1174,9 +1177,7 @@ test("2:6", eval(
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=1dbd636)  
 [src/runtime/runtime-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-compiler.cc?cl=1dbd636)  
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=1dbd636)  
-[src/v8natives.js](https://cs.chromium.org/chromium/src/v8/src/v8natives.js?cl=1dbd636)  
-[test/message/single-function-literal.js](https://cs.chromium.org/chromium/src/v8/test/message/single-function-literal.js?cl=1dbd636)  
-[test/mjsunit/regress/regress-crbug-109362.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-109362.js?cl=1dbd636)  
+...  
   
 
 ---   
@@ -1218,9 +1219,7 @@ assertEquals(9, BreakIt());
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=d3b68cf)  
 [src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=d3b68cf)  
 [src/mips64/lithium-codegen-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/mips64/lithium-codegen-mips64.cc?cl=d3b68cf)  
-[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=d3b68cf)  
-[src/x87/lithium-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/lithium-codegen-x87.cc?cl=d3b68cf)  
-[test/mjsunit/regress/regress-crbug-431602.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-431602.js?cl=d3b68cf)  
+...  
   
 
 ---   
@@ -1277,7 +1276,11 @@ Module().f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a350f0d^!)  
-
+[src/compiler/register-allocator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/register-allocator.cc?cl=a350f0d)  
+[test/mjsunit/compiler/regress-register-allocator3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-register-allocator3.js?cl=a350f0d)  
+[test/unittests/compiler/register-allocator-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/register-allocator-unittest.cc?cl=a350f0d)  
+  
+  
 ---   
 
 ## **regress-crbug-430846.js (chromium issue)**  
@@ -1332,7 +1335,11 @@ assertEquals(2,
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/91eeae5^!)  
-
+[src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=91eeae5)  
+[src/compiler/ast-graph-builder.h](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.h?cl=91eeae5)  
+[test/mjsunit/regress/regress-assignment-in-test-context.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-assignment-in-test-context.js?cl=91eeae5)  
+  
+  
 ---   
 
 ## **regress-3483.js (v8 issue)**  
@@ -1382,7 +1389,11 @@ try { f(); } catch (e) {}
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/017c518^!)  
-
+[src/compiler/ia32/instruction-selector-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ia32/instruction-selector-ia32.cc?cl=017c518)  
+[src/compiler/x64/instruction-selector-x64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/x64/instruction-selector-x64.cc?cl=017c518)  
+[test/mjsunit/compiler/regress-register-allocator2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-register-allocator2.js?cl=017c518)  
+  
+  
 ---   
 
 ## **regress-crbug-429159.js (chromium issue)**  
@@ -1401,7 +1412,7 @@ try {
   var fun = Function(src);
   assertEquals(src, fun());
 } catch (e) {
-  
+  // Some architectures throw a RangeError, that is fine.
   assertInstanceof(e, RangeError);
 }  
 ```  
@@ -1441,7 +1452,15 @@ Regress: [mjsunit/regress/regress-eval-cache.js](https://chromium.googlesource.c
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/0dfbf83^!)  
-
+[src/arm/full-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/full-codegen-arm.cc?cl=0dfbf83)  
+[src/arm64/full-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/full-codegen-arm64.cc?cl=0dfbf83)  
+[src/compilation-cache.cc](https://cs.chromium.org/chromium/src/v8/src/compilation-cache.cc?cl=0dfbf83)  
+[src/compilation-cache.h](https://cs.chromium.org/chromium/src/v8/src/compilation-cache.h?cl=0dfbf83)  
+[src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=0dfbf83)  
+[src/compiler.h](https://cs.chromium.org/chromium/src/v8/src/compiler.h?cl=0dfbf83)  
+...  
+  
+  
 ---   
 
 ## **regress-3643.js (v8 issue)**  
@@ -1466,7 +1485,6 @@ function newArrayWithGetter() {
 var a = newArrayWithGetter();
 var s = a.slice(1);
 assertTrue('0' in s);
-
 
 a = newArrayWithGetter();
 a[0xffff] = 4;
@@ -1512,7 +1530,11 @@ assertFalse(desc.enumerable);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/02d37b8^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=02d37b8)  
+[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=02d37b8)  
+[test/mjsunit/regress/regress-shift-enumerable.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-shift-enumerable.js?cl=02d37b8)  
+  
+  
 ---   
 
 ## **regress-register-allocator.js (other issue)**  
@@ -1555,7 +1577,15 @@ assertEquals(9982, f(1));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/548fb46^!)  
-
+[src/compiler/ia32/instruction-selector-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ia32/instruction-selector-ia32.cc?cl=548fb46)  
+[src/compiler/instruction.h](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction.h?cl=548fb46)  
+[src/compiler/x64/instruction-selector-x64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/x64/instruction-selector-x64.cc?cl=548fb46)  
+[test/mjsunit/compiler/regress-register-allocator.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-register-allocator.js?cl=548fb46)  
+[test/unittests/compiler/ia32/instruction-selector-ia32-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/ia32/instruction-selector-ia32-unittest.cc?cl=548fb46)  
+[test/unittests/compiler/instruction-selector-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/instruction-selector-unittest.cc?cl=548fb46)  
+...  
+  
+  
 ---   
 
 ## **regress-crbug-423687.js (chromium issue)**  
@@ -1593,7 +1623,6 @@ Code Review: [https://codereview.chromium.org/671913002](https://codereview.chro
 Regress: [mjsunit/es6/regress/regress-2506.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-2506.js)  
 ```javascript
 'use strict';
-
 
 let s = 0;
 let f = [undefined, undefined, undefined]
@@ -1635,7 +1664,6 @@ for (const x in [1,2,3]) {
 assertEquals("012", s);
 
 assertThrows("'use strict'; for (const x in [1,2,3]) { x++ }", TypeError);
-
 
 (function() {
   let s = 0;
@@ -1693,7 +1721,6 @@ function foo(recursion_depth) {
    if (recursion_depth > 0) return foo(recursion_depth - 1);
    return new String(correct_result, 1, 2, 3, 4, 5, 6);
 }
-
 
 function test(i) {
    var actual = foo(i);
@@ -1762,8 +1789,6 @@ assertEquals([3], a.splice(2, 1));
 
 a = [1, 2, 3];
 a[0xffff] = 4;
-
-
 a.__proto__ = null;
 assertEquals(a, Array.prototype.slice.call(a));
 assertEquals([3], Array.prototype.splice.call(a, 2, 1));  
@@ -1893,8 +1918,7 @@ assertEquals(false, desc.configurable);
 [test/mjsunit/array-shift2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/array-shift2.js?cl=bb885a7)  
 [test/mjsunit/array-unshift.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/array-unshift.js?cl=bb885a7)  
 [test/mjsunit/bugs/bug-2615.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/bugs/bug-2615.js?cl=bb885a7)  
-[test/mjsunit/regress/regress-2615.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-2615.js?cl=bb885a7)  
-[test/mjsunit/regress/regress-crbug-412319.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-412319.js?cl=bb885a7)  
+...  
   
 
 ---   
@@ -1915,7 +1939,6 @@ var calls = 0;
 function callsFReceiver(o) {
     return [].f.call(new Number(o.m), 1, 2, 3);
 }
-
 
 Array.prototype.f = function() {
     calls++;
@@ -1960,7 +1983,7 @@ assertEquals(10, calls);
 [test/mjsunit/compiler/deopt-inlined-from-call.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/deopt-inlined-from-call.js?cl=23868b4)  
 [test/mjsunit/compiler/inlined-call-mapcheck.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/inlined-call-mapcheck.js?cl=23868b4)  
 [test/mjsunit/compiler/inlined-call.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/inlined-call.js?cl=23868b4)  
-[test/mjsunit/regress/regress-385565.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-385565.js?cl=23868b4)  
+...  
   
 
 ---   
@@ -1980,7 +2003,7 @@ var endIndex = 0xffff;
 a[endIndex] = 3;
 Object.defineProperty(a, 0, { get: function() { this[1] = 2; return 1; } });
 assertEquals('123', a.join(''));
-delete a[1];  
+delete a[1];  // reset the array
 assertEquals('1,2,', a.join().slice(0, 4));  
 ```  
   
@@ -2612,7 +2635,10 @@ assertEquals(100, o[0]);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/83f64e8^!)  
-
+[src/json-parser.h](https://cs.chromium.org/chromium/src/v8/src/json-parser.h?cl=83f64e8)  
+[test/mjsunit/regress/regress-json-parse-index.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-json-parse-index.js?cl=83f64e8)  
+  
+  
 ---   
 
 ## **regress-3564.js (v8 issue)**  
@@ -2680,8 +2706,6 @@ f();
 var x = f();
 
 
-
-
 function g(obj) {
   return obj.foo.length;
 }
@@ -2740,7 +2764,6 @@ Regress: [mjsunit/regress/regress-crbug-412203.js](https://chromium.googlesource
 ```javascript
 var b = [];
 b[10000] = 1;
-
 assertTrue(%HasDictionaryElements(b));
 
 var a1 = [1.5];
@@ -2986,7 +3009,11 @@ assertEquals(undefined, o[1]);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/1dddf69^!)  
-
+[src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=1dddf69)  
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=1dddf69)  
+[test/mjsunit/regress/regress-reset-dictionary-elements.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-reset-dictionary-elements.js?cl=1dddf69)  
+  
+  
 ---   
 
 ## **regress-410912.js (chromium issue)**  
@@ -3288,7 +3315,11 @@ assertEquals(100, f(true));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/03b0237^!)  
-
+[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=03b0237)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=03b0237)  
+[test/mjsunit/regress/regress-inline-constant-load.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-inline-constant-load.js?cl=03b0237)  
+  
+  
 ---   
 
 ## **regress-force-constant-representation.js (other issue)**  
@@ -3313,7 +3344,12 @@ assertEquals([{}, Infinity, Infinity, Infinity, Infinity], a);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/2a37ab7^!)  
-
+[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=2a37ab7)  
+[src/property-details-inl.h](https://cs.chromium.org/chromium/src/v8/src/property-details-inl.h?cl=2a37ab7)  
+[src/property-details.h](https://cs.chromium.org/chromium/src/v8/src/property-details.h?cl=2a37ab7)  
+[test/mjsunit/regress/regress-force-constant-representation.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-force-constant-representation.js?cl=2a37ab7)  
+  
+  
 ---   
 
 ## **regress-crbug-405517.js (chromium issue)**  
@@ -3458,7 +3494,11 @@ assertTrue(Object.isFrozen(test()));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f08d269^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=f08d269)  
+[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=f08d269)  
+[test/mjsunit/regress/regress-update-field-type-attributes.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-update-field-type-attributes.js?cl=f08d269)  
+  
+  
 ---   
 
 ## **regress-grow-deopt.js (other issue)**  
@@ -3482,7 +3522,11 @@ assertEquals(4, a.length);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/60df9da^!)  
-
+[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=60df9da)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=60df9da)  
+[test/mjsunit/regress/regress-grow-deopt.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-grow-deopt.js?cl=60df9da)  
+  
+  
 ---   
 
 ## **regress-3462.js (v8 issue)**  
@@ -3565,7 +3609,10 @@ o.length = 'abc';
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/6798779^!)  
-
+[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=6798779)  
+[test/mjsunit/regress/regress-mask-array-length.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-mask-array-length.js?cl=6798779)  
+  
+  
 ---   
 
 ## **regress-3456.js (v8 issue)**  
@@ -3602,7 +3649,10 @@ assertEquals(s.match(/\((').*\1\)/i), ["('')", "'"]);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/56ec59b^!)  
-
+[src/arm64/regexp-macro-assembler-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/regexp-macro-assembler-arm64.cc?cl=56ec59b)  
+[test/mjsunit/regress/regress-regexp-nocase.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-regexp-nocase.js?cl=56ec59b)  
+  
+  
 ---   
 
 ## **regress-crbug-393988.js (chromium issue)**  
@@ -3724,7 +3774,14 @@ f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/ad6202d^!)  
-
+[src/arm/full-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/full-codegen-arm.cc?cl=ad6202d)  
+[src/arm64/full-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/full-codegen-arm64.cc?cl=ad6202d)  
+[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=ad6202d)  
+[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=ad6202d)  
+[src/x64/full-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/full-codegen-x64.cc?cl=ad6202d)  
+[test/mjsunit/regress/regress-double-property.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-double-property.js?cl=ad6202d)  
+  
+  
 ---   
 
 ## **regress-sliced-external-cons-regexp.js (other issue)**  
@@ -3739,7 +3796,7 @@ var re = /(B)/;
 var cons1 = "0123456789" + "ABCDEFGHIJ";
 var cons2 = "0123456789\u1234" + "ABCDEFGHIJ";
 gc();
-gc();  
+gc();  // Promote cons.
 
 try { externalizeString(cons1, false); } catch (e) { }
 try { externalizeString(cons2, true); } catch (e) { }
@@ -3753,7 +3810,10 @@ for (var i = 0; i < 10; i++) {
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/6574f33^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=6574f33)  
+[test/mjsunit/regress/regress-sliced-external-cons-regexp.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-sliced-external-cons-regexp.js?cl=6574f33)  
+  
+  
 ---   
 
 ## **regress-crbug-390918.js (chromium issue)**  
@@ -3800,7 +3860,7 @@ Code Review: [https://codereview.chromium.org/343563009](https://codereview.chro
 Regress: [mjsunit/regress/regress-3404.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3404.js)  
 ```javascript
 function testError(error) {
-  
+  // Reconfigure e.stack to be non-configurable
   var desc1 = Object.getOwnPropertyDescriptor(error, "stack");
   Object.defineProperty(error, "stack",
                         {get: desc1.get, set: desc1.set, configurable: false});
@@ -3831,11 +3891,6 @@ testError(stackOverflow());
 [src/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap.h?cl=e1d80e2)  
 [src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=e1d80e2)  
 [src/isolate.h](https://cs.chromium.org/chromium/src/v8/src/isolate.h?cl=e1d80e2)  
-[src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=e1d80e2)  
-[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=e1d80e2)  
-[src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=e1d80e2)  
-[test/mjsunit/regress/regress-3404.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3404.js?cl=e1d80e2)  
-[test/mjsunit/runtime-gen/collectstacktrace.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/runtime-gen/collectstacktrace.js?cl=e1d80e2)  
 ...  
   
 
@@ -3942,7 +3997,7 @@ Labels: ["Stability-Memory-AddressSanitizer", "Merge-Merged", "Security_Severity
 Code Review: [https://codereview.chromium.org/339883002](https://codereview.chromium.org/339883002)  
 Regress: [mjsunit/regress/regress-crbug-385002.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-385002.js)  
 ```javascript
-%ScheduleBreak(); 
+%ScheduleBreak(); // Schedule an interrupt that does not go away.
 
 function f() { f(); }
 assertThrows(f, RangeError);
@@ -3960,11 +4015,6 @@ assertThrows("g()", RangeError);
 [src/arm64/regexp-macro-assembler-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/regexp-macro-assembler-arm64.cc?cl=11368af)  
 [src/execution.cc](https://cs.chromium.org/chromium/src/v8/src/execution.cc?cl=11368af)  
 [src/execution.h](https://cs.chromium.org/chromium/src/v8/src/execution.h?cl=11368af)  
-[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=11368af)  
-[src/ia32/regexp-macro-assembler-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/regexp-macro-assembler-ia32.cc?cl=11368af)  
-[src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=11368af)  
-[src/isolate.h](https://cs.chromium.org/chromium/src/v8/src/isolate.h?cl=11368af)  
-[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=11368af)  
 ...  
   
 
@@ -4063,7 +4113,11 @@ assertEquals(a2.id, f(obj, a2).id);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/41e9d91^!)  
-
+[src/hydrogen-gvn.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-gvn.cc?cl=41e9d91)  
+[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=41e9d91)  
+[test/mjsunit/regress/regress-gvn-ftt.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-gvn-ftt.js?cl=41e9d91)  
+  
+  
 ---   
 
 ## **regress-3380.js (v8 issue)**  
@@ -4095,8 +4149,7 @@ assertTrue(foo(b))
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=2931f09)  
 [src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=2931f09)  
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=2931f09)  
-[src/x87/lithium-codegen-x87.cc](https://cs.chromium.org/chromium/src/v8/src/x87/lithium-codegen-x87.cc?cl=2931f09)  
-[test/mjsunit/regress/regress-3380.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3380.js?cl=2931f09)  
+...  
   
 
 ---   
@@ -4368,8 +4421,7 @@ assertEquals(false, Object.getOwnPropertyDescriptor(bar,"prototype").writable);
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=8c54a37)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=8c54a37)  
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=8c54a37)  
-[test/cctest/test-api.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-api.cc?cl=8c54a37)  
-[test/mjsunit/regress/regress-3334.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3334.js?cl=8c54a37)  
+...  
   
 
 ---   
@@ -4405,11 +4457,6 @@ for (var __v_6 = 0; __v_6 < 5; ++__v_6) {
 [src/code-stubs.h](https://cs.chromium.org/chromium/src/v8/src/code-stubs.h?cl=d755611)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=d755611)  
 [src/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen.h?cl=d755611)  
-[src/ia32/code-stubs-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/code-stubs-ia32.cc?cl=d755611)  
-[src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=d755611)  
-[src/ic.h](https://cs.chromium.org/chromium/src/v8/src/ic.h?cl=d755611)  
-[src/mips/code-stubs-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/code-stubs-mips.cc?cl=d755611)  
-[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d755611)  
 ...  
   
 
@@ -4437,7 +4484,7 @@ function f() {
   return a.x;
 }
 
-new p(0.1);  
+new p(0.1);  // make 'x' mutable box double field in p.
 
 assertEquals(3, f());
 assertEquals(3, f());
@@ -4510,7 +4557,7 @@ assertEquals(0, x);
 
 (function check() {
   Promise.resolve().then(function() {
-    
+    // Delay check until all handlers have run.
     if (y < 3) check(); else assertEquals(6, x);
   }).catch(function(e) { %AbortJS("FAILURE: " + e) });
 })();  
@@ -4537,7 +4584,10 @@ for (var i = 0; i < 10000; i++) { a[i * 100] = 0; }
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/c3cd2f0^!)  
-
+[src/spaces-inl.h](https://cs.chromium.org/chromium/src/v8/src/spaces-inl.h?cl=c3cd2f0)  
+[test/mjsunit/regress/regress-set-flags-stress-compact.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-set-flags-stress-compact.js?cl=c3cd2f0)  
+  
+  
 ---   
 
 ## **regress-370827.js (chromium issue)**  
@@ -4748,7 +4798,10 @@ if ("Intl" in this) {
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/0c3e70a^!)  
-
+[src/i18n.js](https://cs.chromium.org/chromium/src/v8/src/i18n.js?cl=0c3e70a)  
+[test/mjsunit/regress/regress-builtinbust-7.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-builtinbust-7.js?cl=0c3e70a)  
+  
+  
 ---   
 
 ## **regress-3294.js (v8 issue)**  
@@ -4851,7 +4904,11 @@ __f_1();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d557425^!)  
-
+[src/hydrogen-escape-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-escape-analysis.cc?cl=d557425)  
+[src/hydrogen-escape-analysis.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-escape-analysis.h?cl=d557425)  
+[test/mjsunit/regress/regress-escape-preserve-smi-representation.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-escape-preserve-smi-representation.js?cl=d557425)  
+  
+  
 ---   
 
 ## **regress-lazy-deopt-inlining2.js (other issue)**  
@@ -4883,7 +4940,11 @@ assertEquals(3, f1(true));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d2179f2^!)  
-
+[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=d2179f2)  
+[src/hydrogen-removable-simulates.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-removable-simulates.cc?cl=d2179f2)  
+[test/mjsunit/regress/regress-lazy-deopt-inlining2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-lazy-deopt-inlining2.js?cl=d2179f2)  
+  
+  
 ---   
 
 ## **regress-lazy-deopt-inlining.js (other issue)**  
@@ -4915,7 +4976,15 @@ assertEquals(3, f1(true));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a55821e^!)  
-
+[src/arm/lithium-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.cc?cl=a55821e)  
+[src/arm64/lithium-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-arm64.cc?cl=a55821e)  
+[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=a55821e)  
+[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=a55821e)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=a55821e)  
+[src/ia32/lithium-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-ia32.cc?cl=a55821e)  
+...  
+  
+  
 ---   
 
 ## **regress-365172-1.js (chromium issue)**  
@@ -4967,7 +5036,13 @@ f([1], 1.1);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/8c57b45^!)  
-
+[src/builtins.cc](https://cs.chromium.org/chromium/src/v8/src/builtins.cc?cl=8c57b45)  
+[src/factory.cc](https://cs.chromium.org/chromium/src/v8/src/factory.cc?cl=8c57b45)  
+[src/factory.h](https://cs.chromium.org/chromium/src/v8/src/factory.h?cl=8c57b45)  
+[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=8c57b45)  
+[test/mjsunit/regress/regress-empty-fixed-double-array.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-empty-fixed-double-array.js?cl=8c57b45)  
+  
+  
 ---   
 
 ## **regress-builtinbust-6.js (other issue)**  
@@ -4990,7 +5065,6 @@ for (var i = 0; i < values.length; ++i) {
   Array.prototype.splice.call(v);
   Array.prototype.unshift.call(v);
 }
-
 
 var length_receiver, element_receiver;
 function length() { length_receiver = this; return 2; }
@@ -5016,7 +5090,10 @@ test_receiver(99, "Array.prototype.unshift.call(99, 'z')");
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/66ec299^!)  
-
+[src/array.js](https://cs.chromium.org/chromium/src/v8/src/array.js?cl=66ec299)  
+[test/mjsunit/regress/regress-builtinbust-6.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-builtinbust-6.js?cl=66ec299)  
+  
+  
 ---   
 
 ## **regress-363956.js (chromium issue)**  
@@ -5065,7 +5142,10 @@ assertFalse(was_called);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e51d646^!)  
-
+[src/array.js](https://cs.chromium.org/chromium/src/v8/src/array.js?cl=e51d646)  
+[test/mjsunit/regress/regress-builtinbust-5.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-builtinbust-5.js?cl=e51d646)  
+  
+  
 ---   
 
 ## **regress-builtinbust-4.js (other issue)**  
@@ -5091,7 +5171,10 @@ assertEquals(2, o[0]);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/39137c8^!)  
-
+[src/array.js](https://cs.chromium.org/chromium/src/v8/src/array.js?cl=39137c8)  
+[test/mjsunit/regress/regress-builtinbust-4.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-builtinbust-4.js?cl=39137c8)  
+  
+  
 ---   
 
 ## **regress-362128.js (chromium issue)**  
@@ -5186,8 +5269,7 @@ runNearStackLimit(__f_0);
 [src/ia32/builtins-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/builtins-ia32.cc?cl=4268ce0)  
 [src/mips/builtins-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/builtins-mips.cc?cl=4268ce0)  
 [src/runtime.js](https://cs.chromium.org/chromium/src/v8/src/runtime.js?cl=4268ce0)  
-[src/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/builtins-x64.cc?cl=4268ce0)  
-[test/mjsunit/regress/regress-353058.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-353058.js?cl=4268ce0)  
+...  
   
 
 ---   
@@ -5249,7 +5331,10 @@ f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/fd98833^!)  
-
+[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=fd98833)  
+[test/mjsunit/regress/regress-no-dummy-use-for-arguments-object.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-no-dummy-use-for-arguments-object.js?cl=fd98833)  
+  
+  
 ---   
 
 ## **regress-361608.js (chromium issue)**  
@@ -5306,7 +5391,7 @@ Regress: [mjsunit/regress/regress-359491.js](https://chromium.googlesource.com/v
     }
   }
 
-  
+  // Gather type feedback for both branches.
   f("a", "b", 1);
   f("c", "d", 1);
   f("a", "b", 0);
@@ -5317,11 +5402,11 @@ Regress: [mjsunit/regress/regress-359491.js](https://chromium.googlesource.com/v
     f(x, x, mode);
   }
 
-  
+  // Gather type feedback for g, but only on one branch for f.
   g(1);
   g(1);
   %OptimizeFunctionOnNextCall(g);
-  
+  // Optimize g, which inlines f. Both branches in f will see the constant.
   g(0);
 })();
 
@@ -5334,7 +5419,7 @@ Regress: [mjsunit/regress/regress-359491.js](https://chromium.googlesource.com/v
     }
   }
 
-  
+  // Gather type feedback for both branches.
   f({ a : 1}, {b : 1}, 1);
   f({ c : 1}, {d : 1}, 1);
   f({ a : 1}, {c : 1}, 0);
@@ -5345,11 +5430,11 @@ Regress: [mjsunit/regress/regress-359491.js](https://chromium.googlesource.com/v
     f(x, x, mode);
   }
 
-  
+  // Gather type feedback for g, but only on one branch for f.
   g(1);
   g(1);
   %OptimizeFunctionOnNextCall(g);
-  
+  // Optimize g, which inlines f. Both branches in f will see the constant.
   g(0);
 })();  
 ```  
@@ -5370,7 +5455,7 @@ Code Review: [https://codereview.chromium.org/230693002](https://codereview.chro
 Regress: [mjsunit/regress/regress-parseint.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-parseint.js)  
 ```javascript
 function f(string, radix) {
-  
+  // Use a phi to force radix into heap number representation.
   radix = (radix == 0) ? radix : (radix >> 0);
   if (radix != 2) return NaN;
   return %StringParseInt(string, radix);
@@ -5384,7 +5469,10 @@ assertEquals(3, f("11", -4294967294));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/4df132a^!)  
-
+[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=4df132a)  
+[test/mjsunit/regress/regress-parseint.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-parseint.js?cl=4df132a)  
+  
+  
 ---   
 
 ## **regress-builtinbust-3.js (other issue)**  
@@ -5409,7 +5497,10 @@ assertEquals(2, produce_object().unshift("y"));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e3aec7a^!)  
-
+[src/array.js](https://cs.chromium.org/chromium/src/v8/src/array.js?cl=e3aec7a)  
+[test/mjsunit/regress/regress-builtinbust-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-builtinbust-3.js?cl=e3aec7a)  
+  
+  
 ---   
 
 ## **regress-inline-getter-near-stack-limit.js (other issue)**  
@@ -5441,7 +5532,10 @@ runNearStackLimit(function() { g(y); });
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/05670b6^!)  
-
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=05670b6)  
+[test/mjsunit/regress/regress-inline-getter-near-stack-limit.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-inline-getter-near-stack-limit.js?cl=05670b6)  
+  
+  
 ---   
 
 ## **regress-361025.js (chromium issue)**  
@@ -5489,7 +5583,6 @@ f(arr, 0);
 f(str, 0);
 f(str, 0);
 
-
 %SetKeyedProperty(str, 1, 'y', 0);  
 ```  
   
@@ -5517,7 +5610,6 @@ for (var i = 0; i < 2; i++) {
   print(x);
   a = "";
 }
-
 
 var b = 1.4;
 var val = 0;
@@ -5557,7 +5649,10 @@ assertThrows(function() { a.splice(0, 1); }, TypeError);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/775d9b0^!)  
-
+[src/array.js](https://cs.chromium.org/chromium/src/v8/src/array.js?cl=775d9b0)  
+[test/mjsunit/regress/regress-builtinbust-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-builtinbust-1.js?cl=775d9b0)  
+  
+  
 ---   
 
 ## **regress-freeze-setter.js (other issue)**  
@@ -5574,7 +5669,10 @@ eval('"use strict"; x = 20;');
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/fe37026^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=fe37026)  
+[test/mjsunit/regress/regress-global-freeze-const.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-global-freeze-const.js?cl=fe37026)  
+  
+  
 ---   
 
 ## **regress-captured-object-no-dummy-use.js (other issue)**  
@@ -5600,7 +5698,10 @@ h();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/42d2d3c^!)  
-
+[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=42d2d3c)  
+[test/mjsunit/regress/regress-captured-object-no-dummy-use.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-captured-object-no-dummy-use.js?cl=42d2d3c)  
+  
+  
 ---   
 
 ## **regress-alloc-smi-check.js (other issue)**  
@@ -5624,7 +5725,11 @@ f([]);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/0b53ed2^!)  
-
+[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=0b53ed2)  
+[src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=0b53ed2)  
+[test/mjsunit/regress/regress-alloc-smi-check.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-alloc-smi-check.js?cl=0b53ed2)  
+  
+  
 ---   
 
 ## **regress-crbug-357052.js (chromium issue)**  
@@ -5728,12 +5833,12 @@ function g(a, i, v) {
   a[i] = v;
 }
 
-f([]);    
+f([]);    // f KeyedStoreIC goes to 1.GROW
 o = {};
-g(o);     
+g(o);     // We've added property "undefined" to o
 
-o = {};   
-f(o);  
+o = {};   // A transition on property "undefined" exists from {}
+f(o);     // Store should go generic.  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d93c906^!)  
@@ -5887,7 +5992,7 @@ assertThrows("f()", RangeError);
 [src/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/full-codegen-mips.cc?cl=c0fa861)  
 [src/x64/full-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/full-codegen-x64.cc?cl=c0fa861)  
 [test/cctest/test-heap.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-heap.cc?cl=c0fa861)  
-[test/mjsunit/regress/regress-crbug-357137.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-357137.js?cl=c0fa861)  
+...  
   
 
 ---   
@@ -5919,7 +6024,15 @@ assertEquals(1.5, array[0]);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/55a6318^!)  
-
+[src/arm/lithium-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.cc?cl=55a6318)  
+[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=55a6318)  
+[src/arm/lithium-codegen-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.h?cl=55a6318)  
+[src/arm64/lithium-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-arm64.cc?cl=55a6318)  
+[src/arm64/lithium-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-codegen-arm64.cc?cl=55a6318)  
+[src/arm64/lithium-codegen-arm64.h](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-codegen-arm64.h?cl=55a6318)  
+...  
+  
+  
 ---   
 
 ## **regress-357105.js (chromium issue)**  
@@ -5959,11 +6072,6 @@ global = f(do_nothing);
 [src/arm64/lithium-arm64.h](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-arm64.h?cl=d65fe51)  
 [src/arm64/lithium-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-codegen-arm64.cc?cl=d65fe51)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=d65fe51)  
-[src/ia32/lithium-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-ia32.cc?cl=d65fe51)  
-[src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=d65fe51)  
-[src/mips/lithium-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-mips.cc?cl=d65fe51)  
-[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=d65fe51)  
-[src/x64/lithium-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-x64.cc?cl=d65fe51)  
 ...  
   
 
@@ -5993,7 +6101,10 @@ for (var z in y) { }
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/4608bde^!)  
-
+[src/handles.cc](https://cs.chromium.org/chromium/src/v8/src/handles.cc?cl=4608bde)  
+[test/mjsunit/regress/regress-enum-prop-keys-cache-size.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-enum-prop-keys-cache-size.js?cl=4608bde)  
+  
+  
 ---   
 
 ## **regress-357108.js (chromium issue)**  
@@ -6053,7 +6164,10 @@ f(1);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/10606aa^!)  
-
+[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=10606aa)  
+[test/mjsunit/regress/regress-is-smi-repr.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-is-smi-repr.js?cl=10606aa)  
+  
+  
 ---   
 
 ## **regress-dictionary-to-fast-arguments.js (other issue)**  
@@ -6074,7 +6188,10 @@ f(1.5, 2.5);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/c432f71^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=c432f71)  
+[test/mjsunit/regress/regress-dictionary-to-fast-arguments.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-dictionary-to-fast-arguments.js?cl=c432f71)  
+  
+  
 ---   
 
 ## **regress-355523.js (chromium issue)**  
@@ -6187,7 +6304,11 @@ f(true);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e18e650^!)  
-
+[src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=e18e650)  
+[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=e18e650)  
+[test/mjsunit/regress/regress-store-heapobject.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-store-heapobject.js?cl=e18e650)  
+  
+  
 ---   
 
 ## **regress-355485.js (chromium issue)**  
@@ -6431,8 +6552,7 @@ __f_5();
 [src/code-stubs.h](https://cs.chromium.org/chromium/src/v8/src/code-stubs.h?cl=487ca9e)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=487ca9e)  
 [src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=487ca9e)  
-[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=487ca9e)  
-[test/mjsunit/regress/regress-352982.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-352982.js?cl=487ca9e)  
+...  
   
 
 ---   
@@ -6562,7 +6682,10 @@ f(this);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/5aaa513^!)  
-
+[src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=5aaa513)  
+[test/mjsunit/regress/regress-keyed-store-global.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-keyed-store-global.js?cl=5aaa513)  
+  
+  
 ---   
 
 ## **regress-3220.js (v8 issue)**  
@@ -6641,11 +6764,6 @@ test3();
 [src/arm/stub-cache-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/stub-cache-arm.cc?cl=3b257c3)  
 [src/code-stubs.h](https://cs.chromium.org/chromium/src/v8/src/code-stubs.h?cl=3b257c3)  
 [src/ia32/code-stubs-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/code-stubs-ia32.cc?cl=3b257c3)  
-[src/ia32/stub-cache-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/stub-cache-ia32.cc?cl=3b257c3)  
-[src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=3b257c3)  
-[src/stub-cache.cc](https://cs.chromium.org/chromium/src/v8/src/stub-cache.cc?cl=3b257c3)  
-[src/stub-cache.h](https://cs.chromium.org/chromium/src/v8/src/stub-cache.h?cl=3b257c3)  
-[src/x64/code-stubs-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/code-stubs-x64.cc?cl=3b257c3)  
 ...  
   
 
@@ -6711,11 +6829,6 @@ try {
 [src/factory.h](https://cs.chromium.org/chromium/src/v8/src/factory.h?cl=c3c185c)  
 [src/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap.h?cl=c3c185c)  
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=c3c185c)  
-[src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=c3c185c)  
-[src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=c3c185c)  
-[src/parser.h](https://cs.chromium.org/chromium/src/v8/src/parser.h?cl=c3c185c)  
-[src/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/preparser.cc?cl=c3c185c)  
-[src/preparser.h](https://cs.chromium.org/chromium/src/v8/src/preparser.h?cl=c3c185c)  
 ...  
   
 
@@ -6819,7 +6932,10 @@ o1.y;
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/0f2a324^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=0f2a324)  
+[test/mjsunit/regress/regress-migrate-callbacks.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-migrate-callbacks.js?cl=0f2a324)  
+  
+  
 ---   
 
 ## **regress-351261.js (chromium issue)**  
@@ -6855,7 +6971,7 @@ foo();
 [src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=11df4b8)  
 [src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=11df4b8)  
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=11df4b8)  
-[test/mjsunit/regress/regress-351261.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-351261.js?cl=11df4b8)  
+...  
   
 
 ---   
@@ -6918,7 +7034,6 @@ SmiTaggingCanOverflow(2147483647);
 assertEquals(2147483647, SmiTaggingCanOverflow(2147483647));
 
 
-
 function ModILeftCanBeNegative() {
   var x = 0;
   for (var i = -1; i < 0; ++i) x = i % 2;
@@ -6928,7 +7043,6 @@ function ModILeftCanBeNegative() {
 ModILeftCanBeNegative();
 %OptimizeFunctionOnNextCall(ModILeftCanBeNegative);
 assertEquals(-1, ModILeftCanBeNegative());
-
 
 
 function ModIRightCanBeZero() {
@@ -7118,7 +7232,12 @@ Array.prototype.sort.apply(a);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/8735adb^!)  
-
+[src/array.js](https://cs.chromium.org/chromium/src/v8/src/array.js?cl=8735adb)  
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=8735adb)  
+[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=8735adb)  
+[test/mjsunit/regress/regress-sort-arguments.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-sort-arguments.js?cl=8735adb)  
+  
+  
 ---   
 
 ## **regress-350884.js (chromium issue)**  
@@ -7138,7 +7257,6 @@ obj[1] = 0;
 function foo(flag_index) {
   obj[flag_index]++;
 }
-
 
 obj[-8] = 3;
 foo(1);
@@ -7240,13 +7358,13 @@ var p = new Ctor();
 
 
 function crash(o, timeout) {
-  var s = "4000111222";  
+  var s = "4000111222";  // Outside Smi range.
   %SetAllocationTimeout(100000, timeout);
-  
+  // This allocates a heap number, causing a GC, triggering lazy deopt.
   var end = s >>> 0;
   s = s.substring(0, end);
-  
-  
+  // This creates a map dependency, which gives the GC a reason to trigger
+  // a lazy deopt when that map dies.
   o.bar = 2;
 }
 
@@ -7267,11 +7385,6 @@ crash({}, 0);
 [src/a64/lithium-codegen-a64.h](https://cs.chromium.org/chromium/src/v8/src/a64/lithium-codegen-a64.h?cl=8a1812f)  
 [src/arm/lithium-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.cc?cl=8a1812f)  
 [src/arm/lithium-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.h?cl=8a1812f)  
-[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=8a1812f)  
-[src/arm/lithium-codegen-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.h?cl=8a1812f)  
-[src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=8a1812f)  
-[src/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap.cc?cl=8a1812f)  
-[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=8a1812f)  
 ...  
   
 
@@ -7374,7 +7487,6 @@ var arr = [];
 assertSame(0, arr.length);
 assertSame(undefined, arr[0]);
 Object.defineProperty(arr, '2501866687', { value: 4, configurable: false });
-
 assertSame(2501866688, arr.length);
 assertSame(undefined, arr[0]);
 arr.length = 0;  
@@ -7437,7 +7549,15 @@ f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/1180803^!)  
-
+[src/arm/stub-cache-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/stub-cache-arm.cc?cl=1180803)  
+[src/code-stubs-hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/code-stubs-hydrogen.cc?cl=1180803)  
+[src/code-stubs.h](https://cs.chromium.org/chromium/src/v8/src/code-stubs.h?cl=1180803)  
+[src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=1180803)  
+[src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=1180803)  
+[src/mips/stub-cache-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/stub-cache-mips.cc?cl=1180803)  
+...  
+  
+  
 ---   
 
 ## **regress-crbug-349465.js (chromium issue)**  
@@ -7545,9 +7665,7 @@ foo(new Array(10));
 [src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=6115a00)  
 [src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=6115a00)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=6115a00)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=6115a00)  
-[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=6115a00)  
-[test/mjsunit/regress/regress-349885.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-349885.js?cl=6115a00)  
+...  
   
 
 ---   
@@ -7575,7 +7693,10 @@ var a = args(false);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/cd6f3ef^!)  
-
+[src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=cd6f3ef)  
+[test/mjsunit/regress-keyed-store-non-strict-arguments.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-keyed-store-non-strict-arguments.js?cl=cd6f3ef)  
+  
+  
 ---   
 
 ## **regress-crbug-349853.js (chromium issue)**  
@@ -7595,7 +7716,7 @@ funky(a);
 
 function crash() {
   var q = [0];
-  
+  // The failing ASSERT was only triggered when compiling for OSR.
   for (var i = 0; i < 100000; i++) {
     funky(q);
   }
@@ -7640,7 +7761,10 @@ optimize(f);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f913c3b^!)  
-
+[src/hydrogen-representation-changes.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-representation-changes.cc?cl=f913c3b)  
+[test/mjsunit/regress/regress-force-representation.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-force-representation.js?cl=f913c3b)  
+  
+  
 ---   
 
 ## **regress-348512.js (chromium issue)**  
@@ -7757,11 +7881,7 @@ Regress: [mjsunit/regress/regress-3183.js](https://chromium.googlesource.com/v8/
 [src/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen.h?cl=7ac668f)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=7ac668f)  
 [src/lithium-allocator.h](https://cs.chromium.org/chromium/src/v8/src/lithium-allocator.h?cl=7ac668f)  
-[src/lithium.cc](https://cs.chromium.org/chromium/src/v8/src/lithium.cc?cl=7ac668f)  
-[src/lithium.h](https://cs.chromium.org/chromium/src/v8/src/lithium.h?cl=7ac668f)  
-[src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=7ac668f)  
-[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=7ac668f)  
-[test/mjsunit/regress/regress-3183.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3183.js?cl=7ac668f)  
+...  
   
 
 ---   
@@ -7885,22 +8005,16 @@ function opt() {
   })();
 }
 
-
 opt();
 opt();
 opt();
-
-
 
 dummy();
 dummy();
-
 
 for(var i = 0; i < 3; i++) gc(true);
 
-
 o.c = 2.2;
-
 
 var f2 = get_closure();
 f2(new Ctor());  
@@ -7913,11 +8027,6 @@ f2(new Ctor());
 [src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=b9e0b87)  
 [src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=b9e0b87)  
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=b9e0b87)  
-[src/factory.cc](https://cs.chromium.org/chromium/src/v8/src/factory.cc?cl=b9e0b87)  
-[src/ia32/deoptimizer-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/deoptimizer-ia32.cc?cl=b9e0b87)  
-[src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=b9e0b87)  
-[src/mips/deoptimizer-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/deoptimizer-mips.cc?cl=b9e0b87)  
-[src/mips/lithium-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-codegen-mips.cc?cl=b9e0b87)  
 ...  
   
 
@@ -7934,6 +8043,9 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/180483003](https://codereview.chromium.org/180483003)  
 Regress: [mjsunit/regress/regress-347914.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-347914.js)  
 ```javascript
+// Copyright 2014 the V8 project authors. All rights reserved.
+
+
 function MjsUnitAssertionError(message) {}
 MjsUnitAssertionError.prototype.toString = function () { return this.message; };
 var assertSame;
@@ -7977,7 +8089,6 @@ try { OptimizationStatus = new Function("fun", "sync", "return %GetOptimizationS
 assertUnoptimized = function assertUnoptimized(fun, sync_opt, name_opt) { if (sync_opt === undefined) sync_opt = ""; assertTrue(OptimizationStatus(fun, sync_opt) != 1, name_opt); }
 assertOptimized = function assertOptimized(fun, sync_opt, name_opt) { if (sync_opt === undefined) sync_opt = "";  assertTrue(OptimizationStatus(fun, sync_opt) != 2, name_opt); }
 triggerAssertFalse = function() { }
-
 
 var __v_1 = {};
 var __v_2 = {};
@@ -8066,8 +8177,8 @@ Regress: [mjsunit/regress/regress-crbug-347903.js](https://chromium.googlesource
 ```javascript
 function f() {
   var a = new Array(84632);
-  
-  
+  // Allocation folding will bail out trying to fold the elements alloc of
+  // array "b."
   var b = new Array(84632);
   var c = new Array(84632);
   return [a, b, c];
@@ -8116,13 +8227,10 @@ f1(new Ctor(), false);
 
 %OptimizeFunctionOnNextCall(f1, "concurrent");
 
-
 var o = new Ctor();
 f1(o, true);
 
-
 %NotifyContextDisposed();
-
 
 o.c = 2.2;
 
@@ -8131,7 +8239,15 @@ f2(new Ctor(), true);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/5c186bb^!)  
-
+[src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=5c186bb)  
+[src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=5c186bb)  
+[src/factory.cc](https://cs.chromium.org/chromium/src/v8/src/factory.cc?cl=5c186bb)  
+[src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=5c186bb)  
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=5c186bb)  
+[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=5c186bb)  
+...  
+  
+  
 ---   
 
 ## **regress-347912.js (chromium issue)**  
@@ -8321,7 +8437,6 @@ assertEqualsDelta = function assertEqualsDelta(expected, found, delta, name_opt)
 assertTrue = function assertTrue(value, name_opt) { assertEquals(true, value, name_opt); };
 assertFalse = function assertFalse(value, name_opt) { assertEquals(false, value, name_opt); };
 
-
 var __v_0 = {};
 var __v_1 = {};
 function __f_3() { }
@@ -8361,7 +8476,11 @@ __v_5 = {a: 1, b: 2, c: 3};
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/aa14020^!)  
-
+[src/mark-compact.cc](https://cs.chromium.org/chromium/src/v8/src/mark-compact.cc?cl=aa14020)  
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=aa14020)  
+[test/mjsunit/regress/regress-put-prototype-transition.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-put-prototype-transition.js?cl=aa14020)  
+  
+  
 ---   
 
 ## **regress-347262.js (chromium issue)**  
@@ -8712,7 +8831,10 @@ for (i = 0; i < 3; i++) {
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/84b3665^!)  
-
+[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=84b3665)  
+[test/mjsunit/regress/regress-fast-empty-string.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-fast-empty-string.js?cl=84b3665)  
+  
+  
 ---   
 
 ## **regress-crbug-344186.js (chromium issue)**  
@@ -8768,7 +8890,15 @@ new f();
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/60c08a8^!)  
-
+[src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=60c08a8)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=60c08a8)  
+[src/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen.h?cl=60c08a8)  
+[src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=60c08a8)  
+[src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=60c08a8)  
+[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=60c08a8)  
+...  
+  
+  
 ---   
 
 ## **regress-3158.js (v8 issue)**  
@@ -8825,18 +8955,17 @@ Regress: [mjsunit/regress/regress-3138.js](https://chromium.googlesource.com/v8/
 })();
 
 (function f(){
-   var f;  
+   var f;  // Variable shadows function name.
    assertEquals("undefined", typeof f);
 })();
 
 (function f(){
    var f;
    assertEquals("undefined", typeof f);
-   with ({});  
+   with ({});  // Force context allocation of both variable and function name.
 })();
 
 assertEquals("undefined", typeof f);
-
 
 (function() {
   var o = { a: 1 };
@@ -8911,7 +9040,10 @@ assertEquals(3, f());
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/7b7e365^!)  
-
+[src/hydrogen-check-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-check-elimination.cc?cl=7b7e365)  
+[test/mjsunit/regress/regress-check-eliminate-loop-phis.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-check-eliminate-loop-phis.js?cl=7b7e365)  
+  
+  
 ---   
 
 ## **regress-3135.js (v8 issue)**  
@@ -8929,18 +9061,14 @@ assertEquals('{"1":1}', JSON.stringify({ 1 : 1 }, ["x", 1, "x", 1]));
 assertEquals('{"1":1}', JSON.stringify({ 1 : 1 }, ["1", 1, "1", 1]));
 assertEquals('{"1":1}', JSON.stringify({ 1 : 1 }, [1, "1", 1, "1"]));
 
-
 var fired = 0;
 var getter_obj = { get x() { fired++; return 2; } };
 assertEquals('{"x":2}', JSON.stringify(getter_obj, ["x", "y", "x"]));
 assertEquals(1, fired);
 
-
 assertEquals('{"y":4,"x":3}', JSON.stringify({ x : 3, y : 4}, ["y", "x"]));
 assertEquals('{"y":4,"1":2,"x":3}',
              JSON.stringify({ x : 3, y : 4, 1 : 2 }, ["y", 1, "x"]));
-
-
 
 var a = { x : 8 };
 assertEquals('{"__proto__":{"__proto__":null},"x":8}',
@@ -8956,22 +9084,18 @@ Object.defineProperty(c, 'x', { enumerable: false });
 assertEquals('{}', JSON.stringify(c));
 assertEquals('{"x":10}', JSON.stringify(c, ["x"]));
 
-
 assertEquals("[9,8,7]", JSON.stringify([9, 8, 7], [1, 1]));
 var mixed_arr = [11,12,13];
 mixed_arr.x = 10;
 assertEquals('[11,12,13]', JSON.stringify(mixed_arr, [1, 0, 1]));
-
 
 var mixed_obj = { x : 3 };
 mixed_obj[0] = 6;
 mixed_obj[1] = 5;
 assertEquals('{"1":5,"0":6}', JSON.stringify(mixed_obj, [1, 0, 1]));
 
-
 assertEquals('{"z":{"x":3},"x":1}',
              JSON.stringify({ x: 1, y:2, z: {x:3, b:4}}, ["z","x"]));
-
 
 assertEquals('{}',
              JSON.stringify({ x : 1, "1": 1 }, [{}]));
@@ -8984,10 +9108,7 @@ assertEquals('{}',
              JSON.stringify({ x : 1, "1": 1 },
                             [{ valueOf: function() { return 1;} }]));
 
-
-
 assertEquals('{"toString":42}', JSON.stringify({ toString: 42 }, ["toString"]));
-
 
 assertEquals('{"1":1,"s":"s"}',
              JSON.stringify({ 1: 1, s: "s" },
@@ -9184,7 +9305,10 @@ f("length");
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/bef13f7^!)  
-
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=bef13f7)  
+[test/mjsunit/regress/regress-keyed-access-string-length.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-keyed-access-string-length.js?cl=bef13f7)  
+  
+  
 ---   
 
 ## **regress-634-debug.js (v8 issue)**  
@@ -9245,7 +9369,15 @@ assertEquals("61", f("1"));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f303303^!)  
-
+[src/arm/stub-cache-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/stub-cache-arm.cc?cl=f303303)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=f303303)  
+[src/ia32/stub-cache-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/stub-cache-ia32.cc?cl=f303303)  
+[src/mips/stub-cache-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/stub-cache-mips.cc?cl=f303303)  
+[src/stub-cache.h](https://cs.chromium.org/chromium/src/v8/src/stub-cache.h?cl=f303303)  
+[src/x64/stub-cache-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/stub-cache-x64.cc?cl=f303303)  
+...  
+  
+  
 ---   
 
 ## **regress-334708.js (chromium issue)**  
@@ -9330,15 +9462,22 @@ function foo(index) {
 var text = "hi there";
 foo(0);
 foo(0);
-foo(100);     
+foo(100);     // Accumulate feedback that index is out of bounds.
 text = false;
-
 
 assertThrows(function () { foo(); }, TypeError);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/155ef10^!)  
-
+[src/arm/ic-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/ic-arm.cc?cl=155ef10)  
+[src/arm/lithium-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.cc?cl=155ef10)  
+[src/arm/lithium-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.h?cl=155ef10)  
+[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=155ef10)  
+[src/code-stubs.h](https://cs.chromium.org/chromium/src/v8/src/code-stubs.h?cl=155ef10)  
+[src/disassembler.cc](https://cs.chromium.org/chromium/src/v8/src/disassembler.cc?cl=155ef10)  
+...  
+  
+  
 ---   
 
 ## **regress-crbug-315252.js (chromium issue)**  
@@ -9364,25 +9503,16 @@ var o2 = new f(1.5, 2, 3);
 function migrate(o) {
  return o.a;
 }
-
 migrate(o4);
 migrate(o1);
 migrate(o2);
 function store_transition(o) {
  o.d = 1;
 }
-
-
-
 store_transition(o4);
 store_transition(o1);
 store_transition(o2);
 %OptimizeFunctionOnNextCall(store_transition);
-
-
-
-
-
 store_transition(o3);  
 ```  
   
@@ -9393,7 +9523,7 @@ store_transition(o3);
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=1ed94ac)  
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=1ed94ac)  
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=1ed94ac)  
-[test/mjsunit/regress/regress-crbug-315252.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-315252.js?cl=1ed94ac)  
+...  
   
 
 ---   

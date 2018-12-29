@@ -22,18 +22,18 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
   builder.addType(makeSig([kWasmI32], [kWasmI32]));
   builder.addFunction(undefined, 0 /* sig */)
     .addBodyWithEnd([
-        kExprEnd,   
+        kExprEnd,   // @1
     ]);
   builder.addFunction(undefined, 1 /* sig */)
     .addLocals({i32_count: 65})
     .addBodyWithEnd([
-        kExprLoop, kWasmStmt,   
+        kExprLoop, kWasmStmt,   // @3
         kSimdPrefix,
         kExprF32x4Min,
         kExprI64UConvertI32,
         kExprI64RemS,
         kExprUnreachable,
-        kExprLoop, 0x02,   
+        kExprLoop, 0x02,   // @10
     ]);
 })  
 ```  
@@ -279,7 +279,7 @@ Regress: [mjsunit/regress/regress-7773.js](https://chromium.googlesource.com/v8/
     enumerable: false,
     configurable: true
   };
-  
+  // Functions have a "name" property by default.
   assertEquals(
       descriptor, Object.getOwnPropertyDescriptor(function(){}, 'name'));
   let a = { fn: function(){} };
@@ -313,7 +313,7 @@ Regress: [mjsunit/regress/regress-7773.js](https://chromium.googlesource.com/v8/
     configurable: true
   };
 
-  
+  // Anonymous classes do not have a "name" property by default.
   assertSame(undefined, Object.getOwnPropertyDescriptor(class {}, 'name'));
   descriptor.value = 'C';
   assertEquals(descriptor, Object.getOwnPropertyDescriptor(class C {}, 'name'));
@@ -362,7 +362,7 @@ Regress: [mjsunit/asm/regress-913822.js](https://chromium.googlesource.com/v8/v8
 ```javascript
 (function TestNewlineInCPPComment() {
   function Module() {
-    "use asm" 
+    "use asm" // Crash by comment!
     function f() {}
     return f
   }
@@ -484,12 +484,12 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
 builder.addFunction('main', kSig_v_v).addBody([
-  kExprLoop, kWasmStmt,        
-  /**/ kExprBr, 0x01,          
-  /**/ kExprBlock, kWasmStmt,  
-  /**/ /**/ kExprBr, 0x02,     
-  /**/ /**/ kExprEnd,          
-  /**/ kExprEnd                
+  kExprLoop, kWasmStmt,        // loop
+  /**/ kExprBr, 0x01,          //   br depth=1
+  /**/ kExprBlock, kWasmStmt,  //   block
+  /**/ /**/ kExprBr, 0x02,     //     br depth=2
+  /**/ /**/ kExprEnd,          //     end [block]
+  /**/ kExprEnd                //   end [loop]
 ]);
 builder.instantiate();  
 ```  
@@ -598,10 +598,6 @@ load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 
-
-
-
-
 const sync_address = 12;
 (function TestPostModule() {
   let builder = new WasmModuleBuilder();
@@ -609,23 +605,23 @@ const sync_address = 12;
   let import_id = builder.addImport('m', 'func', sig_index);
   builder.addFunction('wait', kSig_v_v)
       .addBody([
-        
-        
-        kExprCallFunction, import_id,  
-        kExprLoop, kWasmStmt,          
-        kExprI32Const, sync_address,   
-        kExprI32LoadMem, 0, 0,         
+        // Calling the imported function sets the thread-in-wasm flag of the
+        // main thread.
+        kExprCallFunction, import_id,  // --
+        kExprLoop, kWasmStmt,          // --
+        kExprI32Const, sync_address,   // --
+        kExprI32LoadMem, 0, 0,         // --
         kExprI32Eqz,
-        kExprBrIf, 0,                  
+        kExprBrIf, 0,                  // --
         kExprEnd,
       ])
       .exportFunc();
 
   builder.addFunction('signal', kSig_v_v)
       .addBody([
-        kExprI32Const, sync_address,  
-        kExprI32Const, 1,             
-        kExprI32StoreMem, 0, 0,       
+        kExprI32Const, sync_address,  // --
+        kExprI32Const, 1,             // --
+        kExprI32StoreMem, 0, 0,       // --
         ])
       .exportFunc();
   builder.addImportedMemory("m", "imported_mem", 0, 1, "shared");
@@ -656,8 +652,8 @@ const sync_address = 12;
 
   let counter = 0;
   function CheckThreadNotInWasm() {
-    
-    
+    // We check the thread-in-wasm flag many times and reschedule ourselves in
+    // between to increase the chance that we read the flag set by the worker.
     assertFalse(%IsThreadInWasm());
     counter++;
     if (counter < 100) {
@@ -682,8 +678,7 @@ const sync_address = 12;
 [src/isolate.h](https://cs.chromium.org/chromium/src/v8/src/isolate.h?cl=148ef60)  
 [src/runtime/runtime-test.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-test.cc?cl=148ef60)  
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=148ef60)  
-[test/mjsunit/regress/wasm/regress-8533.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-8533.js?cl=148ef60)  
-[test/unittests/wasm/trap-handler-x64-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/wasm/trap-handler-x64-unittest.cc?cl=148ef60)  
+...  
   
 
 ---   
@@ -804,11 +799,8 @@ load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 function verbose(args) {
-  
+  // print(...args);
 }
-
-
-
 
 let numFailures = 0;
 
@@ -834,15 +826,15 @@ let inputs = [
   -1.17658e+23,
   -1.9617e+22,
   -2.7357e+20,
-  -9223372036854775808.0,  
+  -9223372036854775808.0,  // INT64_MIN
   -1.48708e+13,
   -1.89633e+12,
   -4.66622e+11,
   -2.22581e+11,
   -1.45381e+10,
-  -2147483904.0,  
-  -2147483648.0,  
-  -2147483520.0,  
+  -2147483904.0,  // First float32 after INT32_MIN
+  -2147483648.0,  // INT32_MIN
+  -2147483520.0,  // Last float32 before INT32_MIN
   -1.3956e+09,
   -1.32951e+09,
   -1.30721e+09,
@@ -908,13 +900,13 @@ let inputs = [
   20309.0,
   797056.0,
   1.77219e+09,
-  2147483648.0,  
-  4294967296.0,  
+  2147483648.0,  // INT32_MAX + 1
+  4294967296.0,  // UINT32_MAX + 1
   1.51116e+11,
   4.18193e+13,
   3.59167e+16,
-  9223372036854775808.0,   
-  18446744073709551616.0,  
+  9223372036854775808.0,   // INT64_MAX + 1
+  18446744073709551616.0,  // UINT64_MAX + 1
   3.38211e+19,
   2.67488e+20,
   1.78831e+21,
@@ -968,10 +960,10 @@ function wasmBinop(name, sig) {
   builder.addImport('Math', name, sig_index);
   builder.addFunction('main', sig_index)
       .addBody([
-        kExprGetLocal, 0,  
-        kExprGetLocal, 1,  
+        kExprGetLocal, 0,  // --
+        kExprGetLocal, 1,  // --
         kExprCallFunction, 0
-      ])  
+      ])  // --
       .exportAs('main');
 
   return builder.instantiate(global_imports).exports.main;
@@ -1007,10 +999,7 @@ assertEquals(0, numFailures);
 [src/flag-definitions.h](https://cs.chromium.org/chromium/src/v8/src/flag-definitions.h?cl=99484e2)  
 [src/wasm/module-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-compiler.cc?cl=99484e2)  
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=99484e2)  
-[test/mjsunit/regress/wasm/regress-8505.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-8505.js?cl=99484e2)  
-[test/mjsunit/wasm/asm-wasm-math-intrinsic.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/asm-wasm-math-intrinsic.js?cl=99484e2)  
-[test/mjsunit/wasm/wasm-constants.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-constants.js?cl=99484e2)  
-[test/mjsunit/wasm/wasm-math-intrinsic.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-math-intrinsic.js?cl=99484e2)  
+...  
   
 
 ---   
@@ -1163,8 +1152,8 @@ function fun(arg) {
   a1[0] = 1.1;
   a2 = new Array(0x10);
   a2[0] = 1.1;
-  a1[(x >> 16) * 21] = 1.39064994160909e-309;  
-  a1[(x >> 16) * 41] = 8.91238232205e-313;  
+  a1[(x >> 16) * 21] = 1.39064994160909e-309;  // 0xffff00000000
+  a1[(x >> 16) * 41] = 8.91238232205e-313;  // 0x2a00000000
 }
 
 var a1, a2;
@@ -1193,11 +1182,6 @@ for (let i = 8; i < 32; i++) {
 [test/mjsunit/regress/regress-3027.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3027.js?cl=4e3a17d)  
 [test/mjsunit/regress/regress-331444.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-331444.js?cl=4e3a17d)  
 [test/mjsunit/regress/regress-358090.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-358090.js?cl=4e3a17d)  
-[test/mjsunit/regress/regress-732836.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-732836.js?cl=4e3a17d)  
-[test/mjsunit/regress/regress-803750.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-803750.js?cl=4e3a17d)  
-[test/mjsunit/regress/regress-869735.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-869735.js?cl=4e3a17d)  
-[test/mjsunit/regress/regress-crbug-614727.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-614727.js?cl=4e3a17d)  
-[test/mjsunit/regress/regress-crbug-813450.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-813450.js?cl=4e3a17d)  
 ...  
   
 
@@ -1364,7 +1348,15 @@ assertEquals("b", "a".replace(/a/, () => "b"));
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a27a42f^!)  
-
+[src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=a27a42f)  
+[src/builtins/builtins-regexp-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-regexp-gen.cc?cl=a27a42f)  
+[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=a27a42f)  
+[src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=a27a42f)  
+[src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=a27a42f)  
+[src/heap/setup-heap-internal.cc](https://cs.chromium.org/chromium/src/v8/src/heap/setup-heap-internal.cc?cl=a27a42f)  
+...  
+  
+  
 ---   
 
 ## **regress-905555-2.js (chromium issue)**  
@@ -1392,7 +1384,6 @@ assertEquals(1, boom());
 delete this.global;
 
 %UnblockConcurrentRecompilation();
-
 
 assertUnoptimized(boom, "sync");
 
@@ -1496,11 +1487,6 @@ assertEquals([], [..."c".matchAll(/c/)]);
 [src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=3ca32e9)  
 [src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=3ca32e9)  
 [src/heap/setup-heap-internal.cc](https://cs.chromium.org/chromium/src/v8/src/heap/setup-heap-internal.cc?cl=3ca32e9)  
-[src/isolate-inl.h](https://cs.chromium.org/chromium/src/v8/src/isolate-inl.h?cl=3ca32e9)  
-[src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=3ca32e9)  
-[src/isolate.h](https://cs.chromium.org/chromium/src/v8/src/isolate.h?cl=3ca32e9)  
-[src/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/lookup.cc?cl=3ca32e9)  
-[src/roots.h](https://cs.chromium.org/chromium/src/v8/src/roots.h?cl=3ca32e9)  
 ...  
   
 
@@ -1742,7 +1728,7 @@ Regress: [mjsunit/regress/regress-crbug-902672.js](https://chromium.googlesource
 ```javascript
 var a = this;
 var b = {};
-a.length = 4294967296; 
+a.length = 4294967296; // 2 ^ 32 (max array length + 1)
 assertThrows(() => Array.prototype.join.call(a,b), TypeError);  
 ```  
   
@@ -1975,9 +1961,7 @@ Regress: [mjsunit/regress/regress-crbug-903043.js](https://chromium.googlesource
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=56f6a76)  
 [src/compiler/simplified-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.cc?cl=56f6a76)  
 [src/compiler/simplified-operator.h](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.h?cl=56f6a76)  
-[src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=56f6a76)  
-[src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=56f6a76)  
-[test/mjsunit/regress/regress-crbug-903043.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-903043.js?cl=56f6a76)  
+...  
   
 
 ---   
@@ -2001,7 +1985,6 @@ function inobjectDoubles() {
   "use strict";
   this.p0 = -6400510997704731;
 }
-
 
 assertEquals({ p0: -6400510997704731 }, clone(new inobjectDoubles()));  
 ```  
@@ -2057,8 +2040,8 @@ Code Review: [https://chromium-review.googlesource.com/c/1326029](https://chromi
 Regress: [mjsunit/regress/regress-crbug-902610.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-902610.js)  
 ```javascript
 assertThrows(() => {
-  
-  
+  // Make a function with 65535 args. This should throw a SyntaxError because -1
+  // is reserved for the "don't adapt arguments" sentinel.
   var f_with_65535_args =
       eval("(function(" + Array(65535).fill("x").join(",") + "){})");
   f_with_65535_args();
@@ -2110,8 +2093,8 @@ function opt() {
     Object.seal({})
   }finally{
     try{
-      
-      
+      // Carefully crafted by clusterfuzz to alias the temporary object literal
+      // register with the below dead try block's context register.
       (
         {
           toString(){
@@ -2124,7 +2107,7 @@ function opt() {
       {
         return
       }
-      
+      // This code should be dead.
       try{
         Reflect.construct
       }finally{
@@ -2178,11 +2161,6 @@ f();
 [src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=60c0edc)  
 [src/interpreter/bytecodes.h](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecodes.h?cl=60c0edc)  
 [src/interpreter/interpreter-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/interpreter-generator.cc?cl=60c0edc)  
-[test/cctest/interpreter/bytecode_expectations/CompoundExpressions.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/CompoundExpressions.golden?cl=60c0edc)  
-[test/cctest/interpreter/bytecode_expectations/CountOperators.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/CountOperators.golden?cl=60c0edc)  
-[test/cctest/interpreter/bytecode_expectations/Delete.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/Delete.golden?cl=60c0edc)  
-[test/cctest/interpreter/bytecode_expectations/ForAwaitOf.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/ForAwaitOf.golden?cl=60c0edc)  
-[test/cctest/interpreter/bytecode_expectations/ForIn.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/ForIn.golden?cl=60c0edc)  
 ...  
   
 
@@ -2257,12 +2235,10 @@ Regress: [mjsunit/regress/regress-901633.js](https://chromium.googlesource.com/v
 const magic0 = 2396;
 const magic1 = 1972;
 
-
 const xs = [];
 for (let j = 0; j < magic0; ++j) {
   xs[j] = [j + 0.1];
 }
-
 
 let cmp_calls = 0;
 xs.sort((lhs, rhs) => {
@@ -2297,7 +2273,14 @@ f.arguments
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/9d34fa0^!)  
-
+[src/ast/ast-value-factory.h](https://cs.chromium.org/chromium/src/v8/src/ast/ast-value-factory.h?cl=9d34fa0)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=9d34fa0)  
+[src/parsing/scanner.h](https://cs.chromium.org/chromium/src/v8/src/parsing/scanner.h?cl=9d34fa0)  
+[test/message/fail/directive.js](https://cs.chromium.org/chromium/src/v8/test/message/fail/directive.js?cl=9d34fa0)  
+[test/message/fail/directive.out](https://cs.chromium.org/chromium/src/v8/test/message/fail/directive.out?cl=9d34fa0)  
+[test/mjsunit/regress/regress-directive.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-directive.js?cl=9d34fa0)  
+  
+  
 ---   
 
 ## **regress-900786.js (chromium issue)**  
@@ -2321,7 +2304,7 @@ assertThrows("{function g(){}function g(){+", SyntaxError);
 [src/ast/variables.h](https://cs.chromium.org/chromium/src/v8/src/ast/variables.h?cl=9884930)  
 [src/globals.h](https://cs.chromium.org/chromium/src/v8/src/globals.h?cl=9884930)  
 [src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=9884930)  
-[test/mjsunit/regress/regress-900786.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-900786.js?cl=9884930)  
+...  
   
 
 ---   
@@ -2439,7 +2422,7 @@ tmp.accumulator = 0;
 f(tmp);
 f(tmp);
 %OptimizeFunctionOnNextCall(f);
-f(tmp);  
+f(tmp);  // This must not trigger the {assert}.  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/4dff27e^!)  
@@ -2488,7 +2471,7 @@ let mem = new WebAssembly.Memory({initial: 1});
 try {
   mem.grow(49151);
 } catch (e) {
-  
+  // This can fail on 32-bit systems if we cannot make such a big reservation.
   if (!(e instanceof RangeError)) throw e;
 }  
 ```  
@@ -2500,11 +2483,7 @@ try {
 [src/wasm/module-decoder.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-decoder.cc?cl=fac176d)  
 [src/wasm/wasm-engine.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-engine.cc?cl=fac176d)  
 [src/wasm/wasm-js.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-js.cc?cl=fac176d)  
-[src/wasm/wasm-limits.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-limits.h?cl=fac176d)  
-[src/wasm/wasm-memory.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-memory.cc?cl=fac176d)  
-[src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=fac176d)  
-[test/mjsunit/regress/wasm/regress-898932.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-898932.js?cl=fac176d)  
-[test/mjsunit/wasm/huge-memory.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/huge-memory.js?cl=fac176d)  
+...  
   
 
 ---   
@@ -2923,21 +2902,16 @@ Regress: [mjsunit/regress/regress-897512.js](https://chromium.googlesource.com/v
 ```javascript
 for (let i = 0; i < 100; i++) Array.prototype.unshift(3.14);
 
-
 const o31 = [1.1];
 o31[37] = 2.2;
 
-
 const o51 = o31.concat(false);
-
 
 o51[0] = undefined;
 
 assertEquals(o51.length, 39);
 
-
 o51.sort();
-
 
 assertEquals(o51.length, 101);  
 ```  
@@ -2991,12 +2965,9 @@ function TestError() {}
 
 const a = new Array(2**32 - 1);
 
-
 a[0] = {
   toString() { throw new TestError(); }
 };
-
-
 
 assertThrows(() => a.join(), TestError);  
 ```  
@@ -3008,8 +2979,7 @@ assertThrows(() => a.join(), TestError);
 [src/builtins/builtins-string-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-string-gen.cc?cl=ec969ea)  
 [src/torque/csa-generator.cc](https://cs.chromium.org/chromium/src/v8/src/torque/csa-generator.cc?cl=ec969ea)  
 [test/mjsunit/array-join-invalid-string-length.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/array-join-invalid-string-length.js?cl=ec969ea)  
-[test/mjsunit/messages.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/messages.js?cl=ec969ea)  
-[test/mjsunit/regress/regress-crbug-897404.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-897404.js?cl=ec969ea)  
+...  
   
 
 ---   
@@ -3146,7 +3116,7 @@ function spread(o) {
 
 for (let i = 0; i<3; i++) {
   spread([]);
-  
+  // Use different transition => 'a'.
   spread({ a:0 });
   spread("abc");
 }  
@@ -3294,7 +3264,7 @@ Regress: [mjsunit/es6/regress/regress-cr895860.js](https://chromium.googlesource
 (function() {
   var s = "f";
 
-  
+  // 2^18 length, enough to ensure an array (of pointers) bigger than 500KB.
   for (var i = 0; i < 18; i++) {
     s += s;
   }
@@ -3352,8 +3322,7 @@ try { Reflect.construct(A, [], D); } catch(e) {}
 [src/compiler/js-call-reducer.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.h?cl=2d11dda)  
 [src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=2d11dda)  
 [src/compiler/js-inlining.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.h?cl=2d11dda)  
-[src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=2d11dda)  
-[test/mjsunit/compiler/regress-895799.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-895799.js?cl=2d11dda)  
+...  
   
 
 ---   
@@ -3447,7 +3416,7 @@ builder.addFunction(undefined, sig)
     kExprEnd,
   ]);
 builder.addExport('main', 0);
-builder.instantiate();  
+builder.instantiate();  // shouldn't crash  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/56b8ab5^!)  
@@ -3457,7 +3426,7 @@ builder.instantiate();
 [src/wasm/baseline/mips/liftoff-assembler-mips.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/mips/liftoff-assembler-mips.h?cl=56b8ab5)  
 [src/wasm/baseline/mips64/liftoff-assembler-mips64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/mips64/liftoff-assembler-mips64.h?cl=56b8ab5)  
 [src/wasm/baseline/x64/liftoff-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/x64/liftoff-assembler-x64.h?cl=56b8ab5)  
-[test/mjsunit/regress/wasm/regress-894374.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-894374.js?cl=56b8ab5)  
+...  
   
 
 ---   
@@ -3474,7 +3443,15 @@ assertThrows("()=>{ (x,x)=>1 }", SyntaxError)
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e874d6a^!)  
-
+[BUILD.gn](https://cs.chromium.org/chromium/src/v8/BUILD.gn?cl=e874d6a)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=e874d6a)  
+[src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=e874d6a)  
+[src/parsing/duplicate-finder.h](https://cs.chromium.org/chromium/src/v8/src/parsing/duplicate-finder.h?cl=e874d6a)  
+[src/parsing/expression-classifier.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-classifier.h?cl=e874d6a)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=e874d6a)  
+...  
+  
+  
 ---   
 
 ## **regress-arrow-single-expression-eval.js (other issue)**  
@@ -3489,7 +3466,14 @@ Regress: [mjsunit/regress/regress-arrow-single-expression-eval.js](https://chrom
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/af34c6c^!)  
-
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=af34c6c)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=af34c6c)  
+[src/parsing/parser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.h?cl=af34c6c)  
+[src/parsing/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.cc?cl=af34c6c)  
+[src/parsing/preparser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?cl=af34c6c)  
+[test/mjsunit/regress/regress-arrow-single-expression-eval.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-arrow-single-expression-eval.js?cl=af34c6c)  
+  
+  
 ---   
 
 ## **regress-892858.js (chromium issue)**  
@@ -3581,10 +3565,9 @@ Regress: [mjsunit/regress/regress-crbug-891627.js](https://chromium.googlesource
 function bar(x) { return x % 2; }
 bar(0.1);
 
-
 (function() {
   function foo(x) {
-    
+    // The NumberEqual identifies 0 and -0.
     return bar(x | -1) == 4294967295;
   }
 
@@ -3595,14 +3578,13 @@ bar(0.1);
   assertFalse(foo(0));
 })();
 
-
 (function() {
   function makeFoo(y) {
     return function foo(x) {
       return bar(x | -1) == y;
     }
   }
-  makeFoo(0);  
+  makeFoo(0);  // Defeat the function context specialization.
   const foo = makeFoo(1);
 
   assertFalse(foo(1));
@@ -3702,14 +3684,8 @@ Regress: [mjsunit/regress/regress-crbug-890243.js](https://chromium.googlesource
 function bar(x) { return x + x; }
 bar(0.1);
 
-
-
-
-
 function baz(y) { return {y}; }
 baz(null); baz(0);
-
-
 
 function foo(o) {
   return !baz(bar(o.x)).y;
@@ -3745,8 +3721,6 @@ function g() {
   f();
   new f();
 }
-
-
 
 for (let i = 0; i < 10000; i++) g();  
 ```  
@@ -3893,9 +3867,6 @@ Regress: [mjsunit/regress/regress-crbug-687063.js](https://chromium.googlesource
 ```javascript
 const actual = [];
 
-
-
-
 function foo() {
   actual.length = 0;
   const lhs = Symbol();
@@ -4009,7 +3980,6 @@ Regress: [mjsunit/regress/regress-crbug-884933.js](https://chromium.googlesource
   assertEquals(0xFFFFFFFF, foo(dv));
 })();
 
-
 (function() {
   function bar(x, y) {
     return x + y;
@@ -4029,7 +3999,6 @@ Regress: [mjsunit/regress/regress-crbug-884933.js](https://chromium.googlesource
   assertEquals(0xFFFFFFFF, foo(dv));
 })();
 
-
 (function() {
   function bar(x, y) {
     return x + y;
@@ -4048,7 +4017,6 @@ Regress: [mjsunit/regress/regress-crbug-884933.js](https://chromium.googlesource
   %OptimizeFunctionOnNextCall(foo);
   assertEquals(0xFFFFFFFF, foo(dv));
 })();
-
 
 (function() {
   function bar(x, y) {
@@ -4099,10 +4067,7 @@ var __v_47 = ({[__v_46]: __f_52}) => { var __v_46 = 'b'; return __f_52; };
 [src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=d970749)  
 [src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=d970749)  
 [src/parsing/preparser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?cl=d970749)  
-[src/utils.h](https://cs.chromium.org/chromium/src/v8/src/utils.h?cl=d970749)  
-[test/mjsunit/regress/regress-883059.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-883059.js?cl=d970749)  
-[test/unittests/BUILD.gn](https://cs.chromium.org/chromium/src/v8/test/unittests/BUILD.gn?cl=d970749)  
-[test/unittests/utils/threaded-list.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/utils/threaded-list.cc?cl=d970749)  
+...  
   
 
 ---   
@@ -4156,10 +4121,6 @@ function mapper(x) {
   return x + 1;
 }
 
-
-
-
-
 assertArrayEquals([2, 0, 4], Uint16Array.from(arr, mapper));  
 ```  
   
@@ -4202,13 +4163,13 @@ Regress: [mjsunit/regress/regress-crbug-880207.js](https://chromium.googlesource
   }
 
   f(0);
-  
-  
+  // Compile function optimistically for numbers (with fast inlined
+  // path for Math.expm1).
   %OptimizeFunctionOnNextCall(f);
-  
-  
+  // Invalidate the optimistic assumption, deopting and marking non-number
+  // input feedback in the call IC.
   f("0");
-  
+  // Optimize again, now with non-lowered call to Math.expm1.
   assertTrue(g());
   %OptimizeFunctionOnNextCall(g);
   assertTrue(g());
@@ -4245,11 +4206,6 @@ var b = a.splice(-4, 9, 10);
 [src/builtins/array-splice.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-splice.tq?cl=fd334b3)  
 [src/builtins/array.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array.tq?cl=fd334b3)  
 [src/builtins/base.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/base.tq?cl=fd334b3)  
-[src/builtins/builtins-array.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-array.cc?cl=fd334b3)  
-[src/builtins/builtins-definitions.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?cl=fd334b3)  
-[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=fd334b3)  
-[src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=fd334b3)  
-[src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=fd334b3)  
 ...  
   
 
@@ -4268,7 +4224,6 @@ Regress: [mjsunit/regress/wasm/regress-8094.js](https://chromium.googlesource.co
 load("test/mjsunit/wasm/wasm-constants.js");
 load("test/mjsunit/wasm/wasm-module-builder.js");
 
-
 var builder = new WasmModuleBuilder();
 builder.addException(kSig_v_v);
 builder.addFunction("propel", kSig_v_v)
@@ -4276,16 +4231,12 @@ builder.addFunction("propel", kSig_v_v)
        .exportFunc();
 var instance = builder.instantiate();
 
-
 var exception;
 try {
   instance.exports.propel();
 } catch (e) {
   exception = e;
 }
-
-
-
 
 assertInstanceof(exception, WebAssembly.RuntimeError);
 assertArrayEquals(["stack", "message"], Object.getOwnPropertyNames(exception));  
@@ -4298,10 +4249,7 @@ assertArrayEquals(["stack", "message"], Object.getOwnPropertyNames(exception));
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=e8d79f0)  
 [src/wasm/wasm-module.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-module.cc?cl=e8d79f0)  
 [src/wasm/wasm-module.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-module.h?cl=e8d79f0)  
-[test/mjsunit/regress/wasm/regress-8094.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-8094.js?cl=e8d79f0)  
-[test/mjsunit/wasm/exceptions.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/exceptions.js?cl=e8d79f0)  
-[test/mjsunit/wasm/wasm-constants.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-constants.js?cl=e8d79f0)  
-[tools/v8heapconst.py](https://cs.chromium.org/chromium/src/v8/tools/v8heapconst.py?cl=e8d79f0)  
+...  
   
 
 ---   
@@ -4402,14 +4350,12 @@ Regress: [mjsunit/regress/wasm/regress-8095.js](https://chromium.googlesource.co
 load("test/mjsunit/wasm/wasm-constants.js");
 load("test/mjsunit/wasm/wasm-module-builder.js");
 
-
 var error = new Error("my error");
 error.__proto__ = new Proxy(new Error(), {
   has(target, property, receiver) {
     assertUnreachable();
   }
 });
-
 
 var builder = new WasmModuleBuilder();
 builder.addImport('mod', 'fun', kSig_v_v);
@@ -4464,8 +4410,7 @@ assertTrue(foo(a));
 [src/compiler/access-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-builder.cc?cl=6031f17)  
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=6031f17)  
 [src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=6031f17)  
-[src/objects/js-array.h](https://cs.chromium.org/chromium/src/v8/src/objects/js-array.h?cl=6031f17)  
-[test/mjsunit/regress/regress-v8-8070.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-8070.js?cl=6031f17)  
+...  
   
 
 ---   
@@ -4486,11 +4431,11 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 (function() {
   const builder = new WasmModuleBuilder();
-  
+  // Generate function 1 (out of 2).
   sig1 = makeSig([kWasmI32], []);
   builder.addFunction("main", sig1).addBodyWithEnd([
-    
-    
+    // signature: v_i
+    // body:
     kExprBlock,
   ]);
   assertThrows(function() { builder.instantiate(); }, WebAssembly.CompileError);
@@ -4610,7 +4555,7 @@ Regress: [mjsunit/regress/wasm/regress-873600.js](https://chromium.googlesource.
   try {
     var buffer = new ArrayBuffer((2097120) * 1024);
   } catch (e) {
-    
+    // Out of memory: soft pass because 2GiB is actually a lot!
     print("OOM: soft pass");
     return;
   }
@@ -4659,11 +4604,7 @@ Regress: [mjsunit/regress/wasm/regress-873600.js](https://chromium.googlesource.
 [test/mjsunit/asm/asm-heap.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/asm/asm-heap.js?cl=5d69010)  
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=5d69010)  
 [test/mjsunit/regress/regress-6700.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-6700.js?cl=5d69010)  
-[test/mjsunit/regress/regress-crbug-759327.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-759327.js?cl=5d69010)  
-[test/mjsunit/regress/wasm/regress-776677.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-776677.js?cl=5d69010)  
-[test/mjsunit/regress/wasm/regress-873600.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-873600.js?cl=5d69010)  
-[test/mjsunit/wasm/asm-wasm-memory.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/asm-wasm-memory.js?cl=5d69010)  
-[test/mjsunit/wasm/asm-wasm.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/asm-wasm.js?cl=5d69010)  
+...  
   
 
 ---   
@@ -4728,9 +4669,7 @@ assertDoesNotThrow("if (true) { foo: goo: for (let x in []) { continue foo } }")
 [src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=260af11)  
 [src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=260af11)  
 [src/parsing/parser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.h?cl=260af11)  
-[src/parsing/pattern-rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/pattern-rewriter.cc?cl=260af11)  
-[src/parsing/preparser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?cl=260af11)  
-[test/mjsunit/regress/regress-8033.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-8033.js?cl=260af11)  
+...  
   
 
 ---   
@@ -4808,9 +4747,7 @@ obj[Symbol.isConcatSpreadable] = true;
 
 var obj2 = { ...obj };
 
-
 %HeapObjectVerify(obj2);
-
 
 assertEquals("[object foo]", Object.prototype.toString.call(obj2));
 assertTrue(Uint8Array instanceof obj2);
@@ -4877,7 +4814,7 @@ function spread(o) { return { ...o }; }
   assertEquals({ p1: 2, p2: 3 }, spread(new C2));
 })();
 
-gc(); 
+gc(); // Clobber cached map in feedback[0], and check that we don't crash
 function C3() { this.p0 = 3; }
 assertEquals({ p0: 3 }, spread(new C3));  
 ```  
@@ -4939,12 +4876,12 @@ Code Review: [https://chromium-review.googlesource.com/1152414](https://chromium
 Regress: [mjsunit/es9/regress/regress-867958.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es9/regress/regress-867958.js)  
 ```javascript
 var obj1 = { x: 1 };
-var obj2 = { x: 2 }; 
-obj2.x = null; 
+var obj2 = { x: 2 }; // same map
+obj2.x = null; // deprecate map
 
 function f() { return { ...obj1 } };
-assertEquals({ x: 1 }, f()); 
-assertEquals({ x: 1 }, f());  
+assertEquals({ x: 1 }, f()); // missed, object migrated to cached new map
+assertEquals({ x: 1 }, f()); // monomorphic cache-hit  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/670fa86^!)  
@@ -4981,10 +4918,7 @@ o.toString = [];
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d6efcbf)  
 [src/objects/map-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects/map-inl.h?cl=d6efcbf)  
 [src/objects/map.h](https://cs.chromium.org/chromium/src/v8/src/objects/map.h?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866282.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866282.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866357.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866357.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866727.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866727.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866861.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866861.js?cl=d6efcbf)  
+...  
   
 
 ---   
@@ -5021,10 +4955,7 @@ test();
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d6efcbf)  
 [src/objects/map-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects/map-inl.h?cl=d6efcbf)  
 [src/objects/map.h](https://cs.chromium.org/chromium/src/v8/src/objects/map.h?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866282.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866282.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866357.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866357.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866727.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866727.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866861.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866861.js?cl=d6efcbf)  
+...  
   
 
 ---   
@@ -5059,10 +4990,7 @@ assertEquals({ then }, spread());
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d6efcbf)  
 [src/objects/map-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects/map-inl.h?cl=d6efcbf)  
 [src/objects/map.h](https://cs.chromium.org/chromium/src/v8/src/objects/map.h?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866282.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866282.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866357.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866357.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866727.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866727.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866861.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866861.js?cl=d6efcbf)  
+...  
   
 
 ---   
@@ -5080,13 +5008,11 @@ Regress: [mjsunit/es9/regress/regress-866282.js](https://chromium.googlesource.c
 ```javascript
 function spread(o) { return { ...o }; }
 
-
 assertEquals({}, spread(new function C1() {}));
 assertEquals({}, spread(new function C2() {}));
 assertEquals({}, spread(new function C3() {}));
 assertEquals({}, spread(new function C4() {}));
 assertEquals({}, spread(new function C5() {}));
-
 
 assertEquals({}, spread(undefined));  
 ```  
@@ -5098,10 +5024,7 @@ assertEquals({}, spread(undefined));
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d6efcbf)  
 [src/objects/map-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects/map-inl.h?cl=d6efcbf)  
 [src/objects/map.h](https://cs.chromium.org/chromium/src/v8/src/objects/map.h?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866282.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866282.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866357.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866357.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866727.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866727.js?cl=d6efcbf)  
-[test/mjsunit/es9/regress/regress-866861.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es9/regress/regress-866861.js?cl=d6efcbf)  
+...  
   
 
 ---   
@@ -5202,11 +5125,6 @@ f();
 [src/builtins/builtins-typed-array-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typed-array-gen.cc?cl=a2d6159)  
 [src/builtins/builtins.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins.cc?cl=a2d6159)  
 [src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=a2d6159)  
-[src/compiler/js-call-reducer.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.h?cl=a2d6159)  
-[src/compiler/js-generic-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-generic-lowering.cc?cl=a2d6159)  
-[src/compiler/js-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-operator.cc?cl=a2d6159)  
-[src/compiler/js-operator.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-operator.h?cl=a2d6159)  
-[src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=a2d6159)  
 ...  
   
 
@@ -5242,8 +5160,8 @@ const typedArrayConstructors = [...intArrayConstructors,
                                 ...floatArrayConstructors];
 
 for (let constructor of typedArrayConstructors) {
-  
-  
+  // Shadowing the length of a TypedArray should work for Array.p.fill,
+  // but not crash it.
   let array = new constructor([2, 2]);
   assertEquals(2, array.length);
 
@@ -5279,54 +5197,46 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
 builder.addMemory(1, 1);
-
 builder.addFunction(undefined, kSig_v_i).addBody([
-  kExprGetLocal, 0,        
-  kExprI32Const, 0,        
-  kExprI32StoreMem, 0, 0,  
+  kExprGetLocal, 0,        // get_local 0
+  kExprI32Const, 0,        // i32.const 0
+  kExprI32StoreMem, 0, 0,  // i32.store offset=0
 ]);
-
-
-
 builder.addFunction(undefined, makeSig(new Array(6).fill(kWasmI32), []))
     .addBody([
-      kExprGetLocal, 5,     
-      kExprCallFunction, 0  
+      kExprGetLocal, 5,     // get_local 5
+      kExprCallFunction, 0  // call 0
     ]);
-
-
-
-
 const gen_i32_code = [
-  kExprTeeLocal, 0,  
-  kExprGetLocal, 0,  
-  kExprI32Const, 1,  
-  kExprI32Add        
+  kExprTeeLocal, 0,  // tee_local 0
+  kExprGetLocal, 0,  // get_local 0
+  kExprI32Const, 1,  // i32.const 1
+  kExprI32Add        // i32.add     --> 2nd param
 ];
 builder.addFunction(undefined, kSig_v_v).addLocals({i32_count: 1}).addBody([
-  
-  
-  ...wasmI32Const(0),    
-  ...wasmI32Const(1),    
-  kExprI32Add,           
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  ...gen_i32_code,       
-  kExprDrop,             
-  kExprDrop,             
-  kExprDrop,             
-  kExprDrop,             
-  kExprDrop,             
-  kExprDrop,             
-  kExprCallFunction,  1  
+  // Generate six values on the stack, then six more to force the other six on
+  // the stack.
+  ...wasmI32Const(0),    // i32.const 0
+  ...wasmI32Const(1),    // i32.const 1
+  kExprI32Add,           // i32.add --> 1st param
+  ...gen_i32_code,       // --> 2nd param
+  ...gen_i32_code,       // --> 3rd param
+  ...gen_i32_code,       // --> 4th param
+  ...gen_i32_code,       // --> 5th param
+  ...gen_i32_code,       // --> 6th param
+  ...gen_i32_code,       // --> garbage
+  ...gen_i32_code,       // --> garbage
+  ...gen_i32_code,       // --> garbage
+  ...gen_i32_code,       // --> garbage
+  ...gen_i32_code,       // --> garbage
+  ...gen_i32_code,       // --> garbage
+  kExprDrop,             // drop garbage
+  kExprDrop,             // drop garbage
+  kExprDrop,             // drop garbage
+  kExprDrop,             // drop garbage
+  kExprDrop,             // drop garbage
+  kExprDrop,             // drop garbage
+  kExprCallFunction,  1  // call 1
 ]).exportAs('three');
 const instance = builder.instantiate();
 instance.exports.three();  
@@ -5394,7 +5304,15 @@ f(3n);
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/9eca23e^!)  
-
+[src/builtins/builtins-conversion-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-conversion-gen.cc?cl=9eca23e)  
+[src/builtins/builtins-definitions.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?cl=9eca23e)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=9eca23e)  
+[src/compiler/js-call-reducer.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.h?cl=9eca23e)  
+[src/compiler/js-generic-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-generic-lowering.cc?cl=9eca23e)  
+[src/compiler/js-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-operator.cc?cl=9eca23e)  
+...  
+  
+  
 ---   
 
 ## **regress-852765.js (chromium issue)**  
@@ -5410,13 +5328,11 @@ Regress: [mjsunit/regress/regress-852765.js](https://chromium.googlesource.com/v
 ```javascript
 assertThrows("(import(foo)) =>", undefined, "Invalid destructuring assignment target");
 
-
 assertThrows("import(foo) =>", undefined, "Malformed arrow function parameter list");
 assertThrows("(a, import(foo)) =>", undefined, "Invalid destructuring assignment target");
 assertThrows("(1, import(foo)) =>", undefined, "Invalid destructuring assignment target");
 assertThrows("(super(foo)) =>", undefined, "'super' keyword unexpected here");
 assertThrows("(bar(foo)) =>", undefined, "Invalid destructuring assignment target");
-
 
 assertThrows("[import(foo).then] = [1];", undefined, "foo is not defined");
 assertThrows("[[import(foo).then]] = [[1]];", undefined, "foo is not defined");  
@@ -5609,9 +5525,7 @@ assertDoesNotThrow(test3);
 [src/ic/accessor-assembler.h](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.h?cl=d8f0237)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=d8f0237)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=d8f0237)  
-[src/runtime/runtime-proxy.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-proxy.cc?cl=d8f0237)  
-[src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=d8f0237)  
-[test/mjsunit/regress/regress-crbug-849024.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-849024.js?cl=d8f0237)  
+...  
   
 
 ---   
@@ -5633,37 +5547,37 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 builder.addFunction('main', kSig_d_d)
     .addBody([
-      
-      
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprGetLocal, 0, kExprI64SConvertF64,  
-      kExprCallFunction, 1,                   
-      
-      
-      
-      kExprI64Const, 0,      
-      kExprI64Const, 0,      
-      kExprI64Const, 0,      
-      kExprI64Const, 0,      
-      kExprI64Const, 0,      
-      kExprI64Const, 0,      
-      kExprI64Const, 0,      
-      kExprI64Const, 0,      
-      kExprCallFunction, 1,  
-      
+      // Call with param 0 (converted to i64), to fill the stack with non-zero
+      // values.
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 0
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 1
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 2
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 3
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 4
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 5
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 6
+      kExprGetLocal, 0, kExprI64SConvertF64,  // arg 7
+      kExprCallFunction, 1,                   // call #1
+      // Now call with 0 constants.
+      // The bug was that they were written out as i32 values, thus the upper 32
+      // bit were the previous values on that stack memory.
+      kExprI64Const, 0,      // i64.const 0  [0]
+      kExprI64Const, 0,      // i64.const 0  [1]
+      kExprI64Const, 0,      // i64.const 0  [2]
+      kExprI64Const, 0,      // i64.const 0  [3]
+      kExprI64Const, 0,      // i64.const 0  [4]
+      kExprI64Const, 0,      // i64.const 0  [5]
+      kExprI64Const, 0,      // i64.const 0  [6]
+      kExprI64Const, 0,      // i64.const 0  [7]
+      kExprCallFunction, 1,  // call #1
+      // Return the sum of the two returned values.
       kExprF64Add
     ])
     .exportFunc();
 builder.addFunction(undefined, makeSig(new Array(8).fill(kWasmI64), [kWasmF64]))
     .addBody([
-      kExprGetLocal, 7,     
-      kExprF64SConvertI64,  
+      kExprGetLocal, 7,     // get_local 7 (last parameter)
+      kExprF64SConvertI64,  // f64.convert_s/i64
     ]);
 const instance = builder.instantiate();
 const big_num_1 = 2 ** 48;
@@ -5696,9 +5610,9 @@ const builder = new WasmModuleBuilder();
 builder.addMemory(16, 32, false);
 builder.addFunction('main', kSig_i_v)
     .addBody([
-      ...wasmI32Const(10000),  
-      kExprMemoryGrow, 0,      
-      kExprI32Popcnt,          
+      ...wasmI32Const(10000),  // i32.const 10000
+      kExprMemoryGrow, 0,      // grow_memory --> -1
+      kExprI32Popcnt,          // i32.popcnt  --> 32
     ])
     .exportFunc();
 const instance = builder.instantiate();
@@ -5775,11 +5689,6 @@ a();
 [src/arm64/macro-assembler-arm64.h](https://cs.chromium.org/chromium/src/v8/src/arm64/macro-assembler-arm64.h?cl=34225a6)  
 [src/builtins/arm/builtins-arm.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/arm/builtins-arm.cc?cl=34225a6)  
 [src/builtins/arm64/builtins-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/arm64/builtins-arm64.cc?cl=34225a6)  
-[src/builtins/ia32/builtins-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/ia32/builtins-ia32.cc?cl=34225a6)  
-[src/builtins/mips/builtins-mips.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/mips/builtins-mips.cc?cl=34225a6)  
-[src/builtins/mips64/builtins-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/mips64/builtins-mips64.cc?cl=34225a6)  
-[src/builtins/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?cl=34225a6)  
-[src/ia32/macro-assembler-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/macro-assembler-ia32.cc?cl=34225a6)  
 ...  
   
 
@@ -5859,21 +5768,21 @@ const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, makeSig([kWasmI32, kWasmF32], []))
     .addLocals({i32_count: 7})
     .addBody([
-      kExprGetLocal,    0,          
-      kExprI32Const,    0,          
-      kExprIf,          kWasmStmt,  
-      kExprUnreachable,             
-      kExprEnd,                     
-      kExprGetLocal,    4,          
-      kExprTeeLocal,    8,          
-      kExprBrIf,        0,          
-      kExprTeeLocal,    7,          
-      kExprTeeLocal,    0,          
-      kExprTeeLocal,    2,          
-      kExprTeeLocal,    8,          
-      kExprDrop,                    
-      kExprLoop,        kWasmStmt,  
-      kExprEnd,                     
+      kExprGetLocal,    0,          // get_local
+      kExprI32Const,    0,          // i32.const 0
+      kExprIf,          kWasmStmt,  // if
+      kExprUnreachable,             // unreachable
+      kExprEnd,                     // end if
+      kExprGetLocal,    4,          // get_local
+      kExprTeeLocal,    8,          // tee_local
+      kExprBrIf,        0,          // br_if depth=0
+      kExprTeeLocal,    7,          // tee_local
+      kExprTeeLocal,    0,          // tee_local
+      kExprTeeLocal,    2,          // tee_local
+      kExprTeeLocal,    8,          // tee_local
+      kExprDrop,                    // drop
+      kExprLoop,        kWasmStmt,  // loop
+      kExprEnd,                     // end loop
     ]);
 builder.instantiate();  
 ```  
@@ -5900,14 +5809,14 @@ Regress: [mjsunit/regress/wasm/regress-853453.js](https://chromium.googlesource.
 ```javascript
 assertThrows(() => new WebAssembly.Module(
     new Uint8Array([
-      0x00, 0x61, 0x73, 0x6d,     
-      0x01, 0x00, 0x00, 0x00,     
-      0x04,                       
-      0x04,                       
+      0x00, 0x61, 0x73, 0x6d,     // wasm magic
+      0x01, 0x00, 0x00, 0x00,     // wasm version
+      0x04,                       // section code
+      0x04,                       // section length
       /* Section: Table */
-      0x01,                       
-      0x70,                       
-      0x03,                       
+      0x01,                       // table count
+      0x70,                       // table type
+      0x03,                       // resizable limits flags
       0x00])),
     WebAssembly.CompileError);  
 ```  
@@ -6016,9 +5925,9 @@ compareFn = _ => {
   if (!executed) {
     executed = true;
 
-    array.length = 1; 
-    array.length = 0; 
-    array.length = kArraySize; 
+    array.length = 1; // shrink
+    array.length = 0; // replace
+    array.length = kArraySize; // restore the original length
   }
 }
 
@@ -6096,7 +6005,7 @@ try {
   let ta2 = ta0.slice(1);
   let ta1 = ta0.slice(0x24924924);
 } catch (e) {
-  
+  // Allocation failed, that's fine.
 }  
 ```  
   
@@ -6176,14 +6085,9 @@ Object.defineProperty(Promise, Symbol.species, {
   }
 });
 
-
-
-
 var promise = WebAssembly.instantiate(new ArrayBuffer());
 assertInstanceof(promise, Promise);
 assertNotSame(promise, sentinel);
-
-
 
 var monkey = promise.then(r => { print(r) }, e => { print(e) });
 assertSame(monkey, sentinel);  
@@ -6206,7 +6110,6 @@ Code Review: [https://chromium-review.googlesource.com/1075054](https://chromium
 Regress: [mjsunit/regress/regress-7791.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-7791.js)  
 ```javascript
 "use strict";
-
 
 
 
@@ -6255,7 +6158,6 @@ Regress: [mjsunit/regress/regress-7791.js](https://chromium.googlesource.com/v8/
 
 
 
-
 {
   const o = {
     foo: 666,
@@ -6299,7 +6201,6 @@ Regress: [mjsunit/regress/regress-7791.js](https://chromium.googlesource.com/v8/
   };
   assertEquals(42, Object.getOwnPropertyDescriptor(o, 'foo').get());
 }
-
 
 
 
@@ -6387,8 +6288,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 [src/wasm/wasm-objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects-inl.h?cl=fabb514)  
 [src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=fabb514)  
 [src/wasm/wasm-objects.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.h?cl=fabb514)  
-[test/cctest/wasm/wasm-run-utils.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/wasm/wasm-run-utils.cc?cl=fabb514)  
-[test/mjsunit/regress/wasm/regress-7785.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-7785.js?cl=fabb514)  
+...  
   
 
 ---   
@@ -6427,11 +6327,6 @@ sparse_array.lastIndexOf(3, 99);
 [src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=5a0ebc8)  
 [src/heap/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap/heap.cc?cl=5a0ebc8)  
 [src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=5a0ebc8)  
-[src/keys.cc](https://cs.chromium.org/chromium/src/v8/src/keys.cc?cl=5a0ebc8)  
-[src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=5a0ebc8)  
-[src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=5a0ebc8)  
-[src/objects/fixed-array.h](https://cs.chromium.org/chromium/src/v8/src/objects/fixed-array.h?cl=5a0ebc8)  
-[src/objects/literal-objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/literal-objects.cc?cl=5a0ebc8)  
 ...  
   
 
@@ -6524,7 +6419,6 @@ class RegExpWithFastResult extends RegExp {
   exec(str) { return (this.number_of_runs++ == 0) ? fast_regexp_result : null; }
 }
 
-
 const slow_regexp_result = [];
 class RegExpWithSlowResult extends RegExp {
   constructor() { super(".", "g"); this.number_of_runs = 0; }
@@ -6590,12 +6484,12 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 (function() {
   const builder = new WasmModuleBuilder();
   builder.addMemory(16, 32);
-  
+  // Generate function 1 (out of 1).
   sig1 = makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]);
   builder.addFunction(undefined, sig1)
     .addBodyWithEnd([
-      
-      
+      // signature: i_iii
+      // body:
       kExprI32Const, 0xe1, 0xc8, 0xd5, 0x01,
       kExprI32Const, 0xe2, 0xe4, 0x00,
       kExprI32Sub,
@@ -6604,10 +6498,10 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
       kExprF32Eq,
       kExprI32LoadMem, 0x01, 0xef, 0xec, 0x95, 0x93, 0x07,
       kExprI32Add,
-      kExprIf, kWasmStmt,   
-      kExprEnd,             
+      kExprIf, kWasmStmt,   // @30
+      kExprEnd,             // @32
       kExprI32Const, 0xc9, 0x93, 0xdf, 0xcc, 0x7c,
-      kExprEnd,             
+      kExprEnd,             // @39
     ]);
   builder.addExport('main', 0);
   const instance = builder.instantiate();
@@ -6693,18 +6587,11 @@ Regress: [mjsunit/regress/regress-crbug-841592.js](https://chromium.googlesource
 ```javascript
 a = [];
 
-
 a.length = 0xFFFFFFF;
-
-
 
 a.length = 0;
 
-
-
 a.length = 0xFFFFFFF;
-
-
 
 a.length = 1;  
 ```  
@@ -6786,15 +6673,7 @@ load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 
-
-
-
-
-
-
 const builder = new WasmModuleBuilder();
-
-
 builder.addFunction('foo', kSig_v_v).addBody([]);
 builder.addFunction('test', kSig_v_v).addBody([kExprCallFunction, 0]);
 
@@ -6827,9 +6706,6 @@ for (let i = 0; i < 100000; i++) {
   proxy = new Proxy(proxy, {});
 }
 
-
-
-
 try { Reflect.apply(proxy, {}, []) } catch(_) {}
 try { Reflect.construct(proxy, []) } catch(_) {}
 try { Reflect.defineProperty(proxy, "x", {}) } catch(_) {}
@@ -6843,7 +6719,6 @@ try { Reflect.ownKeys(proxy) } catch(_) {}
 try { Reflect.preventExtensions(proxy) } catch(_) {}
 try { Reflect.setPrototypeOf(proxy, {}) } catch(_) {}
 try { Reflect.set(proxy, "x", {}) } catch(_) {}
-
 
 
 
@@ -7039,10 +6914,9 @@ assertTrue(%HasDoubleElements(iterable))
 iterable.length = 0;
 assertTrue(%HasDoubleElements(iterable))
 
-
 let map = new Map(iterable);
 assertEquals(0, map.size);
-new WeakMap(iterable);  
+new WeakMap(iterable); // WeakMap does not have a size  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/c77c869^!)  
@@ -7084,7 +6958,7 @@ let instance;
   try {
     instance.exports.main();
   } catch (e) {
-    
+    // ignore
   }
 })();  
 ```  
@@ -7167,7 +7041,7 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 builder.addMemory(16, 32);
 builder.addFunction("test", kSig_i_v).addBody([
-  kExprI32Const, 12,         
+  kExprI32Const, 12,         // i32.const 12
 ]);
 
 WebAssembly.Module.prototype.then = resolve => {
@@ -7268,12 +7142,12 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 builder.addMemory(16, 32);
 builder.addFunction("test", kSig_i_v).addBody([
-  kExprI32Const, 12,         
+  kExprI32Const, 12,         // i32.const 0
 ]);
 
 let module = new WebAssembly.Module(builder.toBuffer());
 module.then = () => {
-  
+  // Use setTimeout to get out of the promise chain.
   setTimeout(assertUnreachable);
 };
 
@@ -7384,10 +7258,6 @@ class MyArrayLike {
 const xs = new MyArrayLike();
 Array.prototype.sort.call(xs);
 
-
-
-
-
 assertEquals(2, xs[0]);
 assertEquals(1, xs[1]);  
 ```  
@@ -7411,14 +7281,12 @@ Regress: [mjsunit/regress/regress-7677.js](https://chromium.googlesource.com/v8/
 ```javascript
 "use strict";
 
-
 function arraylike(freeze) {
   let x;
   const obj = {length: 42};
   Object.defineProperty(obj, 5, {get() {return x}, set(y) {x = y}});
   return freeze ? Object.freeze(obj) : Object.seal(obj);
 }
-
 
 {
   const sealed = arraylike(false);
@@ -7431,7 +7299,6 @@ function arraylike(freeze) {
   assertEquals("foo", frozen[5]);
   assertThrows(() => Array.prototype.fill.call(frozen, "foo"), TypeError);
 }
-
 
 {
   const sealed = Object.seal({length: 0});
@@ -7450,7 +7317,6 @@ function arraylike(freeze) {
   const frozen = Object.freeze({length: 0});
   assertThrows(() => Array.prototype.shift.call(frozen), TypeError);
 }
-
 
 {
   const sealed = arraylike(false);
@@ -7477,11 +7343,6 @@ function arraylike(freeze) {
 [src/messages.h](https://cs.chromium.org/chromium/src/v8/src/messages.h?cl=021e9b0)  
 [test/cctest/interpreter/bytecode_expectations/AsyncGenerators.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/AsyncGenerators.golden?cl=021e9b0)  
 [test/cctest/interpreter/bytecode_expectations/ForAwaitOf.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/ForAwaitOf.golden?cl=021e9b0)  
-[test/cctest/interpreter/bytecode_expectations/ForOf.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/ForOf.golden?cl=021e9b0)  
-[test/cctest/interpreter/bytecode_expectations/ForOfLoop.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/ForOfLoop.golden?cl=021e9b0)  
-[test/cctest/interpreter/bytecode_expectations/Generators.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/Generators.golden?cl=021e9b0)  
-[test/cctest/interpreter/bytecode_expectations/StandardForLoop.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/StandardForLoop.golden?cl=021e9b0)  
-[test/mjsunit/messages.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/messages.js?cl=021e9b0)  
 ...  
   
 
@@ -7831,8 +7692,6 @@ Regress: [mjsunit/regress/wasm/regress-808848.js](https://chromium.googlesource.
 load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
-
-
 const kNumLocals = 128;
 
 function varuint32(val) {
@@ -7843,11 +7702,6 @@ function varuint32(val) {
   bytes.push((val >> (7 * 4)) & 0x7f);
   return bytes;
 }
-
-
-
-
-
 
 let body = [];
 
@@ -7870,7 +7724,6 @@ builder.
 let m1_bytes = builder.toBuffer();
 let m1 = new WebAssembly.Module(m1_bytes);
 
-
 let serialized_m1 = %SerializeWasmModule(m1);
 
 let worker_onmessage = function(msg) {
@@ -7886,7 +7739,6 @@ let workerScript = "onmessage = " + worker_onmessage.toString();
 
 let worker = new Worker(workerScript, {type: 'string'});
 worker.postMessage({serialized_m1, m1_bytes});
-
 
 print(worker.getMessage());  
 ```  
@@ -8014,7 +7866,15 @@ Regress: [mjsunit/regress/regress-store-transition-dict.js](https://chromium.goo
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/78c6bbd^!)  
-
+[src/builtins/builtins-internal-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-internal-gen.cc?cl=78c6bbd)  
+[src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=78c6bbd)  
+[src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=78c6bbd)  
+[src/ic/accessor-assembler.h](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.h?cl=78c6bbd)  
+[src/ic/handler-configuration-inl.h](https://cs.chromium.org/chromium/src/v8/src/ic/handler-configuration-inl.h?cl=78c6bbd)  
+[src/ic/handler-configuration.cc](https://cs.chromium.org/chromium/src/v8/src/ic/handler-configuration.cc?cl=78c6bbd)  
+...  
+  
+  
 ---   
 
 ## **regress-7582.js (v8 issue)**  
@@ -8037,36 +7897,36 @@ builder.addFunction(undefined, sig0)
   .addBody([
 kExprF32Const, 0x01, 0x00, 0x00, 0x00,
 kExprF32Const, 0x00, 0x00, 0x00, 0x00,
-kExprF32Eq,  
+kExprF32Eq,  // --> i32:0
 kExprF32Const, 0xc9, 0xc9, 0x69, 0xc9,
 kExprF32Const, 0xc9, 0xc9, 0xc9, 0x00,
-kExprF32Eq,  
+kExprF32Eq,  // --> i32:0 i32:0
 kExprIf, kWasmF32,
   kExprF32Const, 0x00, 0x00, 0x00, 0x00,
-kExprElse,   
+kExprElse,   // @32
   kExprF32Const, 0x00, 0x00, 0x00, 0x00,
-  kExprEnd,   
+  kExprEnd,   // --> i32:0 f32:0
 kExprF32Const, 0xc9, 0x00, 0x00, 0x00,
 kExprF32Const, 0xc9, 0xc9, 0xc9, 0x00,
-kExprF32Const, 0xc9, 0xc9, 0xa0, 0x00, 
-kExprF32Eq,  
+kExprF32Const, 0xc9, 0xc9, 0xa0, 0x00, // --> i32:0 f32:0 f32 f32 f32
+kExprF32Eq,  // --> i32:0 f32:0 f32 i32:0
 kExprIf, kWasmF32,
   kExprF32Const, 0x00, 0x00, 0x00, 0x00,
 kExprElse,
   kExprF32Const, 0x00, 0x00, 0x00, 0x00,
-  kExprEnd,  
-kExprF32Eq,  
+  kExprEnd,  // --> i32:0 f32:0 f32 f32:0
+kExprF32Eq,  // --> i32:0 f32:0 i32:0
 kExprIf, kWasmF32,
   kExprF32Const, 0x00, 0x00, 0x00, 0x00,
 kExprElse,
   kExprF32Const, 0x00, 0x00, 0x00, 0x00,
-  kExprEnd,   
-kExprF32Const, 0xc9, 0xc9, 0xff, 0xff,  
-kExprF32Eq,  
+  kExprEnd,   // --> i32:0 f32:0 f32:0
+kExprF32Const, 0xc9, 0xc9, 0xff, 0xff,  // --> i32:0 f32:0 f32:0 f32
+kExprF32Eq,  // --> i32:0 f32:0 i32:0
 kExprDrop,
-kExprDrop, 
-kExprI32Const, 1, 
-kExprI32GeU,  
+kExprDrop, // --> i32:0
+kExprI32Const, 1, // --> i32:0 i32:1
+kExprI32GeU,  // --> i32:0
           ]);
 builder.addExport('main', 0);
 const instance = builder.instantiate();
@@ -8130,7 +7990,6 @@ load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
-
 sig0 = makeSig([], [kWasmI32]);
 builder.addFunction(undefined, sig0)
   .addBody([
@@ -8165,7 +8024,6 @@ builder.addFunction(undefined, sig0)
     kExprCallFunction, 0x01,
     kExprI64Const, 0xb9, 0xf2, 0xe4, 0x01,
     kExprI64LtS]);
-
 sig1 = makeSig(new Array(12).fill(kWasmF64), []);
 builder.addFunction(undefined, sig1).addBody([]);
 builder.addExport('main', 0);
@@ -8175,11 +8033,11 @@ assertEquals(1, instance.exports.main());
 const builder2 = new WasmModuleBuilder();
 sig0 = makeSig([], [kWasmI32]);
 builder2.addFunction(undefined, sig0).addLocals({i64_count: 1}).addBody([
-  kExprLoop, kWasmI32,     
-  kExprGetLocal, 0,        
-  kExprF32SConvertI64,     
-  kExprI32ReinterpretF32,  
-  kExprEnd                 
+  kExprLoop, kWasmI32,     // loop i32
+  kExprGetLocal, 0,        // get_local 3
+  kExprF32SConvertI64,     // f32.sconvert/i64
+  kExprI32ReinterpretF32,  // i32.reinterpret/f32
+  kExprEnd                 // end
 ]);
 builder2.addExport('main', 0);
 const instance2 = builder2.instantiate();
@@ -8277,12 +8135,12 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 sig0 = makeSig([], [kWasmI32]);
 builder.addFunction(undefined, sig0).addLocals({i64_count: 1}).addBody([
-  kExprLoop, kWasmI32,                    
-  kExprF32Const, 0x00, 0x00, 0x00, 0x00,  
-  kExprGetLocal, 0x00,                    
-  kExprF32SConvertI64,                    
-  kExprF32Ge,                             
-  kExprEnd,                               
+  kExprLoop, kWasmI32,                    // loop i32
+  kExprF32Const, 0x00, 0x00, 0x00, 0x00,  // f32.const 0      --> f32:0
+  kExprGetLocal, 0x00,                    // get_local 0      --> i64:0
+  kExprF32SConvertI64,                    // f32.sconvert/i64 --> f32:0
+  kExprF32Ge,                             // f32.ge           --> i32:1
+  kExprEnd,                               // end
 ]);
 builder.addExport('main', 0);
 const module = builder.instantiate();
@@ -8342,9 +8200,7 @@ function foo(a) {
   return a.charCodeAt(0);
 }
 
-
 String.fromCharCode(49);
-
 
 const o = {};
 o[(1).toString()] = 1;
@@ -8391,8 +8247,6 @@ Array.from.call(function() { return oobArray }, {[Symbol.iterator] : _ => (
 ) });
 assertEquals(oobArray.length, maxSize);
 
-
-
 oobArray[oobArray.length - 1] = 0x41414141;  
 ```  
   
@@ -8422,11 +8276,11 @@ builder.addMemory(16, 32);
 builder.addGlobal(kWasmI32, 0);
 const sig0 = makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]);
 builder.addFunction(undefined, sig0).addBody([
-  kExprI32Const, 1,  
-  kExprI32Const, 0,  
-  kExprI32Const, 3,  
-  kExprI32GeU,       
-  kExprI32Rol,       
+  kExprI32Const, 1,  // i32.const 1
+  kExprI32Const, 0,  // i32.const 0
+  kExprI32Const, 3,  // i32.const 3
+  kExprI32GeU,       // i32.ge_u
+  kExprI32Rol,       // i32.rol
 ]);
 builder.addExport('main', 0);
 const instance = builder.instantiate();
@@ -8440,11 +8294,7 @@ assertEquals(1, instance.exports.main());
 [src/wasm/baseline/liftoff-assembler.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.h?cl=cc862e6)  
 [src/wasm/baseline/liftoff-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-compiler.cc?cl=cc862e6)  
 [src/wasm/baseline/mips/liftoff-assembler-mips.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/mips/liftoff-assembler-mips.h?cl=cc862e6)  
-[src/wasm/baseline/mips64/liftoff-assembler-mips64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/mips64/liftoff-assembler-mips64.h?cl=cc862e6)  
-[src/wasm/baseline/ppc/liftoff-assembler-ppc.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/ppc/liftoff-assembler-ppc.h?cl=cc862e6)  
-[src/wasm/baseline/s390/liftoff-assembler-s390.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/s390/liftoff-assembler-s390.h?cl=cc862e6)  
-[src/wasm/baseline/x64/liftoff-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/x64/liftoff-assembler-x64.h?cl=cc862e6)  
-[test/mjsunit/regress/wasm/regress-820802.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-820802.js?cl=cc862e6)  
+...  
   
 
 ---   
@@ -8529,9 +8379,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 const builder = new WasmModuleBuilder();
 builder.addFunction('f', kSig_i_v).addBody([kExprI32Const, 42]);
 const buffer = builder.toBuffer();
-
 const module = WebAssembly.compile(buffer);
-
 
 '퓛'.localeCompare();  
 ```  
@@ -8590,12 +8438,9 @@ for (let i = 0; i < arr.length; i++) {
 
 Promise.all(arr);
 
-
 resolve_element_closures[0xffff]();
 
-
 resolve_element_closures[100]();
-
 
 resolve_element_closures[0xfffe]();  
 ```  
@@ -8776,11 +8621,6 @@ assertOptimized(foo);
 [src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=06ee127)  
 [src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=06ee127)  
 [src/compiler/access-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-builder.cc?cl=06ee127)  
-[src/compiler/access-builder.h](https://cs.chromium.org/chromium/src/v8/src/compiler/access-builder.h?cl=06ee127)  
-[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=06ee127)  
-[src/compiler/js-call-reducer.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.h?cl=06ee127)  
-[src/compiler/js-create-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.cc?cl=06ee127)  
-[src/compiler/js-create-lowering.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.h?cl=06ee127)  
 ...  
   
 
@@ -8953,15 +8793,15 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, kSig_v_v).addLocals({i64_count: 1}).addBody([
   kExprI64Const, 0xeb,     0xd7, 0xaf, 0xdf,
-  0xbe,          0xfd,     0xfa, 0xf5, 0x6b,  
-  kExprI32Const, 0,                           
-  kExprIf,       kWasmI32,                    
-  kExprI32Const, 0,                           
-  kExprElse,                                  
-  kExprI32Const, 0,                           
-  kExprEnd,                                   
-  kExprBrIf,     0,                           
-  kExprSetLocal, 0,                           
+  0xbe,          0xfd,     0xfa, 0xf5, 0x6b,  // i64.const
+  kExprI32Const, 0,                           // i32.const
+  kExprIf,       kWasmI32,                    // if i32
+  kExprI32Const, 0,                           // i32.const
+  kExprElse,                                  // else
+  kExprI32Const, 0,                           // i32.const
+  kExprEnd,                                   // end
+  kExprBrIf,     0,                           // br_if depth=0
+  kExprSetLocal, 0,                           // set_local 0
 ]);
 builder.instantiate();  
 ```  
@@ -9045,10 +8885,10 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 builder.addMemory(16, 32);
 builder.addFunction(undefined, kSig_v_v).addBody([
-  kExprI32Const, 0,  
+  kExprI32Const, 0,  // i32.const 0
   kExprI64LoadMem, 0, 0xff, 0xff, 0xff, 0xff,
-  0x0f,       
-  kExprDrop,  
+  0x0f,       // i64.load align=0 offset=0xffffffff
+  kExprDrop,  // drop
 ]);
 builder.addExport('main', 0);
 const module = builder.instantiate();
@@ -9276,7 +9116,7 @@ function testSubclassProtoProperties(count) {
   var instance = new SubClass();
 
   %HeapObjectVerify(instance);
-  
+  // Create some more instances to complete in-object slack tracking.
   let results = [];
   for (let i = 0; i < 4000; i++) {
     results.push(new SubClass());
@@ -9314,11 +9154,11 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, kSig_d_v).addBody([
-  ...wasmF64Const(0),  
-  ...wasmF64Const(0),  
-  ...wasmI32Const(0),  
-  kExprBrIf, 0x00,     
-  kExprF64Add          
+  ...wasmF64Const(0),  // f64.const 0
+  ...wasmF64Const(0),  // f64.const 0
+  ...wasmI32Const(0),  // i32.const 0
+  kExprBrIf, 0x00,     // br_if depth=0
+  kExprF64Add          // f64.add
 ]);
 builder.instantiate();  
 ```  
@@ -9492,7 +9332,6 @@ const imports = {
 };
 const instance = new WebAssembly.Instance(module, imports);
 
-
 assertEquals(instance.exports.y, exportingInstance.exports.f);  
 ```  
   
@@ -9524,14 +9363,14 @@ builder.addMemory(16, 32);
 builder.addFunction('main', sig)
     .addBody([
       kExprI32Const, 0, kExprSetLocal, 0,
-      
+      // Compute five arguments to the function call.
       kExprI32Const, 0, kExprI32Const, 0, kExprI32Const, 0, kExprI32Const, 0,
       kExprGetLocal, 4, kExprI32Const, 1, kExprI32Add,
-      
-      
+      // Now some intermediate computation to force the arguments to be spilled
+      // to the stack:
       kExprGetLocal, 0, kExprI32Const, 1, kExprI32Add, kExprGetLocal, 1,
       kExprGetLocal, 1, kExprI32Add, kExprI32Add, kExprDrop,
-      
+      // Now call the function.
       kExprCallFunction, 0
     ])
     .exportFunc();
@@ -9559,10 +9398,6 @@ Code Review: [https://chromium-review.googlesource.com/900168](https://chromium-
 Regress: [mjsunit/regress/regress-crbug-807096.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-807096.js)  
 ```javascript
 load('test/mjsunit/test-async.js');
-
-
-
-
 
 
 let f = ({a = (({b = {a = c} = {
@@ -9836,7 +9671,6 @@ class Derived extends Array {
     constructor(a) { throw "error" }
 }
 
-
 let o = Reflect.construct(RegExp, [], Derived);
 o.lastIndex = 0x1234;
 %HeapObjectVerify(o);
@@ -9876,9 +9710,7 @@ gen.return({ get then() { delete this.then; gen.next(); } });
 [src/compiler/access-builder.h](https://cs.chromium.org/chromium/src/v8/src/compiler/access-builder.h?cl=9c4c717)  
 [src/compiler/js-create-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.cc?cl=9c4c717)  
 [src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=9c4c717)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=9c4c717)  
-[src/runtime/runtime-generator.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-generator.cc?cl=9c4c717)  
-[test/mjsunit/regress/regress-805729.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-805729.js?cl=9c4c717)  
+...  
   
 
 ---   
@@ -9912,8 +9744,7 @@ g.next();
 [src/builtins/ia32/builtins-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/ia32/builtins-ia32.cc?cl=830e39a)  
 [src/builtins/mips/builtins-mips.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/mips/builtins-mips.cc?cl=830e39a)  
 [src/builtins/mips64/builtins-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/mips64/builtins-mips64.cc?cl=830e39a)  
-[src/builtins/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?cl=830e39a)  
-[test/mjsunit/regress/regress-crbug-805765.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-805765.js?cl=830e39a)  
+...  
   
 
 ---   
@@ -9985,7 +9816,7 @@ function deferred_func() {
 let bound = (a => a).bind(this, 0);
 
 function opt() {
-    deferred_func.prototype;  
+    deferred_func.prototype;  // ReduceJSLoadNamed
 
     return bound();
 }
@@ -10023,7 +9854,12 @@ Regress: [mjsunit/regress/regress-charat-empty.js](https://chromium.googlesource
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/ee2d85a^!)  
-
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=ee2d85a)  
+[src/compiler/js-call-reducer.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.h?cl=ee2d85a)  
+[test/mjsunit/constant-folding-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/constant-folding-2.js?cl=ee2d85a)  
+[test/mjsunit/regress/regress-charat-empty.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-charat-empty.js?cl=ee2d85a)  
+  
+  
 ---   
 
 ## **regress-805768.js (chromium issue)**  
@@ -10059,9 +9895,7 @@ assertEquals([''], foo());
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=024d349)  
 [src/compiler/load-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/load-elimination.cc?cl=024d349)  
 [src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=024d349)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=024d349)  
-[test/mjsunit/keyed-store-array-literal.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/keyed-store-array-literal.js?cl=024d349)  
-[test/mjsunit/regress/regress-805768.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-805768.js?cl=024d349)  
+...  
   
 
 ---   
@@ -10096,10 +9930,7 @@ assertThrows(() => new WeakSet([{}]), TypeError);
 [src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=55efb6c)  
 [src/compiler/code-assembler.h](https://cs.chromium.org/chromium/src/v8/src/compiler/code-assembler.h?cl=55efb6c)  
 [src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=55efb6c)  
-[test/mjsunit/es6/collections-constructor-custom-iterator.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/collections-constructor-custom-iterator.js?cl=55efb6c)  
-[test/mjsunit/es6/collections-constructor-with-modified-array-prototype.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/collections-constructor-with-modified-array-prototype.js?cl=55efb6c)  
-[test/mjsunit/regress/regress-804176.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-804176.js?cl=55efb6c)  
-[test/mjsunit/regress/regress-804188.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-804188.js?cl=55efb6c)  
+...  
   
 
 ---   
@@ -10133,10 +9964,7 @@ assertThrows(() => new WeakSet(map_entries), TypeError);
 [src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=55efb6c)  
 [src/compiler/code-assembler.h](https://cs.chromium.org/chromium/src/v8/src/compiler/code-assembler.h?cl=55efb6c)  
 [src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=55efb6c)  
-[test/mjsunit/es6/collections-constructor-custom-iterator.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/collections-constructor-custom-iterator.js?cl=55efb6c)  
-[test/mjsunit/es6/collections-constructor-with-modified-array-prototype.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/es6/collections-constructor-with-modified-array-prototype.js?cl=55efb6c)  
-[test/mjsunit/regress/regress-804176.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-804176.js?cl=55efb6c)  
-[test/mjsunit/regress/regress-804188.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-804188.js?cl=55efb6c)  
+...  
   
 
 ---   
@@ -10156,25 +9984,25 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, kSig_i_iii).addBody([
-  
+  // Return the sum of all arguments.
   kExprGetLocal, 0, kExprGetLocal, 1, kExprGetLocal, 2, kExprI32Add, kExprI32Add
 ]);
 const sig = builder.addType(kSig_i_iii);
 builder.addFunction(undefined, kSig_i_iii)
     .addBody([
-      ...wasmI32Const(1),         
-      kExprSetLocal, 0,           
-      ...wasmI32Const(4),         
-      kExprSetLocal, 1,           
-      ...wasmI32Const(16),        
-      kExprSetLocal, 2,           
-      kExprLoop, kWasmStmt,       
-      kExprEnd,                   
-      kExprGetLocal, 0,           
-      kExprGetLocal, 1,           
-      kExprGetLocal, 2,           
-      kExprI32Const, 0,           
-      kExprCallIndirect, sig, 0,  
+      ...wasmI32Const(1),         // i32.const 0x1
+      kExprSetLocal, 0,           // set_local 0
+      ...wasmI32Const(4),         // i32.const 0x1
+      kExprSetLocal, 1,           // set_local 1
+      ...wasmI32Const(16),        // i32.const 0x1
+      kExprSetLocal, 2,           // set_local 2
+      kExprLoop, kWasmStmt,       // loop
+      kExprEnd,                   // end
+      kExprGetLocal, 0,           // get_local 0
+      kExprGetLocal, 1,           // get_local 1
+      kExprGetLocal, 2,           // get_local 2
+      kExprI32Const, 0,           // i32.const 0 (func index)
+      kExprCallIndirect, sig, 0,  // call indirect
     ])
     .exportAs('main');
 builder.appendToTable([0]);
@@ -10212,7 +10040,13 @@ Regress: [mjsunit/regress/regress-stringAt-boundsCheck.js](https://chromium.goog
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/90e50cc2^!)  
-
+[src/compiler/js-builtin-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-builtin-reducer.cc?cl=90e50cc2)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=90e50cc2)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=90e50cc2)  
+[src/compiler/simplified-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.cc?cl=90e50cc2)  
+[test/mjsunit/regress/regress-stringAt-boundsCheck.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-stringAt-boundsCheck.js?cl=90e50cc2)  
+  
+  
 ---   
 
 ## **regress-804801.js (chromium issue)**  
@@ -10286,8 +10120,6 @@ Regress: [mjsunit/regress/regress-804177.js](https://chromium.googlesource.com/v
   assertEquals(b, [2]);
 })();
 
-
-
 (function testInsertionPastEnd() {
   a = [9,9,9,9];
   function f() {
@@ -10297,8 +10129,6 @@ Regress: [mjsunit/regress/regress-804177.js](https://chromium.googlesource.com/v
   b[4] = 1;
   assertEquals(b, [1, 2, undefined, undefined, 1]);
 })();
-
-
 
 (function testFrozenArrayThrows() {
   function f() {
@@ -10395,15 +10225,14 @@ builder.addFunction('grow', kSig_i_i).addBody([
 builder.addFunction('main', kSig_i_i).addBody([
   ...wasmI32Const(0x41),
   kExprSetLocal, 0,
-  
+  // Enter loop, such that values are spilled to the stack.
   kExprLoop, kWasmStmt,
   kExprEnd,
-  
+  // Reload value. This must be loaded as 32 bit value.
   kExprGetLocal, 0,
   kExprI32LoadMem, 0, 0,
 ]).exportFunc();
 const instance = builder.instantiate();
-
 instance.exports.grow(1);
 instance.exports.main();  
 ```  
@@ -10415,11 +10244,6 @@ instance.exports.main();
 [src/wasm/baseline/liftoff-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.cc?cl=ecb3afc)  
 [src/wasm/baseline/liftoff-assembler.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.h?cl=ecb3afc)  
 [src/wasm/baseline/liftoff-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-compiler.cc?cl=ecb3afc)  
-[src/wasm/baseline/mips/liftoff-assembler-mips.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/mips/liftoff-assembler-mips.h?cl=ecb3afc)  
-[src/wasm/baseline/mips64/liftoff-assembler-mips64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/mips64/liftoff-assembler-mips64.h?cl=ecb3afc)  
-[src/wasm/baseline/ppc/liftoff-assembler-ppc.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/ppc/liftoff-assembler-ppc.h?cl=ecb3afc)  
-[src/wasm/baseline/s390/liftoff-assembler-s390.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/s390/liftoff-assembler-s390.h?cl=ecb3afc)  
-[src/wasm/baseline/x64/liftoff-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/x64/liftoff-assembler-x64.h?cl=ecb3afc)  
 ...  
   
 
@@ -10495,17 +10319,16 @@ load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 
-
 const builder = new WasmModuleBuilder();
 builder.addMemory(8, 16);
 builder.addFunction(undefined, kSig_i_i).addBody([
-  
+  // wasm to wasm call.
   kExprGetLocal, 0, kExprCallFunction, 0x1
 ]);
 builder.addFunction(undefined, kSig_i_i).addBody([
-  
+  // load from <get_local 0> to create trap code.
   kExprGetLocal, 0, kExprI32LoadMem, 0,
-  
+  // unreachable to create a runtime call.
   kExprUnreachable
 ]);
 builder.instantiate();  
@@ -10625,17 +10448,17 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, kSig_v_iii).addBody([
-  kExprI32Const, 0x41,  
-  kExprLoop, 0x7c,      
-  kExprGetLocal, 0x00,  
-  kExprGetLocal, 0x01,  
-  kExprBrIf, 0x01,      
-  kExprGetLocal, 0x00,  
-  kExprI32Rol,          
-  kExprBrIf, 0x00,      
-  kExprUnreachable,     
-  kExprEnd,             
-  kExprUnreachable,     
+  kExprI32Const, 0x41,  // i32.const 0x41
+  kExprLoop, 0x7c,      // loop f64
+  kExprGetLocal, 0x00,  // get_local 0
+  kExprGetLocal, 0x01,  // get_local 1
+  kExprBrIf, 0x01,      // br_if depth=1
+  kExprGetLocal, 0x00,  // get_local 0
+  kExprI32Rol,          // i32.rol
+  kExprBrIf, 0x00,      // br_if depth=0
+  kExprUnreachable,     // unreachable
+  kExprEnd,             // end
+  kExprUnreachable,     // unreachable
 ]);
 builder.instantiate();  
 ```  
@@ -10722,9 +10545,6 @@ class Derived extends Base {
     super();
   }
 }
-
-
-
 
 Reflect.construct(Derived, [], Object.bind());
 %OptimizeFunctionOnNextCall(Derived);
@@ -10846,9 +10666,6 @@ function f() {
 
 assertEquals(["","",], re[Symbol.split]("abc", { valueOf: f }));
 
-
-
-
 assertFalse(called_custom_unicode_getter);  
 ```  
   
@@ -10876,7 +10693,6 @@ class Derived extends RegExp {
 
 let o = Reflect.construct(RegExp, [], Derived);
 %HeapObjectVerify(o);
-
 assertEquals(o.lastIndex, 0);
 o.lastIndex = 1;
 assertEquals(o.lastIndex, 1);
@@ -10932,9 +10748,9 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 builder.addMemory(16, 32);
 builder.addFunction(undefined, kSig_i_iii).addBody([
-  kExprI32Const, 0,         
-  kExprI32LoadMem8S, 0, 0,  
-  kExprI32Eqz,              
+  kExprI32Const, 0,         // i32.const 0
+  kExprI32LoadMem8S, 0, 0,  // i32.load8_s offset=0 align=0
+  kExprI32Eqz,              // i32.eqz
 ]);
 builder.instantiate();  
 ```  
@@ -10958,13 +10774,12 @@ Code Review: [https://chromium-review.googlesource.com/856816](https://chromium-
 Regress: [mjsunit/regress/regress-crbug-798644.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-798644.js)  
 ```javascript
 let arr = [];
-
 arr[1000] = 0x1234;
 
 arr.__defineGetter__(256, function () {
-    
+    // Remove the getter so we can compact the array.
     delete arr[256];
-    
+    // Trigger compaction.
     arr.unshift(1.1);
 });
 
@@ -11026,8 +10841,7 @@ TryToLoadModule("modules-skip-regress-797581-5.js", false);
 [test/mjsunit/regress/modules-skip-regress-797581-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-2.js?cl=15eb10b)  
 [test/mjsunit/regress/modules-skip-regress-797581-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-3.js?cl=15eb10b)  
 [test/mjsunit/regress/modules-skip-regress-797581-4.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-4.js?cl=15eb10b)  
-[test/mjsunit/regress/modules-skip-regress-797581-5.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-5.js?cl=15eb10b)  
-[test/mjsunit/regress/regress-797581.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-797581.js?cl=15eb10b)  
+...  
   
 
 ---   
@@ -11053,8 +10867,7 @@ export default ()
 [test/mjsunit/regress/modules-skip-regress-797581-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-2.js?cl=15eb10b)  
 [test/mjsunit/regress/modules-skip-regress-797581-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-3.js?cl=15eb10b)  
 [test/mjsunit/regress/modules-skip-regress-797581-4.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-4.js?cl=15eb10b)  
-[test/mjsunit/regress/modules-skip-regress-797581-5.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/modules-skip-regress-797581-5.js?cl=15eb10b)  
-[test/mjsunit/regress/regress-797581.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-797581.js?cl=15eb10b)  
+...  
   
 
 ---   
@@ -11107,7 +10920,6 @@ Regress: [mjsunit/regress/wasm/regress-797846.js](https://chromium.googlesource.
 ```javascript
 load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
-
 
 const builder = new WasmModuleBuilder();
 builder.addFunction('test', kSig_v_v).addBody([]);
@@ -11229,11 +11041,6 @@ assertEquals("", revoke.name);
 [src/builtins/builtins-definitions.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?cl=ddfbbc5)  
 [src/builtins/builtins-promise-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-promise-gen.cc?cl=ddfbbc5)  
 [src/builtins/builtins-promise-gen.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-promise-gen.h?cl=ddfbbc5)  
-[src/builtins/builtins-proxy-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-proxy-gen.cc?cl=ddfbbc5)  
-[src/builtins/builtins-proxy-gen.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-proxy-gen.h?cl=ddfbbc5)  
-[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=ddfbbc5)  
-[src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=ddfbbc5)  
-[src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=ddfbbc5)  
 ...  
   
 
@@ -11255,7 +11062,7 @@ function opt(a, b) {
 
   a.length;
 
-  
+  // TransitionElementsKind
   for (let i = 0; i < 1; i++)
       a[0] = 0;
 
