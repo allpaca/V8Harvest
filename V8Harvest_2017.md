@@ -10436,7 +10436,7 @@ Code Review: [https://chromium-review.googlesource.com/492886](https://chromium-
 Regress: [mjsunit/regress/regress-6288.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6288.js)  
 ```javascript
 if (this.Intl) {
-  assertEquals('pt-BR', Intl.Collator().resolvedOptions().locale);
+  assertEquals('pt', Intl.Collator().resolvedOptions().locale);
   assertEquals('pt-BR', Intl.DateTimeFormat().resolvedOptions().locale);
 }  
 ```  

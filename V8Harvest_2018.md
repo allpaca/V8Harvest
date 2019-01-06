@@ -2,6 +2,53 @@
 The Harvest of V8 regress in 2018.  
   
 
+## **regress-crbug-917980.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/917980)**  
+**[Commit: [typedarray] Check for a detached buffer before each iteration of TypedArray.p.join.](https://chromium.googlesource.com/v8/v8/+/75ca843)**  
+  
+Date(Commit): Mon Dec 31 18:27:51 2018  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1392070](https://chromium-review.googlesource.com/c/1392070)  
+Regress: [mjsunit/regress/regress-crbug-917980.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-917980.js)  
+```javascript
+const constructors = [
+  [Uint8Array, [0, 1]],
+  [Int8Array, [0, 1]],
+  [Uint16Array, [0, 1]],
+  [Int16Array, [0, 1]],
+  [Uint32Array, [0, 1]],
+  [Int32Array, [0, 1]],
+  [Float32Array, [0, 1]],
+  [Float64Array, [0, 1]],
+  [Uint8ClampedArray, [0, 1]],
+  [BigInt64Array, [0n, 1n]],
+  [BigUint64Array, [0n, 1n]]
+];
+
+let typedArray;
+
+const separator = {
+  toString() {
+    %ArrayBufferDetach(typedArray.buffer);
+    return '*';
+  }
+};
+
+constructors.forEach(([constructor, arr]) => {
+  typedArray = new constructor(arr);
+  assertSame(typedArray.join(separator), '*');
+});  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/75ca843^!)  
+[src/builtins/array-join.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-join.tq?cl=75ca843)  
+[test/mjsunit/regress/regress-crbug-917980.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-917980.js?cl=75ca843)  
+  
+
+---   
+
 ## **regress-905815.js (chromium issue)**  
    
 **[Issue: No Permission](https://crbug.com/905815)**  
