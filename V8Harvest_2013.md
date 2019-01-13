@@ -212,7 +212,6 @@ assertEquals(3, foo(o2));
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=48ff79a)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=48ff79a)  
 [src/type-info.cc](https://cs.chromium.org/chromium/src/v8/src/type-info.cc?cl=48ff79a)  
-[src/type-info.h](https://cs.chromium.org/chromium/src/v8/src/type-info.h?cl=48ff79a)  
 ...  
   
   
@@ -503,7 +502,6 @@ Regress: [mjsunit/regress/regress-299979.js](https://chromium.googlesource.com/v
 [src/builtins.cc](https://cs.chromium.org/chromium/src/v8/src/builtins.cc?cl=5ba1304)  
 [src/ia32/stub-cache-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/stub-cache-ia32.cc?cl=5ba1304)  
 [src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=5ba1304)  
-[src/mips/stub-cache-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/stub-cache-mips.cc?cl=5ba1304)  
 ...  
   
 
@@ -675,7 +673,6 @@ store([1], 1, 1)
 [src/arm/builtins-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/builtins-arm.cc?cl=21fb140)  
 [src/arm/deoptimizer-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/deoptimizer-arm.cc?cl=21fb140)  
 [src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=21fb140)  
-[src/arm/lithium-codegen-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.h?cl=21fb140)  
 ...  
   
   
@@ -710,7 +707,7 @@ foo(0);
 [src/objects-visiting-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-visiting-inl.h?cl=bff4148)  
 [src/objects-visiting.h](https://cs.chromium.org/chromium/src/v8/src/objects-visiting.h?cl=bff4148)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=bff4148)  
-[test/mjsunit/regress/regress-320532.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-320532.js?cl=bff4148)  
+...  
   
 
 ---   
@@ -771,7 +768,6 @@ Regress: [mjsunit/regress/regress-3010.js](https://chromium.googlesource.com/v8/
 [src/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap.cc?cl=f27f2fa)  
 [src/ia32/macro-assembler-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/macro-assembler-ia32.cc?cl=f27f2fa)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=f27f2fa)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=f27f2fa)  
 ...  
   
 
@@ -813,7 +809,6 @@ for (var i = 0; i > -1000000; --i) {
 [src/hydrogen-dehoist.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-dehoist.cc?cl=c9b41c6)  
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=c9b41c6)  
 [src/lithium.cc](https://cs.chromium.org/chromium/src/v8/src/lithium.cc?cl=c9b41c6)  
-[src/lithium.h](https://cs.chromium.org/chromium/src/v8/src/lithium.h?cl=c9b41c6)  
 ...  
   
 
@@ -859,7 +854,6 @@ for (var i = -0x20000000; i < -0x20000000 + size; i++) {
 [src/hydrogen-dehoist.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-dehoist.cc?cl=c9b41c6)  
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=c9b41c6)  
 [src/lithium.cc](https://cs.chromium.org/chromium/src/v8/src/lithium.cc?cl=c9b41c6)  
-[src/lithium.h](https://cs.chromium.org/chromium/src/v8/src/lithium.h?cl=c9b41c6)  
 ...  
   
 
@@ -912,7 +906,7 @@ TestArray(Uint8ClampedArray);
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=09ca131)  
 [src/typedarray.js](https://cs.chromium.org/chromium/src/v8/src/typedarray.js?cl=09ca131)  
 [test/mjsunit/regress/regress-319722-ArrayBuffer.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-319722-ArrayBuffer.js?cl=09ca131)  
-[test/mjsunit/regress/regress-319722-TypedArrays.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-319722-TypedArrays.js?cl=09ca131)  
+...  
   
 
 ---   
@@ -983,7 +977,6 @@ Cb(s1 + s2);
 [src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=bc4ad49)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=bc4ad49)  
 [src/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen.h?cl=bc4ad49)  
-[src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=bc4ad49)  
 ...  
   
 
@@ -1143,7 +1136,6 @@ test2("bar", rec2);
 [src/mips/stub-cache-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/stub-cache-mips.cc?cl=2ebfd6e)  
 [src/stub-cache.cc](https://cs.chromium.org/chromium/src/v8/src/stub-cache.cc?cl=2ebfd6e)  
 [src/stub-cache.h](https://cs.chromium.org/chromium/src/v8/src/stub-cache.h?cl=2ebfd6e)  
-[src/x64/stub-cache-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/stub-cache-x64.cc?cl=2ebfd6e)  
 ...  
   
 
@@ -1185,7 +1177,6 @@ assertEquals(u[1], foo(1));
 [src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=316271f)  
 [src/hydrogen-uint32-analysis.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-uint32-analysis.cc?cl=316271f)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=316271f)  
-[src/ia32/lithium-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-ia32.cc?cl=316271f)  
 ...  
   
 
@@ -1767,7 +1758,6 @@ assertEquals(2, foo(1, function() {}));
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=3747b5b)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=3747b5b)  
 [src/ia32/lithium-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-ia32.cc?cl=3747b5b)  
-[src/mips/lithium-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/lithium-mips.cc?cl=3747b5b)  
 ...  
   
 
@@ -2151,7 +2141,7 @@ for (var i = 0; i < 2; i++) {
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=383a167)  
 [src/ia32/lithium-codegen-ia32.h](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.h?cl=383a167)  
 [src/ia32/lithium-ia32.h](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-ia32.h?cl=383a167)  
-[test/mjsunit/regress/regress-x87.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-x87.js?cl=383a167)  
+...  
   
   
 ---   
@@ -2215,7 +2205,7 @@ assertEquals("boom", killer.b);
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=3e4fbd0)  
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=3e4fbd0)  
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=3e4fbd0)  
-[test/mjsunit/regress/regress-crbug-274438.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-274438.js?cl=3e4fbd0)  
+...  
   
 
 ---   
@@ -2331,7 +2321,6 @@ assertEquals([1.6, {}, 6, 1.9, NaN], a);
 [src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=169f5a9)  
 [src/arm/lithium-codegen-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.h?cl=169f5a9)  
 [src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=169f5a9)  
-[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=169f5a9)  
 ...  
   
   
@@ -2512,7 +2501,6 @@ assertOptimized(fun);
 [src/compiler.h](https://cs.chromium.org/chromium/src/v8/src/compiler.h?cl=c52b7bb)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=c52b7bb)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=c52b7bb)  
-[test/mjsunit/regress/regress-map-invalidation-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-map-invalidation-1.js?cl=c52b7bb)  
 ...  
   
   
@@ -2552,7 +2540,6 @@ f();
 [src/compiler.h](https://cs.chromium.org/chromium/src/v8/src/compiler.h?cl=c52b7bb)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=c52b7bb)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=c52b7bb)  
-[test/mjsunit/regress/regress-map-invalidation-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-map-invalidation-1.js?cl=c52b7bb)  
 ...  
   
   
@@ -3207,7 +3194,6 @@ assertEquals(expected, actual);
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=9e7819f)  
 [test/mjsunit/compiler/inline-arguments.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/inline-arguments.js?cl=9e7819f)  
 [test/mjsunit/elements-kind.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/elements-kind.js?cl=9e7819f)  
-[test/mjsunit/elide-double-hole-check-9.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/elide-double-hole-check-9.js?cl=9e7819f)  
 ...  
   
   
@@ -3243,7 +3229,6 @@ opt_me();
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=9e7819f)  
 [test/mjsunit/compiler/inline-arguments.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/inline-arguments.js?cl=9e7819f)  
 [test/mjsunit/elements-kind.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/elements-kind.js?cl=9e7819f)  
-[test/mjsunit/elide-double-hole-check-9.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/elide-double-hole-check-9.js?cl=9e7819f)  
 ...  
   
   
@@ -3346,7 +3331,6 @@ test(h);
 [src/factory.h](https://cs.chromium.org/chromium/src/v8/src/factory.h?cl=b7b92bd)  
 [src/hydrogen-instructions.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.cc?cl=b7b92bd)  
 [src/ia32/assembler-ia32-inl.h](https://cs.chromium.org/chromium/src/v8/src/ia32/assembler-ia32-inl.h?cl=b7b92bd)  
-[src/mips/assembler-mips-inl.h](https://cs.chromium.org/chromium/src/v8/src/mips/assembler-mips-inl.h?cl=b7b92bd)  
 ...  
   
   
@@ -3537,7 +3521,6 @@ assertOptimized(div);
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=9447014)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=9447014)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=9447014)  
-[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=9447014)  
 ...  
   
 
@@ -3689,7 +3672,6 @@ foo(Array);
 [src/ia32/code-stubs-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/code-stubs-ia32.cc?cl=3d3c6b1)  
 [src/mips/code-stubs-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/code-stubs-mips.cc?cl=3d3c6b1)  
 [src/x64/code-stubs-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/code-stubs-x64.cc?cl=3d3c6b1)  
-[test/mjsunit/allocation-site-info.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/allocation-site-info.js?cl=3d3c6b1)  
 ...  
   
 
@@ -3857,7 +3839,6 @@ assertEquals(1, a2[undefined]);
 [src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=aa24442)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=aa24442)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=aa24442)  
-[src/lithium.h](https://cs.chromium.org/chromium/src/v8/src/lithium.h?cl=aa24442)  
 ...  
   
   
@@ -3953,7 +3934,6 @@ assertTrue(cmp(o, o.func));
 [src/ia32/macro-assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/ia32/macro-assembler-ia32.h?cl=8fb2086)  
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=8fb2086)  
 [src/x64/macro-assembler-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/macro-assembler-x64.cc?cl=8fb2086)  
-[src/x64/macro-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/x64/macro-assembler-x64.h?cl=8fb2086)  
 ...  
   
 
@@ -4567,7 +4547,6 @@ g();
 [src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=996a80d)  
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=996a80d)  
 [src/deoptimizer.h](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.h?cl=996a80d)  
-[src/disassembler.cc](https://cs.chromium.org/chromium/src/v8/src/disassembler.cc?cl=996a80d)  
 ...  
   
 
@@ -4853,7 +4832,6 @@ assertTrue(Object.isFrozen(Object.prototype));
 [src/accessors.h](https://cs.chromium.org/chromium/src/v8/src/accessors.h?cl=9e757a6)  
 [src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=9e757a6)  
 [src/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap.cc?cl=9e757a6)  
-[src/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap.h?cl=9e757a6)  
 ...  
   
 
@@ -5447,7 +5425,6 @@ assertSame("function anonymous(\n) {\nreturn 23\n}", asString);
 [src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=4b0395c)  
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=4b0395c)  
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=4b0395c)  
-[src/v8natives.js](https://cs.chromium.org/chromium/src/v8/src/v8natives.js?cl=4b0395c)  
 ...  
   
 
@@ -5635,7 +5612,6 @@ assertOptimized(f);
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=2a3063a)  
 [src/ia32/lithium-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-ia32.cc?cl=2a3063a)  
 [src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=2a3063a)  
-[src/x64/lithium-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-x64.cc?cl=2a3063a)  
 ...  
   
 
@@ -5707,7 +5683,6 @@ Regress: [mjsunit/regress/regress-crbug-163530.js](https://chromium.googlesource
 [src/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.cc?cl=ea5e9ed)  
 [src/deoptimizer.h](https://cs.chromium.org/chromium/src/v8/src/deoptimizer.h?cl=ea5e9ed)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=ea5e9ed)  
-[src/ia32/lithium-codegen-ia32.h](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.h?cl=ea5e9ed)  
 ...  
   
 
@@ -5735,7 +5710,6 @@ assertThrows("Object.defineProperty(o, '__proto__', {value:{}});", TypeError);
 [src/factory.h](https://cs.chromium.org/chromium/src/v8/src/factory.h?cl=ce1e10f)  
 [src/json-parser.h](https://cs.chromium.org/chromium/src/v8/src/json-parser.h?cl=ce1e10f)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=ce1e10f)  
-[src/property.h](https://cs.chromium.org/chromium/src/v8/src/property.h?cl=ce1e10f)  
 ...  
   
 
@@ -6044,7 +6018,6 @@ for (var i = 0; i < n; i++) {
 [src/lithium.h](https://cs.chromium.org/chromium/src/v8/src/lithium.h?cl=e6224d2)  
 [src/mark-compact.cc](https://cs.chromium.org/chromium/src/v8/src/mark-compact.cc?cl=e6224d2)  
 [src/mark-compact.h](https://cs.chromium.org/chromium/src/v8/src/mark-compact.h?cl=e6224d2)  
-[src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=e6224d2)  
 ...  
   
 
@@ -6252,7 +6225,6 @@ for (var testNumber = 0; testNumber < 2; testNumber++) {
 [src/extensions/externalize-string-extension.cc](https://cs.chromium.org/chromium/src/v8/src/extensions/externalize-string-extension.cc?cl=e41c170)  
 [src/handles.cc](https://cs.chromium.org/chromium/src/v8/src/handles.cc?cl=e41c170)  
 [src/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap.cc?cl=e41c170)  
-[src/ia32/code-stubs-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/code-stubs-ia32.cc?cl=e41c170)  
 ...  
   
   

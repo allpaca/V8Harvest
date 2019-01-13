@@ -91,7 +91,6 @@ assertEquals(val, arr[-1]);
 [src/ic/mips/ic-mips.cc](https://cs.chromium.org/chromium/src/v8/src/ic/mips/ic-mips.cc?cl=c1aded3)  
 [src/ic/mips64/ic-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/ic/mips64/ic-mips64.cc?cl=c1aded3)  
 [src/ic/ppc/ic-ppc.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ppc/ic-ppc.cc?cl=c1aded3)  
-[src/mips/macro-assembler-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/macro-assembler-mips.cc?cl=c1aded3)  
 ...  
   
 
@@ -10307,7 +10306,6 @@ assertEquals(undefined, b().value);
 [src/full-codegen/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/ia32/full-codegen-ia32.cc?cl=440a42b)  
 [src/full-codegen/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/mips/full-codegen-mips.cc?cl=440a42b)  
 [src/full-codegen/mips64/full-codegen-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/mips64/full-codegen-mips64.cc?cl=440a42b)  
-[src/full-codegen/x64/full-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/x64/full-codegen-x64.cc?cl=440a42b)  
 ...  
   
   
@@ -10507,7 +10505,6 @@ assertThrows(f);
 [src/arm64/builtins-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/builtins-arm64.cc?cl=8e28e85)  
 [src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=8e28e85)  
 [src/builtins.h](https://cs.chromium.org/chromium/src/v8/src/builtins.h?cl=8e28e85)  
-[src/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler.cc?cl=8e28e85)  
 ...  
   
   
@@ -11436,7 +11433,6 @@ f();
 [src/compiler/arm64/code-generator-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/arm64/code-generator-arm64.cc?cl=f9a9c6b)  
 [src/compiler/arm64/instruction-selector-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/arm64/instruction-selector-arm64.cc?cl=f9a9c6b)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=f9a9c6b)  
-[src/compiler/common-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/common-operator.cc?cl=f9a9c6b)  
 ...  
   
 
@@ -11567,7 +11563,6 @@ for (var __v_2 = 0; __v_2 < 10; __v_2++) {
 [src/full-codegen/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/ia32/full-codegen-ia32.cc?cl=24622f5)  
 [src/full-codegen/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/mips/full-codegen-mips.cc?cl=24622f5)  
 [src/full-codegen/mips64/full-codegen-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/mips64/full-codegen-mips64.cc?cl=24622f5)  
-[src/full-codegen/ppc/full-codegen-ppc.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/ppc/full-codegen-ppc.cc?cl=24622f5)  
 ...  
   
 
@@ -11685,7 +11680,6 @@ new Child().method(42);
 [src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=24565b8)  
 [src/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/preparser.cc?cl=24565b8)  
 [src/preparser.h](https://cs.chromium.org/chromium/src/v8/src/preparser.h?cl=24565b8)  
-[src/scopeinfo.cc](https://cs.chromium.org/chromium/src/v8/src/scopeinfo.cc?cl=24565b8)  
 ...  
   
 
@@ -11746,7 +11740,6 @@ foo();
 [src/ia32/builtins-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/builtins-ia32.cc?cl=9c8262f)  
 [src/mips/builtins-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/builtins-mips.cc?cl=9c8262f)  
 [src/mips64/builtins-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/mips64/builtins-mips64.cc?cl=9c8262f)  
-[src/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/builtins-x64.cc?cl=9c8262f)  
 ...  
   
 
@@ -11805,7 +11798,6 @@ assertEquals("try", eval(s4));
 [src/pattern-rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/pattern-rewriter.cc?cl=cf82eea)  
 [src/rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/rewriter.cc?cl=cf82eea)  
 [test/mjsunit/regress/regress-2529.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-2529.js?cl=cf82eea)  
-[test/webkit/eval-throw-return-expected.txt](https://cs.chromium.org/chromium/src/v8/test/webkit/eval-throw-return-expected.txt?cl=cf82eea)  
 ...  
   
 
@@ -11860,7 +11852,7 @@ gc();  // Crashes with --verify-heap.
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=afa60ff)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=afa60ff)  
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=afa60ff)  
-[test/mjsunit/regress/regress-4325.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-4325.js?cl=afa60ff)  
+...  
   
 
 ---   
@@ -11926,7 +11918,6 @@ assertFalse(%HaveSameMap(first_smi_array, second_object_array));
 [src/heap/mark-compact.cc](https://cs.chromium.org/chromium/src/v8/src/heap/mark-compact.cc?cl=4dd45e1)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=4dd45e1)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=4dd45e1)  
-[test/mjsunit/array-natives-elements.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/array-natives-elements.js?cl=4dd45e1)  
 ...  
   
 
@@ -12074,7 +12065,7 @@ assertEquals(0, f());
 [src/runtime/runtime-function.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-function.cc?cl=a504a18)  
 [src/runtime/runtime-scopes.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-scopes.cc?cl=a504a18)  
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=a504a18)  
-[test/mjsunit/regress/regress-4374.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-4374.js?cl=a504a18)  
+...  
   
 
 ---   
@@ -12148,7 +12139,6 @@ assertEquals("[].foo is not a function", test());
 [src/compiler/linkage.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/linkage.cc?cl=819b40a)  
 [src/full-codegen/arm/full-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/arm/full-codegen-arm.cc?cl=819b40a)  
 [src/full-codegen/arm64/full-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/arm64/full-codegen-arm64.cc?cl=819b40a)  
-[src/full-codegen/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/ia32/full-codegen-ia32.cc?cl=819b40a)  
 ...  
   
 
@@ -12192,7 +12182,6 @@ g();
 [src/ast-literal-reindexer.h](https://cs.chromium.org/chromium/src/v8/src/ast-literal-reindexer.h?cl=510baea)  
 [src/ast-value-factory.h](https://cs.chromium.org/chromium/src/v8/src/ast-value-factory.h?cl=510baea)  
 [src/bailout-reason.h](https://cs.chromium.org/chromium/src/v8/src/bailout-reason.h?cl=510baea)  
-[src/code-stubs.cc](https://cs.chromium.org/chromium/src/v8/src/code-stubs.cc?cl=510baea)  
 ...  
   
 
@@ -12348,7 +12337,6 @@ assertThrows(function () {h(5)}, ReferenceError);
 [src/full-codegen/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/full-codegen.cc?cl=d6fb6de)  
 [src/full-codegen/full-codegen.h](https://cs.chromium.org/chromium/src/v8/src/full-codegen/full-codegen.h?cl=d6fb6de)  
 [src/full-codegen/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/ia32/full-codegen-ia32.cc?cl=d6fb6de)  
-[src/full-codegen/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/mips/full-codegen-mips.cc?cl=d6fb6de)  
 ...  
   
 
@@ -12457,7 +12445,6 @@ assertThrows(function() { foo(Symbol()) }, TypeError);
 [test/mjsunit/compiler/regress-4389-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-4389-2.js?cl=fef38c2)  
 [test/mjsunit/compiler/regress-4389-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-4389-3.js?cl=fef38c2)  
 [test/mjsunit/compiler/regress-4389-4.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-4389-4.js?cl=fef38c2)  
-[test/mjsunit/compiler/regress-4389-5.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-4389-5.js?cl=fef38c2)  
 ...  
   
 
@@ -12489,7 +12476,6 @@ assertFalse(foo(x));
 [src/arm/lithium-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.cc?cl=5d875a5)  
 [src/arm/lithium-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.h?cl=5d875a5)  
 [src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=5d875a5)  
-[src/arm/lithium-codegen-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.h?cl=5d875a5)  
 ...  
   
 
@@ -12517,7 +12503,6 @@ assertThrows("global.x = 0", RangeError);
 [src/arm64/simulator-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/simulator-arm64.cc?cl=7fb31bd)  
 [src/arm64/simulator-arm64.h](https://cs.chromium.org/chromium/src/v8/src/arm64/simulator-arm64.h?cl=7fb31bd)  
 [src/execution.cc](https://cs.chromium.org/chromium/src/v8/src/execution.cc?cl=7fb31bd)  
-[src/execution.h](https://cs.chromium.org/chromium/src/v8/src/execution.h?cl=7fb31bd)  
 ...  
   
 
@@ -12640,7 +12625,7 @@ assertThrows(function() { return x; }, ReferenceError);
 [src/parser.h](https://cs.chromium.org/chromium/src/v8/src/parser.h?cl=9edbc1f)  
 [src/scopes.h](https://cs.chromium.org/chromium/src/v8/src/scopes.h?cl=9edbc1f)  
 [test/mjsunit/regress/regress-4377.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-4377.js?cl=9edbc1f)  
-[test/mjsunit/switch.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/switch.js?cl=9edbc1f)  
+...  
   
 
 ---   
@@ -12669,7 +12654,6 @@ assertThrows("(x,y,...z)=>{}()", SyntaxError);
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=9271b0c)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=9271b0c)  
 [src/compiler/ast-loop-assignment-analyzer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-loop-assignment-analyzer.cc?cl=9271b0c)  
-[src/full-codegen/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/full-codegen.cc?cl=9271b0c)  
 ...  
   
 
@@ -12786,7 +12770,6 @@ assertThrows(function() { NaN = 1; });
 [src/isolate.h](https://cs.chromium.org/chromium/src/v8/src/isolate.h?cl=2e2765a)  
 [src/messages.cc](https://cs.chromium.org/chromium/src/v8/src/messages.cc?cl=2e2765a)  
 [src/messages.h](https://cs.chromium.org/chromium/src/v8/src/messages.h?cl=2e2765a)  
-[src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=2e2765a)  
 ...  
   
 
@@ -12969,7 +12952,6 @@ makeFun()(1);  // Optimize again.
 [src/heap/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap/heap.cc?cl=bcad9b5)  
 [src/heap/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap/heap.h?cl=bcad9b5)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=bcad9b5)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=bcad9b5)  
 ...  
   
 
@@ -13098,7 +13080,6 @@ Regress: [mjsunit/es6/regress/regress-513474.js](https://chromium.googlesource.c
 [src/full-codegen/arm64/full-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/arm64/full-codegen-arm64.cc?cl=3e40b64)  
 [src/full-codegen/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/ia32/full-codegen-ia32.cc?cl=3e40b64)  
 [src/full-codegen/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/mips/full-codegen-mips.cc?cl=3e40b64)  
-[src/full-codegen/mips64/full-codegen-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen/mips64/full-codegen-mips64.cc?cl=3e40b64)  
 ...  
   
 
@@ -13126,7 +13107,6 @@ function f({}) {
 [src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=9ab8bfb)  
 [src/pattern-rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/pattern-rewriter.cc?cl=9ab8bfb)  
 [src/runtime/runtime-scopes.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-scopes.cc?cl=9ab8bfb)  
-[src/scopeinfo.cc](https://cs.chromium.org/chromium/src/v8/src/scopeinfo.cc?cl=9ab8bfb)  
 ...  
   
 
@@ -13185,7 +13165,6 @@ check(generic_store, 13);
 [src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=cc66a1c)  
 [src/arm64/lithium-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-arm64.cc?cl=cc66a1c)  
 [src/arm64/lithium-arm64.h](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-arm64.h?cl=cc66a1c)  
-[src/arm64/lithium-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-codegen-arm64.cc?cl=cc66a1c)  
 ...  
   
 
@@ -13249,7 +13228,6 @@ for (var j = 0; j < 999; j++) {
 [src/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/preparser.cc?cl=ae11f20)  
 [src/preparser.h](https://cs.chromium.org/chromium/src/v8/src/preparser.h?cl=ae11f20)  
 [test/mjsunit/regress/regress-491536.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-491536.js?cl=ae11f20)  
-[test/mjsunit/regress/regress-503565.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-503565.js?cl=ae11f20)  
 ...  
   
 
@@ -13335,7 +13313,6 @@ Regress: [mjsunit/regress/regress-4296.js](https://chromium.googlesource.com/v8/
 [src/ia32/macro-assembler-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/macro-assembler-ia32.cc?cl=01f40e6)  
 [src/ic/arm/ic-arm.cc](https://cs.chromium.org/chromium/src/v8/src/ic/arm/ic-arm.cc?cl=01f40e6)  
 [src/ic/arm64/ic-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/ic/arm64/ic-arm64.cc?cl=01f40e6)  
-[src/ic/ia32/ic-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ia32/ic-ia32.cc?cl=01f40e6)  
 ...  
   
 
@@ -13693,7 +13670,6 @@ Regress: [mjsunit/compiler/regress-shift-right-logical.js](https://chromium.goog
 [src/compiler/opcodes.h](https://cs.chromium.org/chromium/src/v8/src/compiler/opcodes.h?cl=5f288c2)  
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=5f288c2)  
 [src/compiler/simplified-lowering.h](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.h?cl=5f288c2)  
-[src/compiler/simplified-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.cc?cl=5f288c2)  
 ...  
   
   
@@ -13750,7 +13726,6 @@ Regress: [mjsunit/compiler/regress-shift-right.js](https://chromium.googlesource
 [src/compiler/opcodes.h](https://cs.chromium.org/chromium/src/v8/src/compiler/opcodes.h?cl=5f288c2)  
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=5f288c2)  
 [src/compiler/simplified-lowering.h](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.h?cl=5f288c2)  
-[src/compiler/simplified-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.cc?cl=5f288c2)  
 ...  
   
   
@@ -13807,7 +13782,6 @@ Regress: [mjsunit/compiler/regress-shift-left.js](https://chromium.googlesource.
 [src/compiler/opcodes.h](https://cs.chromium.org/chromium/src/v8/src/compiler/opcodes.h?cl=5f288c2)  
 [src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=5f288c2)  
 [src/compiler/simplified-lowering.h](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.h?cl=5f288c2)  
-[src/compiler/simplified-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.cc?cl=5f288c2)  
 ...  
   
   
@@ -13927,7 +13901,6 @@ Regress: [mjsunit/regress/regress-4255-1.js](https://chromium.googlesource.com/v
 [src/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/scopes.cc?cl=972beef)  
 [src/scopes.h](https://cs.chromium.org/chromium/src/v8/src/scopes.h?cl=972beef)  
 [test/mjsunit/regress/regress-4255-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-4255-1.js?cl=972beef)  
-[test/mjsunit/regress/regress-4255-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-4255-2.js?cl=972beef)  
 ...  
   
 
@@ -14066,7 +14039,6 @@ f()();
 [src/ast.cc](https://cs.chromium.org/chromium/src/v8/src/ast.cc?cl=6434ec3)  
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=6434ec3)  
 [src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=6434ec3)  
-[src/codegen.h](https://cs.chromium.org/chromium/src/v8/src/codegen.h?cl=6434ec3)  
 ...  
   
   
@@ -14169,7 +14141,6 @@ with (o) assertSame(o, eval());
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=3c5f0db)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=3c5f0db)  
 [src/full-codegen.h](https://cs.chromium.org/chromium/src/v8/src/full-codegen.h?cl=3c5f0db)  
-[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=3c5f0db)  
 ...  
   
 
@@ -14828,7 +14799,6 @@ assertThrows("new Derived()", ReferenceError);
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=bf2bbc8)  
 [src/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/full-codegen-mips.cc?cl=bf2bbc8)  
 [src/mips64/full-codegen-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/mips64/full-codegen-mips64.cc?cl=bf2bbc8)  
-[src/ppc/full-codegen-ppc.cc](https://cs.chromium.org/chromium/src/v8/src/ppc/full-codegen-ppc.cc?cl=bf2bbc8)  
 ...  
   
 
@@ -14912,7 +14882,6 @@ eval("eval('this')");
 [src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=103fcfa)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=103fcfa)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=103fcfa)  
-[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=103fcfa)  
 ...  
   
 
@@ -15052,7 +15021,6 @@ assertThrows("(x, x, y) => 10;", SyntaxError);
 [src/preparser.h](https://cs.chromium.org/chromium/src/v8/src/preparser.h?cl=e7a62c2)  
 [test/message/arrow-bare-rest-param.js](https://cs.chromium.org/chromium/src/v8/test/message/arrow-bare-rest-param.js?cl=e7a62c2)  
 [test/message/arrow-bare-rest-param.out](https://cs.chromium.org/chromium/src/v8/test/message/arrow-bare-rest-param.out?cl=e7a62c2)  
-[test/message/arrow-param-after-rest-2.js](https://cs.chromium.org/chromium/src/v8/test/message/arrow-param-after-rest-2.js?cl=e7a62c2)  
 ...  
   
   
@@ -15095,7 +15063,6 @@ collapse("");
 [src/jsregexp.h](https://cs.chromium.org/chromium/src/v8/src/jsregexp.h?cl=05507cc)  
 [src/list-inl.h](https://cs.chromium.org/chromium/src/v8/src/list-inl.h?cl=05507cc)  
 [src/list.h](https://cs.chromium.org/chromium/src/v8/src/list.h?cl=05507cc)  
-[src/vector.h](https://cs.chromium.org/chromium/src/v8/src/vector.h?cl=05507cc)  
 ...  
   
 
@@ -15183,7 +15150,6 @@ assertThrows(f);
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=c14ba5e)  
 [src/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen.cc?cl=c14ba5e)  
 [src/full-codegen.h](https://cs.chromium.org/chromium/src/v8/src/full-codegen.h?cl=c14ba5e)  
-[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=c14ba5e)  
 ...  
   
 
@@ -15261,7 +15227,6 @@ f();
 [src/debug.cc](https://cs.chromium.org/chromium/src/v8/src/debug.cc?cl=050e888)  
 [src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=050e888)  
 [src/runtime/runtime-strings.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-strings.cc?cl=050e888)  
-[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=050e888)  
 ...  
   
 
@@ -15333,7 +15298,6 @@ Regress: [mjsunit/es6/regress/regress-4160.js](https://chromium.googlesource.com
 [src/code-stubs.h](https://cs.chromium.org/chromium/src/v8/src/code-stubs.h?cl=68beef5)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=68beef5)  
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=68beef5)  
-[src/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/full-codegen-mips.cc?cl=68beef5)  
 ...  
   
 
@@ -15397,7 +15361,7 @@ assertNull(sentinel);
 [src/messages.cc](https://cs.chromium.org/chromium/src/v8/src/messages.cc?cl=36d8363)  
 [src/messages.h](https://cs.chromium.org/chromium/src/v8/src/messages.h?cl=36d8363)  
 [test/cctest/test-api.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-api.cc?cl=36d8363)  
-[test/mjsunit/regress/regress-crbug-490680.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-490680.js?cl=36d8363)  
+...  
   
 
 ---   
@@ -15677,7 +15641,6 @@ function __f_0() {
 [src/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/lookup.cc?cl=4268141)  
 [src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=4268141)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=4268141)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=4268141)  
 ...  
   
 
@@ -15916,7 +15879,6 @@ assertThrows(function() { Subclass.call({}, 1, 2, 3, 4); }, TypeError);
 [src/ia32/code-stubs-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/code-stubs-ia32.cc?cl=cf53fed)  
 [src/mips/code-stubs-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/code-stubs-mips.cc?cl=cf53fed)  
 [src/mips64/code-stubs-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/mips64/code-stubs-mips64.cc?cl=cf53fed)  
-[src/x64/code-stubs-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/code-stubs-x64.cc?cl=cf53fed)  
 ...  
   
 
@@ -16455,7 +16417,7 @@ assertThrows("shouldThrow()", RangeError);
 [src/heap/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap/heap.h?cl=5a93a33)  
 [src/json-parser.h](https://cs.chromium.org/chromium/src/v8/src/json-parser.h?cl=5a93a33)  
 [test/mjsunit/regress/regress-3976.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3976.js?cl=5a93a33)  
-[test/mjsunit/regress/regress-472504.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-472504.js?cl=5a93a33)  
+...  
   
 
 ---   
@@ -16526,7 +16488,7 @@ assertEquals(1.4, o.boom);
 [src/layout-descriptor.cc](https://cs.chromium.org/chromium/src/v8/src/layout-descriptor.cc?cl=3cb9f13)  
 [src/layout-descriptor.h](https://cs.chromium.org/chromium/src/v8/src/layout-descriptor.h?cl=3cb9f13)  
 [test/cctest/test-unboxed-doubles.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-unboxed-doubles.cc?cl=3cb9f13)  
-[test/mjsunit/regress/regress-470804.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-470804.js?cl=3cb9f13)  
+...  
   
 
 ---   
@@ -16724,7 +16686,6 @@ test();
 [src/ast.cc](https://cs.chromium.org/chromium/src/v8/src/ast.cc?cl=7c347c5)  
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=7c347c5)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=7c347c5)  
-[src/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen.cc?cl=7c347c5)  
 ...  
   
 
@@ -16799,7 +16760,7 @@ print("done");
 [src/heap/spaces.cc](https://cs.chromium.org/chromium/src/v8/src/heap/spaces.cc?cl=4c80680)  
 [src/heap/spaces.h](https://cs.chromium.org/chromium/src/v8/src/heap/spaces.h?cl=4c80680)  
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=4c80680)  
-[test/mjsunit/regress/regress-3976.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3976.js?cl=4c80680)  
+...  
   
 
 ---   
@@ -17049,7 +17010,6 @@ Regress: [mjsunit/compiler/regress-469089.js](https://chromium.googlesource.com/
 [src/compiler/ia32/linkage-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ia32/linkage-ia32.cc?cl=d5893ca)  
 [src/compiler/js-generic-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-generic-lowering.cc?cl=d5893ca)  
 [src/compiler/linkage-impl.h](https://cs.chromium.org/chromium/src/v8/src/compiler/linkage-impl.h?cl=d5893ca)  
-[src/compiler/linkage.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/linkage.cc?cl=d5893ca)  
 ...  
   
 
@@ -17114,7 +17074,6 @@ assertThrows(f);
 [src/compiler/common-operator.h](https://cs.chromium.org/chromium/src/v8/src/compiler/common-operator.h?cl=b7dc9c5)  
 [src/compiler/instruction-selector.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction-selector.cc?cl=b7dc9c5)  
 [src/compiler/instruction-selector.h](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction-selector.h?cl=b7dc9c5)  
-[src/compiler/liveness-analyzer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/liveness-analyzer.cc?cl=b7dc9c5)  
 ...  
   
 
@@ -17196,7 +17155,6 @@ assertThrows(function() { captureMatch(/(bc)/) }, RangeError);
 [src/ia32/code-stubs-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/code-stubs-ia32.cc?cl=86b391e)  
 [src/mips/code-stubs-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/code-stubs-mips.cc?cl=86b391e)  
 [src/mips64/code-stubs-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/mips64/code-stubs-mips64.cc?cl=86b391e)  
-[src/ppc/code-stubs-ppc.cc](https://cs.chromium.org/chromium/src/v8/src/ppc/code-stubs-ppc.cc?cl=86b391e)  
 ...  
   
 
@@ -17627,7 +17585,6 @@ f(1.7);
 [src/runtime/runtime-object.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-object.cc?cl=22dd6dc)  
 [src/runtime/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime.h?cl=22dd6dc)  
 [test/cctest/compiler/test-run-jscalls.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-jscalls.cc?cl=22dd6dc)  
-[test/cctest/compiler/test-run-jsops.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-jsops.cc?cl=22dd6dc)  
 ...  
   
 
@@ -18253,7 +18210,6 @@ assertEquals(111, f());
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=da90aab)  
 [src/mips/full-codegen-mips.cc](https://cs.chromium.org/chromium/src/v8/src/mips/full-codegen-mips.cc?cl=da90aab)  
 [src/mips64/full-codegen-mips64.cc](https://cs.chromium.org/chromium/src/v8/src/mips64/full-codegen-mips64.cc?cl=da90aab)  
-[src/ppc/full-codegen-ppc.cc](https://cs.chromium.org/chromium/src/v8/src/ppc/full-codegen-ppc.cc?cl=da90aab)  
 ...  
   
   
@@ -18375,7 +18331,6 @@ assertThrows(f);
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=489b6f7)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=489b6f7)  
 [src/compiler/ast-graph-builder.h](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.h?cl=489b6f7)  
-[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=489b6f7)  
 ...  
   
 
@@ -18409,7 +18364,6 @@ assertThrows(function f() {
 [src/ast-numbering.cc](https://cs.chromium.org/chromium/src/v8/src/ast-numbering.cc?cl=c5833e8)  
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=c5833e8)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=c5833e8)  
-[src/compiler/ast-graph-builder.h](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.h?cl=c5833e8)  
 ...  
   
 
@@ -18605,7 +18559,6 @@ assertThrows(function testDeepObjectLiteral() {
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=00f3f99)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=00f3f99)  
 [src/compiler/linkage.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/linkage.cc?cl=00f3f99)  
-[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=00f3f99)  
 ...  
   
 
@@ -18713,7 +18666,6 @@ assertThrows(function() { with (undefined) {} }, TypeError);
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=558efe2)  
 [src/compiler/linkage.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/linkage.cc?cl=558efe2)  
 [src/compiler/operator-properties.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operator-properties.cc?cl=558efe2)  
-[src/full-codegen.cc](https://cs.chromium.org/chromium/src/v8/src/full-codegen.cc?cl=558efe2)  
 ...  
   
 
@@ -18833,7 +18785,6 @@ assertTrue(doubles[0] !== undefined);
 [src/arm64/lithium-codegen-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/lithium-codegen-arm64.cc?cl=9eace97)  
 [src/assembler.cc](https://cs.chromium.org/chromium/src/v8/src/assembler.cc?cl=9eace97)  
 [src/assembler.h](https://cs.chromium.org/chromium/src/v8/src/assembler.h?cl=9eace97)  
-[src/globals.h](https://cs.chromium.org/chromium/src/v8/src/globals.h?cl=9eace97)  
 ...  
   
   
@@ -18895,7 +18846,6 @@ assertThrows(f);
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=ac04d77)  
 [src/compiler/ast-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/ast-graph-builder.cc?cl=ac04d77)  
 [src/compiler/change-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/change-lowering.cc?cl=ac04d77)  
-[src/compiler/js-graph.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.cc?cl=ac04d77)  
 ...  
   
 
@@ -18934,7 +18884,6 @@ assertEquals(1, foo(1));
 [src/compiler/js-graph.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.cc?cl=70b32e4)  
 [src/compiler/js-graph.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.h?cl=70b32e4)  
 [src/compiler/opcodes.h](https://cs.chromium.org/chromium/src/v8/src/compiler/opcodes.h?cl=70b32e4)  
-[src/compiler/representation-change.h](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.h?cl=70b32e4)  
 ...  
   
 

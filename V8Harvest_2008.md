@@ -60,7 +60,6 @@ assertEquals(String.fromCharCode(0x26B), String.fromCharCode(0x2C62).toLowerCase
 [src/assembler-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/assembler-ia32.cc?cl=b57b4a1)  
 [src/assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/assembler-ia32.h?cl=b57b4a1)  
 [src/assembler-irregexp-inl.h](https://cs.chromium.org/chromium/src/v8/src/assembler-irregexp-inl.h?cl=b57b4a1)  
-[src/assembler-irregexp.cc](https://cs.chromium.org/chromium/src/v8/src/assembler-irregexp.cc?cl=b57b4a1)  
 ...  
   
 
@@ -100,7 +99,7 @@ Regress: [mjsunit/regress/regress-137.js](https://chromium.googlesource.com/v8/v
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=4e3bbd8)  
 [src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=4e3bbd8)  
 [test/mjsunit/regress/regress-137.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-137.js?cl=4e3bbd8)  
-[test/mjsunit/switch.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/switch.js?cl=4e3bbd8)  
+...  
   
 
 ---   
@@ -337,7 +336,6 @@ try {
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=6974e4b)  
 [src/api.cc](https://cs.chromium.org/chromium/src/v8/src/api.cc?cl=6974e4b)  
 [src/checks.cc](https://cs.chromium.org/chromium/src/v8/src/checks.cc?cl=6974e4b)  
-[src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=6974e4b)  
 ...  
   
 
@@ -386,7 +384,6 @@ Regress: [mjsunit/regress/regress-1134697.js](https://chromium.googlesource.com/
 [test/mjsunit/leakcheck.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/leakcheck.js?cl=472ae34)  
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=472ae34)  
 [test/mjsunit/number-tostring-small.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/number-tostring-small.js?cl=472ae34)  
-[test/mjsunit/regress/regress-1134697.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1134697.js?cl=472ae34)  
 ...  
   
   
@@ -437,7 +434,6 @@ assertFalse(f(10));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -470,7 +466,6 @@ assertTrue(exception);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -502,7 +497,6 @@ assertEquals(gee, a.findOrStore());
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -860,7 +854,6 @@ function OverflowParserStack() {
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -895,7 +888,6 @@ run();
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -918,7 +910,6 @@ var obj = { 0.2 : 'a' }
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -2943,7 +2934,6 @@ try {
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3016,7 +3006,6 @@ assertEquals(5678, w);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3083,7 +3072,6 @@ for (var i = 0; i < ranges.length; i++) {
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3110,7 +3098,6 @@ assertEquals(undefined, ""[-0x80000000]);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3169,7 +3156,6 @@ assertEquals(87, value);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3192,7 +3178,6 @@ String.fromCharCode(48,48,48,59,32,102,111,110,116,45,119,101,105,103,104,116,58
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3221,7 +3206,6 @@ assertEquals('string', typeof (new Date(9999)).toString());
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3244,7 +3228,6 @@ a = 0;
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3285,7 +3268,6 @@ assertTrue(object_var != null_var);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3337,7 +3319,6 @@ assertEquals("01", TestContinue());
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3364,7 +3345,6 @@ assertThrows("f.call.apply(null, [1,2,3,4,5,6,7,8,9], 0)");
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3404,7 +3384,6 @@ assertTrue(caught);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3434,7 +3413,6 @@ assertEquals(0, F.apply(this, [], 0), "empty args, extra argument");
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3463,7 +3441,6 @@ Crash();
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3487,7 +3464,6 @@ assertEquals((123).length, 0)
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3533,7 +3509,6 @@ assertEquals( 268435456, unsignedShiftRight(0x40000000, 2), "0x40000000 >>> 2");
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3556,7 +3531,6 @@ assertTrue(typeof(Debug) === 'undefined');
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3589,7 +3563,6 @@ xeval('$=function(){L: {break L;break L;}};');
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3621,7 +3594,6 @@ assertEquals(10, result);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3656,7 +3628,6 @@ assertEquals(Infinity, one / (one % one));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3686,7 +3657,6 @@ assertTrue(threw);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3715,7 +3685,6 @@ assertThrows("f()");
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3756,7 +3725,6 @@ assertEquals(42, f());
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3792,7 +3760,6 @@ assertClose(-3 * Math.PI / 4, Math.atan2(ninf, ninf));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
   
@@ -3836,7 +3803,6 @@ assertEquals(true[12], 'z');
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -3876,7 +3842,6 @@ assertTrue(caught);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -3919,7 +3884,6 @@ assertEquals(undefined, h());
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -3954,7 +3918,6 @@ assertEquals([1].toString(), '1');        // Uses ToString directly on elements.
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -3987,7 +3950,6 @@ assertTrue(caught);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4017,7 +3979,6 @@ assertTrue(foo.propertyIsEnumerable('bar'));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4073,7 +4034,6 @@ assertEquals(10, j);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4127,7 +4087,6 @@ assertEquals(10, j);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4164,7 +4123,6 @@ assertTrue(o1.prototype !== o2.prototype, "different protos");
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4196,7 +4154,6 @@ assertEquals(125, goog.globalEval('var foofoofoo = 125; foofoofoo'));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4230,7 +4187,6 @@ assertTrue(catcher(void 0, 123) instanceof TypeError);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4256,7 +4212,6 @@ assertEquals(this.toString(), eval("this.toString()"));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4311,7 +4266,6 @@ assertEquals(105, '\151'.charCodeAt(0));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4340,7 +4294,6 @@ assertTrue(result instanceof SyntaxError);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4492,7 +4445,6 @@ assertFalse(typeof undetectable === 'object');
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4523,7 +4475,6 @@ assertFalse(XXX('Hello'));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4607,7 +4558,6 @@ assertTrue(caught);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4658,7 +4608,6 @@ assertEquals(4, len3([1,2,3,4]));
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4696,7 +4645,6 @@ g();
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 
@@ -4724,7 +4672,6 @@ assertEquals(-Infinity, 1 / -1e-9999);
 [public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
 [samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
-[src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=c42f582)  
 ...  
   
 

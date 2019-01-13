@@ -23,7 +23,6 @@ for (var j = 0; j < i; j++) { var o = {}; o.x = 42; delete o.x; a[j] = o; }
 [src/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap.cc?cl=44b7c59)  
 [src/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap.h?cl=44b7c59)  
 [src/mark-compact.cc](https://cs.chromium.org/chromium/src/v8/src/mark-compact.cc?cl=44b7c59)  
-[src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=44b7c59)  
 ...  
   
 
@@ -178,7 +177,7 @@ assertEquals(42, o.bar.x);
 [src/ia32/fast-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/fast-codegen-ia32.cc?cl=1c90793)  
 [src/x64/fast-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/fast-codegen-x64.cc?cl=1c90793)  
 [test/mjsunit/compiler/objectliterals.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/objectliterals.js?cl=1c90793)  
-[test/mjsunit/regress/regress-526.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-526.js?cl=1c90793)  
+...  
   
 
 ---   
@@ -316,7 +315,6 @@ assertEquals(42, b.x);
 [src/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/objects-debug.cc?cl=2252cc1)  
 [src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=2252cc1)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=2252cc1)  
-[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=2252cc1)  
 ...  
   
 
@@ -406,7 +404,6 @@ for (i = 1100; i < 1200; i++) {
 [src/arm/codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/codegen-arm.cc?cl=77a71c9)  
 [src/arm/codegen-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/codegen-arm.h?cl=77a71c9)  
 [src/arm/debug-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/debug-arm.cc?cl=77a71c9)  
-[src/arm/fast-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/fast-codegen-arm.cc?cl=77a71c9)  
 ...  
   
 
@@ -1184,7 +1181,6 @@ assertEquals(0, nonArray[4], "don't affect after length.");
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=889eac7)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=889eac7)  
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=889eac7)  
-[src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=889eac7)  
 ...  
   
 
@@ -1407,7 +1403,6 @@ assertEquals(0, b[0].length, "Array in array");
 [src/codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/codegen-arm.cc?cl=3aa57f7)  
 [src/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/codegen-ia32.cc?cl=3aa57f7)  
 [src/heap.h](https://cs.chromium.org/chromium/src/v8/src/heap.h?cl=3aa57f7)  
-[src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=3aa57f7)  
 ...  
   
 
@@ -1583,7 +1578,6 @@ for (var p in o) {
 [src/handles.cc](https://cs.chromium.org/chromium/src/v8/src/handles.cc?cl=7977c6c6)  
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=7977c6c6)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=7977c6c6)  
-[src/property.h](https://cs.chromium.org/chromium/src/v8/src/property.h?cl=7977c6c6)  
 ...  
   
   
@@ -2198,7 +2192,6 @@ test();
 [src/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/codegen-ia32.cc?cl=47d1298)  
 [src/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parser.cc?cl=47d1298)  
 [src/prettyprinter.cc](https://cs.chromium.org/chromium/src/v8/src/prettyprinter.cc?cl=47d1298)  
-[src/rewriter.cc](https://cs.chromium.org/chromium/src/v8/src/rewriter.cc?cl=47d1298)  
 ...  
   
 
@@ -2253,7 +2246,6 @@ assertEquals(["f", undefined], "foo".match(/(?:(?=(f)o)fx|)./));
 [src/jsregexp.cc](https://cs.chromium.org/chromium/src/v8/src/jsregexp.cc?cl=d6e6508)  
 [src/jsregexp.h](https://cs.chromium.org/chromium/src/v8/src/jsregexp.h?cl=d6e6508)  
 [src/regexp-macro-assembler-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-ia32.cc?cl=d6e6508)  
-[src/regexp-macro-assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/regexp-macro-assembler-ia32.h?cl=d6e6508)  
 ...  
   
 

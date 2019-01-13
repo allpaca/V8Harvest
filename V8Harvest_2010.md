@@ -152,7 +152,7 @@ assertEquals(desc.set, undefined);
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=357afa3)  
 [src/v8natives.js](https://cs.chromium.org/chromium/src/v8/src/v8natives.js?cl=357afa3)  
 [test/mjsunit/object-define-property.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/object-define-property.js?cl=357afa3)  
-[test/mjsunit/regress/regress-687.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-687.js?cl=357afa3)  
+...  
   
 
 ---   
@@ -176,7 +176,7 @@ eval("(function(){try {  } catch(x) {  } finally { gc() }})")();
 [src/full-codegen.h](https://cs.chromium.org/chromium/src/v8/src/full-codegen.h?cl=ace6290)  
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=ace6290)  
 [src/x64/full-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/full-codegen-x64.cc?cl=ace6290)  
-[test/mjsunit/regress/regress-974.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-974.js?cl=ace6290)  
+...  
   
 
 ---   
@@ -360,7 +360,6 @@ assertEquals('undefined', test11());
 [src/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast.h?cl=49f4c39)  
 [src/full-codegen.h](https://cs.chromium.org/chromium/src/v8/src/full-codegen.h?cl=49f4c39)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=49f4c39)  
-[src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=49f4c39)  
 ...  
   
 
@@ -490,7 +489,6 @@ try {
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -535,7 +533,6 @@ try {
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -572,7 +569,6 @@ test(0);
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -625,7 +621,6 @@ assertEquals(-1, f2(""));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -652,7 +647,6 @@ assertEquals(-Infinity, 1 / r);
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -687,7 +681,6 @@ assertEquals(2, h());
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -730,7 +723,6 @@ assertEquals(n, result);
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -853,7 +845,6 @@ assertEquals(5 + 10, two_cycles_while(9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -921,7 +912,6 @@ assertEquals(from_eval, from_eval(1));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -998,7 +988,6 @@ assertArrayEquals([1, "h"], hej(1));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1024,7 +1013,6 @@ assertEquals(42, f());
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1078,7 +1066,6 @@ assertEquals(void 0, u());
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1118,7 +1105,6 @@ x(1, "xxx", 10000, 1)
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1163,7 +1149,6 @@ for (var i = 0; i < 20000; i++) test(x);
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1211,7 +1196,6 @@ for (var i = 0; i < 100; i++) bar(foo);
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1238,7 +1222,6 @@ f();
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1275,7 +1258,6 @@ withCommaExpressionInConditional("1")
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1308,7 +1290,6 @@ assertFalse(test("a") === "wrong");
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1339,7 +1320,6 @@ test();
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1375,7 +1355,6 @@ assertEquals('called b(0, 1)', obj.f())
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1430,7 +1409,6 @@ test4(0)
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1458,7 +1436,6 @@ f();
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1501,7 +1478,6 @@ assertEquals(13, count);
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1529,7 +1505,6 @@ assertEquals(1, f(8, new X()));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1632,7 +1607,6 @@ Nob(2, { Un: "" , Im: "" , total: 42});
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1667,7 +1641,6 @@ assertEquals(G, f());
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1701,7 +1674,6 @@ assertEquals(2.5, f(2, 1, 0.5));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1738,7 +1710,6 @@ assertEquals(1, f(1));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1772,7 +1743,6 @@ assertEquals("0foo6", result);
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1804,7 +1774,6 @@ assertEquals(2111485077978050, fib(75));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1841,7 +1810,6 @@ assertEquals("rrrrrrrr", TestCreateString(6));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1871,7 +1839,6 @@ assertEquals(366, DaysInYear(2000));
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1903,7 +1870,6 @@ assertEquals(200 * 200, TestNestedLoops());
 [include/v8-testing.h](https://cs.chromium.org/chromium/src/v8/include/v8-testing.h?cl=e5860bd)  
 [samples/shell.cc](https://cs.chromium.org/chromium/src/v8/samples/shell.cc?cl=e5860bd)  
 [src/SConscript](https://cs.chromium.org/chromium/src/v8/src/SConscript?cl=e5860bd)  
-[src/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/accessors.cc?cl=e5860bd)  
 ...  
   
   
@@ -1977,7 +1943,6 @@ assertEquals("123412'34", sequence);
 [src/ia32/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.cc?cl=010f35f)  
 [src/ia32/full-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/full-codegen-ia32.cc?cl=010f35f)  
 [src/x64/codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/codegen-x64.cc?cl=010f35f)  
-[src/x64/full-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/full-codegen-x64.cc?cl=010f35f)  
 ...  
   
 
@@ -2110,7 +2075,6 @@ test(test3, 3);
 [src/arm/full-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/full-codegen-arm.cc?cl=746d724)  
 [src/arm/macro-assembler-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.cc?cl=746d724)  
 [src/assembler.cc](https://cs.chromium.org/chromium/src/v8/src/assembler.cc?cl=746d724)  
-[src/assembler.h](https://cs.chromium.org/chromium/src/v8/src/assembler.h?cl=746d724)  
 ...  
   
   
@@ -2532,7 +2496,6 @@ for (var i = 0; i < 10; i++) {
 [src/arm/full-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/full-codegen-arm.cc?cl=8e0cd6d)  
 [src/arm/macro-assembler-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.cc?cl=8e0cd6d)  
 [src/arm/macro-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.h?cl=8e0cd6d)  
-[src/bootstrapper.cc](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?cl=8e0cd6d)  
 ...  
   
 
@@ -3091,7 +3054,6 @@ assertEquals(42, g());
 [src/ia32/stub-cache-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/stub-cache-ia32.cc?cl=afc15bb)  
 [src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=afc15bb)  
 [src/stub-cache.cc](https://cs.chromium.org/chromium/src/v8/src/stub-cache.cc?cl=afc15bb)  
-[src/stub-cache.h](https://cs.chromium.org/chromium/src/v8/src/stub-cache.h?cl=afc15bb)  
 ...  
   
 
@@ -3125,7 +3087,6 @@ f(5)
 [src/ia32/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.cc?cl=6a63910)  
 [src/ia32/codegen-ia32.h](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.h?cl=6a63910)  
 [src/jump-target.cc](https://cs.chromium.org/chromium/src/v8/src/jump-target.cc?cl=6a63910)  
-[src/jump-target.h](https://cs.chromium.org/chromium/src/v8/src/jump-target.h?cl=6a63910)  
 ...  
   
 
@@ -3399,7 +3360,6 @@ assertThrows(function() {
 [src/ia32/builtins-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/builtins-ia32.cc?cl=3c0d77f)  
 [src/ia32/codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/codegen-ia32.cc?cl=3c0d77f)  
 [src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=3c0d77f)  
-[src/runtime.h](https://cs.chromium.org/chromium/src/v8/src/runtime.h?cl=3c0d77f)  
 ...  
   
 
@@ -3619,7 +3579,6 @@ assertEquals("Test2 Test2", "test2 test2".cap(true));
 [src/arm/fast-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/fast-codegen-arm.cc?cl=562f90d)  
 [src/arm/stub-cache-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/stub-cache-arm.cc?cl=562f90d)  
 [src/codegen.h](https://cs.chromium.org/chromium/src/v8/src/codegen.h?cl=562f90d)  
-[src/debug.cc](https://cs.chromium.org/chromium/src/v8/src/debug.cc?cl=562f90d)  
 ...  
   
 
