@@ -2951,7 +2951,7 @@ assertEquals(o51.length, 39);
 
 o51.sort();
 
-assertEquals(o51.length, 101);  
+assertEquals(o51.length, 39);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/0855fb1^!)  
@@ -3428,12 +3428,12 @@ foo()
 
 ## **regress-894374.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/894374)**  
+**[Issue: [liftoff] [ia32] Debug check failed: !unpinned.is_empty()](https://crbug.com/894374)**  
 **[Commit: [Liftoff] Fewer pinned registers on store](https://chromium.googlesource.com/v8/v8/+/56b8ab5)**  
   
 Date(Commit): Fri Oct 12 08:11:52 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>WebAssembly/Bug-Security  
+Labels: ["Security_Severity-Low", "Security_Impact-Head", "allpublic", "M-71"]  
 Code Review: [https://chromium-review.googlesource.com/c/1275819](https://chromium-review.googlesource.com/c/1275819)  
 Regress: [mjsunit/regress/wasm/regress-894374.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-894374.js)  
 ```javascript
@@ -3512,12 +3512,12 @@ Regress: [mjsunit/regress/regress-arrow-single-expression-eval.js](https://chrom
 
 ## **regress-892858.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/892858)**  
+**[Issue: Global-buffer-overflow in MemoryRead<unsigned](https://crbug.com/892858)**  
 **[Commit: [async-await] Fix global-buffer-overflow issue when loading flag](https://chromium.googlesource.com/v8/v8/+/890fd9c)**  
   
 Date(Commit): Mon Oct 08 09:16:14 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1267936](https://chromium-review.googlesource.com/c/1267936)  
 Regress: [mjsunit/regress/regress-892858.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-892858.js)  
 ```javascript

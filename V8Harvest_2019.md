@@ -2,6 +2,144 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-923265.js (chromium issue)**  
+   
+**[Issue: Ill in v8::internal::RemoveArrayHolesGeneric](https://crbug.com/923265)**  
+**[Commit: [array] Remove CHECK_LE from RemoveArrayHolesGeneric](https://chromium.googlesource.com/v8/v8/+/e38faab)**  
+  
+Date(Commit): Fri Jan 18 10:01:37 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Stability-UndefinedBehaviorSanitizer", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1420679](https://chromium-review.googlesource.com/c/1420679)  
+Regress: [mjsunit/regress/regress-crbug-923265.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-923265.js)  
+```javascript
+let a = {0: 5, 1: 4, 2: 3, length: 2};
+Object.freeze(a);
+
+assertThrows(() => Array.prototype.sort.call(a));
+assertPropertiesEqual({0: 5, 1: 4, 2: 3, length: 2}, a);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e38faab^!)  
+[src/runtime/runtime-array.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-array.cc?cl=e38faab)  
+[test/mjsunit/regress/regress-crbug-923265.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-923265.js?cl=e38faab)  
+  
+
+---   
+
+## **regress-922432.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/922432)**  
+**[Commit: [wasm] Fix {OpcodeLength} for invalid br-on-exn opcodes.](https://chromium.googlesource.com/v8/v8/+/30882a5)**  
+  
+Date(Commit): Wed Jan 16 14:50:13 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1414917](https://chromium-review.googlesource.com/c/1414917)  
+Regress: [mjsunit/regress/wasm/regress-922432.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-922432.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-constants.js");
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+(function TestTruncatedBrOnExnInLoop() {
+  let builder = new WasmModuleBuilder();
+  let fun = builder.addFunction(undefined, kSig_v_v)
+      .addLocals({except_count: 1})
+      .addBody([
+        kExprLoop, kWasmStmt,
+          kExprGetLocal, 0,
+          kExprBrOnExn  // Bytecode truncated here.
+      ]).exportFunc();
+  fun.body.pop();  // Pop implicitly added kExprEnd from body.
+  assertThrows(() => builder.instantiate(), WebAssembly.CompileError);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/30882a5^!)  
+[src/wasm/function-body-decoder-impl.h](https://cs.chromium.org/chromium/src/v8/src/wasm/function-body-decoder-impl.h?cl=30882a5)  
+[test/mjsunit/regress/wasm/regress-922432.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-922432.js?cl=30882a5)  
+  
+
+---   
+
+## **regress-sloppy-block-function-hoisting-dynamic.js (other issue)**  
+   
+**[Commit: [parser] Use cached kDynamic variable for eval-introduced vars](https://chromium.googlesource.com/v8/v8/+/f2303d9)**  
+  
+Date(Commit): Wed Jan 16 14:18:33 2019  
+Code Review: [https://chromium-review.googlesource.com/c/1408890](https://chromium-review.googlesource.com/c/1408890)  
+Regress: [mjsunit/regress/regress-sloppy-block-function-hoisting-dynamic.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-sloppy-block-function-hoisting-dynamic.js)  
+```javascript
+with({}) { eval("{function f(){f}}") };
+f()  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f2303d9^!)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=f2303d9)  
+[src/contexts.cc](https://cs.chromium.org/chromium/src/v8/src/contexts.cc?cl=f2303d9)  
+[src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=f2303d9)  
+[src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=f2303d9)  
+[src/runtime/runtime-scopes.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-scopes.cc?cl=f2303d9)  
+...  
+  
+  
+---   
+
+## **regress-921382.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/921382)**  
+**[Commit: [parser] Clear parenthesized flag on collapsing nary expressions](https://chromium.googlesource.com/v8/v8/+/5f8a3e1)**  
+  
+Date(Commit): Tue Jan 15 13:26:23 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1412172](https://chromium-review.googlesource.com/c/1412172)  
+Regress: [mjsunit/regress/regress-921382.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-921382.js)  
+```javascript
+assertThrows("(d * f * g) * e => 0", SyntaxError)  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/5f8a3e1^!)  
+[src/ast/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast/ast.h?cl=5f8a3e1)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=5f8a3e1)  
+[src/parsing/preparser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?cl=5f8a3e1)  
+[test/mjsunit/regress/regress-921382.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-921382.js?cl=5f8a3e1)  
+  
+
+---   
+
+## **regress-917755.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/917755)**  
+**[Commit: [parser] Give hoisting sloppy block functions a valid position](https://chromium.googlesource.com/v8/v8/+/8436715)**  
+  
+Date(Commit): Tue Jan 15 11:52:28 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1408991](https://chromium-review.googlesource.com/c/1408991)  
+Regress: [mjsunit/regress/regress-917755.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-917755.js)  
+```javascript
+{
+    function a() {}
+}
+
+{
+    let a;
+    function a() {};
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8436715^!)  
+[src/ast/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast/ast.h?cl=8436715)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=8436715)  
+[src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=8436715)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=8436715)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=8436715)  
+...  
+  
+
+---   
+
 ## **regress-917215.js (chromium issue)**  
    
 **[Issue: False SyntaxError on Sibling JS-Labels](https://crbug.com/917215)**  
