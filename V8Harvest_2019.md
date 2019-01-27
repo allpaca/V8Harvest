@@ -2,6 +2,149 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-924905.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/924905)**  
+**[Commit: [wasm][arm] Fix {Word32Shr} instruction selection.](https://chromium.googlesource.com/v8/v8/+/8a3c4d9)**  
+  
+Date(Commit): Fri Jan 25 13:08:10 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1435939](https://chromium-review.googlesource.com/c/1435939)  
+Regress: [mjsunit/regress/wasm/regress-924905.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-924905.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-constants.js');
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+let builder = new WasmModuleBuilder();
+builder.addFunction("kaboom", kSig_i_v)
+    .addBody([
+      kExprI32Const, 0,
+      kExprI32Const, 0,
+      kExprI32And,
+      kExprI32Const, 0,
+      kExprI32ShrU,
+    ]).exportFunc();
+let instance = builder.instantiate();
+assertEquals(0, instance.exports.kaboom());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8a3c4d9^!)  
+[src/compiler/backend/arm/instruction-selector-arm.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/arm/instruction-selector-arm.cc?cl=8a3c4d9)  
+[test/mjsunit/regress/wasm/regress-924905.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-924905.js?cl=8a3c4d9)  
+  
+
+---   
+
+## **regress-922933.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/922933)**  
+**[Commit: [Liftoff][arm] Avoid use of temp registers](https://chromium.googlesource.com/v8/v8/+/ce2bfb8)**  
+  
+Date(Commit): Mon Jan 21 13:09:13 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1424862](https://chromium-review.googlesource.com/c/1424862)  
+Regress: [mjsunit/regress/wasm/regress-922933.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-922933.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-constants.js');
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+const sig = builder.addType(makeSig([kWasmI64], [kWasmI64]));
+builder.addFunction(undefined, sig)
+  .addLocals({i32_count: 14}).addLocals({i64_count: 17}).addLocals({f32_count: 14})
+  .addBody([
+    kExprBlock, kWasmStmt,
+      kExprBr, 0x00,
+      kExprEnd,
+    kExprBlock, kWasmStmt,
+      kExprI32Const, 0x00,
+      kExprSetLocal, 0x09,
+      kExprI32Const, 0x00,
+      kExprIf, kWasmStmt,
+        kExprBlock, kWasmStmt,
+          kExprI32Const, 0x00,
+          kExprSetLocal, 0x0a,
+          kExprBr, 0x00,
+          kExprEnd,
+        kExprBlock, kWasmStmt,
+          kExprBlock, kWasmStmt,
+            kExprGetLocal, 0x00,
+            kExprSetLocal, 0x12,
+            kExprBr, 0x00,
+            kExprEnd,
+          kExprGetLocal, 0x16,
+          kExprSetLocal, 0x0f,
+          kExprGetLocal, 0x0f,
+          kExprSetLocal, 0x17,
+          kExprGetLocal, 0x0f,
+          kExprSetLocal, 0x18,
+          kExprGetLocal, 0x17,
+          kExprGetLocal, 0x18,
+          kExprI64ShrS,
+          kExprSetLocal, 0x19,
+          kExprUnreachable,
+          kExprEnd,
+        kExprUnreachable,
+      kExprElse,
+        kExprUnreachable,
+        kExprEnd,
+      kExprUnreachable,
+      kExprEnd,
+    kExprUnreachable
+]);
+builder.instantiate();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ce2bfb8^!)  
+[src/wasm/baseline/arm/liftoff-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/arm/liftoff-assembler-arm.h?cl=ce2bfb8)  
+[test/mjsunit/regress/wasm/regress-922933.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-922933.js?cl=ce2bfb8)  
+  
+
+---   
+
+## **regress-crbug-923264.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/923264)**  
+**[Commit: [heap] Allow PreparseData in large object space](https://chromium.googlesource.com/v8/v8/+/c45a2ef)**  
+  
+Date(Commit): Mon Jan 21 11:18:02 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1421321](https://chromium-review.googlesource.com/c/1421321)  
+Regress: [mjsunit/regress/regress-crbug-923264.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-923264.js)  
+```javascript
+let paramName = '';
+for (let i=0; i < 2**10; i++) {
+  paramName += 'a';
+}
+
+let params = '';
+for (let i = 0; i < 2**10; i++) {
+  params += paramName + i + ',';
+}
+
+let fn = eval(`(
+  class A {
+    constructor (${params}) {
+      function lazy() {
+        return function lazier() { return ${paramName+1} }
+      };
+      return lazy;
+    }
+})`);
+
+gc()  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c45a2ef^!)  
+[src/heap/spaces.cc](https://cs.chromium.org/chromium/src/v8/src/heap/spaces.cc?cl=c45a2ef)  
+[test/mjsunit/regress/regress-crbug-923264.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-923264.js?cl=c45a2ef)  
+  
+
+---   
+
 ## **regress-crbug-923265.js (chromium issue)**  
    
 **[Issue: Ill in v8::internal::RemoveArrayHolesGeneric](https://crbug.com/923265)**  
@@ -119,14 +262,19 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1408991](https://chromium-review.googlesource.com/c/1408991)  
 Regress: [mjsunit/regress/regress-917755.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-917755.js)  
 ```javascript
+assertThrows(`
 {
     function a() {}
 }
 
 {
+    // Duplicate lexical declarations are only allowed if they are both sloppy
+    // block functions (see bug 4693). In this case the sloppy block function
+    // conflicts with the lexical variable declaration, causing a syntax error.
     let a;
     function a() {};
-}  
+}
+`, SyntaxError)  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/8436715^!)  

@@ -5546,7 +5546,7 @@ f(arr, 0);
 f(str, 0);
 f(str, 0);
 
-%SetKeyedProperty(str, 1, 'y', 0);  
+%SetKeyedProperty(str, 1, 'y');  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/eaacd96^!)  
@@ -9217,14 +9217,13 @@ Code Review: [https://codereview.chromium.org/144533003](https://codereview.chro
 Regress: [mjsunit/regress/regress-336820.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-336820.js)  
 ```javascript
 assertThrows((function() {
-  s = "Hello World!\n";
-  while (true) {
-    x = new Array();
-    x[0] = s;
-    x[1000] = s;
-    x[10000] = s;
-    s = x.join("::");
-  }}), RangeError);  
+  let str = "a".repeat(1e7);
+  let arr = new Array(2000);
+  for (let i = 0; i < 200; ++i) {
+    arr[i*10] = str;
+  }
+  let res = arr.join(':');
+}), RangeError);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/3214cf1^!)  
