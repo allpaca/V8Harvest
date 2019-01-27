@@ -36,6 +36,120 @@ assertEquals(0, instance.exports.kaboom());
 
 ---   
 
+## **regress-924151.js (chromium issue)**  
+   
+**[Issue: Issue 924151:
+ V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/924151)**  
+**[Commit: [turbofan] Handle exceptional edges when inserting unreachable node.](https://chromium.googlesource.com/v8/v8/+/ec4d45a)**  
+  
+Date(Commit): Thu Jan 24 12:43:46 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "v8-foozzie-failure", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1429860](https://chromium-review.googlesource.com/c/1429860)  
+Regress: [mjsunit/compiler/regress-924151.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-924151.js)  
+```javascript
+function g(code) {
+  try {
+    if (typeof code === 'function') {
+      +Symbol();
+    } else {
+      eval();
+    }
+  } catch (e) {
+    return;
+  }
+  dummy();
+}
+
+function f() {
+  g(g);
+}
+
+try { g(); } catch(e) {; }
+
+f();
+%OptimizeFunctionOnNextCall(f);
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ec4d45a^!)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=ec4d45a)  
+[src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=ec4d45a)  
+[test/mjsunit/compiler/regress-924151.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-924151.js?cl=ec4d45a)  
+  
+
+---   
+
+## **regress-6711.js (v8 issue)**  
+   
+**[Issue: Issue 6711:
+ Applying delete operator on non-initialized |this| should throw ReferenceError](https://crbug.com/v8/6711)**  
+**[Commit: Check for "SuperNotCalled" on "delete this" in a constructor](https://chromium.googlesource.com/v8/v8/+/1e5b235)**  
+  
+Date(Commit): Tue Jan 22 18:58:42 2019  
+Type: Bug  
+Code Review: [https://bugs.chromium.org/p/v8/issues/detail?id=6711](https://bugs.chromium.org/p/v8/issues/detail?id=6711)  
+Regress: [mjsunit/regress/regress-6711.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6711.js)  
+```javascript
+assertThrows(()=>{
+  new class extends Object {
+    constructor() {
+      delete this;
+      super();
+    }
+  }
+}, ReferenceError);
+
+new class extends Object {
+  constructor() {
+    super();
+    delete this;
+  }
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1e5b235^!)  
+[src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=1e5b235)  
+[test/cctest/interpreter/bytecode_expectations/Delete.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/Delete.golden?cl=1e5b235)  
+[test/cctest/interpreter/test-bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/test-bytecode-generator.cc?cl=1e5b235)  
+[test/mjsunit/regress/regress-6711.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-6711.js?cl=1e5b235)  
+  
+
+---   
+
+## **regress-crbug-923705.js (chromium issue)**  
+   
+**[Issue: Issue 923705:
+ Ill in v8::internal::BaseConsumedPreparseData<v8::internal::PreparseData>::GetDataForSk](https://crbug.com/923705)**  
+**[Commit: [parser] Fix storing has_data bit for inner function preparse data](https://chromium.googlesource.com/v8/v8/+/c3722aa)**  
+  
+Date(Commit): Mon Jan 21 18:04:34 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-MemorySanitizer", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1425201](https://chromium-review.googlesource.com/c/1425201)  
+Regress: [mjsunit/regress/regress-crbug-923705.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-923705.js)  
+```javascript
+function __f_5() {
+  function __f_1() {
+    function __f_0() {
+      ({y = eval()}) => assertEquals()();
+    }
+  }
+}
+
+__f_5();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c3722aa^!)  
+[src/objects-printer.cc](https://cs.chromium.org/chromium/src/v8/src/objects-printer.cc?cl=c3722aa)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=c3722aa)  
+[src/parsing/preparse-data-impl.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparse-data-impl.h?cl=c3722aa)  
+[src/parsing/preparse-data.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/preparse-data.cc?cl=c3722aa)  
+[test/mjsunit/regress/regress-crbug-923705.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-923705.js?cl=c3722aa)  
+  
+
+---   
+
 ## **regress-922933.js (chromium issue)**  
    
 **[Issue: No Permission](https://crbug.com/922933)**  
@@ -104,6 +218,55 @@ builder.instantiate();
 
 ---   
 
+## **regress-922670.js (chromium issue)**  
+   
+**[Issue: Issue 922670:
+ Fatal error in liftoff-register.h](https://crbug.com/922670)**  
+**[Commit: [Liftoff] Fix DCHECK error](https://chromium.googlesource.com/v8/v8/+/f77299e)**  
+  
+Date(Commit): Mon Jan 21 11:52:17 2019  
+Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Labels: ["Stability-Crash", "Clusterfuzz", "Unreproducible"]  
+Code Review: [https://chromium-review.googlesource.com/c/1421921](https://chromium-review.googlesource.com/c/1421921)  
+Regress: [mjsunit/regress/wasm/regress-922670.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-922670.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-constants.js');
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+const sig = builder.addType(makeSig([kWasmI32], []));
+builder.addFunction(undefined, sig)
+  .addLocals({i64_count: 1})
+  .addBody([
+    kExprLoop, kWasmI32,
+      kExprGetLocal, 1,
+      kExprI64Const, 1,
+      kExprLoop, kWasmI32,
+        kExprGetLocal, 0,
+        kExprI32Const, 1,
+        kExprI32Const, 1,
+        kExprIf, kWasmI32,
+          kExprI32Const, 1,
+        kExprElse,
+          kExprUnreachable,
+          kExprEnd,
+        kExprSelect,
+        kExprUnreachable,
+        kExprEnd,
+      kExprUnreachable,
+      kExprEnd,
+    kExprUnreachable
+]);
+builder.instantiate();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f77299e^!)  
+[src/wasm/baseline/liftoff-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.cc?cl=f77299e)  
+[test/mjsunit/regress/wasm/regress-922670.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-922670.js?cl=f77299e)  
+  
+
+---   
+
 ## **regress-crbug-923264.js (chromium issue)**  
    
 **[Issue: No Permission](https://crbug.com/923264)**  
@@ -141,6 +304,59 @@ gc()
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/c45a2ef^!)  
 [src/heap/spaces.cc](https://cs.chromium.org/chromium/src/v8/src/heap/spaces.cc?cl=c45a2ef)  
 [test/mjsunit/regress/regress-crbug-923264.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-923264.js?cl=c45a2ef)  
+  
+
+---   
+
+## **regress-8708.js (v8 issue)**  
+   
+**[Issue: Issue 8708:
+ Uncaught stack overflow in Array.prototype.flat](https://crbug.com/v8/8708)**  
+**[Commit: [array] Add stack overflow check for Array#flat](https://chromium.googlesource.com/v8/v8/+/bf17cd2)**  
+  
+Date(Commit): Mon Jan 21 10:39:45 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/1424858](https://chromium-review.googlesource.com/c/1424858)  
+Regress: [mjsunit/regress/regress-8708.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-8708.js)  
+```javascript
+let array = new Array(1);
+array.splice(1, 0, array);
+
+assertThrows(() => array.flat(Infinity), RangeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/bf17cd2^!)  
+[src/builtins/builtins-array-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-array-gen.cc?cl=bf17cd2)  
+[test/mjsunit/regress/regress-8708.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-8708.js?cl=bf17cd2)  
+  
+
+---   
+
+## **regress-923723.js (chromium issue)**  
+   
+**[Issue: Issue 923723:
+ Null-dereference READ in v8::internal::ParserBase<v8::internal::Parser>::ParseArrowFunctionLiteral](https://crbug.com/923723)**  
+**[Commit: [parser] Reparsing arrow function head upon failure can overflow the stack](https://chromium.googlesource.com/v8/v8/+/b4e7d11)**  
+  
+Date(Commit): Mon Jan 21 10:12:10 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Stability-UndefinedBehaviorSanitizer", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1424857](https://chromium-review.googlesource.com/c/1424857)  
+Regress: [mjsunit/regress/regress-923723.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-923723.js)  
+```javascript
+function __f_3() {
+  try {
+    __f_3();
+  } catch(e) {
+    eval("let fun = ({a} = {a: 30}) => {");
+  }
+}
+assertThrows(__f_3);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b4e7d11^!)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=b4e7d11)  
+[test/mjsunit/regress/regress-923723.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-923723.js?cl=b4e7d11)  
   
 
 ---   

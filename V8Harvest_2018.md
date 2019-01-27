@@ -3319,6 +3319,51 @@ Regress: [mjsunit/es6/regress/regress-cr895860.js](https://chromium.googlesource
 
 ---   
 
+## **regress-895799.js (chromium issue)**  
+   
+**[Issue: Issue 895799:
+ DCHECK failure in isolate->context() == nullptr || isolate->context()->IsContext() in runtime-inte](https://crbug.com/895799)**  
+**[Commit: [deoptimizer] Materialize context properly for construct stub frame.](https://chromium.googlesource.com/v8/v8/+/2d11dda)**  
+  
+Date(Commit): Wed Oct 17 10:27:04 2018  
+Components/Type: Blink>JavaScript>Compiler/Bug-Security  
+Labels: ["Hotlist-Merge-Review", "Reproducible", "Security_Severity-High", "Security_Impact-Beta", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner", "M-71", "Target-71", "merge-merged-7.1"]  
+Code Review: [https://chromium-review.googlesource.com/c/1286336](https://chromium-review.googlesource.com/c/1286336)  
+Regress: [mjsunit/compiler/regress-895799.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-895799.js)  
+```javascript
+class C extends Object {
+  constructor() {
+    try { super(); } catch (e) { };
+    return 1;
+  }
+}
+
+class A extends C {
+  constructor() {
+    super();
+    throw new Error();
+    return { get: () => this };
+  }
+}
+
+var D = new Proxy(A, { get() { %DeoptimizeFunction(A); } });
+
+try { Reflect.construct(A, [], D); } catch(e) {}
+%OptimizeFunctionOnNextCall(A);
+try { Reflect.construct(A, [], D); } catch(e) {}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2d11dda^!)  
+[src/compiler/code-generator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/code-generator.cc?cl=2d11dda)  
+[src/compiler/instruction.h](https://cs.chromium.org/chromium/src/v8/src/compiler/instruction.h?cl=2d11dda)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=2d11dda)  
+[src/compiler/js-call-reducer.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.h?cl=2d11dda)  
+[src/compiler/js-inlining.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining.cc?cl=2d11dda)  
+...  
+  
+
+---   
+
 ## **regress-895691.js (chromium issue)**  
    
 **[Issue: Ill in v8::internal::compiler::RepresentationChanger::TypeError](https://crbug.com/895691)**  
@@ -3347,6 +3392,38 @@ f();
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a8cb521^!)  
 [src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=a8cb521)  
 [test/mjsunit/regress/regress-895691.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-895691.js?cl=a8cb521)  
+  
+
+---   
+
+## **regress-crbug-895199.js (chromium issue)**  
+   
+**[Issue: Issue 895199:
+ DCHECK failure in restriction_type.Is(info->restriction_type()) in simplified-lowering.cc](https://crbug.com/895199)**  
+**[Commit: [turbofan] Fix representation selection of CheckFloat64Hole.](https://chromium.googlesource.com/v8/v8/+/63f92a9)**  
+  
+Date(Commit): Mon Oct 15 07:11:58 2018  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1278804](https://chromium-review.googlesource.com/c/1278804)  
+Regress: [mjsunit/regress/regress-crbug-895199.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-895199.js)  
+```javascript
+function foo() {
+  var a = new Array(2);
+  a[0] = 23.1234;
+  a[1] = 25.1234;
+  %DeoptimizeNow();
+  return a[2];
+}
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo()  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/63f92a9^!)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=63f92a9)  
+[test/mjsunit/regress/regress-crbug-895199.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-895199.js?cl=63f92a9)  
   
 
 ---   

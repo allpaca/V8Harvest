@@ -3730,6 +3730,45 @@ assertEquals(42, f());
   
 ---   
 
+## **regress-925537.js (chromium issue)**  
+   
+**[Issue: Issue 925537:
+ shill: revisit and refine metrics](https://crbug.com/925537)**  
+**[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
+  
+Date(Commit): Fri Aug 22 13:33:59 2008  
+Components/Type: OS>Systems>Network/Task  
+Labels: ["M-74"]  
+Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
+Regress: [mjsunit/regress/regress-925537.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-925537.js)  
+```javascript
+function assertClose(expected, actual) {
+  var delta = 0.00001;
+  if (Math.abs(expected - actual) > delta) {
+    print('Failure: Expected <' + actual + '> to be close to <' +
+          expected + '>');
+  }
+}
+
+assertEquals(1, Math.pow(NaN, 0));
+var pinf = Number.POSITIVE_INFINITY, ninf = Number.NEGATIVE_INFINITY;
+assertClose( Math.PI / 4, Math.atan2(pinf, pinf));
+assertClose(-Math.PI / 4, Math.atan2(ninf, pinf));
+assertClose( 3 * Math.PI / 4, Math.atan2(pinf, ninf));
+assertClose(-3 * Math.PI / 4, Math.atan2(ninf, ninf));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c42f582^!)  
+[SConstruct](https://cs.chromium.org/chromium/src/v8/SConstruct?cl=c42f582)  
+[public/debug.h](https://cs.chromium.org/chromium/src/v8/public/debug.h?cl=c42f582)  
+[public/v8.h](https://cs.chromium.org/chromium/src/v8/public/v8.h?cl=c42f582)  
+[samples/SConscript](https://cs.chromium.org/chromium/src/v8/samples/SConscript?cl=c42f582)  
+[samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
+...  
+  
+
+---   
+
 ## **regress-900966.js (chromium issue)**  
    
 **[Issue: GCPW allows multiple instances of chrome to spawn leading to possible breakout of sandbox](https://crbug.com/900966)**  
