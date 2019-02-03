@@ -60,7 +60,7 @@ assertEquals(-2147483650, testSub(-0x40000000, 1));
 
 ## **regress-995.js (v8 issue)**  
    
-**[Issue: Issue 995:
+**[Issue 995:
  %_IsArray returns true for string wrapper after %_IsSpecObject call.](https://crbug.com/v8/995)**  
 **[Commit: A number of instructions use GVN but do not provide a comparison](https://chromium.googlesource.com/v8/v8/+/6e30a77)**  
   
@@ -93,7 +93,7 @@ h(undefined);
 
 ## **regress-687.js (v8 issue)**  
    
-**[Issue: Issue 687:
+**[Issue 687:
  Object.defineProperty problems with redefining accessor properties in some situations.](https://crbug.com/v8/687)**  
 **[Commit: Change Object.defineProperty to accept undefined as getters and setters and to correctly accept overriding an accessor with a data property.](https://chromium.googlesource.com/v8/v8/+/357afa3)**  
   
@@ -161,7 +161,7 @@ assertEquals(desc.set, undefined);
 
 ## **regress-974.js (v8 issue)**  
    
-**[Issue: Issue 974:
+**[Issue 974:
  Verify heap assertion found by fuzzing](https://crbug.com/v8/974)**  
 **[Commit: Fix issue 974.](https://chromium.googlesource.com/v8/v8/+/ace6290)**  
   
@@ -186,7 +186,7 @@ eval("(function(){try {  } catch(x) {  } finally { gc() }})")();
 
 ## **regress-982.js (v8 issue)**  
    
-**[Issue: Issue 982:
+**[Issue 982:
  Reliability stress test: Crash in generated code on http://tv.sbs.co.kr/drama_main.jsp](https://crbug.com/v8/982)**  
 **[Commit: Fix issue 982.](https://chromium.googlesource.com/v8/v8/+/655b308)**  
   
@@ -269,7 +269,7 @@ test();
 
 ## **regress-969.js (v8 issue)**  
    
-**[Issue: Issue 969:
+**[Issue 969:
  Assertion failure in deoptimizer-ia32.cc](https://crbug.com/v8/969)**  
 **[Commit: Deoptimize to the proper target after assignment side effects.](https://chromium.googlesource.com/v8/v8/+/49f4c39)**  
   
@@ -372,7 +372,7 @@ assertEquals('undefined', test11());
 
 ## **regress-962.js (v8 issue)**  
    
-**[Issue: Issue 962:
+**[Issue 962:
  Assert failure in debug linux 32-bit Chrome with V8 3.0.0.  In register allocator.](https://crbug.com/v8/962)**  
 **[Commit: Fix issue 962.](https://chromium.googlesource.com/v8/v8/+/65f98b1)**  
   
@@ -1883,7 +1883,7 @@ assertEquals(200 * 200, TestNestedLoops());
 
 ## **regress-944.js (v8 issue)**  
    
-**[Issue: Issue 944:
+**[Issue 944:
  TimeComposer broken for times with milliseconds values that have only 1 or 2 digits](https://crbug.com/v8/944)**  
 **[Commit: make DateParser::TimeComposer handle 1-2 digits millisecond values](https://chromium.googlesource.com/v8/v8/+/7be18f7)**  
   
@@ -1915,7 +1915,7 @@ assertTrue(isNaN(Date.parse("2010-11-25T22:02:30.Z")));
 
 ## **regress-931.js (v8 issue)**  
    
-**[Issue: Issue 931:
+**[Issue 931:
  Subexpression evaluation for calls is incorrect](https://crbug.com/v8/931)**  
 **[Commit: Change the order of evaluation of sub-expressions for keyed call](https://chromium.googlesource.com/v8/v8/+/010f35f)**  
   
@@ -1958,7 +1958,7 @@ assertEquals("123412'34", sequence);
 
 ## **regress-918.js (v8 issue)**  
    
-**[Issue: Issue 918:
+**[Issue 918:
  Parser accepts parenthesized labels.](https://crbug.com/v8/918)**  
 **[Commit: Fix bug in parser that allows "(foo):42" as a labeled statement.](https://chromium.googlesource.com/v8/v8/+/0464b33)**  
   
@@ -1979,7 +1979,7 @@ assertThrows("(label):42;");
 
 ## **regress-927.js (v8 issue)**  
    
-**[Issue: Issue 927:
+**[Issue 927:
  V8 prints wrong result for this test case](https://crbug.com/v8/927)**  
 **[Commit: Add check for overflow after MUL operations in side-effect free int32 expressions.](https://chromium.googlesource.com/v8/v8/+/20d3aad)**  
   
@@ -2139,7 +2139,7 @@ foo();
 
 ## **regress-58740.js (chromium issue)**  
    
-**[Issue: Issue 58740:
+**[Issue 58740:
  Regular expression, exec and related method(test) -- cause strange behavior](https://crbug.com/58740)**  
 **[Commit: Fix bug in cache handling of lastIndex on global regexps.](https://chromium.googlesource.com/v8/v8/+/6c0cde6)**  
   
@@ -2166,7 +2166,7 @@ assertEquals(0, re.lastIndex);
 
 ## **regress-874.js (v8 issue)**  
    
-**[Issue: Issue 874:
+**[Issue 874:
  Crash when applying getOwnPropertyDescriptor to array index with getter](https://crbug.com/v8/874)**  
 **[Commit: Fix getOwnPropertyDescriptor() support for index properties.](https://chromium.googlesource.com/v8/v8/+/622351f)**  
   
@@ -2199,7 +2199,7 @@ assertEquals (setter, Object.getOwnPropertyDescriptor(x, 0).set);
 
 ## **regress-52801.js (chromium issue)**  
    
-**[Issue: Issue 52801:
+**[Issue 52801:
  Regular expression problem  -- causes infinite loop](https://crbug.com/52801)**  
 **[Commit: RegExp: Fix caching to correctly set lastIndex.](https://chromium.googlesource.com/v8/v8/+/0dece53)**  
   
@@ -2249,7 +2249,7 @@ assertEquals(5, re.lastIndex);  // Fails if caching.
 
 ## **regress-857.js (v8 issue)**  
    
-**[Issue: Issue 857:
+**[Issue 857:
  Date does not support W3C format](https://crbug.com/v8/857)**  
 **[Commit: make Date.parse properly handle TZ offsets](https://chromium.googlesource.com/v8/v8/+/ac2ae05)**  
   
@@ -2299,7 +2299,7 @@ try {
 
 ## **regress-851.js (v8 issue)**  
    
-**[Issue: Issue 851:
+**[Issue 851:
  Object.freeze() might cause memory corruption.](https://crbug.com/v8/851)**  
 **[Commit: Check result of JSObject::NormalizeElements() in JSObject::PreventExtensions().](https://chromium.googlesource.com/v8/v8/+/f059093)**  
   
@@ -2324,7 +2324,7 @@ for (var i = 0; i < 10000; i++) {
 
 ## **regress-842.js (v8 issue)**  
    
-**[Issue: Issue 842:
+**[Issue 842:
  Object.freeze() throws exception is Object or Array has been extended](https://crbug.com/v8/842)**  
 **[Commit: Fixes bug in Object.freeze and Object.seal causing them to misbehave when Array.prototype has changed.](https://chromium.googlesource.com/v8/v8/+/7672338)**  
   
@@ -2355,7 +2355,7 @@ try {
 
 ## **regress-815.js (v8 issue)**  
    
-**[Issue: Issue 815:
+**[Issue 815:
  ARM port fails assertion: !SpilledScope::is_spilled() in src/arm/virtual-frame-arm.h, line 168](https://crbug.com/v8/815)**  
 **[Commit: ARM: Ensure that we are not in a spilled scope when calling](https://chromium.googlesource.com/v8/v8/+/e18d07b)**  
   
@@ -2386,7 +2386,7 @@ try {
 
 ## **regress-798.js (v8 issue)**  
    
-**[Issue: Issue 798:
+**[Issue 798:
  Reading Error.stack in a __defineGetter__ callback causes inf loop or tab crash](https://crbug.com/v8/798)**  
 **[Commit: Handle accessors when generating Error.stack](https://chromium.googlesource.com/v8/v8/+/56e0221)**  
   
@@ -2481,7 +2481,7 @@ xx.c = 1;
 
 ## **regress-760-1.js (v8 issue)**  
    
-**[Issue: Issue 760:
+**[Issue 760:
  [[DefaultValue]] discrepancy](https://crbug.com/v8/760)**  
 **[Commit: Handle overwriting valueOf on String objects correctly when adding](https://chromium.googlesource.com/v8/v8/+/8e0cd6d)**  
   
@@ -2522,7 +2522,7 @@ for (var i = 0; i < 10; i++) {
 
 ## **regress-806.js (v8 issue)**  
    
-**[Issue: Issue 806:
+**[Issue 806:
  64bit os,  v8 crash (unknow reason)](https://crbug.com/v8/806)**  
 **[Commit: Fix issue 806.](https://chromium.googlesource.com/v8/v8/+/4a2f05c)**  
   
@@ -2562,7 +2562,7 @@ foo({foo: {foo: 1}});
 
 ## **regress-784.js (v8 issue)**  
    
-**[Issue: Issue 784:
+**[Issue 784:
  arm v8 throws an exception for now reason when starting node.js](https://crbug.com/v8/784)**  
 **[Commit: Fix error in optimized x.apply(y, arguments) code generation on ARM.  Fixes issue 784.  Adds regression test.](https://chromium.googlesource.com/v8/v8/+/3607a9e)**  
   
@@ -2669,7 +2669,7 @@ aliasing();
 
 ## **regress-753.js (v8 issue)**  
    
-**[Issue: Issue 753:
+**[Issue 753:
  JSON.stringify does not truncate the space parameter](https://crbug.com/v8/753)**  
 **[Commit: Update JSON.stringify to floor the space parameter (fixes issue 753).](https://chromium.googlesource.com/v8/v8/+/eff34b9)**  
   
@@ -2692,7 +2692,7 @@ assertEquals(JSON.stringify(obj, null, 5.99999), JSON.stringify(obj, null, 5));
 
 ## **regress-754.js (v8 issue)**  
    
-**[Issue: Issue 754:
+**[Issue 754:
  Array.lastIndexOf does not correctly handle null and undefined values as the fromIndex argument](https://crbug.com/v8/754)**  
 **[Commit: Fixes bug in Array.prototype.lastIndexOf when called with null or undefined as fromIndex argument. (fixes issue 754).](https://chromium.googlesource.com/v8/v8/+/faaf524)**  
   
@@ -2719,7 +2719,7 @@ assertEquals(-1, a.lastIndexOf(2, null));
 
 ## **regress-752.js (v8 issue)**  
    
-**[Issue: Issue 752:
+**[Issue 752:
  JSON.stringify returns wrong result with a function given as the replacer argument](https://crbug.com/v8/752)**  
 **[Commit: Fix bug in JSON.stringify where Boolean objects are incorrectly unwrapped.](https://chromium.googlesource.com/v8/v8/+/b71fe5b)**  
   
@@ -2744,7 +2744,7 @@ assertEquals("[false]", JSON.stringify([42], replacer));
 
 ## **regress-45469.js (chromium issue)**  
    
-**[Issue: Issue 45469:
+**[Issue 45469:
  Date.localeFormat doesn't return a value](https://crbug.com/45469)**  
 **[Commit: Fix bug in regexp exec with global regexps.](https://chromium.googlesource.com/v8/v8/+/7b46a1f)**  
   
@@ -2780,7 +2780,7 @@ for (var i = 0; i < 15; i++) {
 
 ## **regress-747.js (v8 issue)**  
    
-**[Issue: Issue 747:
+**[Issue 747:
  Code flushing during gc will flush code that has heap allocated locals](https://crbug.com/v8/747)**  
 **[Commit: Add regression test for the code flushing in issue 474 (which was](https://chromium.googlesource.com/v8/v8/+/be531ac)**  
   
@@ -2823,7 +2823,7 @@ try {
 
 ## **regress-732.js (v8 issue)**  
    
-**[Issue: Issue 732:
+**[Issue 732:
  Using large numeric strings as hash keys is broken](https://crbug.com/v8/732)**  
 **[Commit: Add regression tests for issues 728, 732](https://chromium.googlesource.com/v8/v8/+/1d932dc)**  
   
@@ -2855,7 +2855,7 @@ assertEquals(obj[str], obj[idx])
 
 ## **regress-728.js (v8 issue)**  
    
-**[Issue: Issue 728:
+**[Issue 728:
  Incorrect marking of some strings as array indices.](https://crbug.com/v8/728)**  
 **[Commit: Add regression tests for issues 728, 732](https://chromium.googlesource.com/v8/v8/+/1d932dc)**  
   
@@ -2888,7 +2888,7 @@ assertEquals(get(h), "obj" + h);
 
 ## **regress-720.js (v8 issue)**  
    
-**[Issue: Issue 720:
+**[Issue 720:
  Object.defineProperty overwrites existing writable flag if not provided by descriptor](https://crbug.com/v8/720)**  
 **[Commit: Fix issue 720 making Object.defineProperty handle existing writable flags correctly.](https://chromium.googlesource.com/v8/v8/+/95939ad)**  
   
@@ -2913,7 +2913,7 @@ assertTrue(desc["writable"]);
 
 ## **regress-712.js (v8 issue)**  
    
-**[Issue: Issue 712:
+**[Issue 712:
  Object.defineProperty allows overriding an accessor with an empty descriptor](https://crbug.com/v8/712)**  
 **[Commit: Fixes issue 712 causing non-configurable accessors to be overwritable by using](https://chromium.googlesource.com/v8/v8/+/fb58bc0)**  
   
@@ -2941,7 +2941,7 @@ assertEquals(obj.x, "42");
 
 ## **regress-697.js (v8 issue)**  
    
-**[Issue: Issue 697:
+**[Issue 697:
  Object.create does not work when given a function as proto](https://crbug.com/v8/697)**  
 **[Commit: Fixed issue 619 allowing Object.create to be called with a function.](https://chromium.googlesource.com/v8/v8/+/8d51195)**  
   
@@ -2966,7 +2966,7 @@ try {
 
 ## **regress-696.js (v8 issue)**  
    
-**[Issue: Issue 696:
+**[Issue 696:
  Date.parse() does not return NaN for invalid date strings](https://crbug.com/v8/696)**  
 **[Commit: Correct issue 696 with Date.parse returning a value when called on a non date string.](https://chromium.googlesource.com/v8/v8/+/fb3e01a)**  
   
@@ -2990,7 +2990,7 @@ assertTrue(isNaN(Date.parse('This is a relatively long string')));
 
 ## **regress-crbug-40931.js (chromium issue)**  
    
-**[Issue: Issue 40931:
+**[Issue 40931:
  Javascript split method of string object returns array with some additional strange keys](https://crbug.com/40931)**  
 **[Commit: Added regression test for crbug 40931 http://crbug.com/40931](https://chromium.googlesource.com/v8/v8/+/f066a9a)**  
   
@@ -3022,7 +3022,7 @@ for(var i = 0; i < 10; i++) {
 
 ## **regress-681.js (v8 issue)**  
    
-**[Issue: Issue 681:
+**[Issue 681:
  Crash introduced in r4426](https://crbug.com/v8/681)**  
 **[Commit: Add missing smi check in IC for nonexistent properties.](https://chromium.googlesource.com/v8/v8/+/c678e44)**  
   
@@ -3053,7 +3053,7 @@ assertEquals(undefined, f());
 
 ## **regress-675.js (v8 issue)**  
    
-**[Issue: Issue 675:
+**[Issue 675:
  ICs for nonexistent properties fail for global properties](https://crbug.com/v8/675)**  
 **[Commit: Reapply load ICs for nonexistent properties.](https://chromium.googlesource.com/v8/v8/+/afc15bb)**  
   
@@ -3096,7 +3096,7 @@ assertEquals(42, g());
 
 ## **regress-crbug-39160.js (chromium issue)**  
    
-**[Issue: Issue 39160:
+**[Issue 39160:
  Reliability failure in V8 generated code](https://crbug.com/39160)**  
 **[Commit: Re-apply "Inline floating point compare"](https://chromium.googlesource.com/v8/v8/+/6a63910)**  
   
@@ -3130,7 +3130,7 @@ f(5)
 
 ## **regress-646.js (v8 issue)**  
    
-**[Issue: Issue 646:
+**[Issue 646:
  __proto__ "problem"](https://crbug.com/v8/646)**  
 **[Commit: Don't generate inline constructors if this.__proto__ is assigned.](https://chromium.googlesource.com/v8/v8/+/1963ffb)**  
   
@@ -3154,7 +3154,7 @@ assertEquals(0, count);
 
 ## **regress-643.js (v8 issue)**  
    
-**[Issue: Issue 643:
+**[Issue 643:
  Bug in assigned variables analysis.](https://crbug.com/v8/643)**  
 **[Commit: Fix bug in assigned variables analysis.](https://chromium.googlesource.com/v8/v8/+/d090867)**  
   
@@ -3182,7 +3182,7 @@ assertEquals(42, f());
 
 ## **regress-crbug-37853.js (chromium issue)**  
    
-**[Issue: Issue 37853:
+**[Issue 37853:
  CHECK fail when editing a sites page](https://crbug.com/37853)**  
 **[Commit: Fix code cache lookup for keyed IC's](https://chromium.googlesource.com/v8/v8/+/b0c9738)**  
   
@@ -3210,7 +3210,7 @@ f(a, 1);
 
 ## **regress-636.js (v8 issue)**  
    
-**[Issue: Issue 636:
+**[Issue 636:
  String handling broken (test case)](https://crbug.com/v8/636)**  
 **[Commit: Correct handling of adding a string and a smal integer](https://chromium.googlesource.com/v8/v8/+/800b6df)**  
   
@@ -3239,7 +3239,7 @@ assertEquals("10000000001", test());
 
 ## **regress-619.js (v8 issue)**  
    
-**[Issue: Issue 619:
+**[Issue 619:
  Object.defineProperty does not behave correctly when trying to define properties on elements.](https://crbug.com/v8/619)**  
 **[Commit: Added test for bug 619 - we should move this to object-define-property when the bug has been corrected.](https://chromium.googlesource.com/v8/v8/+/27eaf97)**  
   
@@ -3286,7 +3286,7 @@ for(var i = 0; i < 1024; i++) {
 
 ## **regress-618.js (v8 issue)**  
    
-**[Issue: Issue 618:
+**[Issue 618:
  Simple constructors does not handle adding setters](https://crbug.com/v8/618)**  
 **[Commit: Add a test case for issue 618 Review URL: http://codereview.chromium.org/647014](https://chromium.googlesource.com/v8/v8/+/17e80e7)**  
   
@@ -3353,7 +3353,7 @@ assertEquals(23, c4.y);
 
 ## **regress-603.js (v8 issue)**  
    
-**[Issue: Issue 603:
+**[Issue 603:
  Function.prototype.call.call(/x/) messes up the stack?](https://crbug.com/v8/603)**  
 **[Commit: Fix stack corruption when calling non-function.](https://chromium.googlesource.com/v8/v8/+/3c0d77f)**  
   
@@ -3410,7 +3410,7 @@ assertThrows(function() {
 
 ## **regress-612.js (v8 issue)**  
    
-**[Issue: Issue 612:
+**[Issue 612:
  Crash when calling runtime DefineAccessor](https://crbug.com/v8/612)**  
 **[Commit: Normalize the object before updating getter/setter info.](https://chromium.googlesource.com/v8/v8/+/087fede)**  
   
@@ -3439,7 +3439,7 @@ obj.__defineGetter__('foobar', function() { return 42; })
 
 ## **regress-crbug-3867.js (v8 issue)**  
    
-**[Issue: Issue 3867:
+**[Issue 3867:
  super in ScriptBody : StatementList should be SyntaxError](https://crbug.com/v8/3867)**  
 **[Commit: Handle insertion order for simple constructors](https://chromium.googlesource.com/v8/v8/+/1091039)**  
   
@@ -3509,7 +3509,7 @@ assertArrayEquals(["s3", "s2", "s1", "s4", "s0"], props(o2));
 
 ## **regress-580.js (v8 issue)**  
    
-**[Issue: Issue 580:
+**[Issue 580:
  x64 incorrectly folds numeric constants](https://crbug.com/v8/580)**  
 **[Commit: Fix V8 issue 580: Arithmetic on some integer constants gives wrong anwers.](https://chromium.googlesource.com/v8/v8/+/04e9399)**  
   
@@ -3554,7 +3554,7 @@ num_ops();
 
 ## **regress-crbug-3184.js (v8 issue)**  
    
-**[Issue: Issue 3184:
+**[Issue 3184:
  check fail when using --hydrogen_track_positions](https://crbug.com/v8/3184)**  
 **[Commit: Ensure correct boxing of values when calling functions on them](https://chromium.googlesource.com/v8/v8/+/562f90d)**  
   

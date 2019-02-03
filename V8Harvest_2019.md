@@ -4,7 +4,7 @@ The Harvest of V8 regress in 2019.
 
 ## **regress-crbug-926856.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/926856)**  
+**[No Permission](https://crbug.com/926856)**  
 **[Commit: [Builtins]: Array.prototype.map out of memory error](https://chromium.googlesource.com/v8/v8/+/183b857)**  
   
 Date(Commit): Fri Feb 01 12:33:19 2019  
@@ -36,7 +36,7 @@ a.map(c);
 
 ## **regress-crbug-926819.js (chromium issue)**  
    
-**[Issue: Issue 926819:
+**[Issue 926819:
  Null-dereference READ in v8::internal::DeclarationScope::HoistSloppyBlockFunctions](https://crbug.com/926819)**  
 **[Commit: [parser] Don't hoist sloppy block functions on error](https://chromium.googlesource.com/v8/v8/+/3ef9af8)**  
   
@@ -58,7 +58,7 @@ assertThrows("a(function(){{let f;function f}})", SyntaxError);
 
 ## **regress-924843.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/924843)**  
+**[No Permission](https://crbug.com/924843)**  
 **[Commit: [Liftoff] Correctly unuse Labels](https://chromium.googlesource.com/v8/v8/+/3af3c9d)**  
   
 Date(Commit): Tue Jan 29 15:18:48 2019  
@@ -90,7 +90,7 @@ assertThrows(() => builder.instantiate(), WebAssembly.CompileError);
 
 ## **regress-925671.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/925671)**  
+**[No Permission](https://crbug.com/925671)**  
 **[Commit: [wasm] Distinguish requested tier and executed tier](https://chromium.googlesource.com/v8/v8/+/185922d)**  
   
 Date(Commit): Tue Jan 29 12:36:48 2019  
@@ -119,7 +119,7 @@ builder.instantiate();
 
 ## **regress-926036.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/926036)**  
+**[No Permission](https://crbug.com/926036)**  
 **[Commit: [parser] Make pattern DCHECK dependent on !has_error](https://chromium.googlesource.com/v8/v8/+/b0e1c2b)**  
   
 Date(Commit): Tue Jan 29 11:03:09 2019  
@@ -140,7 +140,7 @@ assertThrows("async() => { for await (var a ;;) {} }", SyntaxError);
 
 ## **regress-924905.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/924905)**  
+**[No Permission](https://crbug.com/924905)**  
 **[Commit: [wasm][arm] Fix {Word32Shr} instruction selection.](https://chromium.googlesource.com/v8/v8/+/8a3c4d9)**  
   
 Date(Commit): Fri Jan 25 13:08:10 2019  
@@ -173,7 +173,7 @@ assertEquals(0, instance.exports.kaboom());
 
 ## **regress-924151.js (chromium issue)**  
    
-**[Issue: Issue 924151:
+**[Issue 924151:
  V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/924151)**  
 **[Commit: [turbofan] Handle exceptional edges when inserting unreachable node.](https://chromium.googlesource.com/v8/v8/+/ec4d45a)**  
   
@@ -217,7 +217,7 @@ f();
 
 ## **regress-6711.js (v8 issue)**  
    
-**[Issue: Issue 6711:
+**[Issue 6711:
  Applying delete operator on non-initialized |this| should throw ReferenceError](https://crbug.com/v8/6711)**  
 **[Commit: Check for "SuperNotCalled" on "delete this" in a constructor](https://chromium.googlesource.com/v8/v8/+/1e5b235)**  
   
@@ -254,7 +254,7 @@ new class extends Object {
 
 ## **regress-crbug-923705.js (chromium issue)**  
    
-**[Issue: Issue 923705:
+**[Issue 923705:
  Ill in v8::internal::BaseConsumedPreparseData<v8::internal::PreparseData>::GetDataForSk](https://crbug.com/923705)**  
 **[Commit: [parser] Fix storing has_data bit for inner function preparse data](https://chromium.googlesource.com/v8/v8/+/c3722aa)**  
   
@@ -287,7 +287,7 @@ __f_5();
 
 ## **regress-922933.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/922933)**  
+**[No Permission](https://crbug.com/922933)**  
 **[Commit: [Liftoff][arm] Avoid use of temp registers](https://chromium.googlesource.com/v8/v8/+/ce2bfb8)**  
   
 Date(Commit): Mon Jan 21 13:09:13 2019  
@@ -354,7 +354,7 @@ builder.instantiate();
 
 ## **regress-922670.js (chromium issue)**  
    
-**[Issue: Issue 922670:
+**[Issue 922670:
  Fatal error in liftoff-register.h](https://crbug.com/922670)**  
 **[Commit: [Liftoff] Fix DCHECK error](https://chromium.googlesource.com/v8/v8/+/f77299e)**  
   
@@ -402,7 +402,7 @@ builder.instantiate();
 
 ## **regress-crbug-923264.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/923264)**  
+**[No Permission](https://crbug.com/923264)**  
 **[Commit: [heap] Allow PreparseData in large object space](https://chromium.googlesource.com/v8/v8/+/c45a2ef)**  
   
 Date(Commit): Mon Jan 21 11:18:02 2019  
@@ -443,7 +443,7 @@ gc()
 
 ## **regress-8708.js (v8 issue)**  
    
-**[Issue: Issue 8708:
+**[Issue 8708:
  Uncaught stack overflow in Array.prototype.flat](https://crbug.com/v8/8708)**  
 **[Commit: [array] Add stack overflow check for Array#flat](https://chromium.googlesource.com/v8/v8/+/bf17cd2)**  
   
@@ -467,7 +467,7 @@ assertThrows(() => array.flat(Infinity), RangeError);
 
 ## **regress-923723.js (chromium issue)**  
    
-**[Issue: Issue 923723:
+**[Issue 923723:
  Null-dereference READ in v8::internal::ParserBase<v8::internal::Parser>::ParseArrowFunctionLiteral](https://crbug.com/923723)**  
 **[Commit: [parser] Reparsing arrow function head upon failure can overflow the stack](https://chromium.googlesource.com/v8/v8/+/b4e7d11)**  
   
@@ -496,7 +496,7 @@ assertThrows(__f_3);
 
 ## **regress-crbug-923265.js (chromium issue)**  
    
-**[Issue: Issue 923265:
+**[Issue 923265:
  Ill in v8::internal::RemoveArrayHolesGeneric](https://crbug.com/923265)**  
 **[Commit: [array] Remove CHECK_LE from RemoveArrayHolesGeneric](https://chromium.googlesource.com/v8/v8/+/e38faab)**  
   
@@ -522,7 +522,7 @@ assertPropertiesEqual({0: 5, 1: 4, 2: 3, length: 2}, a);
 
 ## **regress-922432.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/922432)**  
+**[No Permission](https://crbug.com/922432)**  
 **[Commit: [wasm] Fix {OpcodeLength} for invalid br-on-exn opcodes.](https://chromium.googlesource.com/v8/v8/+/30882a5)**  
   
 Date(Commit): Wed Jan 16 14:50:13 2019  
@@ -579,7 +579,7 @@ f()
 
 ## **regress-921382.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/921382)**  
+**[No Permission](https://crbug.com/921382)**  
 **[Commit: [parser] Clear parenthesized flag on collapsing nary expressions](https://chromium.googlesource.com/v8/v8/+/5f8a3e1)**  
   
 Date(Commit): Tue Jan 15 13:26:23 2019  
@@ -602,7 +602,7 @@ assertThrows("(d * f * g) * e => 0", SyntaxError)
 
 ## **regress-917755.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/917755)**  
+**[No Permission](https://crbug.com/917755)**  
 **[Commit: [parser] Give hoisting sloppy block functions a valid position](https://chromium.googlesource.com/v8/v8/+/8436715)**  
   
 Date(Commit): Tue Jan 15 11:52:28 2019  
@@ -639,7 +639,7 @@ assertThrows(`
 
 ## **regress-917215.js (chromium issue)**  
    
-**[Issue: Issue 917215:
+**[Issue 917215:
  False SyntaxError on Sibling JS-Labels](https://crbug.com/917215)**  
 **[Commit: [parser] Allow same-named labelled blocks in if/else statements](https://chromium.googlesource.com/v8/v8/+/469754d)**  
   
@@ -662,7 +662,7 @@ else b: { break a; break b; }
 
 ## **regress-8630.js (v8 issue)**  
    
-**[Issue: Issue 8630:
+**[Issue 8630:
  Dcheck on jsfunfuzz](https://crbug.com/v8/8630)**  
 **[Commit: [parser] Check assignment LHS for paren errors](https://chromium.googlesource.com/v8/v8/+/df6f5f6)**  
   
@@ -703,7 +703,7 @@ assertEquals(x, 3);
 
 ## **regress-919308.js (chromium issue)**  
    
-**[Issue: Issue 919308:
+**[Issue 919308:
  Ill in v8::internal::wasm::fuzzer::WasmExecutionFuzzer::FuzzWasmModule](https://crbug.com/919308)**  
 **[Commit: [Liftoff] Fix sub of the same register](https://chromium.googlesource.com/v8/v8/+/8518d12)**  
   
@@ -757,7 +757,7 @@ assertEquals(-1, instance.exports.main(1));
 
 ## **regress-918284.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/918284)**  
+**[No Permission](https://crbug.com/918284)**  
 **[Commit: [Liftoff][arm] Leave scratch register to the assembler](https://chromium.googlesource.com/v8/v8/+/f59d6d9)**  
   
 Date(Commit): Fri Jan 11 08:27:16 2019  
@@ -793,7 +793,7 @@ builder.instantiate();
 
 ## **regress-919754.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/919754)**  
+**[No Permission](https://crbug.com/919754)**  
 **[Commit: [turbofan] Fix invocation frequency computation with NaN.](https://chromium.googlesource.com/v8/v8/+/ef12b47)**  
   
 Date(Commit): Thu Jan 10 19:04:05 2019  
@@ -821,7 +821,7 @@ assertThrows(f);
 
 ## **regress-crbug-920184.js (chromium issue)**  
    
-**[Issue: Issue 920184:
+**[Issue 920184:
  Ill in v8::internal::JSObject::JSObjectVerify](https://crbug.com/920184)**  
 **[Commit: [Builtins] Array.prototype.filter species creation error](https://chromium.googlesource.com/v8/v8/+/72d8307)**  
   
@@ -879,7 +879,7 @@ assertEquals(1, f())
 
 ## **regress-919533.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/919533)**  
+**[No Permission](https://crbug.com/919533)**  
 **[Commit: [Liftoff] Fix reloading register spilled multiple times](https://chromium.googlesource.com/v8/v8/+/24a43b3)**  
   
 Date(Commit): Wed Jan 09 16:12:50 2019  
@@ -919,7 +919,7 @@ builder.instantiate();
 
 ## **regress-913844.js (chromium issue)**  
    
-**[Issue: Issue 913844:
+**[Issue 913844:
  DCHECK failure in block->predecessors().empty() || block->successors().empty() in unwinding-info-w](https://crbug.com/913844)**  
 **[Commit: Remove invalid DCHECKS in unwinding-info-writer](https://chromium.googlesource.com/v8/v8/+/49a526a)**  
   
@@ -945,7 +945,7 @@ for (var x = 0; x < 1000000; x++)
 
 ## **regress-920076.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/920076)**  
+**[No Permission](https://crbug.com/920076)**  
 **[Commit: [asm.js] Fix semicolon insertion in presence of Unicode.](https://chromium.googlesource.com/v8/v8/+/082bfec)**  
   
 Date(Commit): Wed Jan 09 12:38:41 2019  
@@ -972,7 +972,7 @@ assertFalse(%IsAsmWasmCode(Module));  // Valid asm.js, but we reject Unicode.
 
 ## **regress-8659.js (v8 issue)**  
    
-**[Issue: Issue 8659:
+**[Issue 8659:
  Dcheck on jsfunfuzz](https://crbug.com/v8/8659)**  
 **[Commit: [parser] Parenthesized identifiers are invalid as part of a declaration](https://chromium.googlesource.com/v8/v8/+/5b4d4c2)**  
   
@@ -993,7 +993,7 @@ assertThrows("const [(x)] = []", SyntaxError);
 
 ## **regress-919710.js (chromium issue)**  
    
-**[Issue: Issue 919710:
+**[Issue 919710:
  Null-dereference READ in v8::internal::Scope::zone](https://crbug.com/919710)**  
 **[Commit: [parser] Reparse arrow functions with unidentified syntax errors in the correct scope](https://chromium.googlesource.com/v8/v8/+/7c3595e)**  
   
@@ -1015,7 +1015,7 @@ assertThrows("( let ) => { 'use strict';  let }", SyntaxError)
 
 ## **regress-918917.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/918917)**  
+**[No Permission](https://crbug.com/918917)**  
 **[Commit: [Liftoff] Fix corner case of register moves](https://chromium.googlesource.com/v8/v8/+/f1fb7bc)**  
   
 Date(Commit): Tue Jan 08 10:57:05 2019  
@@ -1052,7 +1052,7 @@ builder.instantiate();
 
 ## **regress-919340.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/919340)**  
+**[No Permission](https://crbug.com/919340)**  
 **[Commit: [turbofan] Restrict redundancy elimination from widening types](https://chromium.googlesource.com/v8/v8/+/5a9fa8f)**  
   
 Date(Commit): Tue Jan 08 09:48:28 2019  
@@ -1083,7 +1083,7 @@ f();
 
 ## **regress-918763.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/918763)**  
+**[No Permission](https://crbug.com/918763)**  
 **[Commit: [turbofan] Add missing heap object check](https://chromium.googlesource.com/v8/v8/+/426312c)**  
   
 Date(Commit): Mon Jan 07 14:38:50 2019  
@@ -1111,7 +1111,7 @@ assertThrows(() => f(0));
 
 ## **regress-crbug-917076.js (chromium issue)**  
    
-**[Issue: Issue 917076:
+**[Issue 917076:
  V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/917076)**  
 **[Commit: [async] The Promise.all() fast-path must check @@species protector.](https://chromium.googlesource.com/v8/v8/+/b6bcf32)**  
   
@@ -1146,7 +1146,7 @@ assertPromiseResult(Promise.all([foo()]), () => {
 
 ## **regress-918149.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/918149)**  
+**[No Permission](https://crbug.com/918149)**  
 **[Commit: [Liftoff][ia32] Fix i64 sign extension on non-byte register](https://chromium.googlesource.com/v8/v8/+/5ed7dff)**  
   
 Date(Commit): Fri Jan 04 10:12:06 2019  
@@ -1173,7 +1173,7 @@ builder.instantiate();
 
 ## **regress-917412.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/917412)**  
+**[No Permission](https://crbug.com/917412)**  
 **[Commit: [Liftoff] Keep consistent register mapping in non-merged regions](https://chromium.googlesource.com/v8/v8/+/20b6330)**  
   
 Date(Commit): Thu Jan 03 14:37:48 2019  
@@ -1223,7 +1223,7 @@ builder.instantiate();
 
 ## **regress-917588.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/917588)**  
+**[No Permission](https://crbug.com/917588)**  
 **[Commit: [Liftoff] Fix moving stack values](https://chromium.googlesource.com/v8/v8/+/14faced)**  
   
 Date(Commit): Thu Jan 03 14:25:47 2019  
@@ -1265,7 +1265,7 @@ builder.instantiate();
 
 ## **regress-917988.js (chromium issue)**  
    
-**[Issue: No Permission](https://crbug.com/917988)**  
+**[No Permission](https://crbug.com/917988)**  
 **[Commit: Set the correct scope when initializing parameters.](https://chromium.googlesource.com/v8/v8/+/fa844bd)**  
   
 Date(Commit): Thu Jan 03 10:18:11 2019  
