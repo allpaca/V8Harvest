@@ -4,7 +4,8 @@ The Harvest of V8 regress in 2009.
 
 ## **regress-524.js (v8 issue)**  
    
-**[Issue: Creating a million live slow-case objects exhausts map space.](https://crbug.com/v8/524)**  
+**[Issue: Issue 524:
+ Creating a million live slow-case objects exhausts map space.](https://crbug.com/v8/524)**  
 **[Commit: Extend the maximum size map space](https://chromium.googlesource.com/v8/v8/+/44b7c59)**  
   
 Date(Commit): Thu Dec 17 08:53:18 2009  
@@ -30,7 +31,8 @@ for (var j = 0; j < i; j++) { var o = {}; o.x = 42; delete o.x; a[j] = o; }
 
 ## **regress-545.js (v8 issue)**  
    
-**[Issue: Fast compiler crash when using "this" in different contexts.](https://crbug.com/v8/545)**  
+**[Issue: Issue 545:
+ Fast compiler crash when using "this" in different contexts.](https://crbug.com/v8/545)**  
 **[Commit: Fix for issue 545: don't reuse this VariableProxy.](https://chromium.googlesource.com/v8/v8/+/5bbb1d7)**  
   
 Date(Commit): Tue Dec 08 09:43:51 2009  
@@ -59,7 +61,8 @@ this + (this ? 1 : 2);
 
 ## **regress-540.js (v8 issue)**  
    
-**[Issue: ASSERT in triggered in DeclareContextSlot](https://crbug.com/v8/540)**  
+**[Issue: Issue 540:
+ ASSERT in triggered in DeclareContextSlot](https://crbug.com/v8/540)**  
 **[Commit: Fix issue 540 by handling the case that a declaration is in the](https://chromium.googlesource.com/v8/v8/+/7266bd0)**  
   
 Date(Commit): Fri Dec 04 11:59:09 2009  
@@ -158,7 +161,8 @@ print("ok");
 
 ## **regress-526.js (v8 issue)**  
    
-**[Issue: Fast top-level compiler causes DevToolsSanityCheck tests to fail.](https://crbug.com/v8/526)**  
+**[Issue: Issue 526:
+ Fast top-level compiler causes DevToolsSanityCheck tests to fail.](https://crbug.com/v8/526)**  
 **[Commit: Fix bug in the fast compiler's object literal code](https://chromium.googlesource.com/v8/v8/+/1c90793)**  
   
 Date(Commit): Thu Nov 26 21:13:20 2009  
@@ -184,7 +188,8 @@ assertEquals(42, o.bar.x);
 
 ## **regress-515.js (v8 issue)**  
    
-**[Issue: String replace with regexp crash](https://crbug.com/v8/515)**  
+**[Issue: Issue 515:
+ String replace with regexp crash](https://crbug.com/v8/515)**  
 **[Commit: Fix crash in string replace with regexp.  If the suffix of the subject](https://chromium.googlesource.com/v8/v8/+/3cf9ce4)**  
   
 Date(Commit): Wed Nov 18 18:48:04 2009  
@@ -212,7 +217,8 @@ string.replace(/x/g, "")
 
 ## **regress-503.js (v8 issue)**  
    
-**[Issue: undefined <= undefined on ARM](https://crbug.com/v8/503)**  
+**[Issue: Issue 503:
+ undefined <= undefined on ARM](https://crbug.com/v8/503)**  
 **[Commit: Fix bug 503: undefined <= undefined should return false on ARM.](https://chromium.googlesource.com/v8/v8/+/cc3896d)**  
   
 Date(Commit): Mon Nov 16 14:12:27 2009  
@@ -293,7 +299,8 @@ top();
 
 ## **regress-502.js (v8 issue)**  
    
-**[Issue: Missing bailout in inline constructor code](https://crbug.com/v8/502)**  
+**[Issue: Issue 502:
+ Missing bailout in inline constructor code](https://crbug.com/v8/502)**  
 **[Commit: Fix inline constructor code bailout.](https://chromium.googlesource.com/v8/v8/+/2252cc1)**  
   
 Date(Commit): Wed Nov 11 09:00:09 2009  
@@ -322,7 +329,8 @@ assertEquals(42, b.x);
 
 ## **regress-486.js (v8 issue)**  
    
-**[Issue: case-insensive regex matching does not work for Cyrillic (and perhaps Greek, either)](https://crbug.com/v8/486)**  
+**[Issue: Issue 486:
+ case-insensive regex matching does not work for Cyrillic (and perhaps Greek, either)](https://crbug.com/v8/486)**  
 **[Commit: Fix bug 486, Cyrillic character ranges in case independent regexps.](https://chromium.googlesource.com/v8/v8/+/57c919e)**  
   
 Date(Commit): Fri Nov 06 11:15:20 2009  
@@ -345,7 +353,8 @@ assertTrue(cyrillicMatch);
 
 ## **regress-496.js (v8 issue)**  
    
-**[Issue: Unaliased eval call treated as aliased.](https://crbug.com/v8/496)**  
+**[Issue: Issue 496:
+ Unaliased eval call treated as aliased.](https://crbug.com/v8/496)**  
 **[Commit: Fix case where we treat an unaliased call to eval as an aliased call to eval.](https://chromium.googlesource.com/v8/v8/+/f39fbb2)**  
   
 Date(Commit): Thu Nov 05 11:19:37 2009  
@@ -371,7 +380,8 @@ h();
 
 ## **regress-491.js (v8 issue)**  
    
-**[Issue: constantpool dump violates ARM debugger assertion for return point](https://crbug.com/v8/491)**  
+**[Issue: Issue 491:
+ constantpool dump violates ARM debugger assertion for return point](https://crbug.com/v8/491)**  
 **[Commit: Fix issue 491: constantpool dump violates ARM debugger assertion for return point](https://chromium.googlesource.com/v8/v8/+/77a71c9)**  
   
 Date(Commit): Wed Nov 04 14:45:50 2009  
@@ -411,7 +421,8 @@ for (i = 1100; i < 1200; i++) {
 
 ## **regress-492.js (v8 issue)**  
    
-**[Issue: ARM debug crash: mozilla/ecma/FunctionObjects/15.3.1.1-3](https://crbug.com/v8/492)**  
+**[Issue: Issue 492:
+ ARM debug crash: mozilla/ecma/FunctionObjects/15.3.1.1-3](https://crbug.com/v8/492)**  
 **[Commit: Fix xssue 492: ARM debug crash: mozilla/ecma/FunctionObjects/15.3.1.1-3](https://chromium.googlesource.com/v8/v8/+/54ec6c0)**  
   
 Date(Commit): Wed Nov 04 10:04:22 2009  
@@ -492,7 +503,8 @@ for (var i = 0; i < 10000; ++i) foo();
 
 ## **regress-490.js (v8 issue)**  
    
-**[Issue: Crash in RegExp with change in rr3153](https://crbug.com/v8/490)**  
+**[Issue: Issue 490:
+ Crash in RegExp with change in rr3153](https://crbug.com/v8/490)**  
 **[Commit: Don't use string slices when processing RexExp replace (re-apply r3153)](https://chromium.googlesource.com/v8/v8/+/b4c11d0)**  
   
 Date(Commit): Mon Nov 02 12:21:43 2009  
@@ -529,7 +541,8 @@ for (var i = 0; i < 10; i++) {
 
 ## **regress-485.js (v8 issue)**  
    
-**[Issue: Function.prototype.call leaks builtins object.](https://crbug.com/v8/485)**  
+**[Issue: Issue 485:
+ Function.prototype.call leaks builtins object.](https://crbug.com/v8/485)**  
 **[Commit: Issue 485: Fix leak of builtins object through call and apply functions.](https://chromium.googlesource.com/v8/v8/+/0aecc29)**  
   
 Date(Commit): Wed Oct 28 13:51:30 2009  
@@ -561,7 +574,8 @@ assertTrue("[object builtins]" != builtin2.call.call(builtin2),
 
 ## **regress-483.js (v8 issue)**  
    
-**[Issue: Failure running some constructors with only this.x = ... assignments](https://crbug.com/v8/483)**  
+**[Issue: Issue 483:
+ Failure running some constructors with only this.x = ... assignments](https://crbug.com/v8/483)**  
 **[Commit: Fix issue with running some constructors having only this.x = ... assignments.](https://chromium.googlesource.com/v8/v8/+/7a509f2)**  
   
 Date(Commit): Fri Oct 23 12:18:47 2009  
@@ -587,7 +601,8 @@ new X()
 
 ## **regress-475.js (v8 issue)**  
    
-**[Issue: Crash is IC after revision 3041](https://crbug.com/v8/475)**  
+**[Issue: Issue 475:
+ Crash is IC after revision 3041](https://crbug.com/v8/475)**  
 **[Commit: Fix issue 475](https://chromium.googlesource.com/v8/v8/+/a637f45)**  
   
 Date(Commit): Tue Oct 20 12:13:31 2009  
@@ -607,7 +622,8 @@ assertEquals(1, (function (){return 1|-1%1})());
 
 ## **regress-crbug-18639.js (chromium issue)**  
    
-**[Issue: Crash [@ 0xffffffff]](https://crbug.com/18639)**  
+**[Issue: Issue 18639:
+ Crash [@ 0xffffffff]](https://crbug.com/18639)**  
 **[Commit: Add regression test case for http://crbug.com/18639 which](https://chromium.googlesource.com/v8/v8/+/6621a43)**  
   
 Date(Commit): Tue Sep 08 07:22:35 2009  
@@ -637,7 +653,8 @@ try {
 
 ## **regress-416.js (v8 issue)**  
    
-**[Issue: CHECK(!( sizeof (time) == sizeof(float ) ? __inline_isnanf((float)(time)) : sizeof (time) == sizeof(double) ? __inline_isnand((double)(time)) : __inline_isnan ((long double)(time)))) failed](https://crbug.com/v8/416)**  
+**[Issue: Issue 416:
+ CHECK(!( sizeof (time) == sizeof(float ) ? __inline_isnanf((float)(time)) : sizeof (time) == sizeof(double) ? __inline_isnand((double)(time)) : __inline_isnan ((long double)(time)))) failed](https://crbug.com/v8/416)**  
 **[Commit: Add safe handling of NaN to Posix platform-dependent time functions.](https://chromium.googlesource.com/v8/v8/+/3703231)**  
   
 Date(Commit): Tue Aug 04 09:41:18 2009  
@@ -664,7 +681,8 @@ assertTrue(isNaN(new Date(Number.NaN, "").getTime()),
 
 ## **regress-155924.js (chromium issue)**  
    
-**[Issue: Provide an easier way to migrate wifi credentials](https://crbug.com/155924)**  
+**[Issue: Issue 155924:
+ Provide an easier way to migrate wifi credentials](https://crbug.com/155924)**  
 **[Commit: Fix an error in a keyed lookup stub - HeapNumbers treated as strings.](https://chromium.googlesource.com/v8/v8/+/18c6337)**  
   
 Date(Commit): Thu Jul 23 13:01:17 2009  
@@ -699,7 +717,8 @@ assertEquals(undefined, foo(), "Third lookup A[bad_float]");
 
 ## **regress-406.js (v8 issue)**  
    
-**[Issue: (ARM) Constant folding crashes short-circuit boolean expressions](https://crbug.com/v8/406)**  
+**[Issue: Issue 406:
+ (ARM) Constant folding crashes short-circuit boolean expressions](https://crbug.com/v8/406)**  
 **[Commit: Fix ARM compiler crash in short-circuited boolean expressions.](https://chromium.googlesource.com/v8/v8/+/1ca19c3)**  
   
 Date(Commit): Thu Jul 23 11:40:14 2009  
@@ -752,7 +771,8 @@ assertTrue(one() > 0 || typeof(0) != "zero");
 
 ## **regress-345.js (v8 issue)**  
    
-**[Issue: CHECK(count >= 0) failed](https://crbug.com/v8/345)**  
+**[Issue: Issue 345:
+ CHECK(count >= 0) failed](https://crbug.com/v8/345)**  
 **[Commit: Fix issue 345 by avoiding duplicates in the list of escaping labels](https://chromium.googlesource.com/v8/v8/+/6443cb9)**  
   
 Date(Commit): Wed Jul 15 08:57:25 2009  
@@ -789,7 +809,8 @@ L: {
 
 ## **regress-399.js (v8 issue)**  
    
-**[Issue: Wrong year calculated for Antipodean time zones near New Year's Day.](https://crbug.com/v8/399)**  
+**[Issue: Issue 399:
+ Wrong year calculated for Antipodean time zones near New Year's Day.](https://crbug.com/v8/399)**  
 **[Commit: Fix issue 397 and issue 399. Review URL: http://codereview.chromium.org/149247](https://chromium.googlesource.com/v8/v8/+/b0f411c)**  
   
 Date(Commit): Tue Jul 07 11:57:09 2009  
@@ -813,7 +834,8 @@ assertEquals(year, date.getFullYear());
 
 ## **regress-397.js (v8 issue)**  
    
-**[Issue: Math.pow(-Infinity, 0.5) gives NaN, not Infinity.](https://crbug.com/v8/397)**  
+**[Issue: Issue 397:
+ Math.pow(-Infinity, 0.5) gives NaN, not Infinity.](https://crbug.com/v8/397)**  
 **[Commit: Fix issue 397 and issue 399. Review URL: http://codereview.chromium.org/149247](https://chromium.googlesource.com/v8/v8/+/b0f411c)**  
   
 Date(Commit): Tue Jul 07 11:57:09 2009  
@@ -846,7 +868,8 @@ test();
 
 ## **regress-396.js (v8 issue)**  
    
-**[Issue: REGRESSION: Illegal access exception](https://crbug.com/v8/396)**  
+**[Issue: Issue 396:
+ REGRESSION: Illegal access exception](https://crbug.com/v8/396)**  
 **[Commit: Add regression test case for issue 396.](https://chromium.googlesource.com/v8/v8/+/f0053e8)**  
   
 Date(Commit): Thu Jul 02 09:08:15 2009  
@@ -874,7 +897,8 @@ assertEquals('2005', DateYear(new Date('Dec 25, 2005')));
 
 ## **regress-394.js (v8 issue)**  
    
-**[Issue: Assessors on global object not handled correctly](https://crbug.com/v8/394)**  
+**[Issue: Issue 394:
+ Assessors on global object not handled correctly](https://crbug.com/v8/394)**  
 **[Commit: Handle JavaScript accessors on the global object.](https://chromium.googlesource.com/v8/v8/+/25405dd)**  
   
 Date(Commit): Wed Jul 01 11:20:33 2009  
@@ -911,7 +935,8 @@ assertEquals(2, getx());
 
 ## **regress-392.js (v8 issue)**  
    
-**[Issue: Crash [@ v8::internal::JSObject::LocalLookup] and CHECK(object->IsString() || object->IsNumber() || object->IsBoolean()) failed](https://crbug.com/v8/392)**  
+**[Issue: Issue 392:
+ Crash [@ v8::internal::JSObject::LocalLookup] and CHECK(object->IsString() || object->IsNumber() || object->IsBoolean()) failed](https://crbug.com/v8/392)**  
 **[Commit: Fix issue 392 by disabling the TakeValue optimization for](https://chromium.googlesource.com/v8/v8/+/3ae01ab)**  
   
 Date(Commit): Mon Jun 29 06:20:52 2009  
@@ -961,7 +986,8 @@ test();
 
 ## **regress-386.js (v8 issue)**  
    
-**[Issue: Assertion failed: t != INTERCEPTOR](https://crbug.com/v8/386)**  
+**[Issue: Issue 386:
+ Assertion failed: t != INTERCEPTOR](https://crbug.com/v8/386)**  
 **[Commit: Fix issue 386, a bug in JSObject::ReplaceSlowProperty with constant transitions.](https://chromium.googlesource.com/v8/v8/+/74ddab9)**  
   
 Date(Commit): Mon Jun 22 07:41:15 2009  
@@ -1008,7 +1034,8 @@ assertFalse(/[6-9]/.test('2'));
 
 ## **regress-351.js (v8 issue)**  
    
-**[Issue: String#lastIndexOf should return 0 for negative position values.](https://crbug.com/v8/351)**  
+**[Issue: Issue 351:
+ String#lastIndexOf should return 0 for negative position values.](https://crbug.com/v8/351)**  
 **[Commit: Fix for issue 351 - lastIndexOf.](https://chromium.googlesource.com/v8/v8/+/9452453)**  
   
 Date(Commit): Tue May 26 15:42:06 2009  
@@ -1029,7 +1056,8 @@ assertEquals(0, "test".lastIndexOf("test", -1));
 
 ## **regress-349.js (v8 issue)**  
    
-**[Issue: String search hits assert in debug mode](https://crbug.com/v8/349)**  
+**[Issue: Issue 349:
+ String search hits assert in debug mode](https://crbug.com/v8/349)**  
 **[Commit: Fix for issue 349: Make initial boundary check for BM text search.](https://chromium.googlesource.com/v8/v8/+/2ff3901)**  
   
 Date(Commit): Tue May 19 09:01:03 2009  
@@ -1050,7 +1078,8 @@ assertEquals(str, str.replace(/aabab/g, "foo"));
 
 ## **regress-341.js (v8 issue)**  
    
-**[Issue: CRASH when running LayoutTests/fast/js/instance-of-immediates.html](https://crbug.com/v8/341)**  
+**[Issue: Issue 341:
+ CRASH when running LayoutTests/fast/js/instance-of-immediates.html](https://crbug.com/v8/341)**  
 **[Commit: Fix for issue 341.  In the stub for instanceof, we could try to read](https://chromium.googlesource.com/v8/v8/+/18f69a7)**  
   
 Date(Commit): Tue May 12 11:40:14 2009  
@@ -1075,7 +1104,8 @@ assertThrows("o instanceof F");
 
 ## **regress-334.js (v8 issue)**  
    
-**[Issue: Setting a property resets attributes.](https://crbug.com/v8/334)**  
+**[Issue: Issue 334:
+ Setting a property resets attributes.](https://crbug.com/v8/334)**  
 **[Commit: Added test for issue 334.](https://chromium.googlesource.com/v8/v8/+/b11b61c)**  
   
 Date(Commit): Tue May 05 11:52:37 2009  
@@ -1155,7 +1185,8 @@ assertEquals(func1, object.bif, "read bif3");
 
 ## **regress-326.js (v8 issue)**  
    
-**[Issue: Array sort on non-array objects doesn't preserve missing elements](https://crbug.com/v8/326)**  
+**[Issue: Issue 326:
+ Array sort on non-array objects doesn't preserve missing elements](https://crbug.com/v8/326)**  
 **[Commit: Fix Issue 326. Handle sorting of non-array objects correctly.](https://chromium.googlesource.com/v8/v8/+/889eac7)**  
   
 Date(Commit): Mon Apr 27 11:16:59 2009  
@@ -1188,7 +1219,8 @@ assertEquals(0, nonArray[4], "don't affect after length.");
 
 ## **regress-318.js (v8 issue)**  
    
-**[Issue: Inferred static type of elements is not safely set when merge code is not generated](https://crbug.com/v8/318)**  
+**[Issue: Issue 318:
+ Inferred static type of elements is not safely set when merge code is not generated](https://crbug.com/v8/318)**  
 **[Commit: When merging a frame to an expected on at block entry, the static type](https://chromium.googlesource.com/v8/v8/+/b39f438)**  
   
 Date(Commit): Wed Apr 22 13:19:38 2009  
@@ -1214,7 +1246,8 @@ assertDoesNotThrow('test(0)');
 
 ## **regress-317.js (v8 issue)**  
    
-**[Issue: String replace of string doesn't allow dollars in replace string.](https://crbug.com/v8/317)**  
+**[Issue: Issue 317:
+ String replace of string doesn't allow dollars in replace string.](https://crbug.com/v8/317)**  
 **[Commit: Fix for Issue 317 - bug in string.replace(string, "$foo").](https://chromium.googlesource.com/v8/v8/+/bfb33b1)**  
   
 Date(Commit): Wed Apr 22 11:43:05 2009  
@@ -1235,7 +1268,8 @@ assertEquals("a$ec", "abc".replace("b", "$e"), "$e isn't meaningful");
 
 ## **regress-312.js (v8 issue)**  
    
-**[Issue: Function name collector triggers ASSERT when expressions contain multiple anonymous functions.](https://crbug.com/v8/312)**  
+**[Issue: Issue 312:
+ Function name collector triggers ASSERT when expressions contain multiple anonymous functions.](https://crbug.com/v8/312)**  
 **[Commit: Change the function name collector to tolerate expressions that contain](https://chromium.googlesource.com/v8/v8/+/22896c8)**  
   
 Date(Commit): Wed Apr 15 13:14:23 2009  
@@ -1255,7 +1289,8 @@ var o = { f: "x" ? function () {} : function () {} };
 
 ## **regress-294.js (v8 issue)**  
    
-**[Issue: Failure to preserve is_copied flag on virtual frame elements](https://crbug.com/v8/294)**  
+**[Issue: Issue 294:
+ Failure to preserve is_copied flag on virtual frame elements](https://crbug.com/v8/294)**  
 **[Commit: Fix issue 294 by ensuring that we don't lose the copy flag on memory](https://chromium.googlesource.com/v8/v8/+/c80b013)**  
   
 Date(Commit): Tue Mar 31 14:01:25 2009  
@@ -1287,7 +1322,8 @@ test("hund");
 
 ## **regress-286.js (v8 issue)**  
    
-**[Issue: Compound assignments to variables in registers do not work](https://crbug.com/v8/286)**  
+**[Issue: Issue 286:
+ Compound assignments to variables in registers do not work](https://crbug.com/v8/286)**  
 **[Commit: Fix issue 286.  Ensure frame elements are invalidated by InvalidateFrameSlotAt.](https://chromium.googlesource.com/v8/v8/+/1ba34bf)**  
   
 Date(Commit): Tue Mar 24 12:42:28 2009  
@@ -1313,7 +1349,8 @@ assertEquals(1, test());
 
 ## **regress-284.js (v8 issue)**  
    
-**[Issue: Assigning and continuing within a for-in loop behaves unexpectedly](https://crbug.com/v8/284)**  
+**[Issue: Issue 284:
+ Assigning and continuing within a for-in loop behaves unexpectedly](https://crbug.com/v8/284)**  
 **[Commit: Added test case for issue 284.](https://chromium.googlesource.com/v8/v8/+/cff1d27)**  
   
 Date(Commit): Mon Mar 23 23:49:58 2009  
@@ -1352,7 +1389,8 @@ assertEquals("hopla", continueWithinLoop());
 
 ## **regress-279.js (v8 issue)**  
    
-**[Issue: new array literals inside object literals returned from body of a function are recycled](https://crbug.com/v8/279)**  
+**[Issue: Issue 279:
+ new array literals inside object literals returned from body of a function are recycled](https://crbug.com/v8/279)**  
 **[Commit: Revert 1432, 1433, 1469 and 1472 due to a bug with literal objects.](https://chromium.googlesource.com/v8/v8/+/3aa57f7)**  
   
 Date(Commit): Sun Mar 15 16:18:20 2009  
@@ -1410,7 +1448,8 @@ assertEquals(0, b[0].length, "Array in array");
 
 ## **regress-267.js (v8 issue)**  
    
-**[Issue: Indirect eval fails in eval-tainted scope.](https://crbug.com/v8/267)**  
+**[Issue: Issue 267:
+ Indirect eval fails in eval-tainted scope.](https://crbug.com/v8/267)**  
 **[Commit: Issue 267: Calls to arguments in eval-tainted function scope uses global object as receiver.](https://chromium.googlesource.com/v8/v8/+/34db0ff)**  
   
 Date(Commit): Tue Mar 10 12:28:34 2009  
@@ -1438,7 +1477,8 @@ assertEquals(global, obj, "Should be the global object.");
 
 ## **regress-244.js (v8 issue)**  
    
-**[Issue: Uri encode/decode don't handle malformed sequences correctly](https://crbug.com/v8/244)**  
+**[Issue: Issue 244:
+ Uri encode/decode don't handle malformed sequences correctly](https://crbug.com/v8/244)**  
 **[Commit: Implemented invalid UTF8 detection in decodeURI.  That is, detection](https://chromium.googlesource.com/v8/v8/+/782b537)**  
   
 Date(Commit): Tue Mar 10 09:08:05 2009  
@@ -1499,7 +1539,8 @@ run();
 
 ## **regress-265.js (v8 issue)**  
    
-**[Issue: Assertion failure: CHECK(0 <= i && i < length_) failed](https://crbug.com/v8/265)**  
+**[Issue: Issue 265:
+ Assertion failure: CHECK(0 <= i && i < length_) failed](https://crbug.com/v8/265)**  
 **[Commit: Add a failing test case for issue 265:](https://chromium.googlesource.com/v8/v8/+/8eea2af)**  
   
 Date(Commit): Mon Mar 09 17:21:28 2009  
@@ -1585,7 +1626,8 @@ for (var p in o) {
 
 ## **regress-260.js (v8 issue)**  
    
-**[Issue: Assertion failure: CHECK(cgen_ == __null) failed](https://crbug.com/v8/260)**  
+**[Issue: Issue 260:
+ Assertion failure: CHECK(cgen_ == __null) failed](https://crbug.com/v8/260)**  
 **[Commit: Work around issue 260 for now by disabling duplication of the loop](https://chromium.googlesource.com/v8/v8/+/34af9f2)**  
   
 Date(Commit): Mon Mar 09 14:12:20 2009  
@@ -1606,7 +1648,8 @@ test();
 
 ## **regress-263.js (v8 issue)**  
    
-**[Issue: Properly adjust stack height when returning out of for/in and try/finally](https://crbug.com/v8/263)**  
+**[Issue: Issue 263:
+ Properly adjust stack height when returning out of for/in and try/finally](https://crbug.com/v8/263)**  
 **[Commit: Fix issue 263:](https://chromium.googlesource.com/v8/v8/+/ece2c03)**  
   
 Date(Commit): Mon Mar 09 10:51:57 2009  
@@ -1632,7 +1675,8 @@ test1();
 
 ## **regress-259.js (v8 issue)**  
    
-**[Issue: Assertion failure: CHECK(0 <= i && i < length_) failed](https://crbug.com/v8/259)**  
+**[Issue: Issue 259:
+ Assertion failure: CHECK(0 <= i && i < length_) failed](https://crbug.com/v8/259)**  
 **[Commit: Fix issue 259.](https://chromium.googlesource.com/v8/v8/+/b638d5c)**  
   
 Date(Commit): Fri Mar 06 10:18:33 2009  
@@ -1652,7 +1696,8 @@ assertThrows("try { while (true) { throw 0; }} finally {}");
 
 ## **regress-254.js (v8 issue)**  
    
-**[Issue: RegExp.prototype.test doesn't update lastIndex on a global regexp correctly.](https://crbug.com/v8/254)**  
+**[Issue: Issue 254:
+ RegExp.prototype.test doesn't update lastIndex on a global regexp correctly.](https://crbug.com/v8/254)**  
 **[Commit: Issue 254 - now correctly updates lastIndexof when using the test method.](https://chromium.googlesource.com/v8/v8/+/21fb24e)**  
   
 Date(Commit): Wed Mar 04 12:29:37 2009  
@@ -1698,7 +1743,8 @@ assertEquals(0, re2.lastIndex, "Non-global, lastIndex after exec 2");
 
 ## **regress-253.js (v8 issue)**  
    
-**[Issue: Illegal access when toring multiple elements on heap numbers.](https://crbug.com/v8/253)**  
+**[Issue: Issue 253:
+ Illegal access when toring multiple elements on heap numbers.](https://crbug.com/v8/253)**  
 **[Commit: Fixed issue 253. No longer assuming that the target of a property lookup is a JSObject.](https://chromium.googlesource.com/v8/v8/+/7bd50d0)**  
   
 Date(Commit): Wed Mar 04 11:57:24 2009  
@@ -1721,7 +1767,8 @@ x[0] = 2;
 
 ## **regress-246.js (v8 issue)**  
    
-**[Issue: Matching deeply parenthesized regexps fails](https://crbug.com/v8/246)**  
+**[Issue: Issue 246:
+ Matching deeply parenthesized regexps fails](https://crbug.com/v8/246)**  
 **[Commit: Issue 246 - wait until regexp is parsed to detect whether it's simple.](https://chromium.googlesource.com/v8/v8/+/4852bef)**  
   
 Date(Commit): Wed Mar 04 09:52:01 2009  
@@ -1742,7 +1789,8 @@ assertEquals(["text"], /(?:text)/.exec("text"));
 
 ## **regress-233.js (v8 issue)**  
    
-**[Issue: Unhandled empty handle in glboal regexp.](https://crbug.com/v8/233)**  
+**[Issue: Issue 233:
+ Unhandled empty handle in glboal regexp.](https://crbug.com/v8/233)**  
 **[Commit: Missing handle check. Triggers bug if the runtime stack overflows and it is detected by a global regexp.](https://chromium.googlesource.com/v8/v8/+/80bb2cc)**  
   
 Date(Commit): Fri Feb 13 09:40:15 2009  
@@ -1770,7 +1818,8 @@ try {
 
 ## **regress-231.js (v8 issue)**  
    
-**[Issue: RegExp look-ahead restores bad stack-pointer after stack growth.](https://crbug.com/v8/231)**  
+**[Issue: Issue 231:
+ RegExp look-ahead restores bad stack-pointer after stack growth.](https://crbug.com/v8/231)**  
 **[Commit: Issue 231 - Irregexp backtracking stack pointer could become corrupted.](https://chromium.googlesource.com/v8/v8/+/0b1f3f2)**  
   
 Date(Commit): Thu Feb 12 13:07:58 2009  
@@ -1850,7 +1899,8 @@ assertTrue(res);
 
 ## **regress-87.js (v8 issue)**  
    
-**[Issue: We should handle character escapes used as regexp flags](https://crbug.com/v8/87)**  
+**[Issue: Issue 87:
+ We should handle character escapes used as regexp flags](https://crbug.com/v8/87)**  
 **[Commit: Regular Expression literal flags may contain unicode escapes. If these escape any of the](https://chromium.googlesource.com/v8/v8/+/396fa22)**  
   
 Date(Commit): Thu Feb 12 09:09:28 2009  
@@ -1888,7 +1938,8 @@ assertThrows("/x/\\u0020");
 
 ## **regress-227.js (v8 issue)**  
    
-**[Issue: Irregexp ignores high bits in choice nodes on ASCII strings](https://crbug.com/v8/227)**  
+**[Issue: Issue 227:
+ Irregexp ignores high bits in choice nodes on ASCII strings](https://crbug.com/v8/227)**  
 **[Commit: Issue 227 Fixed. Properly handles non-ASCII characters in quick-check on ASCII strings.](https://chromium.googlesource.com/v8/v8/+/c621bbb)**  
   
 Date(Commit): Wed Feb 11 11:54:30 2009  
@@ -1913,7 +1964,8 @@ assertEquals(["x"], res, "Throwing away high bits on ASCII string");
 
 ## **regress-225.js (v8 issue)**  
    
-**[Issue: Search and replace with zero length match where replaceValue is a function.](https://crbug.com/v8/225)**  
+**[Issue: Issue 225:
+ Search and replace with zero length match where replaceValue is a function.](https://crbug.com/v8/225)**  
 **[Commit: Fix bug 225 in regexp replace with function.](https://chromium.googlesource.com/v8/v8/+/b0e3ee6)**  
   
 Date(Commit): Thu Feb 05 13:24:13 2009  
@@ -1936,7 +1988,8 @@ assertEquals("foo", "foo".replace(/(?:)/g, ""));
 
 ## **regress-219.js (v8 issue)**  
    
-**[Issue: Ignore dupes in regexp flags](https://crbug.com/v8/219)**  
+**[Issue: Issue 219:
+ Ignore dupes in regexp flags](https://crbug.com/v8/219)**  
 **[Commit: Allow duplicate flags in regexps to match other browsers.](https://chromium.googlesource.com/v8/v8/+/0730ada)**  
   
 Date(Commit): Fri Jan 30 12:36:40 2009  
@@ -2060,7 +2113,8 @@ assertThrows("/a/\\u006D");
 
 ## **regress-192.js (v8 issue)**  
    
-**[Issue: CHECK(result != Top::has_pending_exception()) failed](https://crbug.com/v8/192)**  
+**[Issue: Issue 192:
+ CHECK(result != Top::has_pending_exception()) failed](https://crbug.com/v8/192)**  
 **[Commit: Fix issue 192 by propagating out exceptions from object literal](https://chromium.googlesource.com/v8/v8/+/524e34b)**  
   
 Date(Commit): Mon Jan 26 13:10:26 2009  
@@ -2087,7 +2141,8 @@ assertEquals(37, x.y);
 
 ## **regress-201.js (v8 issue)**  
    
-**[Issue: array.sort() crash](https://crbug.com/v8/201)**  
+**[Issue: Issue 201:
+ array.sort() crash](https://crbug.com/v8/201)**  
 **[Commit: Do not violate the assumption that fast-case arrays have Smi length](https://chromium.googlesource.com/v8/v8/+/39842ba)**  
   
 Date(Commit): Fri Jan 23 13:08:29 2009  
@@ -2114,7 +2169,8 @@ testsort("5001")
 
 ## **regress-193.js (v8 issue)**  
    
-**[Issue: Fatal error in src/builtins.cc, line 127 - unreachable code](https://crbug.com/v8/193)**  
+**[Issue: Issue 193:
+ Fatal error in src/builtins.cc, line 127 - unreachable code](https://crbug.com/v8/193)**  
 **[Commit: Make sure that eval and try-catch introduced context extension objects](https://chromium.googlesource.com/v8/v8/+/8a73135)**  
   
 Date(Commit): Fri Jan 23 12:16:03 2009  
@@ -2140,7 +2196,8 @@ assertEquals(constructor, f());
 
 ## **regress-189.js (v8 issue)**  
    
-**[Issue: Crash [@ v8::internal::Runtime_InitializeConstContextSlot] and CHECK(attributes != ABSENT && (attributes & READ_ONLY) != 0) failed](https://crbug.com/v8/189)**  
+**[Issue: Issue 189:
+ Crash [@ v8::internal::Runtime_InitializeConstContextSlot] and CHECK(attributes != ABSENT && (attributes & READ_ONLY) != 0) failed](https://crbug.com/v8/189)**  
 **[Commit: Fix handling of const initialization.  We did not handle the fact that](https://chromium.googlesource.com/v8/v8/+/c23dbc1)**  
   
 Date(Commit): Thu Jan 22 13:53:06 2009  
@@ -2166,7 +2223,8 @@ f();
 
 ## **regress-74.js (v8 issue)**  
    
-**[Issue: Caught variables should be DontDelete](https://crbug.com/v8/74)**  
+**[Issue: Issue 74:
+ Caught variables should be DontDelete](https://crbug.com/v8/74)**  
 **[Commit: Change the handling of catch blocks to use context extension objects](https://chromium.googlesource.com/v8/v8/+/47d1298)**  
   
 Date(Commit): Fri Jan 16 09:42:08 2009  
@@ -2199,7 +2257,8 @@ test();
 
 ## **regress-191.js (v8 issue)**  
    
-**[Issue: CHECK(context_ext->GetLocalPropertyAttribute(*name) == mode) failed](https://crbug.com/v8/191)**  
+**[Issue: Issue 191:
+ CHECK(context_ext->GetLocalPropertyAttribute(*name) == mode) failed](https://crbug.com/v8/191)**  
 **[Commit: Fix issue 191:](https://chromium.googlesource.com/v8/v8/+/384b0a54)**  
   
 Date(Commit): Thu Jan 15 11:31:08 2009  
@@ -2229,7 +2288,8 @@ test();
 
 ## **regress-187.js (v8 issue)**  
    
-**[Issue: Captures made in regexp lookahead should be cleared on match failure](https://crbug.com/v8/187)**  
+**[Issue: Issue 187:
+ Captures made in regexp lookahead should be cleared on match failure](https://crbug.com/v8/187)**  
 **[Commit: Added clearing of captures before entering the body of a loop.  This](https://chromium.googlesource.com/v8/v8/+/d6e6508)**  
   
 Date(Commit): Wed Jan 14 11:32:23 2009  
@@ -2253,7 +2313,8 @@ assertEquals(["f", undefined], "foo".match(/(?:(?=(f)o)fx|)./));
 
 ## **regress-186.js (v8 issue)**  
    
-**[Issue: CHECK(!context_ext->HasLocalProperty(*name)) failed](https://crbug.com/v8/186)**  
+**[Issue: Issue 186:
+ CHECK(!context_ext->HasLocalProperty(*name)) failed](https://crbug.com/v8/186)**  
 **[Commit: Add failing test for issue 186:](https://chromium.googlesource.com/v8/v8/+/cd1afea)**  
   
 Date(Commit): Wed Jan 14 09:20:13 2009  
@@ -2302,7 +2363,8 @@ runTest(testGlobal);
 
 ## **regress-171.js (v8 issue)**  
    
-**[Issue: ARM function call with string value and then string object fails.](https://crbug.com/v8/171)**  
+**[Issue: Issue 171:
+ ARM function call with string value and then string object fails.](https://crbug.com/v8/171)**  
 **[Commit: Fix for issue 171:](https://chromium.googlesource.com/v8/v8/+/f3da5ff)**  
   
 Date(Commit): Wed Jan 07 23:26:31 2009  
@@ -2335,7 +2397,8 @@ assertEquals(g(new String("a"), "length"), 1);
 
 ## **regress-91.js (v8 issue)**  
    
-**[Issue: WebKit test for nan dates fails](https://crbug.com/v8/91)**  
+**[Issue: Issue 91:
+ WebKit test for nan dates fails](https://crbug.com/v8/91)**  
 **[Commit: Fix for issue 91 (http://code.google.com/p/v8/issues/detail?id=91)](https://chromium.googlesource.com/v8/v8/+/726aa85)**  
   
 Date(Commit): Wed Jan 07 09:58:58 2009  

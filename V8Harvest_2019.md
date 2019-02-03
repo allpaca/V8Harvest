@@ -2,6 +2,142 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-926856.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/926856)**  
+**[Commit: [Builtins]: Array.prototype.map out of memory error](https://chromium.googlesource.com/v8/v8/+/183b857)**  
+  
+Date(Commit): Fri Feb 01 12:33:19 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1449531](https://chromium-review.googlesource.com/c/1449531)  
+Regress: [mjsunit/regress/regress-crbug-926856.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-926856.js)  
+```javascript
+var size = 63392;
+var a = [];
+function build() {
+  for (let i = 0; i < size; i++) {
+    a.push(i);
+  }
+}
+
+build();
+
+function c(v) { return v + 0.5; }
+a.map(c);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/183b857^!)  
+[src/builtins/array-map.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-map.tq?cl=183b857)  
+[test/mjsunit/regress/regress-crbug-926856.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-926856.js?cl=183b857)  
+  
+
+---   
+
+## **regress-crbug-926819.js (chromium issue)**  
+   
+**[Issue: Issue 926819:
+ Null-dereference READ in v8::internal::DeclarationScope::HoistSloppyBlockFunctions](https://crbug.com/926819)**  
+**[Commit: [parser] Don't hoist sloppy block functions on error](https://chromium.googlesource.com/v8/v8/+/3ef9af8)**  
+  
+Date(Commit): Wed Jan 30 11:54:28 2019  
+Components/Type: Blink>JavaScript>Language/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Stability-Libfuzzer", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-CC", "Test-Predator-Auto-Components"]  
+Code Review: [https://chromium-review.googlesource.com/c/1445891](https://chromium-review.googlesource.com/c/1445891)  
+Regress: [mjsunit/regress/regress-crbug-926819.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-926819.js)  
+```javascript
+assertThrows("a(function(){{let f;function f}})", SyntaxError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/3ef9af8^!)  
+[src/parsing/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.cc?cl=3ef9af8)  
+[test/mjsunit/regress/regress-crbug-926819.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-926819.js?cl=3ef9af8)  
+  
+
+---   
+
+## **regress-924843.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/924843)**  
+**[Commit: [Liftoff] Correctly unuse Labels](https://chromium.googlesource.com/v8/v8/+/3af3c9d)**  
+  
+Date(Commit): Tue Jan 29 15:18:48 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1442645](https://chromium-review.googlesource.com/c/1442645)  
+Regress: [mjsunit/regress/wasm/regress-924843.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-924843.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+const sig = builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, sig)
+  .addBody([
+    kExprGetLocal, 2,
+    kExprIf, kWasmStmt,
+      kExprBlock, kWasmStmt
+  ]);
+builder.addExport('main', 0);
+assertThrows(() => builder.instantiate(), WebAssembly.CompileError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/3af3c9d^!)  
+[src/wasm/baseline/liftoff-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-compiler.cc?cl=3af3c9d)  
+[test/mjsunit/regress/wasm/regress-924843.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-924843.js?cl=3af3c9d)  
+  
+
+---   
+
+## **regress-925671.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/925671)**  
+**[Commit: [wasm] Distinguish requested tier and executed tier](https://chromium.googlesource.com/v8/v8/+/185922d)**  
+  
+Date(Commit): Tue Jan 29 12:36:48 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1442639](https://chromium-review.googlesource.com/c/1442639)  
+Regress: [mjsunit/regress/wasm/regress-925671.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-925671.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+var builder = new WasmModuleBuilder();
+builder.addFunction('f0', kSig_v_v).addBody([]);
+builder.addFunction('f1', kSig_v_v).addBody([]);
+builder.instantiate();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/185922d^!)  
+[src/wasm/function-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/function-compiler.cc?cl=185922d)  
+[src/wasm/function-compiler.h](https://cs.chromium.org/chromium/src/v8/src/wasm/function-compiler.h?cl=185922d)  
+[src/wasm/module-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-compiler.cc?cl=185922d)  
+[src/wasm/wasm-tier.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-tier.h?cl=185922d)  
+[test/mjsunit/regress/wasm/regress-925671.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-925671.js?cl=185922d)  
+  
+
+---   
+
+## **regress-926036.js (chromium issue)**  
+   
+**[Issue: No Permission](https://crbug.com/926036)**  
+**[Commit: [parser] Make pattern DCHECK dependent on !has_error](https://chromium.googlesource.com/v8/v8/+/b0e1c2b)**  
+  
+Date(Commit): Tue Jan 29 11:03:09 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1442635](https://chromium-review.googlesource.com/c/1442635)  
+Regress: [mjsunit/regress/regress-926036.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-926036.js)  
+```javascript
+assertThrows("async() => { for await (var a ;;) {} }", SyntaxError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b0e1c2b^!)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=b0e1c2b)  
+[test/mjsunit/regress/regress-926036.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-926036.js?cl=b0e1c2b)  
+  
+
+---   
+
 ## **regress-924905.js (chromium issue)**  
    
 **[Issue: No Permission](https://crbug.com/924905)**  
@@ -13,7 +149,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1435939](https://chromium-review.googlesource.com/c/1435939)  
 Regress: [mjsunit/regress/wasm/regress-924905.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-924905.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 let builder = new WasmModuleBuilder();
@@ -161,7 +296,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1424862](https://chromium-review.googlesource.com/c/1424862)  
 Regress: [mjsunit/regress/wasm/regress-922933.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-922933.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -230,7 +364,6 @@ Labels: ["Stability-Crash", "Clusterfuzz", "Unreproducible"]
 Code Review: [https://chromium-review.googlesource.com/c/1421921](https://chromium-review.googlesource.com/c/1421921)  
 Regress: [mjsunit/regress/wasm/regress-922670.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-922670.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -363,7 +496,8 @@ assertThrows(__f_3);
 
 ## **regress-crbug-923265.js (chromium issue)**  
    
-**[Issue: Ill in v8::internal::RemoveArrayHolesGeneric](https://crbug.com/923265)**  
+**[Issue: Issue 923265:
+ Ill in v8::internal::RemoveArrayHolesGeneric](https://crbug.com/923265)**  
 **[Commit: [array] Remove CHECK_LE from RemoveArrayHolesGeneric](https://chromium.googlesource.com/v8/v8/+/e38faab)**  
   
 Date(Commit): Fri Jan 18 10:01:37 2019  
@@ -397,7 +531,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1414917](https://chromium-review.googlesource.com/c/1414917)  
 Regress: [mjsunit/regress/wasm/regress-922432.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-922432.js)  
 ```javascript
-load("test/mjsunit/wasm/wasm-constants.js");
 load("test/mjsunit/wasm/wasm-module-builder.js");
 
 (function TestTruncatedBrOnExnInLoop() {
@@ -506,7 +639,8 @@ assertThrows(`
 
 ## **regress-917215.js (chromium issue)**  
    
-**[Issue: False SyntaxError on Sibling JS-Labels](https://crbug.com/917215)**  
+**[Issue: Issue 917215:
+ False SyntaxError on Sibling JS-Labels](https://crbug.com/917215)**  
 **[Commit: [parser] Allow same-named labelled blocks in if/else statements](https://chromium.googlesource.com/v8/v8/+/469754d)**  
   
 Date(Commit): Fri Jan 11 17:40:18 2019  
@@ -528,7 +662,8 @@ else b: { break a; break b; }
 
 ## **regress-8630.js (v8 issue)**  
    
-**[Issue: Dcheck on jsfunfuzz](https://crbug.com/v8/8630)**  
+**[Issue: Issue 8630:
+ Dcheck on jsfunfuzz](https://crbug.com/v8/8630)**  
 **[Commit: [parser] Check assignment LHS for paren errors](https://chromium.googlesource.com/v8/v8/+/df6f5f6)**  
   
 Date(Commit): Fri Jan 11 12:56:38 2019  
@@ -568,7 +703,8 @@ assertEquals(x, 3);
 
 ## **regress-919308.js (chromium issue)**  
    
-**[Issue: Ill in v8::internal::wasm::fuzzer::WasmExecutionFuzzer::FuzzWasmModule](https://crbug.com/919308)**  
+**[Issue: Issue 919308:
+ Ill in v8::internal::wasm::fuzzer::WasmExecutionFuzzer::FuzzWasmModule](https://crbug.com/919308)**  
 **[Commit: [Liftoff] Fix sub of the same register](https://chromium.googlesource.com/v8/v8/+/8518d12)**  
   
 Date(Commit): Fri Jan 11 10:57:09 2019  
@@ -577,7 +713,6 @@ Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer",
 Code Review: [https://chromium-review.googlesource.com/c/1405029](https://chromium-review.googlesource.com/c/1405029)  
 Regress: [mjsunit/regress/wasm/regress-919308.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-919308.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -631,7 +766,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1405036](https://chromium-review.googlesource.com/c/1405036)  
 Regress: [mjsunit/regress/wasm/regress-918284.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-918284.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -687,7 +821,8 @@ assertThrows(f);
 
 ## **regress-crbug-920184.js (chromium issue)**  
    
-**[Issue: Ill in v8::internal::JSObject::JSObjectVerify](https://crbug.com/920184)**  
+**[Issue: Issue 920184:
+ Ill in v8::internal::JSObject::JSObjectVerify](https://crbug.com/920184)**  
 **[Commit: [Builtins] Array.prototype.filter species creation error](https://chromium.googlesource.com/v8/v8/+/72d8307)**  
   
 Date(Commit): Thu Jan 10 18:09:36 2019  
@@ -753,7 +888,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1403124](https://chromium-review.googlesource.com/c/1403124)  
 Regress: [mjsunit/regress/wasm/regress-919533.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-919533.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -785,7 +919,8 @@ builder.instantiate();
 
 ## **regress-913844.js (chromium issue)**  
    
-**[Issue: DCHECK failure in block->predecessors().empty() || block->successors().empty() in unwinding-info-w](https://crbug.com/913844)**  
+**[Issue: Issue 913844:
+ DCHECK failure in block->predecessors().empty() || block->successors().empty() in unwinding-info-w](https://crbug.com/913844)**  
 **[Commit: Remove invalid DCHECKS in unwinding-info-writer](https://chromium.googlesource.com/v8/v8/+/49a526a)**  
   
 Date(Commit): Wed Jan 09 15:52:08 2019  
@@ -837,7 +972,8 @@ assertFalse(%IsAsmWasmCode(Module));  // Valid asm.js, but we reject Unicode.
 
 ## **regress-8659.js (v8 issue)**  
    
-**[Issue: Dcheck on jsfunfuzz](https://crbug.com/v8/8659)**  
+**[Issue: Issue 8659:
+ Dcheck on jsfunfuzz](https://crbug.com/v8/8659)**  
 **[Commit: [parser] Parenthesized identifiers are invalid as part of a declaration](https://chromium.googlesource.com/v8/v8/+/5b4d4c2)**  
   
 Date(Commit): Wed Jan 09 11:02:55 2019  
@@ -857,7 +993,8 @@ assertThrows("const [(x)] = []", SyntaxError);
 
 ## **regress-919710.js (chromium issue)**  
    
-**[Issue: Null-dereference READ in v8::internal::Scope::zone](https://crbug.com/919710)**  
+**[Issue: Issue 919710:
+ Null-dereference READ in v8::internal::Scope::zone](https://crbug.com/919710)**  
 **[Commit: [parser] Reparse arrow functions with unidentified syntax errors in the correct scope](https://chromium.googlesource.com/v8/v8/+/7c3595e)**  
   
 Date(Commit): Tue Jan 08 14:46:07 2019  
@@ -887,7 +1024,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1398225](https://chromium-review.googlesource.com/c/1398225)  
 Regress: [mjsunit/regress/wasm/regress-918917.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-918917.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -975,7 +1111,8 @@ assertThrows(() => f(0));
 
 ## **regress-crbug-917076.js (chromium issue)**  
    
-**[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/917076)**  
+**[Issue: Issue 917076:
+ V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/917076)**  
 **[Commit: [async] The Promise.all() fast-path must check @@species protector.](https://chromium.googlesource.com/v8/v8/+/b6bcf32)**  
   
 Date(Commit): Mon Jan 07 08:22:56 2019  
@@ -1018,7 +1155,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1394555](https://chromium-review.googlesource.com/c/1394555)  
 Regress: [mjsunit/regress/wasm/regress-918149.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-918149.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -1046,7 +1182,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1392190](https://chromium-review.googlesource.com/c/1392190)  
 Regress: [mjsunit/regress/wasm/regress-917412.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-917412.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();
@@ -1097,7 +1232,6 @@ Labels: "No Permission"
 Code Review: [https://chromium-review.googlesource.com/c/1391755](https://chromium-review.googlesource.com/c/1391755)  
 Regress: [mjsunit/regress/wasm/regress-917588.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-917588.js), [mjsunit/regress/wasm/regress-917588b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-917588b.js)  
 ```javascript
-load('test/mjsunit/wasm/wasm-constants.js');
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
 const builder = new WasmModuleBuilder();

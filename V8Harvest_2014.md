@@ -4,7 +4,8 @@ The Harvest of V8 regress in 2014.
 
 ## **regress-445267.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/445267)**  
+**[Issue: Issue 445267:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/445267)**  
 **[Commit: [turbofan] Fix invalid bounds check with overflowing offset.](https://chromium.googlesource.com/v8/v8/+/ef41f70)**  
   
 Date(Commit): Mon Dec 29 10:01:15 2014  
@@ -36,7 +37,8 @@ foo(0);
 
 ## **regress-3786.js (v8 issue)**  
    
-**[Issue: InstructionOperand limits number of parameters in function call to 2^9 and number of virtual registers to 2^18](https://crbug.com/v8/3786)**  
+**[Issue: Issue 3786:
+ InstructionOperand limits number of parameters in function call to 2^9 and number of virtual registers to 2^18](https://crbug.com/v8/3786)**  
 **[Commit: [turbofan] Raise max virtual registers and call parameter limit.](https://chromium.googlesource.com/v8/v8/+/b5e8dd0)**  
   
 Date(Commit): Thu Dec 25 18:18:04 2014  
@@ -63,7 +65,8 @@ var foo = (function Module(stdlib, foreign, heap) {
 
 ## **regress-444695.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/444695)**  
+**[Issue: Issue 444695:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/444695)**  
 **[Commit: [turbofan] Fix missing ChangeUint32ToUint64 in lowering of LoadBuffer.](https://chromium.googlesource.com/v8/v8/+/3f00ce2)**  
   
 Date(Commit): Tue Dec 23 06:54:00 2014  
@@ -90,7 +93,8 @@ foo(-926416896 * 8 * 1024);
 
 ## **regress-444508.js (chromium issue)**  
    
-**[Issue: Unreachable code in ../../v8/src/compiler/simplified-operator.cc(49)](https://crbug.com/444508)**  
+**[Issue: Issue 444508:
+ Unreachable code in ../../v8/src/compiler/simplified-operator.cc(49)](https://crbug.com/444508)**  
 **[Commit: [turbofan] Correctify lowering of Uint8ClampedArray buffer access.](https://chromium.googlesource.com/v8/v8/+/65e6949)**  
   
 Date(Commit): Mon Dec 22 08:27:59 2014  
@@ -118,7 +122,8 @@ Regress: [mjsunit/compiler/regress-444508.js](https://chromium.googlesource.com/
 
 ## **regress-443744.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/443744)**  
+**[Issue: Issue 443744:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/443744)**  
 **[Commit: [turbofan] Fix unsafe out-of-bounds check for checked loads/stores.](https://chromium.googlesource.com/v8/v8/+/f7e4689)**  
   
 Date(Commit): Fri Dec 19 12:53:29 2014  
@@ -150,7 +155,8 @@ m.f(-926416896 * 32 * 1024);
 
 ## **regress-441099.js (chromium issue)**  
    
-**[Issue: Bad-cast to const Operator1<v8::internal::Unique<v8::internal::Object> > from v8::internal::compiler::Operator1<v8::internal::Unique<v8::internal::HeapObject>, std::equal_to<v8::internal::Unique<v8::internal::HeapObject> >, v8::base::hash<v8::internal::Unique<v8::internal::HeapObject> > >;operator.h:172:10](https://crbug.com/441099)**  
+**[Issue: Issue 441099:
+ Bad-cast to const Operator1<v8::internal::Unique<v8::internal::Object> > from v8::internal::compiler::Operator1<v8::internal::Unique<v8::internal::HeapObject>, std::equal_to<v8::internal::Unique<v8::internal::HeapObject> >, v8::base::hash<v8::internal::Unique<v8::internal::HeapObject> > >;operator.h:172:10](https://crbug.com/441099)**  
 **[Commit: More -fsanitize=vptr fixes.](https://chromium.googlesource.com/v8/v8/+/cbf3b0b)**  
   
 Date(Commit): Tue Dec 16 14:20:28 2014  
@@ -223,7 +229,8 @@ var i64Math = (function() { // Emscripten wrapper
 
 ## **regress-3756.js (v8 issue)**  
    
-**[Issue: Regexps: \u as identity escape behaves differently depending on whether it's at the end of the regexp or not](https://crbug.com/v8/3756)**  
+**[Issue: Issue 3756:
+ Regexps: \u as identity escape behaves differently depending on whether it's at the end of the regexp or not](https://crbug.com/v8/3756)**  
 **[Commit: RegExpParser: Fix Reset()ting to the end.](https://chromium.googlesource.com/v8/v8/+/978f41a)**  
   
 Date(Commit): Tue Dec 16 12:14:19 2014  
@@ -394,7 +401,8 @@ assertThrows(bug2);
 
 ## **regress-439743.js (chromium issue)**  
    
-**[Issue: Asm.js-based BPG decoder broken in recent Chrome builds](https://crbug.com/439743)**  
+**[Issue: Issue 439743:
+ Asm.js-based BPG decoder broken in recent Chrome builds](https://crbug.com/439743)**  
 **[Commit: [x86] Disable invalid checked load/store optimization.](https://chromium.googlesource.com/v8/v8/+/48a6766)**  
   
 Date(Commit): Tue Dec 09 14:16:34 2014  
@@ -428,7 +436,8 @@ assertEquals(-4, foo(-4));
 
 ## **regress-3741.js (v8 issue)**  
    
-**[Issue: Deopt problems in ES6](https://crbug.com/v8/3741)**  
+**[Issue: Issue 3741:
+ Deopt problems in ES6](https://crbug.com/v8/3741)**  
 **[Commit: Fix the order of context binding/simulate insertion for BlockContexts.](https://chromium.googlesource.com/v8/v8/+/bd04e6c)**  
   
 Date(Commit): Fri Dec 05 13:06:50 2014  
@@ -468,7 +477,8 @@ f24({});
 
 ## **regress-437765.js (chromium issue)**  
    
-**[Issue: Fatal error in ../../v8/src/lithium-codegen.cc,](https://crbug.com/437765)**  
+**[Issue: Issue 437765:
+ Fatal error in ../../v8/src/lithium-codegen.cc,](https://crbug.com/437765)**  
 **[Commit: Fixed environment handling for LFlooringDivI on ARM.](https://chromium.googlesource.com/v8/v8/+/c16b8f6)**  
   
 Date(Commit): Tue Dec 02 13:47:19 2014  
@@ -504,7 +514,8 @@ baz();
 
 ## **regress-crbug-436820.js (chromium issue)**  
    
-**[Issue: CHECK(value->IsMutableHeapNumber()) failed: ../../v8/src/objects.cc(2135)](https://crbug.com/436820)**  
+**[Issue: Issue 436820:
+ CHECK(value->IsMutableHeapNumber()) failed: ../../v8/src/objects.cc(2135)](https://crbug.com/436820)**  
 **[Commit: Map::CopyGeneralizeAllRepresentations() left incorrect layout descriptor in a new map.](https://chromium.googlesource.com/v8/v8/+/1a2e4b2)**  
   
 Date(Commit): Wed Nov 26 17:37:05 2014  
@@ -531,7 +542,8 @@ Object.defineProperty(p, "x", { writable: false });
 
 ## **regress-436893.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!info()->shared_info()->optimization_disabled()) failed: ../../v8/src](https://crbug.com/436893)**  
+**[Issue: Issue 436893:
+ CHECK failure in CHECK(!info()->shared_info()->optimization_disabled()) failed: ../../v8/src](https://crbug.com/436893)**  
 **[Commit: Abort optimization in corner case.](https://chromium.googlesource.com/v8/v8/+/9da4998)**  
   
 Date(Commit): Wed Nov 26 16:57:52 2014  
@@ -559,7 +571,8 @@ assertThrows(g);
 
 ## **regress-410030.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject())) fa](https://crbug.com/410030)**  
+**[Issue: Issue 410030:
+ CHECK failure in CHECK(!v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject())) fa](https://crbug.com/410030)**  
 **[Commit: Introduce legacy const slots in correct context.](https://chromium.googlesource.com/v8/v8/+/626f110)**  
   
 Date(Commit): Wed Nov 26 12:16:30 2014  
@@ -618,7 +631,8 @@ try {
 
 ## **regress-2858.js (v8 issue)**  
    
-**[Issue: v8 --harmony fails on redeclaration (var) of exception variable](https://crbug.com/v8/2858)**  
+**[Issue: Issue 2858:
+ v8 --harmony fails on redeclaration (var) of exception variable](https://crbug.com/v8/2858)**  
 **[Commit: harmony-scoping: Catch variable should be VAR, not LET](https://chromium.googlesource.com/v8/v8/+/f1d8668)**  
   
 Date(Commit): Tue Nov 25 14:48:39 2014  
@@ -688,7 +702,8 @@ assertEquals(8, f(1, 2, 3));
 
 ## **regress-crbug-435825.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::String::length](https://crbug.com/435825)**  
+**[Issue: Issue 435825:
+ UNKNOWN in v8::internal::String::length](https://crbug.com/435825)**  
 **[Commit: Fix RegExp.source for uncompiled regexp.](https://chromium.googlesource.com/v8/v8/+/14a3b91)**  
   
 Date(Commit): Mon Nov 24 11:21:52 2014  
@@ -715,7 +730,8 @@ try {
 
 ## **regress-3229.js (v8 issue)**  
    
-**[Issue: Slashes in regex.source should be escaped](https://crbug.com/v8/3229)**  
+**[Issue: Issue 3229:
+ Slashes in regex.source should be escaped](https://crbug.com/v8/3229)**  
 **[Commit: Correctly escape RegExp source.](https://chromium.googlesource.com/v8/v8/+/61bee5c)**  
   
 Date(Commit): Fri Nov 21 10:50:24 2014  
@@ -757,7 +773,8 @@ testEscapes("\\/\\/", r);
 
 ## **regress-435477.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!map->IsStringMap()) failed: ../../v8/src/hydrogen.cc(7109)](https://crbug.com/435477)**  
+**[Issue: Issue 435477:
+ CHECK failure in CHECK(!map->IsStringMap()) failed: ../../v8/src/hydrogen.cc(7109)](https://crbug.com/435477)**  
 **[Commit: Assert to protect against polymorphic string loads fires on valid stores.](https://chromium.googlesource.com/v8/v8/+/cf57269)**  
   
 Date(Commit): Fri Nov 21 10:29:08 2014  
@@ -788,7 +805,8 @@ f(a, 0);
 
 ## **regress-435073.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(p->IsSmi()) failed: ../../v8/src/objects-debug.cc(32)](https://crbug.com/435073)**  
+**[Issue: Issue 435073:
+ CHECK failure in CHECK(p->IsSmi()) failed: ../../v8/src/objects-debug.cc(32)](https://crbug.com/435073)**  
 **[Commit: Fix for 435073: CHECK failure in CHECK(p->IsSmi()) failed.](https://chromium.googlesource.com/v8/v8/+/3d58b82a)**  
   
 Date(Commit): Fri Nov 21 10:14:19 2014  
@@ -816,7 +834,8 @@ test(0);
 
 ## **regress-3709.js (v8 issue)**  
    
-**[Issue: unexpected deoptimization due to fn.apply(this, arguments);](https://crbug.com/v8/3709)**  
+**[Issue: Issue 3709:
+ unexpected deoptimization due to fn.apply(this, arguments);](https://crbug.com/v8/3709)**  
 **[Commit: Do not bailout from optimizing functions that use f(x, arguments)](https://chromium.googlesource.com/v8/v8/+/dc88962)**  
   
 Date(Commit): Thu Nov 20 17:07:44 2014  
@@ -861,7 +880,8 @@ assertUnoptimized(foo);
 
 ## **regress-crbug-433332.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(lower->Is(upper)) failed: ../../v8/src/types.h(1025)](https://crbug.com/433332)**  
+**[Issue: Issue 433332:
+ CHECK failure in CHECK(lower->Is(upper)) failed: ../../v8/src/types.h(1025)](https://crbug.com/433332)**  
 **[Commit: Fix lower bound violation](https://chromium.googlesource.com/v8/v8/+/4f63564)**  
   
 Date(Commit): Thu Nov 20 11:22:49 2014  
@@ -891,7 +911,8 @@ f(1.4);
 
 ## **regress-crbug-433766.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(entry.is_valid()) failed: ../../v8/src/parser.cc(3823)](https://crbug.com/433766)**  
+**[Issue: Issue 433766:
+ CHECK failure in CHECK(entry.is_valid()) failed: ../../v8/src/parser.cc(3823)](https://crbug.com/433766)**  
 **[Commit: Fix one more missing c0_ < 0 check in scanner](https://chromium.googlesource.com/v8/v8/+/bf22724)**  
   
 Date(Commit): Mon Nov 17 09:43:31 2014  
@@ -946,7 +967,8 @@ assertEquals(-2, f(-1));
 
 ## **regress-3683.js (v8 issue)**  
    
-**[Issue: C-style for-let can't handle continue](https://crbug.com/v8/3683)**  
+**[Issue: Issue 3683:
+ C-style for-let can't handle continue](https://crbug.com/v8/3683)**  
 **[Commit: Fix desugaring of let bindings in for loops to handle continue properly](https://chromium.googlesource.com/v8/v8/+/b17eaaa)**  
   
 Date(Commit): Fri Nov 14 19:33:23 2014  
@@ -1036,7 +1058,8 @@ assertEquals(20, count);
 
 ## **regress-3687.js (v8 issue)**  
    
-**[Issue: Crash in GeneralizeRepresentation](https://crbug.com/v8/3687)**  
+**[Issue: Issue 3687:
+ Crash in GeneralizeRepresentation](https://crbug.com/v8/3687)**  
 **[Commit: Avoid fast short-cut in Map::GeneralizeRepresentation() for literals with non-simple transitions.](https://chromium.googlesource.com/v8/v8/+/bc8c41c)**  
   
 Date(Commit): Thu Nov 13 10:56:31 2014  
@@ -1101,7 +1124,8 @@ f();
 
 ## **regress-crbug-109362.js (chromium issue)**  
    
-**[Issue: Line number mismatch in functions created with Function constructor](https://crbug.com/109362)**  
+**[Issue: Issue 109362:
+ Line number mismatch in functions created with Function constructor](https://crbug.com/109362)**  
 **[Commit: Correctly compute line numbers in functions from the function constructor.](https://chromium.googlesource.com/v8/v8/+/1dbd636)**  
   
 Date(Commit): Wed Nov 12 10:06:47 2014  
@@ -1180,7 +1204,8 @@ test("2:6", eval(
 
 ## **regress-crbug-431602.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::RootMarkingVisitor::MarkObjectByPointer](https://crbug.com/431602)**  
+**[Issue: Issue 431602:
+ UNKNOWN in v8::internal::RootMarkingVisitor::MarkObjectByPointer](https://crbug.com/431602)**  
 **[Commit: Fix has_constant_parameter_count() confusion in LReturn](https://chromium.googlesource.com/v8/v8/+/d3b68cf)**  
   
 Date(Commit): Mon Nov 10 15:25:50 2014  
@@ -1280,7 +1305,8 @@ Module().f();
 
 ## **regress-crbug-430846.js (chromium issue)**  
    
-**[Issue: Hangouts fails on Linux Debug after V8 roll.](https://crbug.com/430846)**  
+**[Issue: Issue 430846:
+ Hangouts fails on Linux Debug after V8 roll.](https://crbug.com/430846)**  
 **[Commit: Fix for an assertion failure in Map::FindTransitionToField(...). Appeared after r25136.](https://chromium.googlesource.com/v8/v8/+/e1f93a8)**  
   
 Date(Commit): Thu Nov 06 11:50:33 2014  
@@ -1339,7 +1365,8 @@ assertEquals(2,
 
 ## **regress-3483.js (v8 issue)**  
    
-**[Issue: `1..isPrototypeOf.call(null)` should return false, not throw TypeError.](https://crbug.com/v8/3483)**  
+**[Issue: Issue 3483:
+ `1..isPrototypeOf.call(null)` should return false, not throw TypeError.](https://crbug.com/v8/3483)**  
 **[Commit: `1..isPrototypeOf.call(null)` should return false, not throw TypeError.](https://chromium.googlesource.com/v8/v8/+/357882a)**  
   
 Date(Commit): Tue Nov 04 16:14:18 2014  
@@ -1393,7 +1420,8 @@ try { f(); } catch (e) {}
 
 ## **regress-crbug-429159.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(stack_height() > 0) failed: .././src/compiler/ast-graph-builder.h(252](https://crbug.com/429159)**  
+**[Issue: Issue 429159:
+ CHECK failure in CHECK(stack_height() > 0) failed: .././src/compiler/ast-graph-builder.h(252](https://crbug.com/429159)**  
 **[Commit: Properly handle stack overflows in the AST graph builder.](https://chromium.googlesource.com/v8/v8/+/cd3273b)**  
   
 Date(Commit): Fri Oct 31 14:02:46 2014  
@@ -1459,7 +1487,8 @@ Regress: [mjsunit/regress/regress-eval-cache.js](https://chromium.googlesource.c
 
 ## **regress-3643.js (v8 issue)**  
    
-**[Issue: Array.prototype.slice calls [[Get]] before [[Has]] when generating result array](https://crbug.com/v8/3643)**  
+**[Issue: Issue 3643:
+ Array.prototype.slice calls [[Get]] before [[Has]] when generating result array](https://crbug.com/v8/3643)**  
 **[Commit: SimpleSlice now calls [[Get]] before [[Has]] when generating copy](https://chromium.googlesource.com/v8/v8/+/c9ea8d6)**  
   
 Date(Commit): Fri Oct 24 18:08:13 2014  
@@ -1583,7 +1612,8 @@ assertEquals(9982, f(1));
 
 ## **regress-crbug-423687.js (chromium issue)**  
    
-**[Issue: JSON.parse sometimes crashes chrome 38 ('Aw, snap')](https://crbug.com/423687)**  
+**[Issue: Issue 423687:
+ JSON.parse sometimes crashes chrome 38 ('Aw, snap')](https://crbug.com/423687)**  
 **[Commit: Fixed mutable heap numbers leak in JSON parser.](https://chromium.googlesource.com/v8/v8/+/5509cc2)**  
   
 Date(Commit): Thu Oct 23 14:41:39 2014  
@@ -1607,7 +1637,8 @@ data.b.c++;
 
 ## **regress-2506.js (v8 issue)**  
    
-**[Issue: Missing support for const in for-in loops](https://crbug.com/v8/2506)**  
+**[Issue: Issue 2506:
+ Missing support for const in for-in loops](https://crbug.com/v8/2506)**  
 **[Commit: harmony-scoping: Allow 'const' iteration variables in strict mode.](https://chromium.googlesource.com/v8/v8/+/b54f7d3)**  
   
 Date(Commit): Thu Oct 23 11:18:50 2014  
@@ -1699,7 +1730,8 @@ assertThrows("'use strict'; for (const x in [1,2,3]) { x++ }", TypeError);
 
 ## **regress-crbug-425585.js (chromium issue)**  
    
-**[Issue: Use-of-uninitialized-value in v8::internal::Decoder<v8::internal::Simulator>::DecodeBranchSystemException](https://crbug.com/425585)**  
+**[Issue: Issue 425585:
+ Use-of-uninitialized-value in v8::internal::Decoder<v8::internal::Simulator>::DecodeBranchSystemException](https://crbug.com/425585)**  
 **[Commit: ARM64: Fix stack manipulation.](https://chromium.googlesource.com/v8/v8/+/ecbfc43)**  
   
 Date(Commit): Wed Oct 22 18:24:20 2014  
@@ -1738,7 +1770,8 @@ test(100);
 
 ## **regress-425551.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK_EQ(TWO_BYTE, state_) failed: ../../v8/src/objects.h(8728)](https://crbug.com/425551)**  
+**[Issue: Issue 425551:
+ CHECK failure in CHECK_EQ(TWO_BYTE, state_) failed: ../../v8/src/objects.h(8728)](https://crbug.com/425551)**  
 **[Commit: Flatten the string in StringToDouble function.](https://chromium.googlesource.com/v8/v8/+/b664c12)**  
   
 Date(Commit): Wed Oct 22 08:19:05 2014  
@@ -1764,7 +1797,8 @@ assertEquals(1.499, array[/\u007d\u00fc\u0043/]);
 
 ## **regress-423633.js (chromium issue)**  
    
-**[Issue: Altering Array prototype breaks slice and splice](https://crbug.com/423633)**  
+**[Issue: Issue 423633:
+ Altering Array prototype breaks slice and splice](https://crbug.com/423633)**  
 **[Commit: Array.prototype.{slice,splice} should use [[DefineOwnProperty]] to generate return value](https://chromium.googlesource.com/v8/v8/+/b6d0113)**  
   
 Date(Commit): Tue Oct 21 17:46:42 2014  
@@ -1796,7 +1830,8 @@ assertEquals([3], Array.prototype.splice.call(a, 2, 1));
 
 ## **regress-crbug-425519.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::HEnvironment::Pop](https://crbug.com/425519)**  
+**[Issue: Issue 425519:
+ UNKNOWN in v8::internal::HEnvironment::Pop](https://crbug.com/425519)**  
 **[Commit: The issue is that by handling strings with map/handler pairs instead of a special](https://chromium.googlesource.com/v8/v8/+/8330178)**  
   
 Date(Commit): Tue Oct 21 13:04:51 2014  
@@ -1825,7 +1860,8 @@ load([], 0);
 
 ## **regress-2615.js (v8 issue)**  
    
-**[Issue: Non-compliant behavior in array functions at MaxUInt32 boundary](https://crbug.com/v8/2615)**  
+**[Issue: Issue 2615:
+ Non-compliant behavior in array functions at MaxUInt32 boundary](https://crbug.com/v8/2615)**  
 **[Commit: Remove SmartMove, bringing Array methods further into spec compliance](https://chromium.googlesource.com/v8/v8/+/bb885a7)**  
   
 Date(Commit): Wed Oct 15 23:36:58 2014  
@@ -1981,7 +2017,8 @@ assertEquals(10, calls);
 
 ## **regress-3621.js (v8 issue)**  
    
-**[Issue: Sparse variants of Array.prototype.join does not handle side-effects due to getters](https://crbug.com/v8/3621)**  
+**[Issue: Issue 3621:
+ Sparse variants of Array.prototype.join does not handle side-effects due to getters](https://crbug.com/v8/3621)**  
 **[Commit: Add test case for SparseJoin misbehavior with getters](https://chromium.googlesource.com/v8/v8/+/9595c61)**  
   
 Date(Commit): Fri Oct 10 17:17:00 2014  
@@ -2006,7 +2043,8 @@ assertEquals('1,2,', a.join().slice(0, 4));
 
 ## **regress-3116.js (v8 issue)**  
    
-**[Issue: Date behavior incorrect in Sao Paulo on Sat Oct 18 2014 00:00:00 GMT-0300](https://crbug.com/v8/3116)**  
+**[Issue: Issue 3116:
+ Date behavior incorrect in Sao Paulo on Sat Oct 18 2014 00:00:00 GMT-0300](https://crbug.com/v8/3116)**  
 **[Commit: Fix computation of UTC time from local time at DST change points.](https://chromium.googlesource.com/v8/v8/+/29296d7)**  
   
 Date(Commit): Thu Oct 09 14:17:33 2014  
@@ -2335,7 +2373,8 @@ if (timezone("PST")) {
 
 ## **regress-3612.js (v8 issue)**  
    
-**[Issue: Sparse variant of Array.prototype.reverse does not handle side-effects due to getters/setters](https://crbug.com/v8/3612)**  
+**[Issue: Issue 3612:
+ Sparse variant of Array.prototype.reverse does not handle side-effects due to getters/setters](https://crbug.com/v8/3612)**  
 **[Commit: Add test case demonstrating bug in SparseReverse when combined with getters/setters](https://chromium.googlesource.com/v8/v8/+/a0f80ed)**  
   
 Date(Commit): Tue Oct 07 19:22:44 2014  
@@ -2413,7 +2452,8 @@ try { bar(obj2); } catch(e) {}
 
 ## **regress-416730.js (chromium issue)**  
    
-**[Issue: Aw Snap on WebGL site http://immense-escarpment-6268.herokuapp.com/](https://crbug.com/416730)**  
+**[Issue: Issue 416730:
+ Aw Snap on WebGL site http://immense-escarpment-6268.herokuapp.com/](https://crbug.com/416730)**  
 **[Commit: Disable merging simulates across captured objects.](https://chromium.googlesource.com/v8/v8/+/b11c925)**  
   
 Date(Commit): Thu Sep 25 12:16:32 2014  
@@ -2451,7 +2491,8 @@ Crash({x: 0, y: 0.5}, b);
 
 ## **regress-crbug-416558.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Map::instance_type](https://crbug.com/416558)**  
+**[Issue: Issue 416558:
+ UNKNOWN in v8::internal::Map::instance_type](https://crbug.com/416558)**  
 **[Commit: Non-JSArrays must always have holey elements.](https://chromium.googlesource.com/v8/v8/+/1903e56)**  
   
 Date(Commit): Thu Sep 25 08:25:25 2014  
@@ -2585,7 +2626,8 @@ Regress: [mjsunit/regress/regress-crbug-416558.js](https://chromium.googlesource
 
 ## **regress-416416.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!root->IsNull()) failed: ../../v8/src/lookup.cc(49)](https://crbug.com/416416)**  
+**[Issue: Issue 416416:
+ CHECK failure in CHECK(!root->IsNull()) failed: ../../v8/src/lookup.cc(49)](https://crbug.com/416416)**  
 **[Commit: Fix IC cache confusion on String.prototype.length](https://chromium.googlesource.com/v8/v8/+/b0b5907)**  
   
 Date(Commit): Wed Sep 24 09:33:04 2014  
@@ -2634,7 +2676,8 @@ assertEquals(100, o[0]);
 
 ## **regress-3564.js (v8 issue)**  
    
-**[Issue: String comparison in TurboFan is borked](https://crbug.com/v8/3564)**  
+**[Issue: Issue 3564:
+ String comparison in TurboFan is borked](https://crbug.com/v8/3564)**  
 **[Commit: Fix typed lowering to number comparison.](https://chromium.googlesource.com/v8/v8/+/429924b)**  
   
 Date(Commit): Tue Sep 16 11:33:30 2014  
@@ -2671,7 +2714,8 @@ f();
 
 ## **regress-crbug-412215.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(value->IsHeapObject()) failed: ../../v8/src/objects-debug.cc(271)](https://crbug.com/412215)**  
+**[Issue: Issue 412215:
+ CHECK failure in CHECK(value->IsHeapObject()) failed: ../../v8/src/objects-debug.cc(271)](https://crbug.com/412215)**  
 **[Commit: Fix Smi vs. HeapObject confusion in HConstants.](https://chromium.googlesource.com/v8/v8/+/b4375b7)**  
   
 Date(Commit): Fri Sep 12 08:44:14 2014  
@@ -2718,7 +2762,8 @@ g(x);
 
 ## **regress-crbug-412210.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(right_type->Is(Type::String())) failed: ../../v8/src/hydrogen.cc(1028](https://crbug.com/412210)**  
+**[Issue: Issue 412210:
+ CHECK failure in CHECK(right_type->Is(Type::String())) failed: ../../v8/src/hydrogen.cc(1028](https://crbug.com/412210)**  
 **[Commit: Fix inaccurate type condition in Hydrogen](https://chromium.googlesource.com/v8/v8/+/fc71f7f)**  
   
 Date(Commit): Thu Sep 11 12:13:34 2014  
@@ -2744,7 +2789,8 @@ f();
 
 ## **regress-crbug-412203.js (chromium issue)**  
    
-**[Issue: Unreachable code in ../../v8/src/runtime.cc(10277)](https://crbug.com/412203)**  
+**[Issue: Issue 412203:
+ Unreachable code in ../../v8/src/runtime.cc(10277)](https://crbug.com/412203)**  
 **[Commit: Fix ElementsKind handling of prototypes in Array.concat](https://chromium.googlesource.com/v8/v8/+/11f7584)**  
   
 Date(Commit): Thu Sep 11 10:04:13 2014  
@@ -2793,7 +2839,8 @@ foo(2, 3, 4);
 
 ## **regress-crbug-412319.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(receiver_map->is_extensible()) failed: ../../v8/src/hydrogen.cc(8293)](https://crbug.com/412319)**  
+**[Issue: Issue 412319:
+ CHECK failure in CHECK(receiver_map->is_extensible()) failed: ../../v8/src/hydrogen.cc(8293)](https://crbug.com/412319)**  
 **[Commit: Don't inline Array functions if receiver map is not extensible.](https://chromium.googlesource.com/v8/v8/+/d66ed11)**  
   
 Date(Commit): Wed Sep 10 09:22:13 2014  
@@ -2826,7 +2873,8 @@ function __f_7(__v_7) {
 
 ## **regress-411210.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(start <= end) failed: ../../v8/src/heap/spaces.cc(1722)](https://crbug.com/411210)**  
+**[Issue: Issue 411210:
+ CHECK failure in CHECK(start <= end) failed: ../../v8/src/heap/spaces.cc(1722)](https://crbug.com/411210)**  
 **[Commit: Remove guard page mechanism from promotion queue.](https://chromium.googlesource.com/v8/v8/+/ed37edc)**  
   
 Date(Commit): Wed Sep 10 07:51:29 2014  
@@ -2865,7 +2913,8 @@ catch (e) { }
 
 ## **regress-412162.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Handle<v8::internal::Object>::operator*](https://crbug.com/412162)**  
+**[Issue: Issue 412162:
+ UNKNOWN in v8::internal::Handle<v8::internal::Object>::operator*](https://crbug.com/412162)**  
 **[Commit: Handle non-object constants in HConstant::GetMonomorphicJSObjectMap.](https://chromium.googlesource.com/v8/v8/+/01d63e4)**  
   
 Date(Commit): Tue Sep 09 12:58:34 2014  
@@ -2893,7 +2942,8 @@ test();
 
 ## **regress-crbug-412208.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(ast_context()->IsEffect()) failed: ../../v8/src/hydrogen.cc(6760)](https://crbug.com/412208)**  
+**[Issue: Issue 412208:
+ CHECK failure in CHECK(ast_context()->IsEffect()) failed: ../../v8/src/hydrogen.cc(6760)](https://crbug.com/412208)**  
 **[Commit: Hydrogen: bailout when there is a throw statement in a non-effect context.](https://chromium.googlesource.com/v8/v8/+/fd3e505)**  
   
 Date(Commit): Tue Sep 09 12:16:33 2014  
@@ -2923,7 +2973,8 @@ assertTrue(f());
 
 ## **regress-411262.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(function->code()->kind() == Code::FUNCTION || function->code()->kind(](https://crbug.com/411262)**  
+**[Issue: Issue 411262:
+ CHECK failure in CHECK(function->code()->kind() == Code::FUNCTION || function->code()->kind(](https://crbug.com/411262)**  
 **[Commit: Fix more fallout from making OptimizeFunctionOnNextCall work as advertised.](https://chromium.googlesource.com/v8/v8/+/4c53bb0)**  
   
 Date(Commit): Fri Sep 05 15:31:33 2014  
@@ -2952,7 +3003,8 @@ f();
 
 ## **regress-411237.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK_EQ(FUNCTION, kind()) failed: ../../v8/src/objects-inl.h(4701)](https://crbug.com/411237)**  
+**[Issue: Issue 411237:
+ CHECK failure in CHECK_EQ(FUNCTION, kind()) failed: ../../v8/src/objects-inl.h(4701)](https://crbug.com/411237)**  
 **[Commit: Harden OptimizeFunctionOnNextCall.](https://chromium.googlesource.com/v8/v8/+/83af12c)**  
   
 Date(Commit): Fri Sep 05 15:13:44 2014  
@@ -3009,7 +3061,8 @@ assertEquals(undefined, o[1]);
 
 ## **regress-410912.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::MemoryChunk::IsFlagSet](https://crbug.com/410912)**  
+**[Issue: Issue 410912:
+ UNKNOWN in v8::internal::MemoryChunk::IsFlagSet](https://crbug.com/410912)**  
 **[Commit: Fix EvacuateJSFunction to obtain the target address from the forwarding pointer.](https://chromium.googlesource.com/v8/v8/+/b74fae5)**  
   
 Date(Commit): Fri Sep 05 09:38:04 2014  
@@ -3229,7 +3282,8 @@ __f_18();
 
 ## **regress-crbug-407946.js (chromium issue)**  
    
-**[Issue: array indexOf unreliable](https://crbug.com/407946)**  
+**[Issue: Issue 407946:
+ array indexOf unreliable](https://crbug.com/407946)**  
 **[Commit: Enforce correct number comparisons when inlining Array.indexOf.](https://chromium.googlesource.com/v8/v8/+/0baf275)**  
   
 Date(Commit): Thu Sep 04 12:25:57 2014  
@@ -3324,7 +3378,8 @@ assertEquals([{}, Infinity, Infinity, Infinity, Infinity], a);
 
 ## **regress-crbug-405517.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(receiver_map->is_extensible()) failed: ../../v8/src/hydrogen.cc(8338)](https://crbug.com/405517)**  
+**[Issue: Issue 405517:
+ CHECK failure in CHECK(receiver_map->is_extensible()) failed: ../../v8/src/hydrogen.cc(8338)](https://crbug.com/405517)**  
 **[Commit: Don't inline Array.shift() if receiver map is not extensible.](https://chromium.googlesource.com/v8/v8/+/0142786)**  
   
 Date(Commit): Thu Aug 21 06:23:44 2014  
@@ -3354,7 +3409,8 @@ f();
 
 ## **regress-404981.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!lo_space()->Contains(object)) failed: ../../v8/src/heap/heap.cc(3324](https://crbug.com/404981)**  
+**[Issue: Issue 404981:
+ CHECK failure in CHECK(!lo_space()->Contains(object)) failed: ../../v8/src/heap/heap.cc(3324](https://crbug.com/404981)**  
 **[Commit: Do not install fillers when right trimming large objects.](https://chromium.googlesource.com/v8/v8/+/91599ff)**  
   
 Date(Commit): Tue Aug 19 08:35:39 2014  
@@ -3376,7 +3432,8 @@ large_object.length = 23;
 
 ## **regress-crbug-403409.js (chromium issue)**  
    
-**[Issue: V8 Runtime_ArrayConcat uninitialized memory leak](https://crbug.com/403409)**  
+**[Issue: Issue 403409:
+ V8 Runtime_ArrayConcat uninitialized memory leak](https://crbug.com/403409)**  
 **[Commit: Correctly handle holes when concat()ing double arrays](https://chromium.googlesource.com/v8/v8/+/dacca11)**  
   
 Date(Commit): Mon Aug 18 08:51:35 2014  
@@ -3410,7 +3467,8 @@ for (var j = 1; j < kElements; j++) {
 
 ## **regress-3476.js (v8 issue)**  
    
-**[Issue: String addition in Crankshaft is borked](https://crbug.com/v8/3476)**  
+**[Issue: Issue 3476:
+ String addition in Crankshaft is borked](https://crbug.com/v8/3476)**  
 **[Commit: Fix handling of potential string additions in hydrogen.](https://chromium.googlesource.com/v8/v8/+/57c315d)**  
   
 Date(Commit): Tue Jul 29 14:53:11 2014  
@@ -3501,7 +3559,8 @@ assertEquals(4, a.length);
 
 ## **regress-3462.js (v8 issue)**  
    
-**[Issue: FunctionPrototypeSetter is not correct](https://crbug.com/v8/3462)**  
+**[Issue: Issue 3462:
+ FunctionPrototypeSetter is not correct](https://crbug.com/v8/3462)**  
 **[Commit: Fix issue with setters and their holders in accessors.cc](https://chromium.googlesource.com/v8/v8/+/77a37e4)**  
   
 Date(Commit): Thu Jul 24 16:42:54 2014  
@@ -3587,7 +3646,8 @@ o.length = 'abc';
 
 ## **regress-3456.js (v8 issue)**  
    
-**[Issue: Prefix operation parsing broken](https://crbug.com/v8/3456)**  
+**[Issue: Issue 3456:
+ Prefix operation parsing broken](https://crbug.com/v8/3456)**  
 **[Commit: Fix checks to bit flags of PreParserExpression](https://chromium.googlesource.com/v8/v8/+/b5220b2)**  
   
 Date(Commit): Wed Jul 23 13:29:24 2014  
@@ -3627,7 +3687,8 @@ assertEquals(s.match(/\((').*\1\)/i), ["('')", "'"]);
 
 ## **regress-crbug-393988.js (chromium issue)**  
    
-**[Issue: TypeError: Cannot redefine property: stack](https://crbug.com/393988)**  
+**[Issue: Issue 393988:
+ TypeError: Cannot redefine property: stack](https://crbug.com/393988)**  
 **[Commit: Error.captureStackTrace should define "stack" property as configurable.](https://chromium.googlesource.com/v8/v8/+/49ae308)**  
   
 Date(Commit): Wed Jul 16 07:55:05 2014  
@@ -3651,7 +3712,8 @@ assertEquals(1, o.stack);
 
 ## **regress-381313.js (chromium issue)**  
    
-**[Issue: Feature request: Profile icon no longer displayed with Chrome(ium) Icon](https://crbug.com/381313)**  
+**[Issue: Issue 381313:
+ Feature request: Profile icon no longer displayed with Chrome(ium) Icon](https://crbug.com/381313)**  
 **[Commit: Fix arm64 deoptimization from double registers (reverts r20613).](https://chromium.googlesource.com/v8/v8/+/457de26)**  
   
 Date(Commit): Fri Jul 11 19:30:09 2014  
@@ -3707,7 +3769,8 @@ print(f(0.5, ""));
 
 ## **regress-3426.js (v8 issue)**  
    
-**[Issue: Redeclaration checking wrong for locally strict functions](https://crbug.com/v8/3426)**  
+**[Issue: Issue 3426:
+ Redeclaration checking wrong for locally strict functions](https://crbug.com/v8/3426)**  
 **[Commit: Fix several issues with ES6 redeclaration checks](https://chromium.googlesource.com/v8/v8/+/2375327)**  
   
 Date(Commit): Wed Jul 09 11:35:05 2014  
@@ -3788,7 +3851,8 @@ for (var i = 0; i < 10; i++) {
 
 ## **regress-crbug-390918.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK_EQ(map()->unused_property_fields(), (map()->inobject_properties() + p](https://crbug.com/390918)**  
+**[Issue: Issue 390918:
+ CHECK failure in CHECK_EQ(map()->unused_property_fields(), (map()->inobject_properties() + p](https://crbug.com/390918)**  
 **[Commit: One of the fast cases in JSObject::MigrateFastToFast() should not be taken if the number of fields did not change.](https://chromium.googlesource.com/v8/v8/+/2fba190)**  
   
 Date(Commit): Wed Jul 02 19:10:19 2014  
@@ -3821,7 +3885,8 @@ f(1004);
 
 ## **regress-3404.js (v8 issue)**  
    
-**[Issue: CaptureStackTrace's stack accessors reconfigure unconfigurable properties](https://crbug.com/v8/3404)**  
+**[Issue: Issue 3404:
+ CaptureStackTrace's stack accessors reconfigure unconfigurable properties](https://crbug.com/v8/3404)**  
 **[Commit: Fix stack trace accessor behavior.](https://chromium.googlesource.com/v8/v8/+/e1d80e2)**  
   
 Date(Commit): Mon Jun 30 11:48:20 2014  
@@ -3867,7 +3932,8 @@ testError(stackOverflow());
 
 ## **regress-crbug-387636.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!right->IsConstant() || (!HConstant::cast(right)->HasInteger32Value()](https://crbug.com/387636)**  
+**[Issue: Issue 387636:
+ CHECK failure in CHECK(!right->IsConstant() || (!HConstant::cast(right)->HasInteger32Value()](https://crbug.com/387636)**  
 **[Commit: Remove bogus assertions in HCompareObjectEqAndBranch.](https://chromium.googlesource.com/v8/v8/+/58bf19e)**  
   
 Date(Commit): Tue Jun 24 09:33:05 2014  
@@ -3895,7 +3961,8 @@ f();
 
 ## **regress-386034.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/386034)**  
+**[Issue: Issue 386034:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/386034)**  
 **[Commit: Add missing map check to optimized f.apply(...)](https://chromium.googlesource.com/v8/v8/+/e56faa9)**  
   
 Date(Commit): Mon Jun 23 05:50:06 2014  
@@ -3928,7 +3995,8 @@ assertThrows(function() { f('----'); }, TypeError);
 
 ## **regress-crbug-387031.js (chromium issue)**  
    
-**[Issue: Security: V8 Array length getter override](https://crbug.com/387031)**  
+**[Issue: Issue 387031:
+ Security: V8 Array length getter override](https://crbug.com/387031)**  
 **[Commit: Array.concat: properly go to dictionary mode when required](https://chromium.googlesource.com/v8/v8/+/1d35d6d)**  
   
 Date(Commit): Fri Jun 20 15:40:21 2014  
@@ -3957,7 +4025,8 @@ for (var i = 0; i < 20; i++) {
 
 ## **regress-crbug-385002.js (chromium issue)**  
    
-**[Issue: Heap-buffer-overflow in v8::internal::Simulator::HandleRList](https://crbug.com/385002)**  
+**[Issue: Issue 385002:
+ Heap-buffer-overflow in v8::internal::Simulator::HandleRList](https://crbug.com/385002)**  
 **[Commit: Interrupts must not mask stack overflow.](https://chromium.googlesource.com/v8/v8/+/11368af)**  
   
 Date(Commit): Tue Jun 17 13:54:49 2014  
@@ -3990,7 +4059,8 @@ assertThrows("g()", RangeError);
 
 ## **regress-385054.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/385054)**  
+**[Issue: Issue 385054:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/385054)**  
 **[Commit: Do not eliminate bounds checks for "<const> - x".](https://chromium.googlesource.com/v8/v8/+/f69bb7f)**  
   
 Date(Commit): Mon Jun 16 13:43:50 2014  
@@ -4020,7 +4090,8 @@ assertEquals(undefined, f(1));
 
 ## **regress-3392.js (v8 issue)**  
    
-**[Issue: Miscompilation of numeric comparison](https://crbug.com/v8/3392)**  
+**[Issue: Issue 3392:
+ Miscompilation of numeric comparison](https://crbug.com/v8/3392)**  
 **[Commit: Fix representation of Phis for mutable-heapnumber-in-object-literal properties](https://chromium.googlesource.com/v8/v8/+/aae24ae)**  
   
 Date(Commit): Mon Jun 16 08:41:29 2014  
@@ -4090,7 +4161,8 @@ assertEquals(a2.id, f(obj, a2).id);
 
 ## **regress-3380.js (v8 issue)**  
    
-**[Issue: Bug with x64](https://crbug.com/v8/3380)**  
+**[Issue: Issue 3380:
+ Bug with x64](https://crbug.com/v8/3380)**  
 **[Commit: Fix unsigned comparisons.](https://chromium.googlesource.com/v8/v8/+/2931f09)**  
   
 Date(Commit): Wed Jun 11 09:09:15 2014  
@@ -4123,7 +4195,8 @@ assertTrue(foo(b))
 
 ## **regress-crbug-382143.js (chromium issue)**  
    
-**[Issue: [REGRESSION] Methods become non-enumerable if first introduced via a parent constructor that defines a property](https://crbug.com/382143)**  
+**[Issue: Issue 382143:
+ [REGRESSION] Methods become non-enumerable if first introduced via a parent constructor that defines a property](https://crbug.com/382143)**  
 **[Commit: Fix invalid attributes when generalizing because of incompatible map change.](https://chromium.googlesource.com/v8/v8/+/0fcd891)**  
   
 Date(Commit): Tue Jun 10 12:24:54 2014  
@@ -4156,7 +4229,8 @@ assertTrue(Object.getOwnPropertyDescriptor(b, "a").enumerable);
 
 ## **regress-crbug-381534.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/381534)**  
+**[Issue: Issue 381534:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/381534)**  
 **[Commit: Bugfix in inlined versions of Array.indexOf() and Array.lastIndexOf() with a regression test.](https://chromium.googlesource.com/v8/v8/+/6dc967e)**  
   
 Date(Commit): Tue Jun 10 09:01:45 2014  
@@ -4211,7 +4285,8 @@ g(0, 1.1, 1);
 
 ## **regress-crbug-382513.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Simulator::DecodeType2](https://crbug.com/382513)**  
+**[Issue: Issue 382513:
+ UNKNOWN in v8::internal::Simulator::DecodeType2](https://crbug.com/382513)**  
 **[Commit: Fix missing smi check in inlined indexOf/lastIndexOf.](https://chromium.googlesource.com/v8/v8/+/7eea77b)**  
   
 Date(Commit): Tue Jun 10 04:26:15 2014  
@@ -4236,7 +4311,8 @@ foo();
 
 ## **regress-380092.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(is_valid(value)) failed: ../../v8/src/utils.h(261)](https://crbug.com/380092)**  
+**[Issue: Issue 380092:
+ CHECK failure in CHECK(is_valid(value)) failed: ../../v8/src/utils.h(261)](https://crbug.com/380092)**  
 **[Commit: Clusterfuzz identified overflow check needed in dehoisting.](https://chromium.googlesource.com/v8/v8/+/7d2d083)**  
   
 Date(Commit): Fri Jun 06 09:12:16 2014  
@@ -4273,7 +4349,8 @@ constant_too_large(obj, 5);
 
 ## **regress-crbug-380512.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/380512)**  
+**[Issue: Issue 380512:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/380512)**  
 **[Commit: Fix invalid loop condition for Array.lastIndexOf().](https://chromium.googlesource.com/v8/v8/+/9244429)**  
   
 Date(Commit): Wed Jun 04 08:21:39 2014  
@@ -4299,7 +4376,8 @@ f();
 
 ## **regress-379770.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK_EQ((static_cast<int>(loop_depth) <= loop_nesting_level), GetBackEdgeState(isolate, unoptimized](https://crbug.com/379770)**  
+**[Issue: Issue 379770:
+ CHECK failure in CHECK_EQ((static_cast<int>(loop_depth) <= loop_nesting_level), GetBackEdgeState(isolate, unoptimized](https://crbug.com/379770)**  
 **[Commit: When flag --nouse-osr is set, don't allow osr from hidden runtime calls.](https://chromium.googlesource.com/v8/v8/+/adeaedf)**  
   
 Date(Commit): Tue Jun 03 07:45:40 2014  
@@ -4337,7 +4415,8 @@ try {
 
 ## **regress-3359.js (v8 issue)**  
    
-**[Issue: Fatal error in LCodeGenBase::CheckEnvironmentUsage](https://crbug.com/v8/3359)**  
+**[Issue: Issue 3359:
+ Fatal error in LCodeGenBase::CheckEnvironmentUsage](https://crbug.com/v8/3359)**  
 **[Commit: HRor and HSar can deoptimize.](https://chromium.googlesource.com/v8/v8/+/5cd009a)**  
   
 Date(Commit): Fri May 30 16:12:25 2014  
@@ -4362,7 +4441,8 @@ assertEquals(1, f());
 
 ## **regress-3334.js (v8 issue)**  
    
-**[Issue: Object.defineProperty(fn,"prototype",{ value: .. , writable: false }) fails](https://crbug.com/v8/3334)**  
+**[Issue: Issue 3334:
+ Object.defineProperty(fn,"prototype",{ value: .. , writable: false }) fails](https://crbug.com/v8/3334)**  
 **[Commit: Changing the attributes of a data property implemented with](https://chromium.googlesource.com/v8/v8/+/8c54a37)**  
   
 Date(Commit): Wed May 28 09:58:27 2014  
@@ -4394,7 +4474,8 @@ assertEquals(false, Object.getOwnPropertyDescriptor(bar,"prototype").writable);
 
 ## **regress-377290.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Map::instance_type](https://crbug.com/377290)**  
+**[Issue: Issue 377290:
+ UNKNOWN in v8::internal::Map::instance_type](https://crbug.com/377290)**  
 **[Commit: Reland "Customized support for feedback on calls to Array." and follow-up fixes.](https://chromium.googlesource.com/v8/v8/+/d755611)**  
   
 Date(Commit): Mon May 26 13:59:24 2014  
@@ -4429,7 +4510,8 @@ for (var __v_6 = 0; __v_6 < 5; ++__v_6) {
 
 ## **regress-3307.js (v8 issue)**  
    
-**[Issue: Incorrect handling of mutable double boxes by allocation-sinking](https://crbug.com/v8/3307)**  
+**[Issue: Issue 3307:
+ Incorrect handling of mutable double boxes by allocation-sinking](https://crbug.com/v8/3307)**  
 **[Commit: Fix representation inference for mutable double boxes.](https://chromium.googlesource.com/v8/v8/+/cf448aa)**  
   
 Date(Commit): Fri May 23 14:02:08 2014  
@@ -4501,7 +4583,8 @@ assertEquals(1, foo());
 
 ## **regress-cr372788.js (chromium issue)**  
    
-**[Issue: Promises: should not cache results of thenables, only promises](https://crbug.com/372788)**  
+**[Issue: Issue 372788:
+ Promises: should not cache results of thenables, only promises](https://crbug.com/372788)**  
 **[Commit: Drop thenable coercion cache](https://chromium.googlesource.com/v8/v8/+/98849dd)**  
   
 Date(Commit): Wed May 14 10:44:34 2014  
@@ -4557,7 +4640,8 @@ for (var i = 0; i < 10000; i++) { a[i * 100] = 0; }
 
 ## **regress-370827.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(instance_type == CODE_TYPE) failed: ../../v8/src/objects-inl.h(3953)](https://crbug.com/370827)**  
+**[Issue: Issue 370827:
+ CHECK failure in CHECK(instance_type == CODE_TYPE) failed: ../../v8/src/objects-inl.h(3953)](https://crbug.com/370827)**  
 **[Commit: Make new space iterable for --log-gc and --heap-stats options](https://chromium.googlesource.com/v8/v8/+/3976ebe)**  
   
 Date(Commit): Fri May 09 09:23:10 2014  
@@ -4633,7 +4717,8 @@ foo({}, c);
 
 ## **regress-370384.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(is_int8(disp)) failed: ../../v8/src/x64/assembler-x64.cc(346)](https://crbug.com/370384)**  
+**[Issue: Issue 370384:
+ CHECK failure in CHECK(is_int8(disp)) failed: ../../v8/src/x64/assembler-x64.cc(346)](https://crbug.com/370384)**  
 **[Commit: Fixed jump in non-SSE4.1 implementation of LMathFloor instruction on x64.](https://chromium.googlesource.com/v8/v8/+/9be0c4d)**  
   
 Date(Commit): Tue May 06 14:20:46 2014  
@@ -4663,7 +4748,8 @@ g(Math.sin, 6.283185307179586, "Math.sin");
 
 ## **regress-369450.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!v8::internal::FLAG_enable_slow_asserts || (object->IsFixedDoubleArray())) failed: ../../v8/sr](https://crbug.com/369450)**  
+**[Issue: Issue 369450:
+ CHECK failure in CHECK(!v8::internal::FLAG_enable_slow_asserts || (object->IsFixedDoubleArray())) failed: ../../v8/sr](https://crbug.com/369450)**  
 **[Commit: Checks for empty array case added before casting elements to FixedDoubleArray.](https://chromium.googlesource.com/v8/v8/+/b4c1eda)**  
   
 Date(Commit): Fri May 02 11:30:24 2014  
@@ -4693,7 +4779,8 @@ assertEquals([{}, 2.3], arr);
 
 ## **regress-362870.js (chromium issue)**  
    
-**[Issue: IE Popcorn benchmark slow due to rasterization and time-in-js](https://crbug.com/362870)**  
+**[Issue: Issue 362870:
+ IE Popcorn benchmark slow due to rasterization and time-in-js](https://crbug.com/362870)**  
 **[Commit: Object.defineProperty shouldn't be a hint that we're constructing a dictionary.](https://chromium.googlesource.com/v8/v8/+/7bfc426)**  
   
 Date(Commit): Fri May 02 06:02:00 2014  
@@ -4771,7 +4858,8 @@ if ("Intl" in this) {
 
 ## **regress-3294.js (v8 issue)**  
    
-**[Issue: Inconsistent Error.stack behaviour](https://crbug.com/v8/3294)**  
+**[Issue: Issue 3294:
+ Inconsistent Error.stack behaviour](https://crbug.com/v8/3294)**  
 **[Commit: Error stack getter should not overwrite itself with a data property.](https://chromium.googlesource.com/v8/v8/+/1a9649a)**  
   
 Date(Commit): Mon Apr 28 12:14:36 2014  
@@ -4794,7 +4882,8 @@ assertEquals(keys, Object.keys(e));
 
 ## **regress-359441.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Deoptimizer::MaterializeHeapObjects](https://crbug.com/359441)**  
+**[Issue: Issue 359441:
+ UNKNOWN in v8::internal::Deoptimizer::MaterializeHeapObjects](https://crbug.com/359441)**  
 **[Commit: Fix materialization of accessor frames with captured receivers](https://chromium.googlesource.com/v8/v8/+/ff884e0)**  
   
 Date(Commit): Fri Apr 25 12:58:15 2014  
@@ -5062,7 +5151,8 @@ test_receiver(99, "Array.prototype.unshift.call(99, 'z')");
 
 ## **regress-363956.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(field_access.representation().IsHeapObject()) failed: ../../v8/src/hydrogen.cc(5418)](https://crbug.com/363956)**  
+**[Issue: Issue 363956:
+ CHECK failure in CHECK(field_access.representation().IsHeapObject()) failed: ../../v8/src/hydrogen.cc(5418)](https://crbug.com/363956)**  
 **[Commit: Clear invalid field maps in PropertyAccessInfo.](https://chromium.googlesource.com/v8/v8/+/63a477b)**  
   
 Date(Commit): Wed Apr 16 09:48:32 2014  
@@ -5143,7 +5233,8 @@ assertEquals(2, o[0]);
 
 ## **regress-362128.js (chromium issue)**  
    
-**[Issue: ProxyResolverV8Test.JavascriptLibrary crashes when built with v8_target_arch=arm64](https://crbug.com/362128)**  
+**[Issue: Issue 362128:
+ ProxyResolverV8Test.JavascriptLibrary crashes when built with v8_target_arch=arm64](https://crbug.com/362128)**  
 **[Commit: Fix result of LCodeGen::DoWrapReceiver for strict functions and builtins.](https://chromium.googlesource.com/v8/v8/+/8b445aa)**  
   
 Date(Commit): Mon Apr 14 11:58:18 2014  
@@ -5195,7 +5286,8 @@ foo("a", "b", "c");
 
 ## **regress-353058.js (chromium issue)**  
    
-**[Issue: Heap-buffer-overflow in v8::internal::Simulator::DecodeType2](https://crbug.com/353058)**  
+**[Issue: Issue 353058:
+ Heap-buffer-overflow in v8::internal::Simulator::DecodeType2](https://crbug.com/353058)**  
 **[Commit: Check stack limit in ArgumentAdaptorTrampoline.](https://chromium.googlesource.com/v8/v8/+/4268ce0)**  
   
 Date(Commit): Fri Apr 11 13:39:19 2014  
@@ -5239,7 +5331,8 @@ runNearStackLimit(__f_0);
 
 ## **regress-360733.js (chromium issue)**  
    
-**[Issue: Heap-buffer-overflow in v8::internal::Simulator::HandleRList](https://crbug.com/360733)**  
+**[Issue: Issue 360733:
+ Heap-buffer-overflow in v8::internal::Simulator::HandleRList](https://crbug.com/360733)**  
 **[Commit: Do not call user defined getter of Error.stackTraceLimit.](https://chromium.googlesource.com/v8/v8/+/49d951d)**  
   
 Date(Commit): Fri Apr 11 13:16:36 2014  
@@ -5302,7 +5395,8 @@ f();
 
 ## **regress-361608.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/361608)**  
+**[Issue: Issue 361608:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/361608)**  
 **[Commit: Do not use ranges after range analysis.](https://chromium.googlesource.com/v8/v8/+/5bddec0)**  
   
 Date(Commit): Thu Apr 10 09:40:17 2014  
@@ -5336,7 +5430,8 @@ foo();
 
 ## **regress-359491.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!right->IsConstant() || (!HConstant::cast(right)->HasInteger32Value() || HConstant::cast(right](https://crbug.com/359491)**  
+**[Issue: Issue 359491:
+ CHECK failure in CHECK(!right->IsConstant() || (!HConstant::cast(right)->HasInteger32Value() || HConstant::cast(right](https://crbug.com/359491)**  
 **[Commit: Avoid hydrogen compare-objects-equal assertions in dead code](https://chromium.googlesource.com/v8/v8/+/57d70c1)**  
   
 Date(Commit): Wed Apr 09 13:08:28 2014  
@@ -5503,7 +5598,8 @@ runNearStackLimit(function() { g(y); });
 
 ## **regress-361025.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(p->IsHeapObject()) failed: ../../v8/src/objects-debug.cc(224)](https://crbug.com/361025)**  
+**[Issue: Issue 361025:
+ CHECK failure in CHECK(p->IsHeapObject()) failed: ../../v8/src/objects-debug.cc(224)](https://crbug.com/361025)**  
 **[Commit: Fix invalid local property lookup for transitions.](https://chromium.googlesource.com/v8/v8/+/48e0d81)**  
   
 Date(Commit): Tue Apr 08 09:36:04 2014  
@@ -5527,7 +5623,8 @@ gc();
 
 ## **regress-3255.js (v8 issue)**  
    
-**[Issue: Grow KeyedStoreIC doesn't respect String value wrappers](https://crbug.com/v8/3255)**  
+**[Issue: Issue 3255:
+ Grow KeyedStoreIC doesn't respect String value wrappers](https://crbug.com/v8/3255)**  
 **[Commit: Fix for v8:3255 Grow KeyedStoreIC doesn't respect String value wrappers](https://chromium.googlesource.com/v8/v8/+/eaacd96)**  
   
 Date(Commit): Mon Apr 07 07:52:24 2014  
@@ -5558,7 +5655,8 @@ f(str, 0);
 
 ## **regress-359525.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(size_in_bytes <= kMaxBlockSize) failed: ../src/spaces.cc(2378)](https://crbug.com/359525)**  
+**[Issue: Issue 359525:
+ CHECK failure in CHECK(size_in_bytes <= kMaxBlockSize) failed: ../src/spaces.cc(2378)](https://crbug.com/359525)**  
 **[Commit: Make sure value is a heap number when reusing the double box in BinaryOpICStub.](https://chromium.googlesource.com/v8/v8/+/5230d8d)**  
   
 Date(Commit): Fri Apr 04 08:46:49 2014  
@@ -5697,7 +5795,8 @@ f([]);
 
 ## **regress-crbug-357052.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!CpuFeatures::IsSupported(SSE2)) failed: ../../v8/src/ic.cc(2318)](https://crbug.com/357052)**  
+**[Issue: Issue 357052:
+ CHECK failure in CHECK(!CpuFeatures::IsSupported(SSE2)) failed: ../../v8/src/ic.cc(2318)](https://crbug.com/357052)**  
 **[Commit: Fix HGraphBuilder::BuildAddStringLengths](https://chromium.googlesource.com/v8/v8/+/511edab)**  
   
 Date(Commit): Wed Apr 02 12:24:42 2014  
@@ -5725,7 +5824,8 @@ assertThrows(f);
 
 ## **regress-357054.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(to_kind == DICTIONARY_ELEMENTS) failed: ../../v8/src/objects.cc(3255)](https://crbug.com/357054)**  
+**[Issue: Issue 357054:
+ CHECK failure in CHECK(to_kind == DICTIONARY_ELEMENTS) failed: ../../v8/src/objects.cc(3255)](https://crbug.com/357054)**  
 **[Commit: Support typed arrays in IsMoreGeneralElementsKindTransition.](https://chromium.googlesource.com/v8/v8/+/19c354b)**  
   
 Date(Commit): Tue Apr 01 16:41:35 2014  
@@ -5751,7 +5851,8 @@ f(a,2,5.5);
 
 ## **regress-358059.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/358059)**  
+**[Issue: Issue 358059:
+ UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/358059)**  
 **[Commit: Smi immediates are not supported on x64. Do not use it.](https://chromium.googlesource.com/v8/v8/+/6490100)**  
   
 Date(Commit): Tue Apr 01 15:32:06 2014  
@@ -5779,7 +5880,8 @@ assertEquals(4, f(o, 3));
 
 ## **regress-358088.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(STANDARD_STORE == KeyedStoreIC::GetKeyedAccessStoreMode(extra_ic_state)) failed: ../../v8/src/](https://crbug.com/358088)**  
+**[Issue: Issue 358088:
+ CHECK failure in CHECK(STANDARD_STORE == KeyedStoreIC::GetKeyedAccessStoreMode(extra_ic_state)) failed: ../../v8/src/](https://crbug.com/358088)**  
 **[Commit: Monomorphic prototype failures should be reserved for already-seen keys.](https://chromium.googlesource.com/v8/v8/+/d93c906)**  
   
 Date(Commit): Tue Apr 01 14:16:54 2014  
@@ -5814,7 +5916,8 @@ f(o);     // Store should go generic.
 
 ## **regress-357103.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!target->IsConsString()) failed: ../../v8/src/x64/assembler-x64-inl.h(323)](https://crbug.com/357103)**  
+**[Issue: Issue 357103:
+ CHECK failure in CHECK(!target->IsConsString()) failed: ../../v8/src/x64/assembler-x64-inl.h(323)](https://crbug.com/357103)**  
 **[Commit: Remove internalized cons string types.](https://chromium.googlesource.com/v8/v8/+/10abff3)**  
   
 Date(Commit): Tue Apr 01 11:30:31 2014  
@@ -5845,7 +5948,8 @@ f();
 
 ## **regress-crbug-357330.js (chromium issue)**  
    
-**[Issue: CHECK fail in ../../v8/src/list-inl.h while watching Youtube video.](https://crbug.com/357330)**  
+**[Issue: Issue 357330:
+ CHECK fail in ../../v8/src/list-inl.h while watching Youtube video.](https://crbug.com/357330)**  
 **[Commit: Fix Type::Intersect to skip uninhabited bitsets](https://chromium.googlesource.com/v8/v8/+/282a7ca)**  
   
 Date(Commit): Mon Mar 31 15:53:21 2014  
@@ -5875,7 +5979,8 @@ f(1.4);
 
 ## **regress-358057.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Simulator::DecodeType3](https://crbug.com/358057)**  
+**[Issue: Issue 358057:
+ UNKNOWN in v8::internal::Simulator::DecodeType3](https://crbug.com/358057)**  
 **[Commit: Fix PrepareKeyedOperand on arm.](https://chromium.googlesource.com/v8/v8/+/b3148d9)**  
   
 Date(Commit): Mon Mar 31 15:14:28 2014  
@@ -5909,7 +6014,8 @@ assertEquals(0xAA, __f_12(-1));
 
 ## **regress-358090.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!heap->lo_space()->Contains(elms)) failed: ../src/builtins.cc(224)](https://crbug.com/358090)**  
+**[Issue: Issue 358090:
+ CHECK failure in CHECK(!heap->lo_space()->Contains(elms)) failed: ../src/builtins.cc(224)](https://crbug.com/358090)**  
 **[Commit: Fix left trimming check for large objects](https://chromium.googlesource.com/v8/v8/+/d02e1f2)**  
   
 Date(Commit): Mon Mar 31 15:01:46 2014  
@@ -5998,7 +6104,8 @@ assertEquals(1.5, array[0]);
 
 ## **regress-357105.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(safe_to_deopt_topmost_optimized_code) failed: ../../v8/src/deoptimizer.cc(435)](https://crbug.com/357105)**  
+**[Issue: Issue 357105:
+ CHECK failure in CHECK(safe_to_deopt_topmost_optimized_code) failed: ../../v8/src/deoptimizer.cc(435)](https://crbug.com/357105)**  
 **[Commit: Add missing lazy deopt point for the TransitionElementsKind instruction.](https://chromium.googlesource.com/v8/v8/+/d65fe51)**  
   
 Date(Commit): Mon Mar 31 11:58:53 2014  
@@ -6069,7 +6176,8 @@ for (var z in y) { }
 
 ## **regress-357108.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(value->IsUndefined()) failed: ../../v8/src/objects-inl.h(3840)](https://crbug.com/357108)**  
+**[Issue: Issue 357108:
+ CHECK failure in CHECK(value->IsUndefined()) failed: ../../v8/src/objects-inl.h(3840)](https://crbug.com/357108)**  
 **[Commit: Fix JSObject::SetElement for fixed typed array elements.](https://chromium.googlesource.com/v8/v8/+/4cdfb46)**  
   
 Date(Commit): Thu Mar 27 12:54:26 2014  
@@ -6156,7 +6264,8 @@ f(1.5, 2.5);
 
 ## **regress-355523.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(index >= 0) failed: ../../v8/src/x64/codegen-x64.cc(697)](https://crbug.com/355523)**  
+**[Issue: Issue 355523:
+ CHECK failure in CHECK(index >= 0) failed: ../../v8/src/x64/codegen-x64.cc(697)](https://crbug.com/355523)**  
 **[Commit: Add index check in DoAccessArgumentsAt.](https://chromium.googlesource.com/v8/v8/+/cb0f49c)**  
   
 Date(Commit): Tue Mar 25 13:26:41 2014  
@@ -6183,7 +6292,8 @@ __f_8(0);
 
 ## **regress-356053.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::OptimizingCompilerThread::Unblock](https://crbug.com/356053)**  
+**[Issue: Issue 356053:
+ UNKNOWN in v8::internal::OptimizingCompilerThread::Unblock](https://crbug.com/356053)**  
 **[Commit: Fix issues when changing FLAG_concurrent_recompilation after init.](https://chromium.googlesource.com/v8/v8/+/793d4cb)**  
   
 Date(Commit): Tue Mar 25 09:38:48 2014  
@@ -6207,7 +6317,8 @@ try { %UnblockConcurrentRecompilation(); } catch (e) { }
 
 ## **regress-355486.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(argument_count_immediate_ + receiver > 0) failed: ../../v8/src/x64/codegen-x64.cc(705)](https://crbug.com/355486)**  
+**[Issue: Issue 355486:
+ CHECK failure in CHECK(argument_count_immediate_ + receiver > 0) failed: ../../v8/src/x64/codegen-x64.cc(705)](https://crbug.com/355486)**  
 **[Commit: Fix to get around an assertion that triggers when generating code that happens to be dead because the assertion is checked a bit earlier at runtime.](https://chromium.googlesource.com/v8/v8/+/56f2006)**  
   
 Date(Commit): Mon Mar 24 20:51:36 2014  
@@ -6273,7 +6384,8 @@ f(true);
 
 ## **regress-355485.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(index >= 0 && index < length() && value <= kMaxOneByteCharCode) failed: ../../v8/src/objects-i](https://crbug.com/355485)**  
+**[Issue: Issue 355485:
+ CHECK failure in CHECK(index >= 0 && index < length() && value <= kMaxOneByteCharCode) failed: ../../v8/src/objects-i](https://crbug.com/355485)**  
 **[Commit: Correctly convert micro-sign to its upper case.](https://chromium.googlesource.com/v8/v8/+/9c0f5be)**  
   
 Date(Commit): Mon Mar 24 14:16:14 2014  
@@ -6294,7 +6406,8 @@ assertEquals("\u039c", "\u00b5".toUpperCase());
 
 ## **regress-354357.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!done() || handler_ == __null) failed: ../src/frames.cc(120)](https://crbug.com/354357)**  
+**[Issue: Issue 354357:
+ CHECK failure in CHECK(!done() || handler_ == __null) failed: ../src/frames.cc(120)](https://crbug.com/354357)**  
 **[Commit: Visit return statement of inlined function in value context.](https://chromium.googlesource.com/v8/v8/+/fc2563f)**  
   
 Date(Commit): Fri Mar 21 12:14:44 2014  
@@ -6323,7 +6436,8 @@ outer();
 
 ## **regress-354433.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(instr->IsLdrLiteralX()) failed: ../src/a64/assembler-a64-inl.h(582)](https://crbug.com/354433)**  
+**[Issue: Issue 354433:
+ CHECK failure in CHECK(instr->IsLdrLiteralX()) failed: ../src/a64/assembler-a64-inl.h(582)](https://crbug.com/354433)**  
 **[Commit: Ensure that lazy deopt sequence does not override calls.](https://chromium.googlesource.com/v8/v8/+/f20a947)**  
   
 Date(Commit): Fri Mar 21 11:02:15 2014  
@@ -6372,7 +6486,8 @@ __f_5(__f_8, 1, 1 << 30);
 
 ## **regress-crbug-354391.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(IsFastElementsKind(elements_kind) || IsExternalArrayElementsKind(elements_kind)) failed: ../sr](https://crbug.com/354391)**  
+**[Issue: Issue 354391:
+ CHECK failure in CHECK(IsFastElementsKind(elements_kind) || IsExternalArrayElementsKind(elements_kind)) failed: ../sr](https://crbug.com/354391)**  
 **[Commit: Fix polymorphic hydrogen handling of SLOPPY_ARGUMENTS_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/2b722b6)**  
   
 Date(Commit): Thu Mar 20 16:25:24 2014  
@@ -6407,7 +6522,8 @@ assertEquals(11, f2(11, 22, 33, 44, 0));
 
 ## **regress-353551.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(obj->IsHeapObject()) failed: ../src/incremental-marking.cc(84)](https://crbug.com/353551)**  
+**[Issue: Issue 353551:
+ CHECK failure in CHECK(obj->IsHeapObject()) failed: ../src/incremental-marking.cc(84)](https://crbug.com/353551)**  
 **[Commit: A64: Fix write barrier input in KeyedStoreIC::GenerateSloppyArguments.](https://chromium.googlesource.com/v8/v8/+/41eab25)**  
   
 Date(Commit): Thu Mar 20 08:32:58 2014  
@@ -6440,7 +6556,8 @@ __f_3(0.5);
 
 ## **regress-crbug-350867.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(elements_kind == DICTIONARY_ELEMENTS) failed: ../src/stub-cache.cc(1309)](https://crbug.com/350867)**  
+**[Issue: Issue 350867:
+ CHECK failure in CHECK(elements_kind == DICTIONARY_ELEMENTS) failed: ../src/stub-cache.cc(1309)](https://crbug.com/350867)**  
 **[Commit: Fix polymorphic keyed loads for SLOPPY_ARGUMENTS_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/d9b6b64)**  
   
 Date(Commit): Wed Mar 19 15:49:29 2014  
@@ -6472,7 +6589,8 @@ assertEquals(22, f2(22, 33, 44, 0));
 
 ## **regress-352982.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(object->map()->IsMap()) failed: ../src/heap-inl.h(818)](https://crbug.com/352982)**  
+**[Issue: Issue 352982:
+ CHECK failure in CHECK(object->map()->IsMap()) failed: ../src/heap-inl.h(818)](https://crbug.com/352982)**  
 **[Commit: Fix TransitionElementsKindStub to handle non-JSArray objects correctly.](https://chromium.googlesource.com/v8/v8/+/487ca9e)**  
   
 Date(Commit): Tue Mar 18 13:29:29 2014  
@@ -6649,7 +6767,8 @@ f(this);
 
 ## **regress-3220.js (v8 issue)**  
    
-**[Issue: Date.toString: ReferenceError: cache is not defined](https://crbug.com/v8/3220)**  
+**[Issue: Issue 3220:
+ Date.toString: ReferenceError: cache is not defined](https://crbug.com/v8/3220)**  
 **[Commit: Fix date cache in strict mode.](https://chromium.googlesource.com/v8/v8/+/e1e4071)**  
   
 Date(Commit): Mon Mar 17 15:47:58 2014  
@@ -6669,7 +6788,8 @@ String(new Date());
 
 ## **regress-crbug-350890.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(debug_lookup.IsPropertyCallbacks() && !debug_lookup.IsReadOnly()) failed: ../src/ic.cc(1808)](https://crbug.com/350890)**  
+**[Issue: Issue 350890:
+ CHECK failure in CHECK(debug_lookup.IsPropertyCallbacks() && !debug_lookup.IsReadOnly()) failed: ../src/ic.cc(1808)](https://crbug.com/350890)**  
 **[Commit: Fixed spec violation of storing to length of a frozen object.](https://chromium.googlesource.com/v8/v8/+/3b257c3)**  
   
 Date(Commit): Mon Mar 17 15:43:33 2014  
@@ -6729,7 +6849,8 @@ test3();
 
 ## **regress-crbug-352586.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK((check == ENABLE_INLINED_SMI_CHECK) ? (*jmp_address == Assembler::kJncShortOpcode || *jmp_addr](https://crbug.com/352586)**  
+**[Issue: Issue 352586:
+ CHECK failure in CHECK((check == ENABLE_INLINED_SMI_CHECK) ? (*jmp_address == Assembler::kJncShortOpcode || *jmp_addr](https://crbug.com/352586)**  
 **[Commit: Fix ASSERT violation when BinaryOpIC::Transition recurses into itself](https://chromium.googlesource.com/v8/v8/+/e4a18df)**  
   
 Date(Commit): Mon Mar 17 14:51:31 2014  
@@ -6761,7 +6882,8 @@ assertThrows(()=>a.message, RangeError);
 
 ## **regress-crbug-351658.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(op < BinaryOpIC::State::FIRST_TOKEN || op > BinaryOpIC::State::LAST_TOKEN) failed: ../src/type](https://crbug.com/351658)**  
+**[Issue: Issue 351658:
+ CHECK failure in CHECK(op < BinaryOpIC::State::FIRST_TOKEN || op > BinaryOpIC::State::LAST_TOKEN) failed: ../src/type](https://crbug.com/351658)**  
 **[Commit: Make invalid LHSs a parse-time (reference) error](https://chromium.googlesource.com/v8/v8/+/c3c185c)**  
   
 Date(Commit): Mon Mar 17 10:21:01 2014  
@@ -6793,7 +6915,8 @@ try {
 
 ## **regress-crbug-352929.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/352929)**  
+**[Issue: Issue 352929:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/352929)**  
 **[Commit: Fix typo in r19923 (bounds check offset propagation)](https://chromium.googlesource.com/v8/v8/+/dc45852)**  
   
 Date(Commit): Mon Mar 17 09:38:01 2014  
@@ -6840,7 +6963,8 @@ for (var i = 0; i < dummy2.length; i++) {
 
 ## **regress-crbug-352058.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(old_entry->maps_->size() > 0) failed: ../src/hydrogen-check-elimination.cc(156)](https://crbug.com/352058)**  
+**[Issue: Issue 352058:
+ CHECK failure in CHECK(old_entry->maps_->size() > 0) failed: ../src/hydrogen-check-elimination.cc(156)](https://crbug.com/352058)**  
 **[Commit: Check elimination now sets known successor branch of HCompareObjectEqAndBranch (correctness fix).](https://chromium.googlesource.com/v8/v8/+/f77c51b)**  
   
 Date(Commit): Mon Mar 17 09:11:38 2014  
@@ -6897,7 +7021,8 @@ o1.y;
 
 ## **regress-351261.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(object_size <= Page::kMaxRegularHeapObjectSize) failed: ../src/ia32/macro-assembler-ia32.cc(15](https://crbug.com/351261)**  
+**[Issue: Issue 351261:
+ CHECK failure in CHECK(object_size <= Page::kMaxRegularHeapObjectSize) failed: ../src/ia32/macro-assembler-ia32.cc(15](https://crbug.com/351261)**  
 **[Commit: Fix for issue 351261.](https://chromium.googlesource.com/v8/v8/+/11df4b8)**  
   
 Date(Commit): Fri Mar 14 10:22:55 2014  
@@ -6934,7 +7059,8 @@ foo();
 
 ## **regress-350863.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(object->map()->IsMap()) failed: ../src/heap-inl.h(833)](https://crbug.com/350863)**  
+**[Issue: Issue 350863:
+ CHECK failure in CHECK(object->map()->IsMap()) failed: ../src/heap-inl.h(833)](https://crbug.com/350863)**  
 **[Commit: Propagate updated offsets in BoundsCheckBbData.](https://chromium.googlesource.com/v8/v8/+/2c99cba)**  
   
 Date(Commit): Fri Mar 14 10:02:25 2014  
@@ -6970,7 +7096,8 @@ __f_8(5, false);
 
 ## **regress-3204.js (v8 issue)**  
    
-**[Issue: Users of range analysis results assume SSI, but we have only "adhoc SSI in random places"](https://crbug.com/v8/3204)**  
+**[Issue: Issue 3204:
+ Users of range analysis results assume SSI, but we have only "adhoc SSI in random places"](https://crbug.com/v8/3204)**  
 **[Commit: Add regression test for range analysis bug.](https://chromium.googlesource.com/v8/v8/+/358e176)**  
   
 Date(Commit): Fri Mar 14 09:54:26 2014  
@@ -7059,7 +7186,8 @@ for (var i = 0; i < count; i++) {
 
 ## **regress-351263.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(HasInteger32Value()) failed: ../src/hydrogen-instructions.h(3512)](https://crbug.com/351263)**  
+**[Issue: Issue 351263:
+ CHECK failure in CHECK(HasInteger32Value()) failed: ../src/hydrogen-instructions.h(3512)](https://crbug.com/351263)**  
 **[Commit: Check that constant is an integer before getting its value in HGraphBuilder::MatchRotateRight.](https://chromium.googlesource.com/v8/v8/+/c64b78f)**  
   
 Date(Commit): Thu Mar 13 11:50:50 2014  
@@ -7087,7 +7215,8 @@ __f_30(1.4, 1);
 
 ## **regress-352059.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK_EQ(fixed_right_arg.value, c_right->Integer32Value()) failed: ../src/hydrogen.cc(9256)](https://crbug.com/352059)**  
+**[Issue: Issue 352059:
+ CHECK failure in CHECK_EQ(fixed_right_arg.value, c_right->Integer32Value()) failed: ../src/hydrogen.cc(9256)](https://crbug.com/352059)**  
 **[Commit: Make translation of modulus operation '--stress-opt'-proof.](https://chromium.googlesource.com/v8/v8/+/390d3a0)**  
   
 Date(Commit): Thu Mar 13 09:37:16 2014  
@@ -7115,7 +7244,8 @@ bar();
 
 ## **regress-crbug-351787.js (chromium issue)**  
    
-**[Issue: Pwnium 4: v8 OOB read/write with __defineGetter__ and bytesLength](https://crbug.com/351787)**  
+**[Issue: Issue 351787:
+ Pwnium 4: v8 OOB read/write with __defineGetter__ and bytesLength](https://crbug.com/351787)**  
 **[Commit: Use intrinsics for builtin ArrayBuffer property accesses](https://chromium.googlesource.com/v8/v8/+/f9ee4f1)**  
   
 Date(Commit): Wed Mar 12 19:25:40 2014  
@@ -7198,7 +7328,8 @@ Array.prototype.sort.apply(a);
 
 ## **regress-350884.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(store_mode == STANDARD_STORE || store_mode == STORE_AND_GROW_NO_TRANSITION || store_mode == ST](https://crbug.com/350884)**  
+**[Issue: Issue 350884:
+ CHECK failure in CHECK(store_mode == STANDARD_STORE || store_mode == STORE_AND_GROW_NO_TRANSITION || store_mode == ST](https://crbug.com/350884)**  
 **[Commit: 350884: KeyedStoreIC miss didn't handle a transitioning case.](https://chromium.googlesource.com/v8/v8/+/7477bc3)**  
   
 Date(Commit): Wed Mar 12 13:35:40 2014  
@@ -7228,7 +7359,8 @@ foo(2);
 
 ## **regress-crbug-351320.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/351320)**  
+**[Issue: Issue 351320:
+ UNKNOWN in v8::internal::Invoke](https://crbug.com/351320)**  
 **[Commit: Fix HIsSmiAndBranch::KnownSuccessorBlock() by deleting it](https://chromium.googlesource.com/v8/v8/+/105c1e0)**  
   
 Date(Commit): Wed Mar 12 10:14:29 2014  
@@ -7264,7 +7396,8 @@ crash();
 
 ## **regress-351319.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(Smi::IsValid(value)) failed: ../src/objects-inl.h(1199)](https://crbug.com/351319)**  
+**[Issue: Issue 351319:
+ CHECK failure in CHECK(Smi::IsValid(value)) failed: ../src/objects-inl.h(1199)](https://crbug.com/351319)**  
 **[Commit: Fix handling of polymorphic array accesses with constant index](https://chromium.googlesource.com/v8/v8/+/ae1669b)**  
   
 Date(Commit): Wed Mar 12 10:11:38 2014  
@@ -7296,7 +7429,8 @@ __f_0(__v_0, -2);
 
 ## **regress-crbug-350434.js (chromium issue)**  
    
-**[Issue: [LangFuzz] Crash with jump to invalid address](https://crbug.com/350434)**  
+**[Issue: Issue 350434:
+ [LangFuzz] Crash with jump to invalid address](https://crbug.com/350434)**  
 **[Commit: Fix lazy deopt after tagged binary ops](https://chromium.googlesource.com/v8/v8/+/8a1812f)**  
   
 Date(Commit): Wed Mar 12 09:59:36 2014  
@@ -7347,7 +7481,8 @@ crash({}, 0);
 
 ## **regress-crbug-350864.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(index >= 0 && index < this->length()) failed: ../src/objects-inl.h(2124)](https://crbug.com/350864)**  
+**[Issue: Issue 350864:
+ CHECK failure in CHECK(index >= 0 && index < this->length()) failed: ../src/objects-inl.h(2124)](https://crbug.com/350864)**  
 **[Commit: Fix issue with getOwnPropertySymbols and hidden properties](https://chromium.googlesource.com/v8/v8/+/85800ef)**  
   
 Date(Commit): Tue Mar 11 16:46:35 2014  
@@ -7374,7 +7509,8 @@ assertArrayEquals([sym], symbols);
 
 ## **regress-crbug-351262.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!curr->IsAccessCheckNeeded()) failed: ../src/objects.cc(5919)](https://crbug.com/351262)**  
+**[Issue: Issue 351262:
+ CHECK failure in CHECK(!curr->IsAccessCheckNeeded()) failed: ../src/objects.cc(5919)](https://crbug.com/351262)**  
 **[Commit: fix bad access check check](https://chromium.googlesource.com/v8/v8/+/62fc099)**  
   
 Date(Commit): Tue Mar 11 15:12:47 2014  
@@ -7396,7 +7532,8 @@ JSON.stringify(this);
 
 ## **regress-346587.js (chromium issue)**  
    
-**[Issue: Under certain conditions involving new objects and setInterval, string equality breaks](https://crbug.com/346587)**  
+**[Issue: Issue 346587:
+ Under certain conditions involving new objects and setInterval, string equality breaks](https://crbug.com/346587)**  
 **[Commit: Fix bug in constant folding object comparisons.](https://chromium.googlesource.com/v8/v8/+/6e15073)**  
   
 Date(Commit): Tue Mar 11 13:34:01 2014  
@@ -7429,7 +7566,8 @@ foo();
 
 ## **regress-350887.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(new_length->IsSmi() || new_length->IsUndefined()) failed: ../src/elements.cc(1862)](https://crbug.com/350887)**  
+**[Issue: Issue 350887:
+ CHECK failure in CHECK(new_length->IsSmi() || new_length->IsUndefined()) failed: ../src/elements.cc(1862)](https://crbug.com/350887)**  
 **[Commit: Fix for 350887: CHECK failure on new_length->IsSmi()](https://chromium.googlesource.com/v8/v8/+/819d9f6)**  
   
 Date(Commit): Tue Mar 11 10:30:10 2014  
@@ -7456,7 +7594,8 @@ arr.length = 0;
 
 ## **regress-350865.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK('0' <= current() && current() <= '7') failed: ../src/parser.cc(4997)](https://crbug.com/350865)**  
+**[Issue: Issue 350865:
+ CHECK failure in CHECK('0' <= current() && current() <= '7') failed: ../src/parser.cc(4997)](https://crbug.com/350865)**  
 **[Commit: Fix assertion in RegExp parser to correctly expect stack overflow.](https://chromium.googlesource.com/v8/v8/+/1634e7d)**  
   
 Date(Commit): Mon Mar 10 15:52:10 2014  
@@ -7516,7 +7655,8 @@ f();
 
 ## **regress-crbug-349465.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::JSFunction::context](https://crbug.com/349465)**  
+**[Issue: Issue 349465:
+ UNKNOWN in v8::internal::JSFunction::context](https://crbug.com/349465)**  
 **[Commit: Fix for failing asserts in HBoundsCheck code generation on x64: use proper cmp operation width instead of asserting that Integer32 values should be zero extended. Similar to chromium:345820.](https://chromium.googlesource.com/v8/v8/+/997ce05)**  
   
 Date(Commit): Thu Mar 06 16:22:47 2014  
@@ -7594,7 +7734,8 @@ g();
 
 ## **regress-349885.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(Smi::IsValid(value)) failed: ../src/objects-inl.h(1192)](https://crbug.com/349885)**  
+**[Issue: Issue 349885:
+ CHECK failure in CHECK(Smi::IsValid(value)) failed: ../src/objects-inl.h(1192)](https://crbug.com/349885)**  
 **[Commit: Bugfix for 349874: we incorrectly believe we saw a growing store](https://chromium.googlesource.com/v8/v8/+/6115a00)**  
   
 Date(Commit): Thu Mar 06 13:07:51 2014  
@@ -7654,7 +7795,8 @@ var a = args(false);
 
 ## **regress-crbug-349853.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!found) failed: ../src/lithium-allocator.cc(1381)](https://crbug.com/349853)**  
+**[Issue: Issue 349853:
+ CHECK failure in CHECK(!found) failed: ../src/lithium-allocator.cc(1381)](https://crbug.com/349853)**  
 **[Commit: Let HTransitionElementsKind take part in RestoreActualValues phase](https://chromium.googlesource.com/v8/v8/+/5ea3f00)**  
   
 Date(Commit): Thu Mar 06 12:13:49 2014  
@@ -7722,7 +7864,8 @@ optimize(f);
 
 ## **regress-348512.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Deoptimizer::MaterializeHeapObjects](https://crbug.com/348512)**  
+**[Issue: Issue 348512:
+ UNKNOWN in v8::internal::Deoptimizer::MaterializeHeapObjects](https://crbug.com/348512)**  
 **[Commit: Fix materialization of captured objects in adapted arguments.](https://chromium.googlesource.com/v8/v8/+/52fd520)**  
   
 Date(Commit): Wed Mar 05 12:57:18 2014  
@@ -7750,7 +7893,8 @@ f(42);
 
 ## **regress-3183.js (v8 issue)**  
    
-**[Issue: "Object #<Object> has no method push" on Array after deoptimization](https://crbug.com/v8/3183)**  
+**[Issue: Issue 3183:
+ "Object #<Object> has no method push" on Array after deoptimization](https://crbug.com/v8/3183)**  
 **[Commit: Deoptimization fix for HPushArgument.](https://chromium.googlesource.com/v8/v8/+/7ac668f)**  
   
 Date(Commit): Wed Mar 05 12:45:46 2014  
@@ -7840,7 +7984,8 @@ Regress: [mjsunit/regress/regress-3183.js](https://chromium.googlesource.com/v8/
 
 ## **regress-crbug-349079.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/349079)**  
+**[Issue: Issue 349079:
+ UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/349079)**  
 **[Commit: x64: Fix LMathMinMax for constant Smi right-hand operands](https://chromium.googlesource.com/v8/v8/+/3df5573)**  
   
 Date(Commit): Wed Mar 05 09:49:07 2014  
@@ -7877,7 +8022,8 @@ crash();
 
 ## **regress-348280.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(IsInitialized() && other.IsInitialized()) failed: ../src/unique.h(94)](https://crbug.com/348280)**  
+**[Issue: Issue 348280:
+ CHECK failure in CHECK(IsInitialized() && other.IsInitialized()) failed: ../src/unique.h(94)](https://crbug.com/348280)**  
 **[Commit: Fix HCheckValue::Canonicalize wrt uninitialized HConstant unique.](https://chromium.googlesource.com/v8/v8/+/b1a271a)**  
   
 Date(Commit): Tue Mar 04 08:08:08 2014  
@@ -7908,7 +8054,8 @@ bar(1);
 
 ## **regress-343609.js (chromium issue)**  
    
-**[Issue: Chrome_Win: Crash Report: v8::internal::Deoptimizer::VisitAllOptimizedFunctionsForContext](https://crbug.com/343609)**  
+**[Issue: Issue 343609:
+ Chrome_Win: Crash Report: v8::internal::Deoptimizer::VisitAllOptimizedFunctionsForContext](https://crbug.com/343609)**  
 **[Commit: Clear optimized code cache in shared function info when code gets deoptimized.](https://chromium.googlesource.com/v8/v8/+/b9e0b87)**  
   
 Date(Commit): Mon Mar 03 11:11:39 2014  
@@ -7985,7 +8132,8 @@ f2(new Ctor());
 
 ## **regress-347914.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(this_entry->maps_->size() > 0) failed: ../src/hydrogen-check-elimination.cc(277)](https://crbug.com/347914)**  
+**[Issue: Issue 347914:
+ CHECK failure in CHECK(this_entry->maps_->size() > 0) failed: ../src/hydrogen-check-elimination.cc(277)](https://crbug.com/347914)**  
 **[Commit: Check elimination did not mark some dead blocks.](https://chromium.googlesource.com/v8/v8/+/c2601ae)**  
   
 Date(Commit): Fri Feb 28 14:16:38 2014  
@@ -8089,7 +8237,8 @@ __f_0({g: __v_4.g, size:__v_4.size});
 
 ## **regress-347906.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(HasInteger32Value()) failed: ../src/hydrogen-instructions.h(3474)](https://crbug.com/347906)**  
+**[Issue: Issue 347906:
+ CHECK failure in CHECK(HasInteger32Value()) failed: ../src/hydrogen-instructions.h(3474)](https://crbug.com/347906)**  
 **[Commit: Fixed constant folding for Math.clz32.](https://chromium.googlesource.com/v8/v8/+/e927333)**  
   
 Date(Commit): Fri Feb 28 13:07:10 2014  
@@ -8117,7 +8266,8 @@ foo();
 
 ## **regress-crbug-347903.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK((IsFastSmiOrObjectElementsKind(kind) && (map == GetHeap()->fixed_array_map() || map == GetHeap](https://crbug.com/347903)**  
+**[Issue: Issue 347903:
+ CHECK failure in CHECK((IsFastSmiOrObjectElementsKind(kind) && (map == GetHeap()->fixed_array_map() || map == GetHeap](https://crbug.com/347903)**  
 **[Commit: A JSArray may have a filler map in the elements pointer.](https://chromium.googlesource.com/v8/v8/+/b1ffc79)**  
   
 Date(Commit): Fri Feb 28 12:29:19 2014  
@@ -8202,7 +8352,8 @@ f2(new Ctor(), true);
 
 ## **regress-347912.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(number_of_own_descriptors > 0) failed: ../src/objects.h(6111)](https://crbug.com/347912)**  
+**[Issue: Issue 347912:
+ CHECK failure in CHECK(number_of_own_descriptors > 0) failed: ../src/objects.h(6111)](https://crbug.com/347912)**  
 **[Commit: Fix JSObject::PrintTransitions.](https://chromium.googlesource.com/v8/v8/+/70242fe)**  
   
 Date(Commit): Fri Feb 28 11:41:07 2014  
@@ -8226,7 +8377,8 @@ __v_2[1024] = 0;
 
 ## **regress-347909.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(value->IsHeapObject()) failed: ../src/objects-debug.cc(295)](https://crbug.com/347909)**  
+**[Issue: Issue 347909:
+ CHECK failure in CHECK(value->IsHeapObject()) failed: ../src/objects-debug.cc(295)](https://crbug.com/347909)**  
 **[Commit: Fix representation generalization for doubles.](https://chromium.googlesource.com/v8/v8/+/38ca262)**  
   
 Date(Commit): Fri Feb 28 11:07:10 2014  
@@ -8259,7 +8411,8 @@ f();
 
 ## **regress-crbug-347528.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(IsNativeContext()) failed: ../src/contexts.h(462)](https://crbug.com/347528)**  
+**[Issue: Issue 347528:
+ CHECK failure in CHECK(IsNativeContext()) failed: ../src/contexts.h(462)](https://crbug.com/347528)**  
 **[Commit: Get array_function from NativeContext](https://chromium.googlesource.com/v8/v8/+/98d1ced)**  
   
 Date(Commit): Fri Feb 28 10:01:27 2014  
@@ -8287,7 +8440,8 @@ __f_12();
 
 ## **regress-347904.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!right->IsConstant() || (!HConstant::cast(right)->HasInteger32Value() || HConstant::cast(right](https://crbug.com/347904)**  
+**[Issue: Issue 347904:
+ CHECK failure in CHECK(!right->IsConstant() || (!HConstant::cast(right)->HasInteger32Value() || HConstant::cast(right](https://crbug.com/347904)**  
 **[Commit: Fix handling of constant global variable assignments.](https://chromium.googlesource.com/v8/v8/+/5945f9e)**  
   
 Date(Commit): Fri Feb 28 09:40:12 2014  
@@ -8313,7 +8467,8 @@ f();
 
 ## **regress-347542.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(!function->IsOptimized()) failed: ../src/runtime.cc(8623)](https://crbug.com/347542)**  
+**[Issue: Issue 347542:
+ CHECK failure in CHECK(!function->IsOptimized()) failed: ../src/runtime.cc(8623)](https://crbug.com/347542)**  
 **[Commit: Removed bogus ASSERT.](https://chromium.googlesource.com/v8/v8/+/c4e90c1)**  
   
 Date(Commit): Fri Feb 28 08:45:07 2014  
@@ -8338,7 +8493,8 @@ foo();
 
 ## **regress-347543.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(object_size <= Page::kMaxRegularHeapObjectSize) failed: ../src/ia32/macro-assembler-ia32.cc(15](https://crbug.com/347543)**  
+**[Issue: Issue 347543:
+ CHECK failure in CHECK(object_size <= Page::kMaxRegularHeapObjectSize) failed: ../src/ia32/macro-assembler-ia32.cc(15](https://crbug.com/347543)**  
 **[Commit: HAllocate should never generate allocation code if the requested size does not fit into page. Regression test included.](https://chromium.googlesource.com/v8/v8/+/2ab83cf)**  
   
 Date(Commit): Thu Feb 27 17:33:25 2014  
@@ -8435,7 +8591,8 @@ __v_5 = {a: 1, b: 2, c: 3};
 
 ## **regress-347262.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Map::instance_descriptors](https://crbug.com/347262)**  
+**[Issue: Issue 347262:
+ UNKNOWN in v8::internal::Map::instance_descriptors](https://crbug.com/347262)**  
 **[Commit: Handle arguments objects in frame when materializing arguments](https://chromium.googlesource.com/v8/v8/+/05b9849)**  
   
 Date(Commit): Thu Feb 27 15:12:12 2014  
@@ -8489,7 +8646,8 @@ Regress: [mjsunit/regress/regress-347262.js](https://chromium.googlesource.com/v
 
 ## **regress-347530.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(object->elements()->IsFixedDoubleArray()) failed: ../src/objects.cc(12468)](https://crbug.com/347530)**  
+**[Issue: Issue 347530:
+ CHECK failure in CHECK(object->elements()->IsFixedDoubleArray()) failed: ../src/objects.cc(12468)](https://crbug.com/347530)**  
 **[Commit: Fix bogus assertion in SetFastDoubleElements.](https://chromium.googlesource.com/v8/v8/+/6912a24)**  
   
 Date(Commit): Thu Feb 27 14:45:53 2014  
@@ -8516,7 +8674,8 @@ assertEquals(.1, a[1000]);
 
 ## **regress-crbug-345820.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/345820)**  
+**[Issue: Issue 345820:
+ UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/345820)**  
 **[Commit: Fix for failing asserts in HBoundsCheck code generation on x64: index register should be zero extended.](https://chromium.googlesource.com/v8/v8/+/1ae7e8a)**  
   
 Date(Commit): Tue Feb 25 16:33:54 2014  
@@ -8549,7 +8708,8 @@ __f_7(__v_6.length);
 
 ## **regress-crbug-346636.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::Range::CanBeZero](https://crbug.com/346636)**  
+**[Issue: Issue 346636:
+ UNKNOWN in v8::internal::Range::CanBeZero](https://crbug.com/346636)**  
 **[Commit: Mark HCompareMap as having Tagged representation](https://chromium.googlesource.com/v8/v8/+/e7e93cd)**  
   
 Date(Commit): Tue Feb 25 15:09:47 2014  
@@ -8594,7 +8754,8 @@ foo(o2);
 
 ## **regress-crbug-346141.js (chromium issue)**  
    
-**[Issue: Global-buffer-overflow in GetVisitor](https://crbug.com/346141)**  
+**[Issue: Issue 346141:
+ Global-buffer-overflow in GetVisitor](https://crbug.com/346141)**  
 **[Commit: Fix crasher in Object.getOwnPropertySymbols](https://chromium.googlesource.com/v8/v8/+/63f1970)**  
   
 Date(Commit): Tue Feb 25 12:01:34 2014  
@@ -8619,7 +8780,8 @@ Object.getOwnPropertySymbols(o)
 
 ## **regress-346343.js (chromium issue)**  
    
-**[Issue: NO STACK](https://crbug.com/346343)**  
+**[Issue: Issue 346343:
+ NO STACK](https://crbug.com/346343)**  
 **[Commit: Don't eliminate loads with incompatible types or representations.](https://chromium.googlesource.com/v8/v8/+/77f597d)**  
   
 Date(Commit): Tue Feb 25 09:55:50 2014  
@@ -8652,7 +8814,8 @@ g(1);
 
 ## **regress-crbug-345715.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/345715)**  
+**[Issue: Issue 345715:
+ UNKNOWN in v8::internal::HeapObject::map_word](https://crbug.com/345715)**  
 **[Commit: Fix for a smi stores optimization on x64 with a regression test.](https://chromium.googlesource.com/v8/v8/+/6c1659b)**  
   
 Date(Commit): Tue Feb 25 09:55:02 2014  
@@ -8692,7 +8855,8 @@ assertEquals(1, g()[1].x);
 
 ## **regress-cr-344285.js (chromium issue)**  
    
-**[Issue: UNKNOWN in v8::Shell::RealmEval](https://crbug.com/344285)**  
+**[Issue: Issue 344285:
+ UNKNOWN in v8::Shell::RealmEval](https://crbug.com/344285)**  
 **[Commit: negative bounds checking on realm calls](https://chromium.googlesource.com/v8/v8/+/cb05cff)**  
   
 Date(Commit): Tue Feb 25 09:15:05 2014  
@@ -8722,7 +8886,8 @@ assertTrue(caught, "exception not caught");
 
 ## **regress-3176.js (v8 issue)**  
    
-**[Issue: Optimistic bounds check generalization leads to repetetive deoptimization](https://crbug.com/v8/3176)**  
+**[Issue: Issue 3176:
+ Optimistic bounds check generalization leads to repetetive deoptimization](https://crbug.com/v8/3176)**  
 **[Commit: Fix optimistic BCE to back off after deopt](https://chromium.googlesource.com/v8/v8/+/37b6fd0)**  
   
 Date(Commit): Mon Feb 24 13:15:31 2014  
@@ -8789,7 +8954,8 @@ for (i = 0; i < 3; i++) {
 
 ## **regress-crbug-344186.js (chromium issue)**  
    
-**[Issue: OOB write due to invalid bounds check in v8](https://crbug.com/344186)**  
+**[Issue: Issue 344186:
+ OOB write due to invalid bounds check in v8](https://crbug.com/344186)**  
 **[Commit: Fix Hydrogen bounds check elimination](https://chromium.googlesource.com/v8/v8/+/6e3b81a)**  
   
 Date(Commit): Wed Feb 19 10:30:39 2014  
@@ -8852,7 +9018,8 @@ new f();
 
 ## **regress-3158.js (v8 issue)**  
    
-**[Issue: A64: mjsunit/sparse-array-reverse fails on no_snap](https://crbug.com/v8/3158)**  
+**[Issue: Issue 3158:
+ A64: mjsunit/sparse-array-reverse fails on no_snap](https://crbug.com/v8/3158)**  
 **[Commit: Fix dictionary element load to pass correct elements kind.](https://chromium.googlesource.com/v8/v8/+/6744ff6)**  
   
 Date(Commit): Fri Feb 14 15:52:24 2014  
@@ -8891,7 +9058,8 @@ assertEquals('a', z);
 
 ## **regress-3138.js (v8 issue)**  
    
-**[Issue: Empty variable statement ignored in with-statement](https://crbug.com/v8/3138)**  
+**[Issue: Issue 3138:
+ Empty variable statement ignored in with-statement](https://crbug.com/v8/3138)**  
 **[Commit: Fix assignment of function name constant.](https://chromium.googlesource.com/v8/v8/+/68c7523)**  
   
 Date(Commit): Fri Feb 14 12:40:47 2014  
@@ -8939,7 +9107,8 @@ assertEquals("undefined", typeof f);
 
 ## **regress-3159.js (v8 issue)**  
    
-**[Issue: Garbled typed array error messages](https://crbug.com/v8/3159)**  
+**[Issue: Issue 3159:
+ Garbled typed array error messages](https://crbug.com/v8/3159)**  
 **[Commit: Fix typed array error message.](https://chromium.googlesource.com/v8/v8/+/a676bc1)**  
   
 Date(Commit): Fri Feb 14 09:33:03 2014  
@@ -8997,7 +9166,8 @@ assertEquals(3, f());
 
 ## **regress-3135.js (v8 issue)**  
    
-**[Issue: JSON.stringify() executes getters multiple times when replacer array contains duplicates](https://crbug.com/v8/3135)**  
+**[Issue: Issue 3135:
+ JSON.stringify() executes getters multiple times when replacer array contains duplicates](https://crbug.com/v8/3135)**  
 **[Commit: Fix spec violations in JSON.stringify wrt replacer array.](https://chromium.googlesource.com/v8/v8/+/f78bfaa)**  
   
 Date(Commit): Tue Feb 11 10:45:39 2014  
@@ -9073,7 +9243,8 @@ assertEquals('{"1":1,"s":"s"}',
 
 ## **regress-340125.js (chromium issue)**  
    
-**[Issue: CHECK failure in CHECK(is_valid) failed: ../../v8/src/v8conversions.h(107)](https://crbug.com/340125)**  
+**[Issue: Issue 340125:
+ CHECK failure in CHECK(is_valid) failed: ../../v8/src/v8conversions.h(107)](https://crbug.com/340125)**  
 **[Commit: Check the offset argument of TypedArray.set for fitting into Smi.](https://chromium.googlesource.com/v8/v8/+/a03d313)**  
   
 Date(Commit): Tue Feb 04 09:53:05 2014  
@@ -9096,7 +9267,8 @@ assertThrows(function () { a.set(b, 1e10); }, RangeError);
 
 ## **regress-crbug-336148.js (chromium issue)**  
    
-**[Issue: TypeError as a result of undefined variable from a RegEx exec](https://crbug.com/336148)**  
+**[Issue: Issue 336148:
+ TypeError as a result of undefined variable from a RegEx exec](https://crbug.com/336148)**  
 **[Commit: Fix short-circuiting logical and/or in HOptimizedGraphBuilder.](https://chromium.googlesource.com/v8/v8/+/9e70f6a)**  
   
 Date(Commit): Mon Feb 03 14:29:34 2014  
@@ -9143,7 +9315,8 @@ test();
 
 ## **regress-crbug-340064.js (chromium issue)**  
    
-**[Issue: Chrome: Crash Report - Magic Signature: v8::internal::HOptimizedGraphBuilder::Prope...](https://crbug.com/340064)**  
+**[Issue: Issue 340064:
+ Chrome: Crash Report - Magic Signature: v8::internal::HOptimizedGraphBuilder::Prope...](https://crbug.com/340064)**  
 **[Commit: Return a valid map for PropertyAccessInfos with Boolean type.](https://chromium.googlesource.com/v8/v8/+/db7124d)**  
   
 Date(Commit): Mon Feb 03 10:20:32 2014  
@@ -9172,7 +9345,8 @@ assertEquals(undefined, f(true));
 
 ## **regress-2989.js (v8 issue)**  
    
-**[Issue: webkit/dfg-inline-arguments-* is flaky](https://crbug.com/v8/2989)**  
+**[Issue: Issue 2989:
+ webkit/dfg-inline-arguments-* is flaky](https://crbug.com/v8/2989)**  
 **[Commit: Simpler repro for bug 2989.](https://chromium.googlesource.com/v8/v8/+/3c2363f)**  
   
 Date(Commit): Fri Jan 31 16:12:58 2014  
@@ -9207,7 +9381,8 @@ if (isNeverOptimizeLiteMode()) {
 
 ## **regress-336820.js (chromium issue)**  
    
-**[Issue: Chrome_Mac: Crash Report - b4afb2ca_b5c4705e_0cc2522b_a19e9b16_fc5e603f](https://crbug.com/336820)**  
+**[Issue: Issue 336820:
+ Chrome_Mac: Crash Report - b4afb2ca_b5c4705e_0cc2522b_a19e9b16_fc5e603f](https://crbug.com/336820)**  
 **[Commit: Don't crash in Array.join() if the resulting string exceeds the max string length.](https://chromium.googlesource.com/v8/v8/+/3214cf1)**  
   
 Date(Commit): Fri Jan 31 12:21:17 2014  
@@ -9261,7 +9436,8 @@ f("length");
 
 ## **regress-634-debug.js (v8 issue)**  
    
-**[Issue: debug-handle test fails on ia32 v8 running on x64 linux machine](https://crbug.com/v8/634)**  
+**[Issue: Issue 634:
+ debug-handle test fails on ia32 v8 running on x64 linux machine](https://crbug.com/v8/634)**  
 **[Commit: Speed up some mjsunit test cases and clean up test expectations for arm and mips.](https://chromium.googlesource.com/v8/v8/+/cde3ed1)**  
   
 Date(Commit): Fri Jan 24 11:36:45 2014  
@@ -9362,7 +9538,8 @@ bar(64, 2);
 
 ## **regress-333594.js (chromium issue)**  
    
-**[Issue: Displaying a PDF with the pdf.js viewer crash Chrome](https://crbug.com/333594)**  
+**[Issue: Issue 333594:
+ Displaying a PDF with the pdf.js viewer crash Chrome](https://crbug.com/333594)**  
 **[Commit: Fix representation requirement in HReturn.](https://chromium.googlesource.com/v8/v8/+/5771b09)**  
   
 Date(Commit): Mon Jan 20 19:00:11 2014  
@@ -9475,7 +9652,8 @@ store_transition(o3);
 
 ## **regress-331416.js (chromium issue)**  
    
-**[Issue: [LangFuzz] Crash on Heap with Array access/length and invalid read](https://crbug.com/331416)**  
+**[Issue: Issue 331416:
+ [LangFuzz] Crash on Heap with Array access/length and invalid read](https://crbug.com/331416)**  
 **[Commit: Correctly handle instances without elements in polymorphic keyed load/store.](https://chromium.googlesource.com/v8/v8/+/8db7aaa)**  
   
 Date(Commit): Wed Jan 08 09:57:28 2014  
@@ -9518,7 +9696,8 @@ store(0, 0, 1);
 
 ## **regress-331444.js (chromium issue)**  
    
-**[Issue: [LangFuzz] Crash at v8::internal::StoreBuffer::Compact with invalid write](https://crbug.com/331444)**  
+**[Issue: Issue 331444:
+ [LangFuzz] Crash at v8::internal::StoreBuffer::Compact with invalid write](https://crbug.com/331444)**  
 **[Commit: Fix selection of popular pages in store buffer.](https://chromium.googlesource.com/v8/v8/+/43d1c23)**  
   
 Date(Commit): Wed Jan 08 09:49:37 2014  

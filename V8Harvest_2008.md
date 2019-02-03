@@ -4,7 +4,8 @@ The Harvest of V8 regress in 2008.
 
 ## **regress-176.js (v8 issue)**  
    
-**[Issue: Regexp: ? should be implemented as {0,1}](https://crbug.com/v8/176)**  
+**[Issue: Issue 176:
+ Regexp: ? should be implemented as {0,1}](https://crbug.com/v8/176)**  
 **[Commit: Added test for bug 176 (zero length matches should fail in quantifiers).](https://chromium.googlesource.com/v8/v8/+/4ede982)**  
   
 Date(Commit): Thu Dec 11 09:01:55 2008  
@@ -43,7 +44,8 @@ assertArrayEquals(["f", undefined],
 
 ## **regress-149.js (v8 issue)**  
    
-**[Issue: Some upper/lower case mappings are performed incorrectly](https://crbug.com/v8/149)**  
+**[Issue: Issue 149:
+ Some upper/lower case mappings are performed incorrectly](https://crbug.com/v8/149)**  
 **[Commit: Merge regexp2000 back into bleeding_edge](https://chromium.googlesource.com/v8/v8/+/b57b4a1)**  
   
 Date(Commit): Tue Nov 25 11:07:48 2008  
@@ -67,7 +69,8 @@ assertEquals(String.fromCharCode(0x26B), String.fromCharCode(0x2C62).toLowerCase
 
 ## **regress-137.js (v8 issue)**  
    
-**[Issue: division-> switch problem (it works correctly in previous chrome, in FF, Safari and IE)](https://crbug.com/v8/137)**  
+**[Issue: Issue 137:
+ division-> switch problem (it works correctly in previous chrome, in FF, Safari and IE)](https://crbug.com/v8/137)**  
 **[Commit: If a HeapNumber is the incoming value, it must be converted to Smi before](https://chromium.googlesource.com/v8/v8/+/4e3bbd8)**  
   
 Date(Commit): Mon Nov 03 13:33:13 2008  
@@ -106,7 +109,8 @@ Regress: [mjsunit/regress/regress-137.js](https://chromium.googlesource.com/v8/v
 
 ## **regress-124.js (v8 issue)**  
    
-**[Issue: implicit 'this' is not as expected in an eval statement inside a function](https://crbug.com/v8/124)**  
+**[Issue: Issue 124:
+ implicit 'this' is not as expected in an eval statement inside a function](https://crbug.com/v8/124)**  
 **[Commit: Added failing test case for bug 124.](https://chromium.googlesource.com/v8/v8/+/96733af)**  
   
 Date(Commit): Thu Oct 23 05:49:05 2008  
@@ -182,7 +186,8 @@ Test();
 
 ## **regress-116.js (v8 issue)**  
    
-**[Issue: function return value when accessing/setting array is not consistent with other JS engines](https://crbug.com/v8/116)**  
+**[Issue: Issue 116:
+ function return value when accessing/setting array is not consistent with other JS engines](https://crbug.com/v8/116)**  
 **[Commit: Fix issue 116 by returning the value from SetFastElement.](https://chromium.googlesource.com/v8/v8/+/c63477d)**  
   
 Date(Commit): Fri Oct 17 06:36:35 2008  
@@ -214,7 +219,8 @@ assertEquals('f', r2[0]);
 
 ## **regress-114.js (v8 issue)**  
    
-**[Issue: Incorrect loop in "runtime.cc"](https://crbug.com/v8/114)**  
+**[Issue: Issue 114:
+ Incorrect loop in "runtime.cc"](https://crbug.com/v8/114)**  
 **[Commit: Fixed bug 114](https://chromium.googlesource.com/v8/v8/+/a601594)**  
   
 Date(Commit): Tue Oct 14 09:13:23 2008  
@@ -245,7 +251,8 @@ assertEquals("XX\u03A5\u0308\u0301XX", "xx\u03B0xx".toUpperCase());
 
 ## **regress-86.js (v8 issue)**  
    
-**[Issue: Continuing a for-each loop in a finally clause exits the loop](https://crbug.com/v8/86)**  
+**[Issue: Issue 86:
+ Continuing a for-each loop in a finally clause exits the loop](https://crbug.com/v8/86)**  
 **[Commit: - Added support for warnings on unused test rules.](https://chromium.googlesource.com/v8/v8/+/2d0c43a)**  
   
 Date(Commit): Thu Sep 25 12:38:34 2008  
@@ -285,7 +292,8 @@ assertTrue(leftThroughFinally);
 
 ## **regress-69.js (v8 issue)**  
    
-**[Issue: Crash on http://www.steev.net](https://crbug.com/v8/69)**  
+**[Issue: Issue 69:
+ Crash on http://www.steev.net](https://crbug.com/v8/69)**  
 **[Commit: Fix http://code.google.com/p/v8/issues/detail?id=69 :](https://chromium.googlesource.com/v8/v8/+/88192fc)**  
   
 Date(Commit): Tue Sep 16 11:23:02 2008  
@@ -315,7 +323,8 @@ unbalanced_switch(1);
 
 ## **regress-57.js (v8 issue)**  
    
-**[Issue: Crash when deleting prototype[0]](https://crbug.com/v8/57)**  
+**[Issue: Issue 57:
+ Crash when deleting prototype[0]](https://crbug.com/v8/57)**  
 **[Commit: Fixed bug #57.  Introduced String::Utf8Value and replaced a bunch of](https://chromium.googlesource.com/v8/v8/+/6974e4b)**  
   
 Date(Commit): Wed Sep 10 11:41:48 2008  
@@ -343,7 +352,8 @@ try {
 
 ## **regress-35.js (v8 issue)**  
    
-**[Issue: Need to check for end of string when parsing break or continue.](https://crbug.com/v8/35)**  
+**[Issue: Issue 35:
+ Need to check for end of string when parsing break or continue.](https://crbug.com/v8/35)**  
 **[Commit: Fix issue 35 by applying patch by Daniel James.](https://chromium.googlesource.com/v8/v8/+/2f0c910)**  
   
 Date(Commit): Mon Sep 08 07:58:54 2008  
@@ -3771,7 +3781,8 @@ assertClose(-3 * Math.PI / 4, Math.atan2(ninf, ninf));
 
 ## **regress-900966.js (chromium issue)**  
    
-**[Issue: GCPW allows multiple instances of chrome to spawn leading to possible breakout of sandbox](https://crbug.com/900966)**  
+**[Issue: Issue 900966:
+ GCPW allows multiple instances of chrome to spawn leading to possible breakout of sandbox](https://crbug.com/900966)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3814,7 +3825,8 @@ assertEquals(true[12], 'z');
 
 ## **regress-900055.js (chromium issue)**  
    
-**[Issue: ChromeVox does not announce all macros options in tools menu](https://crbug.com/900055)**  
+**[Issue: Issue 900055:
+ ChromeVox does not announce all macros options in tools menu](https://crbug.com/900055)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3895,7 +3907,8 @@ assertEquals(undefined, h());
 
 ## **regress-877615.js (chromium issue)**  
    
-**[Issue: Form input controls disappeared for High Sierra](https://crbug.com/877615)**  
+**[Issue: Issue 877615:
+ Form input controls disappeared for High Sierra](https://crbug.com/877615)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3929,7 +3942,8 @@ assertEquals([1].toString(), '1');        // Uses ToString directly on elements.
 
 ## **regress-875031.js (chromium issue)**  
    
-**[Issue: Shutdown crash in ~ArcNotificationManager](https://crbug.com/875031)**  
+**[Issue: Issue 875031:
+ Shutdown crash in ~ArcNotificationManager](https://crbug.com/875031)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4098,7 +4112,8 @@ assertEquals(10, j);
 
 ## **regress-780423.js (chromium issue)**  
    
-**[Issue: Add unit test for CfM autotest utility classes](https://crbug.com/780423)**  
+**[Issue: Issue 780423:
+ Add unit test for CfM autotest utility classes](https://crbug.com/780423)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4134,7 +4149,8 @@ assertTrue(o1.prototype !== o2.prototype, "different protos");
 
 ## **regress-737588.js (chromium issue)**  
    
-**[Issue: Purple Bot on chromium.perf: Android Nexus6 WebView Perf (1)](https://crbug.com/737588)**  
+**[Issue: Issue 737588:
+ Purple Bot on chromium.perf: Android Nexus6 WebView Perf (1)](https://crbug.com/737588)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4165,12 +4181,13 @@ assertEquals(125, goog.globalEval('var foofoofoo = 125; foofoofoo'));
 
 ## **regress-734862.js (chromium issue)**  
    
-**[Issue: "WebContentsImplBrowserTest.DismissingBeforeUnloadDialogInvalidatesUrl" is flaky](https://crbug.com/734862)**  
+**[Issue: Issue 734862:
+ "WebContentsImplBrowserTest.DismissingBeforeUnloadDialogInvalidatesUrl" is flaky](https://crbug.com/734862)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
-Components/Type: Tests>Flaky/Bug  
-Labels: ["Via-TryFlakes"]  
+Components/Type: None/Bug  
+Labels: ["Test-Flaky", "Via-TryFlakes"]  
 Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
 Regress: [mjsunit/regress/regress-734862.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-734862.js)  
 ```javascript
@@ -4198,7 +4215,8 @@ assertTrue(catcher(void 0, 123) instanceof TypeError);
 
 ## **regress-682649.js (chromium issue)**  
    
-**[Issue: webrtc.peerconnection.reference fails because of not enough capacity](https://crbug.com/682649)**  
+**[Issue: Issue 682649:
+ webrtc.peerconnection.reference fails because of not enough capacity](https://crbug.com/682649)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4277,7 +4295,8 @@ assertEquals(105, '\151'.charCodeAt(0));
 
 ## **regress-676025.js (chromium issue)**  
    
-**[Issue: Quick swipe fails to un-hide shelf](https://crbug.com/676025)**  
+**[Issue: Issue 676025:
+ Quick swipe fails to un-hide shelf](https://crbug.com/676025)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4305,7 +4324,8 @@ assertTrue(result instanceof SyntaxError);
 
 ## **regress-674753.js (chromium issue)**  
    
-**[Issue: Cancelled XHR has no information](https://crbug.com/674753)**  
+**[Issue: Issue 674753:
+ Cancelled XHR has no information](https://crbug.com/674753)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4456,7 +4476,8 @@ assertFalse(typeof undetectable === 'object');
 
 ## **regress-670147.js (chromium issue)**  
    
-**[Issue: Add VR Shell unit tests to Android Tryservers](https://crbug.com/670147)**  
+**[Issue: Issue 670147:
+ Add VR Shell unit tests to Android Tryservers](https://crbug.com/670147)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4486,12 +4507,13 @@ assertFalse(XXX('Hello'));
 
 ## **regress-667061.js (chromium issue)**  
    
-**[Issue: "virtual/rootlayerscrolls/scrollingcoordinator/non-fast-scrollable-visibility-change.html" is flaky](https://crbug.com/667061)**  
+**[Issue: Issue 667061:
+ "virtual/rootlayerscrolls/scrollingcoordinator/non-fast-scrollable-visibility-change.html" is flaky](https://crbug.com/667061)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
 Components/Type: Blink>Paint>Invalidation/Bug  
-Labels: ["Sheriff-Chromium", "Via-TryFlakes"]  
+Labels: ["Test-Flaky", "Sheriff-Chromium", "Via-TryFlakes"]  
 Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
 Regress: [mjsunit/regress/regress-667061.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-667061.js)  
 ```javascript
@@ -4619,7 +4641,8 @@ assertEquals(4, len3([1,2,3,4]));
 
 ## **regress-662254.js (chromium issue)**  
    
-**[Issue: Accessibility issue: Hypertexts contained w/in an element w/ a "click-and-mouse-related" event listener are "clickable"](https://crbug.com/662254)**  
+**[Issue: Issue 662254:
+ Accessibility issue: Hypertexts contained w/in an element w/ a "click-and-mouse-related" event listener are "clickable"](https://crbug.com/662254)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
