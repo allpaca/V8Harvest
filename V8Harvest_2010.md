@@ -103,9 +103,8 @@ Code Review: [http://codereview.chromium.org/5861006](http://codereview.chromium
 Regress: [mjsunit/regress/regress-687.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-687.js)  
 ```javascript
 var obj = { get value() {}, set value (v) { throw "Error";} };
-assertDoesNotThrow(
-    Object.defineProperty(obj, "value",
-                          { value: 5, writable:true, configurable: true }));
+Object.defineProperty(obj, "value",
+                      { value: 5, writable:true, configurable: true });
 var desc = Object.getOwnPropertyDescriptor(obj, "value");
 assertEquals(obj.value, 5);
 assertTrue(desc.configurable);
@@ -123,7 +122,7 @@ var proto = {
 var create = Object.create(proto);
 
 assertEquals(create.value, undefined);
-assertDoesNotThrow(create.value = 4);
+create.value = 4;
 assertEquals(create.value, 4);
 
 var obj1 = {};
@@ -1314,7 +1313,7 @@ var p = "floor";
 
 function test() {
   var bignumber = 31363200000;
-  assertDoesNotThrow(assertEquals(m[p](Math.round(bignumber/864E5)/7)+1, 52));
+  assertEquals(m[p](Math.round(bignumber/864E5)/7)+1, 52);
 }
 
 test();  

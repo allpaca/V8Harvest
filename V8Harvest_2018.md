@@ -2681,12 +2681,13 @@ assertTrue(%IsAsmWasmCode(Module));
 
 ## **regress-crbug-899464.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/899464)**  
+**[Issue 899464:
+ ASSERT: CSA_ASSERT failed: Word32Or(Word32Equal(var_unicode.value(), zero), Word32Equal(](https://crbug.com/899464)**  
 **[Commit: [regexp] Ensure FastFlagGetter returns either 0 or 1](https://chromium.googlesource.com/v8/v8/+/6397149)**  
   
 Date(Commit): Mon Oct 29 09:54:43 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1304315](https://chromium-review.googlesource.com/c/1304315)  
 Regress: [mjsunit/regress/regress-crbug-899464.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-899464.js)  
 ```javascript
