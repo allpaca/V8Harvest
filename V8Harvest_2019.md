@@ -2,6 +2,48 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-912162.js (chromium issue)**  
+   
+**[Issue 912162:
+ Ill in v8::internal::JSObject::JSObjectVerify](https://crbug.com/912162)**  
+**[Commit: Constant field tracking for arrays.](https://chromium.googlesource.com/v8/v8/+/ea86509)**  
+  
+Date(Commit): Wed Feb 06 14:44:43 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-CC", "Test-Predator-Auto-Components"]  
+Code Review: [https://chromium-review.googlesource.com/c/1454606](https://chromium-review.googlesource.com/c/1454606)  
+Regress: [mjsunit/regress/regress-912162.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-912162.js)  
+```javascript
+var a = new Array();
+a.prototype = a;
+
+function f() {
+ a.length = 0x2000001;
+ a.push();
+}
+
+({}).__proto__ = a;
+
+f()
+f()
+
+a.length = 1;
+a.fill(-255);
+
+%HeapObjectVerify(a);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ea86509^!)  
+[src/compiler/compilation-dependencies.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/compilation-dependencies.cc?cl=ea86509)  
+[src/compiler/compilation-dependencies.h](https://cs.chromium.org/chromium/src/v8/src/compiler/compilation-dependencies.h?cl=ea86509)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=ea86509)  
+[src/compiler/property-access-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/property-access-builder.cc?cl=ea86509)  
+[src/map-updater.cc](https://cs.chromium.org/chromium/src/v8/src/map-updater.cc?cl=ea86509)  
+...  
+  
+
+---   
+
 ## **regress-crbug-926856.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/926856)**  
