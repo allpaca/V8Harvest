@@ -2495,12 +2495,13 @@ f(tmp);  // This must not trigger the {assert}.
 
 ## **regress-899537.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/899537)**  
+**[Issue 899537:
+ Crash in v8::internal::interpreter::BytecodeGenerator::BuildVariableAssignment](https://crbug.com/899537)**  
 **[Commit: [class] Rewrite destructuring assignment in class field initializers](https://chromium.googlesource.com/v8/v8/+/c65dbd5)**  
   
 Date(Commit): Tue Oct 30 16:34:04 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Interpreter/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-Medium", "Security_Impact-Head", "Stability-Libfuzzer", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "Target-72"]  
 Code Review: [https://chromium-review.googlesource.com/c/1304538](https://chromium-review.googlesource.com/c/1304538)  
 Regress: [mjsunit/regress/regress-899537.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-899537.js)  
 ```javascript
