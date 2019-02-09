@@ -2368,12 +2368,13 @@ assertThrows("{function g(){}function g(){+", SyntaxError);
 
 ## **regress-crbug-898785.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/898785)**  
+**[Issue 898785:
+ ASSERT: CSA_ASSERT failed: SmiBelow(effective_index, LoadFixedArrayBaseLength(array))](https://crbug.com/898785)**  
 **[Commit: [builtins] Fix out-of-bounds in Array#lastIndexOf().](https://chromium.googlesource.com/v8/v8/+/b8a9113)**  
   
 Date(Commit): Fri Nov 02 07:42:50 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Runtime/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner", "merge-merged-7.1"]  
 Code Review: [https://chromium-review.googlesource.com/c/1314329](https://chromium-review.googlesource.com/c/1314329)  
 Regress: [mjsunit/regress/regress-crbug-898785.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-898785.js)  
 ```javascript

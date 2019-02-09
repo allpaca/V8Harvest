@@ -76,6 +76,42 @@ a.map(c);
 
 ---   
 
+## **regress-v8-5848.js (v8 issue)**  
+   
+**[Issue 5848:
+ Exponentiation operator ** has different results for numbers and variables from 50 upwards](https://crbug.com/v8/5848)**  
+**[Commit: [builtins] [turbofan] Refactor Float64Pow to use single implementation](https://chromium.googlesource.com/v8/v8/+/595aafe)**  
+  
+Date(Commit): Thu Jan 31 09:42:25 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/1403018](https://chromium-review.googlesource.com/c/1403018)  
+Regress: [mjsunit/regress/regress-v8-5848.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5848.js)  
+```javascript
+const inlineFromParser = 50 ** 50;
+
+const i = 50;
+const fromRuntimePowOp = i ** i;
+const fromRuntimeMath = Math.pow(i, i);
+
+
+assertEquals(inlineFromParser, fromRuntimePowOp);
+assertEquals(inlineFromParser - fromRuntimePowOp, 0);
+
+assertEquals(inlineFromParser, fromRuntimeMath);
+assertEquals(inlineFromParser - fromRuntimeMath, 0);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/595aafe^!)  
+[src/base/ieee754.cc](https://cs.chromium.org/chromium/src/v8/src/base/ieee754.cc?cl=595aafe)  
+[src/base/ieee754.h](https://cs.chromium.org/chromium/src/v8/src/base/ieee754.h?cl=595aafe)  
+[src/builtins/arm/builtins-arm.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/arm/builtins-arm.cc?cl=595aafe)  
+[src/builtins/arm64/builtins-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/arm64/builtins-arm64.cc?cl=595aafe)  
+[src/builtins/builtins-definitions.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?cl=595aafe)  
+...  
+  
+
+---   
+
 ## **regress-crbug-926819.js (chromium issue)**  
    
 **[Issue 926819:
