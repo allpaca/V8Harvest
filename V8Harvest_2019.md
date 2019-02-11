@@ -2,6 +2,57 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-930045.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/930045)**  
+**[Commit: Fix map updater for non-extensible maps with private symbols.](https://chromium.googlesource.com/v8/v8/+/154bb50)**  
+  
+Date(Commit): Sat Feb 09 09:09:02 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1460949](https://chromium-review.googlesource.com/c/1460949)  
+Regress: [mjsunit/regress-930045.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-930045.js)  
+```javascript
+(function CaptureStackTracePrivateSymbol() {
+  var o = {};
+  Object.preventExtensions(o);
+
+  try { Error.captureStackTrace(o); } catch (e) {}
+  try { Error.captureStackTrace(o); } catch (e) {}
+})();
+
+(function PrivateFieldAfterPreventExtensions() {
+  class C {
+    constructor() {
+      this.x = 1;
+      Object.preventExtensions(this);
+    }
+  }
+
+  class D extends C {
+    #i = 42;
+
+    set(i) { this.#i = i; }
+    get(i) { return this.#i; }
+  }
+
+  let d = new D();
+  d.x = 0.1;
+  assertEquals(42, d.get());
+  d.set(43);
+  assertEquals(43, d.get());
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/154bb50^!)  
+[src/map-updater.cc](https://cs.chromium.org/chromium/src/v8/src/map-updater.cc?cl=154bb50)  
+[src/map-updater.h](https://cs.chromium.org/chromium/src/v8/src/map-updater.h?cl=154bb50)  
+[src/objects/map.cc](https://cs.chromium.org/chromium/src/v8/src/objects/map.cc?cl=154bb50)  
+[test/mjsunit/regress-930045.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-930045.js?cl=154bb50)  
+  
+
+---   
+
 ## **regress-912162.js (chromium issue)**  
    
 **[Issue 912162:
