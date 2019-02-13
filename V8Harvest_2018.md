@@ -2280,12 +2280,13 @@ assertEquals(4294967291, f(-2));
 
 ## **regress-901633.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/901633)**  
+**[Issue 901633:
+ ASSERT: CSA_ASSERT failed: Torque assert 'srcPos <= GetReceiverLengthProperty(sortState)](https://crbug.com/901633)**  
 **[Commit: [array] Weaken bounds checks in Array.p.sort](https://chromium.googlesource.com/v8/v8/+/1444beb)**  
   
 Date(Commit): Tue Nov 06 14:04:38 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1317814](https://chromium-review.googlesource.com/c/1317814)  
 Regress: [mjsunit/regress/regress-901633.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-901633.js)  
 ```javascript

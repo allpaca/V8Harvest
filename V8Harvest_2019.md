@@ -2,6 +2,90 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-8808.js (v8 issue)**  
+   
+**[Issue 8808:
+ Segmentation fault when trying to declare a class with destructuring private class field](https://crbug.com/v8/8808)**  
+**[Commit: [parser] don't accept PRIVATE_NAME for object literal property names](https://chromium.googlesource.com/v8/v8/+/1483561)**  
+  
+Date(Commit): Mon Feb 11 18:17:32 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/1461161](https://chromium-review.googlesource.com/c/1461161)  
+Regress: [mjsunit/harmony/regress/regress-8808.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/harmony/regress/regress-8808.js)  
+```javascript
+assertThrows(() => eval(`
+  class Foo {
+    #x = 1;
+    destructureX() {
+      const { #x: x } = this;
+      return x;
+    }
+  }
+`), SyntaxError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1483561^!)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=1483561)  
+[test/cctest/test-parsing.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-parsing.cc?cl=1483561)  
+[test/message/fail/destructuring-object-private-name.js](https://cs.chromium.org/chromium/src/v8/test/message/fail/destructuring-object-private-name.js?cl=1483561)  
+[test/message/fail/destructuring-object-private-name.out](https://cs.chromium.org/chromium/src/v8/test/message/fail/destructuring-object-private-name.out?cl=1483561)  
+[test/mjsunit/harmony/regress/regress-8808.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/harmony/regress/regress-8808.js?cl=1483561)  
+  
+
+---   
+
+## **regress-930486.js (chromium issue)**  
+   
+**[Issue 930486:
+ Ill in v8::internal::Map::EquivalentToForTransition](https://crbug.com/930486)**  
+**[Commit: Fix map equivalence check.](https://chromium.googlesource.com/v8/v8/+/a953f8d)**  
+  
+Date(Commit): Mon Feb 11 16:31:35 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Stability-UndefinedBehaviorSanitizer", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1462004](https://chromium-review.googlesource.com/c/1462004)  
+Regress: [mjsunit/regress/regress-930486.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-930486.js)  
+```javascript
+var __v_49026 = function () {};
+
+__v_49026.prototype = undefined;
+__v_49026.x = 23;
+__v_49026.prototype = new ArrayBuffer();
+__v_49026.x = 2147483649;  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a953f8d^!)  
+[src/objects/map.cc](https://cs.chromium.org/chromium/src/v8/src/objects/map.cc?cl=a953f8d)  
+[test/mjsunit/regress/regress-930486.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-930486.js?cl=a953f8d)  
+  
+
+---   
+
+## **regress-crbug-930580.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/930580)**  
+**[Commit: [parser] Reset expression_scope_ stack to nullptr when parsing a function body](https://chromium.googlesource.com/v8/v8/+/486ec80)**  
+  
+Date(Commit): Mon Feb 11 09:22:57 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1462005](https://chromium-review.googlesource.com/c/1462005)  
+Regress: [mjsunit/regress/regress-crbug-930580.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-930580.js)  
+```javascript
+(function outer() {
+  (arg = (function inner() {
+    return this
+  })()) => 0;
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/486ec80^!)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=486ec80)  
+[test/mjsunit/regress/regress-crbug-930580.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-930580.js?cl=486ec80)  
+  
+
+---   
+
 ## **regress-930045.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/930045)**  
