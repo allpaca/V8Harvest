@@ -2,6 +2,64 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-926651.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/926651)**  
+**[Commit: [ast] Always visit all AST nodes, even dead nodes](https://chromium.googlesource.com/v8/v8/+/9439a1d)**  
+  
+Date(Commit): Wed Feb 13 15:24:28 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1470108](https://chromium-review.googlesource.com/c/1470108)  
+Regress: [mjsunit/regress/regress-crbug-926651.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-926651.js)  
+```javascript
+var asdf = false;
+
+const f =
+  (v1 = (function g() {
+    if (asdf) { return; } else { return; }
+    (function h() {});
+  })()) => 1;
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9439a1d^!)  
+[src/ast/ast-traversal-visitor.h](https://cs.chromium.org/chromium/src/v8/src/ast/ast-traversal-visitor.h?cl=9439a1d)  
+[src/ast/ast.cc](https://cs.chromium.org/chromium/src/v8/src/ast/ast.cc?cl=9439a1d)  
+[src/ast/ast.h](https://cs.chromium.org/chromium/src/v8/src/ast/ast.h?cl=9439a1d)  
+[src/ast/prettyprinter.cc](https://cs.chromium.org/chromium/src/v8/src/ast/prettyprinter.cc?cl=9439a1d)  
+[test/mjsunit/regress/regress-crbug-926651.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-926651.js?cl=9439a1d)  
+  
+
+---   
+
+## **regress-crbug-930948-base.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/930948)**  
+**[Commit: [array] Fix Array#map storing signaling NaNs](https://chromium.googlesource.com/v8/v8/+/82faa6d)**  
+  
+Date(Commit): Wed Feb 13 10:23:19 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1466503](https://chromium-review.googlesource.com/c/1466503)  
+Regress: [mjsunit/regress/regress-crbug-930948-base.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-930948-base.js), [mjsunit/regress/regress-crbug-930948.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-930948.js)  
+```javascript
+function foo() {
+  return [undefined].map(Math.asin);
+}
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/82faa6d^!)  
+[src/builtins/array-map.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-map.tq?cl=82faa6d)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=82faa6d)  
+[src/compiler/graph-assembler.h](https://cs.chromium.org/chromium/src/v8/src/compiler/graph-assembler.h?cl=82faa6d)  
+[test/mjsunit/regress/regress-crbug-930948-base.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-930948-base.js?cl=82faa6d)  
+[test/mjsunit/regress/regress-crbug-930948.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-930948.js?cl=82faa6d)  
+  
+
+---   
+
 ## **regress-8808.js (v8 issue)**  
    
 **[Issue 8808:

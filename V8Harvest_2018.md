@@ -2136,12 +2136,13 @@ assertThrows("((__v_4 = __v_4, __v_0) => eval(__v_4))()", ReferenceError)
 
 ## **regress-crbug-902395.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/902395)**  
+**[Issue 902395:
+ Security: bytecode-graph-builder values_[index] != builder()->jsgraph()->OptimizedOutConstant()](https://crbug.com/902395)**  
 **[Commit: [ignition] More accurate dead statement elision](https://chromium.googlesource.com/v8/v8/+/7412593)**  
   
 Date(Commit): Thu Nov 08 10:48:09 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Compiler/Bug-Security  
+Labels: ["reward-0", "Security_Impact-Head", "Security_Severity-High", "allpublic", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components"]  
 Code Review: [https://chromium-review.googlesource.com/c/1322951](https://chromium-review.googlesource.com/c/1322951)  
 Regress: [mjsunit/regress/regress-crbug-902395.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-902395.js)  
 ```javascript
@@ -2224,12 +2225,13 @@ f();
 
 ## **regress-902552.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/902552)**  
+**[Issue 902552:
+ DCHECK failure in AllowCodeDependencyChange::IsAllowed() in objects.cc](https://crbug.com/902552)**  
 **[Commit: Allow code-dependency changes in OptimizedCompilationJob::FinalizeJob](https://chromium.googlesource.com/v8/v8/+/f460315)**  
   
 Date(Commit): Thu Nov 08 08:46:44 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1322450](https://chromium-review.googlesource.com/c/1322450)  
 Regress: [mjsunit/regress/regress-902552.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-902552.js)  
 ```javascript
