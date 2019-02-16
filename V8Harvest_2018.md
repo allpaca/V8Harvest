@@ -2023,12 +2023,13 @@ Regress: [mjsunit/regress/regress-crbug-903043.js](https://chromium.googlesource
 
 ## **regress-903070.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/903070)**  
+**[Issue 903070:
+ ASSERT: CSA_ASSERT failed: IsStrong(object)](https://crbug.com/903070)**  
 **[Commit: [CloneObjectIC] clone MutableHeapNumbers only if !FLAG_unbox_double_fields](https://chromium.googlesource.com/v8/v8/+/3e010af)**  
   
 Date(Commit): Thu Nov 08 19:14:11 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1323911](https://chromium-review.googlesource.com/c/1323911)  
 Regress: [mjsunit/es9/regress/regress-903070.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es9/regress/regress-903070.js)  
 ```javascript
@@ -2086,12 +2087,13 @@ const clone = { ...instance, };
 
 ## **regress-crbug-902610.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/902610)**  
+**[Issue 902610:
+ Crash in Builtins_MovExtraWideHandler](https://crbug.com/902610)**  
 **[Commit: [parser] Fix off-by-one in parameter count check](https://chromium.googlesource.com/v8/v8/+/36e1e46)**  
   
 Date(Commit): Thu Nov 08 14:52:30 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1326029](https://chromium-review.googlesource.com/c/1326029)  
 Regress: [mjsunit/regress/regress-crbug-902610.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-902610.js)  
 ```javascript
@@ -2191,12 +2193,13 @@ opt();
 
 ## **regress-902608.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/902608)**  
+**[Issue 902608:
+ Crash in GetValueByObjectIndex](https://crbug.com/902608)**  
 **[Commit: [interpreter] Store CreateObjectLiteral's result into the accumulator.](https://chromium.googlesource.com/v8/v8/+/60c0edc)**  
   
 Date(Commit): Thu Nov 08 10:31:45 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Compiler/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-Medium", "Security_Impact-Head", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1325901](https://chromium-review.googlesource.com/c/1325901)  
 Regress: [mjsunit/compiler/regress-902608.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-902608.js)  
 ```javascript
