@@ -514,12 +514,13 @@ foo(true);
 
 ## **regress-791345.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/791345)**  
+**[Issue 791345:
+ Security: Integer overflow in FastArraySliceCodeStubAssembler::HandleFastSlice](https://crbug.com/791345)**  
 **[Commit: Fix OOB access in Array.prototype.slice](https://chromium.googlesource.com/v8/v8/+/6f6ca73)**  
   
 Date(Commit): Tue Dec 05 14:34:17 2017  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["reward-5500", "Security_Impact-Stable", "Hotlist-Merge-Approved", "Security_Severity-High", "allpublic", "reward-inprocess", "M-65", "merge-merged-6.4", "merge-merged-64", "Hotlist-Torque"]  
 Code Review: [https://chromium-review.googlesource.com/806097](https://chromium-review.googlesource.com/806097)  
 Regress: [mjsunit/regress/regress-791345.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-791345.js)  
 ```javascript

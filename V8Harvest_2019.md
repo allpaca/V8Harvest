@@ -2,6 +2,33 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-932101.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/932101)**  
+**[Commit: Relax a too-strict DCHECKs.](https://chromium.googlesource.com/v8/v8/+/0f6f064)**  
+  
+Date(Commit): Fri Feb 15 07:44:11 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1475390](https://chromium-review.googlesource.com/c/1475390)  
+Regress: [mjsunit/regress-932101.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-932101.js)  
+```javascript
+o = Object("A");
+o.x = 1;
+Object.seal(o);
+o.x = 0.1
+
+o[1] = "b";
+assertEquals(undefined, o[1]);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0f6f064^!)  
+[src/map-updater.cc](https://cs.chromium.org/chromium/src/v8/src/map-updater.cc?cl=0f6f064)  
+[test/mjsunit/regress-932101.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-932101.js?cl=0f6f064)  
+  
+
+---   
+
 ## **regress-crbug-926651.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/926651)**  

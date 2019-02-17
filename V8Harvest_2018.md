@@ -1937,12 +1937,13 @@ for (var i = 0; i < 5; ++i) {
 
 ## **regress-896326.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/896326)**  
+**[Issue 896326:
+ Crash in MemoryWrite<unsigned](https://crbug.com/896326)**  
 **[Commit: Check for stack overflow when pushing arguments in JSConstructStubGeneric](https://chromium.googlesource.com/v8/v8/+/d056294)**  
   
 Date(Commit): Fri Nov 09 14:56:51 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Hotlist-Merge-Review", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Stable", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner", "Target-70", "M-70", "merge-merged-7.1", "Release-0-M71"]  
 Code Review: [https://chromium-review.googlesource.com/c/1305934](https://chromium-review.googlesource.com/c/1305934)  
 Regress: [mjsunit/regress/regress-896326.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-896326.js)  
 ```javascript
@@ -5992,12 +5993,13 @@ Float64Array.from.call(function(length) {
 
 ## **regress-crbug-854299.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/854299)**  
+**[Issue 854299:
+ Security: OOB read in Array.prototype.sort](https://crbug.com/854299)**  
 **[Commit: [array] Change Array.p.sort bailout behavior from fast- to slow-path](https://chromium.googlesource.com/v8/v8/+/3bcf2b8)**  
   
 Date(Commit): Wed Jun 20 15:38:18 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["reward-4000", "Security_Impact-Head", "Security_Severity-High", "allpublic", "reward-inprocess", "ClusterFuzz-Verified", "M-69", "Target-69", "Hotlist-Torque"]  
 Code Review: [https://chromium-review.googlesource.com/1107702](https://chromium-review.googlesource.com/1107702)  
 Regress: [mjsunit/regress/regress-crbug-854299.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-854299.js)  
 ```javascript
@@ -6033,12 +6035,13 @@ for (let i = 0; i < 1000; ++i) {
 
 ## **regress-crbug-852592.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/852592)**  
+**[Issue 852592:
+ Security: OOB read/write in Array.prototype.sort](https://crbug.com/852592)**  
 **[Commit: [array] Fix OOB load/stores when underlying FixedArray changed](https://chromium.googlesource.com/v8/v8/+/ce3c006)**  
   
 Date(Commit): Tue Jun 19 05:19:44 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Security_Impact-Head", "Security_Severity-High", "reward-7500", "allpublic", "reward-inprocess", "M-69", "Target-69", "Hotlist-Torque"]  
 Code Review: [https://chromium-review.googlesource.com/1104158](https://chromium-review.googlesource.com/1104158)  
 Regress: [mjsunit/regress/regress-crbug-852592.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-852592.js)  
 ```javascript
@@ -6898,12 +6901,13 @@ assertThrows(() => run("set", "x", {}), RangeError);
 
 ## **regress-840106.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/840106)**  
+**[Issue 840106:
+ Security: heap-use-after-free in TypedArrayBuiltinsAssembler::ConstructByArrayLike](https://crbug.com/840106)**  
 **[Commit: [typedarrays] Throw on construction of a detached typed array.](https://chromium.googlesource.com/v8/v8/+/645efbf)**  
   
 Date(Commit): Mon May 07 15:30:48 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Security_Impact-Head", "Security_Severity-High", "reward-7500", "allpublic", "reward-inprocess", "M-68", "Hotlist-Torque"]  
 Code Review: [https://chromium-review.googlesource.com/1046827](https://chromium-review.googlesource.com/1046827)  
 Regress: [mjsunit/regress/regress-840106.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-840106.js)  
 ```javascript
@@ -8987,12 +8991,13 @@ builder.instantiate();
 
 ## **regress-crbug-816961.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/816961)**  
+**[Issue 816961:
+ Security: Use-after-free in TypedArrayOf and TypedArrayFrom](https://crbug.com/816961)**  
 **[Commit: Fix buffer-detached check in TypedArray.of/from](https://chromium.googlesource.com/v8/v8/+/c94df3c)**  
   
 Date(Commit): Wed Feb 28 20:52:55 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Hotlist-Merge-Approved", "Security_Severity-High", "Security_Impact-Beta", "reward-7500", "allpublic", "reward-inprocess", "M-66", "merge-merged-6.6", "Hotlist-Torque"]  
 Code Review: [https://chromium-review.googlesource.com/939767](https://chromium-review.googlesource.com/939767)  
 Regress: [mjsunit/regress/regress-crbug-816961.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-816961.js)  
 ```javascript
