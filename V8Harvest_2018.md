@@ -1911,12 +1911,13 @@ assertThrows(code, SyntaxError);
 
 ## **regress-903697.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/903697)**  
+**[Issue 903697:
+ CHECK failure: heap_->Contains(object) in heap.cc](https://crbug.com/903697)**  
 **[Commit: [turbofan] Install code dependencies atomically.](https://chromium.googlesource.com/v8/v8/+/5751278)**  
   
 Date(Commit): Mon Nov 12 08:27:51 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Impact-Head", "Security_Severity-High", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1329162](https://chromium-review.googlesource.com/c/1329162)  
 Regress: [mjsunit/regress/regress-903697.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-903697.js)  
 ```javascript

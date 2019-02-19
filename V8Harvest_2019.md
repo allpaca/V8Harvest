@@ -2,6 +2,43 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-931664.js (chromium issue)**  
+   
+**[Issue 931664:
+ Security: v8: unreachable code in OddballToNumber](https://crbug.com/931664)**  
+**[Commit: [turbofan] Handle all oddballs in OddballToNumber](https://chromium.googlesource.com/v8/v8/+/68ed2f1)**  
+  
+Date(Commit): Mon Feb 18 10:46:37 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: []  
+Code Review: [https://chromium-review.googlesource.com/c/1477050](https://chromium-review.googlesource.com/c/1477050)  
+Regress: [mjsunit/regress/regress-crbug-931664.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-931664.js)  
+```javascript
+function opt(){
+  for(l in('a')){
+    try{
+      for(a in('')) {
+        for(let arg2 in(+(arg2)));
+      }
+    }
+    finally{}
+  }
+}
+opt();
+%OptimizeFunctionOnNextCall(opt);
+opt();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/68ed2f1^!)  
+[src/compiler/js-heap-broker.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-heap-broker.cc?cl=68ed2f1)  
+[src/compiler/js-heap-broker.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-heap-broker.h?cl=68ed2f1)  
+[src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=68ed2f1)  
+[src/compiler/typed-optimization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typed-optimization.cc?cl=68ed2f1)  
+[test/mjsunit/regress/regress-crbug-931664.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-931664.js?cl=68ed2f1)  
+  
+
+---   
+
 ## **regress-932101.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/932101)**  
