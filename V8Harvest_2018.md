@@ -1768,12 +1768,13 @@ Regress: [mjsunit/regress/regress-8449.js](https://chromium.googlesource.com/v8/
 
 ## **regress-crbug-902672.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/902672)**  
+**[Issue 902672:
+ CSA_ASSERT in Array.p.join](https://crbug.com/902672)**  
 **[Commit: [builtin] Array.p.join throws on invalid Array lengths.](https://chromium.googlesource.com/v8/v8/+/0dd0af7)**  
   
 Date(Commit): Tue Nov 13 09:46:01 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["reward-0", "Security_Impact-Head", "Security_Severity-High", "ReleaseBlock-Stable", "allpublic", "M-72", "Via-Wizard-Security"]  
 Code Review: [https://chromium-review.googlesource.com/c/1330921](https://chromium-review.googlesource.com/c/1330921)  
 Regress: [mjsunit/regress/regress-crbug-902672.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-902672.js)  
 ```javascript
