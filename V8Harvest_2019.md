@@ -2,6 +2,208 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-932392.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/932392)**  
+**[Commit: [turbofan] Handle -0 truncation in word32->tagged rep change.](https://chromium.googlesource.com/v8/v8/+/64bad45)**  
+  
+Date(Commit): Wed Feb 20 12:48:25 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1478192](https://chromium-review.googlesource.com/c/1478192)  
+Regress: [mjsunit/compiler/regress-932392.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-932392.js)  
+```javascript
+function opt(flag){
+  ((flag||(Math.max(-0,0)))==0)
+}
+
+try{opt(false)}catch{}
+%OptimizeFunctionOnNextCall(opt)
+try{opt(false)}catch{}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/64bad45^!)  
+[src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=64bad45)  
+[test/mjsunit/compiler/regress-932392.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-932392.js?cl=64bad45)  
+  
+
+---   
+
+## **regress-crbug-932034.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/932034)**  
+**[Commit: Reland "[builtins]: Optimize CreateTypedArray to use element size log 2 for calculations."](https://chromium.googlesource.com/v8/v8/+/02b9847)**  
+  
+Date(Commit): Wed Feb 20 12:06:53 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1456299](https://chromium-review.googlesource.com/c/1456299)  
+Regress: [mjsunit/regress/regress-crbug-932034.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-932034.js)  
+```javascript
+try {
+  new BigInt64Array(%MaxSmi());
+} catch(e) {
+  assertInstanceof(e, RangeError);
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/02b9847^!)  
+[src/builtins/base.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/base.tq?cl=02b9847)  
+[src/builtins/builtins-typed-array-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typed-array-gen.cc?cl=02b9847)  
+[src/builtins/builtins-typed-array-gen.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typed-array-gen.h?cl=02b9847)  
+[src/builtins/typed-array-createtypedarray.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/typed-array-createtypedarray.tq?cl=02b9847)  
+[src/builtins/typed-array.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/typed-array.tq?cl=02b9847)  
+...  
+  
+
+---   
+
+## **regress-933179.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/933179)**  
+**[Commit: Remove incorrect dcheck from map updater.](https://chromium.googlesource.com/v8/v8/+/f23712f)**  
+  
+Date(Commit): Tue Feb 19 19:04:55 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1477275](https://chromium-review.googlesource.com/c/1477275)  
+Regress: [mjsunit/regress/regress-933179.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-933179.js)  
+```javascript
+var o = { ...{ length : 1 } };
+
+o.x = 1;
+delete o.x;
+
+o.length = 2;  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f23712f^!)  
+[src/map-updater.cc](https://cs.chromium.org/chromium/src/v8/src/map-updater.cc?cl=f23712f)  
+[test/mjsunit/regress/regress-933179.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-933179.js?cl=f23712f)  
+  
+
+---   
+
+## **regress-8846.js (v8 issue)**  
+   
+**[Issue 8846:
+ [wasm] Unordered module sections are not properly accepted during async compilation](https://crbug.com/v8/8846)**  
+**[Commit: [wasm] Fix section order checking in {StreamingDecoder}.](https://chromium.googlesource.com/v8/v8/+/d7a5e5b)**  
+  
+Date(Commit): Tue Feb 19 16:57:23 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/1477211](https://chromium-review.googlesource.com/c/1477211)  
+Regress: [mjsunit/regress/wasm/regress-8846.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-8846.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+(function TestAsyncCompileExceptionSection() {
+  print(arguments.callee.name);
+  let builder = new WasmModuleBuilder();
+  let except = builder.addException(kSig_v_v);
+  builder.addFunction("thrw", kSig_v_v)
+      .addBody([
+        kExprThrow, except,
+      ]).exportFunc();
+  function step1(buffer) {
+    assertPromiseResult(WebAssembly.compile(buffer), module => step2(module));
+  }
+  function step2(module) {
+    assertPromiseResult(WebAssembly.instantiate(module), inst => step3(inst));
+  }
+  function step3(instance) {
+    assertThrows(() => instance.exports.thrw(), WebAssembly.RuntimeError);
+  }
+  step1(builder.toBuffer());
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d7a5e5b^!)  
+[src/wasm/module-decoder.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-decoder.cc?cl=d7a5e5b)  
+[src/wasm/streaming-decoder.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/streaming-decoder.cc?cl=d7a5e5b)  
+[src/wasm/streaming-decoder.h](https://cs.chromium.org/chromium/src/v8/src/wasm/streaming-decoder.h?cl=d7a5e5b)  
+[test/mjsunit/regress/wasm/regress-8846.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-8846.js?cl=d7a5e5b)  
+[test/unittests/wasm/streaming-decoder-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/wasm/streaming-decoder-unittest.cc?cl=d7a5e5b)  
+  
+
+---   
+
+## **regress-932953.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/932953)**  
+**[Commit: Fix accessor update of non-extensible maps.](https://chromium.googlesource.com/v8/v8/+/1a3a2bc)**  
+  
+Date(Commit): Tue Feb 19 04:59:36 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1477067](https://chromium-review.googlesource.com/c/1477067)  
+Regress: [mjsunit/regress/regress-932953.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-932953.js)  
+```javascript
+(function NonExtensibleBetweenSetterAndGetter() {
+  o = {};
+  o.x = 42;
+  o.__defineGetter__("y", function() { });
+  Object.preventExtensions(o);
+  o.__defineSetter__("y", function() { });
+  o.x = 0.1;
+})();
+
+(function InterleavedIntegrityLevel() {
+  o = {};
+  o.x = 42;
+  o.__defineSetter__("y", function() { });
+  Object.preventExtensions(o);
+  o.__defineGetter__("y", function() { return 44; });
+  Object.seal(o);
+  o.x = 0.1;
+  assertEquals(44, o.y);
+})();
+
+(function TryUpdateRepeatedIntegrityLevel() {
+  function C() {
+    this.x = 0;
+    this.x = 1;
+    Object.preventExtensions(this);
+    Object.seal(this);
+  }
+
+  const o1 = new C();
+  const o2 = new C();
+  const o3 = new C();
+
+  function f(o) {
+    return o.x;
+  }
+
+  // Warm up the IC.
+  f(o1);
+  f(o1);
+  f(o1);
+
+  // Reconfigure to double field.
+  o3.x = 0.1;
+
+  // Migrate o2 to the new shape.
+  f(o2);
+
+  %OptimizeFunctionOnNextCall(f);
+  f(o1);
+
+  assertTrue(%HaveSameMap(o1, o2));
+  assertTrue(%HaveSameMap(o1, o3));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1a3a2bc^!)  
+[src/map-updater.cc](https://cs.chromium.org/chromium/src/v8/src/map-updater.cc?cl=1a3a2bc)  
+[src/objects/map.cc](https://cs.chromium.org/chromium/src/v8/src/objects/map.cc?cl=1a3a2bc)  
+[src/transitions.cc](https://cs.chromium.org/chromium/src/v8/src/transitions.cc?cl=1a3a2bc)  
+[src/transitions.h](https://cs.chromium.org/chromium/src/v8/src/transitions.h?cl=1a3a2bc)  
+[test/mjsunit/regress/regress-932953.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-932953.js?cl=1a3a2bc)  
+  
+
+---   
+
 ## **regress-crbug-931664.js (chromium issue)**  
    
 **[Issue 931664:
