@@ -2,6 +2,126 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-934175.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/934175)**  
+**[Commit: [turbofan] Re-type JSAdd("", prim) reduction to ToString.](https://chromium.googlesource.com/v8/v8/+/6660639)**  
+  
+Date(Commit): Fri Feb 22 09:24:53 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1481632](https://chromium-review.googlesource.com/c/1481632)  
+Regress: [mjsunit/compiler/regress-934175.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-934175.js)  
+```javascript
+(function ShortcutEmptyStringAddRight() {
+  let ar = new Float32Array(1);
+  function opt(i){
+    return ar[i] + (NaN ? 0 : '');
+  }
+  ar[0] = 42;
+  opt(1);
+  %OptimizeFunctionOnNextCall(opt);
+  assertEquals("42", opt(0));
+})();
+
+(function ShortcutiEmptyStringAddLeft() {
+  let ar = new Float32Array(1);
+  function opt(i){
+    return (NaN ? 0 : '') + ar[i];
+  }
+  ar[0] = 42;
+  opt(1);
+  %OptimizeFunctionOnNextCall(opt);
+  assertEquals("42", opt(0));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6660639^!)  
+[src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=6660639)  
+[test/mjsunit/compiler/regress-934175.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-934175.js?cl=6660639)  
+  
+
+---   
+
+## **regress-crbug-934138.js (chromium issue)**  
+   
+**[Issue 934138:
+ V8 correctness failure in configs: x64,ignition:x64,jitless](https://crbug.com/934138)**  
+**[Commit: [asm.js] Fix handling of bogus code after export statement.](https://chromium.googlesource.com/v8/v8/+/cc787e1)**  
+  
+Date(Commit): Thu Feb 21 14:37:37 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "v8-foozzie-failure", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1481216](https://chromium-review.googlesource.com/c/1481216)  
+Regress: [mjsunit/regress/regress-crbug-934138.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-934138.js)  
+```javascript
+(function TestTrailingJunkAfterExport() {
+  function Module() {
+    "use asm";
+    function f() {}
+    return {f: f}
+    %kaboom;
+  }
+  assertThrows(() => Module(), ReferenceError);
+  assertFalse(%IsAsmWasmCode(Module));
+})();
+
+(function TestExportWithSemicolon() {
+  function Module() {
+    "use asm";
+    function f() {}
+    return {f: f};
+    // appreciate the semicolon
+  }
+  assertDoesNotThrow(() => Module());
+  assertTrue(%IsAsmWasmCode(Module));
+})();
+
+(function TestExportWithoutSemicolon() {
+  function Module() {
+    "use asm";
+    function f() {}
+    return {f: f}
+    // appreciate the nothingness
+  }
+  assertDoesNotThrow(() => Module());
+  assertTrue(%IsAsmWasmCode(Module));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/cc787e1^!)  
+[src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=cc787e1)  
+[test/message/asm-function-undefined.out](https://cs.chromium.org/chromium/src/v8/test/message/asm-function-undefined.out?cl=cc787e1)  
+[test/message/asm-table-undefined.out](https://cs.chromium.org/chromium/src/v8/test/message/asm-table-undefined.out?cl=cc787e1)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=cc787e1)  
+[test/mjsunit/regress/regress-crbug-934138.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-934138.js?cl=cc787e1)  
+  
+
+---   
+
+## **regress-933776.js (chromium issue)**  
+   
+**[Issue 933776:
+ DCHECK failure in array_builder_.capacity() > array_builder_.length() in string-builder.cc](https://crbug.com/933776)**  
+**[Commit: Remove invalid DCHECK in ReplacementStringBuilder](https://chromium.googlesource.com/v8/v8/+/c54bbd2)**  
+  
+Date(Commit): Thu Feb 21 09:41:06 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1479955](https://chromium-review.googlesource.com/c/1479955)  
+Regress: [mjsunit/regress/regress-933776.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-933776.js)  
+```javascript
+__v_51351 = /[^]$/gm;
+"a\nb\rc\n\rd\r\ne".replace(__v_51351, "*$1");  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c54bbd2^!)  
+[src/string-builder.cc](https://cs.chromium.org/chromium/src/v8/src/string-builder.cc?cl=c54bbd2)  
+[test/mjsunit/regress/regress-933776.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-933776.js?cl=c54bbd2)  
+  
+
+---   
+
 ## **regress-932392.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/932392)**  

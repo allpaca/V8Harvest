@@ -1448,12 +1448,13 @@ assertThrows(boom);
 
 ## **regress-905587.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/905587)**  
+**[Issue 905587:
+ DCHECK failure in token.invalid_template_escape_message == MessageTemplate::kNone in scanner.cc](https://crbug.com/905587)**  
 **[Commit: [scanner] Reset invalid_template_escape_message during Bookmark::Apply](https://chromium.googlesource.com/v8/v8/+/c8cbf23)**  
   
 Date(Commit): Fri Nov 16 10:43:24 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Parser/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Stability-Libfuzzer", "Security_Severity-High", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner", "Target-72"]  
 Code Review: [https://chromium-review.googlesource.com/c/1340040](https://chromium-review.googlesource.com/c/1340040)  
 Regress: [mjsunit/regress/regress-905587.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-905587.js)  
 ```javascript
@@ -1469,12 +1470,13 @@ assertThrows("function test() { '\\u`''\\u' }", SyntaxError)
 
 ## **regress-905907.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/905907)**  
+**[Issue 905907:
+ DCHECK failure in (function_) == nullptr in scopes.cc](https://crbug.com/905907)**  
 **[Commit: [parser] Declare scope-info deserialized function var on the cache scope](https://chromium.googlesource.com/v8/v8/+/7762b23)**  
   
 Date(Commit): Fri Nov 16 10:12:21 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1339862](https://chromium-review.googlesource.com/c/1339862)  
 Regress: [mjsunit/regress/regress-905907.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-905907.js)  
 ```javascript
