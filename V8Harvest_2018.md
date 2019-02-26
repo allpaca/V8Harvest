@@ -1357,12 +1357,13 @@ assertEquals(2, counter);
 
 ## **regress-crbug-906220.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/906220)**  
+**[Issue 906220:
+ DCHECK failure in index >= 0 in escape-analysis.cc](https://crbug.com/906220)**  
 **[Commit: [turbofan] Fix negative offset handling in escape analysis.](https://chromium.googlesource.com/v8/v8/+/2bc9d01)**  
   
 Date(Commit): Mon Nov 19 11:07:38 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1340292](https://chromium-review.googlesource.com/c/1340292)  
 Regress: [mjsunit/regress/regress-crbug-906220.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-906220.js)  
 ```javascript
