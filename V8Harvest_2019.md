@@ -2,6 +2,157 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-8913.js (v8 issue)**  
+   
+**[Issue 8913:
+ String.prototype.concat deopt loop](https://crbug.com/v8/8913)**  
+**[Commit: [turbofan] Properly thread through the feedback for HeapObject checks.](https://chromium.googlesource.com/v8/v8/+/066e2a2)**  
+  
+Date(Commit): Tue Feb 26 14:19:49 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/1488770](https://chromium-review.googlesource.com/c/1488770)  
+Regress: [mjsunit/regress/regress-8913.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-8913.js)  
+```javascript
+function foo(t) { return 'a'.concat(t); }
+
+foo(1);
+foo(1);
+%OptimizeFunctionOnNextCall(foo);
+foo(1);
+%OptimizeFunctionOnNextCall(foo);
+foo(1);
+assertOptimized(foo);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/066e2a2^!)  
+[src/compiler/representation-change.h](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.h?cl=066e2a2)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=066e2a2)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=066e2a2)  
+[test/mjsunit/regress/regress-8913.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-8913.js?cl=066e2a2)  
+  
+
+---   
+
+## **regress-935138.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/935138)**  
+**[Commit: [wasm] Fix {StreamingDecoder} to reject multiple code sections.](https://chromium.googlesource.com/v8/v8/+/85b4ec5)**  
+  
+Date(Commit): Tue Feb 26 09:59:44 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1486471](https://chromium-review.googlesource.com/c/1486471)  
+Regress: [mjsunit/regress/wasm/regress-935138.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-935138.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+(function TestAsyncCompileMultipleCodeSections() {
+  let binary = new Binary();
+  binary.emit_header();
+  binary.push(kTypeSectionCode, 4, 1, kWasmFunctionTypeForm, 0, 0);
+  binary.push(kFunctionSectionCode, 2, 1, 0);
+  binary.push(kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd);
+  binary.push(kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd);
+  let buffer = Uint8Array.from(binary).buffer;
+  assertPromiseResult(WebAssembly.compile(buffer), assertUnreachable,
+                      e => assertInstanceof(e, WebAssembly.CompileError));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/85b4ec5^!)  
+[src/wasm/streaming-decoder.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/streaming-decoder.cc?cl=85b4ec5)  
+[src/wasm/streaming-decoder.h](https://cs.chromium.org/chromium/src/v8/src/wasm/streaming-decoder.h?cl=85b4ec5)  
+[test/mjsunit/regress/wasm/regress-935138.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-935138.js?cl=85b4ec5)  
+[test/unittests/wasm/streaming-decoder-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/wasm/streaming-decoder-unittest.cc?cl=85b4ec5)  
+  
+
+---   
+
+## **regress-v8-8799.js (v8 issue)**  
+   
+**[Issue 8799:
+ Bytecode flushing breaks template literals test](https://crbug.com/v8/8799)**  
+**[Commit: [Runtime] Ensure template objects are retained if bytecode is flushed.](https://chromium.googlesource.com/v8/v8/+/ec9aef3)**  
+  
+Date(Commit): Mon Feb 25 11:20:06 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/1477746](https://chromium-review.googlesource.com/c/1477746)  
+Regress: [mjsunit/regress/regress-v8-8799.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-8799.js)  
+```javascript
+var f = (x) => eval`a${x}b`;
+var a = f();
+gc();
+assertSame(a, f());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ec9aef3^!)  
+[BUILD.gn](https://cs.chromium.org/chromium/src/v8/BUILD.gn?cl=ec9aef3)  
+[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=ec9aef3)  
+[src/compiler/bytecode-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/bytecode-graph-builder.cc?cl=ec9aef3)  
+[src/compiler/bytecode-graph-builder.h](https://cs.chromium.org/chromium/src/v8/src/compiler/bytecode-graph-builder.h?cl=ec9aef3)  
+[src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=ec9aef3)  
+...  
+  
+
+---   
+
+## **regress-crbug-913222.js (chromium issue)**  
+   
+**[Issue 913222:
+ Stack-overflow in v8::internal::PreParser::ParseFunctionLiteral](https://crbug.com/913222)**  
+**[Commit: [parser] Fix stackoverflow on function expressions](https://chromium.googlesource.com/v8/v8/+/4b0c2b3)**  
+  
+Date(Commit): Mon Feb 25 10:44:26 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-MemorySanitizer", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1480379](https://chromium-review.googlesource.com/c/1480379)  
+Regress: [mjsunit/regress/regress-crbug-913222.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-913222.js)  
+```javascript
+__v_0 = '(function() {\n';
+for (var __v_1 = 0; __v_1 < 10000; __v_1++) {
+    __v_0 += '  return function() {\n';
+}
+assertThrows(()=>eval(__v_0), RangeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4b0c2b3^!)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=4b0c2b3)  
+[test/mjsunit/regress/regress-crbug-913222.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-913222.js?cl=4b0c2b3)  
+  
+
+---   
+
+## **regress-crbug-933214.js (chromium issue)**  
+   
+**[Issue 933214:
+ Null-dereference READ in v8::internal::DeclarationScope::HoistSloppyBlockFunctions](https://crbug.com/933214)**  
+**[Commit: [parser] Always return a valid var from DeclareVariableName](https://chromium.googlesource.com/v8/v8/+/e14a24d)**  
+  
+Date(Commit): Mon Feb 25 10:31:26 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-MemorySanitizer", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1481219](https://chromium-review.googlesource.com/c/1481219)  
+Regress: [mjsunit/regress/regress-crbug-933214.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-933214.js)  
+```javascript
+assertThrows(`
+    function __v_0() {
+        function __v_2() {
+            try {
+                function* __v_0() {}
+                function __v_0() {}
+            }
+        }
+    }`, SyntaxError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e14a24d^!)  
+[src/parsing/expression-scope.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-scope.h?cl=e14a24d)  
+[src/parsing/preparser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?cl=e14a24d)  
+[test/mjsunit/regress/regress-crbug-933214.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-933214.js?cl=e14a24d)  
+  
+
+---   
+
 ## **regress-934175.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/934175)**  

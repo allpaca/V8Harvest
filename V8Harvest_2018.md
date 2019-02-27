@@ -1322,12 +1322,13 @@ Regress: [mjsunit/regress/regress-crbug-906870.js](https://chromium.googlesource
 
 ## **regress-906893.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/906893)**  
+**[Issue 906893:
+ ASSERT: CSA_ASSERT failed: IsFastRegExpWithOriginalExec(context, regexp)](https://crbug.com/906893)**  
 **[Commit: [turbofan] Fix RegExp.p.exec modification test.](https://chromium.googlesource.com/v8/v8/+/86894d9)**  
   
 Date(Commit): Tue Nov 20 06:36:53 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1342919](https://chromium-review.googlesource.com/c/1342919)  
 Regress: [mjsunit/regress-906893.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-906893.js)  
 ```javascript
