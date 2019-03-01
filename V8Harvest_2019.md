@@ -2,6 +2,149 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-934166.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/934166)**  
+**[Commit: [ignition] Skip binding dead labels](https://chromium.googlesource.com/v8/v8/+/35269f7)**  
+  
+Date(Commit): Thu Feb 28 12:17:34 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1488763](https://chromium-review.googlesource.com/c/1488763)  
+Regress: [mjsunit/regress/regress-crbug-934166.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-934166.js)  
+```javascript
+{
+  for(let i = 0; i < 10; ++i){
+    try{
+      // Carefully constructed by a fuzzer to use a new register for s(), whose
+      // write is dead due to the unconditional throw after s()=N, but which is
+      // read in the ({...g}) call, which therefore must also be marked dead and
+      // elided.
+      with(f&&g&&(s()=N)({...g})){}
+    } catch {}
+    %OptimizeOsr();
+  }
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/35269f7^!)  
+[src/interpreter/bytecode-array-builder.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-array-builder.cc?cl=35269f7)  
+[src/interpreter/bytecode-array-builder.h](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-array-builder.h?cl=35269f7)  
+[src/interpreter/bytecode-array-writer.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-array-writer.cc?cl=35269f7)  
+[src/interpreter/bytecode-array-writer.h](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-array-writer.h?cl=35269f7)  
+[src/interpreter/bytecode-label.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-label.cc?cl=35269f7)  
+...  
+  
+
+---   
+
+## **regress-936077.js (chromium issue)**  
+   
+**[Issue 936077:
+ Ill in v8::internal::compiler::AccessInfoFactory::ConsolidateElementLoad](https://crbug.com/936077)**  
+**[Commit: [turbofan] Don't assume we have receiver maps in preprocessed feedback](https://chromium.googlesource.com/v8/v8/+/9c5cd06)**  
+  
+Date(Commit): Wed Feb 27 18:46:20 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-MemorySanitizer", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/1491222](https://chromium-review.googlesource.com/c/1491222)  
+Regress: [mjsunit/regress/regress-936077.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-936077.js)  
+```javascript
+function main() {
+  var obj = {};
+  function foo() { return obj[0]; };
+  gc();
+  obj.x = 10;
+  %OptimizeFunctionOnNextCall(foo);
+  foo();
+}
+main();
+main();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9c5cd06^!)  
+[src/compiler/access-info.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-info.cc?cl=9c5cd06)  
+[test/mjsunit/regress/regress-936077.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-936077.js?cl=9c5cd06)  
+  
+
+---   
+
+## **regress-8896.js (v8 issue)**  
+   
+**[Issue 8896:
+ Calls to runtime functions in wasm code should be serializable](https://crbug.com/v8/8896)**  
+**[Commit: [wasm] Support runtime functions in (de)serializer.](https://chromium.googlesource.com/v8/v8/+/4c60e6b)**  
+  
+Date(Commit): Wed Feb 27 11:32:42 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/1491220](https://chromium-review.googlesource.com/c/1491220)  
+Regress: [mjsunit/regress/wasm/regress-8896.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-8896.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+(function TestSerializeDeserializeRuntimeCall() {
+  var builder = new WasmModuleBuilder();
+  var except = builder.addException(kSig_v_v);
+  builder.addFunction("f", kSig_v_v)
+      .addBody([
+        kExprThrow, except,
+      ]).exportFunc();
+  var wire_bytes = builder.toBuffer();
+  var module = new WebAssembly.Module(wire_bytes);
+  var instance1 = new WebAssembly.Instance(module);
+  var serialized = %SerializeWasmModule(module);
+  module = %DeserializeWasmModule(serialized, wire_bytes);
+  var instance2 = new WebAssembly.Instance(module);
+  assertThrows(() => instance2.exports.f(), WebAssembly.RuntimeError);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4c60e6b^!)  
+[src/wasm/wasm-serialization.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-serialization.cc?cl=4c60e6b)  
+[test/mjsunit/regress/wasm/regress-8896.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-8896.js?cl=4c60e6b)  
+  
+
+---   
+
+## **regress-crbug-936302.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/936302)**  
+**[Commit: [turbofan] Always pass the right arity to calls.](https://chromium.googlesource.com/v8/v8/+/834c4b3)**  
+  
+Date(Commit): Wed Feb 27 08:40:58 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/1491191](https://chromium-review.googlesource.com/c/1491191)  
+Regress: [mjsunit/regress/regress-crbug-936302.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-936302.js)  
+```javascript
+(function() {
+  'use strict';
+
+  function baz() {
+    'use asm';
+    function f() {}
+    return {f: f};
+  }
+
+  function foo(x) {
+    baz(x);
+    %DeoptimizeFunction(foo);
+  }
+
+  foo();
+  foo();
+  %OptimizeFunctionOnNextCall(foo);
+  foo();
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/834c4b3^!)  
+[src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=834c4b3)  
+[test/mjsunit/regress/regress-crbug-936302.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-936302.js?cl=834c4b3)  
+  
+
+---   
+
 ## **regress-8913.js (v8 issue)**  
    
 **[Issue 8913:
