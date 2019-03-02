@@ -1138,12 +1138,13 @@ assertThrows("(al,al,e={}=e)=>l", SyntaxError);
 
 ## **regress-907575.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/907575)**  
+**[Issue 907575:
+ DCHECK failure in binop->op() == Token::COMMA in parser.cc](https://crbug.com/907575)**  
 **[Commit: [parser] Drop ExpressionClassifier::ArrowFormalsParameterProduction and BP_to_AFP](https://chromium.googlesource.com/v8/v8/+/71f59a2)**  
   
 Date(Commit): Thu Nov 22 15:13:41 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Security_Severity-High", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner", "Target-72"]  
 Code Review: [https://chromium-review.googlesource.com/c/1348078](https://chromium-review.googlesource.com/c/1348078)  
 Regress: [mjsunit/regress/regress-907575.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-907575.js)  
 ```javascript
@@ -1161,12 +1162,13 @@ assertThrows("++(a) =>", SyntaxError);
 
 ## **regress-907669.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/907669)**  
+**[Issue 907669:
+ DCHECK failure in !has_error() implies !next_arrow_formals_parenthesized_ in parser-base.h](https://crbug.com/907669)**  
 **[Commit: [parser] Don't re-preparse when trying to find an unidentifiable error](https://chromium.googlesource.com/v8/v8/+/23e99a9)**  
   
 Date(Commit): Thu Nov 22 13:00:32 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1347486](https://chromium-review.googlesource.com/c/1347486)  
 Regress: [mjsunit/regress/regress-907669.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-907669.js)  
 ```javascript
