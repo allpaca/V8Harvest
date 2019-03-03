@@ -2,6 +2,107 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-935932.js (chromium issue)**  
+   
+**[Issue 935932:
+ Ill in v8::internal::compiler::JSNativeContextSpecialization::ReduceGlobalAccess](https://crbug.com/935932)**  
+**[Commit: Reland "Optimize `in` operator"](https://chromium.googlesource.com/v8/v8/+/803ad32)**  
+  
+Date(Commit): Fri Mar 01 09:01:18 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-MemorySanitizer", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-CC", "Test-Predator-Auto-Components"]  
+Code Review: [https://chromium-review.googlesource.com/c/1493132](https://chromium-review.googlesource.com/c/1493132)  
+Regress: [mjsunit/regress/regress-crbug-935932.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-935932.js)  
+```javascript
+function test(func, expect) {
+    assertTrue(func() == expect);
+    %OptimizeFunctionOnNextCall(func);
+    assertTrue(func() == expect);
+}
+
+var v0 = 10;
+function check_v0() { return "v0" in this; }
+test(check_v0, true);
+
+v0 = 0;
+test(check_v0, true);
+
+function check_v1() { return "v1" in this; }
+test(check_v1, false);
+this.v1 = 3;
+test(check_v1, true);
+delete this.v1;
+test(check_v1, false);
+
+var v2;
+function check_v2() { return "v2" in this; }
+test(check_v2, true);
+
+var v3 = {};
+function check_v3() { return "v3" in this; }
+test(check_v3, true);
+v3 = [];
+test(check_v3, true);
+
+Object.defineProperty(this, "v4", { value: {}, configurable: false});
+function check_v4() { return "v4" in this; }
+test(check_v4, true);
+
+(function() {
+  function testIn(index, array) {
+    return index in array;
+  }
+
+  let a = [];
+  a.__proto__ = [0,1,2];
+  a[1] = 3;
+
+  // First load will set IC to Load handle with allow hole to undefined conversion false.
+  assertTrue(testIn(0, a));
+  // Second load will hit ICMiss when hole is loaded. Seeing the same map twice, the IC will be set megamorphic.
+  assertTrue(testIn(0, a));
+  %OptimizeFunctionOnNextCall(testIn);
+  // Test JIT to ensure proper handling.
+  assertTrue(testIn(0, a));
+
+  %ClearFunctionFeedback(testIn);
+  %DeoptimizeFunction(testIn);
+
+  // First load will set IC to Load handle with allow hole to undefined conversion false.
+  assertTrue(testIn(0, a));
+  %OptimizeFunctionOnNextCall(testIn);
+  // Test JIT to ensure proper handling if hole is loaded.
+  assertTrue(testIn(0, a));
+
+  // Repeat the same testing for access out-of-bounds of the array, but in bounds of it's prototype.
+  %ClearFunctionFeedback(testIn);
+  %DeoptimizeFunction(testIn);
+
+  assertTrue(testIn(2, a));
+  assertTrue(testIn(2, a));
+  %OptimizeFunctionOnNextCall(testIn);
+  assertTrue(testIn(2, a));
+
+  %ClearFunctionFeedback(testIn);
+  %DeoptimizeFunction(testIn);
+
+  assertTrue(testIn(2, a));
+  %OptimizeFunctionOnNextCall(testIn);
+  assertTrue(testIn(2, a));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/803ad32^!)  
+[src/builtins/builtins-definitions.h](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?cl=803ad32)  
+[src/builtins/builtins-handler-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-handler-gen.cc?cl=803ad32)  
+[src/builtins/builtins-ic-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-ic-gen.cc?cl=803ad32)  
+[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=803ad32)  
+[src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=803ad32)  
+...  
+  
+
+---   
+
 ## **regress-crbug-934166.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/934166)**  
