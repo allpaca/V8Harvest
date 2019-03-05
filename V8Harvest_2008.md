@@ -3700,11 +3700,15 @@ assertThrows("f()");
   
 ---   
 
-## **regress-937896.js (other issue)**  
+## **regress-937896.js (chromium issue)**  
    
+**[Issue 937896:
+ Collect UserCounts for the Idle Detection API usage](https://crbug.com/937896)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
+Components/Type: None/Bug  
+Labels: []  
 Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
 Regress: [mjsunit/regress/regress-937896.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-937896.js)  
 ```javascript
@@ -3737,7 +3741,7 @@ assertEquals(42, f());
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
 ...  
   
-  
+
 ---   
 
 ## **regress-925537.js (chromium issue)**  

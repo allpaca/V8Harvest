@@ -2114,11 +2114,13 @@ function test() {
     }
   }
 
+  %PrepareFunctionForOptimization(f4);
   f4(9);
   f4(11);
   %OptimizeFunctionOnNextCall(f4);
   f4(12);
 
+  %PrepareFunctionForOptimization(f5);
   f5(9);
   f5(11);
   %OptimizeFunctionOnNextCall(f5);
@@ -5454,6 +5456,7 @@ Regress: [mjsunit/compiler/regress-177883.js](https://chromium.googlesource.com/
     HEAPF32[i] = 1.0;
   }
 
+  %PrepareFunctionForOptimization(__ZNK4Math7frustum10clipstatusERKNS_4bboxE);
   __ZNK4Math7frustum10clipstatusERKNS_4bboxE(0, 0);
   __ZNK4Math7frustum10clipstatusERKNS_4bboxE(0, 0);
   __ZNK4Math7frustum10clipstatusERKNS_4bboxE(0, 0);

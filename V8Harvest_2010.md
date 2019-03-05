@@ -18,6 +18,7 @@ function testMul(a, b) {
   }
 }
 
+%PrepareFunctionForOptimization(testMul);
 for (var i=0; i<5; i++) testMul(0,0);
 %OptimizeFunctionOnNextCall(testMul);
 assertEquals(4611686018427388000, testMul(-0x40000000, -0x40000000));
@@ -30,6 +31,7 @@ function testAdd(a, b) {
   }
 }
 
+%PrepareFunctionForOptimization(testAdd);
 for (var i=0; i<5; i++) testAdd(0,0);
 %OptimizeFunctionOnNextCall(testAdd);
 assertEquals(-4294967296, testAdd(-0x40000000, -0x40000000));
@@ -44,6 +46,7 @@ function testSub(a, b) {
   }
 }
 
+%PrepareFunctionForOptimization(testSub);
 for (var i=0; i<5; i++) testSub(0,0);
 %OptimizeFunctionOnNextCall(testSub);
 assertEquals(-2147483650, testSub(-0x40000000, 1));  
@@ -460,10 +463,16 @@ var o = new Hest();
 var s = new Svin();
 var v = 0;
 
+%PrepareFunctionForOptimization(Hest.prototype.one);
 for (var i = 0; i < 5; i++) {
   o.one(s);
 }
 %OptimizeFunctionOnNextCall(Hest.prototype.one);
+o.one(s);
+%PrepareFunctionForOptimization(Hest.prototype.three);
+for (var i = 0; i < 5; i++) {
+  o.one(s);
+}
 %OptimizeFunctionOnNextCall(Hest.prototype.three);
 o.one(s);
 
@@ -484,7 +493,7 @@ try {
   assertTrue(stack.indexOf("38:56") != -1);
   assertTrue(stack.indexOf("34:51") != -1);
   assertTrue(stack.indexOf("36:38") != -1);
-  assertTrue(stack.indexOf("54:5") != -1);
+  assertTrue(stack.indexOf("60:5") != -1);
 }  
 ```  
   
@@ -558,6 +567,8 @@ function test(start) {
   for (var i = start; i < 10; i++) { }
 }
 
+%PrepareFunctionForOptimization(test);
+
 var n = 3;
 
 for (var i = 0; i < n; ++i) {
@@ -597,6 +608,7 @@ function f1(x) {
 
 function g1() { try { return 1; } finally {} }
 
+%PrepareFunctionForOptimization(f1);
 for (var i = 0; i < 5; i++) f1(42);
 %OptimizeFunctionOnNextCall(f1);
 
@@ -614,6 +626,7 @@ function f2(x) {
 
 function g2() { try { return 0; } finally {} }
 
+%PrepareFunctionForOptimization(f2);
 for (var i = 0; i < 5; i++) f2(42);
 %OptimizeFunctionOnNextCall(f2);
 
@@ -706,6 +719,8 @@ function test(a) {
   }
   return a[0];
 }
+
+%PrepareFunctionForOptimization(test);
 
 var a = new Array();
 
@@ -877,6 +892,7 @@ A.prototype.g = gee;
 
 var o = new A();
 
+%PrepareFunctionForOptimization(o.g);
 for (var i=0; i<5; i++) {
   o.g(i);
 }
@@ -890,6 +906,7 @@ function hej(x) {
   return o.g(x);
 }
 
+%PrepareFunctionForOptimization(hej);
 for (var j=0; j<5; j++) {
   hej(j);
 }
@@ -903,6 +920,7 @@ function from_eval(x) {
   return o.g(x);
 }
 
+%PrepareFunctionForOptimization(from_eval);
 for (var j=0; j<5; j++) {
   from_eval(j);
 }
@@ -963,16 +981,26 @@ function hej(x) {
   return o.g(x, "z");
 }
 
-function opt() {
+function opt_g() {
+  %PrepareFunctionForOptimization(o.g);
   for (var k=0; k<2; k++) {
     for (var i=0; i<5; i++) o.g(i, "g");
-    for (var j=0; j<5; j++) hej(j);
   }
   %OptimizeFunctionOnNextCall(o.g);
-  %OptimizeFunctionOnNextCall(hej);
+  o.g(0, "g");
 }
 
-opt();
+function opt_hej() {
+  %PrepareFunctionForOptimization(hej);
+  for (var k=0; k<2; k++) {
+    for (var j=0; j<5; j++) hej(j);
+  }
+  %OptimizeFunctionOnNextCall(hej);
+  hej(0)
+}
+
+opt_g();
+opt_hej();
 assertArrayEquals([0, "g"], o.g(0, "g"));
 assertArrayEquals([1, "f"], o.g(1, "g"));
 assertArrayEquals([0, "h"], hej(0));
@@ -980,7 +1008,8 @@ assertArrayEquals([1, "f"], hej(1));
 
 o = new B();
 
-opt();
+opt_g();
+opt_hej();
 assertArrayEquals([0, "f"], o.g(0, "g"));
 assertArrayEquals([1, "g"], o.g(1, "g"));
 assertArrayEquals([0, "f"], hej(0));
@@ -1038,14 +1067,19 @@ function h() { return f.apply(void 0, arguments); }
 
 var foo = 42;
 
+%PrepareFunctionForOptimization(f);
+f();
+%OptimizeFunctionOnNextCall(f);
+f();
+
+%PrepareFunctionForOptimization(g);
 for (var i = 0; i < 3; i++) assertEquals(42, g());
 %OptimizeFunctionOnNextCall(g);
-%OptimizeFunctionOnNextCall(f);
 assertEquals(42, g());
 
+%PrepareFunctionForOptimization(h);
 for (var i = 0; i < 3; i++) assertEquals(42, h());
 %OptimizeFunctionOnNextCall(h);
-%OptimizeFunctionOnNextCall(f);
 assertEquals(42, h());
 
 var G1 = 21;
@@ -1059,9 +1093,9 @@ function u() {
 Number.prototype.foo = 42;
 delete Number.prototype.foo;
 
+%PrepareFunctionForOptimization(u);
 for (var i = 0; i < 3; i++) assertEquals(void 0, u());
 %OptimizeFunctionOnNextCall(u);
-%OptimizeFunctionOnNextCall(f);
 assertEquals(void 0, u());  
 ```  
   
@@ -1282,6 +1316,7 @@ function observe(x, y) { try {} finally {} return x; }
 
 function test(x) { return observe(this, ((0, side_effect()), x + 1)); }
 
+%PrepareFunctionForOptimization(test);
 for (var i = 0; i < 5; ++i) test(0);
 %OptimizeFunctionOnNextCall(test);
 test(0);

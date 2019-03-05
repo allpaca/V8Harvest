@@ -503,6 +503,7 @@ function* E(b) {
   }
 }
 
+%PrepareFunctionForOptimization(E);
 %OptimizeFunctionOnNextCall(E);
 E();  
 ```  
@@ -616,6 +617,7 @@ function g(b, x) {
   return f(b, 'abc', x);
 }
 
+%PrepareFunctionForOptimization(g);
 f(false, 0, 0);
 g(true, 0);
 %OptimizeFunctionOnNextCall(g);
@@ -1051,12 +1053,13 @@ assertEquals(0, numFailures);
 
 ## **regress-crbug-908309.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/908309)**  
+**[Issue 908309:
+ Unknown signal in Builtins_InterpreterEntryTrampoline](https://crbug.com/908309)**  
 **[Commit: [turbofan] Fix types of Promise#catch() and Promise#finally().](https://chromium.googlesource.com/v8/v8/+/1bfb024)**  
   
 Date(Commit): Mon Nov 26 14:04:09 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Compiler/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-Medium", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1350789](https://chromium-review.googlesource.com/c/1350789)  
 Regress: [mjsunit/regress/regress-crbug-908309.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-908309.js)  
 ```javascript
@@ -1427,6 +1430,7 @@ function boom(value) {
   return global;
 }
 
+%PrepareFunctionForOptimization(boom);
 assertEquals(1, boom());
 assertEquals(1, boom());
 %OptimizeFunctionOnNextCall(boom, "concurrent");
@@ -2584,6 +2588,7 @@ function reduceLHS() {
   }
 }
 
+%PrepareFunctionForOptimization(reduceLHS);
 reduceLHS();
 %OptimizeFunctionOnNextCall(reduceLHS);
 reduceLHS();
@@ -2598,6 +2603,7 @@ function reduceRHS() {
   }
 }
 
+%PrepareFunctionForOptimization(reduceRHS);
 reduceRHS();
 %OptimizeFunctionOnNextCall(reduceRHS);
 reduceRHS();  
@@ -3409,6 +3415,8 @@ class A extends C {
   }
 }
 
+%PrepareFunctionForOptimization(A);
+
 var D = new Proxy(A, { get() { %DeoptimizeFunction(A); } });
 
 try { Reflect.construct(A, [], D); } catch(e) {}
@@ -3762,6 +3770,7 @@ function f() {
   g();
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 %OptimizeFunctionOnNextCall(f);
 f();
@@ -3891,6 +3900,7 @@ Regress: [mjsunit/compiler/regress-888923.js](https://chromium.googlesource.com/
     return o.y.a;
   }
 
+  %PrepareFunctionForOptimization(f);
   f({ x : 0, y : { a : 1 } });
   f({ x : 0, y : { a : 2 } });
   %OptimizeFunctionOnNextCall(f);
@@ -3904,6 +3914,7 @@ Regress: [mjsunit/compiler/regress-888923.js](https://chromium.googlesource.com/
     return o.x + a;
   }
 
+  %PrepareFunctionForOptimization(f);
   f({ x : 42, y : 21 });
   f({ x : 42, y : 21 });
   %OptimizeFunctionOnNextCall(f);
@@ -4053,6 +4064,7 @@ function foo() {
   }
 }
 
+%PrepareFunctionForOptimization(foo);
 foo();
 %OptimizeFunctionOnNextCall(foo);
 foo();  
@@ -6801,6 +6813,7 @@ Regress: [mjsunit/compiler/regress-841117.js](https://chromium.googlesource.com/
 ```javascript
 var v = 1e9;
 function f() { return Math.floor(v / 10); }
+%PrepareFunctionForOptimization(f);
 assertEquals(1e8, f());
 %OptimizeFunctionOnNextCall(f);
 assertEquals(1e8, f());  
@@ -8911,6 +8924,7 @@ inlined();
 function optimized(abort, a, b) {
   return inlined(abort, "abc", a, b);
 }
+%PrepareFunctionForOptimization(optimized);
 optimized(true);
 %OptimizeFunctionOnNextCall(optimized);
 optimized();  
@@ -10793,6 +10807,7 @@ function GetFunction() {
 }
 
 var func = GetFunction();
+%PrepareFunctionForOptimization(func);
 assertThrows("func();");
 %OptimizeFunctionOnNextCall(func);
 assertThrows("func()");  
@@ -11292,6 +11307,8 @@ function opt(a, b) {
   b[0] = 9.431092e-317;
 }
 
+%PrepareFunctionForOptimization(opt);
+
 let arr1 = new Array(1);
 arr1[0] = 'a';
 opt(arr1, [0]);
@@ -11377,6 +11394,7 @@ function g(abort, a, b) {
   return f(abort, "abc", a, b);
 }
 
+%PrepareFunctionForOptimization(g);
 g(true); g(true); g(true); g(true);
 
 %OptimizeFunctionOnNextCall(g);

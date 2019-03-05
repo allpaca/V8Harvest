@@ -117,6 +117,7 @@ function k() {
 }
 
 function f1() {
+  %PrepareFunctionForOptimization(k);
   z.toString = k;
   z.toString();
   z.toString();
@@ -940,6 +941,7 @@ function f() {
   } catch(e) {"Caught: " + e; }
 }
 
+%PrepareFunctionForOptimization(f);
 %OptimizeFunctionOnNextCall(f);
 f();  
 ```  
@@ -1554,6 +1556,7 @@ function deopt() {
 
 this.__defineGetter__("o", deopt );
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -2176,6 +2179,7 @@ function foo() {
   return v.length + 1;
 }
 
+%PrepareFunctionForOptimization(foo);
 var v = [];
 foo();
 v.length = 0xFFFFFFFF;
@@ -2558,6 +2562,7 @@ var invalidAsmFunction = (function() {
   }
 })();
 
+%PrepareFunctionForOptimization(invalidAsmFunction);
 invalidAsmFunction();
 %OptimizeFunctionOnNextCall(invalidAsmFunction);
 invalidAsmFunction();  
@@ -2622,6 +2627,8 @@ var o = {};
 function f(o, x) {
   o.f = x;
 }
+
+%PrepareFunctionForOptimization(f);
 
 f(o, g);
 f(o, g);
@@ -2744,6 +2751,7 @@ function f() {
   foo(undefined == 0);
 }
 
+%PrepareFunctionForOptimization(f);
 %OptimizeFunctionOnNextCall(f);
 f();  
 ```  
@@ -3537,6 +3545,7 @@ function f() {
   return !global;
 }
 
+%PrepareFunctionForOptimization(f);
 %OptimizeFunctionOnNextCall(f);
 assertTrue(f());  
 ```  
@@ -3890,6 +3899,7 @@ Regress: [mjsunit/compiler/regress-5538.js](https://chromium.googlesource.com/v8
     return Number.parseInt(x + 1);
   }
 
+  %PrepareFunctionForOptimization(foo);
   assertEquals(1, foo(0));
   assertEquals(2, foo(1));
   %OptimizeFunctionOnNextCall(foo);
@@ -3902,6 +3912,7 @@ Regress: [mjsunit/compiler/regress-5538.js](https://chromium.googlesource.com/v8
     return Number.parseInt(x + 1, 0);
   }
 
+  %PrepareFunctionForOptimization(foo);
   assertEquals(1, foo(0));
   assertEquals(2, foo(1));
   %OptimizeFunctionOnNextCall(foo);
@@ -3914,6 +3925,7 @@ Regress: [mjsunit/compiler/regress-5538.js](https://chromium.googlesource.com/v8
     return Number.parseInt(x + 1, 10);
   }
 
+  %PrepareFunctionForOptimization(foo);
   assertEquals(1, foo(0));
   assertEquals(2, foo(1));
   %OptimizeFunctionOnNextCall(foo);
@@ -3926,6 +3938,7 @@ Regress: [mjsunit/compiler/regress-5538.js](https://chromium.googlesource.com/v8
     return Number.parseInt(x + 1, undefined);
   }
 
+  %PrepareFunctionForOptimization(foo);
   assertEquals(1, foo(0));
   assertEquals(2, foo(1));
   %OptimizeFunctionOnNextCall(foo);
@@ -7136,6 +7149,7 @@ function f(apply) {
   apply(function bogeyman() { value = 42 });
   return value;
 }
+%PrepareFunctionForOptimization(f);
 function apply(fun) { fun() }
 assertEquals(42, f(apply));
 assertEquals(42, f(apply));
@@ -9029,6 +9043,7 @@ function CompareNegate(a,b) {
  return a < (sub|0);
 }
 
+%PrepareFunctionForOptimization(CompareNegate);
 var x = CompareNegate(1,0x80000000);
 %OptimizeFunctionOnNextCall(CompareNegate);
 CompareNegate(1,0x80000000);
@@ -9154,6 +9169,7 @@ function foo(x) {
          : x) | 0
 }
 
+%PrepareFunctionForOptimization(foo);
 foo(1);
 foo(2);
 %OptimizeFunctionOnNextCall(foo);
@@ -9287,6 +9303,7 @@ function f(a) {
   return Math.sign(+a) < 2;
 }
 
+%PrepareFunctionForOptimization(f);
 f(NaN);
 f(NaN);
 %OptimizeFunctionOnNextCall(f);
@@ -9425,6 +9442,7 @@ Code Review: [https://codereview.chromium.org/2292873002](https://codereview.chr
 Regress: [mjsunit/compiler/regress-5320.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5320.js)  
 ```javascript
 function OptimizeTruncatingBinaryOp(func) {
+  %PrepareFunctionForOptimization(func);
   func(42, -2);
   func(31, undefined);
   %OptimizeFunctionOnNextCall(func);
@@ -9506,6 +9524,7 @@ function f(b) {
 g(1, 2);
 g(1, 2);
 
+%PrepareFunctionForOptimization(f);
 f(0);
 f(0);
 %OptimizeFunctionOnNextCall(f);
@@ -9562,9 +9581,11 @@ var m = (function m() {
 
 m.init();
 
+%PrepareFunctionForOptimization(m.load);
 %OptimizeFunctionOnNextCall(m.load);
 assertEquals(2, m.load());
 
+%PrepareFunctionForOptimization(m.store);
 %OptimizeFunctionOnNextCall(m.store);
 assertEquals(0.1, m.store(1));  
 ```  
@@ -9745,6 +9766,7 @@ function f(a) {
   return +x;
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -9827,6 +9849,7 @@ Regress: [mjsunit/compiler/regress-5278.js](https://chromium.googlesource.com/v8
 function foo(a, b) {
   return a % b;
 }
+%PrepareFunctionForOptimization(foo);
 foo(2, 1);
 foo(2, 1);
 %OptimizeFunctionOnNextCall(foo);
@@ -11206,6 +11229,7 @@ function f(a) {
 }
 
 %NeverOptimizeFunction(g);
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -13169,6 +13193,8 @@ function test3(a) {
   a[0] = 1;
 }
 
+%PrepareFunctionForOptimization(test2);
+
 test(0);
 
 var smi_array = [1,2];
@@ -13625,6 +13651,7 @@ function foo(x) {
   return (x > 0) ? x : 0 - x;
 }
 
+%PrepareFunctionForOptimization(foo);
 foo(1);
 foo(-1);
 foo(0);
@@ -13868,6 +13895,7 @@ function foo($a,$b) {
  return ($sub|0) < 0;
 }
 
+%PrepareFunctionForOptimization(foo);
 %OptimizeFunctionOnNextCall(foo);
 assertTrue(foo(0x7fffffff,-1));  
 ```  
@@ -14021,6 +14049,7 @@ function f() {
   g(a);
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 %OptimizeFunctionOnNextCall(f);
 f();  
@@ -14173,6 +14202,7 @@ function f(x) {
   return 1 + Number(s);
 }
 
+%PrepareFunctionForOptimization(f);
 f(0);
 f(0);
 %OptimizeFunctionOnNextCall(f);
@@ -14299,6 +14329,7 @@ Regress: [mjsunit/compiler/regress-store-holey-double-array.js](https://chromium
 
   var a = [,0.1];
 
+  %PrepareFunctionForOptimization(g);
   g(f64, a, 1);
   g(f64, a, 1);
   %OptimizeFunctionOnNextCall(g);
@@ -14315,6 +14346,8 @@ Regress: [mjsunit/compiler/regress-store-holey-double-array.js](https://chromium
   }
 
   var a=[,0.1];
+
+  %PrepareFunctionForOptimization(g);
   g(a, 1);
   g(a, 1);
   %OptimizeFunctionOnNextCall(g);
@@ -14354,6 +14387,7 @@ a["undefined"] = "undefined";
 (function() {
   function f(x) { return a[x]; }
 
+  %PrepareFunctionForOptimization(f);
   assertEquals(0, f(0));
   assertEquals(0, f(0));
   %OptimizeFunctionOnNextCall(f);
@@ -14363,6 +14397,7 @@ a["undefined"] = "undefined";
 (function() {
   function f( x) { return a[x]; }
 
+  %PrepareFunctionForOptimization(f);
   assertEquals(0, f(0));
   assertEquals(0, f(0));
   %OptimizeFunctionOnNextCall(f);
@@ -14372,6 +14407,7 @@ a["undefined"] = "undefined";
 (function() {
   function f( x) { return a[x]; }
 
+  %PrepareFunctionForOptimization(f);
   assertEquals(0, f(0));
   assertEquals(0, f(0));
   %OptimizeFunctionOnNextCall(f);
@@ -14381,6 +14417,7 @@ a["undefined"] = "undefined";
 (function() {
   function f( x) { return a[x]; }
 
+  %PrepareFunctionForOptimization(f);
   assertEquals(0, f(0));
   assertEquals(0, f(0));
   %OptimizeFunctionOnNextCall(f);
@@ -14710,6 +14747,7 @@ function foo(a, b) {
   return x + b;
 }
 
+%PrepareFunctionForOptimization(foo);
 assertEquals(2.1, foo(1, 2));
 assertEquals(2.1, foo(1, 2));
 %OptimizeFunctionOnNextCall(foo);
@@ -15122,6 +15160,7 @@ function g(a, b) {
   return +a;
 }
 
+%PrepareFunctionForOptimization(g);
 g(0);
 g(0);
 %OptimizeFunctionOnNextCall(g);
@@ -15192,6 +15231,7 @@ var a = [, 2.121736758e-314];
 
 function foo() { return a[1]; }
 
+%PrepareFunctionForOptimization(foo);
 assertEquals(2.121736758e-314, foo());
 assertEquals(2.121736758e-314, foo());
 %OptimizeFunctionOnNextCall(foo);
@@ -16992,6 +17032,7 @@ function Error()  {
   return arguments.length;
 }
 
+%PrepareFunctionForOptimization(f);
 assertThrows(function() { f(true); });
 assertThrows(function() { f(false); });
 %OptimizeFunctionOnNextCall(f);
@@ -18982,6 +19023,7 @@ Regress: [mjsunit/compiler/regress-dead-throw-inlining.js](https://chromium.goog
 function g() { if (false) throw 0; }
 function f() { g(); }
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);

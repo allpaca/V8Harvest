@@ -413,6 +413,7 @@ Regress: [mjsunit/compiler/regress-934175.js](https://chromium.googlesource.com/
   function opt(i){
     return ar[i] + (NaN ? 0 : '');
   }
+  %PrepareFunctionForOptimization(opt);
   ar[0] = 42;
   opt(1);
   %OptimizeFunctionOnNextCall(opt);
@@ -424,6 +425,7 @@ Regress: [mjsunit/compiler/regress-934175.js](https://chromium.googlesource.com/
   function opt(i){
     return (NaN ? 0 : '') + ar[i];
   }
+  %PrepareFunctionForOptimization(opt);
   ar[0] = 42;
   opt(1);
   %OptimizeFunctionOnNextCall(opt);
@@ -532,6 +534,7 @@ function opt(flag){
   ((flag||(Math.max(-0,0)))==0)
 }
 
+%PrepareFunctionForOptimization(opt);
 try{opt(false)}catch{}
 %OptimizeFunctionOnNextCall(opt)
 try{opt(false)}catch{}  
@@ -1254,6 +1257,7 @@ function f() {
 
 try { g(); } catch(e) {; }
 
+%PrepareFunctionForOptimization(f);
 f();
 %OptimizeFunctionOnNextCall(f);
 f();  

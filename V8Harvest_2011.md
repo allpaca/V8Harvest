@@ -234,6 +234,7 @@ function test(x) {
   assertEquals(0.5, v);
 }
 
+%PrepareFunctionForOptimization(test);
 for (var i = 0; i < 5; ++i) test(0.5);
 %OptimizeFunctionOnNextCall(test);
 test(0.5);  
@@ -269,6 +270,7 @@ function f(x, y) {
   return x >> a[0];
 }
 
+%PrepareFunctionForOptimization(f);
 f(42);
 f(42);
 assertEquals(42, f(42));
@@ -334,6 +336,7 @@ function main(func) {
   }
 }
 
+%PrepareFunctionForOptimization(main);
 main(o.g);
 main(o.g);
 main(o.g);
@@ -1417,6 +1420,7 @@ function foo() {
   return Math.sqrt(2.6415) ? 88 : 99;
 }
 
+%PrepareFunctionForOptimization(foo);
 assertEquals(88, foo());
 assertEquals(88, foo());
 %OptimizeFunctionOnNextCall(foo)
@@ -2502,15 +2506,20 @@ function g() {
   return x;
 }
 
+%PrepareFunctionForOptimization(f);
 for (var i = 0; i < 5; i++) {
   f();
-  g();
 }
-
 %OptimizeFunctionOnNextCall(f);
-%OptimizeFunctionOnNextCall(g);
 
 assertEquals(1, f());
+
+%PrepareFunctionForOptimization(g);
+for (var i = 0; i < 5; i++) {
+  g();
+}
+%OptimizeFunctionOnNextCall(g);
+
 assertEquals(42, g());
 
 
@@ -2519,6 +2528,8 @@ function h(a, b) {
   const X = 42;
   return r + X;
 }
+
+%PrepareFunctionForOptimization(h);
 
 for (var i = 0; i < 5; i++) h(1,2);
 
@@ -2798,6 +2809,8 @@ function f(x) {
   }
   return ret;
 };
+
+%PrepareFunctionForOptimization(f);
 
 for (var i = 0; i < 3; i++) assertEquals(i, f(i));
 
@@ -3170,6 +3183,8 @@ function test(a) {
     b[i].bar = a.foo;
   }
 }
+
+%PrepareFunctionForOptimization(test);
 
 var a = {};
 a.p1 = "";
@@ -4926,6 +4941,7 @@ Regress: [mjsunit/compiler/regress-1085.js](https://chromium.googlesource.com/v8
 ```javascript
 function f(x) { return 1 / Math.min(1, x); }
 
+%PrepareFunctionForOptimization(f);
 for (var i = 0; i < 5; ++i) f(1);
 %OptimizeFunctionOnNextCall(f);
 
@@ -5169,8 +5185,9 @@ function makeTagInfoJSON(n) {
   return a;
 }
 
-var expr = '([' + makeTagInfoJSON(128).join(', ') + '])'
+var expr = '([' + makeTagInfoJSON(128).join(', ') + '])';
 
+%PrepareFunctionForOptimization(withEval);
 for (var n = 0; n < 5; n++) {
   withEval(expr, function(a) { return a; });
 }

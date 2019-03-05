@@ -19,6 +19,7 @@ function inferReceiverMapsInDeadCode() {
   var obj = { func() {} };
   gc();
   function wrappedCode() { try { code(); } catch (e) {} }
+  %PrepareFunctionForOptimization(wrappedCode);
   function code() {
     obj.a;
     try {
@@ -327,6 +328,7 @@ function f(a) {
   return arguments[0];
 }
 
+%PrepareFunctionForOptimization(f);
 %OptimizeFunctionOnNextCall(f);
 assertEquals(undefined, f());  
 ```  
@@ -499,6 +501,7 @@ inlined(true, 1);
 inlined(true, 2);
 inlined(false, 1);
 
+%PrepareFunctionForOptimization(foo);
 function foo(b) { inlined(b, "") }
 foo(false); foo(false);
 %OptimizeFunctionOnNextCall(foo);
@@ -881,6 +884,7 @@ function f3(a) {
   f2(new C().bar.call(), Object(), String);
 }
 
+%PrepareFunctionForOptimization(f3);
 f3(new Array(1));
 f3(new Array(1));
 %OptimizeFunctionOnNextCall(f3);
@@ -929,6 +933,7 @@ Code Review: [https://chromium-review.googlesource.com/785130](https://chromium-
 Regress: [mjsunit/compiler/regress-7121.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-7121.js)  
 ```javascript
 function foo() { %_ToLength(42n) }
+%PrepareFunctionForOptimization(foo);
 assertThrows(foo, TypeError);
 %OptimizeFunctionOnNextCall(foo);
 assertThrows(foo, TypeError);  
@@ -1324,6 +1329,7 @@ function with_tagged(x) {
     return get1(l);
 }
 
+%PrepareFunctionForOptimization(with_double);
 with_double(.5);
 with_tagged({});
 with_double(.6);
@@ -3004,6 +3010,7 @@ function f(o) {
   return 5 + o.x++;
 }
 
+%PrepareFunctionForOptimization(f);
 try {
   f(a);
   f(b);
@@ -3053,6 +3060,7 @@ function foo(arg) {
   return value * undefined;
 }
 
+%PrepareFunctionForOptimization(foo);
 foo(3);
 foo(3);
 %OptimizeFunctionOnNextCall(foo);
@@ -4506,6 +4514,7 @@ Regress: [mjsunit/compiler/regress-772872.js](https://chromium.googlesource.com/
 function f() {
   for (var x = 10; x > 5; x -= 16) {}
 }
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -5471,6 +5480,7 @@ function* foo() {
   }
 }
 
+%PrepareFunctionForOptimization(foo);
 let gaga = foo();
 gaga.next();
 %OptimizeFunctionOnNextCall(foo);
@@ -5578,6 +5588,7 @@ function f(x) {
   1.1!=(x||x0)
 }
 
+%PrepareFunctionForOptimization(f);
 f(1.1);
 f(1.1);
 %OptimizeFunctionOnNextCall(f);
@@ -5639,6 +5650,7 @@ Regress: [mjsunit/compiler/regress-758096.js](https://chromium.googlesource.com/
     return obj.f();
   }
 
+  %PrepareFunctionForOptimization(f);
   f(x);
   f(y);
   f(x);
@@ -5668,6 +5680,7 @@ Regress: [mjsunit/compiler/regress-758096.js](https://chromium.googlesource.com/
     return fg() + a;
   }
 
+  %PrepareFunctionForOptimization(h);
   h(0);
   h(0);
   h(1);
@@ -5734,6 +5747,7 @@ Regress: [mjsunit/compiler/regress-739902.js](https://chromium.googlesource.com/
 
   var e = 0x41000001;
 
+  %PrepareFunctionForOptimization(f);
   f(e);
   %OptimizeFunctionOnNextCall(f);
   assertEquals("A", f(e));
@@ -5744,6 +5758,7 @@ Regress: [mjsunit/compiler/regress-739902.js](https://chromium.googlesource.com/
     return (x >>> 24) & 0xffff;
   };
 
+  %PrepareFunctionForOptimization(f);
   f(1);
   %OptimizeFunctionOnNextCall(f);
   assertEquals(0, f(1));
@@ -5808,6 +5823,7 @@ function f(b) {
   return r < 0;
 }
 
+%PrepareFunctionForOptimization(f);
 f(true);
 f(true);
 %OptimizeFunctionOnNextCall(f);
@@ -6154,6 +6170,7 @@ function f() {
   return g(h({}))
 };
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -8290,6 +8307,7 @@ function l(s) {
   return ("xxxxxxxxxxxxxxxxxxxxxxx" + s).toLowerCase();
 }
 
+%PrepareFunctionForOptimization(l);
 l("abcd");
 l("abcd");
 %OptimizeFunctionOnNextCall(l);
@@ -8299,6 +8317,7 @@ function u(s) {
   return ("xxxxxxxxxxxxxxxxxxxxxxx" + s).toUpperCase();
 }
 
+%PrepareFunctionForOptimization(u);
 u("abcd");
 u("abcd");
 %OptimizeFunctionOnNextCall(u);
@@ -8366,6 +8385,7 @@ function g() {
   f(0, "s");
 }
 
+%PrepareFunctionForOptimization(g);
 assertThrows(g);
 %OptimizeFunctionOnNextCall(g);
 assertThrows(g);  
@@ -9046,6 +9066,7 @@ function foo() {
   return global;
 };
 
+%PrepareFunctionForOptimization(foo);
 assertEquals(foo(), "bar");
 %OptimizeFunctionOnNextCall(foo);
 assertEquals(foo(), "bar");  
@@ -9338,6 +9359,7 @@ b[1] = 3.5;
 
 h(b, [1073741823, 2147483648, -12]);
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -11065,6 +11087,7 @@ function g(o) {
   return o.y;
 }
 
+%PrepareFunctionForOptimization(g);
 g(h());
 g(h());
 %OptimizeFunctionOnNextCall(g);
@@ -11284,6 +11307,7 @@ function f() {
   }
 }
 
+%PrepareFunctionForOptimization(f);
 assertThrowsEquals(f, 42);  
 ```  
   
@@ -11384,6 +11408,7 @@ function foo(o) {
   return o.f();
 }
 
+%PrepareFunctionForOptimization(foo);
 foo(o1);
 try { foo(o2); } catch(e) {}
 foo(o1);
@@ -13070,6 +13095,7 @@ for (var i = 0; i < f32.length; i++) {
   s += i;
 }
 
+%PrepareFunctionForOptimization(foo);
 foo(f32, 0);
 foo(f32, 0);
 %OptimizeFunctionOnNextCall(foo);
@@ -15398,6 +15424,7 @@ function foo(x) {
  return min(y, x);
 }
 
+%PrepareFunctionForOptimization(foo);
 foo();
 %OptimizeFunctionOnNextCall(foo);
 foo();  
@@ -17179,6 +17206,7 @@ function g(x) {
   }
 }
 
+%PrepareFunctionForOptimization(g);
 g(false);
 g(false);
 %OptimizeFunctionOnNextCall(g);
