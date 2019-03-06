@@ -780,12 +780,13 @@ a => 0
 
 ## **regress-904167.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/904167)**  
+**[Issue 904167:
+ DCHECK failure in !IsSmi() == Internals::HasHeapObjectTag(ptr()) in objects.h](https://crbug.com/904167)**  
 **[Commit: [cloneobjectic] initialize property array before filling it](https://chromium.googlesource.com/v8/v8/+/3729410)**  
   
 Date(Commit): Tue Nov 27 17:24:21 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Security_Severity-High", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1350282](https://chromium-review.googlesource.com/c/1350282)  
 Regress: [mjsunit/es9/regress/regress-904167.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es9/regress/regress-904167.js)  
 ```javascript
@@ -1095,12 +1096,13 @@ const p = Object.defineProperty(Promise.resolve(), 'then', {
 
 ## **regress-908231.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/908231)**  
+**[Issue 908231:
+ DCHECK failure in parse_lazily() implies allow_lazy_ in parser.cc](https://crbug.com/908231)**  
 **[Commit: [parser] Relax DCHECK in has_error() case](https://chromium.googlesource.com/v8/v8/+/536f62c)**  
   
 Date(Commit): Mon Nov 26 10:06:28 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Impact-Head", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Owner", "Target-72"]  
 Code Review: [https://chromium-review.googlesource.com/c/1350116](https://chromium-review.googlesource.com/c/1350116)  
 Regress: [mjsunit/regress/regress-908231.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-908231.js)  
 ```javascript
