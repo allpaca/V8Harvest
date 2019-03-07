@@ -2,6 +2,134 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-937734.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/937734)**  
+**[Commit: [turbofan] Use load_mode feedback for HasProperty access](https://chromium.googlesource.com/v8/v8/+/1297c92)**  
+  
+Date(Commit): Wed Mar 06 19:27:31 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1501975](https://chromium-review.googlesource.com/c/v8/v8/+/1501975)  
+Regress: [mjsunit/regress/regress-crbug-937734.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-937734.js)  
+```javascript
+function foo()
+{
+    return 1 in [0];
+}
+
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();
+assertEquals(0, %GetDeoptCount(foo));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1297c92^!)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=1297c92)  
+[src/feedback-vector.cc](https://cs.chromium.org/chromium/src/v8/src/feedback-vector.cc?cl=1297c92)  
+[test/mjsunit/regress/regress-crbug-937734.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-937734.js?cl=1297c92)  
+  
+
+---   
+
+## **regress-8947.js (v8 issue)**  
+   
+**[Issue 8947:
+ Calling wasm-re-exported-then-imported API function crashes](https://crbug.com/v8/8947)**  
+**[Commit: [wasm] Fix import of reexported API function](https://chromium.googlesource.com/v8/v8/+/15925e5)**  
+  
+Date(Commit): Tue Mar 05 14:34:57 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1503632](https://chromium-review.googlesource.com/c/v8/v8/+/1503632)  
+Regress: [mjsunit/regress/regress-8947.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-8947.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+(function testCallReexportedJSFunc() {
+ print(arguments.callee.name);
+
+  function dothrow() {
+    throw "exception";
+  }
+
+  var builder = new WasmModuleBuilder();
+  const imp_index = builder.addImport("w", "m", kSig_i_v);
+  builder.addExport("exp", imp_index);
+  var exp = builder.instantiate({w: {m: dothrow}}).exports.exp;
+
+  builder.addImport("w", "m", kSig_i_v);
+  builder.addFunction("main", kSig_i_v)
+    .addBody([
+      kExprCallFunction, 0, // --
+    ])                             // --
+    .exportFunc();
+
+  var main = builder.instantiate({w: {m: exp}}).exports.main;
+  assertThrowsEquals(main, "exception");
+})();
+
+(function testCallReexportedAPIFunc() {
+ print(arguments.callee.name);
+
+  var builder = new WasmModuleBuilder();
+  const imp_index = builder.addImport("w", "m", kSig_i_v);
+  builder.addExport("exp", imp_index);
+  var exp = builder.instantiate({w: {m: WebAssembly.Module}}).exports.exp;
+
+  builder.addImport("w", "m", kSig_i_v);
+  builder.addFunction("main", kSig_i_v)
+    .addBody([
+      kExprCallFunction, 0, // --
+    ])                             // --
+    .exportFunc();
+
+  var main = builder.instantiate({w: {m: exp}}).exports.main;
+  assertThrows(main, TypeError);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/15925e5^!)  
+[src/compiler/wasm-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?cl=15925e5)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=15925e5)  
+[test/mjsunit/regress/regress-8947.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-8947.js?cl=15925e5)  
+  
+
+---   
+
+## **regress-crbug-937649.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/937649)**  
+**[Commit: [turbofan] representation selection: do not convert from Boolean to Number without truncation](https://chromium.googlesource.com/v8/v8/+/676a020)**  
+  
+Date(Commit): Tue Mar 05 11:18:00 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1501052](https://chromium-review.googlesource.com/c/v8/v8/+/1501052)  
+Regress: [mjsunit/regress/regress-crbug-937649.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-937649.js)  
+```javascript
+(function() {
+  function foo(x) {
+    const i = x > 0;
+    const dv = new DataView(ab);
+    return dv.getUint16(i);
+  }
+  const ab = new ArrayBuffer(2);
+  foo(0);
+  foo(0);
+  %OptimizeFunctionOnNextCall(foo);
+  foo(0);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/676a020^!)  
+[src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=676a020)  
+[test/cctest/compiler/test-representation-change.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-representation-change.cc?cl=676a020)  
+[test/mjsunit/regress/regress-crbug-937649.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-937649.js?cl=676a020)  
+  
+
+---   
+
 ## **regress-crbug-935932.js (chromium issue)**  
    
 **[Issue 935932:

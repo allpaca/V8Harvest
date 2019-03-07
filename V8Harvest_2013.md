@@ -4552,7 +4552,7 @@ Regress: [mjsunit/regress/regress-2618.js](https://chromium.googlesource.com/v8/
 ```javascript
 if (isNeverOptimizeLiteMode()) {
   print("Warning: skipping test that requires optimization in Lite mode.");
-  quit(0);
+  testRunner.quit(0);
 }
 assertFalse(isAlwaysOptimize());
 

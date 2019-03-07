@@ -221,12 +221,13 @@ assertThrows("({x(){},y:[][0]} = {})", SyntaxError);
 
 ## **regress-907479.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/907479)**  
+**[Issue 907479:
+ Use-of-uninitialized-value in v8::internal::CopyDoubleToObjectElements](https://crbug.com/907479)**  
 **[Commit: Reland "Use CopyElements (which uses memcpy) to copy FixedDoubleArray."](https://chromium.googlesource.com/v8/v8/+/63ce4ba)**  
   
 Date(Commit): Tue Dec 18 16:34:49 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Severity-Medium", "Security_Impact-Head", "Stability-Memory-MemorySanitizer", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Owner", "Target-72"]  
 Code Review: [https://chromium-review.googlesource.com/c/1280308](https://chromium-review.googlesource.com/c/1280308)  
 Regress: [mjsunit/regress/regress-907479.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-907479.js)  
 ```javascript
