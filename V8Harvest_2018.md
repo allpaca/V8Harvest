@@ -759,12 +759,13 @@ assertThrows(() => { var dummy = 2n ** just_above; });
 
 ## **regress-908975.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/908975)**  
+**[Issue 908975:
+ DCHECK failure in outer_scope_ == scope->outer_scope() in bytecode-generator.cc](https://crbug.com/908975)**  
 **[Commit: [parser] Set rewritable_length to the correct length rather than 0](https://chromium.googlesource.com/v8/v8/+/bd114da)**  
   
 Date(Commit): Wed Nov 28 08:53:26 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Security_Severity-High", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1352286](https://chromium-review.googlesource.com/c/1352286)  
 Regress: [mjsunit/regress/regress-908975.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-908975.js)  
 ```javascript
