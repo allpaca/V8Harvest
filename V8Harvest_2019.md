@@ -2,6 +2,77 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-937650.js (chromium issue)**  
+   
+**[Issue 937650:
+ Float-cast-overflow in v8::internal::wasm::AsmJsParser::ValidateModuleVarFromGlobal](https://crbug.com/937650)**  
+**[Commit: [asm.js] Fix undefined behavior with float32 constants.](https://chromium.googlesource.com/v8/v8/+/b60d567)**  
+  
+Date(Commit): Thu Mar 07 08:56:37 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Reproducible", "Clusterfuzz", "Stability-UndefinedBehaviorSanitizer", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1505458](https://chromium-review.googlesource.com/c/v8/v8/+/1505458)  
+Regress: [mjsunit/asm/regress-937650.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-937650.js)  
+```javascript
+function Module(stdlib) {
+  "use asm";
+  var fround = stdlib.Math.fround;
+  // The below constant is outside the range of representable {float} values.
+  const infinity = fround(1.7976931348623157e+308);
+  function f() {
+    return infinity;
+  }
+  return { f: f };
+}
+
+var m = Module(this);
+assertEquals(Infinity, m.f());
+assertTrue(%IsAsmWasmCode(Module));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b60d567^!)  
+[src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=b60d567)  
+[test/mjsunit/asm/regress-937650.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/asm/regress-937650.js?cl=b60d567)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=b60d567)  
+  
+
+---   
+
+## **regress-ubsan.js (other issue)**  
+   
+**[Commit: [ubsan] Fix various ClusterFuzz-found issues](https://chromium.googlesource.com/v8/v8/+/91f0cd0)**  
+  
+Date(Commit): Thu Mar 07 00:09:20 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1495911](https://chromium-review.googlesource.com/c/v8/v8/+/1495911)  
+Regress: [mjsunit/regress/wasm/regress-ubsan.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-ubsan.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+(function() {
+  var builder = new WasmModuleBuilder();
+  builder.addImportedGlobal("mod", "i32", kWasmI32);
+  builder.addImportedGlobal("mod", "f32", kWasmF32);
+  var module = new WebAssembly.Module(builder.toBuffer());
+  return new WebAssembly.Instance(module, {
+    mod: {
+      i32: 1e12,
+      f32: 1e300,
+    }
+  });
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/91f0cd0^!)  
+[include/v8.h](https://cs.chromium.org/chromium/src/v8/include/v8.h?cl=91f0cd0)  
+[src/builtins/builtins-string.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-string.cc?cl=91f0cd0)  
+[src/builtins/builtins-typed-array.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-typed-array.cc?cl=91f0cd0)  
+[src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=91f0cd0)  
+[src/objects/bigint.cc](https://cs.chromium.org/chromium/src/v8/src/objects/bigint.cc?cl=91f0cd0)  
+...  
+  
+  
+---   
+
 ## **regress-crbug-937734.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/937734)**  
@@ -421,11 +492,11 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 (function TestAsyncCompileMultipleCodeSections() {
   let binary = new Binary();
   binary.emit_header();
-  binary.push(kTypeSectionCode, 4, 1, kWasmFunctionTypeForm, 0, 0);
-  binary.push(kFunctionSectionCode, 2, 1, 0);
-  binary.push(kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd);
-  binary.push(kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd);
-  let buffer = Uint8Array.from(binary).buffer;
+  binary.emit_bytes([kTypeSectionCode, 4, 1, kWasmFunctionTypeForm, 0, 0]);
+  binary.emit_bytes([kFunctionSectionCode, 2, 1, 0]);
+  binary.emit_bytes([kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd]);
+  binary.emit_bytes([kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd]);
+  let buffer = binary.trunc_buffer();
   assertPromiseResult(WebAssembly.compile(buffer), assertUnreachable,
                       e => assertInstanceof(e, WebAssembly.CompileError));
 })();  
