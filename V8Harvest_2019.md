@@ -2,6 +2,205 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-940722.js (chromium issue)**  
+   
+**[Issue 940722:
+ DCHECK failure in AllowHeapAllocation::IsAllowed() in heap-inl.h](https://crbug.com/940722)**  
+**[Commit: [regexp] Allow heap allocation on stack overflows](https://chromium.googlesource.com/v8/v8/+/0793bb8)**  
+  
+Date(Commit): Tue Mar 12 15:01:59 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Reproducible", "Clusterfuzz", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1518174](https://chromium-review.googlesource.com/c/v8/v8/+/1518174)  
+Regress: [mjsunit/regress/regress-940722.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-940722.js)  
+```javascript
+var __v_27278 = "x";
+for (var __v_27279 = 0; __v_27279 != 13; __v_27279++) {
+  try { __v_27278 += __v_27278; } catch (e) {}
+}
+
+try { /(xx|x)*/.exec(__v_27278); } catch (e) {}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0793bb8^!)  
+[src/regexp/interpreter-irregexp.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/interpreter-irregexp.cc?cl=0793bb8)  
+[test/mjsunit/regress/regress-940722.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-940722.js?cl=0793bb8)  
+  
+
+---   
+
+## **regress-940296.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/940296)**  
+**[Commit: [wasm] Fix insufficient bounds check in WebAssembly.get](https://chromium.googlesource.com/v8/v8/+/e162eb4)**  
+  
+Date(Commit): Tue Mar 12 11:29:02 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1514496](https://chromium-review.googlesource.com/c/v8/v8/+/1514496)  
+Regress: [mjsunit/regress/wasm/regress-940296.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-940296.js)  
+```javascript
+let table = new WebAssembly.Table({element: "anyfunc", initial: 1});
+assertThrows(() => table.get(3612882876), RangeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e162eb4^!)  
+[src/wasm/wasm-js.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-js.cc?cl=e162eb4)  
+[src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=e162eb4)  
+[src/wasm/wasm-objects.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.h?cl=e162eb4)  
+[test/mjsunit/regress/wasm/regress-940296.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-940296.js?cl=e162eb4)  
+[test/mjsunit/wasm/js-api.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/js-api.js?cl=e162eb4)  
+  
+
+---   
+
+## **regress-crbug-937618.js (chromium issue)**  
+   
+**[Issue 937618:
+ V8 correctness failure in configs: x64,ignition:x64,slow_path_opt](https://crbug.com/937618)**  
+**[Commit: [proxy] fix has trap check for indices](https://chromium.googlesource.com/v8/v8/+/11d8358)**  
+  
+Date(Commit): Mon Mar 11 20:53:47 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "v8-foozzie-failure", "Test-Predator-Auto-CC"]  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1510333](https://chromium-review.googlesource.com/c/v8/v8/+/1510333)  
+Regress: [mjsunit/regress/regress-crbug-937618.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-937618.js)  
+```javascript
+let target = {0:42, a:42};
+
+let proxy = new Proxy(target, {
+  has: function() { return false; },
+});
+
+Object.preventExtensions(target);
+
+function testLookupElementInProxy() {
+  0 in proxy;
+}
+
+
+assertThrows(testLookupElementInProxy, TypeError);
+assertThrows(testLookupElementInProxy, TypeError);
+%OptimizeFunctionOnNextCall(testLookupElementInProxy);
+assertThrows(testLookupElementInProxy, TypeError);
+
+function testLookupPropertyInProxy(){
+  "a" in proxy;
+}
+
+assertThrows(testLookupPropertyInProxy, TypeError);
+assertThrows(testLookupPropertyInProxy, TypeError);
+%OptimizeFunctionOnNextCall(testLookupPropertyInProxy);
+assertThrows(testLookupPropertyInProxy, TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/11d8358^!)  
+[src/builtins/builtins-proxy-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-proxy-gen.cc?cl=11d8358)  
+[test/mjsunit/regress/regress-crbug-937618.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-937618.js?cl=11d8358)  
+  
+
+---   
+
+## **regress-937681.js (chromium issue)**  
+   
+**[Issue 937681:
+ CHECK failure: !ResultAreIdentical(args); RegExpBuiltinsFuzzerHash=c087ca96 in regexp-builtins.](https://crbug.com/937681)**  
+**[Commit: [regexp] Fix sticky callable replace with OOB lastIndex](https://chromium.googlesource.com/v8/v8/+/dd580e8)**  
+  
+Date(Commit): Mon Mar 11 16:09:47 2019  
+Components/Type: Blink>JavaScript>Regexp/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Stability-Libfuzzer", "Clusterfuzz", "ClusterFuzz-Verified"]  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1514679](https://chromium-review.googlesource.com/c/v8/v8/+/1514679)  
+Regress: [mjsunit/regress/regress-937681.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-937681.js)  
+```javascript
+const str = 'aaaa';
+
+const re0 = /./y;
+
+re0.lastIndex = 9;
+assertEquals(str, re0[Symbol.replace](str, () => 42));
+re0.lastIndex = 9;
+assertEquals(str, re0[Symbol.replace](str, () => 42));
+re0.lastIndex = 9;
+assertEquals(str, re0[Symbol.replace](str, "42"));
+re0.lastIndex = 9;
+assertEquals(str, re0[Symbol.replace](str, "42"));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/dd580e8^!)  
+[src/runtime/runtime-regexp.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-regexp.cc?cl=dd580e8)  
+[test/mjsunit/regress/regress-937681.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-937681.js?cl=dd580e8)  
+  
+
+---   
+
+## **regress-940361.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/940361)**  
+**[Commit: [turbofan] Manually serialize descriptors for a field type dependency](https://chromium.googlesource.com/v8/v8/+/708c911)**  
+  
+Date(Commit): Mon Mar 11 12:45:00 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1514495](https://chromium-review.googlesource.com/c/v8/v8/+/1514495)  
+Regress: [mjsunit/regress/regress-940361.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-940361.js)  
+```javascript
+const re = /abc/;
+
+re.__proto__.__proto__.test = re.__proto__.test;
+delete re.__proto__.test;
+
+function foo(s) {
+  return re.test(s);
+}
+
+assertTrue(foo('abc'));
+assertTrue(foo('abc'));
+%OptimizeFunctionOnNextCall(foo);
+assertTrue(foo('abc'));
+assertFalse(foo('ab'));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/708c911^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=708c911)  
+[test/mjsunit/regress/regress-940361.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-940361.js?cl=708c911)  
+  
+
+---   
+
+## **regress-935092.js (chromium issue)**  
+   
+**[Issue 935092:
+ Security: Debug check failed: op->opcode() == IrOpcode::kDeoptimize || op->opcode() == IrOpcode::kDeoptimizeIf || op->opcode() == IrOpcode::kDeoptimizeUnless](https://crbug.com/935092)**  
+**[Commit: [turbofan] Check for dead control in branch elimination.](https://chromium.googlesource.com/v8/v8/+/ac8e98e)**  
+  
+Date(Commit): Mon Mar 11 06:30:00 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["M-74"]  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1488769](https://chromium-review.googlesource.com/c/v8/v8/+/1488769)  
+Regress: [mjsunit/compiler/regress-935092.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-935092.js)  
+```javascript
+function opt(g) {
+    for (var X = 0; X < 1; X++) {
+        (new(function() {
+            this.y
+        })).x;
+        (g || (g && (((g || -N)(g && 0))))).y = 0
+    }
+    (function() { g })
+}
+opt({});
+%OptimizeFunctionOnNextCall(opt);
+opt({});  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ac8e98e^!)  
+[src/compiler/branch-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/branch-elimination.cc?cl=ac8e98e)  
+[test/mjsunit/compiler/regress-935092.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-935092.js?cl=ac8e98e)  
+  
+
+---   
+
 ## **regress-937650.js (chromium issue)**  
    
 **[Issue 937650:
