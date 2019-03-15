@@ -2732,12 +2732,13 @@ Regress: [mjsunit/regress/regress-crbug-899464.js](https://chromium.googlesource
 
 ## **regress-crbug-899524.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/899524)**  
+**[Issue 899524:
+ CHECK failure: JSNegate of kRepTagged (Numeric) cannot be changed to kRepWord32 in representati](https://crbug.com/899524)**  
 **[Commit: [turbofan] Fix LoadElement with variable index scalar replacement.](https://chromium.googlesource.com/v8/v8/+/104d752)**  
   
 Date(Commit): Mon Oct 29 09:38:23 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Regression  
+Labels: ["Hotlist-Merge-Review", "Reproducible", "Stability-Memory-AddressSanitizer", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner", "M-71", "Target-71", "merge-merged-7.1"]  
 Code Review: [https://chromium-review.googlesource.com/c/1303721](https://chromium-review.googlesource.com/c/1303721)  
 Regress: [mjsunit/regress/regress-crbug-899524.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-899524.js)  
 ```javascript
@@ -7278,7 +7279,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
         kExprCallIndirect, 0, kTableZero
       ])
       .exportFunc();
-    builder.addElementSegment(0, false, [0, 1, 1, 0]);
+    builder.addElementSegment(0, 0, false, [0, 1, 1, 0]);
 
     return builder.instantiate({q: {f2: i1.exports.f2, f1: i1.exports.f1}});
   })();
@@ -8968,7 +8969,7 @@ const builder2 = new WasmModuleBuilder();
 const mul_import = builder2.addImport('q', 'wasm_mul', kSig_i_ii);
 builder2.addImportedTable('q', 'table');
 const glob_import = builder2.addImportedGlobal('q', 'glob', kWasmI32);
-builder2.addElementSegment(glob_import, true, [mul_import]);
+builder2.addElementSegment(0, glob_import, true, [mul_import]);
 builder2.instantiate(
     {q: {glob: 0, js_div: i => i, wasm_mul: mul, table: table}});  
 ```  
@@ -10588,7 +10589,7 @@ let q_table = builder.addImportedTable("q", "table")
 let q_base = builder.addImportedGlobal("q", "base", kWasmI32);
 let q_fun = builder.addImport("q", "fun", kSig_v_v);
 builder.addType(kSig_i_ii);
-builder.addElementSegment(q_base, true, [ q_fun ])
+builder.addElementSegment(0, q_base, true, [ q_fun ])
 let module = new WebAssembly.Module(builder.toBuffer());
 let table = new WebAssembly.Table({
   element: "anyfunc",

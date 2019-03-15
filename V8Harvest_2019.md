@@ -2,6 +2,53 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-939746.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/939746)**  
+**[Commit: [turbofan] add CheckSmi call to String.p.startsWith](https://chromium.googlesource.com/v8/v8/+/6d209c9)**  
+  
+Date(Commit): Wed Mar 13 15:42:30 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1514198](https://chromium-review.googlesource.com/c/v8/v8/+/1514198)  
+Regress: [mjsunit/regress/regress-939746.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-939746.js)  
+```javascript
+(function () {
+  function f() { 'a'.startsWith('a', NaN); }
+
+  %PrepareFunctionForOptimization(f);
+  f();
+  f();
+  %OptimizeFunctionOnNextCall(f);
+  f();
+})();
+
+(function() {
+  let wasCalled = false;
+
+  const obj = {
+    [Symbol.toPrimitive]: () => wasCalled = true
+  };
+
+  function f() { ''.startsWith('a', obj); }
+
+  %PrepareFunctionForOptimization(f);
+  f();
+  f();
+  %OptimizeFunctionOnNextCall(f);
+  f();
+
+  assertTrue(wasCalled, "String.p.startsWith didn't attempt to coerce the position argument to a Number.")
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6d209c9^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=6d209c9)  
+[test/mjsunit/regress/regress-939746.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-939746.js?cl=6d209c9)  
+  
+
+---   
+
 ## **regress-940722.js (chromium issue)**  
    
 **[Issue 940722:
@@ -2127,7 +2174,7 @@ Regress: [mjsunit/regress/regress-8630.js](https://chromium.googlesource.com/v8/
 ```javascript
 assertThrows("( ({x: 1}) ) => {};", SyntaxError);
 assertThrows("( (x) ) => {}", SyntaxError);
-assertThrows("( ({x: 1}) = y ) => {}", SyntaxError);
+assertThrows("( ({x: 1}) = y ) => {}", ReferenceError);
 assertThrows("( (x) = y ) => {}", SyntaxError);
 
 assertThrows("let [({x: 1})] = [];", SyntaxError);
@@ -2139,7 +2186,8 @@ assertThrows("var [(x)] = [];", SyntaxError);
 assertThrows("var [({x: 1}) = y] = [];", SyntaxError);
 assertThrows("var [(x) = y] = [];", SyntaxError);
 
-assertThrows("[({x: 1}) = y] = [];", SyntaxError);
+assertThrows("[({x: 1}) = y] = [];", ReferenceError);
+assertThrows("({a,b}) = {a:2,b:3}", ReferenceError);
 
 var x;
 [(x)] = [2];
