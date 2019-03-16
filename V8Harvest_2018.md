@@ -599,12 +599,13 @@ assertEquals(7, ({[Symbol.hasInstance.description]:7})["Symbol.hasInstance"]);
 
 ## **regress-910838.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/910838)**  
+**[Issue 910838:
+ Unknown signal in Builtins_ArgumentsAdaptorTrampoline](https://crbug.com/910838)**  
 **[Commit: [turbofan] Pin pure unreachable values to effect chain (in rep selection)](https://chromium.googlesource.com/v8/v8/+/f27ac28)**  
   
 Date(Commit): Thu Dec 06 10:35:13 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Compiler/Bug  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1365274](https://chromium-review.googlesource.com/c/1365274)  
 Regress: [mjsunit/compiler/regress-910838.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-910838.js)  
 ```javascript
