@@ -2,6 +2,38 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-942068.js (chromium issue)**  
+   
+**[Issue 942068:
+ V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/942068)**  
+**[Commit: [turbofan] Fix HasProperty for OOB access on polymorphic ICs](https://chromium.googlesource.com/v8/v8/+/1e2aa78)**  
+  
+Date(Commit): Fri Mar 15 22:09:16 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "v8-foozzie-failure", "Test-Predator-Auto-CC"]  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1525876](https://chromium-review.googlesource.com/c/v8/v8/+/1525876)  
+Regress: [mjsunit/regress/regress-crbug-942068.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-942068.js)  
+```javascript
+function foo(index, array) {
+  return index in array;
+}
+
+let arr = [];
+arr.__proto__ = [0];
+assertFalse(foo(0, {}));
+assertTrue(foo(0, arr));
+assertFalse(foo(0, {}));
+%OptimizeFunctionOnNextCall(foo);
+assertTrue(foo(0, arr));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1e2aa78^!)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=1e2aa78)  
+[test/mjsunit/regress/regress-crbug-942068.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-942068.js?cl=1e2aa78)  
+  
+
+---   
+
 ## **regress-939746.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/939746)**  

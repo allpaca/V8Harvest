@@ -579,12 +579,13 @@ assertTrue(foo(true));
 
 ## **regress-crbug-911416.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/911416)**  
+**[Issue 911416:
+ Security: SEGV_ACCERR in Symbol.prototype.description hash calc](https://crbug.com/911416)**  
 **[Commit: Add test case for RO-space string used as property key.](https://chromium.googlesource.com/v8/v8/+/4233ec0)**  
   
 Date(Commit): Mon Dec 10 08:55:45 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["reward-0", "Hotlist-Merge-Approved", "Security_Severity-High", "Security_Impact-Beta", "ReleaseBlock-Stable", "allpublic", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-CC", "Test-Predator-Auto-Components", "Target-72", "merge-merged-7.2"]  
 Code Review: [https://chromium-review.googlesource.com/c/1362952](https://chromium-review.googlesource.com/c/1362952)  
 Regress: [mjsunit/regress/regress-crbug-911416.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-911416.js)  
 ```javascript
