@@ -2,6 +2,96 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-939316.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/939316)**  
+**[Commit: [turbofan] Do not call JSFunction::has_initial_map without has_prototype_slot](https://chromium.googlesource.com/v8/v8/+/d62cd2f)**  
+  
+Date(Commit): Mon Mar 18 13:00:06 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1525942](https://chromium-review.googlesource.com/c/v8/v8/+/1525942)  
+Regress: [mjsunit/compiler/regress-939316.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-939316.js)  
+```javascript
+(function JSCreate() {
+  function f(arg) {
+    const o = Reflect.construct(Object, arguments, Proxy);
+    o.foo = arg;
+  }
+
+  function g(i) {
+    f(i);
+  }
+
+  g(0);
+  g(1);
+  %OptimizeFunctionOnNextCall(g);
+  g(2);
+})();
+
+
+(function JSCreateArray() {
+  function f() {
+    try {
+      const o = Reflect.construct(Array, arguments, parseInt);
+    } catch(e) { }
+  }
+
+  function g() {
+    f();
+  }
+
+  g();
+  g();
+  %OptimizeFunctionOnNextCall(g);
+  g();
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d62cd2f^!)  
+[src/compiler/node-properties.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/node-properties.cc?cl=d62cd2f)  
+[test/mjsunit/compiler/regress-939316.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-939316.js?cl=d62cd2f)  
+  
+
+---   
+
+## **regress-crbug-941743.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/941743)**  
+**[Commit: [TurboFan] Array.prototype.map wrong ElementsKind for output array.](https://chromium.googlesource.com/v8/v8/+/96de5ee)**  
+  
+Date(Commit): Mon Mar 18 12:30:42 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1526018](https://chromium-review.googlesource.com/c/v8/v8/+/1526018)  
+Regress: [mjsunit/regress/regress-crbug-941743.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-941743.js)  
+```javascript
+Array(2**30);
+
+let a = [1, 2, ,,, 3];
+function mapping(a) {
+  return a.map(v => v);
+}
+mapping(a);
+mapping(a);
+%OptimizeFunctionOnNextCall(mapping);
+mapping(a);
+
+a.length = (32 * 1024 * 1024)-1;
+a.fill(1,0);
+a.push(2);
+a.length += 500;
+mapping(a);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/96de5ee^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=96de5ee)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=96de5ee)  
+[test/mjsunit/regress/regress-crbug-941743.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-941743.js?cl=96de5ee)  
+  
+
+---   
+
 ## **regress-crbug-942068.js (chromium issue)**  
    
 **[Issue 942068:
@@ -30,53 +120,6 @@ assertTrue(foo(0, arr));
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/1e2aa78^!)  
 [src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=1e2aa78)  
 [test/mjsunit/regress/regress-crbug-942068.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-942068.js?cl=1e2aa78)  
-  
-
----   
-
-## **regress-939746.js (chromium issue)**  
-   
-**[No Permission](https://crbug.com/939746)**  
-**[Commit: [turbofan] add CheckSmi call to String.p.startsWith](https://chromium.googlesource.com/v8/v8/+/6d209c9)**  
-  
-Date(Commit): Wed Mar 13 15:42:30 2019  
-Components/Type: None/None  
-Labels: "No Permission"  
-Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1514198](https://chromium-review.googlesource.com/c/v8/v8/+/1514198)  
-Regress: [mjsunit/regress/regress-939746.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-939746.js)  
-```javascript
-(function () {
-  function f() { 'a'.startsWith('a', NaN); }
-
-  %PrepareFunctionForOptimization(f);
-  f();
-  f();
-  %OptimizeFunctionOnNextCall(f);
-  f();
-})();
-
-(function() {
-  let wasCalled = false;
-
-  const obj = {
-    [Symbol.toPrimitive]: () => wasCalled = true
-  };
-
-  function f() { ''.startsWith('a', obj); }
-
-  %PrepareFunctionForOptimization(f);
-  f();
-  f();
-  %OptimizeFunctionOnNextCall(f);
-  f();
-
-  assertTrue(wasCalled, "String.p.startsWith didn't attempt to coerce the position argument to a Number.")
-})();  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/6d209c9^!)  
-[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=6d209c9)  
-[test/mjsunit/regress/regress-939746.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-939746.js?cl=6d209c9)  
   
 
 ---   
