@@ -551,12 +551,13 @@ builder.instantiate();
 
 ## **regress-crbug-913296.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/913296)**  
+**[Issue 913296:
+ Security: V8: Incorrect type information on SpeculativeSafeIntegerSubtract](https://crbug.com/913296)**  
 **[Commit: [turbofan] Fix wrong typing of SpeculativeSafeIntegerSubtract.](https://chromium.googlesource.com/v8/v8/+/e3c9239)**  
   
 Date(Commit): Tue Dec 11 10:21:35 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Compiler/Bug-Security  
+Labels: ["reward-5000", "Security_Impact-Stable", "Security_Severity-High", "allpublic", "reward-inprocess", "M-72", "Merge-Rejected-71", "CVE_description-submitted", "merge-merged-7.2", "Release-0-M72", "CVE-2019-5755"]  
 Code Review: [https://chromium-review.googlesource.com/c/1370042](https://chromium-review.googlesource.com/c/1370042)  
 Regress: [mjsunit/regress/regress-crbug-913296.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-913296.js)  
 ```javascript
