@@ -437,12 +437,13 @@ Regress: [mjsunit/asm/regress-913822.js](https://chromium.googlesource.com/v8/v8
 
 ## **regress-crbug-913212.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/913212)**  
+**[Issue 913212:
+ DCHECK failure in index >= 0 && index < this->length() in fixed-array-inl.h](https://crbug.com/913212)**  
 **[Commit: [ic] do not expose global object](https://chromium.googlesource.com/v8/v8/+/e5fcd33)**  
   
 Date(Commit): Tue Dec 11 16:01:48 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-Low", "Security_Impact-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner", "M-73", "Target-73", "Release-0-M73"]  
 Code Review: [https://chromium-review.googlesource.com/c/1371605](https://chromium-review.googlesource.com/c/1371605)  
 Regress: [mjsunit/regress/regress-crbug-913212.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-913212.js)  
 ```javascript

@@ -15565,14 +15565,14 @@ Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/2736383003](https://codereview.chromium.org/2736383003)  
 Regress: [mjsunit/regress/regress-698790.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-698790.js)  
 ```javascript
-var cons_string = %ConstructConsString("", "aaaaaaaaaaaaaa");
+var cons_string = %ConstructConsString("a", "aaaaaaaaaaaaa");
 new RegExp(cons_string);
 
 
-function make_cons_string(s) { return s + "aaaaaaaaaaaaaa"; }
-make_cons_string("");
+function make_cons_string(s) { return s + "aaaaaaaaaaaaa"; }
+make_cons_string("a");
 %OptimizeFunctionOnNextCall(make_cons_string);
-var cons_str = make_cons_string("");
+var cons_str = make_cons_string("a");
 new RegExp(cons_str);  
 ```  
   

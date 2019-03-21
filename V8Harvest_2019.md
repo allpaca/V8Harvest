@@ -2,6 +2,53 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-9002.js (v8 issue)**  
+   
+**[Issue 9002:
+ Small functions shouldn't be inlined if they are not inlineable](https://crbug.com/v8/9002)**  
+**[Commit: [turbofan] Fix wrongly inlined small functions](https://chromium.googlesource.com/v8/v8/+/07a711a)**  
+  
+Date(Commit): Wed Mar 20 08:46:41 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1528233](https://chromium-review.googlesource.com/c/v8/v8/+/1528233)  
+Regress: [mjsunit/regress/regress-9002.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9002.js)  
+```javascript
+function f() {
+  return 42;
+}
+
+function g() {
+  return 52;
+}
+
+%NeverOptimizeFunction(f);
+
+function foo(cond) {
+  let func;
+  if (cond) {
+    func = f;
+  } else {
+    func = g;
+  }
+  func();
+}
+
+foo(true);
+foo(false);
+%OptimizeFunctionOnNextCall(foo);
+foo(true);
+foo(false);
+
+assertUnoptimized(f);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/07a711a^!)  
+[src/compiler/js-inlining-heuristic.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining-heuristic.cc?cl=07a711a)  
+[test/mjsunit/regress/regress-9002.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9002.js?cl=07a711a)  
+  
+
+---   
+
 ## **regress-939316.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/939316)**  
