@@ -398,12 +398,13 @@ Regress: [mjsunit/regress/regress-7773.js](https://chromium.googlesource.com/v8/
 
 ## **regress-913822.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/913822)**  
+**[Issue 913822:
+ DCHECK failure in !failed_ in asm-parser.cc](https://crbug.com/913822)**  
 **[Commit: [asm.js] Fix semicolon insertion in presence of comments.](https://chromium.googlesource.com/v8/v8/+/5f8cd45)**  
   
 Date(Commit): Wed Dec 12 14:43:05 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Hotlist-Merge-Review", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "Security_Impact-Beta", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "merge-merged-7.2"]  
 Code Review: [https://chromium-review.googlesource.com/c/1373551](https://chromium-review.googlesource.com/c/1373551)  
 Regress: [mjsunit/asm/regress-913822.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-913822.js)  
 ```javascript
@@ -465,12 +466,13 @@ undefined_name_access
 
 ## **regress-912504.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/912504)**  
+**[Issue 912504:
+ CHECK failure: fixed_size_above_fp + in deoptimizer.cc](https://crbug.com/912504)**  
 **[Commit: [esnext] use variadic arguments for Object.fromEntries](https://chromium.googlesource.com/v8/v8/+/5c77970)**  
   
 Date(Commit): Tue Dec 11 15:58:52 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Security_Impact-Head", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner", "M-73"]  
 Code Review: [https://chromium-review.googlesource.com/c/1366397](https://chromium-review.googlesource.com/c/1366397)  
 Regress: [mjsunit/harmony/regress/regress-912504.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/harmony/regress/regress-912504.js)  
 ```javascript
@@ -490,12 +492,13 @@ test();
 
 ## **regress-913232.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/913232)**  
+**[Issue 913232:
+ DCHECK failure in HasIncomingBackEdges(block) implies block_effects.For(block->PredecessorAt(0), b](https://crbug.com/913232)**  
 **[Commit: [compiler] Relax too strict debug assert.](https://chromium.googlesource.com/v8/v8/+/dc6eed6)**  
   
 Date(Commit): Tue Dec 11 15:51:53 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Hotlist-Merge-Review", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "Security_Impact-Beta", "ReleaseBlock-Stable", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1372065](https://chromium-review.googlesource.com/c/1372065)  
 Regress: [mjsunit/compiler/regress-913232.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-913232.js)  
 ```javascript
