@@ -2,6 +2,46 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-944062-1.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/944062)**  
+**[Commit: [turbofan] Add missing map checks in a reducer](https://chromium.googlesource.com/v8/v8/+/e80082b)**  
+  
+Date(Commit): Thu Mar 21 21:25:01 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1532331](https://chromium-review.googlesource.com/c/v8/v8/+/1532331)  
+Regress: [mjsunit/compiler/regress-944062-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-944062-1.js), [mjsunit/compiler/regress-944062-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-944062-2.js)  
+```javascript
+const array = [42, 2.1];  // non-stable map (PACKED_DOUBLE)
+let b = false;
+
+function f() {
+  if (b) array[100000] = 4.2;  // go to dictionary mode
+  return 42
+};
+%NeverOptimizeFunction(f);
+
+function includes() {
+  return array.includes(f());
+}
+
+assertTrue(includes());
+assertTrue(includes());
+%OptimizeFunctionOnNextCall(includes);
+assertTrue(includes());
+b = true;
+assertTrue(includes());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e80082b^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=e80082b)  
+[test/mjsunit/compiler/regress-944062-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-944062-1.js?cl=e80082b)  
+[test/mjsunit/compiler/regress-944062-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-944062-2.js?cl=e80082b)  
+  
+
+---   
+
 ## **regress-9002.js (v8 issue)**  
    
 **[Issue 9002:
