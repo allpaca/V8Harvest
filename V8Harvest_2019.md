@@ -2,6 +2,164 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-9036-1.js (v8 issue)**  
+   
+**[Issue 9036:
+ Proxy implements getPrototypeOf uncorrectly](https://crbug.com/v8/9036)**  
+**[Commit: [csa] Fix instanceof for LHS with proxy in prototype chain](https://chromium.googlesource.com/v8/v8/+/b9076b4)**  
+  
+Date(Commit): Tue Mar 26 19:35:25 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1539497](https://chromium-review.googlesource.com/c/v8/v8/+/1539497)  
+Regress: [mjsunit/regress/regress-9036-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9036-1.js), [mjsunit/regress/regress-9036-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9036-2.js), [mjsunit/regress/regress-9036-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9036-3.js)  
+```javascript
+function C() {};
+
+const p = new Proxy({}, { getPrototypeOf() { return C.prototype } });
+
+assertTrue(p instanceof C);
+assertTrue(p instanceof C);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b9076b4^!)  
+[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=b9076b4)  
+[test/mjsunit/regress/regress-9036-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9036-1.js?cl=b9076b4)  
+[test/mjsunit/regress/regress-9036-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9036-2.js?cl=b9076b4)  
+[test/mjsunit/regress/regress-9036-3.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9036-3.js?cl=b9076b4)  
+  
+
+---   
+
+## **regress-crbug-944435.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/944435)**  
+**[Commit: [Builtins] Make it harder to store signalling NaNs in Torque/CSA](https://chromium.googlesource.com/v8/v8/+/539017b)**  
+  
+Date(Commit): Tue Mar 26 10:22:50 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1538517](https://chromium-review.googlesource.com/c/v8/v8/+/1538517)  
+Regress: [mjsunit/regress/regress-crbug-944435.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-944435.js)  
+```javascript
+function foo(  )  {
+  return [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  0x1000000,
+  0x40000000,
+  12,
+  60,
+  100,
+  1000 * 60 * 60 * 24].map(Math.asin);
+}
+
+let b = [];
+b.constructor = {};
+b.constructor[Symbol.species] = function() {};
+
+let a = [];
+for (let i = 0; i < 10; i++) {
+  a.push(foo());
+  gc();
+  gc();
+  gc();
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/539017b^!)  
+[src/builtins/array-map.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-map.tq?cl=539017b)  
+[src/builtins/base.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/base.tq?cl=539017b)  
+[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=539017b)  
+[test/mjsunit/regress/regress-crbug-944435.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-944435.js?cl=539017b)  
+[third_party/v8/builtins/array-sort.tq](https://cs.chromium.org/chromium/src/v8/third_party/v8/builtins/array-sort.tq?cl=539017b)  
+  
+
+---   
+
+## **regress-9022.js (v8 issue)**  
+   
+**[Issue 9022:
+ Wrong break target in asm.js](https://crbug.com/v8/9022)**  
+**[Commit: [asm.js] Fix break depth calculation for named blocks.](https://chromium.googlesource.com/v8/v8/+/080fa87)**  
+  
+Date(Commit): Mon Mar 25 14:00:58 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1538126](https://chromium-review.googlesource.com/c/v8/v8/+/1538126)  
+Regress: [mjsunit/regress/regress-9022.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9022.js)  
+```javascript
+function Module(stdlib, ffi) {
+  "use asm";
+  var log = ffi.log;
+  function boom() {
+    while (1) {
+      label: {
+        break;
+      }
+      log(1);
+      break;
+    }
+    log(2);
+  }
+  return { boom: boom }
+}
+
+var log_value = 0;
+function log(i) {
+  log_value += i;
+}
+
+Module({}, { log: log }).boom();
+assertTrue(%IsAsmWasmCode(Module));
+assertEquals(2, log_value);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/080fa87^!)  
+[src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=080fa87)  
+[src/asmjs/asm-parser.h](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.h?cl=080fa87)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=080fa87)  
+[test/mjsunit/regress/regress-9022.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9022.js?cl=080fa87)  
+  
+
+---   
+
+## **regress-945187.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/945187)**  
+**[Commit: [turbofan] Only lower constant load if feedback agrees with receiver map.](https://chromium.googlesource.com/v8/v8/+/149b822)**  
+  
+Date(Commit): Mon Mar 25 13:06:04 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1538125](https://chromium-review.googlesource.com/c/v8/v8/+/1538125)  
+Regress: [mjsunit/compiler/regress-945187.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-945187.js)  
+```javascript
+function f() {
+  const o = { get : Object };
+  Object.defineProperty(Object, 0, o);
+}
+
+f();
+%OptimizeFunctionOnNextCall(f);
+delete Object.fromEntries;
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/149b822^!)  
+[src/compiler/property-access-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/property-access-builder.cc?cl=149b822)  
+[test/mjsunit/compiler/regress-945187.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-945187.js?cl=149b822)  
+  
+
+---   
+
 ## **regress-944062-1.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/944062)**  
