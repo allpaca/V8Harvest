@@ -176,12 +176,13 @@ assertEquals(1, instance.exports.main());
 
 ## **regress-crbug-916288.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/916288)**  
+**[Issue 916288:
+ DCHECK failure in IsAssignmentContext() in pattern-rewriter.cc](https://crbug.com/916288)**  
 **[Commit: [parser] Eagerly throw pattern error even if we lazily throw lhs error for calls](https://chromium.googlesource.com/v8/v8/+/89a64f0)**  
   
 Date(Commit): Wed Dec 19 11:39:30 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>Parser/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Stability-Libfuzzer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner", "M-73", "Target-73"]  
 Code Review: [https://chromium-review.googlesource.com/c/1384084](https://chromium-review.googlesource.com/c/1384084)  
 Regress: [mjsunit/regress/regress-crbug-916288.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-916288.js)  
 ```javascript
@@ -261,12 +262,13 @@ Regress: [mjsunit/regress/regress-907479.js](https://chromium.googlesource.com/v
 
 ## **regress-crbug-915783.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/915783)**  
+**[Issue 915783:
+ Security: Heap-use-after-free in TypedArray.toLocaleString](https://crbug.com/915783)**  
 **[Commit: [typedarray] Add TA.p.toLocaleString check for a detached buffer.](https://chromium.googlesource.com/v8/v8/+/682db78)**  
   
 Date(Commit): Tue Dec 18 15:06:15 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["reward-5000", "Security_Impact-Head", "Security_Severity-High", "allpublic", "reward-inprocess", "M-73"]  
 Code Review: [https://chromium-review.googlesource.com/c/1382553](https://chromium-review.googlesource.com/c/1382553)  
 Regress: [mjsunit/regress/regress-crbug-915783.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-915783.js)  
 ```javascript
