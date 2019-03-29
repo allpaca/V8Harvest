@@ -2,6 +2,92 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-944945.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/944945)**  
+**[Commit: [asmjs] Check function body size limit](https://chromium.googlesource.com/v8/v8/+/766edfc)**  
+  
+Date(Commit): Wed Mar 27 17:20:20 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1541479](https://chromium-review.googlesource.com/c/v8/v8/+/1541479)  
+Regress: [mjsunit/regress/regress-944945.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-944945.js)  
+```javascript
+const E = '"use asm";\nfunction f() { LOCALS }\nreturn f;';
+const PI = new Function(E.replace('LOCALS', Array(999995).fill('0.9')));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/766edfc^!)  
+[src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=766edfc)  
+[src/wasm/wasm-engine.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-engine.cc?cl=766edfc)  
+[test/mjsunit/regress/regress-944945.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-944945.js?cl=766edfc)  
+  
+
+---   
+
+## **regress-crbug-944971.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/944971)**  
+**[Commit: [regexp] Refactor Regexp.prototype[@@replace]](https://chromium.googlesource.com/v8/v8/+/2ee4300)**  
+  
+Date(Commit): Wed Mar 27 13:15:16 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1541477](https://chromium-review.googlesource.com/c/v8/v8/+/1541477)  
+Regress: [mjsunit/regress/regress-crbug-944971.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-944971.js)  
+```javascript
+let re = /x/y;
+let cnt = 0;
+let str = re[Symbol.replace]("x", {
+  toString: () => {
+    cnt++;
+    if (cnt == 2) {
+      re.lastIndex = {valueOf: () => {
+        re.x = 42;
+        return 0;
+      }};
+    }
+    return 'y$';
+  }
+});
+assertEquals("y$", str);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2ee4300^!)  
+[src/regexp/regexp-utils.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-utils.cc?cl=2ee4300)  
+[src/runtime/runtime-regexp.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-regexp.cc?cl=2ee4300)  
+[test/mjsunit/regress/regress-crbug-944971.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-944971.js?cl=2ee4300)  
+  
+
+---   
+
+## **regress-946350.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/946350)**  
+**[Commit: [wasm] Fix missing GC visit of instance elements](https://chromium.googlesource.com/v8/v8/+/6111c61)**  
+  
+Date(Commit): Wed Mar 27 13:04:26 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1541237](https://chromium-review.googlesource.com/c/v8/v8/+/1541237)  
+Regress: [mjsunit/regress/wasm/regress-946350.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-946350.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+var builder = new WasmModuleBuilder();
+var instance = builder.instantiate();
+instance[1] = undefined;
+gc();
+Object.getOwnPropertyNames(instance);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6111c61^!)  
+[src/objects-body-descriptors-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-body-descriptors-inl.h?cl=6111c61)  
+[test/mjsunit/regress/wasm/regress-946350.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-946350.js?cl=6111c61)  
+  
+
+---   
+
 ## **regress-9036-1.js (v8 issue)**  
    
 **[Issue 9036:

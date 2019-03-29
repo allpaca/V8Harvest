@@ -146,12 +146,13 @@ builder.instantiate();
 
 ## **regress-916869.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/916869)**  
+**[Issue 916869:
+ Ill in v8::internal::wasm::fuzzer::WasmExecutionFuzzer::FuzzWasmModule](https://crbug.com/916869)**  
 **[Commit: [wasm] Fix i8 to i32 sign extension on ia32](https://chromium.googlesource.com/v8/v8/+/f328613)**  
   
 Date(Commit): Thu Dec 20 12:28:54 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>WebAssembly/Bug-Security  
+Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-Low", "Security_Impact-Stable", "Stability-Libfuzzer", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "M-71", "merge-merged-7.2", "Release-0-M72"]  
 Code Review: [https://chromium-review.googlesource.com/c/1386110](https://chromium-review.googlesource.com/c/1386110)  
 Regress: [mjsunit/regress/wasm/regress-916869.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-916869.js)  
 ```javascript
