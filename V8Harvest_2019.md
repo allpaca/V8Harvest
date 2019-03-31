@@ -2,6 +2,43 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-945644.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/945644)**  
+**[Commit: [turbofan] Make sure nodes are killed on replacement](https://chromium.googlesource.com/v8/v8/+/1ec7ffe)**  
+  
+Date(Commit): Fri Mar 29 08:52:20 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1545229](https://chromium-review.googlesource.com/c/v8/v8/+/1545229)  
+Regress: [mjsunit/compiler/regress-945644.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-945644.js)  
+```javascript
+function f(v5,v6) {
+  const v16 = [1337,1337,-765470.5051836492];
+  let v19 = 0;
+  do {
+    const v20 = v19 + 1;
+    const v22 = Math.fround(v20);
+    v19 = v22;
+    const v23 = [v20, v22];
+    function v24() { v20; v22; }
+    const v33 = v16.indexOf(v19);
+  } while (v19 < 6);
+}
+
+f();
+Array.prototype.push(8);
+%OptimizeFunctionOnNextCall(f);
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1ec7ffe^!)  
+[src/compiler/typed-optimization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typed-optimization.cc?cl=1ec7ffe)  
+[test/mjsunit/compiler/regress-945644.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-945644.js?cl=1ec7ffe)  
+  
+
+---   
+
 ## **regress-944945.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/944945)**  
