@@ -2,6 +2,105 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-9041.js (v8 issue)**  
+   
+**[Issue 9041:
+ instanceof optimization doesn't add proper stability dependencies](https://crbug.com/v8/9041)**  
+**[Commit: [turbofan] Fix bug in InferHasInPrototypeChain](https://chromium.googlesource.com/v8/v8/+/4c35194)**  
+  
+Date(Commit): Mon Apr 01 12:13:48 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1541107](https://chromium-review.googlesource.com/c/v8/v8/+/1541107)  
+Regress: [mjsunit/compiler/regress-9041.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-9041.js)  
+```javascript
+(function() {
+  class A {}
+
+  function foo(a, fn) {
+    const C = a.constructor;
+    fn(a);
+    return a instanceof C;
+  }
+
+  assertTrue(foo(new A, (a) => {}));
+  assertTrue(foo(new A, (a) => {}));
+  %OptimizeFunctionOnNextCall(foo);
+  assertTrue(foo(new A, (a) => {}));
+  assertFalse(foo(new A, (a) => { a.__proto__ = {}; }));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4c35194^!)  
+[src/compiler/compilation-dependencies.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/compilation-dependencies.cc?cl=4c35194)  
+[src/compiler/compilation-dependencies.h](https://cs.chromium.org/chromium/src/v8/src/compiler/compilation-dependencies.h?cl=4c35194)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=4c35194)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=4c35194)  
+[test/mjsunit/compiler/regress-9041.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-9041.js?cl=4c35194)  
+  
+
+---   
+
+## **regress-946889.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/946889)**  
+**[Commit: [turbofan] Fix bug in JSStoreInArrayLiteral](https://chromium.googlesource.com/v8/v8/+/8d6da70)**  
+  
+Date(Commit): Mon Apr 01 11:58:27 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1547655](https://chromium-review.googlesource.com/c/v8/v8/+/1547655)  
+Regress: [mjsunit/compiler/regress-946889.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-946889.js)  
+```javascript
+Object.preventExtensions(Array.prototype);
+
+function foo() {
+  var arr = [];
+  [...arr, 42, null];
+  arr.length = 1;
+}
+
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8d6da70^!)  
+[src/compiler/js-generic-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-generic-lowering.cc?cl=8d6da70)  
+[src/compiler/js-generic-lowering.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-generic-lowering.h?cl=8d6da70)  
+[src/compiler/js-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-operator.cc?cl=8d6da70)  
+[src/compiler/pipeline.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/pipeline.cc?cl=8d6da70)  
+[test/mjsunit/compiler/regress-946889.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-946889.js?cl=8d6da70)  
+  
+
+---   
+
+## **regress-crbug-947949-1.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/947949)**  
+**[Commit: [turbofan] Fix incorrect CheckNonEmptyString lowering.](https://chromium.googlesource.com/v8/v8/+/b3b7011)**  
+  
+Date(Commit): Mon Apr 01 10:32:24 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1545908](https://chromium-review.googlesource.com/c/v8/v8/+/1545908)  
+Regress: [mjsunit/regress/regress-crbug-947949-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-947949-1.js), [mjsunit/regress/regress-crbug-947949-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-947949-2.js)  
+```javascript
+function foo(s) { return s + '0123456789012'; }
+foo('a');
+foo('\u1000');
+%OptimizeFunctionOnNextCall(foo);
+foo('');  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b3b7011^!)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=b3b7011)  
+[test/mjsunit/regress/regress-crbug-947949-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-947949-1.js?cl=b3b7011)  
+[test/mjsunit/regress/regress-crbug-947949-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-947949-2.js?cl=b3b7011)  
+  
+
+---   
+
 ## **regress-945644.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/945644)**  
