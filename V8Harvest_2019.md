@@ -2,6 +2,109 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-944865.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/944865)**  
+**[Commit: [turbofan] Bail out for accesses to fields with representation None.](https://chromium.googlesource.com/v8/v8/+/acdeb64)**  
+  
+Date(Commit): Wed Apr 03 15:07:00 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1549167](https://chromium-review.googlesource.com/c/v8/v8/+/1549167)  
+Regress: [mjsunit/regress/regress-crbug-944865.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-944865.js)  
+```javascript
+function foo() {
+  const r = {e: NaN, g: undefined, c: undefined};
+  const u = {__proto__: {}, e: new  Set(), g: 0, c: undefined};
+  return r;
+}
+foo();
+%OptimizeFunctionOnNextCall(foo);
+const o = foo();
+Object.defineProperty(o, 'c', {value: 42});  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/acdeb64^!)  
+[src/compiler/access-info.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-info.cc?cl=acdeb64)  
+[test/mjsunit/regress/regress-crbug-944865.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-944865.js?cl=acdeb64)  
+  
+
+---   
+
+## **regress-948228.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/948228)**  
+**[Commit: [wasm] Remove wrong DCHECK](https://chromium.googlesource.com/v8/v8/+/fe00be4)**  
+  
+Date(Commit): Wed Apr 03 11:15:53 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1547855](https://chromium-review.googlesource.com/c/v8/v8/+/1547855)  
+Regress: [mjsunit/regress/wasm/regress-948228.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-948228.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+var {proxy, revoke} = Proxy.revocable({}, {});
+revoke();
+let builder = new WasmModuleBuilder();
+builder.addImport('m', 'q', kSig_v_v);
+WebAssembly.instantiate(builder.toModule(), proxy);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/fe00be4^!)  
+[src/wasm/wasm-engine.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-engine.cc?cl=fe00be4)  
+[test/mjsunit/regress/wasm/regress-948228.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-948228.js?cl=fe00be4)  
+  
+
+---   
+
+## **regress-948307.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/948307)**  
+**[Commit: [heap] Do not {RecordEphemeronKeyWrite} if key is in old-space](https://chromium.googlesource.com/v8/v8/+/50d74d6)**  
+  
+Date(Commit): Tue Apr 02 13:24:33 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1547858](https://chromium-review.googlesource.com/c/v8/v8/+/1547858)  
+Regress: [mjsunit/regress/regress-948307.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-948307.js)  
+```javascript
+const set = new WeakSet()
+const obj = {};
+gc();
+gc();
+const foo = new Int8Array(0x0F000000);
+set.add(obj);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/50d74d6^!)  
+[src/heap/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap/heap.cc?cl=50d74d6)  
+[test/mjsunit/regress/regress-948307.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-948307.js?cl=50d74d6)  
+  
+
+---   
+
+## **regress-948248.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/948248)**  
+**[Commit: [parser] Fail early for two-byte intrinsic calls](https://chromium.googlesource.com/v8/v8/+/837e8f5)**  
+  
+Date(Commit): Tue Apr 02 10:43:12 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1547857](https://chromium-review.googlesource.com/c/v8/v8/+/1547857)  
+Regress: [mjsunit/regress/regress-948248.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-948248.js)  
+```javascript
+assertThrows("%ಠ_ಠ()", SyntaxError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/837e8f5^!)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=837e8f5)  
+[test/mjsunit/regress/regress-948248.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-948248.js?cl=837e8f5)  
+  
+
+---   
+
 ## **regress-9041.js (v8 issue)**  
    
 **[Issue 9041:
