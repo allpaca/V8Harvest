@@ -2,6 +2,70 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-9087.js (v8 issue)**  
+   
+**[Issue 9087:
+ mjsunit/regress/polymorphic-accessor-test-context starts flaking on gc fuzzer](https://crbug.com/v8/9087)**  
+**[Commit: [turbofan] Add a regression test](https://chromium.googlesource.com/v8/v8/+/d97bc8d)**  
+  
+Date(Commit): Fri Apr 05 13:57:56 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1554690](https://chromium-review.googlesource.com/c/v8/v8/+/1554690)  
+Regress: [mjsunit/compiler/regress-9087.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-9087.js)  
+```javascript
+function constructor() {}
+const obj = Object.create(constructor.prototype);
+
+for (let i = 0; i < 1020; ++i) {
+  constructor.prototype["x" + i] = 42;
+}
+
+function foo() {
+  return obj instanceof constructor;
+}
+
+assertTrue(foo());
+assertTrue(foo());
+%OptimizeFunctionOnNextCall(foo);
+assertTrue(foo());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d97bc8d^!)  
+[test/mjsunit/compiler/regress-9087.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-9087.js?cl=d97bc8d)  
+  
+
+---   
+
+## **regress-949435.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/949435)**  
+**[Commit: Fix Map::TryUpdate assertion.](https://chromium.googlesource.com/v8/v8/+/4a68b29)**  
+  
+Date(Commit): Thu Apr 04 19:27:29 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://cs.chromium.org/chromium/src/v8/src/map-updater.cc?l=330&amp;rcl=5671f8b940b0fcdb550e318e449ded0f866e935a](https://cs.chromium.org/chromium/src/v8/src/map-updater.cc?l=330&amp;rcl=5671f8b940b0fcdb550e318e449ded0f866e935a)  
+Regress: [mjsunit/compiler/regress-949435.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-949435.js)  
+```javascript
+function f() {
+  const v6 = new String();
+  v6.POSITIVE_INFINITY = 1337;
+  const v8 = Object.seal(v6);
+  v8.POSITIVE_INFINITY = Object;
+}
+
+f();
+%OptimizeFunctionOnNextCall(f)
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4a68b29^!)  
+[src/objects/map.cc](https://cs.chromium.org/chromium/src/v8/src/objects/map.cc?cl=4a68b29)  
+[test/mjsunit/compiler/regress-949435.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-949435.js?cl=4a68b29)  
+  
+
+---   
+
 ## **regress-crbug-944865.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/944865)**  

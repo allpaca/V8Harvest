@@ -94,12 +94,13 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 ## **regress-910824.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/910824)**  
+**[Issue 910824:
+ DCHECK failure in *available != 0 in assembler-arm.cc](https://crbug.com/910824)**  
 **[Commit: [liftoff][arm] GetUnusedRegister before Acquire](https://chromium.googlesource.com/v8/v8/+/491eff8)**  
   
 Date(Commit): Fri Dec 21 14:57:18 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>WebAssembly/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "External-Fuzzer-Contribution", "reward-0", "Security_Impact-None", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Wrong", "M-72", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1387498](https://chromium-review.googlesource.com/c/1387498)  
 Regress: [mjsunit/regress/wasm/regress-910824.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-910824.js)  
 ```javascript
