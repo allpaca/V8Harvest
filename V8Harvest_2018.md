@@ -51,12 +51,13 @@ constructors.forEach(([constructor, arr]) => {
 
 ## **regress-905815.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/905815)**  
+**[Issue 905815:
+ DCHECK failure in pc <= end_ in decoder.h](https://crbug.com/905815)**  
 **[Commit: [wasm] Validate prefixed opcode reads](https://chromium.googlesource.com/v8/v8/+/29c1c5d6)**  
   
 Date(Commit): Fri Dec 28 07:07:11 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>WebAssembly/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Stability-Libfuzzer", "Security_Impact-None", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "M-72", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner", "Target-72"]  
 Code Review: [https://chromium-review.googlesource.com/c/1390927](https://chromium-review.googlesource.com/c/1390927)  
 Regress: [mjsunit/regress/wasm/regress-905815.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-905815.js)  
 ```javascript
