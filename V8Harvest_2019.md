@@ -2,6 +2,31 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-949996.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/949996)**  
+**[Commit: [turbofan] Fix incorrect lowering of CheckNonEmptyString.](https://chromium.googlesource.com/v8/v8/+/5758209)**  
+  
+Date(Commit): Mon Apr 08 14:15:16 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1557146](https://chromium-review.googlesource.com/c/v8/v8/+/1557146)  
+Regress: [mjsunit/regress/regress-crbug-949996.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-949996.js)  
+```javascript
+function foo(x) { return x + "0123456789012"; }
+foo('a');
+foo('\u10D0');
+%OptimizeFunctionOnNextCall(foo);
+foo(null);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/5758209^!)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=5758209)  
+[test/mjsunit/regress/regress-crbug-949996.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-949996.js?cl=5758209)  
+  
+
+---   
+
 ## **regress-9087.js (v8 issue)**  
    
 **[Issue 9087:
@@ -620,6 +645,7 @@ function foo(cond) {
   func();
 }
 
+%PrepareFunctionForOptimization(foo);
 foo(true);
 foo(false);
 %OptimizeFunctionOnNextCall(foo);
