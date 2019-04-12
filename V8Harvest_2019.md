@@ -2,6 +2,203 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-v8-9113.js (v8 issue)**  
+   
+**[Issue 9113:
+ Constant field tracking ignores field change from 0 to -0](https://crbug.com/v8/9113)**  
+**[Commit: [turbofan] Switch equality check for constant fields to SameValue.](https://chromium.googlesource.com/v8/v8/+/42b90af)**  
+  
+Date(Commit): Thu Apr 11 11:59:24 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1561317](https://chromium-review.googlesource.com/c/v8/v8/+/1561317)  
+Regress: [mjsunit/compiler/regress-v8-9113.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-v8-9113.js)  
+```javascript
+let dummy = { x : 0.1 };
+
+let o = { x : 0 };
+
+function f(o, v) {
+  o.x = v;
+}
+
+f(o, 0);
+f(o, 0);
+assertEquals(Infinity, 1 / o.x);
+%OptimizeFunctionOnNextCall(f);
+f(o, -0);
+assertEquals(-Infinity, 1 / o.x);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/42b90af^!)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=42b90af)  
+[test/mjsunit/compiler/regress-v8-9113.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-v8-9113.js?cl=42b90af)  
+  
+
+---   
+
+## **regress-crbug-950747.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/950747)**  
+**[Commit: [ic] Fix handling of +0/-0 when constant field tracking is enabled](https://chromium.googlesource.com/v8/v8/+/94c87fe)**  
+  
+Date(Commit): Thu Apr 11 11:28:13 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1561319](https://chromium-review.googlesource.com/c/v8/v8/+/1561319)  
+Regress: [mjsunit/regress/regress-crbug-950747.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-950747.js)  
+```javascript
+let o = {};
+Reflect.set(o, "a", 0.1);
+
+let o1 = {};
+o1.a = {};
+
+Reflect.set(o, "a", 0.1);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/94c87fe^!)  
+[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=94c87fe)  
+[src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=94c87fe)  
+[src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=94c87fe)  
+[src/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/lookup.cc?cl=94c87fe)  
+[src/objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-inl.h?cl=94c87fe)  
+...  
+  
+
+---   
+
+## **regress-v8-9106.js (v8 issue)**  
+   
+**[Issue 9106:
+ [wasm] [bulk memory] DCHECK when passive data segment is at end of module](https://crbug.com/v8/9106)**  
+**[Commit: [wasm] Fix DCHECK with empty passive data segment](https://chromium.googlesource.com/v8/v8/+/b29993f)**  
+  
+Date(Commit): Wed Apr 10 18:10:58 2019  
+Type: Bug  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1560405](https://chromium-review.googlesource.com/c/v8/v8/+/1560405)  
+Regress: [mjsunit/regress/regress-v8-9106.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-9106.js)  
+```javascript
+let bytes = new Uint8Array([
+  0,   97,  115, 109, 1,   0,   0,   0,   1,   132, 128, 128, 128, 0,   1,
+  96,  0,   0,   3,   133, 128, 128, 128, 0,   4,   0,   0,   0,   0,   5,
+  131, 128, 128, 128, 0,   1,   0,   1,   7,   187, 128, 128, 128, 0,   4,
+  12,  100, 114, 111, 112, 95,  112, 97,  115, 115, 105, 118, 101, 0,   0,
+  12,  105, 110, 105, 116, 95,  112, 97,  115, 115, 105, 118, 101, 0,   1,
+  11,  100, 114, 111, 112, 95,  97,  99,  116, 105, 118, 101, 0,   2,   11,
+  105, 110, 105, 116, 95,  97,  99,  116, 105, 118, 101, 0,   3,   12,  129,
+  128, 128, 128, 0,   2,   10,  183, 128, 128, 128, 0,   4,   133, 128, 128,
+  128, 0,   0,   252, 9,   0,   11,  140, 128, 128, 128, 0,   0,   65,  0,
+  65,  0,   65,  0,   252, 8,   0,   0,   11,  133, 128, 128, 128, 0,   0,
+  252, 9,   1,   11,  140, 128, 128, 128, 0,   0,   65,  0,   65,  0,   65,
+  0,   252, 8,   1,   0,   11,  11,  136, 128, 128, 128, 0,   2,   1,   0,
+  0,   65,  0,   11,  0
+]);
+new WebAssembly.Instance(new WebAssembly.Module(bytes));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b29993f^!)  
+[src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=b29993f)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=b29993f)  
+[test/mjsunit/regress/regress-v8-9106.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-9106.js?cl=b29993f)  
+  
+
+---   
+
+## **regress-950328.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/950328)**  
+**[Commit: Avoid making maps unstable in keyed store IC.](https://chromium.googlesource.com/v8/v8/+/5ef8846)**  
+  
+Date(Commit): Wed Apr 10 14:30:57 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1559867](https://chromium-review.googlesource.com/c/v8/v8/+/1559867)  
+Regress: [mjsunit/regress/regress-950328.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-950328.js)  
+```javascript
+(function NoStoreBecauseReadonlyLength() {
+  var a = [];
+  Object.defineProperty(a, 'length', { writable: false });
+
+
+  function f() {
+    var o = { __proto__ : a };
+    o.push;
+  }
+
+  f();
+  f();
+  %OptimizeFunctionOnNextCall(f);
+
+  a[0] = 1.1;
+  f();
+  assertEquals(undefined, a[0]);
+})();
+
+(function NoStoreBecauseTypedArrayProto() {
+  const arr_proto = [].__proto__;
+  const arr = [];
+
+  function f() {
+    const i32arr = new Int32Array();
+
+    const obj = {};
+    obj.__proto__ = arr;
+    arr_proto.__proto__ = i32arr;
+    obj.__proto__ = arr;
+    arr_proto.__proto__ = i32arr;
+  }
+
+  f();
+  %OptimizeFunctionOnNextCall(f);
+  arr[1024] = [];
+  f();
+  assertEquals(undefined, arr[1024]);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/5ef8846^!)  
+[src/compiler/access-info.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/access-info.cc?cl=5ef8846)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=5ef8846)  
+[test/mjsunit/regress/regress-950328.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-950328.js?cl=5ef8846)  
+  
+
+---   
+
+## **regress-947822.js (chromium issue)**  
+   
+**[Issue 947822:
+ V8 correctness failure in configs: x64,ignition:x64,slow_path_opt](https://crbug.com/947822)**  
+**[Commit: [regexp] Ensure ToString(replaceValue) is called once in @@replace](https://chromium.googlesource.com/v8/v8/+/f8d1169)**  
+  
+Date(Commit): Wed Apr 10 07:12:14 2019  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "v8-foozzie-failure", "Test-Predator-Auto-Owner"]  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1559739](https://chromium-review.googlesource.com/c/v8/v8/+/1559739)  
+Regress: [mjsunit/regress/regress-947822.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-947822.js)  
+```javascript
+let cnt = 0;
+const re = /x/y;
+const replacement = {
+  toString: () => {
+    cnt++;
+    if (cnt == 2) {
+      re.lastIndex = { valueOf: () => { re.x = -1073741825; return 7; }};
+    }
+    return 'y$';
+  }
+};
+
+const str = re[Symbol.replace]("x", replacement);
+assertEquals(str, "y$");  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f8d1169^!)  
+[src/builtins/builtins-regexp-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-regexp-gen.cc?cl=f8d1169)  
+[test/mjsunit/regress/regress-947822.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-947822.js?cl=f8d1169)  
+  
+
+---   
+
 ## **regress-crbug-949996.js (chromium issue)**  
    
 **[No Permission](https://crbug.com/949996)**  
