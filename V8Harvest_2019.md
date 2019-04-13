@@ -3607,12 +3607,13 @@ builder.instantiate();
 
 ## **regress-917412.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/917412)**  
+**[Issue 917412:
+ DCHECK failure in !move_dst_regs_.has(dst) in liftoff-assembler.cc](https://crbug.com/917412)**  
 **[Commit: [Liftoff] Keep consistent register mapping in non-merged regions](https://chromium.googlesource.com/v8/v8/+/20b6330)**  
   
 Date(Commit): Thu Jan 03 14:37:48 2019  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner", "M-73"]  
 Code Review: [https://chromium-review.googlesource.com/c/1392190](https://chromium-review.googlesource.com/c/1392190)  
 Regress: [mjsunit/regress/wasm/regress-917412.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-917412.js)  
 ```javascript
@@ -3699,12 +3700,13 @@ builder.instantiate();
 
 ## **regress-917988.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/917988)**  
+**[Issue 917988:
+ DCHECK failure in outer_scope_ == scope->outer_scope() in bytecode-generator.cc](https://crbug.com/917988)**  
 **[Commit: Set the correct scope when initializing parameters.](https://chromium.googlesource.com/v8/v8/+/fa844bd)**  
   
 Date(Commit): Thu Jan 03 10:18:11 2019  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1392240](https://chromium-review.googlesource.com/c/1392240)  
 Regress: [mjsunit/regress/regress-917988.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-917988.js)  
 ```javascript

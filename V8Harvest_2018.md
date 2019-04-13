@@ -4,12 +4,13 @@ The Harvest of V8 regress in 2018.
 
 ## **regress-crbug-917980.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/917980)**  
+**[Issue 917980:
+ Security: Heap-use-after-free in TypedArray.join](https://crbug.com/917980)**  
 **[Commit: [typedarray] Check for a detached buffer before each iteration of TypedArray.p.join.](https://chromium.googlesource.com/v8/v8/+/75ca843)**  
   
 Date(Commit): Mon Dec 31 18:27:51 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug-Security  
+Labels: ["reward-5000", "Security_Impact-Head", "Security_Severity-High", "allpublic", "reward-inprocess", "M-73", "Target-73"]  
 Code Review: [https://chromium-review.googlesource.com/c/1392070](https://chromium-review.googlesource.com/c/1392070)  
 Regress: [mjsunit/regress/regress-crbug-917980.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-917980.js)  
 ```javascript
