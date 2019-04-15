@@ -3580,12 +3580,13 @@ assertPromiseResult(Promise.all([foo()]), () => {
 
 ## **regress-918149.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/918149)**  
+**[Issue 918149:
+ DCHECK failure in src.is_reg_only() implies src.reg().is_byte_register() in assembler-ia32.cc](https://crbug.com/918149)**  
 **[Commit: [Liftoff][ia32] Fix i64 sign extension on non-byte register](https://chromium.googlesource.com/v8/v8/+/5ed7dff)**  
   
 Date(Commit): Fri Jan 04 10:12:06 2019  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript>WebAssembly/Bug-Security  
+Labels: ["Hotlist-Merge-Review", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Stable", "Stability-Libfuzzer", "Security_Severity-High", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Components", "M-73", "Target-73", "Release-0-M73"]  
 Code Review: [https://chromium-review.googlesource.com/c/1394555](https://chromium-review.googlesource.com/c/1394555)  
 Regress: [mjsunit/regress/wasm/regress-918149.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-918149.js)  
 ```javascript
