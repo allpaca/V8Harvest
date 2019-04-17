@@ -3517,12 +3517,13 @@ f();
 
 ## **regress-918763.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/918763)**  
+**[Issue 918763:
+ Null-dereference READ in Builtins_ArgumentsAdaptorTrampoline](https://crbug.com/918763)**  
 **[Commit: [turbofan] Add missing heap object check](https://chromium.googlesource.com/v8/v8/+/426312c)**  
   
 Date(Commit): Mon Jan 07 14:38:50 2019  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components/Type: Blink>JavaScript/Bug  
+Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Auto-Owner"]  
 Code Review: [https://chromium-review.googlesource.com/c/1397707](https://chromium-review.googlesource.com/c/1397707)  
 Regress: [mjsunit/regress-918763.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-918763.js)  
 ```javascript
