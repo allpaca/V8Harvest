@@ -646,103 +646,6 @@ assertEquals(42, g(false, 0));
 
 ---   
 
-## **regress-8533.js (v8 issue)**  
-   
-**[No Permission](https://crbug.com/v8/8533)**  
-**[Commit: [wasm] Load thread-in-wasm flag from the isolate](https://chromium.googlesource.com/v8/v8/+/148ef60)**  
-  
-Date(Commit): Wed Dec 05 15:10:11 2018  
-Type: None  
-Code Review: [https://chromium-review.googlesource.com/c/1358518](https://chromium-review.googlesource.com/c/1358518)  
-Regress: [mjsunit/regress/wasm/regress-8533.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-8533.js)  
-```javascript
-load('test/mjsunit/wasm/wasm-module-builder.js');
-
-
-const sync_address = 12;
-(function TestPostModule() {
-  let builder = new WasmModuleBuilder();
-  let sig_index = builder.addType(kSig_v_v);
-  let import_id = builder.addImport('m', 'func', sig_index);
-  builder.addFunction('wait', kSig_v_v)
-      .addBody([
-        // Calling the imported function sets the thread-in-wasm flag of the
-        // main thread.
-        kExprCallFunction, import_id,  // --
-        kExprLoop, kWasmStmt,          // --
-        kExprI32Const, sync_address,   // --
-        kExprI32LoadMem, 0, 0,         // --
-        kExprI32Eqz,
-        kExprBrIf, 0,                  // --
-        kExprEnd,
-      ])
-      .exportFunc();
-
-  builder.addFunction('signal', kSig_v_v)
-      .addBody([
-        kExprI32Const, sync_address,  // --
-        kExprI32Const, 1,             // --
-        kExprI32StoreMem, 0, 0,       // --
-        ])
-      .exportFunc();
-  builder.addImportedMemory("m", "imported_mem", 0, 1, "shared");
-
-  let module = builder.toModule();
-  let memory = new WebAssembly.Memory({initial: 1, maximum: 1, shared: true});
-
-  let workerScript = `
-    onmessage = function(msg) {
-      try {
-        let worker_instance = new WebAssembly.Instance(msg.module,
-            {m: {imported_mem: msg.memory,
-                 func: _ => 5}});
-        postMessage("start running");
-        worker_instance.exports.wait();
-        postMessage("finished");
-      } catch(e) {
-        postMessage('ERROR: ' + e);
-      }
-    }
-  `;
-
-  let worker = new Worker(workerScript, {type: 'string'});
-  worker.postMessage({module: module, memory: memory});
-
-  let main_instance = new WebAssembly.Instance(
-      module, {m: {imported_mem: memory, func: _ => 7}});
-
-  let counter = 0;
-  function CheckThreadNotInWasm() {
-    // We check the thread-in-wasm flag many times and reschedule ourselves in
-    // between to increase the chance that we read the flag set by the worker.
-    assertFalse(%IsThreadInWasm());
-    counter++;
-    if (counter < 100) {
-      setTimeout(CheckThreadNotInWasm, 0);
-    } else {
-      main_instance.exports.signal(sync_address);
-      assertEquals('finished', worker.getMessage());
-      worker.terminate();
-    }
-  }
-
-  assertFalse(%IsThreadInWasm());
-  assertEquals('start running', worker.getMessage());
-  CheckThreadNotInWasm();
-})();  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/148ef60^!)  
-[src/compiler/wasm-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?cl=148ef60)  
-[src/external-reference.cc](https://cs.chromium.org/chromium/src/v8/src/external-reference.cc?cl=148ef60)  
-[src/external-reference.h](https://cs.chromium.org/chromium/src/v8/src/external-reference.h?cl=148ef60)  
-[src/isolate.h](https://cs.chromium.org/chromium/src/v8/src/isolate.h?cl=148ef60)  
-[src/runtime/runtime-test.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-test.cc?cl=148ef60)  
-...  
-  
-
----   
-
 ## **regress-crbug-909614.js (chromium issue)**  
    
 **[Issue 909614:
@@ -1203,57 +1106,6 @@ assertThrows("function f() { function g() { (); ", SyntaxError);
 
 ---   
 
-## **regress-crbug-906043.js (chromium issue)**  
-   
-**[No Permission](https://crbug.com/906043)**  
-**[Commit: [runtime] Reduce spread/apply call max arguments](https://chromium.googlesource.com/v8/v8/+/4e3a17d)**  
-  
-Date(Commit): Thu Nov 22 12:08:17 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
-Code Review: [https://chromium-review.googlesource.com/c/1346115](https://chromium-review.googlesource.com/c/1346115)  
-Regress: [mjsunit/regress/regress-crbug-906043.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-906043.js)  
-```javascript
-function fun(arg) {
-  let x = arguments.length;
-  a1 = new Array(0x10);
-  a1[0] = 1.1;
-  a2 = new Array(0x10);
-  a2[0] = 1.1;
-  a1[(x >> 16) * 21] = 1.39064994160909e-309;  // 0xffff00000000
-  a1[(x >> 16) * 41] = 8.91238232205e-313;  // 0x2a00000000
-}
-
-var a1, a2;
-var a3 = [1.1, 2.2];
-a3.length = 0x11000;
-a3.fill(3.3);
-
-var a4 = [1.1];
-
-for (let i = 0; i < 3; i++) fun(...a4);
-%OptimizeFunctionOnNextCall(fun);
-fun(...a4);
-
-res = fun(...a3);
-
-assertEquals(16, a2.length);
-for (let i = 8; i < 32; i++) {
-  assertEquals(undefined, a2[i]);
-}  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/4e3a17d^!)  
-[src/builtins/builtins-call-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-call-gen.cc?cl=4e3a17d)  
-[src/message-template.h](https://cs.chromium.org/chromium/src/v8/src/message-template.h?cl=4e3a17d)  
-[test/mjsunit/apply.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/apply.js?cl=4e3a17d)  
-[test/mjsunit/regress/regress-3027.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-3027.js?cl=4e3a17d)  
-[test/mjsunit/regress/regress-331444.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-331444.js?cl=4e3a17d)  
-...  
-  
-
----   
-
 ## **regress-906406.js (chromium issue)**  
    
 **[Issue 906406:
@@ -1562,39 +1414,6 @@ assertEquals([], [..."c".matchAll(/c/)]);
 [src/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.h?cl=3ca32e9)  
 [src/contexts.h](https://cs.chromium.org/chromium/src/v8/src/contexts.h?cl=3ca32e9)  
 ...  
-  
-
----   
-
-## **regress-894307.js (chromium issue)**  
-   
-**[No Permission](https://crbug.com/894307)**  
-**[Commit: [Liftoff] Fix 64bit shift on ia32](https://chromium.googlesource.com/v8/v8/+/59a8eba)**  
-  
-Date(Commit): Thu Nov 15 16:43:34 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
-Code Review: [https://chromium-review.googlesource.com/c/1337580](https://chromium-review.googlesource.com/c/1337580)  
-Regress: [mjsunit/regress/wasm/regress-894307.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-894307.js)  
-```javascript
-load('test/mjsunit/wasm/wasm-module-builder.js');
-
-const builder = new WasmModuleBuilder();
-const sig = makeSig([kWasmI32, kWasmI64, kWasmI64], [kWasmI64]);
-builder.addFunction(undefined, sig)
-  .addBody([
-    kExprGetLocal, 2,
-    kExprGetLocal, 1,
-    kExprI64Shl,
-]);
-builder.instantiate();  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/59a8eba^!)  
-[src/wasm/baseline/ia32/liftoff-assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/ia32/liftoff-assembler-ia32.h?cl=59a8eba)  
-[src/wasm/baseline/liftoff-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.cc?cl=59a8eba)  
-[src/wasm/baseline/liftoff-assembler.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.h?cl=59a8eba)  
-[test/mjsunit/regress/wasm/regress-894307.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-894307.js?cl=59a8eba)  
   
 
 ---   
@@ -5826,40 +5645,6 @@ xs.sort((a, b) => {
 
 ---   
 
-## **regress-crbug-856095.js (chromium issue)**  
-   
-**[No Permission](https://crbug.com/856095)**  
-**[Commit: Fix overzealous assert in CallOrConstructVarArgs](https://chromium.googlesource.com/v8/v8/+/34225a6)**  
-  
-Date(Commit): Tue Jul 03 03:42:20 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
-Code Review: [https://chromium-review.googlesource.com/1117922](https://chromium-review.googlesource.com/1117922)  
-Regress: [mjsunit/regress/regress-crbug-856095.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-856095.js)  
-```javascript
-function f(a, b, c) { }
-function a() {
-    let o1;
-    o1 = new Array();
-    f(...o1);
-    o1[1000] = Infinity;
-}
-
-a();
-a();  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/34225a6^!)  
-[src/arm/macro-assembler-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.cc?cl=34225a6)  
-[src/arm/macro-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/macro-assembler-arm.h?cl=34225a6)  
-[src/arm64/macro-assembler-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/arm64/macro-assembler-arm64.cc?cl=34225a6)  
-[src/arm64/macro-assembler-arm64.h](https://cs.chromium.org/chromium/src/v8/src/arm64/macro-assembler-arm64.h?cl=34225a6)  
-[src/builtins/arm/builtins-arm.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/arm/builtins-arm.cc?cl=34225a6)  
-...  
-  
-
----   
-
 ## **regress-7893.js (v8 issue)**  
    
 **[Issue 7893:
@@ -6466,44 +6251,6 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 [src/wasm/wasm-code-manager.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-code-manager.cc?cl=fabb514)  
 [src/wasm/wasm-objects-inl.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects-inl.h?cl=fabb514)  
 [src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=fabb514)  
-...  
-  
-
----   
-
-## **regress-843062-1.js (chromium issue)**  
-   
-**[No Permission](https://crbug.com/843062)**  
-**[Commit: [runtime] Do not shrink fixed arrays to length 0.](https://chromium.googlesource.com/v8/v8/+/5a0ebc8)**  
-  
-Date(Commit): Thu May 24 09:41:00 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
-Code Review: [https://chromium-review.googlesource.com/1064052](https://chromium-review.googlesource.com/1064052)  
-Regress: [mjsunit/regress/regress-843062-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-843062-1.js), [mjsunit/regress/regress-843062-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-843062-2.js), [mjsunit/regress/regress-843062-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-843062-3.js)  
-```javascript
-var sparse_array = [];
-
-sparse_array[100] = 3;
-sparse_array[200] = undefined;
-sparse_array[300] = 4;
-sparse_array[400] = 5;
-sparse_array[500] = 6;
-sparse_array[600] = 5;
-sparse_array[700] = 4;
-sparse_array[800] = undefined;
-sparse_array[900] = 3
-sparse_array[41999] = "filler";
-
-sparse_array.lastIndexOf(3, 99);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/5a0ebc8^!)  
-[src/api.cc](https://cs.chromium.org/chromium/src/v8/src/api.cc?cl=5a0ebc8)  
-[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=5a0ebc8)  
-[src/debug/debug.cc](https://cs.chromium.org/chromium/src/v8/src/debug/debug.cc?cl=5a0ebc8)  
-[src/elements.cc](https://cs.chromium.org/chromium/src/v8/src/elements.cc?cl=5a0ebc8)  
-[src/heap/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap/heap.cc?cl=5a0ebc8)  
 ...  
   
 
@@ -9526,51 +9273,6 @@ const __v_694 = eval(__v_692);
 
 ---   
 
-## **regress-7364.js (v8 issue)**  
-   
-**[No Permission](https://crbug.com/v8/7364)**  
-**[Commit: [wasm] Reexported wasm functions should be identical to imports](https://chromium.googlesource.com/v8/v8/+/384ac3c)**  
-  
-Date(Commit): Mon Feb 12 14:27:18 2018  
-Type: None  
-Code Review: [https://chromium-review.googlesource.com/901626](https://chromium-review.googlesource.com/901626)  
-Regress: [mjsunit/regress/wasm/regress-7364.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-7364.js)  
-```javascript
-load('test/mjsunit/wasm/wasm-module-builder.js');
-
-const exportingModuleBinary = (() => {
-  const builder = new WasmModuleBuilder();
-  builder.addFunction('f', kSig_i_v).addBody([kExprI32Const, 42]).exportFunc();
-  return builder.toBuffer();
-})();
-
-const exportingModule = new WebAssembly.Module(exportingModuleBinary);
-const exportingInstance = new WebAssembly.Instance(exportingModule);
-
-const reExportingModuleBinary = (() => {
-  const builder = new WasmModuleBuilder();
-  const gIndex = builder.addImport('a', 'g', kSig_i_v);
-  builder.addExport('y', gIndex);
-  return builder.toBuffer();
-})();
-
-const module = new WebAssembly.Module(reExportingModuleBinary);
-const imports = {
-  a: {g: exportingInstance.exports.f},
-};
-const instance = new WebAssembly.Instance(module, imports);
-
-assertEquals(instance.exports.y, exportingInstance.exports.f);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/384ac3c^!)  
-[src/wasm/module-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-compiler.cc?cl=384ac3c)  
-[test/mjsunit/regress/wasm/regress-7364.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-7364.js?cl=384ac3c)  
-[test/mjsunit/wasm/jsapi-harness.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/jsapi-harness.js?cl=384ac3c)  
-  
-
----   
-
 ## **regress-7422.js (v8 issue)**  
    
 **[Issue 7422:
@@ -10983,36 +10685,6 @@ assertThrows(() => RegExp.prototype.test.call(a), RangeError);
 
 ---   
 
-## **regress-800756.js (chromium issue)**  
-   
-**[No Permission](https://crbug.com/800756)**  
-**[Commit: [Liftoff] Fix i32.eqz on ia32](https://chromium.googlesource.com/v8/v8/+/29e4696)**  
-  
-Date(Commit): Thu Jan 11 14:55:24 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
-Code Review: [https://chromium-review.googlesource.com/860640](https://chromium-review.googlesource.com/860640)  
-Regress: [mjsunit/regress/wasm/regress-800756.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-800756.js)  
-```javascript
-load('test/mjsunit/wasm/wasm-module-builder.js');
-
-const builder = new WasmModuleBuilder();
-builder.addMemory(16, 32);
-builder.addFunction(undefined, kSig_i_iii).addBody([
-  kExprI32Const, 0,         // i32.const 0
-  kExprI32LoadMem8S, 0, 0,  // i32.load8_s offset=0 align=0
-  kExprI32Eqz,              // i32.eqz
-]);
-builder.instantiate();  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/29e4696^!)  
-[src/wasm/baseline/ia32/liftoff-assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/ia32/liftoff-assembler-ia32.h?cl=29e4696)  
-[test/mjsunit/regress/wasm/regress-800756.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-800756.js?cl=29e4696)  
-  
-
----   
-
 ## **regress-crbug-798644.js (chromium issue)**  
    
 **[Issue 798644:
@@ -11343,34 +11015,6 @@ assertEquals(9.431092e-317, arr2[0]);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/6b30393^!)  
 [src/compiler/load-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/load-elimination.cc?cl=6b30393)  
 [test/mjsunit/compiler/regress-799263.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-799263.js?cl=6b30393)  
-  
-
----   
-
-## **regress-crbug-798026.js (chromium issue)**  
-   
-**[No Permission](https://crbug.com/798026)**  
-**[Commit: [Builtins] Eliminate the fast path in constructor entries](https://chromium.googlesource.com/v8/v8/+/a10689d)**  
-  
-Date(Commit): Thu Jan 04 15:29:00 2018  
-Components/Type: None/None  
-Labels: "No Permission"  
-Code Review: [https://chromium-review.googlesource.com/850356](https://chromium-review.googlesource.com/850356)  
-Regress: [mjsunit/regress/regress-crbug-798026.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-798026.js)  
-```javascript
-array = new Array(4 * 1024 * 1024);
-Set.prototype.add = value => {
-  if (array.length != 1) {
-    array.length = 1;
-    gc();
-  }
-}
-new Set(array);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/a10689d^!)  
-[src/builtins/builtins-collections-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-collections-gen.cc?cl=a10689d)  
-[test/mjsunit/regress/regress-crbug-798026.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-798026.js?cl=a10689d)  
   
 
 ---   
