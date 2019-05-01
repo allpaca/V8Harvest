@@ -461,6 +461,7 @@ function f24(deopt) {
 }
 
 
+%PrepareFunctionForOptimization(f24);
 for (var j = 0; j < 10; ++j) {
   f24(12);
 }
@@ -2907,6 +2908,7 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/547553003](https://codereview.chromium.org/547553003)  
 Regress: [mjsunit/es6/regress/regress-411237.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-411237.js)  
 ```javascript
+%PrepareFunctionForOptimization(print);
 try {
   %OptimizeFunctionOnNextCall(print);
 } catch(e) { }
@@ -2914,6 +2916,7 @@ try {
 try {
   function* f() {
   }
+  %PrepareFunctionForOptimization(f);
   %OptimizeFunctionOnNextCall(f);
 } catch(e) { }  
 ```  
@@ -7819,6 +7822,7 @@ function foo() {
   return Math.clz32(12.34);
 }
 
+%PrepareFunctionForOptimization(foo);
 foo();
 foo();
 %OptimizeFunctionOnNextCall(foo);

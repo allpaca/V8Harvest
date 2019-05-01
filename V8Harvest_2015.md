@@ -10396,6 +10396,7 @@ Regress: [mjsunit/es6/regress/regress-inlined-new-target.js](https://chromium.go
 function g() { return { val: new.target }; }
 function f() { return (new g()).val; }
 
+%PrepareFunctionForOptimization(f);
 assertEquals(g, f());
 assertEquals(g, f());
 %OptimizeFunctionOnNextCall(f);
@@ -11992,6 +11993,7 @@ function g() {
   f(6, 5, 4, 3, 2, 1);
 };
 
+%PrepareFunctionForOptimization(g);
 g();
 g();
 g();
@@ -15062,6 +15064,7 @@ Regress: [mjsunit/es6/regress/regress-4160.js](https://chromium.googlesource.com
 (function(x) {
   (function(x) {
     var boom = (() => eval(x));
+    %PrepareFunctionForOptimization(boom);
     assertEquals(23, boom());
     assertEquals(23, boom());
     %OptimizeFunctionOnNextCall(boom);
@@ -15074,6 +15077,7 @@ Regress: [mjsunit/es6/regress/regress-4160.js](https://chromium.googlesource.com
 (function(x) {
   (function(x) {
     var boom = (() => (eval("var x = 66"), x));
+    %PrepareFunctionForOptimization(boom);
     assertEquals(66, boom());
     assertEquals(66, boom());
     %OptimizeFunctionOnNextCall(boom);
@@ -18522,6 +18526,7 @@ function bar() {}
 bar({ a: new Proxy({}, {}) });
 function foo(x) { x.a.b == ""; }
 var x = {a: {b: "" }};
+%PrepareFunctionForOptimization(foo);
 foo(x);
 foo(x);
 %OptimizeFunctionOnNextCall(foo);

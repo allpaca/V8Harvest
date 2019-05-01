@@ -5307,16 +5307,16 @@ Labels: ["Stability-Crash", "Reproducible", "Stability-Libfuzzer", "Clusterfuzz"
 Code Review: [https://chromium-review.googlesource.com/1128875](https://chromium-review.googlesource.com/1128875)  
 Regress: [mjsunit/regress/regress-852765.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-852765.js)  
 ```javascript
-assertThrows("(import(foo)) =>", undefined, "Invalid destructuring assignment target");
+assertThrows("(import(foo)) =>", SyntaxError, "Invalid destructuring assignment target");
 
-assertThrows("import(foo) =>", undefined, "Malformed arrow function parameter list");
-assertThrows("(a, import(foo)) =>", undefined, "Invalid destructuring assignment target");
-assertThrows("(1, import(foo)) =>", undefined, "Invalid destructuring assignment target");
-assertThrows("(super(foo)) =>", undefined, "'super' keyword unexpected here");
-assertThrows("(bar(foo)) =>", undefined, "Invalid destructuring assignment target");
+assertThrows("import(foo) =>", SyntaxError, "Malformed arrow function parameter list");
+assertThrows("(a, import(foo)) =>", SyntaxError, "Invalid destructuring assignment target");
+assertThrows("(1, import(foo)) =>", SyntaxError, "Invalid destructuring assignment target");
+assertThrows("(super(foo)) =>", SyntaxError, "'super' keyword unexpected here");
+assertThrows("(bar(foo)) =>", SyntaxError, "Invalid destructuring assignment target");
 
-assertThrows("[import(foo).then] = [1];", undefined, "foo is not defined");
-assertThrows("[[import(foo).then]] = [[1]];", undefined, "foo is not defined");  
+assertThrows("[import(foo).then] = [1];", ReferenceError, "foo is not defined");
+assertThrows("[[import(foo).then]] = [[1]];", ReferenceError, "foo is not defined");  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f128ace^!)  

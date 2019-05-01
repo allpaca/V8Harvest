@@ -2347,6 +2347,7 @@ function testArray() {
   } catch (e) {
   }
 }
+%PrepareFunctionForOptimization(testArray);
 testArray();
 testArray();
 %OptimizeFunctionOnNextCall(testArray);
@@ -2358,6 +2359,7 @@ function testTypedArray() {
   } catch (e) {
   }
 }
+%PrepareFunctionForOptimization(testTypedArray);
 testTypedArray();
 testTypedArray();
 %OptimizeFunctionOnNextCall(testTypedArray);
@@ -3327,6 +3329,7 @@ function fn(a) {
   return b;
 }
 
+%PrepareFunctionForOptimization(fn);
 fn('a');
 fn('a');
 %OptimizeFunctionOnNextCall(fn);
