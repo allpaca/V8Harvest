@@ -1215,6 +1215,7 @@ function f() {
   r.test("ABcd");
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 assertEquals(1, counter);
 %OptimizeFunctionOnNextCall(f);
