@@ -2,6 +2,36 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-sealedarray-store-outofbounds.js (other issue)**  
+   
+**[Commit: Sealed array should handle store out of bounds in optimized code](https://chromium.googlesource.com/v8/v8/+/e69460e)**  
+  
+Date(Commit): Wed May 08 17:19:02 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1597116](https://chromium-review.googlesource.com/c/v8/v8/+/1597116)  
+Regress: [mjsunit/compiler/regress-sealedarray-store-outofbounds.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-sealedarray-store-outofbounds.js)  
+```javascript
+const v3 = [0,"symbol"];
+const v5 = 0 - 1;
+const v6 = Object.seal(v3);
+let v9 = 0;
+function f1() {
+  v6[119090556] = v5;
+}
+%PrepareFunctionForOptimization(f1);
+f1();
+%OptimizeFunctionOnNextCall(f1);
+f1();
+assertOptimized(f1);
+assertEquals(v6.length, 2);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e69460e^!)  
+[src/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/code-stub-assembler.cc?cl=e69460e)  
+[test/mjsunit/compiler/regress-sealedarray-store-outofbounds.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-sealedarray-store-outofbounds.js?cl=e69460e)  
+  
+  
+---   
+
 ## **regress-v8-9113.js (v8 issue)**  
    
 **[Issue 9113:
@@ -791,6 +821,7 @@ Regress: [mjsunit/regress/regress-8913.js](https://chromium.googlesource.com/v8/
 ```javascript
 function foo(t) { return 'a'.concat(t); }
 
+%PrepareFunctionForOptimization(foo);
 foo(1);
 foo(1);
 %OptimizeFunctionOnNextCall(foo);
@@ -1741,6 +1772,7 @@ C.__proto__ = null;
 
 function f(c) { return 0 instanceof c; }
 
+%PrepareFunctionForOptimization(f);
 f(C);
 %OptimizeFunctionOnNextCall(f);
 assertThrows(() => f(0));  

@@ -797,6 +797,7 @@ function f() {
   }
 }
 
+%PrepareFunctionForOptimization(f);
 f();  
 ```  
   
@@ -1174,14 +1175,16 @@ Regress: [mjsunit/compiler/regress-669517.js](https://chromium.googlesource.com/
 ```javascript
 (function() {
   "use asm";
-  return function() {
+  var f = function() {
     for (var i = 0; i < 10; i++) {
       if (i == 5) {
         %OptimizeOsr();
       }
     }
     with (Object());
-  }
+  };
+  %PrepareFunctionForOptimization(f);
+  return f;
 })()();  
 ```  
   
@@ -1271,6 +1274,7 @@ function f() {
   }
   return result;
 }
+%PrepareFunctionForOptimization(f);
 
 assertEquals("R:121212", f());  
 ```  
@@ -1386,6 +1390,7 @@ A.prototype = proto;
 function foo(o) {
   return o.a0;
 }
+%EnsureFeedbackVectorForFunction(foo);
 
 gc();
 gc();
@@ -2137,6 +2142,7 @@ function g() {
   for (var i = 0; i < 3; ++i) if (i === 1) %OptimizeOsr();
   %_DeoptimizeNow();
 }
+%PrepareFunctionForOptimization(g);
 
 %OptimizeFunctionOnNextCall(g);
 g();  
@@ -2518,6 +2524,7 @@ function f() {
     gc();
   }
 }
+%PrepareFunctionForOptimization(f);
 f();  
 ```  
   
@@ -2874,6 +2881,10 @@ function assertKind(expected, obj, name_opt) {
   function make2() { return new Array(); }
   function make3() { return new Array(); }
   function foo(a, i) { a[0] = i; }
+  %EnsureFeedbackVectorForFunction(make1);
+  %EnsureFeedbackVectorForFunction(make2);
+  %EnsureFeedbackVectorForFunction(make3);
+  %EnsureFeedbackVectorForFunction(foo);
 
   function run_test(maker_function) {
     var one = maker_function();
@@ -2884,6 +2895,7 @@ function assertKind(expected, obj, name_opt) {
     var two = maker_function();
     assertKind(elements_kind.fast_double, two);
   }
+  %EnsureFeedbackVectorForFunction(run_test);
 
   // Initialize the KeyedStoreIC in foo; the actual operation will be done
   // in the runtime.
@@ -8119,6 +8131,7 @@ function f() {
   return x;
 }
 
+%PrepareFunctionForOptimization(f);
 assertEquals(0, f());  
 ```  
   
@@ -8564,6 +8577,7 @@ function f() {
     throw "no loop, thank you";
   }
 }
+%PrepareFunctionForOptimization(f);
 assertThrows(f);  
 ```  
   
@@ -8635,6 +8649,7 @@ function f() {
   return sum;
 }
 
+%PrepareFunctionForOptimization(f);
 f();  
 ```  
   
@@ -9437,10 +9452,12 @@ function A() {
   this.x = 0;
   for (var i = 0; i < max; ) {}
 }
+%EnsureFeedbackVectorForFunction(A);
 function foo() {
   for (var i = 0; i < 1; i = 2) %OptimizeOsr();
   return new A();
 }
+%PrepareFunctionForOptimization(foo);
 try { foo(); } catch (e) { }  
 ```  
   
@@ -9467,9 +9484,11 @@ Regress: [mjsunit/regress/regress-crbug-638551.js](https://chromium.googlesource
 function f() {
   for (var i = 0; i < 10; i++) if (i == 5) %OptimizeOsr();
   function g() {}
+  %PrepareFunctionForOptimization(g);
   %OptimizeFunctionOnNextCall(g);
   g();
 }
+%PrepareFunctionForOptimization(f);
 f();
 gc();  // Make sure that ...
 gc();  // ... code flushing ...
@@ -9859,6 +9878,7 @@ function f(osr_and_recurse) {
   }
   return 65;
 }
+%PrepareFunctionForOptimization(f);
 assertEquals(65, f(false));
 assertEquals(65, f(false));
 assertEquals(42, f(true));  
@@ -10234,6 +10254,7 @@ Regress: [mjsunit/regress/regress-5252.js](https://chromium.googlesource.com/v8/
       return 23;
     } while(false)
   }
+  %PrepareFunctionForOptimization(f);
   assertEquals(23, f());
   assertEquals(23, f());
 })();
@@ -10247,6 +10268,7 @@ Regress: [mjsunit/regress/regress-5252.js](https://chromium.googlesource.com/v8/
     } while(false)
     return 999;
   }
+  %PrepareFunctionForOptimization(g);
   var gen = g();
   assertEquals({ value:23, done:false }, gen.next());
   assertEquals({ value:42, done:false }, gen.next());
@@ -14889,6 +14911,7 @@ var f = (function() {
     }
   }
 })();
+%PrepareFunctionForOptimization(f);
 
 g = (function() { f((Array), counter()); });
 g();  
@@ -15632,6 +15655,7 @@ Regress: [mjsunit/compiler/regress-607493.js](https://chromium.googlesource.com/
     }
   }
 
+  %PrepareFunctionForOptimization(g);
   g();
 })();
 
@@ -15647,6 +15671,7 @@ Regress: [mjsunit/compiler/regress-607493.js](https://chromium.googlesource.com/
     }
   }
 
+  %PrepareFunctionForOptimization(g);
   g();
 })();  
 ```  
@@ -15984,6 +16009,7 @@ function load() {
   return sum;
 }
 
+%PrepareFunctionForOptimization(load);
 load();
 load();
 %OptimizeFunctionOnNextCall(load);
@@ -15997,6 +16023,7 @@ function store() {
   }
 }
 
+%PrepareFunctionForOptimization(store);
 store();
 store();
 %OptimizeFunctionOnNextCall(store);
@@ -16028,6 +16055,7 @@ function inferrable_store(key) {
   store_element(o5, key);
 }
 
+%PrepareFunctionForOptimization(inferrable_store);
 inferrable_store(0);
 inferrable_store(0);
 %OptimizeFunctionOnNextCall(inferrable_store);
@@ -18219,6 +18247,7 @@ Code Review: [https://codereview.chromium.org/1727873003](https://codereview.chr
 Regress: [mjsunit/regress/regress-crbug-587068.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-587068.js)  
 ```javascript
 function foo(i) { return String.fromCharCode(i); }
+%PrepareFunctionForOptimization(foo);
 foo(33);
 foo(33);
 %OptimizeFunctionOnNextCall(foo);

@@ -11844,6 +11844,7 @@ function bar(a) {
   return x == undefined;
 }
 
+%PrepareFunctionForOptimization(bar);
 bar([, 2, 3]);
 bar([, 'two', 'three']);
 bar([, 2, 3]);
@@ -12525,7 +12526,9 @@ function gen() {
   return eval("(" + body + ")");
 }
 
-gen()();  
+var f = gen();
+%PrepareFunctionForOptimization(f);
+f();  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a683f83^!)  
@@ -12786,8 +12789,10 @@ function makeFun() {
       if (i == osr_fuse) %OptimizeOsr();
     }
   }
+  %PrepareFunctionForOptimization(fun);
   return fun;
 }
+%PrepareFunctionForOptimization(makeFun);
 
 makeFun()(7);  // Warm up.
 makeFun()(4);  // Optimize once.
@@ -13434,6 +13439,7 @@ Regress: [mjsunit/regress/regress-osr-context.js](https://chromium.googlesource.
     }
     return a;
   }
+  %PrepareFunctionForOptimization(f);
   assertEquals(18, f());
 })();  
 ```  
@@ -14618,6 +14624,7 @@ function literals_sharing_test(warmup, optimize) {
     // propagated to the next closure.
     assertTrue(%HasDoubleElements(a));
   };
+  %EnsureFeedbackVectorForFunction(closure);
   if (optimize) %OptimizeFunctionOnNextCall(closure);
   closure();
 }
@@ -15792,6 +15799,8 @@ function foo() {
   }
   return c;
 }
+%PrepareFunctionForOptimization(foo);
+
 try {
   foo();
 } catch (e) {

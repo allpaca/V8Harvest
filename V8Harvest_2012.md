@@ -1305,8 +1305,10 @@ function simple_two_args(always_zero, always_undefined) {
   var always_five = always_undefined || 5;
   return always_zero * always_five * .5;
 }
+%EnsureFeedbackVectorForFunction(simple_two_args);
 
 
+%PrepareFunctionForOptimization(simple);
 simple();
 simple();
 %OptimizeFunctionOnNextCall(simple);
@@ -1577,11 +1579,13 @@ Regress: [mjsunit/regress/regress-crbug-150545.js](https://chromium.googlesource
     assertSame(2, arguments[1]);
     assertSame(3, arguments[2]);
   }
+  %EnsureFeedbackVectorForFunction(inner);
 
   function outer() {
     inner(1,2,3);
     for (var i = 0; i < 3; i++) %OptimizeOsr();
   }
+  %PrepareFunctionForOptimization(outer);
 
   outer();
 })();  

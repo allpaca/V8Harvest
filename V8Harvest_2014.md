@@ -858,6 +858,7 @@ function foo() {
   }
 }
 
+%PrepareFunctionForOptimization(foo);
 foo();
 foo();
 %OptimizeFunctionOnNextCall(foo);
@@ -4289,6 +4290,7 @@ function foo(obj) {
   counter += obj;
   return counter;
 }
+%PrepareFunctionForOptimization(foo);
 
 function bar() {
   var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -7893,7 +7895,7 @@ function get_closure() {
     return x;
   }
 }
-
+%PrepareFunctionForOptimization(get_closure);
 var f1 = get_closure();
 f1(new Ctor(), false);
 f1(new Ctor(), false);
@@ -7996,6 +7998,7 @@ Regress: [mjsunit/harmony/regress/regress-crbug-347528.js](https://chromium.goog
 "use strict";
 let unused_var = 1;
 function __f_12() { new Array(); }
+%PrepareFunctionForOptimization(__f_12);
 __f_12();
 __f_12();
 %OptimizeFunctionOnNextCall(__f_12);
@@ -8936,7 +8939,7 @@ if (isNeverOptimizeLiteMode()) {
       x = 42;
       return f.arguments[0];
   }
-
+  %EnsureFeedbackVectorForFunction(f);
   f(0);
   %OptimizeFunctionOnNextCall(f);
   assertEquals(42, f(0));

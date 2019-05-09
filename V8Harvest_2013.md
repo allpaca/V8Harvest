@@ -225,6 +225,7 @@ function f(a) {  // First parameter is tagged.
   n = i + a;
 }
 
+%PrepareFunctionForOptimization(f);
 f(1);
 f(1);
 %OptimizeFunctionOnNextCall(f);
@@ -239,6 +240,7 @@ function g() {  // 0th parameter (receiver) is tagged.
   n = i + this;
 }
 
+%PrepareFunctionForOptimization(g);
 g.call(1);
 g.call(1);
 %OptimizeFunctionOnNextCall(g);
@@ -364,9 +366,13 @@ Type: Bug
 Code Review: [https://codereview.chromium.org/98623004](https://codereview.chromium.org/98623004)  
 Regress: [mjsunit/regress/regress-3032.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3032.js)  
 ```javascript
-for (var i = 0; i < 10; i++) { if (i == 5) %OptimizeOsr(); }
-var xl = 4096;
-var z = i % xl;  
+function f() {
+  for (var i = 0; i < 10; i++) { if (i == 5) %OptimizeOsr(); }
+  var xl = 4096;
+  var z = i % xl;
+}
+%PrepareFunctionForOptimization(f);
+f();  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/aa83f29^!)  
@@ -1508,6 +1514,7 @@ function f() {
   o["<abc>"] = 123;
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 f();
@@ -2750,6 +2757,7 @@ function callConstantFunctionOnPrototype(obj) {
   obj.holderMethod();
 }
 
+%PrepareFunctionForOptimization(callConstantFunctionOnPrototype);
 callConstantFunctionOnPrototype(receiver);
 callConstantFunctionOnPrototype(receiver);
 %OptimizeFunctionOnNextCall(callConstantFunctionOnPrototype);
@@ -3152,6 +3160,7 @@ function mul(x, y) {
   return (x * y) | 0;
 }
 
+%PrepareFunctionForOptimization(mul);
 mul(0, 0);
 mul(0, 0);
 %OptimizeFunctionOnNextCall(mul);
@@ -3162,6 +3171,7 @@ function div(x, y) {
   return (x / y) | 0;
 }
 
+%PrepareFunctionForOptimization(div);
 div(4, 2);
 div(4, 2);
 %OptimizeFunctionOnNextCall(div);
@@ -4149,6 +4159,7 @@ function f() {
   } while (false);
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 
 function g() {
@@ -4184,6 +4195,7 @@ function g() {
   } while (false);
 }
 
+%PrepareFunctionForOptimization(g);
 g();  
 ```  
   
@@ -5108,6 +5120,7 @@ function f() {
   assertEquals(-1.0, Math.round(-0.5000000000000001));
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
