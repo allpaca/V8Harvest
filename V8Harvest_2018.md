@@ -7045,6 +7045,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
     let builder = new WasmModuleBuilder();
     builder.addImport("q", "f2", kSig_i_v);
     builder.addImport("q", "f1", kSig_i_v);
+    builder.addTable(kWasmAnyFunc, 4);
     builder.addFunction("main", kSig_i_i)
       .addBody([
         kExprGetLocal, 0,
