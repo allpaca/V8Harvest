@@ -7213,8 +7213,8 @@ class MyArrayLike {
 const xs = new MyArrayLike();
 Array.prototype.sort.call(xs);
 
-assertEquals(2, xs[0]);
-assertEquals(1, xs[1]);  
+assertEquals(1, xs[0]);
+assertEquals(2, xs[1]);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/7b4286b^!)  
