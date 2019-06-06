@@ -17826,6 +17826,7 @@ function f(x, len) {
   }
 }
 
+%PrepareFunctionForOptimization(f);
 f(0, 10);
 f(0, 10);
 %OptimizeFunctionOnNextCall(f);
