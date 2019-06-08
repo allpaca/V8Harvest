@@ -1390,13 +1390,13 @@ A.prototype = proto;
 function foo(o) {
   return o.a0;
 }
-%EnsureFeedbackVectorForFunction(foo);
 
 gc();
 gc();
 gc();
 
 var o = new A();
+%EnsureFeedbackVectorForFunction(foo);
 foo(o);
 foo(o);
 foo(o);
