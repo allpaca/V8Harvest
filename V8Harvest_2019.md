@@ -43,14 +43,14 @@ Type: Bug
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1561317](https://chromium-review.googlesource.com/c/v8/v8/+/1561317)  
 Regress: [mjsunit/compiler/regress-v8-9113.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-v8-9113.js)  
 ```javascript
-let dummy = { x : 0.1 };
+let dummy = {x: 0.1};
 
-let o = { x : 0 };
+let o = {x: 0};
 
 function f(o, v) {
   o.x = v;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f(o, 0);
 f(o, 0);
 assertEquals(Infinity, 1 / o.x);
@@ -158,8 +158,8 @@ for (let i = 0; i < 1020; ++i) {
 
 function foo() {
   return obj instanceof constructor;
-}
-
+};
+%PrepareFunctionForOptimization(foo);
 assertTrue(foo());
 assertTrue(foo());
 %OptimizeFunctionOnNextCall(foo);
@@ -184,19 +184,21 @@ Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1541107](https:
 Regress: [mjsunit/compiler/regress-9041.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-9041.js)  
 ```javascript
 (function() {
-  class A {}
+class A {}
 
-  function foo(a, fn) {
-    const C = a.constructor;
-    fn(a);
-    return a instanceof C;
-  }
-
-  assertTrue(foo(new A, (a) => {}));
-  assertTrue(foo(new A, (a) => {}));
-  %OptimizeFunctionOnNextCall(foo);
-  assertTrue(foo(new A, (a) => {}));
-  assertFalse(foo(new A, (a) => { a.__proto__ = {}; }));
+function foo(a, fn) {
+  const C = a.constructor;
+  fn(a);
+  return a instanceof C;
+};
+%PrepareFunctionForOptimization(foo);
+assertTrue(foo(new A(), a => {}));
+assertTrue(foo(new A(), a => {}));
+%OptimizeFunctionOnNextCall(foo);
+assertTrue(foo(new A(), a => {}));
+assertFalse(foo(new A(), a => {
+  a.__proto__ = {};
+}));
 })();  
 ```  
   
@@ -346,8 +348,8 @@ Regress: [mjsunit/regress/regress-crbug-942068.js](https://chromium.googlesource
 ```javascript
 function foo(index, array) {
   return index in array;
-}
-
+};
+%PrepareFunctionForOptimization(foo);
 let arr = [];
 arr.__proto__ = [0];
 assertFalse(foo(0, {}));
@@ -403,10 +405,12 @@ Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1510333](https://chromium-review.googlesource.com/c/v8/v8/+/1510333)  
 Regress: [mjsunit/regress/regress-crbug-937618.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-937618.js)  
 ```javascript
-let target = {0:42, a:42};
+let target = {0: 42, a: 42};
 
 let proxy = new Proxy(target, {
-  has: function() { return false; },
+  has: function() {
+    return false;
+  }
 });
 
 Object.preventExtensions(target);
@@ -415,16 +419,17 @@ function testLookupElementInProxy() {
   0 in proxy;
 }
 
-
+;
+%PrepareFunctionForOptimization(testLookupElementInProxy);
 assertThrows(testLookupElementInProxy, TypeError);
 assertThrows(testLookupElementInProxy, TypeError);
 %OptimizeFunctionOnNextCall(testLookupElementInProxy);
 assertThrows(testLookupElementInProxy, TypeError);
 
-function testLookupPropertyInProxy(){
+function testLookupPropertyInProxy() {
   "a" in proxy;
-}
-
+};
+%PrepareFunctionForOptimization(testLookupPropertyInProxy);
 assertThrows(testLookupPropertyInProxy, TypeError);
 assertThrows(testLookupPropertyInProxy, TypeError);
 %OptimizeFunctionOnNextCall(testLookupPropertyInProxy);
@@ -484,14 +489,17 @@ Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1488769](https:
 Regress: [mjsunit/compiler/regress-935092.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-935092.js)  
 ```javascript
 function opt(g) {
-    for (var X = 0; X < 1; X++) {
-        (new(function() {
-            this.y
-        })).x;
-        (g || (g && (((g || -N)(g && 0))))).y = 0
-    }
-    (function() { g })
-}
+  for (var X = 0; X < 1; X++) {
+    new function() {
+      this.y;
+    }().x;
+    (g || g && (g || -N)(g && 0)).y = 0;
+  }
+  (function() {
+    g;
+  });
+};
+%PrepareFunctionForOptimization(opt);
 opt({});
 %OptimizeFunctionOnNextCall(opt);
 opt({});  
@@ -754,7 +762,11 @@ Regress: [mjsunit/regress/regress-936077.js](https://chromium.googlesource.com/v
 ```javascript
 function main() {
   var obj = {};
-  function foo() { return obj[0]; };
+  function foo() {
+    return obj[0];
+  };
+  %PrepareFunctionForOptimization(foo);
+  ;
   gc();
   obj.x = 10;
   %OptimizeFunctionOnNextCall(foo);

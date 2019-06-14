@@ -498,8 +498,8 @@ function bar(x, y) {
 
 function baz() {
   bar(64, 2);
-}
-
+};
+%PrepareFunctionForOptimization(baz);
 baz();
 baz();
 %OptimizeFunctionOnNextCall(baz);
@@ -788,8 +788,8 @@ var a = new Array(128);
 
 function f(a, base) {
   a[base] = 2;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f(a, undefined);
 f("r12", undefined);
 f(a, 0);
@@ -816,8 +816,10 @@ Labels: ["Release-0-M40", "reward-3500", "CVE-2014-7928", "M-40", "Security_Impa
 Code Review: [https://codereview.chromium.org/737383002](https://codereview.chromium.org/737383002)  
 Regress: [mjsunit/regress/regress-435073.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-435073.js)  
 ```javascript
-function test(x) { [x,,]; }
-
+function test(x) {
+  [x, , ];
+};
+%PrepareFunctionForOptimization(test);
 test(0);
 test(0);
 %OptimizeFunctionOnNextCall(test);
@@ -1844,8 +1846,8 @@ Regress: [mjsunit/regress/regress-crbug-425519.js](https://chromium.googlesource
 ```javascript
 function load(a, i) {
   return a[i];
-}
-
+};
+%PrepareFunctionForOptimization(load);
 load([]);
 load(0);
 load("x", 0);
@@ -2360,13 +2362,11 @@ Regress: [mjsunit/regress/regress-416730.js](https://chromium.googlesource.com/v
 var d = {x: undefined, y: undefined};
 
 function Crash(left, right) {
-  var c = {
-    x: right.x - left.x,
-    y: right.y - left.y
-  };
-  return c.x * c.y;
-}
+  var c = {x: right.x - left.x, y: right.y - left.y};
 
+  return c.x * c.y;
+};
+%PrepareFunctionForOptimization(Crash);
 var a = {x: 0.5, y: 0};
 var b = {x: 1, y: 0};
 
@@ -2581,7 +2581,11 @@ Code Review: [https://codereview.chromium.org/574653002](https://codereview.chro
 Regress: [mjsunit/regress/regress-3564.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3564.js)  
 ```javascript
 function MyWrapper(v) {
-  return { valueOf: function() { return v } };
+  return {
+    valueOf: function() {
+      return v;
+    }
+  };
 }
 
 function f() {
@@ -2592,8 +2596,8 @@ function f() {
   assertFalse("a" > "x");
   assertFalse("a" > new String("y"));
   assertFalse("a" > new MyWrapper("z"));
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -2670,7 +2674,8 @@ Regress: [mjsunit/regress/regress-crbug-412210.js](https://chromium.googlesource
 function f(x) {
   return (x ? "" >> 0 : "") + /a/;
 };
-
+%PrepareFunctionForOptimization(f);
+;
 %OptimizeFunctionOnNextCall(f);
 f();  
 ```  
@@ -2745,11 +2750,12 @@ Code Review: [https://codereview.chromium.org/552333002](https://codereview.chro
 Regress: [mjsunit/regress/regress-crbug-412319.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-412319.js)  
 ```javascript
 function __f_6() {
- var __v_7 = [0];
- Object.preventExtensions(__v_7);
- for (var __v_6 = -2; __v_6 < 19; __v_6++) __v_7.shift();
- __f_7(__v_7);
-}
+  var __v_7 = [0];
+  Object.preventExtensions(__v_7);
+  for (var __v_6 = -2; __v_6 < 19; __v_6++) __v_7.shift();
+  __f_7(__v_7);
+};
+%PrepareFunctionForOptimization(__f_6);
 __f_6();
 __f_6();
 %OptimizeFunctionOnNextCall(__f_6);
@@ -2820,8 +2826,8 @@ Regress: [mjsunit/regress/regress-412162.js](https://chromium.googlesource.com/v
 ```javascript
 function test() {
   Math.abs(-NaN).toString();
-}
-
+};
+%PrepareFunctionForOptimization(test);
 test();
 test();
 %OptimizeFunctionOnNextCall(test);
@@ -3190,8 +3196,10 @@ Labels: ["M-38", "Via-Wizard", "Merge-Questions-Applied"]
 Code Review: [https://codereview.chromium.org/536393003](https://codereview.chromium.org/536393003)  
 Regress: [mjsunit/regress/regress-crbug-407946.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-407946.js)  
 ```javascript
-function f(n) { return [0].indexOf((n - n) + 0); }
-
+function f(n) {
+  return [0].indexOf(n - n + 0);
+};
+%PrepareFunctionForOptimization(f);
 assertEquals(0, f(.1));
 assertEquals(0, f(.1));
 %OptimizeFunctionOnNextCall(f);
@@ -3220,19 +3228,21 @@ function foo(x) {
   return x.bar;
 }
 
-Object.defineProperty(o1, "bar", {value:200});
+Object.defineProperty(o1, 'bar', {value: 200});
 foo(o1);
 foo(o1);
 
 function f(b) {
   var o = o2;
-  if (b) { return foo(o) }
-}
-
+  if (b) {
+    return foo(o);
+  }
+};
+%PrepareFunctionForOptimization(f);
 f(false);
 %OptimizeFunctionOnNextCall(f);
 assertEquals(undefined, f(false));
-Object.defineProperty(o2, "bar", {value: 100});
+Object.defineProperty(o2, 'bar', {value: 100});
 assertEquals(100, f(true));  
 ```  
   
@@ -3255,8 +3265,8 @@ Regress: [mjsunit/regress/regress-force-constant-representation.js](https://chro
 var a = [{}];
 function f(a) {
   a.push(Infinity);
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f(a);
 f(a);
 f(a);
@@ -3287,11 +3297,11 @@ Code Review: [https://codereview.chromium.org/491863002](https://codereview.chro
 Regress: [mjsunit/regress/regress-crbug-405517.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-405517.js)  
 ```javascript
 function f() {
- var e = [0];
- Object.preventExtensions(e);
- for (var i = 0; i < 4; i++) e.shift();
-}
-
+  var e = [0];
+  Object.preventExtensions(e);
+  for (var i = 0; i < 4; i++) e.shift();
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -3375,7 +3385,11 @@ Code Review: [https://codereview.chromium.org/423083004](https://codereview.chro
 Regress: [mjsunit/regress/regress-3476.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3476.js)  
 ```javascript
 function MyWrapper(v) {
-  return { valueOf: function() { return v } };
+  return {
+    valueOf: function() {
+      return v;
+    }
+  };
 }
 
 function f() {
@@ -3386,8 +3400,8 @@ function f() {
   assertEquals("xtrue", "x" + true);
   assertEquals("ytrue", new String("y") + true);
   assertEquals("ztrue", new MyWrapper("z") + true);
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -3437,8 +3451,8 @@ Regress: [mjsunit/regress/regress-grow-deopt.js](https://chromium.googlesource.c
 ```javascript
 function f(a, v) {
   a[a.length] = v;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 var a = [1.4];
 f(a, 1);
 f(a, 2);
@@ -3648,10 +3662,10 @@ function f(x, deopt) {
 
   deopt + 0;
 
-  return a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 +
-         a10 + a11 + a12 + a13 + a14 + a15 + a16 + a17 + a18 + a19;
-}
-
+  return a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12 +
+      a13 + a14 + a15 + a16 + a17 + a18 + a19;
+};
+%PrepareFunctionForOptimization(f);
 f(0.5, 0);
 f(0.5, 0);
 %OptimizeFunctionOnNextCall(f);
@@ -3765,8 +3779,8 @@ function f(scale) {
   for (var i = 0; i < 2; i++) {
     arr[2 * scale] = 0;
   }
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f({});
 f({});
 %OptimizeFunctionOnNextCall(f);
@@ -3842,8 +3856,8 @@ Regress: [mjsunit/regress/regress-crbug-387636.js](https://chromium.googlesource
 ```javascript
 function f() {
   [].indexOf(0x40000000);
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -3874,14 +3888,16 @@ function f(x) {
   for (i = 0; i < 1; i++) {
     v.apply(this, arguments);
   }
-}
-
+};
+%PrepareFunctionForOptimization(f);
 function g() {}
 
 f(g);
 f(g);
 %OptimizeFunctionOnNextCall(f);
-assertThrows(function() { f('----'); }, TypeError);  
+assertThrows(function() {
+  f('----');
+}, TypeError);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/e56faa9^!)  
@@ -3971,8 +3987,8 @@ function f(x) {
   var a = [1, 2];
   a[x];
   return a[0 - x];
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f(0);
 f(0);
 %OptimizeFunctionOnNextCall(f);
@@ -4003,8 +4019,8 @@ function foo() {
     a.b = 1;
   }
   assertTrue(0 <= a.b);
-}
-
+};
+%PrepareFunctionForOptimization(foo);
 foo();
 foo();
 %OptimizeFunctionOnNextCall(foo);
@@ -4069,15 +4085,15 @@ Code Review: [https://codereview.chromium.org/325133004](https://codereview.chro
 Regress: [mjsunit/regress/regress-3380.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3380.js)  
 ```javascript
 function foo(a) {
-  return (a[0] >>> 0) > 0;
-}
-
+  return a[0] >>> 0 > 0;
+};
+%PrepareFunctionForOptimization(foo);
 var a = new Uint32Array([4]);
 var b = new Uint32Array([0x80000000]);
 assertTrue(foo(a));
 assertTrue(foo(a));
 %OptimizeFunctionOnNextCall(foo);
-assertTrue(foo(b))  
+assertTrue(foo(b));  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/2931f09^!)  
@@ -4140,32 +4156,34 @@ Regress: [mjsunit/regress/regress-crbug-381534.js](https://chromium.googlesource
 var obj = {};
 
 function f(v) {
-  var v1 = -(4/3);
+  var v1 = -(4 / 3);
   var v2 = 1;
-  var arr = new Array(+0, true, 0, -0, false, undefined, null, "0", obj, v1, -(4/3), -1.3333333333333, "str", v2, 1, false);
-  assertEquals(10, arr.lastIndexOf(-(4/3)));
-  assertEquals(9, arr.indexOf(-(4/3)));
+  var arr = new Array(
+      +0, true, 0, -0, false, undefined, null, '0', obj, v1, -(4 / 3),
+      -1.3333333333333, 'str', v2, 1, false);
+  assertEquals(10, arr.lastIndexOf(-(4 / 3)));
+  assertEquals(9, arr.indexOf(-(4 / 3)));
 
   assertEquals(10, arr.lastIndexOf(v));
   assertEquals(9, arr.indexOf(v));
 
   assertEquals(8, arr.lastIndexOf(obj));
   assertEquals(8, arr.indexOf(obj));
-}
-
+};
+%PrepareFunctionForOptimization(f);
 function g(v, x, index) {
-  var arr = new Array({}, x-1.1, x-2, x-3.1);
+  var arr = new Array({}, x - 1.1, x - 2, x - 3.1);
   assertEquals(index, arr.indexOf(0));
   assertEquals(index, arr.lastIndexOf(0));
 
   assertEquals(index, arr.indexOf(v));
   assertEquals(index, arr.lastIndexOf(v));
-}
-
-f(-(4/3));
-f(-(4/3));
+};
+%PrepareFunctionForOptimization(g);
+f(-(4 / 3));
+f(-(4 / 3));
 %OptimizeFunctionOnNextCall(f);
-f(-(4/3));
+f(-(4 / 3));
 
 g(0, 2, 2);
 g(0, 3.1, 3);
@@ -4193,7 +4211,10 @@ Labels: ["Merge-na", "Stability-Memory-AddressSanitizer", "Security_Severity-Med
 Code Review: [https://codereview.chromium.org/313233005](https://codereview.chromium.org/313233005)  
 Regress: [mjsunit/regress/regress-crbug-382513.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-382513.js)  
 ```javascript
-function foo() { return [+0,false].indexOf(-(4/3)); }
+function foo() {
+  return [+0, false].indexOf(-(4 / 3));
+};
+%PrepareFunctionForOptimization(foo);
 foo();
 foo();
 %OptimizeFunctionOnNextCall(foo);
@@ -4221,8 +4242,8 @@ Regress: [mjsunit/regress/regress-380092.js](https://chromium.googlesource.com/v
 ```javascript
 function many_hoist(o, index) {
   return o[index + 33554427];
-}
-
+};
+%PrepareFunctionForOptimization(many_hoist);
 var obj = {};
 many_hoist(obj, 0);
 %OptimizeFunctionOnNextCall(many_hoist);
@@ -4230,8 +4251,8 @@ many_hoist(obj, 5);
 
 function constant_too_large(o, index) {
   return o[index + 1033554433];
-}
-
+};
+%PrepareFunctionForOptimization(constant_too_large);
 constant_too_large(obj, 0);
 %OptimizeFunctionOnNextCall(constant_too_large);
 constant_too_large(obj, 5);  
@@ -4257,8 +4278,10 @@ Labels: ["Merge-na", "Stability-Memory-AddressSanitizer", "Security_Impact-Head"
 Code Review: [https://codereview.chromium.org/313073003](https://codereview.chromium.org/313073003)  
 Regress: [mjsunit/regress/regress-crbug-380512.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-380512.js)  
 ```javascript
-function f() { [].lastIndexOf(42); }
-
+function f() {
+  [].lastIndexOf(42);
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -4325,7 +4348,8 @@ Regress: [mjsunit/regress/regress-3359.js](https://chromium.googlesource.com/v8/
 ```javascript
 function f() {
   return 1 >> Boolean.constructor + 1;
-}
+};
+%PrepareFunctionForOptimization(f);
 assertEquals(1, f());
 %OptimizeFunctionOnNextCall(f);
 assertEquals(1, f());  
@@ -4428,8 +4452,8 @@ function f() {
     a.x += b.x;
   }
   return a.x;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 new p(0.1);  // make 'x' mutable box double field in p.
 
 assertEquals(3, f());
@@ -4516,15 +4540,17 @@ Regress: [mjsunit/regress/regress-370827.js](https://chromium.googlesource.com/v
 ```javascript
 function g(dummy, x) {
   var start = "";
-  if (x) { start = x + " - "; }
+  if (x) {
+    start = x + ' - ';
+  }
   start = start + "array length";
 };
 
 function f() {
   gc();
   g([0.1]);
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f();
 %OptimizeFunctionOnNextCall(f);
 f();
@@ -4721,8 +4747,8 @@ function g() {
 
 function f() {
   new g();
-}
-
+};
+%PrepareFunctionForOptimization(f);
 function deopt(x) {
   %DeoptimizeFunction(f);
 }
@@ -4751,15 +4777,22 @@ Code Review: [https://codereview.chromium.org/251493004](https://codereview.chro
 Regress: [mjsunit/regress/regress-escape-preserve-smi-representation.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-escape-preserve-smi-representation.js)  
 ```javascript
 function deepEquals(a, b) {
-  if (a === b) { if (a === 0) return (1 / a) === (1 / b); return true; }
+  if (a === b) {
+    if (a === 0) return 1 / a === 1 / b;
+    return true;
+  }
   if (typeof a != typeof b) return false;
   if (typeof a == "number") return isNaN(a) && isNaN(b);
   if (typeof a !== "object" && typeof a !== "function") return false;
-  if (objectClass === "RegExp") { return (a.toString() === b.toString()); }
+  if (objectClass === 'RegExp') {
+    return a.toString() === b.toString();
+  }
   if (objectClass === "Function") return false;
   if (objectClass === "Array") {
     var elementsCount = 0;
-    if (a.length != b.length) { return false; }
+    if (a.length != b.length) {
+      return false;
+    }
     for (var i = 0; i < a.length; i++) {
       if (!deepEquals(a[i], b[i])) return false;
     }
@@ -4767,14 +4800,14 @@ function deepEquals(a, b) {
   }
 }
 
-
-function __f_1(){
+function __f_1() {
   var __v_0 = [];
-  for(var i=0; i<2; i++){
-    __v_0.push([])
+  for (var i = 0; i < 2; i++) {
+    __v_0.push([]);
     deepEquals(2, __v_0.length);
   }
-}
+};
+%PrepareFunctionForOptimization(__f_1);
 __f_1();
 %OptimizeFunctionOnNextCall(__f_1);
 __f_1();  
@@ -4799,9 +4832,11 @@ Regress: [mjsunit/regress/regress-lazy-deopt-inlining2.js](https://chromium.goog
 "use strict";
 function f1(d) {
   return 1 + f2(1, f3(d), d);
+};
+%PrepareFunctionForOptimization(f1);
+function f2(v0, v1, v2) {
+  return v1;
 }
-
-function f2(v0, v1, v2) { return v1; }
 
 function f3(d) {
   if (d) %DeoptimizeFunction(f1);
@@ -4835,9 +4870,11 @@ Regress: [mjsunit/regress/regress-lazy-deopt-inlining.js](https://chromium.googl
 "use strict";
 function f1(d) {
   return 1 + f2(f3(d));
+};
+%PrepareFunctionForOptimization(f1);
+function f2(v) {
+  return v;
 }
-
-function f2(v) { return v; }
 
 function f3(d) {
   if (d) %DeoptimizeFunction(f1);
@@ -4874,8 +4911,8 @@ Regress: [mjsunit/regress/regress-empty-fixed-double-array.js](https://chromium.
 function f(a, x) {
   a.shift();
   a[0] = x;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f([1], 1.1);
 f([1], 1.1);
 %OptimizeFunctionOnNextCall(f);
@@ -4955,8 +4992,13 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/239623005](https://codereview.chromium.org/239623005)  
 Regress: [mjsunit/regress/regress-363956.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-363956.js)  
 ```javascript
-function Fuu() { this.x = this.x.x; }
-Fuu.prototype.x = {x: 1}
+function Fuu() {
+  this.x = this.x.x;
+};
+%PrepareFunctionForOptimization(Fuu);
+Fuu.prototype.x = {
+  x: 1
+};
 new Fuu();
 new Fuu();
 %OptimizeFunctionOnNextCall(Fuu);
@@ -5172,8 +5214,8 @@ var global = "";
 function f() {
   global.dummy = this;
   g({});
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -5255,6 +5297,8 @@ Regress: [mjsunit/regress/regress-359491.js](https://chromium.googlesource.com/v
   }
 
   // Gather type feedback for g, but only on one branch for f.
+  ;
+  %PrepareFunctionForOptimization(g);
   g(1);
   g(1);
   %OptimizeFunctionOnNextCall(g);
@@ -5272,10 +5316,10 @@ Regress: [mjsunit/regress/regress-359491.js](https://chromium.googlesource.com/v
   }
 
   // Gather type feedback for both branches.
-  f({ a : 1}, {b : 1}, 1);
-  f({ c : 1}, {d : 1}, 1);
-  f({ a : 1}, {c : 1}, 0);
-  f({ b : 1}, {d : 1}, 0);
+  f({a: 1}, {b: 1}, 1);
+  f({c: 1}, {d: 1}, 1);
+  f({a: 1}, {c: 1}, 0);
+  f({b: 1}, {d: 1}, 0);
 
   function g(mode) {
     var x = 1e10 | 0;
@@ -5283,6 +5327,8 @@ Regress: [mjsunit/regress/regress-359491.js](https://chromium.googlesource.com/v
   }
 
   // Gather type feedback for g, but only on one branch for f.
+  ;
+  %PrepareFunctionForOptimization(g);
   g(1);
   g(1);
   %OptimizeFunctionOnNextCall(g);
@@ -5308,12 +5354,12 @@ Regress: [mjsunit/regress/regress-parseint.js](https://chromium.googlesource.com
 ```javascript
 function f(string, radix) {
   // Use a phi to force radix into heap number representation.
-  radix = (radix == 0) ? radix : (radix >> 0);
+  radix = radix == 0 ? radix : radix >> 0;
   if (radix != 2) return NaN;
   return %StringParseInt(string, radix);
-}
-
-assertEquals(2, (-4294967294) >> 0);
+};
+%PrepareFunctionForOptimization(f);
+assertEquals(2, -4294967294 >> 0);
 assertEquals(3, f("11", -4294967294));
 assertEquals(NaN, f("11", -2147483650));
 %OptimizeFunctionOnNextCall(f);
@@ -5365,14 +5411,24 @@ Regress: [mjsunit/regress/regress-inline-getter-near-stack-limit.js](https://chr
 ```javascript
 function runNearStackLimit(f) {
   function t() {
-    try { t(); } catch(e) { f(); }
+    try {
+      t();
+    } catch (e) {
+      f();
+    }
   };
-  try { t(); } catch(e) {}
+  try {
+    t();
+  } catch (e) {
+  }
 }
 
-function g(x) { return x.bar; }
-function f1() { }
-function f2() { }
+function g(x) {
+  return x.bar;
+};
+%PrepareFunctionForOptimization(g);
+function f1() {}
+function f2() {}
 
 var x = Object.defineProperty({}, "bar", { get: f1 });
 g(x);
@@ -5380,7 +5436,9 @@ g(x);
 var y = Object.defineProperty({}, "bar", { get: f2 });
 g(y);
 %OptimizeFunctionOnNextCall(g);
-runNearStackLimit(function() { g(y); });  
+runNearStackLimit(function() {
+  g(y);
+});  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/05670b6^!)  
@@ -5539,13 +5597,16 @@ Code Review: [https://codereview.chromium.org/222283002](https://codereview.chro
 Regress: [mjsunit/regress/regress-captured-object-no-dummy-use.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-captured-object-no-dummy-use.js)  
 ```javascript
 var global = "10.1";
-function f() { }
-function g(a) { this.d = a; }
+function f() {}
+function g(a) {
+  this.d = a;
+}
 function h() {
   var x = new f();
   global.dummy = this;
   var y = new g(x);
-}
+};
+%PrepareFunctionForOptimization(h);
 h();
 h();
 %OptimizeFunctionOnNextCall(h);
@@ -5571,8 +5632,8 @@ var x = {};
 
 function f(a) {
   a[200000000] = x;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f(new Array(100000));
 f([]);
 %OptimizeFunctionOnNextCall(f);
@@ -5655,9 +5716,14 @@ Labels: ["Stability-Memory-AddressSanitizer", "Release-0-M34", "M-34", "Merge-Me
 Code Review: [https://codereview.chromium.org/217083003](https://codereview.chromium.org/217083003)  
 Regress: [mjsunit/regress/regress-358059.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-358059.js)  
 ```javascript
-function f(a, b) { return b + (a.x++); }
+function f(a, b) {
+  return b + a.x++;
+};
+%PrepareFunctionForOptimization(f);
 var o = {};
-o.__defineGetter__('x', function() { return 1; });
+o.__defineGetter__('x', function() {
+  return 1;
+});
 assertEquals(4, f(o, 3));
 assertEquals(4, f(o, 3));
 %OptimizeFunctionOnNextCall(f);
@@ -5792,8 +5858,8 @@ function __f_12(__v_6) {
     __v_1 = __v_0[__v_6 + 10];
     return __v_1;
   }
-}
-
+};
+%PrepareFunctionForOptimization(__f_12);
 assertEquals(0xAA, __f_12(-1));
 %OptimizeFunctionOnNextCall(__f_12);
 assertEquals(0xAA, __f_12(-1));  
@@ -5880,9 +5946,9 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/216963002](https://codereview.chromium.org/216963002)  
 Regress: [mjsunit/regress/regress-357105.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-357105.js)  
 ```javascript
-var global = { };
+var global = {};
 
-function do_nothing() { }
+function do_nothing() {}
 
 function f(opt_gc) {
   var x = new Array(3);
@@ -5890,8 +5956,8 @@ function f(opt_gc) {
   opt_gc();
   global[1] = 15.5;
   return x;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 gc();
 global = f(gc);
 global = f(do_nothing);
@@ -6040,9 +6106,14 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/210053003](https://codereview.chromium.org/210053003)  
 Regress: [mjsunit/regress/regress-355523.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-355523.js)  
 ```javascript
-function __f_4(a, b) { }
-function __f_8(n) { return __f_4(arguments[13], arguments[-10]); }
-function __f_6(a) { return __f_8(0, a); }
+function __f_4(a, b) {}
+function __f_8(n) {
+  return __f_4(arguments[13], arguments[-10]);
+};
+%PrepareFunctionForOptimization(__f_8);
+function __f_6(a) {
+  return __f_8(0, a);
+}
 __f_8(0);
 __f_8(0);
 %OptimizeFunctionOnNextCall(__f_8);
@@ -6093,9 +6164,13 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/201573011](https://codereview.chromium.org/201573011)  
 Regress: [mjsunit/regress/regress-355486.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-355486.js)  
 ```javascript
-function f() { var v = arguments[0]; }
-function g() { f(); }
-
+function f() {
+  var v = arguments[0];
+}
+function g() {
+  f();
+};
+%PrepareFunctionForOptimization(g);
 g();
 g();
 %OptimizeFunctionOnNextCall(g);
@@ -6132,8 +6207,8 @@ function f(bool) {
     store(o, 1);
   }
   return o;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f(false);
 f(false);
 %OptimizeFunctionOnNextCall(f);
@@ -6264,8 +6339,8 @@ Regress: [mjsunit/regress/regress-crbug-354391.js](https://chromium.googlesource
 ```javascript
 function load(a, i) {
   return a[i];
-}
-
+};
+%PrepareFunctionForOptimization(load);
 function f2(a, b, c, d, index) {
   return load(arguments, index);
 }
@@ -6367,7 +6442,8 @@ Regress: [mjsunit/regress/regress-352982.js](https://chromium.googlesource.com/v
 ```javascript
 function __f_4(i1) {
   return __v_3[i1] * __v_3[0];
-}
+};
+%PrepareFunctionForOptimization(__f_4);
 function __f_3(i1) {
   __f_4(i1);
   __f_4(i1 + 16);
@@ -6589,7 +6665,7 @@ array = new Int32Array(100);
 var dummy2 = new Int32Array(100);
 
 array[-17] = 0;
-function fun(base,cond) {
+function fun(base, cond) {
   array[base - 1] = 1;
   array[base - 2] = 2;
   if (cond) {
@@ -6599,11 +6675,12 @@ function fun(base,cond) {
     array[base - 6] = 5;
     array[base - 100] = 777;
   }
-}
-fun(5,true);
-fun(7,false);
+};
+%PrepareFunctionForOptimization(fun);
+fun(5, true);
+fun(7, false);
 %OptimizeFunctionOnNextCall(fun);
-fun(7,false);
+fun(7, false);
 
 for (var i = 0; i < dummy.length; i++) {
   assertEquals(0, dummy[i]);
@@ -6637,8 +6714,8 @@ var v2 = this;
 function f() {
   v2 = [1.2, 2.3];
   v0 = [12, 23];
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -6695,11 +6772,12 @@ function store(a) {
 }
 
 function foo() {
-  var __v_8 = new Object;
+  var __v_8 = new Object();
   var __v_7 = new Array(4999990);
   store(__v_8);
   store(__v_7);
-}
+};
+%PrepareFunctionForOptimization(foo);
 foo();
 %OptimizeFunctionOnNextCall(foo);
 foo();  
@@ -6728,7 +6806,7 @@ Labels: ["Merge-merged-1750", "Merge-Merged-1847", "Release-0-M34", "M-34", "Sec
 Code Review: [https://codereview.chromium.org/197823009](https://codereview.chromium.org/197823009)  
 Regress: [mjsunit/regress/regress-350863.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-350863.js)  
 ```javascript
-var __v_7 = { };
+var __v_7 = {};
 function __f_8(base, condition) {
   __v_7[base + 3] = 0;
   __v_7[base + 4] = 0;
@@ -6739,7 +6817,8 @@ function __f_8(base, condition) {
     __v_7[base + 0] = 0;
     __v_7[base + 18] = 0;
   }
-}
+};
+%PrepareFunctionForOptimization(__f_8);
 __f_8(1, true);
 __f_8(1, false);
 %OptimizeFunctionOnNextCall(__f_8);
@@ -6765,11 +6844,11 @@ Code Review: [https://codereview.chromium.org/200103002](https://codereview.chro
 Regress: [mjsunit/regress/regress-3204.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3204.js)  
 ```javascript
 function SmiTaggingCanOverflow(x) {
- x = x | 0;
- if (x == 0) return;
- return x;
-}
-
+  x = x | 0;
+  if (x == 0) return;
+  return x;
+};
+%PrepareFunctionForOptimization(SmiTaggingCanOverflow);
 SmiTaggingCanOverflow(2147483647);
 SmiTaggingCanOverflow(2147483647);
 %OptimizeFunctionOnNextCall(SmiTaggingCanOverflow);
@@ -6780,8 +6859,8 @@ function ModILeftCanBeNegative() {
   var x = 0;
   for (var i = -1; i < 0; ++i) x = i % 2;
   return x;
-}
-
+};
+%PrepareFunctionForOptimization(ModILeftCanBeNegative);
 ModILeftCanBeNegative();
 %OptimizeFunctionOnNextCall(ModILeftCanBeNegative);
 assertEquals(-1, ModILeftCanBeNegative());
@@ -6789,10 +6868,10 @@ assertEquals(-1, ModILeftCanBeNegative());
 
 function ModIRightCanBeZero() {
   var x = 0;
-  for (var i = -1; i <= 0; ++i) x = (2 % i) | 0;
+  for (var i = -1; i <= 0; ++i) x = 2 % i | 0;
   return x;
-}
-
+};
+%PrepareFunctionForOptimization(ModIRightCanBeZero);
 ModIRightCanBeZero();
 %OptimizeFunctionOnNextCall(ModIRightCanBeZero);
 ModIRightCanBeZero();  
@@ -6818,8 +6897,9 @@ Regress: [mjsunit/regress/regress-351263.js](https://chromium.googlesource.com/v
 ```javascript
 var __v_12 = {};
 function __f_30(x, sa) {
-  return (x >>> sa) | (x << (__v_12 - sa));
-}
+  return x >>> sa | x << __v_12 - sa;
+};
+%PrepareFunctionForOptimization(__f_30);
 __f_30(1.4, 1);
 __f_30(1.4, 1);
 %OptimizeFunctionOnNextCall(__f_30);
@@ -6991,7 +7071,9 @@ Regress: [mjsunit/regress/regress-crbug-351320.js](https://chromium.googlesource
 ```javascript
 var result = 0;
 var o1 = {};
-o2 = {y:1.5};
+o2 = {
+  y: 1.5
+};
 o2.y = 0;
 o3 = o2.y;
 
@@ -6999,8 +7081,8 @@ function crash() {
   for (var i = 0; i < 10; i++) {
     result += o1.x + o3.foo;
   }
-}
-
+};
+%PrepareFunctionForOptimization(crash);
 crash();
 %OptimizeFunctionOnNextCall(crash);
 crash();  
@@ -7029,7 +7111,8 @@ Regress: [mjsunit/regress/regress-351319.js](https://chromium.googlesource.com/v
 function __f_0(a, base) {
   a[base] = 1;
   a[base] = -1749557862;
-}
+};
+%PrepareFunctionForOptimization(__f_0);
 var __v_0 = new Array(1024);
 var __v_1 = new Array(128);
 __f_0(__v_0, 1);
@@ -7068,7 +7151,7 @@ var p = new Ctor();
 
 
 function crash(o, timeout) {
-  var s = "4000111222";  // Outside Smi range.
+  var s = '4000111222';  // Outside Smi range.
   %SetAllocationTimeout(100000, timeout);
   // This allocates a heap number, causing a GC, triggering lazy deopt.
   var end = s >>> 0;
@@ -7076,8 +7159,8 @@ function crash(o, timeout) {
   // This creates a map dependency, which gives the GC a reason to trigger
   // a lazy deopt when that map dies.
   o.bar = 2;
-}
-
+};
+%PrepareFunctionForOptimization(crash);
 crash(o, 100000);
 crash(o, 100000);
 crash(p, 100000);
@@ -7167,9 +7250,9 @@ function bar(obj) {
 }
 
 function foo() {
-  bar({ x : 'baz' });
-}
-
+  bar({x: 'baz'});
+};
+%PrepareFunctionForOptimization(foo);
 foo();
 foo();
 %OptimizeFunctionOnNextCall(foo);
@@ -7289,7 +7372,8 @@ function f(a, base) {
   a[base] = 1;
   a[base + 4] = 2;
   a[base] = 3;
-}
+};
+%PrepareFunctionForOptimization(f);
 var a1 = new Array(1024);
 var a2 = new Array(128);
 f(a1, 1);
@@ -7319,7 +7403,8 @@ Regress: [mjsunit/regress/regress-349885.js](https://chromium.googlesource.com/v
 ```javascript
 function foo(a) {
   a[292755462] = new Object();
-}
+};
+%PrepareFunctionForOptimization(foo);
 foo(new Array(5));
 foo(new Array(5));
 %OptimizeFunctionOnNextCall(foo);
@@ -7447,10 +7532,16 @@ Labels: ["Stability-Crash", "MovedFrom-36", "MovedFrom-35", "Hotlist-Google"]
 Code Review: [https://codereview.chromium.org/183063006](https://codereview.chromium.org/183063006)  
 Regress: [mjsunit/regress/regress-348512.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-348512.js)  
 ```javascript
-function h(y) { assertEquals(42, y.u); }
-function g() { h.apply(0, arguments); }
-function f(x) { g({ u : x }); }
-
+function h(y) {
+  assertEquals(42, y.u);
+}
+function g() {
+  h.apply(0, arguments);
+}
+function f(x) {
+  g({u: x});
+};
+%PrepareFunctionForOptimization(f);
 f(42);
 f(42);
 %OptimizeFunctionOnNextCall(f);
@@ -7579,7 +7670,8 @@ function crash() {
   assertEquals(b, Math.max(b++, c++));
   assertEquals(c, Math.min(b++, c++));
   assertEquals(b, Math.max(b++, a++));
-}
+};
+%PrepareFunctionForOptimization(crash);
 crash();
 crash();
 %OptimizeFunctionOnNextCall(crash);
@@ -7605,12 +7697,17 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/183383006](https://codereview.chromium.org/183383006)  
 Regress: [mjsunit/regress/regress-348280.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-348280.js)  
 ```javascript
-function baz(f) { f(); }
+function baz(f) {
+  f();
+}
 function goo() {}
 baz(goo);
 baz(goo);
 
-function bar(p) { if (p == 0) baz(1); }
+function bar(p) {
+  if (p == 0) baz(1);
+};
+%PrepareFunctionForOptimization(bar);
 bar(1);
 bar(1);
 %OptimizeFunctionOnNextCall(bar);
@@ -7857,10 +7954,12 @@ function f() {
   var b = new Array(84632);
   var c = new Array(84632);
   return [a, b, c];
-}
-f(); f();
+};
+%PrepareFunctionForOptimization(f);
+f();
+f();
 %OptimizeFunctionOnNextCall(f);
-for(var i = 0; i < 10; i++) {
+for (var i = 0; i < 10; i++) {
   f();
 }  
 ```  
@@ -7961,7 +8060,7 @@ Labels: ["M-33", "M-34", "Merge-Merged", "Security_Impact-Stable", "Release-1-M3
 Code Review: [https://codereview.chromium.org/184393002](https://codereview.chromium.org/184393002)  
 Regress: [mjsunit/regress/regress-347909.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-347909.js)  
 ```javascript
-var a = {y:1.5};
+var a = {y: 1.5};
 a.y = 0;
 var b = a.y;
 a.y = {};
@@ -7969,7 +8068,8 @@ var d = 1;
 function f() {
   d = 0;
   return {y: b};
-}
+};
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -8029,6 +8129,8 @@ var v = /abc/;
 function f() {
   v = 1578221999;
 };
+%PrepareFunctionForOptimization(f);
+;
 %OptimizeFunctionOnNextCall(f);
 f();  
 ```  
@@ -8052,7 +8154,8 @@ Labels: ["Clusterfuzz"]
 Code Review: [https://codereview.chromium.org/183763007](https://codereview.chromium.org/183763007)  
 Regress: [mjsunit/regress/regress-347542.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-347542.js)  
 ```javascript
-function foo() {}
+function foo() {};
+%PrepareFunctionForOptimization(foo);
 foo();
 %OptimizeFunctionOnNextCall(foo);
 foo();
@@ -8081,8 +8184,8 @@ Regress: [mjsunit/regress/regress-347543.js](https://chromium.googlesource.com/v
 function f(a) {
   a[5000000] = 256;
   assertEquals(256, a[5000000]);
-}
-
+};
+%PrepareFunctionForOptimization(f);
 var v1 = new Array(5000001);
 var v2 = new Array(10);
 f(v1);
@@ -8184,7 +8287,8 @@ Regress: [mjsunit/regress/regress-347262.js](https://chromium.googlesource.com/v
   function f(x) {
     g();
     return arguments[0];
-  }
+  };
+  %PrepareFunctionForOptimization(f);
   f();
   f();
   %OptimizeFunctionOnNextCall(f);
@@ -8199,11 +8303,12 @@ Regress: [mjsunit/regress/regress-347262.js](https://chromium.googlesource.com/v
   }
 
   function f(x) {
-    var o1 = { o2 : 1 };
+    var o1 = {o2: 1};
     var a = g(o1);
     o1.o2 = 3;
     return arguments[0] + a[0].o2;
-  }
+  };
+  %PrepareFunctionForOptimization(f);
   f(0);
   f(0);
   %OptimizeFunctionOnNextCall(f);
@@ -8267,7 +8372,8 @@ function __f_7(N) {
   for (var i = -1; i < N; i++) {
     __v_6[i] = i;
   }
-}
+};
+%PrepareFunctionForOptimization(__f_7);
 __f_7(1);
 %OptimizeFunctionOnNextCall(__f_7);
 __f_7(__v_6.length);  
@@ -8295,15 +8401,15 @@ Regress: [mjsunit/regress/regress-crbug-346636.js](https://chromium.googlesource
 ```javascript
 function assertSame(expected, found) {
   if (found === expected) {
-    if (expected !== 0 || (1 / expected) == (1 / found)) return;
+    if (expected !== 0 || 1 / expected == 1 / found) return;
   }
   return;
 };
 
 function foo(x) {
   return x.bar;
-}
-
+};
+%PrepareFunctionForOptimization(foo);
 function getter1() {
   assertSame(this, this);
 }
@@ -8370,10 +8476,13 @@ function f(o) {
     var y = o.y;
   }
 }
-f({y:1.1});
-f({y:1.1});
+f({y: 1.1});
+f({y: 1.1});
 
-function g(x) { f({z:x}); }
+function g(x) {
+  f({z: x});
+};
+%PrepareFunctionForOptimization(g);
 g(1);
 g(2);
 %OptimizeFunctionOnNextCall(g);
@@ -8399,10 +8508,14 @@ Labels: ["CVE-2014-1704", "Stability-Memory-AddressSanitizer", "Release-2-M33", 
 Code Review: [https://codereview.chromium.org/178833002](https://codereview.chromium.org/178833002)  
 Regress: [mjsunit/regress/regress-crbug-345715.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-345715.js)  
 ```javascript
-a = {y:1.5};
+a = {
+  y: 1.5
+};
 a.y = 0;
 b = a.y;
-c = {y:{}};
+c = {
+  y: {}
+};
 
 function f() {
   return 1;
@@ -8410,11 +8523,11 @@ function f() {
 
 function g() {
   var e = {y: b};
-  var d = {x:f()};
-  var d = {x:f()};
+  var d = {x: f()};
+  var d = {x: f()};
   return [e, d];
-}
-
+};
+%PrepareFunctionForOptimization(g);
 g();
 g();
 %OptimizeFunctionOnNextCall(g);
@@ -8545,7 +8658,8 @@ function fun(base) {
   array[base - 95] = 1;
   array[base - 99] = 2;
   array[base + 4] = 3;
-}
+};
+%PrepareFunctionForOptimization(fun);
 fun(100);
 %OptimizeFunctionOnNextCall(fun);
 fun(0);
@@ -8607,8 +8721,8 @@ delete Array.prototype[0];
 
 function foo(a, i) {
   return a[i];
-}
-
+};
+%PrepareFunctionForOptimization(foo);
 var a = new Array(100000);
 a[3] = 'x';
 
@@ -8902,8 +9016,8 @@ Regress: [mjsunit/regress/regress-crbug-340064.js](https://chromium.googlesource
 ```javascript
 function f(v) {
   return v.length;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 assertEquals(4, f("test"));
 assertEquals(4, f("test"));
 assertEquals(undefined, f(true));
@@ -8936,9 +9050,10 @@ if (isNeverOptimizeLiteMode()) {
 
 (function ArgumentsObjectChange() {
   function f(x) {
-      x = 42;
-      return f.arguments[0];
-  }
+    x = 42;
+    return f.arguments[0];
+  };
+  %PrepareFunctionForOptimization(f);
   %EnsureFeedbackVectorForFunction(f);
   f(0);
   %OptimizeFunctionOnNextCall(f);
@@ -8994,8 +9109,8 @@ Regress: [mjsunit/regress/regress-keyed-access-string-length.js](https://chromiu
 ```javascript
 function f(i) {
   return "abc"[i];
-}
-
+};
+%PrepareFunctionForOptimization(f);
 f("length");
 f("length");
 %OptimizeFunctionOnNextCall(f);
@@ -9053,13 +9168,13 @@ Date(Commit): Wed Jan 22 13:22:58 2014
 Code Review: [https://codereview.chromium.org/144913003](https://codereview.chromium.org/144913003)  
 Regress: [mjsunit/regress/regress-array-pop-deopt.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-array-pop-deopt.js)  
 ```javascript
-var o = [6,7,8,9];
+var o = [6, 7, 8, 9];
 
 function f(b) {
   var v = o.pop() + b;
   return v;
-}
-
+};
+%PrepareFunctionForOptimization(f);
 assertEquals(10, f(1));
 assertEquals(9, f(1));
 assertEquals(8, f(1));
@@ -9097,8 +9212,8 @@ var o = { x: {} };
 
 function func() {
   return {x: G};
-}
-
+};
+%PrepareFunctionForOptimization(func);
 func();
 func();
 %OptimizeFunctionOnNextCall(func);
@@ -9159,8 +9274,9 @@ Regress: [mjsunit/regress/regress-331416.js](https://chromium.googlesource.com/v
 ```javascript
 function load(a, i) {
   return a[i];
-}
-load([1, 2, 3], "length");
+};
+%PrepareFunctionForOptimization(load);
+load([1, 2, 3], 'length');
 load(3);
 load([1, 2, 3], 3);
 load(0, 0);
@@ -9170,8 +9286,9 @@ assertEquals(undefined, load(0, 0));
 
 function store(a, i, x) {
   a[i] = x;
-}
-store([1, 2, 3], "length", 3);
+};
+%PrepareFunctionForOptimization(store);
+store([1, 2, 3], 'length', 3);
 store(3);
 store([1, 2, 3], 3, 3);
 store(0, 0, 1);
