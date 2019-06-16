@@ -127,7 +127,9 @@ Regress: [mjsunit/regress/regress-2315.js](https://chromium.googlesource.com/v8/
 var foo = (function() {
   return eval("(function bar() { return 1; })");
 })();
+%PrepareFunctionForOptimization(foo);
 
+%PrepareFunctionForOptimization(foo);
 foo();
 foo();
 %OptimizeFunctionOnNextCall(foo);
@@ -2137,6 +2139,7 @@ function test() {
     ;
 }
 
+%PrepareFunctionForOptimization(test);
 eq({}, {});
 eq({}, {});
 eq(1, 1);
@@ -2144,6 +2147,7 @@ eq(1, 1);
 test();
 %OptimizeFunctionOnNextCall(test);
 test();
+%PrepareFunctionForOptimization(test);
 %OptimizeFunctionOnNextCall(test);
 test();
 assertOptimized(test);  
@@ -2981,14 +2985,18 @@ function MakeClosure() {
 }
 
 var closure1 = MakeClosure();
+%PrepareFunctionForOptimization(closure1);
 var closure2 = MakeClosure();
+%PrepareFunctionForOptimization(closure2);
 var expected = [1,2,3,3,4,5,6,7,8,9,bozo];
 
+%PrepareFunctionForOptimization(closure1);
 assertEquals(0, closure1(false));
 assertEquals(expected, closure1(true));
 %OptimizeFunctionOnNextCall(closure1);
 assertEquals(expected, closure1(true));
 
+%PrepareFunctionForOptimization(closure2);
 assertEquals(0, closure2(false));
 %OptimizeFunctionOnNextCall(closure2);
 assertEquals(expected, closure2(true));  
@@ -3827,7 +3835,8 @@ Regress: [mjsunit/regress/regress-123512.js](https://chromium.googlesource.com/v
 ```javascript
 function f(x) {
   return [x][0];
-}
+};
+%PrepareFunctionForOptimization(f);
 
 Object.prototype[0] = 23;
 assertSame(1, f(1));
@@ -3839,6 +3848,7 @@ assertSame(3, f(3));
 Object.prototype.__defineGetter__(0, function() { throw Error(); });
 assertSame(4, f(4));
 assertSame(5, f(5));
+%PrepareFunctionForOptimization(f);
 %OptimizeFunctionOnNextCall(f);
 assertSame(6, f(6));
 %DeoptimizeFunction(f);
@@ -3847,7 +3857,8 @@ assertSame(6, f(6));
 function g(x, y) {
   var o = { foo:x, 0:y };
   return o.foo + o[0];
-}
+};
+%PrepareFunctionForOptimization(g);
 
 Object.prototype[0] = 23;
 Object.prototype.foo = 42;
@@ -3861,6 +3872,7 @@ Object.prototype.__defineGetter__(0, function() { throw Error(); });
 Object.prototype.__defineGetter__('foo', function() { throw Error(); });
 assertSame(3, g(1, 2));
 assertSame(5, g(2, 3));
+%PrepareFunctionForOptimization(g);
 %OptimizeFunctionOnNextCall(g);
 assertSame(7, g(3, 4));
 %DeoptimizeFunction(g);  

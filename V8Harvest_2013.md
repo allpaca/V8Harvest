@@ -27,6 +27,7 @@ function f(n, x, b) {
   }
   return sum;
 }
+%PrepareFunctionForOptimization(f);
 
 f(10, o3);
 f(20, o3);
@@ -1578,7 +1579,9 @@ function foo(x, fun) {
   fun();
   return a;
 }
+%PrepareFunctionForOptimization(foo);
 
+%PrepareFunctionForOptimization(foo);
 assertThrows("foo(1, bailout)");
 assertThrows("foo(1, bailout)");
 %OptimizeFunctionOnNextCall(foo);
@@ -2561,7 +2564,9 @@ function foo(x) {
   }
   return result;
 }
+%PrepareFunctionForOptimization(foo);
 
+%PrepareFunctionForOptimization(foo);
 foo(0);
 foo(0);
 %OptimizeFunctionOnNextCall(foo);
@@ -3018,6 +3023,7 @@ var functions = [
 
 for (var i = 0; i < 5; ++i) {
   for (var j in functions) {
+    %PrepareFunctionForOptimization(functions[j]);
     print(functions[i])
     assertThrows(functions[j], TypeError)
   }
@@ -3944,7 +3950,9 @@ function f() {
   a[i]++;
   assertTrue(isNaN(a[i]));
 }
+%PrepareFunctionForOptimization(f);
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 f();
@@ -4356,7 +4364,9 @@ for (var i = 750; i < 3000; i++) {
 
 source += "x=1; return _0;"
 var f = new Function(source);
+%PrepareFunctionForOptimization(f);
 
+%PrepareFunctionForOptimization(f);
 f();
 %OptimizeFunctionOnNextCall(f);
 f();  
@@ -4658,6 +4668,7 @@ function baz() {
   assertEquals(288, b.y);
 }
 
+%PrepareFunctionForOptimization(Foo.prototype.bar);
 baz();
 baz();
 %OptimizeFunctionOnNextCall(Foo.prototype.bar);

@@ -10953,6 +10953,7 @@ function check(x, value, type) {
 }
 
 var o = construct(receiver);
+%PrepareFunctionForOptimization(o.bar);
 check(o.bar.call(123), Object(123), Number);
 check(o.bar.call("a"), Object("a"), String);
 check(o.bar.call(undefined), this, Object);
@@ -11052,6 +11053,7 @@ class B {
 class C extends B {
   bar() { return super[%DeoptimizeFunction(C.prototype.bar), "foo"]() }
 }
+%PrepareFunctionForOptimization(C.prototype.bar);
 
 assertEquals(23, new C().bar());
 assertEquals(23, new C().bar());
@@ -11897,6 +11899,7 @@ var f = (function() {
   var max = Math.max;
   return function f() { return max(0, -1); };
 })();
+%PrepareFunctionForOptimization(f);
 
 assertEquals(0, f());
 %OptimizeFunctionOnNextCall(f);
@@ -12212,6 +12215,7 @@ function test_hole_check_for_let(a) {
     }
   }
 }
+%PrepareFunctionForOptimization(test_hole_check_for_let);
 assertDoesNotThrow("test_hole_check_for_let(0)");
 assertThrows("test_hole_check_for_let(1)", ReferenceError);
 %OptimizeFunctionOnNextCall(test_hole_check_for_let)
@@ -12225,6 +12229,7 @@ function test_hole_check_for_const(a) {
     }
   }
 }
+%PrepareFunctionForOptimization(test_hole_check_for_const);
 assertThrows("test_hole_check_for_const(0)", TypeError);
 assertThrows("test_hole_check_for_const(1)", ReferenceError);
 %OptimizeFunctionOnNextCall(test_hole_check_for_const)
@@ -18309,6 +18314,7 @@ function foo(a) {
     for (i = 0; i < 1; i++) ;
   }
 }
+%PrepareFunctionForOptimization(foo);
 %OptimizeFunctionOnNextCall(foo);
 foo();
 
@@ -18321,6 +18327,7 @@ var __v_45;
   for (__v_45 = 128; __v_45 < 256; __v_45++) {
   }
 }
+%PrepareFunctionForOptimization(bar);
 %OptimizeFunctionOnNextCall(bar);
 assertThrows(bar);  
 ```  
@@ -18825,6 +18832,7 @@ function foo() {
     bar();
   }
 }
+%PrepareFunctionForOptimization(foo);
 
 
 %OptimizeFunctionOnNextCall(foo);
@@ -18907,6 +18915,7 @@ Code Review: [https://codereview.chromium.org/844503002](https://codereview.chro
 Regress: [mjsunit/regress/regress-446389.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-446389.js)  
 ```javascript
 function runNearStackLimit(f) { function t() { try { t(); } catch(e) { f(); } }; try { t(); } catch(e) {} }
+%PrepareFunctionForOptimization(__f_3);
 %OptimizeFunctionOnNextCall(__f_3);
 function __f_3() {
     var __v_5 = a[0];

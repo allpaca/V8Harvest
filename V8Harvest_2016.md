@@ -8581,6 +8581,7 @@ function foo(a, b) {
   return a + "0123456789012";
 }
 
+%PrepareFunctionForOptimization(foo);
 foo("a");
 foo("a");
 %OptimizeFunctionOnNextCall(foo);
@@ -8589,6 +8590,7 @@ foo("a");
 var a = "a".repeat(%StringMaxLength());
 assertThrows(function() { foo(a); }, RangeError);
 
+%PrepareFunctionForOptimization(foo);
 %OptimizeFunctionOnNextCall(foo);
 assertThrows(function() { foo(a); }, RangeError);
 assertOptimized(foo);  
@@ -9971,6 +9973,7 @@ function f(osr_and_recurse) {
     for (var i = 0; i < 3; ++i) {
       if (i == 1) %OptimizeOsr();
     }
+    %PrepareFunctionForOptimization(f);
     %OptimizeFunctionOnNextCall(f);
     f(false);     // Trigger tier-up due to recursive call.
     boom(this);   // Causes a deopt due to below dependency.
@@ -11093,6 +11096,7 @@ Regress: [mjsunit/regress/regress-5205.js](https://chromium.googlesource.com/v8/
     if (o == 'warmup') { return g() }
     with (o) { return x }
   }
+  %PrepareFunctionForOptimization(f);
   function g() {
     // Only a marker function serving as weak embedded object.
   }
@@ -15416,8 +15420,9 @@ Regress: [mjsunit/regress/regress-4971.js](https://chromium.googlesource.com/v8/
   Object.defineProperty(C.prototype, "boom", { get: function() {
     if (should_deoptimize_caller) %DeoptimizeFunction(D.prototype.f);
     return this.m
-  }})
+  }});
 
+  %PrepareFunctionForOptimization(D.prototype.f);
   assertEquals(23, new D().f());
   assertEquals(23, new D().f());
   %OptimizeFunctionOnNextCall(D.prototype.f);
@@ -15434,8 +15439,9 @@ Regress: [mjsunit/regress/regress-4971.js](https://chromium.googlesource.com/v8/
   Object.defineProperty(C.prototype, "boom", { get: function() {
     if (should_deoptimize_caller) %DeoptimizeFunction(D.prototype.f);
     return this.m
-  }})
+  }});
 
+  %PrepareFunctionForOptimization(D.prototype.f);
   assertEquals(23, new D().f("boom"));
   assertEquals(23, new D().f("boom"));
   %OptimizeFunctionOnNextCall(D.prototype.f);
@@ -15726,6 +15732,7 @@ function g() {
   f();
 }
 
+%PrepareFunctionForOptimization(g);
 assertThrows(g, SyntaxError);
 %OptimizeFunctionOnNextCall(g);
 assertThrows(g, SyntaxError);  
@@ -18768,6 +18775,7 @@ function foo(object) {
   }
   return key;
 }
+%PrepareFunctionForOptimization(foo);
 
 foo(training);
 SideEffect({a: 0}, "dictionarize");
@@ -19003,6 +19011,7 @@ function f(t) {
   }
   return result.join('');
 }
+%PrepareFunctionForOptimization(f);
 
 var t = {a: "1", b: "2"};
 assertEquals("aa11ab12ba21bb22", f(t));
@@ -19034,6 +19043,7 @@ var a = [];
 Object.defineProperty(a, "0", {configurable: false, value: 10});
 assertEquals(1, a.length);
 var setter = ()=>{ a.length = 0; };
+%PrepareFunctionForOptimization(setter);
 assertThrows(setter);
 assertThrows(setter);
 %OptimizeFunctionOnNextCall(setter);

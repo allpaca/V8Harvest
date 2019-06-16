@@ -1312,6 +1312,7 @@ function f() {
 }
 
 var o = f();
+%PrepareFunctionForOptimization(o.m);
 assertEquals('hest', o.m());
 assertEquals('hest', o.m());
 assertEquals('hest', o.m());
@@ -1543,7 +1544,9 @@ function f(restIsArray, rest) {
   var arrIsArguments = (arr[1] !== rest);
   assertEquals(restIsArray, arrIsArguments);
 }
+%PrepareFunctionForOptimization(f);
 
+%PrepareFunctionForOptimization(f);
 f(false, 'b', 'c');
 f(false, 'b', 'c');
 f(false, 'b', 'c');
@@ -1654,11 +1657,13 @@ function mkNumberDictionary() {
 }
 
 function write(a, i) { a[i] = "bazinga!"; }
+%PrepareFunctionForOptimization(write);
 
 function test(factories, w) {
+  %PrepareFunctionForOptimization(w);
   factories.forEach(function(f) { w(f(), 0); });
   factories.forEach(function(f) { w(f(), 0); });
-      %OptimizeFunctionOnNextCall(w);
+  %OptimizeFunctionOnNextCall(w);
   factories.forEach(function(f) { w(f(), 0); });
 }
 
@@ -3484,6 +3489,7 @@ function Y(x) {
 }
 
 var y = Y(X());
+%PrepareFunctionForOptimization(y);
 
 for (var i = 0; i < 5; i++) {
   assertTrue(y("foo"));
@@ -3598,6 +3604,7 @@ Regress: [mjsunit/regress/regress-1079.js](https://chromium.googlesource.com/v8/
 function optimized() {
   return unoptimized.apply(null, arguments);
 }
+%PrepareFunctionForOptimization(optimized);
 
 function unoptimized() {
   with ({}) {
@@ -3960,6 +3967,7 @@ Code Review: [http://codereview.chromium.org/5753005](http://codereview.chromium
 Regress: [mjsunit/compiler/regress-closures-with-eval.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-closures-with-eval.js)  
 ```javascript
 function withEval(expr, filter) {
+  %PrepareFunctionForOptimization(filter);
   function walk(v) {
     for (var i in v) {
       for (var i in v) {}
