@@ -371,6 +371,7 @@ function mod1() {
 }
 
 var f = mod1();
+%PrepareFunctionForOptimization(f);
 assertThrows(f);
 %OptimizeFunctionOnNextCall(f);
 assertThrows(f);
@@ -387,6 +388,7 @@ function bug2() {
   }
 }
 
+%PrepareFunctionForOptimization(bug2);
 assertThrows(bug2);
 %OptimizeFunctionOnNextCall(bug2);
 assertThrows(bug2);  
@@ -2635,6 +2637,7 @@ function f(  )  {
   d = 357;
   return {foo: b};
 }
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -2645,6 +2648,7 @@ function g(obj) {
   return obj.foo.length;
 }
 
+%PrepareFunctionForOptimization(f);
 g(dummy);
 g(dummy);
 %OptimizeFunctionOnNextCall(g);
@@ -2860,6 +2864,7 @@ function f() {
   return non_const_true || (f() = this);
 }
 
+%PrepareFunctionForOptimization(f);
 assertTrue(f());
 assertTrue(f());
 %OptimizeFunctionOnNextCall(f);
@@ -4064,6 +4069,7 @@ function f(o, value) {
 
 var obj = {o: a1};
 
+%PrepareFunctionForOptimization(f);
 f(obj, a1);
 f(obj, a1);
 %OptimizeFunctionOnNextCall(f);
@@ -5831,6 +5837,7 @@ function f(foo) {
   if (null != g) {}
 };
 
+%PrepareFunctionForOptimization(f);
 f(1.4);
 f(1.4);
 %OptimizeFunctionOnNextCall(f);
@@ -6064,6 +6071,7 @@ function g() { global = this; }
 Object.defineProperty(Number.prototype, "prop", { get: g });
 function f(s) { s.prop; }
 
+%PrepareFunctionForOptimization(f);
 f(1);
 f(1);
 %OptimizeFunctionOnNextCall(f);
@@ -7505,6 +7513,7 @@ Code Review: [https://codereview.chromium.org/187773002](https://codereview.chro
 Regress: [mjsunit/regress/regress-force-representation.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-force-representation.js)  
 ```javascript
 function optimize(crankshaft_test) {
+  %PrepareFunctionForOptimization(crankshaft_test);
   crankshaft_test();
   crankshaft_test();
   %OptimizeFunctionOnNextCall(crankshaft_test);
@@ -8861,6 +8870,7 @@ function f() {
   return result;
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);
@@ -8992,6 +9002,7 @@ function f(o) {
   if (true) return o.v && a;
 }
 
+%PrepareFunctionForOptimization(f);
 f({});
 f({});
 %OptimizeFunctionOnNextCall(f);
@@ -9002,6 +9013,8 @@ function f1() { return 1 && 2; };
 function f2() { return 1 || 2; };
 function f3() { return 0 && 2; };
 function f4() { return 0 || 2; };
+
+[f1, f2, f3, f4].forEach(function(f) { %PrepareFunctionForOptimization(f); });
 
 function test() {
   assertEquals(2, f1());

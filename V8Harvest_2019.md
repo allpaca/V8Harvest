@@ -660,6 +660,7 @@ Code Review: [https://chromium-review.googlesource.com/c/1493132](https://chromi
 Regress: [mjsunit/regress/regress-crbug-935932.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-935932.js)  
 ```javascript
 function test(func, expect) {
+    %PrepareFunctionForOptimization(func);
     assertTrue(func() == expect);
     %OptimizeFunctionOnNextCall(func);
     assertTrue(func() == expect);
@@ -697,6 +698,7 @@ test(check_v4, true);
   function testIn(index, array) {
     return index in array;
   }
+  %PrepareFunctionForOptimization(testIn);
 
   let a = [];
   a.__proto__ = [0,1,2];
@@ -712,6 +714,7 @@ test(check_v4, true);
 
   %ClearFunctionFeedback(testIn);
   %DeoptimizeFunction(testIn);
+  %PrepareFunctionForOptimization(testIn);
 
   // First load will set IC to Load handle with allow hole to undefined conversion false.
   assertTrue(testIn(0, a));
@@ -722,6 +725,7 @@ test(check_v4, true);
   // Repeat the same testing for access out-of-bounds of the array, but in bounds of it's prototype.
   %ClearFunctionFeedback(testIn);
   %DeoptimizeFunction(testIn);
+  %PrepareFunctionForOptimization(testIn);
 
   assertTrue(testIn(2, a));
   assertTrue(testIn(2, a));
@@ -730,6 +734,7 @@ test(check_v4, true);
 
   %ClearFunctionFeedback(testIn);
   %DeoptimizeFunction(testIn);
+  %PrepareFunctionForOptimization(testIn);
 
   assertTrue(testIn(2, a));
   %OptimizeFunctionOnNextCall(testIn);
@@ -838,6 +843,7 @@ foo(1);
 foo(1);
 %OptimizeFunctionOnNextCall(foo);
 foo(1);
+%PrepareFunctionForOptimization(foo);
 %OptimizeFunctionOnNextCall(foo);
 foo(1);
 assertOptimized(foo);  
@@ -1082,6 +1088,7 @@ function opt(){
     finally{}
   }
 }
+%PrepareFunctionForOptimization(opt);
 opt();
 %OptimizeFunctionOnNextCall(opt);
 opt();  

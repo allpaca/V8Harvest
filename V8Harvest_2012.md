@@ -1874,6 +1874,8 @@ function factory(worker) {
 
 var f1 = factory(worker1);
 var f2 = factory(f1);
+%PrepareFunctionForOptimization(f1);
+%PrepareFunctionForOptimization(f2);
 assertEquals(11, f2(1));
 %OptimizeFunctionOnNextCall(f1);
 assertEquals(10, f1(0));
@@ -2464,6 +2466,8 @@ function factory(worker) {
 
 var f1 = factory(worker1);
 var f2 = factory(f1);
+%PrepareFunctionForOptimization(f1);
+%PrepareFunctionForOptimization(f2);
 assertEquals(11, f2(1));  // Result: 1 + f1(0) == 1 + 10.
 assertEquals(11, f2(1));
 %OptimizeFunctionOnNextCall(f1);
@@ -2663,6 +2667,7 @@ C = Object.create(B);
 
 function bar(x) { return x.foo(); }
 
+%PrepareFunctionForOptimization(bar);
 assertEquals(111, bar(C));
 assertEquals(111, bar(C));
 ToDictionaryMode(B);
@@ -2679,6 +2684,7 @@ C = Object.create(B);
 
 function boo(x) { return x.baz; }
 
+%PrepareFunctionForOptimization(boo);
 assertEquals(111, boo(C));
 assertEquals(111, boo(C));
 ToDictionaryMode(B);
@@ -2700,6 +2706,7 @@ function fuu(x) {
   return setterValue;
 }
 
+%PrepareFunctionForOptimization(fuu);
 assertEquals(111, fuu(C));
 assertEquals(111, fuu(C));
 ToDictionaryMode(B);
@@ -3995,6 +4002,8 @@ for (i = 0; i < cases.length; ++i) {
   %OptimizeFunctionOnNextCall(do_max);
   assertEquals(c[3], do_min(c[0], c[1]));
   assertEquals(c[2], do_max(c[0], c[1]));
+  %PrepareFunctionForOptimization(do_min);
+  %PrepareFunctionForOptimization(do_max);
 }  
 ```  
   

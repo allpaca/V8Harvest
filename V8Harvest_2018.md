@@ -3540,6 +3540,7 @@ bar(0.1);
     return bar(x | -1) == 4294967295;
   }
 
+  %PrepareFunctionForOptimization(foo);
   assertFalse(foo(1));
   assertFalse(foo(0));
   %OptimizeFunctionOnNextCall(foo);
@@ -3556,6 +3557,7 @@ bar(0.1);
   makeFoo(0);  // Defeat the function context specialization.
   const foo = makeFoo(1);
 
+  %PrepareFunctionForOptimization(foo);
   assertFalse(foo(1));
   assertFalse(foo(0));
   %OptimizeFunctionOnNextCall(foo);
@@ -4397,6 +4399,7 @@ function foo(a) {
 }
 
 const a = [1, 2, 3];
+%PrepareFunctionForOptimization(foo);
 assertTrue(foo(a));
 assertTrue(foo(a));
 %OptimizeFunctionOnNextCall(foo);
@@ -8349,6 +8352,7 @@ function foo() {
   try { undefined[0] = bar(); } catch (e) { }
   Math.min(bar(), bar(), bar());
 }
+%PrepareFunctionForOptimization(foo);
 foo();
 foo();
 %OptimizeFunctionOnNextCall(foo);
@@ -8562,6 +8566,7 @@ function f(a) {
 }
 
 x = { [Symbol.toPrimitive]: () => FAIL };
+%PrepareFunctionForOptimization(f);
 f(1);
 f(1);
 %OptimizeFunctionOnNextCall(f);
@@ -8572,6 +8577,7 @@ function f(a) {
 }
 
 x = { [Symbol.toPrimitive]: () => FAIL };
+%PrepareFunctionForOptimization(f);
 f(1);
 f(1);
 %OptimizeFunctionOnNextCall(f);
@@ -8582,6 +8588,7 @@ function f(a) {
 }
 
 x = { [Symbol.toPrimitive]: () => FAIL };
+%PrepareFunctionForOptimization(f);
 f(1);
 f(1);
 %OptimizeFunctionOnNextCall(f);
@@ -8612,10 +8619,12 @@ function foo(a) {
   }
 }
 
+%PrepareFunctionForOptimization(foo);
 foo([1]);
 foo([1]);
 %OptimizeFunctionOnNextCall(foo);
 foo([1]);
+%PrepareFunctionForOptimization(foo);
 %OptimizeFunctionOnNextCall(foo);
 foo([1]);
 assertOptimized(foo);  
@@ -10544,6 +10553,7 @@ class Derived extends Base {
   }
 }
 
+%PrepareFunctionForOptimization(Derived);
 Reflect.construct(Derived, [], Object.bind());
 %OptimizeFunctionOnNextCall(Derived);
 new Derived();  

@@ -1683,6 +1683,7 @@ function f(b) {
   %_DeoptimizeNow();
   return o.t;
 }
+%PrepareFunctionForOptimization(f);
 
 for (var i = 0; i < 1000; i++) new C();
 
@@ -2524,6 +2525,7 @@ function __getRandomProperty(obj, seed) {
     };
     return __v_59904.filter(__v_59909);
   };
+  %PrepareFunctionForOptimization(__v_59906);
   print(__v_59906());
   __v_59904[__getRandomProperty(__v_59904, 366855)] = this, gc();
   print(__v_59906());
@@ -4376,6 +4378,7 @@ function f() {
   local += 'abcdefghijkl' + (0 + global);
   global += 'abcdefghijkl';
 }
+%PrepareFunctionForOptimization(f);
 f();
 %OptimizeFunctionOnNextCall(f);
 f();  
@@ -4524,7 +4527,8 @@ Regress: [mjsunit/regress/regress-6907.js](https://chromium.googlesource.com/v8/
     try { throw 0 } catch(e) {
       return b.forEach(callback);
     }
-  }
+  };
+  %PrepareFunctionForOptimization(f);
   f();
   f();
   %OptimizeFunctionOnNextCall(f);
@@ -4558,6 +4562,7 @@ function f() {
   %_DeoptimizeNow();
   return o.length;
 }
+%PrepareFunctionForOptimization(f);
 assertEquals(1, f());
 assertEquals(1, f());
 %OptimizeFunctionOnNextCall(f);
@@ -6778,6 +6783,7 @@ Regress: [mjsunit/regress/regress-crbug-752481.js](https://chromium.googlesource
 const A = class A {}
 
 function test(foo) {
+  %PrepareFunctionForOptimization(foo);
   assertThrows(foo);
   assertThrows(foo);
   %OptimizeFunctionOnNextCall(foo);
@@ -6882,6 +6888,7 @@ class Base {}
 class Derived extends Base {
   constructor() { super(); }
 }
+%PrepareFunctionForOptimization(Derived);
 var proxy = new Proxy(Base, { get() {} });
 assertDoesNotThrow(() => Reflect.construct(Derived, []));
 assertThrows(() => Reflect.construct(Derived, [], proxy), TypeError);
@@ -7446,6 +7453,7 @@ function f() {
   g(r);
 }
 
+%PrepareFunctionForOptimization(f);
 f(); f(); %OptimizeFunctionOnNextCall(f);  // Warm-up.
 
 var re;
@@ -8851,6 +8859,7 @@ Regress: [mjsunit/regress/regress-crbug-732169.js](https://chromium.googlesource
 (function TestGeneratorMaterialization() {
   function* f([x]) { yield x }
   // No warm-up of {f} to trigger soft deopt.
+  %PrepareFunctionForOptimization(f);
   %OptimizeFunctionOnNextCall(f);
   var gen = f([23]);
   assertEquals("[object Generator]", gen.toString());
@@ -8866,6 +8875,7 @@ Regress: [mjsunit/regress/regress-crbug-732169.js](https://chromium.googlesource
     return gen;
   }
   function h() { f() }
+  %PrepareFunctionForOptimization(h);
   // Enough warm-up to make {p} an in-object property.
   for (var i = 0; i < 100; ++i) { g(); h(); }
   %OptimizeFunctionOnNextCall(h);
@@ -9429,6 +9439,7 @@ Regress: [mjsunit/regress/regress-crbug-724153.js](https://chromium.googlesource
   }
   src += 'c) { return a + c })';
   var f = eval(src);
+  %PrepareFunctionForOptimization(f);
   assertEquals(NaN, f(1));
   assertEquals(NaN, f(2));
   %OptimizeFunctionOnNextCall(f);
@@ -9554,6 +9565,7 @@ function __f_1() {
   function __f_2() {
     Array.prototype.__proto__ = { 77e4  : null };
   }
+  %PrepareFunctionForOptimization(__f_2);
   __f_2();
   %OptimizeFunctionOnNextCall(__f_2);
   __f_2();
@@ -10952,6 +10964,7 @@ Regress: [mjsunit/regress/regress-crbug-700733.js](https://chromium.googlesource
   var obj = {};
   obj.load_boom = smi_arr;
 
+  %PrepareFunctionForOptimization(do_keyed_load);
   do_keyed_load(arrs);
   do_keyed_load(arrs);
   %OptimizeFunctionOnNextCall(do_keyed_load);
@@ -10982,6 +10995,7 @@ Regress: [mjsunit/regress/regress-crbug-700733.js](https://chromium.googlesource
   var obj = {};
   obj.store_boom = smi_arr;
 
+  %PrepareFunctionForOptimization(do_keyed_store);
   do_keyed_store(arrs);
   do_keyed_store(arrs);
   %OptimizeFunctionOnNextCall(do_keyed_store);
@@ -12056,6 +12070,7 @@ var observer = new Proxy(A, {
   }
 });
 
+%PrepareFunctionForOptimization(B);
 Reflect.construct(B, [], observer);
 Reflect.construct(B, [], observer);
 %OptimizeFunctionOnNextCall(B);
@@ -15160,6 +15175,7 @@ class C {}
 class D extends C { constructor() { super(...unresolved, 75) } }
 D.__proto__ = null;
 
+%PrepareFunctionForOptimization(D);
 assertThrows(() => new D(), TypeError);
 assertThrows(() => new D(), TypeError);
 %OptimizeFunctionOnNextCall(D);
@@ -15866,6 +15882,7 @@ class B extends A {
     }
   }
 }
+%PrepareFunctionForOptimization(B);
 
 var thrower = new Proxy(A, {
   get(target, property, receiver) {
@@ -16550,6 +16567,7 @@ function foo() {
   %_DeoptimizeNow();
   return a[2];
 }
+%PrepareFunctionForOptimization(foo);
 assertSame(undefined, foo());
 assertSame(undefined, foo());
 %OptimizeFunctionOnNextCall(foo)
@@ -16889,6 +16907,7 @@ function f() {
   return g(-1);
 }
 
+%PrepareFunctionForOptimization(f);
 %OptimizeFunctionOnNextCall(f);
 assertEquals(4294967295, f());  
 ```  
@@ -16993,6 +17012,7 @@ function f(deopt) {
   }
 }
 
+%PrepareFunctionForOptimization(f);
 f(false);
 f(false);
 %OptimizeFunctionOnNextCall(f);
@@ -17590,11 +17610,13 @@ Regress: [mjsunit/regress/regress-5802.js](https://chromium.googlesource.com/v8/
 
   var o = { [Symbol.toPrimitive]: () => "o" };
 
+  %PrepareFunctionForOptimization(eq);
   assertTrue(eq(o, o));
   assertTrue(eq(o, o));
   %OptimizeFunctionOnNextCall(eq);
   assertTrue(eq(o, o));
   assertTrue(eq("o", o));
+  %PrepareFunctionForOptimization(eq);
   assertTrue(eq(o, "o"));
   %OptimizeFunctionOnNextCall(eq);
   assertTrue(eq(o, o));
@@ -17608,11 +17630,13 @@ Regress: [mjsunit/regress/regress-5802.js](https://chromium.googlesource.com/v8/
 
   var o = { [Symbol.toPrimitive]: () => "o" };
 
+  %PrepareFunctionForOptimization(ne);
   assertFalse(ne(o, o));
   assertFalse(ne(o, o));
   %OptimizeFunctionOnNextCall(ne);
   assertFalse(ne(o, o));
   assertFalse(ne("o", o));
+  %PrepareFunctionForOptimization(ne);
   assertFalse(ne(o, "o"));
   %OptimizeFunctionOnNextCall(ne);
   assertFalse(ne(o, o));
@@ -17628,6 +17652,7 @@ Regress: [mjsunit/regress/regress-5802.js](https://chromium.googlesource.com/v8/
   var b = {b};
   var u = %GetUndetectable();
 
+  %PrepareFunctionForOptimization(eq);
   assertTrue(eq(a, a));
   assertTrue(eq(b, b));
   assertFalse(eq(a, b));
@@ -17642,6 +17667,7 @@ Regress: [mjsunit/regress/regress-5802.js](https://chromium.googlesource.com/v8/
   assertFalse(eq(a, b));
   assertFalse(eq(b, a));
   assertTrue(eq(null, u));
+  %PrepareFunctionForOptimization(eq);
   assertTrue(eq(undefined, u));
   assertTrue(eq(u, null));
   assertTrue(eq(u, undefined));
@@ -17664,6 +17690,7 @@ Regress: [mjsunit/regress/regress-5802.js](https://chromium.googlesource.com/v8/
   var b = {b};
   var u = %GetUndetectable();
 
+  %PrepareFunctionForOptimization(ne);
   assertFalse(ne(a, a));
   assertFalse(ne(b, b));
   assertTrue(ne(a, b));
@@ -17678,6 +17705,7 @@ Regress: [mjsunit/regress/regress-5802.js](https://chromium.googlesource.com/v8/
   assertTrue(ne(a, b));
   assertTrue(ne(b, a));
   assertFalse(ne(null, u));
+  %PrepareFunctionForOptimization(ne);
   assertFalse(ne(undefined, u));
   assertFalse(ne(u, null));
   assertFalse(ne(u, undefined));
@@ -17766,10 +17794,12 @@ function foo(a) {
   if (a) return arguments[1];
 }
 
+%PrepareFunctionForOptimization(foo);
 foo(false);
 foo(false);
 %OptimizeFunctionOnNextCall(foo);
 foo(true, 1);
+%PrepareFunctionForOptimization(foo);
 foo(true, 1);
 %OptimizeFunctionOnNextCall(foo);
 foo(false);

@@ -11839,6 +11839,7 @@ var f2 = (function() {
   function f(a) { return a || g(); }
   return f;
 })();
+%PrepareFunctionForOptimization(f2);
 assertTrue(f2(true));
 %OptimizeFunctionOnNextCall(f2);
 assertTrue(f2(true));  
@@ -11947,6 +11948,7 @@ function run_close_to_stack_limit(f) {
 }
 
 var boom = module().f;
+%PrepareFunctionForOptimization(boom);
 %OptimizeFunctionOnNextCall(boom)
 run_close_to_stack_limit(boom);  
 ```  
@@ -13033,6 +13035,7 @@ Code Review: [https://codereview.chromium.org/1228113008](https://codereview.chr
 Regress: [mjsunit/regress/regress-crbug-510738.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-510738.js)  
 ```javascript
 function check(f, result) {
+  %PrepareFunctionForOptimization(f);
   %OptimizeFunctionOnNextCall(f);
   assertEquals(result, f());
 }
@@ -14514,6 +14517,7 @@ var f = (function(v) {
   };
 })(get_thrower()).fun;
 
+%PrepareFunctionForOptimization(f);
 %OptimizeFunctionOnNextCall(f);
 f();  
 ```  
@@ -14549,6 +14553,7 @@ function foo(a) {
   }
 }
 
+%PrepareFunctionForOptimization(foo);
 foo([1,2]);
 foo([2,3]);
 %OptimizeFunctionOnNextCall(foo);
@@ -16771,6 +16776,7 @@ function f(a, i, bool) {
   }
   return result;
 }
+%PrepareFunctionForOptimization(f);
 
 function f2(a, c, x, i, d) {
   return a[x + c] + a[x - 0] + a[i - d];

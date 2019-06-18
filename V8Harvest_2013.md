@@ -36,6 +36,7 @@ f(30, o3);
 f(100000, o3);
 
 o2.a = 5;
+%PrepareFunctionForOptimization(f);
 
 %OptimizeFunctionOnNextCall(f);
 f(10, o3);
@@ -1101,6 +1102,7 @@ function prepare(base) {
   right = 0.5 * base;
 }
 
+%PrepareFunctionForOptimization(foo);
 prepare(21);
 assertEquals("ok", foo());
 assertEquals("ok", foo());
@@ -1322,6 +1324,7 @@ assertEquals(e31, -e31*(-1));
 
 var x = {toString : function() {return 1}}
 function add(a,b){return a+b;}
+%PrepareFunctionForOptimization(add);
 add(1,x);
 add(1,x);
 %OptimizeFunctionOnNextCall(add);
@@ -1369,6 +1372,7 @@ function test(fun,check_fun,a,b,does_throw) {
 function minus(a,b) { return a-b };
 function check_minus(a,b) { return a-b };
 function mod(a,b) { return a%b };
+%PrepareFunctionForOptimization(mod);
 function check_mod(a,b) { return a%b };
 
 test(minus,check_minus,1,2);
@@ -1400,16 +1404,20 @@ test(mod,check_mod,1,2);
 test(mod,check_mod,1,2);
 
 test(mod,check_mod,1<<30,1);
+%PrepareFunctionForOptimization(mod);
 %OptimizeFunctionOnNextCall(mod);
 test(mod,check_mod,1<<30,1);
 test(mod,check_mod,1,1<<30);
+%PrepareFunctionForOptimization(mod);
 %OptimizeFunctionOnNextCall(mod);
 test(mod,check_mod,1,1<<30);
 test(mod,check_mod,1<<30,-(1<<30));
+%PrepareFunctionForOptimization(mod);
 %OptimizeFunctionOnNextCall(mod);
 test(mod,check_mod,1<<30,-(1<<30));
 
 test(mod,check_mod,1,{},2);
+%PrepareFunctionForOptimization(mod);
 %OptimizeFunctionOnNextCall(mod);
 test(mod,check_mod,1,{},2);
 
@@ -1446,6 +1454,7 @@ function string_add(a,i) {
   var d = [0.1, ,0.3];
   return a + d[i];
 }
+%PrepareFunctionForOptimization(string_add);
 
 string_add(1.1, 0);
 string_add("", 0);
@@ -2111,6 +2120,7 @@ function f(a, i, l) {
   return l + v;
 }
 
+%PrepareFunctionForOptimization(f);
 assertEquals("test1.5", f(a, 0, "test"));
 assertEquals("test1.5", f(a, 0, "test"));
 %OptimizeFunctionOnNextCall(f);
@@ -2127,6 +2137,7 @@ function f2(b, a1, a2) {
   return "test" + v + x;
 }
 
+%PrepareFunctionForOptimization(f2);
 f2(true, [1.4,1.8,,1.9], [1.4,1.8,,1.9]);
 f2(true, [1.4,1.8,,1.9], [1.4,1.8,,1.9]);
 f2(false, [1.4,1.8,,1.9], [1.4,1.8,,1.9]);
@@ -2138,6 +2149,7 @@ function t_smi(a) {
   a[0] = 1.5;
 }
 
+%PrepareFunctionForOptimization(t_smi);
 t_smi([1,,3]);
 t_smi([1,,3]);
 t_smi([1,,3]);
@@ -2151,6 +2163,7 @@ function t(b) {
   b[1] = {};
 }
 
+%PrepareFunctionForOptimization(t);
 t([1.4, 1.6,,1.8, NaN]);
 t([1.4, 1.6,,1.8, NaN]);
 %OptimizeFunctionOnNextCall(t);
@@ -2209,6 +2222,7 @@ Code Review: [https://codereview.chromium.org/23075003](https://codereview.chrom
 Regress: [mjsunit/regress/regress-phi-truncation.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-phi-truncation.js)  
 ```javascript
 function test(fun, expectation) {
+  %PrepareFunctionForOptimization(fun);
   assertEquals(1, fun(1));
   %OptimizeFunctionOnNextCall(fun);
   assertEquals(expectation, fun(0));
@@ -2332,6 +2346,7 @@ function g() {
 }
 
 var fun = g();
+%PrepareFunctionForOptimization(fun);
 fun(false, c);
 fun(false, c);
 fun(false, c);
@@ -2410,6 +2425,7 @@ function f(o, a) {
   return v;
 }
 
+%PrepareFunctionForOptimization(f);
 f({y:1.4}, [1]);
 f({y:1.6}, [1]);
 %OptimizeFunctionOnNextCall(f);
@@ -2428,6 +2444,7 @@ function f2(o) {
 var o1 = { x: 1.5 };
 var o2 = { y: 1, x: 1 };
 
+%PrepareFunctionForOptimization(f2);
 f2(o1);
 f2(o1);
 f2(o2);
@@ -3458,6 +3475,7 @@ function f_store(test, test2, a, i) {
 }
 
 var a1 = [0, 0, 0, {}];
+%PrepareFunctionForOptimization(f_store);
 f_store(true, false, a1, 0);
 f_store(true, true, a1, 0);
 f_store(false, false, a1, 1);
@@ -3487,6 +3505,7 @@ function f_call(f, test, test2, i) {
   return d;
 }
 
+%PrepareFunctionForOptimization(f_call);
 f_call(test_arg(1.5), true, false, 0);
 f_call(test_arg(2.5), true, true, 0);
 f_call(test_arg(1), false, false, 1);
@@ -3515,6 +3534,7 @@ function f_external(test, test2, test3, a, i) {
 }
 
 var a2 = new Int32Array(10);
+%PrepareFunctionForOptimization(f_external);
 f_external(true, false, true, a2, 0);
 f_external(true, true, true, a2, 0);
 f_external(false, false, true, a2, 1);
@@ -5240,6 +5260,7 @@ Regress: [mjsunit/regress/regress-crbug-163530.js](https://chromium.googlesource
     return arguments.length;
   };
 
+  %PrepareFunctionForOptimization(object.a);
   assertSame(0, object.a());
   assertSame(0, object.a());
   %OptimizeFunctionOnNextCall(object.a);
@@ -5265,6 +5286,7 @@ Regress: [mjsunit/regress/regress-crbug-163530.js](https://chromium.googlesource
     return arguments.length;
   };
 
+  %PrepareFunctionForOptimization(object.a);
   assertSame(8, object.a());
   assertSame(8, object.a());
   %OptimizeFunctionOnNextCall(object.a);
