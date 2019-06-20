@@ -14960,6 +14960,8 @@ function foo() {
 
 let g1 = foo();
 let g2 = foo();
+%PrepareFunctionForOptimization(g1);
+%PrepareFunctionForOptimization(g2);
 
 g1({ f : 1});
 g1({ f : 2});
@@ -15957,6 +15959,7 @@ var foo = (function() {
   return function() { o.x = null; }
 })();
 
+%PrepareFunctionForOptimization(foo);
 %OptimizeFunctionOnNextCall(foo);
 foo();  
 ```  

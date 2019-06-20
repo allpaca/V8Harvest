@@ -2173,6 +2173,7 @@ function f() {
 
 function g() {
   try { f(); } catch(e) { }
+  %PrepareFunctionForOptimization(g);
   for (var i = 0; i < 3; ++i) if (i === 1) %OptimizeOsr();
   %_DeoptimizeNow();
 }
@@ -3240,6 +3241,7 @@ function foo(a) {
   return sum;
 }
 
+%PrepareFunctionForOptimization(foo);
 assertEquals("0a", foo());
 assertEquals("0a", foo());
 %OptimizeFunctionOnNextCall(foo);
@@ -8744,6 +8746,7 @@ function f() {
       sum = sum + 1;
       %OptimizeOsr();
       if (sum == 2) return;
+      %PrepareFunctionForOptimization(f);
     }
   }
   return sum;
@@ -9067,6 +9070,7 @@ Regress: [mjsunit/regress/regress-crbug-631027.js](https://chromium.googlesource
 function f() {
   with ({ value:"foo" }) { return value; }
 }
+%PrepareFunctionForOptimization(f);
 assertEquals("foo", f());
 %OptimizeFunctionOnNextCall(f);
 assertEquals("foo", f());  
@@ -15821,7 +15825,10 @@ Regress: [mjsunit/compiler/regress-607493.js](https://chromium.googlesource.com/
   function g() {
     for (var x in a) {
       try {
-        for (var i = 0; i < 10; i++) { %OptimizeOsr(); }
+        for (var i = 0; i < 10; i++) {
+          %OptimizeOsr();
+          %PrepareFunctionForOptimization(g);
+        }
         return;
       } catch(e) {
         continue;
@@ -15839,7 +15846,10 @@ Regress: [mjsunit/compiler/regress-607493.js](https://chromium.googlesource.com/
   function g() {
     for (var x in a) {
       if (x) {
-        for (var i = 0; i < 10; i++) { %OptimizeOsr(); }
+        for (var i = 0; i < 10; i++) {
+          %OptimizeOsr();
+          %PrepareFunctionForOptimization(g);
+        }
       }
       continue;
     }

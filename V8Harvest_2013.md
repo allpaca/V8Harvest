@@ -3076,6 +3076,7 @@ if (!%IsConcurrentRecompilationSupported()) {
 }
 
 function test(fun) {
+  %PrepareFunctionForOptimization(fun);
   fun();
   fun();
   // Mark for concurrent optimization.
@@ -4225,7 +4226,10 @@ assertFalse(isAlwaysOptimize());
 function f() {
   do {
     do {
-      for (var i = 0; i < 10; i++) %OptimizeOsr();
+      for (var i = 0; i < 10; i++) {
+        %OptimizeOsr();
+        %PrepareFunctionForOptimization(f);
+      }
       // Note: this check can't be wrapped in a function, because
       // calling that function causes a deopt from lack of call
       // feedback.
@@ -4257,7 +4261,10 @@ function g() {
             do {
               do {
                 do {
-                  for (var i = 0; i < 10; i++) %OptimizeOsr();
+                  for (var i = 0; i < 10; i++) {
+                    %OptimizeOsr();
+                    %PrepareFunctionForOptimization(g);
+                  }
                   var opt_status = %GetOptimizationStatus(g);
                   assertTrue(
                     (opt_status & V8OptimizationStatus.kMaybeDeopted) !== 0 ||
@@ -4802,10 +4809,13 @@ function f() {
   r[r] = function() {};
 }
 
-for (var i = 0; i < 300; i++) {
-  f();
-  if (i == 150) %OptimizeOsr();
-}  
+function g() {
+  for (var i = 0; i < 300; i++) {
+    f();
+    if (i == 150) %OptimizeOsr();
+  }
+}
+%PrepareFunctionForOptimization(g);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a942fcd^!)  

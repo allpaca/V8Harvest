@@ -903,6 +903,7 @@ function f(foo) {
   if (null != g) {}
 };
 
+%PrepareFunctionForOptimization(f);
 f(1.4);
 f(1.4);
 %OptimizeFunctionOnNextCall(f);
@@ -2648,7 +2649,7 @@ function g(obj) {
   return obj.foo.length;
 }
 
-%PrepareFunctionForOptimization(f);
+%PrepareFunctionForOptimization(g);
 g(dummy);
 g(dummy);
 %OptimizeFunctionOnNextCall(g);
@@ -5929,6 +5930,7 @@ function f(o) {
   return result;
 }
 
+%PrepareFunctionForOptimization(f);
 f(o);
 f(o);
 %OptimizeFunctionOnNextCall(f);
@@ -8021,14 +8023,15 @@ function get_closure() {
     return x;
   }
 }
-%PrepareFunctionForOptimization(get_closure);
 var f1 = get_closure();
+%PrepareFunctionForOptimization(f1);
 f1(new Ctor(), false);
 f1(new Ctor(), false);
 
 %OptimizeFunctionOnNextCall(f1, "concurrent");
 
 var o = new Ctor();
+%PrepareFunctionForOptimization(f1);
 f1(o, true);
 
 %NotifyContextDisposed();
@@ -8036,6 +8039,7 @@ f1(o, true);
 o.c = 2.2;
 
 var f2 = get_closure();
+%PrepareFunctionForOptimization(f2);
 f2(new Ctor(), true);  
 ```  
   

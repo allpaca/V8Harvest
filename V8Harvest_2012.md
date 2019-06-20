@@ -1590,7 +1590,10 @@ Regress: [mjsunit/regress/regress-crbug-150545.js](https://chromium.googlesource
 
   function outer() {
     inner(1,2,3);
-    for (var i = 0; i < 3; i++) %OptimizeOsr();
+    for (var i = 0; i < 3; i++) {
+      %OptimizeOsr();
+      %PrepareFunctionForOptimization(outer);
+    }
   }
   %PrepareFunctionForOptimization(outer);
 
