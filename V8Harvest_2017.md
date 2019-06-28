@@ -344,7 +344,7 @@ assertEquals(undefined, f());
 
 ---   
 
-## **regress-791334.js (chromium issue)**  
+## **regress-791334.mjs (chromium issue)**  
    
 **[Issue 791334:
  `this` in top level Arrow Function in Module Context should be `undefined`](https://crbug.com/791334)**  
@@ -354,7 +354,7 @@ Date(Commit): Tue Dec 12 12:09:49 2017
 Components/Type: Blink>JavaScript>Language/Bug  
 Labels: ["Via-Wizard-Javascript"]  
 Code Review: [https://chromium-review.googlesource.com/808938](https://chromium-review.googlesource.com/808938)  
-Regress: [mjsunit/regress/regress-791334.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-791334.js)  
+Regress: [mjsunit/regress/regress-791334.mjs](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-791334.mjs)  
 ```javascript
 let foo = () => { return this };
 assertEquals(undefined, foo());  
@@ -6586,7 +6586,7 @@ try {
 
 ---   
 
-## **regress-6681.js (v8 issue)**  
+## **regress-6681.mjs (v8 issue)**  
    
 **[Issue 6681:
  ValidateAndApplyPropertyDescriptor does not always honor its ShouldThrow mode](https://crbug.com/v8/6681)**  
@@ -6595,9 +6595,9 @@ try {
 Date(Commit): Wed Aug 09 09:01:39 2017  
 Type: Bug  
 Code Review: [https://chromium-review.googlesource.com/606027](https://chromium-review.googlesource.com/606027)  
-Regress: [mjsunit/regress/regress-6681.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6681.js)  
+Regress: [mjsunit/regress/regress-6681.mjs](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6681.mjs)  
 ```javascript
-import * as ns from "./regress-6681.js";
+import * as ns from "./regress-6681.mjs";
 export var foo;
 
 assertEquals(false, Reflect.defineProperty(ns, 'foo', {value: 123}));  
@@ -6632,7 +6632,7 @@ for (let val of values) {
   var proto = Object.getPrototypeOf(val);
 
   var proxy = new Proxy({}, {});
-  Object.setPrototypeOf(proto, proxy);
+  Object.setPrototypeOf(proxy, proto);
 }  
 ```  
   
