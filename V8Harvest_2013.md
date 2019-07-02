@@ -688,8 +688,8 @@ read(a, 0);
 read(a, 0);
 %OptimizeFunctionOnNextCall(read);
 
-for (var i = 0; i > -1000000; --i) {
-  read(a, i);
+for (var i = 0; i > -100000; i -= 987) {
+  assertEquals(0, read(a, i));
 }  
 ```  
   
