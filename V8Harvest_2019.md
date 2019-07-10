@@ -1564,7 +1564,7 @@ Regress: [mjsunit/regress/regress-8630.js](https://chromium.googlesource.com/v8/
 ```javascript
 assertThrows("( ({x: 1}) ) => {};", SyntaxError);
 assertThrows("( (x) ) => {}", SyntaxError);
-assertThrows("( ({x: 1}) = y ) => {}", ReferenceError);
+assertThrows("( ({x: 1}) = y ) => {}", SyntaxError);
 assertThrows("( (x) = y ) => {}", SyntaxError);
 
 assertThrows("let [({x: 1})] = [];", SyntaxError);
@@ -1576,8 +1576,8 @@ assertThrows("var [(x)] = [];", SyntaxError);
 assertThrows("var [({x: 1}) = y] = [];", SyntaxError);
 assertThrows("var [(x) = y] = [];", SyntaxError);
 
-assertThrows("[({x: 1}) = y] = [];", ReferenceError);
-assertThrows("({a,b}) = {a:2,b:3}", ReferenceError);
+assertThrows("[({x: 1}) = y] = [];", SyntaxError);
+assertThrows("({a,b}) = {a:2,b:3}", SyntaxError);
 
 var x;
 [(x)] = [2];

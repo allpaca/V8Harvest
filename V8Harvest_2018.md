@@ -2274,7 +2274,7 @@ Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Stability-UndefinedB
 Code Review: [https://chromium-review.googlesource.com/c/1310294](https://chromium-review.googlesource.com/c/1310294)  
 Regress: [mjsunit/regress/regress-900585.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-900585.js)  
 ```javascript
-assertThrows("/*for..in*/for(var [x5, functional] = this = function(id) { return id } in false) var x2, x;", ReferenceError);  
+assertThrows("/*for..in*/for(var [x5, functional] = this = function(id) { return id } in false) var x2, x;", SyntaxError);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/9bd6e60^!)  
