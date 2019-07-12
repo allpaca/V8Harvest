@@ -4321,7 +4321,10 @@ Regress: [mjsunit/regress/regress-379770.js](https://chromium.googlesource.com/v
 ```javascript
 function foo(obj) {
   var counter = 1;
-  for (var i = 0; i < obj.length; i++) %OptimizeOsr();
+  for (var i = 0; i < obj.length; i++) {
+    %OptimizeOsr();
+    %PrepareFunctionForOptimization(foo);
+  }
   counter += obj;
   return counter;
 }
@@ -9181,6 +9184,7 @@ function f() {
   %SetAllocationTimeout(-1, -1, true);
 }
 
+%PrepareFunctionForOptimization(f);
 f();
 f();
 %OptimizeFunctionOnNextCall(f);

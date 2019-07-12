@@ -9611,6 +9611,7 @@ gc();  // Make sure that ...
 gc();  // ... code flushing ...
 gc();  // ... clears code ...
 gc();  // ... attached to {g}.
+%PrepareFunctionForOptimization(f);
 f();  
 ```  
   
@@ -10385,6 +10386,7 @@ Regress: [mjsunit/regress/regress-5252.js](https://chromium.googlesource.com/v8/
   }
   %PrepareFunctionForOptimization(f);
   assertEquals(23, f());
+  %PrepareFunctionForOptimization(f);
   assertEquals(23, f());
 })();
 
