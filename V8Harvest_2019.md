@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-bind-deoptimize.js (other issue)**  
+   
+**[Commit: [turbofan] Fix wrong serialization for Function.bind](https://chromium.googlesource.com/v8/v8/+/d978b5c)**  
+  
+Date(Commit): Tue Jul 30 07:55:12 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1722566](https://chromium-review.googlesource.com/c/v8/v8/+/1722566)  
+Regress: [mjsunit/regress/regress-bind-deoptimize.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-bind-deoptimize.js)  
+```javascript
+(function() {
+  function bla(x) {
+    return this[x];
+  }
+
+  function foo(f) {
+    return bla.bind(f())(0);
+  };
+
+  %PrepareFunctionForOptimization(foo);
+  foo(() => { return [true]; });
+  foo(() => { return [true]; });
+  %OptimizeFunctionOnNextCall(foo);
+  foo(() => { return [true]; });
+  assertOptimized(foo);
+  foo(() => { bla.a = 1; return [true]; });
+  assertUnoptimized(foo);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d978b5c^!)  
+[test/mjsunit/regress/regress-bind-deoptimize.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-bind-deoptimize.js?cl=d978b5c)  
+  
+  
+---   
+
 ## **regress-sealedarray-store-outofbounds.js (other issue)**  
    
 **[Commit: Sealed array should handle store out of bounds in optimized code](https://chromium.googlesource.com/v8/v8/+/e69460e)**  
