@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-inlining-printing.js (other issue)**  
+   
+**[Commit: [turbofan] Fix crash with --trace-turbo-inlining](https://chromium.googlesource.com/v8/v8/+/5a624dc)**  
+  
+Date(Commit): Thu Aug 01 12:56:05 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1731003](https://chromium-review.googlesource.com/c/v8/v8/+/1731003)  
+Regress: [mjsunit/regress/regress-inlining-printing.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-inlining-printing.js)  
+```javascript
+function f() {}
+function g() {}
+function h() {}
+
+function test(n) {
+  h;
+  (n == 0 ? f : (n > 0 ? g : h))();
+}
+
+%EnsureFeedbackVectorForFunction(f);
+%EnsureFeedbackVectorForFunction(g);
+
+%PrepareFunctionForOptimization(test);
+test(0);
+test(1);
+%OptimizeFunctionOnNextCall(test);
+test(0);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/5a624dc^!)  
+[src/compiler/js-inlining-heuristic.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-inlining-heuristic.cc?cl=5a624dc)  
+[test/mjsunit/regress/regress-inlining-printing.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-inlining-printing.js?cl=5a624dc)  
+  
+  
+---   
+
 ## **regress-bind-deoptimize.js (other issue)**  
    
 **[Commit: [turbofan] Fix wrong serialization for Function.bind](https://chromium.googlesource.com/v8/v8/+/d978b5c)**  
