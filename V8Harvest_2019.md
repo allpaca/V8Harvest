@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-nonextensiblearray-store-outofbounds.js (other issue)**  
+   
+**[Commit: Add new nonextensible element kinds](https://chromium.googlesource.com/v8/v8/+/1f4bec2)**  
+  
+Date(Commit): Wed Aug 28 17:24:49 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1760976](https://chromium-review.googlesource.com/c/v8/v8/+/1760976)  
+Regress: [mjsunit/compiler/regress-nonextensiblearray-store-outofbounds.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-nonextensiblearray-store-outofbounds.js)  
+```javascript
+const v3 = [0,"symbol"];
+const v5 = 0 - 1;
+const v6 = Object.preventExtensions(v3);
+let v9 = 0;
+function f1() {
+  v6[119090556] = v5;
+}
+%PrepareFunctionForOptimization(f1);
+f1();
+%OptimizeFunctionOnNextCall(f1);
+f1();
+assertOptimized(f1);
+assertEquals(v6.length, 2);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1f4bec2^!)  
+[src/builtins/base.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/base.tq?cl=1f4bec2)  
+[src/builtins/builtins-array-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-array-gen.cc?cl=1f4bec2)  
+[src/builtins/builtins-array.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-array.cc?cl=1f4bec2)  
+[src/builtins/builtins-call-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-call-gen.cc?cl=1f4bec2)  
+[src/builtins/builtins-handler-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-handler-gen.cc?cl=1f4bec2)  
+...  
+  
+  
+---   
+
 ## **regress-inlining-printing.js (other issue)**  
    
 **[Commit: [turbofan] Fix crash with --trace-turbo-inlining](https://chromium.googlesource.com/v8/v8/+/5a624dc)**  
