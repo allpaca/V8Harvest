@@ -2,6 +2,54 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1000635.js (other issue)**  
+   
+**[Commit: Correctly handlify two frame {Summarize} methods](https://chromium.googlesource.com/v8/v8/+/fba03ab)**  
+  
+Date(Commit): Thu Sep 05 15:42:59 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1787429](https://chromium-review.googlesource.com/c/v8/v8/+/1787429)  
+Regress: [mjsunit/regress/regress-1000635.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1000635.js)  
+```javascript
+function add(a, b) {
+  throw new Error();
+}
+for (let i = 0; i < 100; ++i) {
+  try {
+    add(1, 2);
+  } catch (e) {
+  }
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/fba03ab^!)  
+[src/execution/frames.cc](https://cs.chromium.org/chromium/src/v8/src/execution/frames.cc?cl=fba03ab)  
+[test/mjsunit/regress/regress-1000635.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1000635.js?cl=fba03ab)  
+  
+  
+---   
+
+## **regress-crbug-1000170.js (other issue)**  
+   
+**[Commit: [parser] Don't mark const variables as assigned](https://chromium.googlesource.com/v8/v8/+/a35a705)**  
+  
+Date(Commit): Thu Sep 05 14:44:29 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1782170](https://chromium-review.googlesource.com/c/v8/v8/+/1782170)  
+Regress: [mjsunit/regress/regress-crbug-1000170.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1000170.js)  
+```javascript
+(function a() {
+  function b() { a(); }
+  function c() { eval(); }
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a35a705^!)  
+[src/ast/variables.h](https://cs.chromium.org/chromium/src/v8/src/ast/variables.h?cl=a35a705)  
+[test/mjsunit/regress/regress-crbug-1000170.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1000170.js?cl=a35a705)  
+[test/mjsunit/regress/regress-crbug-999450.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-999450.js?cl=a35a705)  
+  
+  
+---   
+
 ## **regress-nonextensiblearray-store-outofbounds.js (other issue)**  
    
 **[Commit: Add new nonextensible element kinds](https://chromium.googlesource.com/v8/v8/+/1f4bec2)**  
