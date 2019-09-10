@@ -2,6 +2,39 @@
 The Harvest of V8 regress in 2012.  
   
 
+## **regress-164442.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/164442)**  
+**[Commit: Fix x64 MathMinMax for negative untagged int32 arguments.](https://chromium.googlesource.com/v8/v8/+/b64f834)**  
+  
+Date(Commit): Fri Dec 21 17:52:00 2012  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromiumcodereview.appspot.com/11665007](https://chromiumcodereview.appspot.com/11665007)  
+Regress: [mjsunit/regress/regress-164442.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-164442.js)  
+```javascript
+function ensureNotNegative(x) {
+  return Math.max(0, x | 0);
+};
+%PrepareFunctionForOptimization(ensureNotNegative);
+
+ensureNotNegative(1);
+ensureNotNegative(2);
+
+%OptimizeFunctionOnNextCall(ensureNotNegative);
+
+var r = ensureNotNegative(-1);
+
+assertEquals(0, r);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b64f834^!)  
+[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=b64f834)  
+[test/mjsunit/regress/regress-164442.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-164442.js?cl=b64f834)  
+  
+
+---   
+
 ## **regress-166379.js (chromium issue)**  
    
 **[Issue 166379:
@@ -2908,6 +2941,52 @@ assertSame(23, o.x = 23);
 
 ---   
 
+## **regress-crbug-135066.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/135066)**  
+**[Commit: Fix lazy compilation for strict eval scopes.](https://chromium.googlesource.com/v8/v8/+/7da6d2b)**  
+  
+Date(Commit): Tue Jul 03 08:41:13 2012  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromiumcodereview.appspot.com/10704058](https://chromiumcodereview.appspot.com/10704058)  
+Regress: [mjsunit/regress/regress-crbug-135066.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-135066.js)  
+```javascript
+var filler = "//" + new Array(1024).join('x');
+
+assertEquals(23, eval(
+  "'use strict';" +
+  "var x = 23;" +
+  "var f = function bozo1() {" +
+  "  return x;" +
+  "};" +
+  "assertSame(23, f());" +
+  "f;" +
+  filler
+)());
+
+assertEquals(42, (function() {
+  "use strict";
+  return eval(
+    "var y = 42;" +
+    "var g = function bozo2() {" +
+    "  return y;" +
+    "};" +
+    "assertSame(42, g());" +
+    "g;" +
+    filler
+  )();
+})());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7da6d2b^!)  
+[src/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/scopes.cc?cl=7da6d2b)  
+[src/scopes.h](https://cs.chromium.org/chromium/src/v8/src/scopes.h?cl=7da6d2b)  
+[test/mjsunit/regress/regress-crbug-135066.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-135066.js?cl=7da6d2b)  
+  
+
+---   
+
 ## **regress-crbug-135008.js (chromium issue)**  
    
 **[Issue 135008:
@@ -3019,6 +3098,60 @@ assertEquals(expected, closure2(true));
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=84b866b)  
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=84b866b)  
 ...  
+  
+
+---   
+
+## **regress-crbug-134055.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/134055)**  
+**[Commit: Make near-jump check more strict in LoadNamedFieldPolymorphic on ia32/x64](https://chromium.googlesource.com/v8/v8/+/9ce4133)**  
+  
+Date(Commit): Fri Jun 22 13:38:39 2012  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromiumcodereview.appspot.com/10630027](https://chromiumcodereview.appspot.com/10630027)  
+Regress: [mjsunit/regress/regress-crbug-134055.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-134055.js)  
+```javascript
+function crash(obj) {
+  return obj.foo;
+};
+%PrepareFunctionForOptimization(crash);
+function base(number_of_properties) {
+  var result = new Array();
+  for (var i = 0; i < number_of_properties; i++) {
+    result["property" + i] = "value" + i;
+  }
+  result.foo = number_of_properties;
+  return result;
+}
+
+var a = base(12);
+var b = base(13);
+var c = base(14);
+var d = base(15);
+
+crash(a);  // Premonomorphic.
+crash(a);
+crash(b);
+crash(c);
+crash(d);  // Polymorphic, degree 4.
+
+var x = base(13);
+x[0] = "object";
+x = base(14);
+x[0] = "object";
+x = base(15);
+x[0] = "object";
+
+%OptimizeFunctionOnNextCall(crash);
+crash(a);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9ce4133^!)  
+[src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=9ce4133)  
+[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=9ce4133)  
+[test/mjsunit/regress/regress-crbug-134055.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-134055.js?cl=9ce4133)  
   
 
 ---   

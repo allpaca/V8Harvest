@@ -2,6 +2,44 @@
 The Harvest of V8 regress in 2013.  
   
 
+## **regress-318420.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/318420)**  
+**[Commit: ARM: fix loading of global object in LWrapReceiver.](https://chromium.googlesource.com/v8/v8/+/711bcbb)**  
+  
+Date(Commit): Fri Dec 27 14:38:00 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/121703002](https://codereview.chromium.org/121703002)  
+Regress: [mjsunit/regress/regress-318420.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-318420.js)  
+```javascript
+function bar(a, b) { with(a) {return a + b;} }
+
+var obj = {
+  functions: [bar, bar, bar, bar],
+  receivers: [bar, bar, undefined, null],
+  foo: function () {
+    for (var a = this.functions, e = this.receivers, c = a.length,
+         d = 0; d < c ; d++) {
+      a[d].apply(e[d], arguments)
+    }
+  }
+};
+
+%PrepareFunctionForOptimization(obj.foo);
+obj.foo(1, 2, 3, 4);
+obj.foo(1, 2, 3, 4);
+%OptimizeFunctionOnNextCall(obj.foo);
+obj.foo(1, 2, 3, 4);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/711bcbb^!)  
+[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=711bcbb)  
+[test/mjsunit/regress/regress-318420.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-318420.js?cl=711bcbb)  
+  
+
+---   
+
 ## **regress-330046.js (chromium issue)**  
    
 **[Issue 330046:
@@ -265,6 +303,42 @@ assertOptimized(g);
   
 ---   
 
+## **regress-323845.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/323845)**  
+**[Commit: Added regression test for escape analysis.](https://chromium.googlesource.com/v8/v8/+/75a84ec)**  
+  
+Date(Commit): Tue Dec 10 15:54:20 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/99133011](https://codereview.chromium.org/99133011)  
+Regress: [mjsunit/regress/regress-323845.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-323845.js)  
+```javascript
+function h() {
+  g.arguments;
+}
+
+function g(x) {
+  h();
+}
+
+function f() {
+  g({});
+};
+%PrepareFunctionForOptimization(f);
+f();
+f();
+f();
+%OptimizeFunctionOnNextCall(f);
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/75a84ec^!)  
+[test/mjsunit/regress/regress-323845.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-323845.js?cl=75a84ec)  
+  
+
+---   
+
 ## **regress-3039.js (v8 issue)**  
    
 **[Issue 3039:
@@ -464,6 +538,59 @@ Regress: [mjsunit/regress/regress-299979.js](https://chromium.googlesource.com/v
 
 ---   
 
+## **regress-crbug-323942.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/323942)**  
+**[Commit: Fix bug in inlining Function.apply.](https://chromium.googlesource.com/v8/v8/+/f235194)**  
+  
+Date(Commit): Thu Nov 28 15:30:17 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/95123003](https://codereview.chromium.org/95123003)  
+Regress: [mjsunit/regress/regress-crbug-323942.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-323942.js)  
+```javascript
+"use strict";
+
+var holder = {
+  f: function() {
+    return 42;
+  }
+};
+var receiver = {};
+receiver.__proto__ = {};
+receiver.__proto__.__proto__ = holder;
+
+function h(o) {
+  return o.f.apply(this, arguments);
+}
+function g(o) {
+  return h(o);
+}
+
+;
+%PrepareFunctionForOptimization(g);
+assertEquals(42, g(receiver));
+assertEquals(42, g(receiver));
+
+receiver.__proto__.__proto__ = {};
+
+%OptimizeFunctionOnNextCall(g);
+
+assertThrows(function() {
+  g(receiver);
+});
+
+receiver.__proto__.__proto__ = holder;
+assertEquals(42, g(receiver));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f235194^!)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=f235194)  
+[test/mjsunit/regress/regress-crbug-323942.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-323942.js?cl=f235194)  
+  
+
+---   
+
 ## **regress-324028.js (chromium issue)**  
    
 **[Issue 324028:
@@ -597,6 +724,43 @@ store([1], 1, 1);
 ...  
   
   
+---   
+
+## **regress-320532.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/320532)**  
+**[Commit: Bugfix: dependent code field in AllocationSite was keeping code objects alive even after context death.](https://chromium.googlesource.com/v8/v8/+/bff4148)**  
+  
+Date(Commit): Tue Nov 19 10:17:33 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/62803008](https://codereview.chromium.org/62803008)  
+Regress: [mjsunit/regress/regress-320532.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-320532.js)  
+```javascript
+function bar() { return new Array(); }
+%PrepareFunctionForOptimization(bar);
+bar();
+bar();
+%OptimizeFunctionOnNextCall(bar);
+a = bar();
+function foo(len) { return new Array(len); }
+%PrepareFunctionForOptimization(foo);
+foo(0);
+foo(0);
+%PrepareFunctionForOptimization(bar);
+%OptimizeFunctionOnNextCall(bar);
+foo(0);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/bff4148^!)  
+[src/heap.cc](https://cs.chromium.org/chromium/src/v8/src/heap.cc?cl=bff4148)  
+[src/mark-compact.cc](https://cs.chromium.org/chromium/src/v8/src/mark-compact.cc?cl=bff4148)  
+[src/objects-visiting-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects-visiting-inl.h?cl=bff4148)  
+[src/objects-visiting.h](https://cs.chromium.org/chromium/src/v8/src/objects-visiting.h?cl=bff4148)  
+[src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=bff4148)  
+...  
+  
+
 ---   
 
 ## **regress-3010.js (v8 issue)**  
@@ -833,6 +997,55 @@ print(add("a", 1));
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/2ee5aa9^!)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=2ee5aa9)  
 [test/mjsunit/regress/regress-crbug-318671.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-318671.js?cl=2ee5aa9)  
+  
+
+---   
+
+## **regress-298269.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/298269)**  
+**[Commit: Do not add values to HGraph in Lithium.](https://chromium.googlesource.com/v8/v8/+/bc4ad49)**  
+  
+Date(Commit): Fri Nov 08 14:16:34 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromiumcodereview.appspot.com/66693002](https://chromiumcodereview.appspot.com/66693002)  
+Regress: [mjsunit/regress/regress-298269.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-298269.js)  
+```javascript
+function Cb(a, trigger) {
+  var f, g;
+  for(f = a.length; f--;) {
+    g = a.charCodeAt(f);
+    // This will fail after OSR if Runtime_StringCharCodeAt is modified
+    // to iterates optimized frames and visit safepoint pointers.
+    if (g == "C".charCodeAt(0)) {
+      %OptimizeOsr();
+      %PrepareFunctionForOptimization(Cb);
+    }
+  }
+  return g;
+}
+
+var s1 = "long string to make cons string 1";
+var s2 = "long string to make cons string 2";
+%PrepareFunctionForOptimization(Cb);
+Cb(s1 + s2);
+%PrepareFunctionForOptimization(Cb);
+Cb(s1);
+var s3 = "string for triggering osr in Cb";
+%PrepareFunctionForOptimization(Cb);
+Cb(s3 + s3);
+%PrepareFunctionForOptimization(Cb);
+Cb(s1 + s2);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/bc4ad49^!)  
+[src/arm/lithium-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.cc?cl=bc4ad49)  
+[src/arm/lithium-arm.h](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-arm.h?cl=bc4ad49)  
+[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=bc4ad49)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=bc4ad49)  
+[src/hydrogen.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen.h?cl=bc4ad49)  
+...  
   
 
 ---   
@@ -1565,6 +1778,45 @@ assertOptimized(f);
 [test/mjsunit/regress/regress-store-uncacheable.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-store-uncacheable.js?cl=3f70c3b)  
   
   
+---   
+
+## **regress-crbug-280333.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/280333)**  
+**[Commit: Always visit branches during HGraph building](https://chromium.googlesource.com/v8/v8/+/2c9ac9c)**  
+  
+Date(Commit): Thu Aug 29 14:55:45 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/23623009](https://codereview.chromium.org/23623009)  
+Regress: [mjsunit/regress/regress-crbug-280333.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-280333.js)  
+```javascript
+function funky() { return false; }
+var global;
+
+function foo(x, fun) {
+  var a = x + 1;
+  var b = x + 2;  // Need another Simulate to fold the first one into.
+  global = true;  // Need a side effect to deopt to.
+  if (fun()) {
+    return a;
+  }
+  return 0;
+}
+
+%PrepareFunctionForOptimization(foo);
+assertEquals(0, foo(1, funky));
+assertEquals(0, foo(1, funky));
+%OptimizeFunctionOnNextCall(foo);
+assertEquals(0, foo(1, funky));
+assertEquals(2, foo(1, function() { return true; }));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2c9ac9c^!)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=2c9ac9c)  
+[test/mjsunit/regress/regress-crbug-280333.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-280333.js?cl=2c9ac9c)  
+  
+
 ---   
 
 ## **regress-2843.js (v8 issue)**  
@@ -2718,6 +2970,114 @@ assertEquals("ok", crash(1));
 
 ---   
 
+## **regress-crbug-263276.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/263276)**  
+**[Commit: Fix JSArray-specific length lookup in polymorphic array handling](https://chromium.googlesource.com/v8/v8/+/32e2e37)**  
+  
+Date(Commit): Thu Jul 25 15:04:21 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/20295005](https://codereview.chromium.org/20295005)  
+Regress: [mjsunit/regress/regress-crbug-263276.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-263276.js)  
+```javascript
+var array1 = [];
+array1.foo = true;
+
+var array2 = [];
+array2.bar = true;
+
+function bad(array) {
+  array[array.length] = 1;
+};
+%PrepareFunctionForOptimization(bad);
+bad(array1);
+bad(array1);
+bad(array2);  // Length is now 1.
+bad(array2);  // Length is now 2.
+%OptimizeFunctionOnNextCall(bad);
+bad(array2);  // Length is now 3.
+assertEquals(3, array2.length);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/32e2e37^!)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=32e2e37)  
+[test/mjsunit/regress/regress-crbug-263276.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-263276.js?cl=32e2e37)  
+  
+
+---   
+
+## **regress-247688.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/247688)**  
+**[Commit: ARM: Ensure space for lazy deoptimization before calling IC.](https://chromium.googlesource.com/v8/v8/+/b2dd5c6)**  
+  
+Date(Commit): Mon Jul 22 17:21:41 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromiumcodereview.appspot.com/19972002](https://chromiumcodereview.appspot.com/19972002)  
+Regress: [mjsunit/regress/regress-247688.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-247688.js)  
+```javascript
+var a = {};
+a.x = 1;
+a.y = 1.5;
+
+var b = {};
+b.x = 1.5;
+b.y = 1;
+
+var c = {};
+c.x = 1.5;
+
+var d = {};
+d.x = 1.5;
+
+var e = {};
+e.x = 1.5;
+
+var f = {};
+f.x = 1.5;
+
+var g = {};
+g.x = 1.5;
+
+var h = {};
+h.x = 1.5;
+
+var i = {};
+i.x = 1.5;
+
+var o = {};
+var p = {y: 10, z: 1};
+o.__proto__ = p;
+delete p.z;
+
+function foo(v, w) {
+  // Make load via IC in optimized code. Its target will get overwritten by
+  // lazy deopt patch for the stack check.
+  v.y;
+  // Make store with transition to make this code dependent on the map.
+  w.y = 1;
+  return b.y;
+};
+%PrepareFunctionForOptimization(foo);
+foo(o, c);
+foo(o, d);
+foo(o, e);
+%OptimizeFunctionOnNextCall(foo);
+foo(b, f);
+foo(b, g);
+foo(b, h);
+foo(a, i);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b2dd5c6^!)  
+[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=b2dd5c6)  
+[test/mjsunit/regress/regress-247688.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-247688.js?cl=b2dd5c6)  
+  
+
+---   
+
 ## **regress-deopt-store-effect.js (other issue)**  
    
 **[Commit: Fix deopt in store with effect context.](https://chromium.googlesource.com/v8/v8/+/88a4b0d)**  
@@ -3215,6 +3575,65 @@ assertThrows('(function*() { yield* undefined })().next()', TypeError);
 
 ---   
 
+## **regress-crbug-245480.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/245480)**  
+**[Commit: Fix for bug 245480. Calling new Array(a) with a single argument could result in creating a holey array with a packed elements kind.](https://chromium.googlesource.com/v8/v8/+/75afb8c)**  
+  
+Date(Commit): Wed Jun 12 18:04:16 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/16341004](https://codereview.chromium.org/16341004)  
+Regress: [mjsunit/regress/regress-crbug-245480.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-245480.js)  
+```javascript
+function isHoley(obj) {
+  if (%HasHoleyElements(obj)) return true;
+  return false;
+}
+
+function assertHoley(obj, name_opt) {
+  assertEquals(true, isHoley(obj), name_opt);
+}
+
+function create_array(arg) {
+  return new Array(arg);
+};
+%PrepareFunctionForOptimization(create_array);
+obj = create_array(0);
+assertHoley(obj);
+create_array(0);
+%OptimizeFunctionOnNextCall(create_array);
+obj = create_array(10);
+assertHoley(obj);
+
+function f(length) {
+  return new Array(length);
+};
+%PrepareFunctionForOptimization(f);
+f(0);
+f(0);
+%OptimizeFunctionOnNextCall(f);
+var a = f(10);
+
+function g(a) {
+  return a[0];
+}
+
+var b = [0];
+g(b);
+g(b);
+assertEquals(undefined, g(a));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/75afb8c^!)  
+[src/arm/lithium-codegen-arm.cc](https://cs.chromium.org/chromium/src/v8/src/arm/lithium-codegen-arm.cc?cl=75afb8c)  
+[src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=75afb8c)  
+[src/x64/lithium-codegen-x64.cc](https://cs.chromium.org/chromium/src/v8/src/x64/lithium-codegen-x64.cc?cl=75afb8c)  
+[test/mjsunit/regress/regress-crbug-245480.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-245480.js?cl=75afb8c)  
+  
+
+---   
+
 ## **regress-2132.js (v8 issue)**  
    
 **[Issue 2132:
@@ -3256,6 +3675,35 @@ assertOptimized(div);
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=9447014)  
 [src/ia32/lithium-codegen-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/ia32/lithium-codegen-ia32.cc?cl=9447014)  
 ...  
+  
+
+---   
+
+## **regress-crbug-248025.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/248025)**  
+**[Commit: Fix crasher when checking for "of", but next token has no literal buffer](https://chromium.googlesource.com/v8/v8/+/f68d6a1)**  
+  
+Date(Commit): Tue Jun 11 11:30:03 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/16549003](https://codereview.chromium.org/16549003)  
+Regress: [mjsunit/es6/regress/regress-crbug-248025.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-crbug-248025.js)  
+```javascript
+var filler = "//" + new Array(1024).join('x');
+
+try {
+  eval(filler + "\nfunction f() { for (x : y) { } }");
+  throw "not reached";
+} catch (e) {
+  if (!(e instanceof SyntaxError)) throw e;
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f68d6a1^!)  
+[src/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/preparser.cc?cl=f68d6a1)  
+[src/scanner.h](https://cs.chromium.org/chromium/src/v8/src/scanner.h?cl=f68d6a1)  
+[test/mjsunit/regress/regress-crbug-248025.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-248025.js?cl=f68d6a1)  
   
 
 ---   
@@ -4792,6 +5240,121 @@ assertTrue(isNaN(boom(0)));
 
 ---   
 
+## **regress-2564.js (v8 issue)**  
+   
+**[No Permission](https://crbug.com/v8/2564)**  
+**[Commit: Stack trace API: poison stack frames below the first strict mode frame.](https://chromium.googlesource.com/v8/v8/+/9155d20)**  
+  
+Date(Commit): Thu Mar 28 10:40:07 2013  
+Type: None  
+Code Review: [https://chromiumcodereview.appspot.com/13150003](https://chromiumcodereview.appspot.com/13150003)  
+Regress: [mjsunit/regress/regress-2564.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-2564.js)  
+```javascript
+var o = [ function f0() { throw new Error(); },
+          function f1() { o[0](); },
+          function f2() { o[1](); },
+          function f3() { o[2](); } ];
+
+Error.prepareStackTrace = function(error, frames) {
+  Error.prepareStackTrace = undefined;  // Prevent recursion.
+  try {
+    assertEquals(5, frames.length);
+    // Don't check the last frame since that's the top-level code.
+    for (var i = 0; i < frames.length - 1; i++) {
+      assertEquals(o[i], frames[i].getFunction());
+      assertEquals(o, frames[i].getThis());
+      // Private fields are no longer accessible.
+      assertEquals(undefined, frames[i].receiver);
+      assertEquals(undefined, frames[i].fun);
+      assertEquals(undefined, frames[i].pos);
+    }
+    return "success";
+  } catch (e) {
+    return "fail";
+  }
+}
+
+try {
+  o[3]();
+} catch (e) {
+  assertEquals("success", e.stack);
+};
+
+
+var o = [ function f0() { throw new Error(); },
+          function f1() { o[0](); },
+          function f2() { "use strict"; o[1](); },
+          function f3() { o[2](); } ];
+
+Error.prepareStackTrace = function(error, frames) {
+  Error.prepareStackTrace = undefined;  // Prevent recursion.
+  try {
+    assertEquals(5, frames.length);
+    for (var i = 0; i < 2; i++) {
+      // The first two frames are still sloppy mode.
+      assertEquals(o[i], frames[i].getFunction());
+      assertEquals(o, frames[i].getThis());
+    }
+    for (var i = 2; i < frames.length; i++) {
+      // The rest are poisoned by the first strict mode function.
+      assertEquals(undefined, frames[i].getFunction());
+      assertEquals(undefined, frames[i].getThis());
+    }
+    for (var i = 0; i < frames.length - 1; i++) {
+      // Function name remains accessible.
+      assertEquals("f"+i, frames[i].getFunctionName());
+    }
+    return "success";
+  } catch (e) {
+    return e;
+  }
+}
+
+try {
+  o[3]();
+} catch (e) {
+  assertEquals("success", e.stack);
+};
+
+
+var o = [ function f0() { "use strict"; throw new Error(); },
+          function f1() { o[0](); },
+          function f2() { o[1](); },
+          function f3() { o[2](); } ];
+
+Error.prepareStackTrace = function(error, frames) {
+  Error.prepareStackTrace = undefined;  // Prevent recursion.
+  try {
+    assertEquals(5, frames.length);
+    for (var i = 0; i < frames.length; i++) {
+      // The rest are poisoned by the first strict mode function.
+      assertEquals(undefined, frames[i].getFunction());
+      assertEquals(undefined, frames[i].getThis());
+      if (i < frames.length - 1) {  // Function name remains accessible.
+        assertEquals("f"+i, frames[i].getFunctionName());
+      }
+    }
+    return "success";
+  } catch (e) {
+    return e;
+  }
+}
+
+try {
+  o[3]();
+} catch (e) {
+  assertEquals("success", e.stack);
+};  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9155d20^!)  
+[src/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/isolate.cc?cl=9155d20)  
+[src/messages.js](https://cs.chromium.org/chromium/src/v8/src/messages.js?cl=9155d20)  
+[test/mjsunit/regress/regress-2564.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-2564.js?cl=9155d20)  
+  
+
+---   
+
 ## **regress-crbug-217858.js (chromium issue)**  
    
 **[Issue 217858:
@@ -4820,6 +5383,59 @@ function g() {
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a942fcd^!)  
 [test/mjsunit/regress/regress-crbug-217858.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-217858.js?cl=a942fcd)  
+  
+
+---   
+
+## **regress-crbug-196583.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/196583)**  
+**[Commit: Fix detection of |handle_smi| case in HOptimizedGraphBuilder::HandlePolymorphicCallNamed](https://chromium.googlesource.com/v8/v8/+/e2cd7aa)**  
+  
+Date(Commit): Mon Mar 18 12:41:52 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/12620014](https://codereview.chromium.org/12620014)  
+Regress: [mjsunit/regress/regress-crbug-196583.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-196583.js)  
+```javascript
+var a = 1;
+a.__proto__.f = 1;
+a.__proto__.f = function() {
+  return 1;
+};
+
+function B() {}
+B.prototype = {
+  f: function() {
+    return 2;
+  }
+};
+var b = new B();
+function C() {}
+C.prototype = {
+  g: 'foo',
+  f: function() {
+    return 3;
+  }
+};
+var c = new C();
+
+function crash(obj) {
+  return obj.f();
+};
+%PrepareFunctionForOptimization(crash);
+for (var i = 0; i < 2; i++) {
+  crash(a);
+  crash(b);
+  crash(c);
+}
+%OptimizeFunctionOnNextCall(crash);
+assertEquals(1, crash(a));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e2cd7aa^!)  
+[src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=e2cd7aa)  
+[test/mjsunit/regress/regress-crbug-196583.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-196583.js?cl=e2cd7aa)  
   
 
 ---   
@@ -5542,6 +6158,33 @@ f();
 
 ---   
 
+## **regress-crbug-172345.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/172345)**  
+**[Commit: Do not try to collect the map if the monomorphic IC stub has no map.](https://chromium.googlesource.com/v8/v8/+/c8636a2)**  
+  
+Date(Commit): Mon Jan 28 13:19:53 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromiumcodereview.appspot.com/12082023](https://chromiumcodereview.appspot.com/12082023)  
+Regress: [mjsunit/regress/regress-crbug-172345.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-172345.js)  
+```javascript
+function f(a,i) {
+  return a[i];
+}
+
+f([1,2,3], "length");
+f([1,2,3], "length");
+f([1,2,3], 2);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c8636a2^!)  
+[src/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic.cc?cl=c8636a2)  
+[test/mjsunit/regress/regress-crbug-172345.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-172345.js?cl=c8636a2)  
+  
+
+---   
+
 ## **regress-2073.js (v8 issue)**  
    
 **[Issue 2073:
@@ -5631,6 +6274,37 @@ for (var i = 0; i < n; i++) {
 [src/mark-compact.cc](https://cs.chromium.org/chromium/src/v8/src/mark-compact.cc?cl=e6224d2)  
 [src/mark-compact.h](https://cs.chromium.org/chromium/src/v8/src/mark-compact.h?cl=e6224d2)  
 ...  
+  
+
+---   
+
+## **regress-171641.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/171641)**  
+**[Commit: Correctly set kCanBeDivByZero flag for HMathFloorOfDiv.](https://chromium.googlesource.com/v8/v8/+/d298265)**  
+  
+Date(Commit): Wed Jan 23 15:58:49 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromiumcodereview.appspot.com/12047050](https://chromiumcodereview.appspot.com/12047050)  
+Regress: [mjsunit/regress/regress-171641.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-171641.js)  
+```javascript
+function foo(k, p) {
+  for (var i = 0; i < 1; i++) {
+    p = Math.min(p, i);
+  }
+  m = Math.floor((k | 0) / p);
+};
+%PrepareFunctionForOptimization(foo);
+foo(0, 1);
+foo(0, 1);
+%OptimizeFunctionOnNextCall(foo);
+foo(0, 1);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d298265^!)  
+[src/hydrogen-instructions.h](https://cs.chromium.org/chromium/src/v8/src/hydrogen-instructions.h?cl=d298265)  
+[test/mjsunit/regress/regress-171641.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-171641.js?cl=d298265)  
   
 
 ---   
@@ -5812,6 +6486,33 @@ for (var testNumber = 0; testNumber < 2; testNumber++) {
 ...  
   
   
+---   
+
+## **regress-crbug-168545.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/168545)**  
+**[Commit: Fix missing exception check in typed array constructor.](https://chromium.googlesource.com/v8/v8/+/0e46919)**  
+  
+Date(Commit): Mon Jan 07 14:01:04 2013  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://codereview.chromium.org/11777014](https://codereview.chromium.org/11777014)  
+Regress: [mjsunit/regress/regress-crbug-168545.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-168545.js)  
+```javascript
+var o = {};
+Object.defineProperty(o, "length", { get: function() { throw "bail"; }});
+assertThrows("new Int16Array(o);");
+
+var a = [];
+Object.defineProperty(a, "0", { get: function() { throw "bail"; }});
+assertThrows("new Int16Array(a);");  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0e46919^!)  
+[src/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8.cc?cl=0e46919)  
+[test/mjsunit/regress/regress-crbug-168545.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-168545.js?cl=0e46919)  
+  
+
 ---   
 
 ## **regress-2419.js (v8 issue)**  
