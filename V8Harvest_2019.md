@@ -2,6 +2,115 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1002827.js (other issue)**  
+   
+**[Commit: [heap] Fix parameter parsing on GC builtin](https://chromium.googlesource.com/v8/v8/+/3569a4f)**  
+  
+Date(Commit): Wed Sep 11 10:13:16 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1796556](https://chromium-review.googlesource.com/c/v8/v8/+/1796556)  
+Regress: [mjsunit/regress/regress-1002827.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1002827.js)  
+```javascript
+var PI = new Proxy(this, {
+    get() {
+        PI();
+    }
+});
+
+assertThrows(() => new gc(PI, {}), TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/3569a4f^!)  
+[src/extensions/gc-extension.cc](https://cs.chromium.org/chromium/src/v8/src/extensions/gc-extension.cc?cl=3569a4f)  
+[test/mjsunit/regress/regress-1002827.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1002827.js?cl=3569a4f)  
+  
+  
+---   
+
+## **regress-996161.js (chromium issue)**  
+   
+**[No Permission](https://crbug.com/996161)**  
+**[Commit: Fix EmitGenericPropertyStore to bailout on stores to TypedArrays](https://chromium.googlesource.com/v8/v8/+/ecf178a)**  
+  
+Date(Commit): Tue Sep 10 10:13:38 2019  
+Components/Type: None/None  
+Labels: "No Permission"  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1789396](https://chromium-review.googlesource.com/c/v8/v8/+/1789396)  
+Regress: [mjsunit/regress/regress-996161.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-996161.js)  
+```javascript
+function checkOwnProperties(v, count) {
+  var properties = Object.getOwnPropertyNames(v);
+  assertEquals(properties.length, count);
+}
+
+
+function testStoreNoFeedback() {
+  arr = new Int32Array(10);
+  function f(a) { a["-1"] = 15; }
+
+  for (var i = 0; i < 3; i++) {
+    arr.__defineGetter__("x", function() { });
+    checkOwnProperties(arr, 11);
+    f(arr);
+  }
+}
+testStoreNoFeedback();
+
+function testStoreGeneric() {
+  arr = new Int32Array(10);
+  var index = "-1";
+  function f1(a) { a[index] = 15; }
+  %EnsureFeedbackVectorForFunction(f1);
+
+  // Make a[index] in f1 megamorphic
+  f1({a: 1});
+  f1({b: 1});
+  f1({c: 1});
+  f1({d: 1});
+
+  for (var i = 0; i < 3; i++) {
+    arr.__defineGetter__("x", function() { });
+    checkOwnProperties(arr, 11);
+    f1(arr);
+  }
+}
+testStoreGeneric();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ecf178a^!)  
+[src/ic/keyed-store-generic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/keyed-store-generic.cc?cl=ecf178a)  
+[test/mjsunit/regress/regress-996161.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-996161.js?cl=ecf178a)  
+  
+
+---   
+
+## **regress-crbug-1000094.js (other issue)**  
+   
+**[Commit: [parser] Fix arrowhead parsing in the script scope](https://chromium.googlesource.com/v8/v8/+/6f17f5d)**  
+  
+Date(Commit): Tue Sep 10 09:11:07 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1789705](https://chromium-review.googlesource.com/c/v8/v8/+/1789705)  
+Regress: [mjsunit/regress/regress-crbug-1000094.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1000094.js)  
+```javascript
+var f = (( {a: b} = {
+    a() {
+      return b;
+    }
+}) => b)()();
+
+assertEquals(f, f());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6f17f5d^!)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=6f17f5d)  
+[src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=6f17f5d)  
+[src/parsing/expression-scope.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-scope.h?cl=6f17f5d)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=6f17f5d)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=6f17f5d)  
+...  
+  
+  
+---   
+
 ## **regress-1000635.js (other issue)**  
    
 **[Commit: Correctly handlify two frame {Summarize} methods](https://chromium.googlesource.com/v8/v8/+/fba03ab)**  
