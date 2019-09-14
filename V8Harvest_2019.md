@@ -2,6 +2,30 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1002388.js (other issue)**  
+   
+**[Commit: [wasm] Fix WebAssembly.Table#get for constructed functions.](https://chromium.googlesource.com/v8/v8/+/7da8f2c)**  
+  
+Date(Commit): Thu Sep 12 09:40:55 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1795352](https://chromium-review.googlesource.com/c/v8/v8/+/1795352)  
+Regress: [mjsunit/regress/wasm/regress-crbug-1002388.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-crbug-1002388.js)  
+```javascript
+(function TestTableSetAndGetFunction() {
+  let func = new WebAssembly.Function({ parameters: [], results: [] }, x => x);
+  let table = new WebAssembly.Table({ element: "anyfunc", initial: 1 });
+  table.set(0, func);
+  table.get(0);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7da8f2c^!)  
+[src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=7da8f2c)  
+[test/mjsunit/regress/wasm/regress-crbug-1002388.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-crbug-1002388.js?cl=7da8f2c)  
+[test/mjsunit/wasm/type-reflection-with-anyref.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/type-reflection-with-anyref.js?cl=7da8f2c)  
+  
+  
+---   
+
 ## **regress-1002827.js (other issue)**  
    
 **[Commit: [heap] Fix parameter parsing on GC builtin](https://chromium.googlesource.com/v8/v8/+/3569a4f)**  
