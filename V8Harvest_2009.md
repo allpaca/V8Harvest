@@ -652,7 +652,7 @@ assertTrue(isNaN(new Date(Number.NaN, "").getTime()),
 **[Commit: Fix an error in a keyed lookup stub - HeapNumbers treated as strings.](https://chromium.googlesource.com/v8/v8/+/18c6337)**  
   
 Date(Commit): Thu Jul 23 13:01:17 2009  
-Components: None  
+Components: UI>Shell>Networking, Enterprise  
 Labels: Hotlist-Recharge, MovedFrom-25, Hotlist-Enterprise, MovedFrom-26  
 Code Review: [http://codereview.chromium.org/155924](http://codereview.chromium.org/155924)  
 Regress: [mjsunit/regress/regress-155924.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-155924.js)  

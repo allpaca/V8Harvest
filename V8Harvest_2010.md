@@ -2160,7 +2160,7 @@ foo();
 **[Commit: Fix bug in cache handling of lastIndex on global regexps.](https://chromium.googlesource.com/v8/v8/+/6c0cde6)**  
   
 Date(Commit): Thu Oct 14 08:51:20 2010  
-Components: None  
+Components: Blink>JavaScript, Blink  
 Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/3745005](http://codereview.chromium.org/3745005)  
 Regress: [mjsunit/regress/regress-58740.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-58740.js)  
@@ -2217,7 +2217,7 @@ assertEquals (setter, Object.getOwnPropertyDescriptor(x, 0).set);
 **[Commit: RegExp: Fix caching to correctly set lastIndex.](https://chromium.googlesource.com/v8/v8/+/0dece53)**  
   
 Date(Commit): Wed Sep 22 11:22:57 2010  
-Components: None  
+Components: Blink>JavaScript, Blink  
 Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/3389022](http://codereview.chromium.org/3389022)  
 Regress: [mjsunit/regress/regress-52801.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-52801.js)  
@@ -2739,7 +2739,7 @@ assertEquals("[false]", JSON.stringify([42], replacer));
 **[Commit: Fix bug in regexp exec with global regexps.](https://chromium.googlesource.com/v8/v8/+/7b46a1f)**  
   
 Date(Commit): Fri Jun 25 07:00:29 2010  
-Components: None  
+Components: Blink>JavaScript, Blink  
 Labels: Restrict-AddIssueComment-EditIssue, M-6, bulkmove  
 Code Review: [http://codereview.chromium.org/2826020](http://codereview.chromium.org/2826020)  
 Regress: [mjsunit/regress/regress-45469.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-45469.js)  
@@ -3152,7 +3152,7 @@ assertEquals(42, f());
 **[Commit: Fix code cache lookup for keyed IC's](https://chromium.googlesource.com/v8/v8/+/b0c9738)**  
   
 Date(Commit): Thu Mar 11 08:52:31 2010  
-Components: None  
+Components: Blink>JavaScript, Blink  
 Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/872001](http://codereview.chromium.org/872001)  
 Regress: [mjsunit/regress/regress-crbug-37853.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-37853.js)  
