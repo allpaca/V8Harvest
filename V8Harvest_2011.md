@@ -37,8 +37,8 @@ assertTrue(%HasSmiElements(arr));
 **[Commit: Avoid embedding new space objects into code objects in the lithium gap resolver.](https://chromium.googlesource.com/v8/v8/+/3947056)**  
   
 Date(Commit): Fri Dec 23 10:39:01 2011  
-Components: Blink>JavaScript>APIBlink>JavaScriptBlink  
-Labels: ["MovedFrom-22", "MovedFrom18", "MovedFrom-20", "MovedFrom-21"]  
+Components: , Blink>JavaScript>API, Blink>JavaScript, Blink  
+Labels: , MovedFrom-22, MovedFrom18, MovedFrom-20, MovedFrom-21  
 Code Review: [http://codereview.chromium.org/8960004](http://codereview.chromium.org/8960004)  
 Regress: [mjsunit/regress/regress-108296.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-108296.js)  
 ```javascript
@@ -146,7 +146,7 @@ assertThrows("Object.defineProperty(f, 'arguments', { value: {} })");
   
 Date(Commit): Tue Dec 13 13:51:58 2011  
 Components: None  
-Labels: []  
+Labels:   
 Code Review: [http://codereview.chromium.org/8898021](http://codereview.chromium.org/8898021)  
 Regress: [mjsunit/regress/regress-crbug-100859.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-100859.js)  
 ```javascript
@@ -176,8 +176,8 @@ assertTrue(exception);
 **[Commit: Ensure that non-optimized code objects are not flushed for inlined functions.](https://chromium.googlesource.com/v8/v8/+/a457040)**  
   
 Date(Commit): Thu Dec 08 16:07:07 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Stability-Crash", "M-17", "MovedFrom-16"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, Stability-Crash, M-17, MovedFrom-16  
 Code Review: [http://codereview.chromium.org/8888011](http://codereview.chromium.org/8888011)  
 Regress: [mjsunit/regress/regress-97116.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-97116.js), [mjsunit/regress/regress-97116b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-97116b.js)  
 ```javascript
@@ -220,8 +220,8 @@ outer(true);
 **[Commit: Fix a bug with register use in optimized Math.round.](https://chromium.googlesource.com/v8/v8/+/c1662a1)**  
   
 Date(Commit): Wed Dec 07 10:13:46 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-Commit"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/8833007](http://codereview.chromium.org/8833007)  
 Regress: [mjsunit/compiler/regress-106351.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-106351.js)  
 ```javascript
@@ -291,8 +291,8 @@ assertEquals(42, f(42));
 **[Commit: Fixing issue 103259.](https://chromium.googlesource.com/v8/v8/+/53c6077)**  
   
 Date(Commit): Tue Nov 08 14:59:40 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "Merge-Merged", "Security_Impact-Stable", "M-15", "Security_Severity-High", "ReleaseBlock-Stable", "allpublic", "CVE-2011-3900", "CVE_description-submitted"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, Merge-Merged, Security_Impact-Stable, M-15, Security_Severity-High, ReleaseBlock-Stable, allpublic, CVE-2011-3900, CVE_description-submitted  
 Code Review: [http://codereview.chromium.org/8498011](http://codereview.chromium.org/8498011)  
 Regress: [mjsunit/regress/regress-103259.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-103259.js)  
 ```javascript
@@ -354,8 +354,8 @@ main(o.g);
 **[Commit: Take loop side-effects into account when collecting side-effects on the path between two blocks.](https://chromium.googlesource.com/v8/v8/+/f8c2d38)**  
   
 Date(Commit): Tue Oct 25 15:39:55 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "M-15"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, M-15  
 Code Review: [http://codereview.chromium.org/8395002](http://codereview.chromium.org/8395002)  
 Regress: [mjsunit/regress/regress-100409.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-100409.js)  
 ```javascript
@@ -453,8 +453,8 @@ assertEquals(0x7fffffff + 42, effect_context());
 **[Commit: Fix handling of non-object receivers for array builtins.](https://chromium.googlesource.com/v8/v8/+/b3eba9e)**  
   
 Date(Commit): Wed Oct 19 09:24:37 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-Commit"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/8347034](http://codereview.chromium.org/8347034)  
 Regress: [mjsunit/regress/regress-100702.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-100702.js)  
 ```javascript
@@ -512,8 +512,8 @@ assertEquals('b', a.substring(1).charAt(0));
 **[Commit: Add a regression test for an already fixed issue.](https://chromium.googlesource.com/v8/v8/+/fa18fdb)**  
   
 Date(Commit): Mon Oct 10 10:46:27 2011  
-Components: InternalsBlink>JavaScriptBlink  
-Labels: ["CVE-2011-3886", "Restrict-AddIssueComment-EditIssue", "Reward-1000", "Security_Impact-Stable", "Stability-Valgrind", "M-15", "Security_Severity-High", "allpublic", "CVE_description-submitted"]  
+Components: , Internals, Blink>JavaScript, Blink  
+Labels: , CVE-2011-3886, Restrict-AddIssueComment-EditIssue, Reward-1000, Security_Impact-Stable, Stability-Valgrind, M-15, Security_Severity-High, allpublic, CVE_description-submitted  
 Code Review: [http://codereview.chromium.org/8222002](http://codereview.chromium.org/8222002)  
 Regress: [mjsunit/regress/regress-99167.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-99167.js)  
 ```javascript
@@ -536,8 +536,8 @@ for (var i = 0; i < 100000; ++i) new Node;
 **[Commit: Fix preparation for sorting of external arrays.](https://chromium.googlesource.com/v8/v8/+/c0345184)**  
   
 Date(Commit): Tue Oct 04 13:49:50 2011  
-Components: Internals  
-Labels: ["CVE-2011-3886", "Restrict-AddIssueComment-EditIssue", "Reward-1000", "merge-merged-874", "Merge-Merged", "Security_Impact-Stable", "Stability-Valgrind", "M-15", "Security_Severity-High", "allpublic", "CVE_description-submitted"]  
+Components: , Internals  
+Labels: , CVE-2011-3886, Restrict-AddIssueComment-EditIssue, Reward-1000, merge-merged-874, Merge-Merged, Security_Impact-Stable, Stability-Valgrind, M-15, Security_Severity-High, allpublic, CVE_description-submitted  
 Code Review: [http://codereview.chromium.org/8122020](http://codereview.chromium.org/8122020)  
 Regress: [mjsunit/regress/regress-98773.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-98773.js)  
 ```javascript
@@ -758,8 +758,8 @@ assertTrue(side_effect);
 **[Commit: Mark variables as being accessed from any inner scope, not only function scopes](https://chromium.googlesource.com/v8/v8/+/96de832)**  
   
 Date(Commit): Wed Sep 14 13:51:29 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "M-15"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, M-15  
 Code Review: [http://codereview.chromium.org/7890031](http://codereview.chromium.org/7890031)  
 Regress: [mjsunit/regress/regress-96523.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-96523.js)  
 ```javascript
@@ -824,8 +824,8 @@ assertEquals(obj, lenient.bind(obj)());
 **[Commit: Don't allow seal or element property re-definition on external arrays.](https://chromium.googlesource.com/v8/v8/+/df860ed)**  
   
 Date(Commit): Fri Sep 09 14:30:00 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Reward-1000", "Merge-Merged", "Security_Impact-Stable", "M-14", "Security_Severity-High", "CVE-2011-2875", "allpublic", "CVE_description-submitted"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Reward-1000, Merge-Merged, Security_Impact-Stable, M-14, Security_Severity-High, CVE-2011-2875, allpublic, CVE_description-submitted  
 Code Review: [http://codereview.chromium.org/7858031](http://codereview.chromium.org/7858031)  
 Regress: [mjsunit/regress/regress-95920.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-95920.js)  
 ```javascript
@@ -864,8 +864,8 @@ assertThrows(function() {
 **[Commit: Fix a bug in abrupt exit from with or catch inside finally.](https://chromium.googlesource.com/v8/v8/+/8b165d4)**  
   
 Date(Commit): Wed Sep 07 09:21:44 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-15", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-15, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/7837023](http://codereview.chromium.org/7837023)  
 Regress: [mjsunit/regress/regress-95485.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-95485.js)  
 ```javascript
@@ -903,8 +903,8 @@ assertEquals('XY', Test());
 **[Commit: Fix possible crash in FixedDoubleArray::Initialize()](https://chromium.googlesource.com/v8/v8/+/09c66d2)**  
   
 Date(Commit): Tue Sep 06 14:07:54 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Stability-Crash", "M-15"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, Stability-Crash, M-15  
 Code Review: [http://codereview.chromium.org/7833040](http://codereview.chromium.org/7833040)  
 Regress: [mjsunit/regress/regress-95113.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-95113.js)  
 ```javascript
@@ -942,8 +942,8 @@ var a = get_double_array();
 **[Commit: Fix bug in Page::GetRegionMaskForSpan.](https://chromium.googlesource.com/v8/v8/+/d451878)**  
   
 Date(Commit): Tue Sep 06 11:24:48 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Stability-Crash", "M-15"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Stability-Crash, M-15  
 Code Review: [http://codereview.chromium.org/7779037](http://codereview.chromium.org/7779037)  
 Regress: [mjsunit/regress/regress-94425.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-94425.js)  
 ```javascript
@@ -1241,8 +1241,8 @@ test(1);
 **[Commit: Avoid infinite recursion for unterminated non-ASCII JSON string literals.](https://chromium.googlesource.com/v8/v8/+/e9bc76c)**  
   
 Date(Commit): Fri Aug 05 12:55:29 2011  
-Components: Internals  
-Labels: ["Hotlist-Recharge", "Hotlist-Recharge-Stale"]  
+Components: , Internals  
+Labels: , Hotlist-Recharge, Hotlist-Recharge-Stale  
 Code Review: [http://codereview.chromium.org/7569008](http://codereview.chromium.org/7569008)  
 Regress: [mjsunit/regress/regress-91787.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-91787.js)  
 ```javascript
@@ -1400,7 +1400,7 @@ assertEquals(88, foo());
   
 Date(Commit): Tue Aug 02 15:04:31 2011  
 Components: None  
-Labels: ["Restrict-AddIssueComment-EditIssue", "ReleaseBlock-Beta", "CVE-2011-2852", "reward-500", "Merge-Merged", "Security_Impact-Stable", "M-14", "Security_Severity-High", "allpublic", "CVE_description-submitted"]  
+Labels: , Restrict-AddIssueComment-EditIssue, ReleaseBlock-Beta, CVE-2011-2852, reward-500, Merge-Merged, Security_Impact-Stable, M-14, Security_Severity-High, allpublic, CVE_description-submitted  
 Code Review: [http://codereview.chromium.org/7548011](http://codereview.chromium.org/7548011)  
 Regress: [mjsunit/regress/regress-91120.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-91120.js)  
 ```javascript
@@ -1437,7 +1437,7 @@ assertEquals('catch', f()());
   
 Date(Commit): Tue Aug 02 14:05:11 2011  
 Components: None  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-15", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-15, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/7542008](http://codereview.chromium.org/7542008)  
 Regress: [mjsunit/regress/regress-91008.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-91008.js)  
 ```javascript
@@ -1473,7 +1473,7 @@ testsort(100000)
   
 Date(Commit): Tue Aug 02 13:36:38 2011  
 Components: None  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-15", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-15, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/7551009](http://codereview.chromium.org/7551009)  
 Regress: [mjsunit/regress/regress-91013.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-91013.js)  
 ```javascript
@@ -1550,7 +1550,7 @@ f(true, ['b', 'c']);
   
 Date(Commit): Tue Aug 02 09:28:55 2011  
 Components: None  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-15", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-15, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/7551004](http://codereview.chromium.org/7551004)  
 Regress: [mjsunit/regress/regress-91010.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-91010.js)  
 ```javascript
@@ -1667,8 +1667,8 @@ test([mkArray, mkNumberDictionary, mkCOWArray], write);
 **[Commit: Fix a potential crash in const declaration.](https://chromium.googlesource.com/v8/v8/+/890bc16)**  
   
 Date(Commit): Mon Jul 11 14:07:12 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["CVE-2011-2802", "Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-13", "Security_Impact-Stable", "Security_Severity-High", "allpublic", "CVE_description-submitted"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , CVE-2011-2802, Restrict-AddIssueComment-EditIssue, Reward-1000, M-13, Security_Impact-Stable, Security_Severity-High, allpublic, CVE_description-submitted  
 Code Review: [http://codereview.chromium.org/7324048](http://codereview.chromium.org/7324048)  
 Regress: [mjsunit/regress/regress-88591.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-88591.js)  
 ```javascript
@@ -1699,8 +1699,8 @@ assertEquals(true, o.writable);
 **[Commit: Allow JSObject::PreventExtensions to work for arguments objects.](https://chromium.googlesource.com/v8/v8/+/cbaf1bc)**  
   
 Date(Commit): Mon Jul 11 06:48:19 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-14", "HasTestcase", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-14, HasTestcase, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/7335002](http://codereview.chromium.org/7335002)  
 Regress: [mjsunit/regress/regress-88858.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-88858.js)  
 ```javascript
@@ -1984,7 +1984,7 @@ testcase();
   
 Date(Commit): Mon Jun 27 13:02:51 2011  
 Components: None  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-14", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-14, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/7259015](http://codereview.chromium.org/7259015)  
 Regress: [mjsunit/regress/regress-crbug-87478.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-87478.js)  
 ```javascript
@@ -2321,8 +2321,8 @@ assertEquals(1, f0());
 **[Commit: Fix traversal of the map transition tree to take the prototype](https://chromium.googlesource.com/v8/v8/+/0023cac)**  
   
 Date(Commit): Fri Jun 03 14:48:09 2011  
-Components: InternalsBlink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-12", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Components: , Internals, Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-12, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/7074052](http://codereview.chromium.org/7074052)  
 Regress: [mjsunit/regress/regress-84234.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-84234.js)  
 ```javascript
@@ -2678,7 +2678,7 @@ for (i = 0; i < 5; i++) {
   
 Date(Commit): Wed May 18 12:46:21 2011  
 Components: None  
-Labels: ["Restrict-AddIssueComment-Commit"]  
+Labels: , Restrict-AddIssueComment-Commit  
 Code Review: [http://crbug.com/82769](http://crbug.com/82769)  
 Regress: [mjsunit/regress/regress-82769.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-82769.js)  
 ```javascript
@@ -2967,8 +2967,8 @@ assertEquals(3.5, a[1]);
 **[Commit: In LCodeGen::DoDeferredLInstanceOfKnownGlobal emit safepoint with registers for the call to stub.](https://chromium.googlesource.com/v8/v8/+/8a8d3bb)**  
   
 Date(Commit): Thu Apr 07 13:32:45 2011  
-Components: Internals  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Reward-1000", "M-11", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Components: , Internals  
+Labels: , Restrict-AddIssueComment-EditIssue, Reward-1000, M-11, Security_Impact-None, Security_Severity-High, allpublic  
 Code Review: [http://codereview.chromium.org/6793017](http://codereview.chromium.org/6793017)  
 Regress: [mjsunit/regress/regress-78270.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-78270.js)  
 ```javascript
@@ -3861,8 +3861,8 @@ f();
 **[Commit: Use ForceSetObjectProperty in DefineOrRedefineDataProperty (fixes crbug 72736).](https://chromium.googlesource.com/v8/v8/+/34eeb88)**  
   
 Date(Commit): Mon Feb 14 10:43:21 2011  
-Components: Blink>JavaScriptBlink  
-Labels: []  
+Components: , Blink>JavaScript, Blink  
+Labels:   
 Code Review: [http://codereview.chromium.org/6518004](http://codereview.chromium.org/6518004)  
 Regress: [mjsunit/regress/regress-crbug-72736.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-72736.js)  
 ```javascript
@@ -4722,8 +4722,8 @@ assertEquals(3, optimized(1, 2, 3).length);
 **[Commit: Require typed input representation for HTypeof hydrogen instruction.](https://chromium.googlesource.com/v8/v8/+/6751627)**  
   
 Date(Commit): Wed Feb 02 09:52:57 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-EditIssue", "Stability-Crash", "ReleaseBlock-Beta", "M-10", "Crash-TopCrasher", "crash-Reproducible", "bulkmove"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-EditIssue, Stability-Crash, ReleaseBlock-Beta, M-10, Crash-TopCrasher, crash-Reproducible, bulkmove  
 Code Review: [http://codereview.chromium.org/6410025](http://codereview.chromium.org/6410025)  
 Regress: [mjsunit/regress/regress-71647.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-71647.js)  
 ```javascript
@@ -4842,8 +4842,8 @@ assertEquals(-Infinity, f(-0));
 **[Commit: Fix a bug in delete for lookup slots.](https://chromium.googlesource.com/v8/v8/+/9c2d52e)**  
   
 Date(Commit): Mon Jan 24 14:03:30 2011  
-Components: Blink>JavaScriptBlink  
-Labels: ["Restrict-AddIssueComment-Commit"]  
+Components: , Blink>JavaScript, Blink  
+Labels: , Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/6280013](http://codereview.chromium.org/6280013)  
 Regress: [mjsunit/regress/regress-70066.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-70066.js)  
 ```javascript

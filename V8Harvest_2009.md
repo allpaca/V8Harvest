@@ -597,7 +597,7 @@ assertEquals(1, (function (){return 1|-1%1})());
   
 Date(Commit): Tue Sep 08 07:22:35 2009  
 Components: None  
-Labels: ["Area-MISC", "reward-topanel", "Security-High", "Security", "Security_Impact-Stable", "Security_Severity-High", "allpublic", "Restrict-AddIssueComment-Commit"]  
+Labels: , Area-MISC, reward-topanel, Security-High, Security, Security_Impact-Stable, Security_Severity-High, allpublic, Restrict-AddIssueComment-Commit  
 Code Review: [http://crbug.com/18639](http://crbug.com/18639)  
 Regress: [mjsunit/regress/regress-crbug-18639.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-18639.js)  
 ```javascript
@@ -652,8 +652,8 @@ assertTrue(isNaN(new Date(Number.NaN, "").getTime()),
 **[Commit: Fix an error in a keyed lookup stub - HeapNumbers treated as strings.](https://chromium.googlesource.com/v8/v8/+/18c6337)**  
   
 Date(Commit): Thu Jul 23 13:01:17 2009  
-Components: UI>Shell>NetworkingEnterprise  
-Labels: ["Hotlist-Recharge", "MovedFrom-25", "Hotlist-Enterprise", "MovedFrom-26"]  
+Components: , UI>Shell>Networking, Enterprise  
+Labels: , Hotlist-Recharge, MovedFrom-25, Hotlist-Enterprise, MovedFrom-26  
 Code Review: [http://codereview.chromium.org/155924](http://codereview.chromium.org/155924)  
 Regress: [mjsunit/regress/regress-155924.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-155924.js)  
 ```javascript
