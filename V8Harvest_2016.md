@@ -4,12 +4,10 @@ The Harvest of V8 regress in 2016.
 
 ## **regress-5783.js (v8 issue)**  
    
-**[Issue 5783:
- Some runtime functions erroneously use SealHandleScope](https://crbug.com/v8/5783)**  
+**[Some runtime functions erroneously use SealHandleScope](https://crbug.com/v8/5783)**  
 **[Commit: Fix SealHandleScope usage in runtime-classes.cc](https://chromium.googlesource.com/v8/v8/+/2454737)**  
   
 Date(Commit): Tue Dec 27 18:55:16 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2603783003](https://codereview.chromium.org/2603783003)  
 Regress: [mjsunit/regress/regress-5783.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5783.js)  
 ```javascript
@@ -28,12 +26,10 @@ assertThrows(() => new D(), TypeError);
 
 ## **regress-5780.js (v8 issue)**  
    
-**[Issue 5780:
- Object.prototype.toString doesn't look up @@toStringTag in some cases](https://crbug.com/v8/5780)**  
+**[Object.prototype.toString doesn't look up @@toStringTag in some cases](https://crbug.com/v8/5780)**  
 **[Commit: Object.prototype.toString must reflect mutated @@toStringTag values for primitives](https://chromium.googlesource.com/v8/v8/+/23019c4)**  
   
 Date(Commit): Tue Dec 27 17:57:38 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2597323002](https://codereview.chromium.org/2597323002)  
 Regress: [mjsunit/regress/regress-5780.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5780.js)  
 ```javascript
@@ -60,12 +56,10 @@ testMutatedPrimitiveToStringTag(Symbol());
 
 ## **regress-4870.js (v8 issue)**  
    
-**[Issue 4870:
- Runtime error accessible from Intl code](https://crbug.com/v8/4870)**  
+**[Runtime error accessible from Intl code](https://crbug.com/v8/4870)**  
 **[Commit: [intl] Add new semantics + compat fallback to Intl constructor](https://chromium.googlesource.com/v8/v8/+/b0a09d7)**  
   
 Date(Commit): Fri Dec 23 14:32:16 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2582993002](https://codereview.chromium.org/2582993002)  
 Regress: [mjsunit/regress/regress-4870.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4870.js)  
 ```javascript
@@ -90,12 +84,10 @@ if (this.Intl) {
 
 ## **regress-v8-5756.js (v8 issue)**  
    
-**[Issue 5756:
- Illegal instruction with testcase](https://crbug.com/v8/5756)**  
+**[Illegal instruction with testcase](https://crbug.com/v8/5756)**  
 **[Commit: [turbofan] Optimize store to typed arrays only if the value is plain primitive.](https://chromium.googlesource.com/v8/v8/+/e92118b)**  
   
 Date(Commit): Fri Dec 23 14:29:00 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2596843002](https://codereview.chromium.org/2596843002)  
 Regress: [mjsunit/compiler/regress-v8-5756.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-v8-5756.js)  
 ```javascript
@@ -137,12 +129,10 @@ f1();
 
 ## **regress-5772.js (v8 issue)**  
    
-**[Issue 5772:
- Check failed: !value->IsTheHole(isolate).](https://crbug.com/v8/5772)**  
+**[Check failed: !value->IsTheHole(isolate).](https://crbug.com/v8/5772)**  
 **[Commit: [ic] Always use generic ICs for growing element stores on arguments](https://chromium.googlesource.com/v8/v8/+/f739730)**  
   
 Date(Commit): Thu Dec 22 14:10:51 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2597013004](https://codereview.chromium.org/2597013004)  
 Regress: [mjsunit/regress/regress-5772.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5772.js)  
 ```javascript
@@ -195,12 +185,11 @@ Regress: [mjsunit/regress/regress-5772.js](https://chromium.googlesource.com/v8/
 
 ## **regress-648719.js (chromium issue)**  
    
-**[Issue 648719:
- eval, const, closure causes function decl to fail](https://crbug.com/648719)**  
+**[eval, const, closure causes function decl to fail](https://crbug.com/648719)**  
 **[Commit: Use a different map to distinguish eval contexts](https://chromium.googlesource.com/v8/v8/+/53fdf9d)**  
   
 Date(Commit): Tue Dec 20 16:23:19 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Via-Wizard", "Arch-All", "Merge-Rejected-56", "NodeJS-Backport-Review"]  
 Code Review: [https://codereview.chromium.org/2435023002](https://codereview.chromium.org/2435023002)  
 Regress: [mjsunit/regress/regress-648719.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-648719.js)  
@@ -221,12 +210,10 @@ assertEquals('function', typeof eval('const xz = {};function yz(){xz}yz'));
 
 ## **regress-5295-2.js (v8 issue)**  
    
-**[Issue 5295:
- Possible reference bug](https://crbug.com/v8/5295)**  
+**[Possible reference bug](https://crbug.com/v8/5295)**  
 **[Commit: Use a different map to distinguish eval contexts](https://chromium.googlesource.com/v8/v8/+/53fdf9d)**  
   
 Date(Commit): Tue Dec 20 16:23:19 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2435023002](https://codereview.chromium.org/2435023002)  
 Regress: [mjsunit/regress/regress-5295-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5295-2.js), [mjsunit/regress/regress-5295.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5295.js)  
 ```javascript
@@ -257,11 +244,10 @@ assertEquals(undefined, x);
 
 ## **regress-5763-1.js (v8 issue)**  
    
-**[No Permission](https://crbug.com/v8/5763)**  
+**[Permission denied](https://crbug.com/v8/5763)**  
 **[Commit: [es6] Fix the %TypedArray% constructor.](https://chromium.googlesource.com/v8/v8/+/3d9c77d)**  
   
 Date(Commit): Tue Dec 20 16:14:08 2016  
-Type: None  
 Code Review: [https://codereview.chromium.org/2587413002](https://codereview.chromium.org/2587413002)  
 Regress: [mjsunit/regress/regress-5763-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5763-1.js), [mjsunit/regress/regress-5763-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5763-2.js)  
 ```javascript
@@ -282,12 +268,11 @@ try {
 
 ## **regress-674232.js (chromium issue)**  
    
-**[Issue 674232:
- Unreachable code in objects-inl.h](https://crbug.com/674232)**  
+**[Unreachable code in objects-inl.h](https://crbug.com/674232)**  
 **[Commit: Implement header size calculation for array iterators.](https://chromium.googlesource.com/v8/v8/+/cbd3b3d)**  
   
 Date(Commit): Tue Dec 20 10:38:17 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2592633002](https://codereview.chromium.org/2592633002)  
 Regress: [mjsunit/regress/regress-674232.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-674232.js)  
@@ -315,12 +300,11 @@ __f_10();
 
 ## **regress-crbug-663340.js (chromium issue)**  
    
-**[Issue 663340:
- Difference between fullcode and ignition_staging_turbo_opt: array shift](https://crbug.com/663340)**  
+**[Difference between fullcode and ignition_staging_turbo_opt: array shift](https://crbug.com/663340)**  
 **[Commit: [crankshaft] Ensure that we use inlined Array.prototype.shift only when there's no elements in the prototype chain.](https://chromium.googlesource.com/v8/v8/+/faf80b4)**  
   
 Date(Commit): Tue Dec 20 10:18:02 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Proj-Ignition", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2593553002](https://codereview.chromium.org/2593553002)  
 Regress: [mjsunit/regress/regress-crbug-663340.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-663340.js)  
@@ -366,12 +350,11 @@ bar();
 
 ## **regress-crbug-665793.js (chromium issue)**  
    
-**[Issue 665793:
- [crankshaft] OOB string access returns wrong value](https://crbug.com/665793)**  
+**[[crankshaft] OOB string access returns wrong value](https://crbug.com/665793)**  
 **[Commit: [crankshaft] Properly handle OOB string accesses.](https://chromium.googlesource.com/v8/v8/+/576a46f)**  
   
 Date(Commit): Tue Dec 20 10:01:59 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Arch-All", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2589823003](https://codereview.chromium.org/2589823003)  
 Regress: [mjsunit/regress/regress-crbug-665793.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-665793.js)  
@@ -394,12 +377,11 @@ assertEquals(undefined, foo());
 
 ## **regress-674447.js (chromium issue)**  
    
-**[Issue 674447:
- Autocomplete/datalist popup gets detached by scrolling](https://crbug.com/674447)**  
+**[Autocomplete/datalist popup gets detached by scrolling](https://crbug.com/674447)**  
 **[Commit: [serializer] do not serialize script wrappers.](https://chromium.googlesource.com/v8/v8/+/07fa0f4)**  
   
 Date(Commit): Mon Dec 19 10:53:02 2016  
-Components/Type: Blink>Forms>Datalist/Bug  
+Components: UI>Browser>AutofillBlink>Forms>Datalist  
 Labels: ["M-69"]  
 Code Review: [https://codereview.chromium.org/2586943003](https://codereview.chromium.org/2586943003)  
 Regress: [mjsunit/regress/wasm/regress-674447.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-674447.js)  
@@ -419,12 +401,10 @@ Regress: [mjsunit/regress/wasm/regress-674447.js](https://chromium.googlesource.
 
 ## **regress-5749.js (v8 issue)**  
    
-**[Issue 5749:
- Check failed: call->arguments()->length() == 1](https://crbug.com/v8/5749)**  
+**[Check failed: call->arguments()->length() == 1](https://crbug.com/v8/5749)**  
 **[Commit: [crankshaft] Fix IsClassOfTest helper method](https://chromium.googlesource.com/v8/v8/+/d449322)**  
   
 Date(Commit): Mon Dec 19 10:45:48 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2586933002](https://codereview.chromium.org/2586933002)  
 Regress: [mjsunit/regress/regress-5749.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5749.js)  
 ```javascript
@@ -461,12 +441,11 @@ g();
 
 ## **regress-673242.js (chromium issue)**  
    
-**[Issue 673242:
- shared->is_compiled() in compiler.cc](https://crbug.com/673242)**  
+**[shared->is_compiled() in compiler.cc](https://crbug.com/673242)**  
 **[Commit: [Complier] Only optimize a function marked for tier-up if it is compiled.](https://chromium.googlesource.com/v8/v8/+/cb9d0fe)**  
   
 Date(Commit): Fri Dec 16 10:44:50 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2575333003](https://codereview.chromium.org/2575333003)  
 Regress: [mjsunit/regress/regress-673242.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-673242.js)  
@@ -501,12 +480,10 @@ foo()();
 
 ## **regress-5736.js (v8 issue)**  
    
-**[Issue 5736:
- eval is broken in several ways](https://crbug.com/v8/5736)**  
+**[eval is broken in several ways](https://crbug.com/v8/5736)**  
 **[Commit: Disable lazy parsing inside eval (see bug).](https://chromium.googlesource.com/v8/v8/+/ed080e6)**  
   
 Date(Commit): Thu Dec 15 14:26:58 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2435023002/](https://codereview.chromium.org/2435023002/)  
 Regress: [mjsunit/regress/regress-5736.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5736.js)  
 ```javascript
@@ -548,12 +525,11 @@ assertEquals(my_global, 6);
 
 ## **regress-674469.js (chromium issue)**  
    
-**[Issue 674469:
- CanBeTaggedPointer(type.representation()) in code-generator.cc](https://crbug.com/674469)**  
+**[CanBeTaggedPointer(type.representation()) in code-generator.cc](https://crbug.com/674469)**  
 **[Commit: [turbofan] Handle the impossible value representation mismatch in instruction selector.](https://chromium.googlesource.com/v8/v8/+/01de216)**  
   
 Date(Commit): Thu Dec 15 12:13:06 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2579743002](https://codereview.chromium.org/2579743002)  
 Regress: [mjsunit/compiler/regress-674469.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-674469.js)  
@@ -579,12 +555,11 @@ foo();
 
 ## **regress-672027.js (chromium issue)**  
    
-**[Issue 672027:
- Ignition memory leak at http://moxielogic.org](https://crbug.com/672027)**  
+**[Ignition memory leak at http://moxielogic.org](https://crbug.com/672027)**  
 **[Commit: [Interpreter] Allocate registers used as call arguments on-demand.](https://chromium.googlesource.com/v8/v8/+/ae741d0)**  
   
 Date(Commit): Thu Dec 15 10:59:57 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["M-56", "Proj-Ignition", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2557173004](https://codereview.chromium.org/2557173004)  
 Regress: [mjsunit/ignition/regress-672027.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-672027.js)  
@@ -615,12 +590,11 @@ Regress: [mjsunit/ignition/regress-672027.js](https://chromium.googlesource.com/
 
 ## **regress-crbug-672792.js (chromium issue)**  
    
-**[Issue 672792:
- size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/672792)**  
+**[size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/672792)**  
 **[Commit: Fix usage of literal cloning for large double arrays.](https://chromium.googlesource.com/v8/v8/+/6c620e5)**  
   
 Date(Commit): Thu Dec 15 10:29:47 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2570843002](https://codereview.chromium.org/2570843002)  
 Regress: [mjsunit/regress/regress-crbug-672792.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-672792.js)  
@@ -650,12 +624,11 @@ assertEquals(65535, f().length);
 
 ## **regress-643595.js (chromium issue)**  
    
-**[Issue 643595:
- !obj->IsMap() in code-serializer.cc](https://crbug.com/643595)**  
+**[!obj->IsMap() in code-serializer.cc](https://crbug.com/643595)**  
 **[Commit: [wasm] disable serialization for asm-wasm](https://chromium.googlesource.com/v8/v8/+/77b50a8)**  
   
 Date(Commit): Thu Dec 15 05:06:54 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2573193002](https://codereview.chromium.org/2573193002)  
 Regress: [mjsunit/regress/wasm/regress-643595.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-643595.js)  
@@ -676,13 +649,12 @@ Regress: [mjsunit/regress/wasm/regress-643595.js](https://chromium.googlesource.
 
 ## **regress-crbug-669540.js (chromium issue)**  
    
-**[Issue 669540:
- Missing hole check in computed property names](https://crbug.com/669540)**  
+**[Missing hole check in computed property names](https://crbug.com/669540)**  
 **[Commit: [ignition] Fix hole check for dynamic local variables](https://chromium.googlesource.com/v8/v8/+/f6ee3b5)**  
   
 Date(Commit): Tue Dec 13 14:29:07 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
-Labels: ["reward-topanel", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
+Components: Blink>JavaScript  
+Labels: ["reward-0", "Security_Impact-None", "Security_Severity-High", "allpublic"]  
 Code Review: [https://codereview.chromium.org/2551023004](https://codereview.chromium.org/2551023004)  
 Regress: [mjsunit/regress/regress-crbug-669540.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-669540.js)  
 ```javascript
@@ -708,12 +680,11 @@ f({});
 
 ## **regress-crbug-673008.js (chromium issue)**  
    
-**[Issue 673008:
- hasOwnProperty returning inconsistent results](https://crbug.com/673008)**  
+**[hasOwnProperty returning inconsistent results](https://crbug.com/673008)**  
 **[Commit: [stubs] Fix negative index lookup in hasOwnProperty](https://chromium.googlesource.com/v8/v8/+/bb753b6)**  
   
 Date(Commit): Mon Dec 12 20:13:07 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: ["M-55", "Needs-Feedback", "Arch-x86_64", "ReleaseBlock-Stable", "NodeJS-Backport-Rejected", "merge-merged-5.5", "Via-Wizard-Javascript", "merge-merged-5.6", "TE-Verified-M57", "prestable-55.0.2883.87", "TE-Verified-57.0.2951.0"]  
 Code Review: [https://codereview.chromium.org/2568943002](https://codereview.chromium.org/2568943002)  
 Regress: [mjsunit/regress/regress-crbug-673008.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-673008.js)  
@@ -749,12 +720,11 @@ keys.forEach(function(k) {
 
 ## **regress-672041.js (chromium issue)**  
    
-**[Issue 672041:
- chunk->Contains(slot_addr) in remembered-set.h](https://crbug.com/672041)**  
+**[chunk->Contains(slot_addr) in remembered-set.h](https://crbug.com/672041)**  
 **[Commit: [heap] Initialize the owner on each page after lospace allocation](https://chromium.googlesource.com/v8/v8/+/9b6808b)**  
   
 Date(Commit): Mon Dec 12 13:19:07 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2565713002](https://codereview.chromium.org/2565713002)  
 Regress: [mjsunit/regress/regress-672041.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-672041.js)  
@@ -785,12 +755,11 @@ RegExp.prototype.exec = function(str) {
 
 ## **regress-673241.js (chromium issue)**  
    
-**[Issue 673241:
- Crash in callee_pc](https://crbug.com/673241)**  
+**[Crash in callee_pc](https://crbug.com/673241)**  
 **[Commit: [wasm] Handle potentially null callee-pc](https://chromium.googlesource.com/v8/v8/+/c69b48a)**  
   
 Date(Commit): Mon Dec 12 12:30:39 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2562333002](https://codereview.chromium.org/2562333002)  
 Regress: [mjsunit/regress/regress-673241.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-673241.js)  
@@ -813,12 +782,11 @@ assertThrows(generateAsmJs());
 
 ## **regress-673244.js (chromium issue)**  
    
-**[Issue 673244:
- Crash in v8::internal::Simulator::DecodeType2](https://crbug.com/673244)**  
+**[Crash in v8::internal::Simulator::DecodeType2](https://crbug.com/673244)**  
 **[Commit: [turbofan] Fix representation change from bit to tagged pointer.](https://chromium.googlesource.com/v8/v8/+/d024df4)**  
   
 Date(Commit): Mon Dec 12 09:36:47 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug-Security  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "M-56", "External-Fuzzer-Contribution", "reward-3000", "Security_Severity-Medium", "Hotlist-Merge-Approved", "Security_Impact-Beta", "allpublic", "Clusterfuzz", "reward-inprocess", "M-57", "ClusterFuzz-Verified", "reward_to-decoder.oh_at_googlemail.com", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2568053002](https://codereview.chromium.org/2568053002)  
 Regress: [mjsunit/compiler/regress-673244.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-673244.js)  
@@ -844,12 +812,12 @@ f();
 
 ## **regress-670683.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/670683)**  
+**[Permission denied](https://crbug.com/670683)**  
 **[Commit: [wasm] Update WasmMemoryObject correctly when module memory is exported.](https://chromium.googlesource.com/v8/v8/+/0061089)**  
   
 Date(Commit): Thu Dec 08 20:30:54 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2548223002](https://codereview.chromium.org/2548223002)  
 Regress: [mjsunit/regress/wasm/regress-670683.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-670683.js)  
 ```javascript
@@ -879,12 +847,11 @@ assertPromiseResult(
 
 ## **regress-672045.js (chromium issue)**  
    
-**[Issue 672045:
- VariableLocation::PARAMETER == expr->obj()->AsVariableProxy()->var()->location()](https://crbug.com/672045)**  
+**[VariableLocation::PARAMETER == expr->obj()->AsVariableProxy()->var()->location()](https://crbug.com/672045)**  
 **[Commit: [wasm][asm.js] Fail sooner if eval is present.](https://chromium.googlesource.com/v8/v8/+/6deb99c)**  
   
 Date(Commit): Thu Dec 08 14:44:00 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2558813004](https://codereview.chromium.org/2558813004)  
 Regress: [mjsunit/asm/regress-672045.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-672045.js)  
@@ -908,12 +875,11 @@ assertFalse(%IsAsmWasmCode(Module));
 
 ## **regress-671574.js (chromium issue)**  
    
-**[Issue 671574:
- false in code-generator.cc](https://crbug.com/671574)**  
+**[false in code-generator.cc](https://crbug.com/671574)**  
 **[Commit: [turbofan] Fix skipping of translations for lazy deopt return value stores.](https://chromium.googlesource.com/v8/v8/+/da2529a)**  
   
 Date(Commit): Wed Dec 07 08:31:40 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2560743002](https://codereview.chromium.org/2560743002)  
 Regress: [mjsunit/compiler/regress-671574.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-671574.js)  
@@ -945,12 +911,11 @@ f();
 
 ## **regress-670671.js (chromium issue)**  
    
-**[Issue 670671:
- size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/670671)**  
+**[size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/670671)**  
 **[Commit: [stubs] Add option to allow LO space allocation](https://chromium.googlesource.com/v8/v8/+/9c9c8d7)**  
   
 Date(Commit): Tue Dec 06 14:08:57 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "ReleaseBlock-Dev", "Fracas", "Clusterfuzz", "M-57", "FoundIn-M-55", "FoundIn-M-57", "TE-Verified-57.0.2944.0", "TE-Verified-57"]  
 Code Review: [https://codereview.chromium.org/2555703003](https://codereview.chromium.org/2555703003)  
 Regress: [mjsunit/regress/regress-670671.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-670671.js)  
@@ -983,12 +948,11 @@ re.__defineGetter__("global", () => true);  // Triggers infinite loop.
 
 ## **regress-crbug-671576.js (chromium issue)**  
    
-**[Issue 671576:
- map_index >= Context::TYPED_ARRAY_KEY_ITERATOR_MAP_INDEX in js-builtin-reducer.c](https://crbug.com/671576)**  
+**[map_index >= Context::TYPED_ARRAY_KEY_ITERATOR_MAP_INDEX in js-builtin-reducer.c](https://crbug.com/671576)**  
 **[Commit: Fix assertion failure in JSBuiltinReducer::ReduceArrayIterator.](https://chromium.googlesource.com/v8/v8/+/a610155)**  
   
 Date(Commit): Tue Dec 06 13:10:22 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2550143004](https://codereview.chromium.org/2550143004)  
 Regress: [mjsunit/regress/regress-crbug-671576.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-671576.js)  
@@ -1012,12 +976,11 @@ f();
 
 ## **regress-670808.js (chromium issue)**  
    
-**[Issue 670808:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSFunction()) in objects-i](https://crbug.com/670808)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSFunction()) in objects-i](https://crbug.com/670808)**  
 **[Commit: [wasm] Implement location from stack trace for asm.js frames](https://chromium.googlesource.com/v8/v8/+/6a8dccb)**  
   
 Date(Commit): Mon Dec 05 19:30:16 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "Test-Predator-Wrong"]  
 Code Review: [https://codereview.chromium.org/2548323002](https://codereview.chromium.org/2548323002)  
 Regress: [mjsunit/regress/regress-670808.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-670808.js)  
@@ -1052,12 +1015,10 @@ try {
 
 ## **regress-v8-5697.js (v8 issue)**  
    
-**[Issue 5697:
- Deopt loop when LoadIC on null/undefined](https://crbug.com/v8/5697)**  
+**[Deopt loop when LoadIC on null/undefined](https://crbug.com/v8/5697)**  
 **[Commit: [ic] Ensure state of load/store ICs always progresses.](https://chromium.googlesource.com/v8/v8/+/e7a51ff)**  
   
 Date(Commit): Fri Dec 02 15:07:31 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2548753003](https://codereview.chromium.org/2548753003)  
 Regress: [mjsunit/regress/regress-v8-5697.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5697.js)  
 ```javascript
@@ -1104,12 +1065,11 @@ assertOptimized(store);
 
 ## **regress-crbug-669411.js (chromium issue)**  
    
-**[Issue 669411:
- Crash in v8::internal::Factory::NewTuple2](https://crbug.com/669411)**  
+**[Crash in v8::internal::Factory::NewTuple2](https://crbug.com/669411)**  
 **[Commit: [ic] Use validity cells to protect keyed element stores against object's prototype chain modifications.](https://chromium.googlesource.com/v8/v8/+/39e6f2ca)**  
   
 Date(Commit): Fri Dec 02 10:03:33 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://crrev.com/a39522f44f7e0be4686831688917e9675255dcaf](https://crrev.com/a39522f44f7e0be4686831688917e9675255dcaf)  
 Regress: [mjsunit/regress/regress-crbug-669411.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-669411.js)  
@@ -1136,12 +1096,11 @@ f(o);
 
 ## **regress-crbug-669850.js (chromium issue)**  
    
-**[Issue 669850:
- size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/669850)**  
+**[size <= kMaxRegularHeapObjectSize in runtime-internal.cc](https://crbug.com/669850)**  
 **[Commit: [turbofan] Workaround for unknown array literal length.](https://chromium.googlesource.com/v8/v8/+/f8fec66)**  
   
 Date(Commit): Thu Dec 01 12:01:00 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2542633002](https://codereview.chromium.org/2542633002)  
 Regress: [mjsunit/regress/regress-crbug-669850.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-669850.js)  
@@ -1163,12 +1122,11 @@ assertEquals(65, f(65)[1 << 17]);
 
 ## **regress-669899.js (chromium issue)**  
    
-**[Issue 669899:
- (indices) != nullptr in asm-wasm-builder.cc](https://crbug.com/669899)**  
+**[(indices) != nullptr in asm-wasm-builder.cc](https://crbug.com/669899)**  
 **[Commit: [wasm] [asm.js] Ignore unused function tables in AsmWasmBuilder.](https://chromium.googlesource.com/v8/v8/+/00ec483)**  
   
 Date(Commit): Thu Dec 01 02:27:30 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2546553002](https://codereview.chromium.org/2546553002)  
 Regress: [mjsunit/asm/regress-669899.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-669899.js)  
@@ -1207,12 +1165,11 @@ var module = __f_89();
 
 ## **regress-669024.js (chromium issue)**  
    
-**[Issue 669024:
- Difference between x64 and ia32: arguments and undefined](https://crbug.com/669024)**  
+**[Difference between x64 and ia32: arguments and undefined](https://crbug.com/669024)**  
 **[Commit: [crankshaft] Disable escape analysis of nested objects.](https://chromium.googlesource.com/v8/v8/+/e19f43d)**  
   
 Date(Commit): Wed Nov 30 15:07:16 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2531163006](https://codereview.chromium.org/2531163006)  
 Regress: [mjsunit/regress/regress-669024.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-669024.js)  
@@ -1247,12 +1204,11 @@ assertEquals(undefined, f(undefined));
 
 ## **regress-669517.js (chromium issue)**  
    
-**[Issue 669517:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/669517)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/669517)**  
 **[Commit: [Turbofan] Disable JSFrameSpecialization for interpreted frames.](https://chromium.googlesource.com/v8/v8/+/6d90507)**  
   
 Date(Commit): Wed Nov 30 14:03:51 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2538823002](https://codereview.chromium.org/2538823002)  
 Regress: [mjsunit/compiler/regress-669517.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-669517.js)  
@@ -1282,12 +1238,11 @@ Regress: [mjsunit/compiler/regress-669517.js](https://chromium.googlesource.com/
 
 ## **regress-crbug-669451.js (chromium issue)**  
    
-**[Issue 669451:
- Fatal error in ../../v8/src/compiler/escape-analysis.cc, line 824](https://crbug.com/669451)**  
+**[Fatal error in ../../v8/src/compiler/escape-analysis.cc, line 824](https://crbug.com/669451)**  
 **[Commit: [turbofan] Teach escape analysis about ConvertTaggedHoleToUndefined.](https://chromium.googlesource.com/v8/v8/+/d6752d9)**  
   
 Date(Commit): Tue Nov 29 13:13:55 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2533263002](https://codereview.chromium.org/2533263002)  
 Regress: [mjsunit/regress/regress-crbug-669451.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-669451.js)  
@@ -1322,12 +1277,10 @@ try {
 
 ## **regress-5664.js (v8 issue)**  
    
-**[Issue 5664:
- mjsunit/es6/destructuring fails with --nolazy](https://crbug.com/v8/5664)**  
+**[mjsunit/es6/destructuring fails with --nolazy](https://crbug.com/v8/5664)**  
 **[Commit: [scopes] Propagate inner-scope-calls-eval to make sure we context allocate in inserted scopes](https://chromium.googlesource.com/v8/v8/+/73a2d63)**  
   
 Date(Commit): Tue Nov 29 12:01:34 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2536153002](https://codereview.chromium.org/2536153002)  
 Regress: [mjsunit/regress/regress-5664.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5664.js)  
 ```javascript
@@ -1345,12 +1298,11 @@ assertEquals(100, f(100));
 
 ## **regress-crbug-668795.js (chromium issue)**  
    
-**[Issue 668795:
- length == previously_materialized_objects->length() in deoptimizer.cc](https://crbug.com/668795)**  
+**[length == previously_materialized_objects->length() in deoptimizer.cc](https://crbug.com/668795)**  
 **[Commit: [deoptimizer] Fix deoptimization in {TranslatedState}.](https://chromium.googlesource.com/v8/v8/+/204babf)**  
   
 Date(Commit): Tue Nov 29 11:34:22 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2534143002](https://codereview.chromium.org/2534143002)  
 Regress: [mjsunit/regress/regress-crbug-668795.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-668795.js)  
@@ -1385,12 +1337,11 @@ assertEquals("R:121212", f());
 
 ## **regress-crbug-662907.js (chromium issue)**  
    
-**[Issue 662907:
- Difference between fullcode and crankshaft_opt: array prototype setter](https://crbug.com/662907)**  
+**[Difference between fullcode and crankshaft_opt: array prototype setter](https://crbug.com/662907)**  
 **[Commit: [ic] Use validity cells to protect keyed element stores against object's prototype chain modifications.](https://chromium.googlesource.com/v8/v8/+/a39522f)**  
   
 Date(Commit): Mon Nov 28 22:56:52 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2534613002](https://codereview.chromium.org/2534613002)  
 Regress: [mjsunit/regress/regress-crbug-662907.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-662907.js)  
@@ -1457,12 +1408,11 @@ Regress: [mjsunit/regress/regress-crbug-662907.js](https://chromium.googlesource
 
 ## **regress-666046.js (chromium issue)**  
    
-**[Issue 666046:
- Tab crashes every time for unknown reason (recent versions of Chrome and Chrome only)](https://crbug.com/666046)**  
+**[Tab crashes every time for unknown reason (recent versions of Chrome and Chrome only)](https://crbug.com/666046)**  
 **[Commit: [heap] Clear recorded slots for inobject properties when migrating fast object to slow mode.](https://chromium.googlesource.com/v8/v8/+/a814b8a)**  
   
 Date(Commit): Mon Nov 28 20:11:30 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "NodeJS-Backport-Done", "merge-merged-5.5", "Via-Wizard-Crashes", "merge-merged-5.6", "Merge-rejected-5.4"]  
 Code Review: [https://codereview.chromium.org/2539493002](https://codereview.chromium.org/2539493002)  
 Regress: [mjsunit/regress/regress-666046.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-666046.js)  
@@ -1522,12 +1472,11 @@ gc();
 
 ## **regress-crbug-663410.js (chromium issue)**  
    
-**[Issue 663410:
- Function arugment evasion](https://crbug.com/663410)**  
+**[Function arugment evasion](https://crbug.com/663410)**  
 **[Commit: Fix 'combo breaker' in CreateDynamicFunction to handle template literals.](https://chromium.googlesource.com/v8/v8/+/e0d608a)**  
   
 Date(Commit): Mon Nov 28 14:44:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Needs-Feedback", "Via-Wizard-Javascript"]  
 Code Review: [https://codereview.chromium.org/2533463002](https://codereview.chromium.org/2533463002)  
 Regress: [mjsunit/regress/regress-crbug-663410.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-663410.js)  
@@ -1547,12 +1496,11 @@ assertThrows(
 
 ## **regress-668760.js (chromium issue)**  
    
-**[Issue 668760:
- catch_handler_frame_index < count in deoptimizer.cc](https://crbug.com/668760)**  
+**[catch_handler_frame_index < count in deoptimizer.cc](https://crbug.com/668760)**  
 **[Commit: [deoptimizer] Use the correct function for handler lookup for bytecode.](https://chromium.googlesource.com/v8/v8/+/72b5a0d)**  
   
 Date(Commit): Mon Nov 28 12:45:29 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2530403002](https://codereview.chromium.org/2530403002)  
 Regress: [mjsunit/compiler/regress-668760.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-668760.js)  
@@ -1591,12 +1539,11 @@ assertEquals(42, f());
 
 ## **regress-crbug-668414.js (chromium issue)**  
    
-**[Issue 668414:
- Difference between x64 and ia32: array concat](https://crbug.com/668414)**  
+**[Difference between x64 and ia32: array concat](https://crbug.com/668414)**  
 **[Commit: [runtime] Add missing @@IsConcatSpreadable check for FAST_DOUBLE_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/a09e5ed)**  
   
 Date(Commit): Mon Nov 28 10:06:17 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2527173002](https://codereview.chromium.org/2527173002)  
 Regress: [mjsunit/regress/regress-crbug-668414.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-668414.js)  
@@ -1666,12 +1613,11 @@ Array.prototype[Symbol.isConcatSpreadable] = false;
 
 ## **regress-crbug-668101.js (chromium issue)**  
    
-**[Issue 668101:
- pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/668101)**  
+**[pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/668101)**  
 **[Commit: [stubs] Fix AccessorInfo mixup in KeyedStoreGeneric](https://chromium.googlesource.com/v8/v8/+/2661b3e)**  
   
 Date(Commit): Wed Nov 23 13:27:22 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2525913002](https://codereview.chromium.org/2525913002)  
 Regress: [mjsunit/regress/regress-crbug-668101.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-668101.js)  
@@ -1701,12 +1647,10 @@ assertEquals(1, a.length);
 
 ## **regress-5648.js (v8 issue)**  
    
-**[Issue 5648:
- Segmentation fault in for..of/generators](https://crbug.com/v8/5648)**  
+**[Segmentation fault in for..of/generators](https://crbug.com/v8/5648)**  
 **[Commit: [parser] Fix scopes in rewriting of for-of and destructuring assignments.](https://chromium.googlesource.com/v8/v8/+/f385268)**  
   
 Date(Commit): Wed Nov 23 13:25:35 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2520883002](https://codereview.chromium.org/2520883002)  
 Regress: [mjsunit/regress/regress-5648.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5648.js)  
 ```javascript
@@ -1755,12 +1699,11 @@ assertThrows(baz, TypeError);
 
 ## **regress-667745.js (chromium issue)**  
    
-**[Issue 667745:
- Crash in v8::internal::compiler::RegisterAllocatorVerifier::ValidatePendingAssessment](https://crbug.com/667745)**  
+**[Crash in v8::internal::compiler::RegisterAllocatorVerifier::ValidatePendingAssessment](https://crbug.com/667745)**  
 **[Commit: [turbofan] Regalloc validator: support same block pending assessment](https://chromium.googlesource.com/v8/v8/+/7a1ad0c)**  
   
 Date(Commit): Tue Nov 22 17:31:06 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Stability-Libfuzzer", "Clusterfuzz", "Test-Predator-Correct-CLs"]  
 Code Review: [https://codereview.chromium.org/2519973004](https://codereview.chromium.org/2519973004)  
 Regress: [mjsunit/regress/wasm/regress-667745.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-667745.js)  
@@ -2158,12 +2101,11 @@ kExprReturn
 
 ## **regress-667603.js (chromium issue)**  
    
-**[Issue 667603:
- Crash in v8::ShellArrayBufferAllocator::Allocate](https://crbug.com/667603)**  
+**[Crash in v8::ShellArrayBufferAllocator::Allocate](https://crbug.com/667603)**  
 **[Commit: [d8] Do not try to verify zero-ness of failed virtual memory allocation.](https://chromium.googlesource.com/v8/v8/+/5a1fbe2)**  
   
 Date(Commit): Tue Nov 22 12:36:37 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "Test-Predator-Wrong-CLs"]  
 Code Review: [https://codereview.chromium.org/2519363002](https://codereview.chromium.org/2519363002)  
 Regress: [mjsunit/regress/regress-667603.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-667603.js)  
@@ -2184,12 +2126,11 @@ try {
 
 ## **regress-664117.js (chromium issue)**  
    
-**[Issue 664117:
- Difference between fullcode and ignition_turbo: array length overflow](https://crbug.com/664117)**  
+**[Difference between fullcode and ignition_turbo: array length overflow](https://crbug.com/664117)**  
 **[Commit: [turbofan] Fix representation changes for unsigned values used as checked-signed values.](https://chromium.googlesource.com/v8/v8/+/d7aae40)**  
   
 Date(Commit): Tue Nov 22 12:07:45 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2522883002](https://codereview.chromium.org/2522883002)  
 Regress: [mjsunit/compiler/regress-664117.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-664117.js)  
@@ -2216,12 +2157,11 @@ assertEquals(4294967296, foo());
 
 ## **regress-crbug-662830.js (chromium issue)**  
    
-**[Issue 662830:
- fixed_size_above_fp + (stack_slots * kPointerSize) - CommonFrameConstants::kFixe](https://crbug.com/662830)**  
+**[fixed_size_above_fp + (stack_slots * kPointerSize) - CommonFrameConstants::kFixe](https://crbug.com/662830)**  
 **[Commit: [interpreter] Fix stack unwinding of deoptimized frames.](https://chromium.googlesource.com/v8/v8/+/a90671f)**  
   
 Date(Commit): Tue Nov 22 11:28:45 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Hotlist-Merge-Approved", "Clusterfuzz", "Test-Predator-Wrong", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2517203003](https://codereview.chromium.org/2517203003)  
 Regress: [mjsunit/regress/regress-crbug-662830.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-662830.js)  
@@ -2252,12 +2192,11 @@ g();
 
 ## **regress-crbug-667689.js (chromium issue)**  
    
-**[Issue 667689:
- Difference between fullcode and ignition_turbo: instanceof and Symbol.hasInstance](https://crbug.com/667689)**  
+**[Difference between fullcode and ignition_turbo: instanceof and Symbol.hasInstance](https://crbug.com/667689)**  
 **[Commit: [turbofan] Fix broken effect chain for instanceof.](https://chromium.googlesource.com/v8/v8/+/84c9360)**  
   
 Date(Commit): Tue Nov 22 11:05:35 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Arch-All", "M-57", "NodeJS-Backport-Rejected", "merge-merged-5.5", "merge-merged-5.6", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2518313002](https://codereview.chromium.org/2518313002)  
 Regress: [mjsunit/regress/regress-crbug-667689.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-667689.js)  
@@ -2289,12 +2228,11 @@ assertTrue(baz());
 
 ## **regress-666741.js (chromium issue)**  
    
-**[Issue 666741:
- (location_) != nullptr in handles.cc](https://crbug.com/666741)**  
+**[(location_) != nullptr in handles.cc](https://crbug.com/666741)**  
 **[Commit: [wasm] Throw a RangeError if Wasm memory could not be allocated.](https://chromium.googlesource.com/v8/v8/+/d0fe942)**  
   
 Date(Commit): Mon Nov 21 21:58:53 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://bugs.chromium.org/p/chromium/issues/detail?id=666741](https://bugs.chromium.org/p/chromium/issues/detail?id=666741)  
 Regress: [mjsunit/regress/wasm/regress-666741.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-666741.js)  
@@ -2313,12 +2251,11 @@ Regress: [mjsunit/regress/wasm/regress-666741.js](https://chromium.googlesource.
 
 ## **regress-crbug-666742.js (chromium issue)**  
    
-**[Issue 666742:
- pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/666742)**  
+**[pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/666742)**  
 **[Commit: [ic] Ensure prototype validity cell guards global object's prototype changes for LoadGlobalIC.](https://chromium.googlesource.com/v8/v8/+/8ca50a8)**  
   
 Date(Commit): Mon Nov 21 12:46:44 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2512183002](https://codereview.chromium.org/2512183002)  
 Regress: [mjsunit/regress/regress-crbug-666742.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-666742.js)  
@@ -2343,12 +2280,11 @@ assertEquals(x, 42);
 
 ## **regress-crbug-664974.js (chromium issue)**  
    
-**[Issue 664974:
- NameDictionary::kNotFound == current->property_dictionary()->FindEntry(name) in](https://crbug.com/664974)**  
+**[NameDictionary::kNotFound == current->property_dictionary()->FindEntry(name) in ](https://crbug.com/664974)**  
 **[Commit: [ic] Don't check full prototype chain if name is a private symbol.](https://chromium.googlesource.com/v8/v8/+/4513532)**  
   
 Date(Commit): Mon Nov 21 11:21:43 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "M-56", "Hotlist-Merge-Approved", "ReleaseBlock-Stable", "Clusterfuzz", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2513893003](https://codereview.chromium.org/2513893003)  
 Regress: [mjsunit/regress/regress-crbug-664974.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-664974.js)  
@@ -2375,12 +2311,11 @@ m.set(o, 42);
 
 ## **regress-crbug-664802.js (chromium issue)**  
    
-**[Issue 664802:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in objects-inl](https://crbug.com/664802)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in objects-inl](https://crbug.com/664802)**  
 **[Commit: [ic] Don't check full prototype chain if name is a private symbol.](https://chromium.googlesource.com/v8/v8/+/4513532)**  
   
 Date(Commit): Mon Nov 21 11:21:43 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Test-Predator-Wrong", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2513893003](https://codereview.chromium.org/2513893003)  
 Regress: [mjsunit/regress/regress-crbug-664802.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-664802.js)  
@@ -2404,12 +2339,11 @@ m.set(o);
 
 ## **regress-cr-658267.js (chromium issue)**  
    
-**[Issue 658267:
- Use-after-poison in v8::internal::List<v8::internal::FuncNameInferrer::Name, v8::internal::ZoneAlloc](https://crbug.com/658267)**  
+**[Use-after-poison in v8::internal::List<v8::internal::FuncNameInferrer::Name, v8::internal::ZoneAlloc](https://crbug.com/658267)**  
 **[Commit: Fix function name inference corruption for async functions](https://chromium.googlesource.com/v8/v8/+/06f8e87)**  
   
 Date(Commit): Fri Nov 18 18:31:54 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "M-55", "Stability-Memory-AddressSanitizer", "Stability-Libfuzzer", "Security_Severity-High", "Security_Impact-Beta", "allpublic", "Clusterfuzz", "NodeJS-Backport-Rejected", "merge-merged-5.5", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2514893002](https://codereview.chromium.org/2514893002)  
 Regress: [mjsunit/regress/regress-cr-658267.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-cr-658267.js)  
@@ -2426,12 +2360,11 @@ assertThrows("class D extends async() =>", SyntaxError);
 
 ## **regress-666622.js (chromium issue)**  
    
-**[Issue 666622:
- OperatorProperties::GetTotalInputCount(node->op()) == node->InputCount() in veri](https://crbug.com/666622)**  
+**[OperatorProperties::GetTotalInputCount(node->op()) == node->InputCount() in veri](https://crbug.com/666622)**  
 **[Commit: [builtins] add context input to users of CreateKeyValueArray opcode](https://chromium.googlesource.com/v8/v8/+/e84f0ad)**  
   
 Date(Commit): Fri Nov 18 18:17:27 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Merge-Merged", "Hotlist-Merge-Approved", "Clusterfuzz", "ClusterFuzz-Verified", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2515683002](https://codereview.chromium.org/2515683002)  
 Regress: [mjsunit/es6/regress/regress-666622.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-666622.js)  
@@ -2482,12 +2415,11 @@ testTypedArray();
 
 ## **regress-crbug-666308.js (chromium issue)**  
    
-**[Issue 666308:
- Difference between fullcode and crankshaft_opt: prototype and instanceof](https://crbug.com/666308)**  
+**[Difference between fullcode and crankshaft_opt: prototype and instanceof](https://crbug.com/666308)**  
 **[Commit: [crankshaft] Don't inline the fast path for instanceof if the function has a non-instance .prototype](https://chromium.googlesource.com/v8/v8/+/0c70f37)**  
   
 Date(Commit): Fri Nov 18 12:57:37 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2516603002](https://codereview.chromium.org/2516603002)  
 Regress: [mjsunit/regress/regress-crbug-666308.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-666308.js)  
@@ -2508,12 +2440,11 @@ assertThrows(bar);
 
 ## **regress-crbug-662854.js (chromium issue)**  
    
-**[Issue 662854:
- Difference between fullcode and crankshaft_opt: missing reference error](https://crbug.com/662854)**  
+**[Difference between fullcode and crankshaft_opt: missing reference error](https://crbug.com/662854)**  
 **[Commit: [ic] Support data handlers in LoadGlobalIC.](https://chromium.googlesource.com/v8/v8/+/937b8cb)**  
   
 Date(Commit): Thu Nov 17 12:18:40 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["merge-merged-5.6", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2511603002](https://codereview.chromium.org/2511603002)  
 Regress: [mjsunit/regress/regress-crbug-662854.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-662854.js)  
@@ -2539,12 +2470,11 @@ assertThrows(()=>f());
 
 ## **regress-crbug-665886.js (chromium issue)**  
    
-**[Issue 665886:
- pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/665886)**  
+**[pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/665886)**  
 **[Commit: [ic] Invalidate prototype validity cell when a slow prototype becomes fast.](https://chromium.googlesource.com/v8/v8/+/f718cd1)**  
   
 Date(Commit): Wed Nov 16 17:45:33 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2502393002](https://codereview.chromium.org/2502393002)  
 Regress: [mjsunit/regress/regress-crbug-665886.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-665886.js)  
@@ -2572,12 +2502,11 @@ a.toLocaleString();
 
 ## **regress-665680.js (chromium issue)**  
    
-**[Issue 665680:
- Crash in v8::internal::compiler::AstGraphBuilder::VisitCall](https://crbug.com/665680)**  
+**[Crash in v8::internal::compiler::AstGraphBuilder::VisitCall](https://crbug.com/665680)**  
 **[Commit: [Turbofan] Fix missing break on AstGraphBuilder VisitCall.](https://chromium.googlesource.com/v8/v8/+/94e8417)**  
   
 Date(Commit): Wed Nov 16 13:46:42 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Merge-Merged", "Clusterfuzz", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2509643002](https://codereview.chromium.org/2509643002)  
 Regress: [mjsunit/compiler/regress-665680.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-665680.js)  
@@ -2606,12 +2535,11 @@ invalidAsmFunction();
 
 ## **regress-crbug-665587.js (chromium issue)**  
    
-**[Issue 665587:
- Crash in v8::internal::Simulator::DecodeType2](https://crbug.com/665587)**  
+**[Crash in v8::internal::Simulator::DecodeType2](https://crbug.com/665587)**  
 **[Commit: [turbofan] Fix bogus representation for {kCheckTaggedHole}.](https://chromium.googlesource.com/v8/v8/+/31a8ec7)**  
   
 Date(Commit): Wed Nov 16 12:53:47 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "Merge-Rejected-56"]  
 Code Review: [https://codereview.chromium.org/2504183002](https://codereview.chromium.org/2504183002)  
 Regress: [mjsunit/regress/regress-crbug-665587.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-665587.js)  
@@ -2638,12 +2566,11 @@ f();
 
 ## **regress-626986.js (chromium issue)**  
    
-**[Issue 626986:
- "maps_pixel_test (with patch)" recently became flaky on Mac, Windows, Linux and Android](https://crbug.com/626986)**  
+**["maps_pixel_test (with patch)" recently became flaky on Mac, Windows, Linux and Android](https://crbug.com/626986)**  
 **[Commit: [turbofan] Fix deopt check for storing into constant field.](https://chromium.googlesource.com/v8/v8/+/1900760)**  
   
 Date(Commit): Tue Nov 15 13:17:13 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Internals>GPU>TestingInternals>GPU>InternalsBlink>JavaScript>CompilerBlink>WebGL  
 Labels: ["M-55", "M-56", "M-54", "Hotlist-Merge-Approved", "ReleaseBlock-Stable", "Via-TryFlakes", "Hotlist-PixelWrangler", "hotlist-infra-opportunity", "NodeJS-Backport-Rejected", "merge-merged-5.5", "merge-merged-5.6"]  
 Code Review: [https://codereview.chromium.org/2503863002](https://codereview.chromium.org/2503863002)  
 Regress: [mjsunit/compiler/regress-626986.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-626986.js)  
@@ -2678,12 +2605,11 @@ assertEquals(0, o.f());
 
 ## **regress-660925.js (chromium issue)**  
    
-**[Issue 660925:
- pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/660925)**  
+**[pc_->Mask(ExceptionMask) == HLT in simulator-arm64.cc](https://crbug.com/660925)**  
 **[Commit: [builtins] Take fast path in Array.prototype.keys() only if length is an Smi](https://chromium.googlesource.com/v8/v8/+/2a350ed)**  
   
 Date(Commit): Mon Nov 14 18:52:25 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2496323002](https://codereview.chromium.org/2496323002)  
 Regress: [mjsunit/es6/regress/regress-660925.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-660925.js)  
@@ -2708,12 +2634,11 @@ assertEquals({ value: undefined, done: false }, it.next());
 
 ## **regress-crbug-664506.js (chromium issue)**  
    
-**[Issue 664506:
- Difference between fullcode and ignition_staging: array toString and gc](https://crbug.com/664506)**  
+**[Difference between fullcode and ignition_staging: array toString and gc](https://crbug.com/664506)**  
 **[Commit: [builtins] Fix pointer comparison in ToString builtin.](https://chromium.googlesource.com/v8/v8/+/79aee39)**  
   
 Date(Commit): Mon Nov 14 12:44:29 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Proj-Ignition", "merge-merged-5.6", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2496043003](https://codereview.chromium.org/2496043003)  
 Regress: [mjsunit/regress/regress-crbug-664506.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-664506.js)  
@@ -2734,12 +2659,11 @@ assertEquals("[object Array]", Object.prototype.toString.call([]));
 
 ## **regress-crbug-664942.js (chromium issue)**  
    
-**[Issue 664942:
- Difference between fullcode and ignition_staging_turbo: string vs. array access](https://crbug.com/664942)**  
+**[Difference between fullcode and ignition_staging_turbo: string vs. array access](https://crbug.com/664942)**  
 **[Commit: [turbofan] Properly allocate constant-folded string.](https://chromium.googlesource.com/v8/v8/+/5667280)**  
   
 Date(Commit): Mon Nov 14 11:58:09 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Arch-All", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2503433002](https://codereview.chromium.org/2503433002)  
 Regress: [mjsunit/regress/regress-crbug-664942.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-664942.js)  
@@ -2762,12 +2686,11 @@ assertEquals("x", foo());
 
 ## **regress-664490.js (chromium issue)**  
    
-**[Issue 664490:
- Difference between fullcode and turbofan: osr](https://crbug.com/664490)**  
+**[Difference between fullcode and turbofan: osr](https://crbug.com/664490)**  
 **[Commit: [turbofan] Fix deoptimization of boolean bit constants.](https://chromium.googlesource.com/v8/v8/+/297a969)**  
   
 Date(Commit): Mon Nov 14 09:30:19 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["merge-merged-5.6", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2495243002](https://codereview.chromium.org/2495243002)  
 Regress: [mjsunit/compiler/regress-664490.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-664490.js)  
@@ -2838,12 +2761,11 @@ assertEquals("class B {}", B.toString());
 
 ## **regress-crbug-664469.js (chromium issue)**  
    
-**[Issue 664469:
- Crash in v8::internal::Simulator::DecodeType3](https://crbug.com/664469)**  
+**[Crash in v8::internal::Simulator::DecodeType3](https://crbug.com/664469)**  
 **[Commit: [ic] Fix elements conversion in KeyedStoreGeneric](https://chromium.googlesource.com/v8/v8/+/567904f)**  
   
 Date(Commit): Fri Nov 11 13:02:10 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "M-56", "Security_Severity-Medium", "Security_Impact-Head", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2492783004](https://codereview.chromium.org/2492783004)  
 Regress: [mjsunit/regress/regress-crbug-664469.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-664469.js)  
@@ -2875,12 +2797,11 @@ for (var i = 1; i < kLength; i++) {
 
 ## **regress-664146.js (chromium issue)**  
    
-**[Issue 664146:
-  Difference between fullcode and ignition_staging: Missing referece error](https://crbug.com/664146)**  
+**[ Difference between fullcode and ignition_staging: Missing referece error](https://crbug.com/664146)**  
 **[Commit: [Interpreter] Fix logical-or/and to ensure it always visits the lhs.](https://chromium.googlesource.com/v8/v8/+/f50f19e)**  
   
 Date(Commit): Thu Nov 10 16:31:00 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Proj-Ignition", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2495543002](https://codereview.chromium.org/2495543002)  
 Regress: [mjsunit/ignition/regress-664146.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-664146.js)  
@@ -2917,12 +2838,11 @@ assertTrue(foo_call_count == 6);
 
 ## **regress-664087.js (chromium issue)**  
    
-**[Issue 664087:
- Difference between fullcode and crankshaft_opt: Missing reference error with valueOf](https://crbug.com/664087)**  
+**[Difference between fullcode and crankshaft_opt: Missing reference error with valueOf](https://crbug.com/664087)**  
 **[Commit: [crankshaft] Always force number representation for increment.](https://chromium.googlesource.com/v8/v8/+/c71e5e1)**  
   
 Date(Commit): Thu Nov 10 14:51:18 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2491333002](https://codereview.chromium.org/2491333002)  
 Regress: [mjsunit/regress/regress-664087.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-664087.js)  
@@ -3026,12 +2946,11 @@ function assertKind(expected, obj, name_opt) {
 
 ## **regress-crbug-664084.js (chromium issue)**  
    
-**[Issue 664084:
- Missing ToNumber conversion in Crankshaft.](https://crbug.com/664084)**  
+**[Missing ToNumber conversion in Crankshaft.](https://crbug.com/664084)**  
 **[Commit: [crankshaft] Not all HAdd instructions produce a number.](https://chromium.googlesource.com/v8/v8/+/6d53340)**  
   
 Date(Commit): Thu Nov 10 13:11:28 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Arch-All", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2494703002](https://codereview.chromium.org/2494703002)  
 Regress: [mjsunit/regress/regress-crbug-664084.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-664084.js)  
@@ -3055,12 +2974,11 @@ assertEquals(NaN, foo());
 
 ## **regress-crbug-660379.js (chromium issue)**  
    
-**[Issue 660379:
- Difference between default and ignition with natives](https://crbug.com/660379)**  
+**[Difference between default and ignition with natives](https://crbug.com/660379)**  
 **[Commit: [turbofan] Advance bytecode offset after lazy deopt.](https://chromium.googlesource.com/v8/v8/+/93c6595)**  
   
 Date(Commit): Thu Nov 10 11:35:22 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Proj-Ignition", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2487173002](https://codereview.chromium.org/2487173002)  
 Regress: [mjsunit/regress/regress-crbug-660379.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-660379.js)  
@@ -3118,12 +3036,11 @@ Regress: [mjsunit/regress/regress-crbug-660379.js](https://chromium.googlesource
 
 ## **regress-crbug-663750.js (chromium issue)**  
    
-**[Issue 663750:
- Object.freeze doesn't deoptimize properly](https://crbug.com/663750)**  
+**[Object.freeze doesn't deoptimize properly](https://crbug.com/663750)**  
 **[Commit: [runtime] Ensure Object.freeze() deoptimizes code that depends on global property cells.](https://chromium.googlesource.com/v8/v8/+/6aa16ed)**  
   
 Date(Commit): Thu Nov 10 10:37:26 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug  
+Components: Blink>JavaScript>Runtime  
 Labels: ["Arch-All", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2488223002](https://codereview.chromium.org/2488223002)  
 Regress: [mjsunit/regress/regress-crbug-663750.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-663750.js)  
@@ -3161,12 +3078,11 @@ assertEquals(undefined, v);
 
 ## **regress-660813.js (chromium issue)**  
    
-**[Issue 660813:
- return_type_->IsReturnType() in asm-typer.cc](https://crbug.com/660813)**  
+**[return_type_->IsReturnType() in asm-typer.cc](https://crbug.com/660813)**  
 **[Commit: [wasm] [asm.js] Don't allow bad return types from a global constant](https://chromium.googlesource.com/v8/v8/+/3f2db58)**  
   
 Date(Commit): Tue Nov 08 23:32:04 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2481103002](https://codereview.chromium.org/2481103002)  
 Regress: [mjsunit/asm/regress-660813.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-660813.js)  
@@ -3192,12 +3108,11 @@ Module();
 
 ## **regress-crbug-663402.js (chromium issue)**  
    
-**[Issue 663402:
- Security: [arm] OOB r/w due to size computation bug in MacroAssembler::Allocate](https://crbug.com/663402)**  
+**[Security: [arm] OOB r/w due to size computation bug in MacroAssembler::Allocate](https://crbug.com/663402)**  
 **[Commit: [arm] Fix custom addition in MacroAssembler::[Fast]Allocate](https://chromium.googlesource.com/v8/v8/+/87332fd)**  
   
 Date(Commit): Tue Nov 08 18:19:30 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Security_Impact-Stable", "M-54", "Security_Severity-High", "allpublic", "merge-merged-5.5"]  
 Code Review: [https://codereview.chromium.org/2484283002](https://codereview.chromium.org/2484283002)  
 Regress: [mjsunit/regress/regress-crbug-663402.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-663402.js)  
@@ -3244,12 +3159,11 @@ for (var i = 0; i < 300; i++) {
 
 ## **regress-662418.js (chromium issue)**  
    
-**[Issue 662418:
- Difference between default and ignition: valueOf](https://crbug.com/662418)**  
+**[Difference between default and ignition: valueOf](https://crbug.com/662418)**  
 **[Commit: [Interpreter] Ensure ValueOf is only called once for post-increment operations.](https://chromium.googlesource.com/v8/v8/+/ba5885c)**  
   
 Date(Commit): Tue Nov 08 17:03:16 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Proj-Ignition", "v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2473223004](https://codereview.chromium.org/2473223004)  
 Regress: [mjsunit/ignition/regress-662418.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-662418.js)  
@@ -3282,12 +3196,11 @@ assertTrue(valueof_calls == 1);
 
 ## **regress-662904.js (chromium issue)**  
    
-**[Issue 662904:
- Difference between fullcode and crankshaft_opt: mock_arguments](https://crbug.com/662904)**  
+**[Difference between fullcode and crankshaft_opt: mock_arguments](https://crbug.com/662904)**  
 **[Commit: [crankshaft] FIx for in deopt at the end of the loop.](https://chromium.googlesource.com/v8/v8/+/5d89844)**  
   
 Date(Commit): Tue Nov 08 12:33:56 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2476423003](https://codereview.chromium.org/2476423003)  
 Regress: [mjsunit/regress/regress-662904.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-662904.js)  
@@ -3318,12 +3231,11 @@ assertEquals("0a", foo());
 
 ## **regress-662845.js (chromium issue)**  
    
-**[Issue 662845:
- Difference between fullcode and crankshaft_opt: plain arguments](https://crbug.com/662845)**  
+**[Difference between fullcode and crankshaft_opt: plain arguments](https://crbug.com/662845)**  
 **[Commit: [crankshaft] Do not optimize argument access if any parameter is context-allocated.](https://chromium.googlesource.com/v8/v8/+/7f801ff)**  
   
 Date(Commit): Mon Nov 07 19:10:15 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2484723002](https://codereview.chromium.org/2484723002)  
 Regress: [mjsunit/regress/regress-662845.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-662845.js)  
@@ -3351,12 +3263,11 @@ assertEquals(1, foo(42));
 
 ## **regress-crbug-662410.js (chromium issue)**  
    
-**[Issue 662410:
- Crash in v8::internal::Invoke](https://crbug.com/662410)**  
+**[Crash in v8::internal::Invoke](https://crbug.com/662410)**  
 **[Commit: [turbofan] Properly rename receiver on CheckHeapObject.](https://chromium.googlesource.com/v8/v8/+/a758c19)**  
   
 Date(Commit): Mon Nov 07 08:41:34 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "M-56", "Security_Severity-Medium", "Security_Impact-Head", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2485563002](https://codereview.chromium.org/2485563002)  
 Regress: [mjsunit/regress/regress-crbug-662410.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-662410.js)  
@@ -3393,12 +3304,11 @@ f();
 
 ## **regress-crbug-662367.js (chromium issue)**  
    
-**[Issue 662367:
- Different division results with Infinity and NaN between default and ignition](https://crbug.com/662367)**  
+**[Different division results with Infinity and NaN between default and ignition](https://crbug.com/662367)**  
 **[Commit: [crankshaft] Fix constant folding of HDiv instruction.](https://chromium.googlesource.com/v8/v8/+/9906b3e)**  
   
 Date(Commit): Fri Nov 04 15:08:12 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["v8-foozzie-failure"]  
 Code Review: [https://codereview.chromium.org/2472413002](https://codereview.chromium.org/2472413002)  
 Regress: [mjsunit/regress/regress-crbug-662367.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-662367.js)  
@@ -3448,12 +3358,10 @@ var zero = 0;
 
 ## **regress-5598.js (v8 issue)**  
    
-**[Issue 5598:
- V8 crashes with --turbo-escape on string destructuring](https://crbug.com/v8/5598)**  
+**[V8 crashes with --turbo-escape on string destructuring](https://crbug.com/v8/5598)**  
 **[Commit: [builtins] fix Allocate() call in ReduceStringIterator()](https://chromium.googlesource.com/v8/v8/+/cbadac5)**  
   
 Date(Commit): Fri Nov 04 05:45:15 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2478643002](https://codereview.chromium.org/2478643002)  
 Regress: [mjsunit/es6/regress/regress-5598.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-5598.js)  
 ```javascript
@@ -3479,12 +3387,11 @@ fn('a');
 
 ## **regress-crbug-661949.js (chromium issue)**  
    
-**[Issue 661949:
- We should never get here - unexpected deopt info in deoptimizer.cc](https://crbug.com/661949)**  
+**[We should never get here - unexpected deopt info in deoptimizer.cc](https://crbug.com/661949)**  
 **[Commit: [turbofan] CheckBounds cannot be used within asm.js.](https://chromium.googlesource.com/v8/v8/+/1003374)**  
   
 Date(Commit): Thu Nov 03 12:35:04 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2474013002](https://codereview.chromium.org/2474013002)  
 Regress: [mjsunit/regress/regress-crbug-661949.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-661949.js)  
@@ -3513,12 +3420,11 @@ foo();
 
 ## **regress-crbug-659915a.js (chromium issue)**  
    
-**[Issue 659915:
- Bug with let variable in Chrome](https://crbug.com/659915)**  
+**[Bug with let variable in Chrome ](https://crbug.com/659915)**  
 **[Commit: [turbofan] Disable usage of {maybe_assigned} variable flag.](https://chromium.googlesource.com/v8/v8/+/b02e7fb)**  
   
 Date(Commit): Thu Nov 03 10:24:06 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["M-54", "Arch-All"]  
 Code Review: [https://codereview.chromium.org/2471523005](https://codereview.chromium.org/2471523005)  
 Regress: [mjsunit/regress/regress-crbug-659915a.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-659915a.js), [mjsunit/regress/regress-crbug-659915b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-659915b.js)  
@@ -3554,12 +3460,11 @@ assertEquals(4, boom());
 
 ## **regress-crbug-658185.js (chromium issue)**  
    
-**[Issue 658185:
- !escape_analysis_->IsVirtual(node) in escape-analysis-reducer.cc](https://crbug.com/658185)**  
+**[!escape_analysis_->IsVirtual(node) in escape-analysis-reducer.cc](https://crbug.com/658185)**  
 **[Commit: [turbofan] Properly deal with out-of-bounds fields in EscapeAnalysis.](https://chromium.googlesource.com/v8/v8/+/7201bad)**  
   
 Date(Commit): Mon Oct 31 06:43:25 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2459273002](https://codereview.chromium.org/2459273002)  
 Regress: [mjsunit/regress/regress-crbug-658185.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-658185.js)  
@@ -3590,12 +3495,10 @@ foo();
 
 ## **regress-v8-5573.js (v8 issue)**  
    
-**[Issue 5573:
- Representation check in simplified-lowering fails](https://crbug.com/v8/5573)**  
+**[Representation check in simplified-lowering fails](https://crbug.com/v8/5573)**  
 **[Commit: [turbofan] Relax a too-strict dcheck.](https://chromium.googlesource.com/v8/v8/+/21d55e2)**  
   
 Date(Commit): Thu Oct 27 12:33:19 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2458623002](https://codereview.chromium.org/2458623002)  
 Regress: [mjsunit/compiler/regress-v8-5573.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-v8-5573.js)  
 ```javascript
@@ -3620,12 +3523,11 @@ assertTrue(f());
 
 ## **regress-crbug-659967.js (chromium issue)**  
    
-**[Issue 659967:
- right->IsUndefined(isolate_) || right->IsBoolean() in ic-state.cc](https://crbug.com/659967)**  
+**[right->IsUndefined(isolate_) || right->IsBoolean() in ic-state.cc](https://crbug.com/659967)**  
 **[Commit: [ic] Properly deal with all oddballs when updating BinaryOpIC state.](https://chromium.googlesource.com/v8/v8/+/305948f)**  
   
 Date(Commit): Thu Oct 27 12:16:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2453633005](https://codereview.chromium.org/2453633005)  
 Regress: [mjsunit/regress/regress-crbug-659967.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-659967.js)  
@@ -3645,12 +3547,10 @@ f();
 
 ## **regress-5566.js (v8 issue)**  
    
-**[Issue 5566:
- Some RegExp static properties are mistakenly non-configurable](https://crbug.com/v8/5566)**  
+**[Some RegExp static properties are mistakenly non-configurable](https://crbug.com/v8/5566)**  
 **[Commit: [regexp] Set static property attributes as in spec proposal](https://chromium.googlesource.com/v8/v8/+/88c5a30)**  
   
 Date(Commit): Thu Oct 27 08:26:05 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2452913002](https://codereview.chromium.org/2452913002)  
 Regress: [mjsunit/regress/regress-5566.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5566.js)  
 ```javascript
@@ -3685,12 +3585,11 @@ for (let i = 0; i < props.length; i++) {
 
 ## **regress-crbug-658691.js (chromium issue)**  
    
-**[Issue 658691:
- Stack-overflow in v8::internal::Invoke](https://crbug.com/658691)**  
+**[Stack-overflow in v8::internal::Invoke](https://crbug.com/658691)**  
 **[Commit: [turbofan] Disable bogus lowering of builtin tail-calls.](https://chromium.googlesource.com/v8/v8/+/2ab2ec2)**  
   
 Date(Commit): Wed Oct 26 12:49:06 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2447383002](https://codereview.chromium.org/2447383002)  
 Regress: [mjsunit/regress/regress-crbug-658691.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-658691.js)  
@@ -3720,12 +3619,11 @@ assertEquals("true-no-tail", g());
 
 ## **regress-crbug-659475-1.js (chromium issue)**  
    
-**[Issue 659475:
- Pwn2Own: V8 OOB Bug.](https://crbug.com/659475)**  
+**[Pwn2Own: V8 OOB Bug.](https://crbug.com/659475)**  
 **[Commit: [compiler] Properly validate stable map assumption for globals.](https://chromium.googlesource.com/v8/v8/+/3aa57eb)**  
   
 Date(Commit): Wed Oct 26 08:55:10 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "Stability-Memory-AddressSanitizer", "Security_Impact-Stable", "Hotlist-Merge-Approved", "Security_Severity-High", "allpublic", "merge-merged-5.4", "NodeJS-Backport-Done", "merge-merged-5.5", "Release-2-M54", "CVE-2016-5198", "CVE_description-submitted"]  
 Code Review: [https://codereview.chromium.org/2444233004](https://codereview.chromium.org/2444233004)  
 Regress: [mjsunit/regress/regress-crbug-659475-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-659475-1.js), [mjsunit/regress/regress-crbug-659475-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-659475-2.js)  
@@ -3771,12 +3669,11 @@ parseInt('AAAAAAAA');
 
 ## **regress-crbug-658528.js (chromium issue)**  
    
-**[Issue 658528:
- variable->is_this() && variable->mode() == CONST && op == Token::INIT in bytecod](https://crbug.com/658528)**  
+**[variable->is_this() && variable->mode() == CONST && op == Token::INIT in bytecod](https://crbug.com/658528)**  
 **[Commit: [ignition] Use more-targeted check for CONST-this-initialization hole check](https://chromium.googlesource.com/v8/v8/+/56626f3)**  
   
 Date(Commit): Tue Oct 25 11:08:06 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2447783002](https://codereview.chromium.org/2447783002)  
 Regress: [mjsunit/regress/regress-crbug-658528.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-658528.js)  
@@ -3798,12 +3695,11 @@ assertThrows(f, SyntaxError);
 
 ## **regress-655573.js (chromium issue)**  
    
-**[Issue 655573:
- Check failed: size <= Page::kMaxRegularHeapObjectSize.](https://crbug.com/655573)**  
+**[Check failed: size <= Page::kMaxRegularHeapObjectSize.](https://crbug.com/655573)**  
 **[Commit: Don't call FastNewFunctionContextStub if context is bigger than kMaxRegularHeapObjectSize.](https://chromium.googlesource.com/v8/v8/+/381b543)**  
   
 Date(Commit): Mon Oct 24 17:23:21 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "hasbisect", "M-56", "Via-Wizard", "M-54", "ReleaseBlock-Stable", "merge-merged-5.4", "TE-Verified-M55", "NodeJS-Backport-Done", "merge-merged-5.5", "pre-stable-54.0.2840.59", "TE-Verified-55.0.2883.34"]  
 Code Review: [https://codereview.chromium.org/2177273002](https://codereview.chromium.org/2177273002)  
 Regress: [mjsunit/regress/regress-655573.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-655573.js)  
@@ -3834,12 +3730,10 @@ eval(source);
 
 ## **regress-5434.js (v8 issue)**  
    
-**[Issue 5434:
- [regexp] Additional 'exec' property access violates spec](https://crbug.com/v8/5434)**  
+**[[regexp] Additional 'exec' property access violates spec](https://crbug.com/v8/5434)**  
 **[Commit: [regexp] Add regression test for v8:5434](https://chromium.googlesource.com/v8/v8/+/f87d73c)**  
   
 Date(Commit): Mon Oct 24 10:39:01 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2440413002](https://codereview.chromium.org/2440413002)  
 Regress: [mjsunit/regress/regress-5434.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5434.js)  
 ```javascript
@@ -3885,12 +3779,11 @@ assertEquals(["a", "b", "c"], result);
 
 ## **regress-crbug-657478.js (chromium issue)**  
    
-**[Issue 657478:
- Phi of kRepFloat64 ((Unsigned32 | Negative31)) cannot be changed to kRepWord32 i](https://crbug.com/657478)**  
+**[Phi of kRepFloat64 ((Unsigned32 | Negative31)) cannot be changed to kRepWord32 i](https://crbug.com/657478)**  
 **[Commit: [turbofan] Fix typed lowering of JSToLength.](https://chromium.googlesource.com/v8/v8/+/a58d790)**  
   
 Date(Commit): Mon Oct 24 06:37:22 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Hotlist-Merge-Approved", "Clusterfuzz", "merge-merged-5.5"]  
 Code Review: [https://codereview.chromium.org/2440333002](https://codereview.chromium.org/2440333002)  
 Regress: [mjsunit/regress/regress-crbug-657478.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-657478.js)  
@@ -3914,12 +3807,10 @@ foo({length: 10});
 
 ## **regress-5531.js (v8 issue)**  
    
-**[Issue 5531:
- v8_wasm_code_fuzzer: Check failed: val <= std::numeric_limits<N>::max() (1238476 vs. 65535).](https://crbug.com/v8/5531)**  
+**[v8_wasm_code_fuzzer: Check failed: val <= std::numeric_limits<N>::max() (1238476 vs. 65535).](https://crbug.com/v8/5531)**  
 **[Commit: [turbofan] Use uint32 to store the number of control outputs instead of uint16.](https://chromium.googlesource.com/v8/v8/+/2f3ca96)**  
   
 Date(Commit): Wed Oct 19 07:25:51 2016  
-Type: Bug  
 Code Review: [https://chromiumcodereview.appspot.com/2425983002](https://chromiumcodereview.appspot.com/2425983002)  
 Regress: [mjsunit/regress/wasm/regress-5531.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-5531.js)  
 ```javascript
@@ -3950,12 +3841,10 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 
 ## **regress-5538.js (v8 issue)**  
    
-**[Issue 5538:
- Invalid ToInt32 truncation for inlined Number.parseInt code](https://crbug.com/v8/5538)**  
+**[Invalid ToInt32 truncation for inlined Number.parseInt code](https://crbug.com/v8/5538)**  
 **[Commit: [turbofan] Fix invalid Number.parseInt inlining.](https://chromium.googlesource.com/v8/v8/+/3a7eac1)**  
   
 Date(Commit): Wed Oct 19 05:17:52 2016  
-Type: Bug  
 Code Review: [https://chromiumcodereview.appspot.com/2432143002](https://chromiumcodereview.appspot.com/2432143002)  
 Regress: [mjsunit/compiler/regress-5538.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5538.js)  
 ```javascript
@@ -4022,12 +3911,11 @@ Regress: [mjsunit/compiler/regress-5538.js](https://chromium.googlesource.com/v8
 
 ## **regress-653407.js (chromium issue)**  
    
-**[Issue 653407:
- 'this is undefined' in a subclass super call.](https://crbug.com/653407)**  
+**['this is undefined' in a subclass super call.](https://crbug.com/653407)**  
 **[Commit: [turbofan] When inlining JSCallConstruct receiver should be set to the hole.](https://chromium.googlesource.com/v8/v8/+/cad3665)**  
   
 Date(Commit): Tue Oct 18 11:48:15 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Via-Wizard", "Arch-x86_64", "Proj-Ignition"]  
 Code Review: [https://codereview.chromium.org/2424123002](https://codereview.chromium.org/2424123002)  
 Regress: [mjsunit/regress/regress-653407.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-653407.js)  
@@ -4060,12 +3948,11 @@ f();
 
 ## **regress-crbug-656037.js (chromium issue)**  
    
-**[Issue 656037:
- Array.push sometimes returns the wrong thing](https://crbug.com/656037)**  
+**[Array.push sometimes returns the wrong thing](https://crbug.com/656037)**  
 **[Commit: [turbofan] Fix return value of Array.prototype.push.](https://chromium.googlesource.com/v8/v8/+/8584442)**  
   
 Date(Commit): Tue Oct 18 08:02:25 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Via-Wizard", "Needs-Feedback", "M-54", "Hotlist-Merge-Approved", "Arch-All", "merge-merged-5.4", "Merge-Merged-54", "NodeJS-Backport-Done", "merge-merged-5.5", "Postmortem-Followup", "Merge-Merged-55", "pre-stable-54.0.2840.59"]  
 Code Review: [https://codereview.chromium.org/2425903002](https://codereview.chromium.org/2425903002)  
 Regress: [mjsunit/regress/regress-crbug-656037.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-656037.js)  
@@ -4091,12 +3978,11 @@ assertEquals(3, foo(a));
 
 ## **regress-crbug-656275.js (chromium issue)**  
    
-**[Issue 656275:
- NumberFround of kRepFloat32 (Number) cannot be changed to kRepTaggedSigned in re](https://crbug.com/656275)**  
+**[NumberFround of kRepFloat32 (Number) cannot be changed to kRepTaggedSigned in re](https://crbug.com/656275)**  
 **[Commit: [turbofan] Add missing Float32 -> TaggedSigned conversion.](https://chromium.googlesource.com/v8/v8/+/96f1327)**  
   
 Date(Commit): Mon Oct 17 05:41:09 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2421193002](https://codereview.chromium.org/2421193002)  
 Regress: [mjsunit/regress/regress-crbug-656275.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-656275.js)  
@@ -4122,12 +4008,11 @@ foo(1.3);
 
 ## **regress-654377.js (chromium issue)**  
    
-**[Issue 654377:
- Crash in v8::internal::wasm::WasmFullDecoder::CreateOrMergeIntoPhi](https://crbug.com/654377)**  
+**[Crash in v8::internal::wasm::WasmFullDecoder::CreateOrMergeIntoPhi](https://crbug.com/654377)**  
 **[Commit: [wasm] Do not create TF nodes during verification](https://chromium.googlesource.com/v8/v8/+/0e1f6d8)**  
   
 Date(Commit): Thu Oct 13 08:21:47 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "findit-wrong", "Clusterfuzz", "ClusterFuzz-Verified", "Stability-AFL"]  
 Code Review: [https://codereview.chromium.org/2403013002](https://codereview.chromium.org/2403013002)  
 Regress: [mjsunit/regress/wasm/regress-654377.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-654377.js)  
@@ -4159,12 +4044,11 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 
 ## **regress-crbug-645438.js (chromium issue)**  
    
-**[Issue 645438:
- Security: js input crashes Chrome on FPE; seemingly non-deterministic in the v8 shell?](https://crbug.com/645438)**  
+**[Security: js input crashes Chrome on FPE; seemingly non-deterministic in the v8 shell?](https://crbug.com/645438)**  
 **[Commit: [crankshaft] Range analysis should not rely on overflowed ranges.](https://chromium.googlesource.com/v8/v8/+/9a0109d)**  
   
 Date(Commit): Wed Oct 12 09:06:32 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "M-55", "M-53", "M-54", "Hotlist-Merge-Approved", "allpublic", "merge-merged-5.4", "NodeJS-Backport-Done", "merge-merged-5.5", "Postmortem-Followup"]  
 Code Review: [https://codereview.chromium.org/2412853002](https://codereview.chromium.org/2412853002)  
 Regress: [mjsunit/regress/regress-crbug-645438.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-645438.js)  
@@ -4193,12 +4077,11 @@ assertEquals(x, n(x, y));
 
 ## **regress-crbug-655004.js (chromium issue)**  
    
-**[Issue 655004:
- map == GetHeap()->fixed_array_map() || map == GetHeap()->fixed_cow_array_map() i](https://crbug.com/655004)**  
+**[map == GetHeap()->fixed_array_map() || map == GetHeap()->fixed_cow_array_map() i](https://crbug.com/655004)**  
 **[Commit: [turbofan] Fix effect chain for polymorphic array access.](https://chromium.googlesource.com/v8/v8/+/edfe391)**  
   
 Date(Commit): Wed Oct 12 08:31:55 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "findit-wrong", "Hotlist-Merge-Approved", "Clusterfuzz", "merge-merged-5.4", "NodeJS-Backport-Done", "merge-merged-5.5", "Postmortem-Followup"]  
 Code Review: [https://codereview.chromium.org/2411273002](https://codereview.chromium.org/2411273002)  
 Regress: [mjsunit/regress/regress-crbug-655004.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-655004.js)  
@@ -4224,12 +4107,11 @@ foo(new Array(1));
 
 ## **regress-crbug-654723.js (chromium issue)**  
    
-**[Issue 654723:
- this->first()->IsSeqString() || this->first()->IsExternalString() in objects-deb](https://crbug.com/654723)**  
+**[this->first()->IsSeqString() || this->first()->IsExternalString() in objects-deb](https://crbug.com/654723)**  
 **[Commit: [turbofan] Respect ConsString invariant.](https://chromium.googlesource.com/v8/v8/+/a4f37da)**  
   
 Date(Commit): Wed Oct 12 07:00:52 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Hotlist-Merge-Approved", "Clusterfuzz", "ClusterFuzz-Verified", "merge-merged-5.5"]  
 Code Review: [https://codereview.chromium.org/2410893003](https://codereview.chromium.org/2410893003)  
 Regress: [mjsunit/regress/regress-crbug-654723.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-654723.js)  
@@ -4255,12 +4137,11 @@ var x = foo("");
 
 ## **regress-648079.js (chromium issue)**  
    
-**[Issue 648079:
- <no crash state available> Fatal error in afl_v8_wasm_fuzzer](https://crbug.com/648079)**  
+**[<no crash state available> Fatal error in afl_v8_wasm_fuzzer](https://crbug.com/648079)**  
 **[Commit: [wasm] Simd128 types should not be available in asmjs modules.](https://chromium.googlesource.com/v8/v8/+/19dab88)**  
   
 Date(Commit): Fri Oct 07 07:52:19 2016  
-Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Components: Blink>JavaScript>WebAssembly  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "Stability-AFL"]  
 Code Review: [https://codereview.chromium.org/2400863003](https://codereview.chromium.org/2400863003)  
 Regress: [mjsunit/regress/wasm/regress-648079.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-648079.js)  
@@ -4600,12 +4481,10 @@ assertThrows(function() { builder.instantiate(); });
 
 ## **regress-5476.js (v8 issue)**  
    
-**[Issue 5476:
- internal deferred object leaks while subclassing Promise](https://crbug.com/v8/5476)**  
+**[internal deferred object leaks while subclassing Promise](https://crbug.com/v8/5476)**  
 **[Commit: [promises] fix deferred object leak](https://chromium.googlesource.com/v8/v8/+/9d836ec)**  
   
 Date(Commit): Thu Oct 06 18:29:35 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2399053003](https://codereview.chromium.org/2399053003)  
 Regress: [mjsunit/regress/regress-5476.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5476.js)  
 ```javascript
@@ -4633,12 +4512,11 @@ const p2 = new LeakyPromise((_, r) => r());
 
 ## **regress-651961.js (chromium issue)**  
    
-**[Issue 651961:
- Disposing the isolate that is entered by a thread in wasm-code.cc](https://crbug.com/651961)**  
+**[Disposing the isolate that is entered by a thread in wasm-code.cc](https://crbug.com/651961)**  
 **[Commit: [wasm] Call a runtime function for a MemorySize instruction.](https://chromium.googlesource.com/v8/v8/+/2c12a9a)**  
   
 Date(Commit): Wed Oct 05 06:06:58 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "M-54", "Stability-Libfuzzer", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2386183004](https://codereview.chromium.org/2386183004)  
 Regress: [mjsunit/regress/wasm/regress-651961.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-651961.js)  
@@ -4675,12 +4553,11 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 
 ## **regress-625966.js (chromium issue)**  
    
-**[Issue 625966:
- InputCountField::is_valid(input_count) in instruction.h](https://crbug.com/625966)**  
+**[InputCountField::is_valid(input_count) in instruction.h](https://crbug.com/625966)**  
 **[Commit: [turbofan] Check instruction input/output count limits in instruction selector.](https://chromium.googlesource.com/v8/v8/+/a974970)**  
   
 Date(Commit): Wed Oct 05 05:43:35 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2390303002](https://codereview.chromium.org/2390303002)  
 Regress: [mjsunit/compiler/regress-625966.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-625966.js)  
@@ -4705,12 +4582,11 @@ eval(s);
 
 ## **regress-02256.js (chromium issue)**  
    
-**[Issue 2256:
- Right-click not working for context menus](https://crbug.com/2256)**  
+**[Right-click not working for context menus](https://crbug.com/2256)**  
 **[Commit: [wasm] explicitly mark off unlinked wasm module instances](https://chromium.googlesource.com/v8/v8/+/c938f0d)**  
   
 Date(Commit): Tue Oct 04 21:23:24 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Area-Unknown", "Restrict-AddIssueComment-Commit"]  
 Code Review: [https://codereview.chromium.org/2393443003](https://codereview.chromium.org/2393443003)  
 Regress: [mjsunit/regress/wasm/regress-02256.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-02256.js), [mjsunit/regress/wasm/regress-02256b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-02256b.js)  
@@ -5679,11 +5555,10 @@ try {
 
 ## **regress-5454.js (v8 issue)**  
    
-**[No Permission](https://crbug.com/v8/5454)**  
+**[Permission denied](https://crbug.com/v8/5454)**  
 **[Commit: Don't skip hole checks inside patterns in parameter lists](https://chromium.googlesource.com/v8/v8/+/3c39bac)**  
   
 Date(Commit): Tue Oct 04 17:04:19 2016  
-Type: None  
 Code Review: [https://codereview.chromium.org/2390943002](https://codereview.chromium.org/2390943002)  
 Regress: [mjsunit/regress/regress-5454.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5454.js)  
 ```javascript
@@ -5705,12 +5580,12 @@ assertThrows(() => (({b = !b}) => { })({}), ReferenceError);
 
 ## **regress-crbug-652186-global.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/652186)**  
+**[Permission denied](https://crbug.com/652186)**  
 **[Commit: [ignition] Fix building lookup graph when search depth is 0](https://chromium.googlesource.com/v8/v8/+/4ad3579)**  
   
 Date(Commit): Tue Oct 04 11:08:11 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2385123002](https://codereview.chromium.org/2385123002)  
 Regress: [mjsunit/regress/regress-crbug-652186-global.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-652186-global.js), [mjsunit/regress/regress-crbug-652186-local.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-652186-local.js)  
 ```javascript
@@ -6682,12 +6557,11 @@ function f(getter) {
 
 ## **regress-crbug-651403-global.js (chromium issue)**  
    
-**[Issue 651403:
- Unreachable code in verifier.cc](https://crbug.com/651403)**  
+**[Unreachable code in verifier.cc](https://crbug.com/651403)**  
 **[Commit: [ignition] BytecodeGraphBuilder: Merge correct environment in try block](https://chromium.googlesource.com/v8/v8/+/537c855)**  
   
 Date(Commit): Thu Sep 29 15:18:06 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2379043002](https://codereview.chromium.org/2379043002)  
 Regress: [mjsunit/regress/regress-crbug-651403-global.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-651403-global.js), [mjsunit/regress/regress-crbug-651403.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-651403.js)  
@@ -6718,12 +6592,11 @@ f();
 
 ## **regress-651327.js (chromium issue)**  
    
-**[Issue 651327:
- *isolate->global_object() == *receiver in ic.cc](https://crbug.com/651327)**  
+**[*isolate->global_object() == *receiver in ic.cc](https://crbug.com/651327)**  
 **[Commit: Readd default function variables upon scope reset for preparse abort](https://chromium.googlesource.com/v8/v8/+/fecd09c)**  
   
 Date(Commit): Thu Sep 29 13:29:15 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2380993003](https://codereview.chromium.org/2380993003)  
 Regress: [mjsunit/regress/regress-651327.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-651327.js)  
@@ -6953,12 +6826,11 @@ __f_1();
 
 ## **regress-02862.js (chromium issue)**  
    
-**[Issue 2862:
- Regression: Navigation Back and Forth problems from History page](https://crbug.com/2862)**  
+**[Regression: Navigation Back and Forth problems from History page ](https://crbug.com/2862)**  
 **[Commit: [wasm] fix for GC during instantiation.](https://chromium.googlesource.com/v8/v8/+/aff5ab1)**  
   
 Date(Commit): Thu Sep 29 04:24:42 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Mstone-2.0", "v-153.1", "stable", "Area-BrowserUI", "Restrict-AddIssueComment-Commit"]  
 Code Review: [https://codereview.chromium.org/2371403003](https://codereview.chromium.org/2371403003)  
 Regress: [mjsunit/regress/wasm/regress-02862.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-02862.js)  
@@ -7075,12 +6947,11 @@ try {
 
 ## **regress-647649.js (chromium issue)**  
    
-**[Issue 647649:
- old_size == 0 || wasm_memory_size_reference() <= old_size in assembler.cc](https://crbug.com/647649)**  
+**[old_size == 0 || wasm_memory_size_reference() <= old_size in assembler.cc](https://crbug.com/647649)**  
 **[Commit: [wasm] Fix for cloning module heap size value](https://chromium.googlesource.com/v8/v8/+/df490c3)**  
   
 Date(Commit): Thu Sep 29 00:48:28 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2347333002](https://codereview.chromium.org/2347333002)  
 Regress: [mjsunit/regress/wasm/regress-647649.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-647649.js)  
@@ -7130,12 +7001,11 @@ gc();
 
 ## **regress-crbug-650973.js (chromium issue)**  
    
-**[Issue 650973:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/650973)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/650973)**  
 **[Commit: [ic][mips][mips64] Ensure store handlers return value in proper register.](https://chromium.googlesource.com/v8/v8/+/8d8c134)**  
   
 Date(Commit): Wed Sep 28 11:46:44 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2374003002](https://codereview.chromium.org/2374003002)  
 Regress: [mjsunit/regress/regress-crbug-650973.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-650973.js)  
@@ -7165,12 +7035,10 @@ f();
 
 ## **regress-5440.js (v8 issue)**  
    
-**[Issue 5440:
- One more string-related TF crash](https://crbug.com/v8/5440)**  
+**[One more string-related TF crash](https://crbug.com/v8/5440)**  
 **[Commit: Allow empty first parts of ConsStrings](https://chromium.googlesource.com/v8/v8/+/da27e0c)**  
   
 Date(Commit): Wed Sep 28 09:46:56 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2377983002](https://codereview.chromium.org/2377983002)  
 Regress: [mjsunit/regress/regress-5440.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5440.js)  
 ```javascript
@@ -7186,12 +7054,11 @@ eval(" " + ("" + "try {;} catch (_) {}"));
 
 ## **regress-crbug-650933.js (chromium issue)**  
    
-**[Issue 650933:
- length_obj->IsSmi() in runtime-typedarray.cc](https://crbug.com/650933)**  
+**[length_obj->IsSmi() in runtime-typedarray.cc](https://crbug.com/650933)**  
 **[Commit: [typedarray] Properly initialize JSTypedArray::length with Smi.](https://chromium.googlesource.com/v8/v8/+/15a449b)**  
   
 Date(Commit): Wed Sep 28 05:49:37 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug-Regression  
+Components: Blink>JavaScript>Runtime  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "M-55", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2371963002](https://codereview.chromium.org/2371963002)  
 Regress: [mjsunit/regress/regress-crbug-650933.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-650933.js)  
@@ -7240,12 +7107,10 @@ assertEquals(42, f(apply));
 
 ## **regress-5351.js (v8 issue)**  
    
-**[Issue 5351:
- [regexp] Incorrect RegExp.prototype.split subclass implementation](https://crbug.com/v8/5351)**  
+**[[regexp] Incorrect RegExp.prototype.split subclass implementation](https://crbug.com/v8/5351)**  
 **[Commit: [regexp] Don't cache exec method in Regexp.proto[@@split]](https://chromium.googlesource.com/v8/v8/+/515994b)**  
   
 Date(Commit): Tue Sep 27 14:02:33 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2370733003](https://codereview.chromium.org/2370733003)  
 Regress: [mjsunit/regress/regress-5351.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5351.js)  
 ```javascript
@@ -8228,12 +8093,11 @@ assertEquals(1, outer_a);
 
 ## **regress-650172.js (chromium issue)**  
    
-**[Issue 650172:
- Stack-overflow in v8::internal::Invoke](https://crbug.com/650172)**  
+**[Stack-overflow in v8::internal::Invoke](https://crbug.com/650172)**  
 **[Commit: [builtins] adapt arguments for Builtins::kIteratorPrototypeIterator](https://chromium.googlesource.com/v8/v8/+/8fea775)**  
   
 Date(Commit): Tue Sep 27 11:05:42 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2368323002](https://codereview.chromium.org/2368323002)  
 Regress: [mjsunit/es6/regress/regress-650172.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-650172.js)  
@@ -8251,12 +8115,11 @@ print(1/iterator(-1E-300));
 
 ## **regress-crbug-650404.js (chromium issue)**  
    
-**[Issue 650404:
- Security: OOB read/write in V8 using TypedArrays+Crankshaft+Turbofan](https://crbug.com/650404)**  
+**[Security: OOB read/write in V8 using TypedArrays+Crankshaft+Turbofan](https://crbug.com/650404)**  
 **[Commit: [crankshaft] TypedArrayInitialize: force length to be a Smi](https://chromium.googlesource.com/v8/v8/+/142f9df)**  
   
 Date(Commit): Mon Sep 26 23:00:45 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug-Security  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Security_Impact-Head", "Security_Severity-High", "allpublic"]  
 Code Review: [https://codereview.chromium.org/2371963002](https://codereview.chromium.org/2371963002)  
 Regress: [mjsunit/regress/regress-crbug-650404.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-650404.js)  
@@ -8303,12 +8166,11 @@ for (var i = bomb.length; i < 100; i++) {
 
 ## **regress-650215.js (chromium issue)**  
    
-**[Issue 650215:
- restriction_type->Is(info->restriction_type()) in simplified-lowering.cc](https://crbug.com/650215)**  
+**[restriction_type->Is(info->restriction_type()) in simplified-lowering.cc](https://crbug.com/650215)**  
 **[Commit: [turbofan] Fix restriction type for modulus in representation inference.](https://chromium.googlesource.com/v8/v8/+/3218ef3)**  
   
 Date(Commit): Mon Sep 26 11:45:07 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2373453002](https://codereview.chromium.org/2373453002)  
 Regress: [mjsunit/compiler/regress-650215.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-650215.js)  
@@ -8373,12 +8235,11 @@ y({f: 3, u: 4});
 
 ## **regress-crbug-640497.js (chromium issue)**  
    
-**[Issue 640497:
- HeapConstant of kRepTagged (Constant(1CNUMBER <FixedArray[0]>)) cannot be change](https://crbug.com/640497)**  
+**[HeapConstant of kRepTagged (Constant(1CNUMBER <FixedArray[0]>)) cannot be change](https://crbug.com/640497)**  
 **[Commit: [turbofan] Add proper type guards to escape analysis.](https://chromium.googlesource.com/v8/v8/+/4b2c6d0)**  
   
 Date(Commit): Fri Sep 23 11:02:13 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "M-54", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2363573003](https://codereview.chromium.org/2363573003)  
 Regress: [mjsunit/regress/regress-crbug-640497.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-640497.js)  
@@ -8411,12 +8272,11 @@ f();
 
 ## **regress-crbug-648740.js (chromium issue)**  
    
-**[Issue 648740:
- arguments() != nullptr == migrate_to->arguments() != nullptr in scopes.cc](https://crbug.com/648740)**  
+**[arguments() != nullptr == migrate_to->arguments() != nullptr in scopes.cc](https://crbug.com/648740)**  
 **[Commit: Add regression test for crbug.com/648740.](https://chromium.googlesource.com/v8/v8/+/68ee0a4)**  
   
 Date(Commit): Thu Sep 22 20:44:05 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2362563002](https://codereview.chromium.org/2362563002)  
 Regress: [mjsunit/regress/regress-crbug-648740.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-648740.js)  
@@ -8436,12 +8296,11 @@ Regress: [mjsunit/regress/regress-crbug-648740.js](https://chromium.googlesource
 
 ## **regress-649067.js (chromium issue)**  
    
-**[Issue 649067:
- variable->IsContextSlot() || variable->IsStackAllocated() in bytecode-generator.](https://crbug.com/649067)**  
+**[variable->IsContextSlot() || variable->IsStackAllocated() in bytecode-generator.](https://crbug.com/649067)**  
 **[Commit: Declare the arguments object before creating the function var, to make sure it masks it](https://chromium.googlesource.com/v8/v8/+/df7ecd1)**  
   
 Date(Commit): Thu Sep 22 19:16:42 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2362463003](https://codereview.chromium.org/2362463003)  
 Regress: [mjsunit/regress/regress-649067.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-649067.js)  
@@ -8459,12 +8318,11 @@ assertEquals(1, (function arguments() { return eval("arguments"); })(1)[0]);
 
 ## **regress-649078.js (chromium issue)**  
    
-**[Issue 649078:
- args[1]->IsJSFunction() in runtime-internal.cc](https://crbug.com/649078)**  
+**[args[1]->IsJSFunction() in runtime-internal.cc](https://crbug.com/649078)**  
 **[Commit: [promises] PromiseResolveThenableJob: change then to be a JSReceiver](https://chromium.googlesource.com/v8/v8/+/ba41697)**  
   
 Date(Commit): Wed Sep 21 23:56:20 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2362503003](https://codereview.chromium.org/2362503003)  
 Regress: [mjsunit/regress/regress-649078.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-649078.js)  
@@ -8490,12 +8348,11 @@ new Promise((r) => r(p));
 
 ## **regress-crbug-648737.js (chromium issue)**  
    
-**[Issue 648737:
- JSFunction::kCodeEntryOffset == FieldAccessOf(node->op()).offset in escape-analy](https://crbug.com/648737)**  
+**[JSFunction::kCodeEntryOffset == FieldAccessOf(node->op()).offset in escape-analy](https://crbug.com/648737)**  
 **[Commit: [turbofan] Support for ConsString by escape analysis.](https://chromium.googlesource.com/v8/v8/+/b097c6c)**  
   
 Date(Commit): Wed Sep 21 12:30:00 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2357153002](https://codereview.chromium.org/2357153002)  
 Regress: [mjsunit/regress/regress-crbug-648737.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-648737.js)  
@@ -8532,12 +8389,11 @@ assertEquals(43, g("c"));
 
 ## **regress-648373-sloppy-arguments-includesValues.js (chromium issue)**  
    
-**[Issue 648373:
- Crash in v8::internal::SloppyArgumentsElementsAccessor<v8::internal::SlowSloppyArgumentsE](https://crbug.com/648373)**  
+**[Crash in v8::internal::SloppyArgumentsElementsAccessor<v8::internal::SlowSloppyArgumentsE](https://crbug.com/648373)**  
 **[Commit: [elements] Handlify raw parameter_map pointers for SloppyArgumentsAccessor](https://chromium.googlesource.com/v8/v8/+/2fd6d60)**  
   
 Date(Commit): Wed Sep 21 10:22:53 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "M-55", "Stability-Memory-AddressSanitizer", "Security_Severity-Medium", "Security_Impact-Head", "allpublic", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2354773006](https://codereview.chromium.org/2354773006)  
 Regress: [mjsunit/regress/regress-648373-sloppy-arguments-includesValues.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-648373-sloppy-arguments-includesValues.js)  
@@ -8580,12 +8436,11 @@ __f_3(__v_2);
 
 ## **regress-crbug-648539.js (chromium issue)**  
    
-**[Issue 648539:
- Crash in v8::internal::Factory::NewTypeError](https://crbug.com/648539)**  
+**[Crash in v8::internal::Factory::NewTypeError](https://crbug.com/648539)**  
 **[Commit: [turbofan] Remove bogus constant materialization from frame.](https://chromium.googlesource.com/v8/v8/+/81f4342)**  
   
 Date(Commit): Wed Sep 21 09:31:32 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "M-54", "Hotlist-Merge-Approved", "Clusterfuzz", "merge-merged-5.4", "Merge-Merged-54"]  
 Code Review: [https://codereview.chromium.org/2357583003](https://codereview.chromium.org/2357583003)  
 Regress: [mjsunit/regress/regress-crbug-648539.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-648539.js)  
@@ -8617,12 +8472,10 @@ assertThrows(g, TypeError);
 
 ## **regress-5405.js (v8 issue)**  
    
-**[Issue 5405:
- Unexpected meta-programming facilities: .promise and .new.target catchable by with-scope](https://crbug.com/v8/5405)**  
+**[Unexpected meta-programming facilities: .promise and .new.target catchable by with-scope](https://crbug.com/v8/5405)**  
 **[Commit: Remove synthetic unresolved variables from async/await desugaring](https://chromium.googlesource.com/v8/v8/+/bd07819)**  
   
 Date(Commit): Tue Sep 20 21:31:32 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2359513002](https://codereview.chromium.org/2359513002)  
 Regress: [mjsunit/regress/regress-5405.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5405.js)  
 ```javascript
@@ -8663,12 +8516,11 @@ assertArrayEquals([], log);
 
 ## **regress-crbug-647887.js (chromium issue)**  
    
-**[Issue 647887:
- Iterating object properties in a function that has a try...catch produces incorrect result](https://crbug.com/647887)**  
+**[Iterating object properties in a function that has a try...catch produces incorrect result](https://crbug.com/647887)**  
 **[Commit: [turbofan] Fix loop assignment analysis on ForInStatements.](https://chromium.googlesource.com/v8/v8/+/4dab7b5)**  
   
 Date(Commit): Tue Sep 20 12:37:33 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Hotlist-Merge-Review", "Via-Wizard", "M-53", "M-54", "Hotlist-Merge-Approved", "Arch-All", "ReleaseBlock-Stable", "merge-merged-5.3", "merge-merged-5.4", "TE-Verified-M55", "Merge-Merged-54", "TE-Verified-55.0.2868.0", "NodeJS-Backport-Rejected"]  
 Code Review: [https://codereview.chromium.org/2356733002](https://codereview.chromium.org/2356733002)  
 Regress: [mjsunit/regress/regress-crbug-647887.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-647887.js)  
@@ -8693,12 +8545,10 @@ assertFalse(f({ foo:0 }));
 
 ## **regress-5404.js (v8 issue)**  
    
-**[Issue 5404:
- Crankshaft deoptimizes unconditionally on string add range overflow](https://crbug.com/v8/5404)**  
+**[Crankshaft deoptimizes unconditionally on string add range overflow](https://crbug.com/v8/5404)**  
 **[Commit: [crankshaft] Protect against deopt loops from string length overflows.](https://chromium.googlesource.com/v8/v8/+/cb19257)**  
   
 Date(Commit): Mon Sep 19 21:01:30 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2348293002](https://codereview.chromium.org/2348293002)  
 Regress: [mjsunit/regress/regress-5404.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5404.js)  
 ```javascript
@@ -8734,12 +8584,11 @@ assertOptimized(foo);
 
 ## **regress-crbug-647217.js (chromium issue)**  
    
-**[Issue 647217:
- !info_->isolate()->has_pending_exception() in js-inlining.cc](https://crbug.com/647217)**  
+**[!info_->isolate()->has_pending_exception() in js-inlining.cc](https://crbug.com/647217)**  
 **[Commit: [turbofan] Handle stack overflow during inlining.](https://chromium.googlesource.com/v8/v8/+/c2cf8b1)**  
   
 Date(Commit): Thu Sep 15 14:05:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2339383002](https://codereview.chromium.org/2339383002)  
 Regress: [mjsunit/regress/regress-crbug-647217.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-647217.js)  
@@ -8767,12 +8616,11 @@ try {
 
 ## **regress-crbug-645888.js (chromium issue)**  
    
-**[Issue 645888:
- IrOpcode::kLoop == GetControlDependency()->opcode() in bytecode-graph-builder.cc](https://crbug.com/645888)**  
+**[IrOpcode::kLoop == GetControlDependency()->opcode() in bytecode-graph-builder.cc](https://crbug.com/645888)**  
 **[Commit: [interpreter] Add regression test for bogus OSR entry.](https://chromium.googlesource.com/v8/v8/+/8528974)**  
   
 Date(Commit): Tue Sep 13 13:23:21 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2337033002](https://codereview.chromium.org/2337033002)  
 Regress: [mjsunit/regress/regress-crbug-645888.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-645888.js)  
@@ -8800,12 +8648,11 @@ assertThrows(f);
 
 ## **regress-645680.js (chromium issue)**  
    
-**[Issue 645680:
- Crash in v8::internal::SloppyArgumentsElementsAccessor<v8::internal::SlowSloppyArgumentsE](https://crbug.com/645680)**  
+**[Crash in v8::internal::SloppyArgumentsElementsAccessor<v8::internal::SlowSloppyArgumentsE](https://crbug.com/645680)**  
 **[Commit: [elements] Handlify SloppyArguments IndexOfValueImpl](https://chromium.googlesource.com/v8/v8/+/621f4af)**  
   
 Date(Commit): Mon Sep 12 17:32:09 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2332503002](https://codereview.chromium.org/2332503002)  
 Regress: [mjsunit/regress/regress-645680.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-645680.js)  
@@ -8838,12 +8685,11 @@ Array.prototype.indexOf.call(args)
 
 ## **regress-645851.js (chromium issue)**  
    
-**[Issue 645851:
- previous->Is(current) in typer.cc](https://crbug.com/645851)**  
+**[previous->Is(current) in typer.cc](https://crbug.com/645851)**  
 **[Commit: [turbofan] Another fix for induction variable typing monotonicity.](https://chromium.googlesource.com/v8/v8/+/e031451)**  
   
 Date(Commit): Mon Sep 12 17:05:11 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2332633002](https://codereview.chromium.org/2332633002)  
 Regress: [mjsunit/compiler/regress-645851.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-645851.js)  
@@ -8874,12 +8720,11 @@ f();
 
 ## **regress-crbug-644631.js (chromium issue)**  
    
-**[Issue 644631:
- Inline calls to runtime functions in TurboFan that throw exceptions result in missing frame state](https://crbug.com/644631)**  
+**[Inline calls to runtime functions in TurboFan that throw exceptions result in missing frame state](https://crbug.com/644631)**  
 **[Commit: [turbofan] Switch from a whitelist to a blacklist for NeedsFrameStateInput](https://chromium.googlesource.com/v8/v8/+/58325e6)**  
   
 Date(Commit): Mon Sep 12 16:12:57 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2331543002](https://codereview.chromium.org/2331543002)  
 Regress: [mjsunit/regress/regress-crbug-644631.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-644631.js)  
@@ -8901,12 +8746,11 @@ assertThrows(f, TypeError);
 
 ## **regress-crbug-645103.js (chromium issue)**  
    
-**[Issue 645103:
- args[1]->IsJSReceiver() in runtime-object.cc](https://crbug.com/645103)**  
+**[args[1]->IsJSReceiver() in runtime-object.cc](https://crbug.com/645103)**  
 **[Commit: [interpreter] Fix destroyed new.target register use.](https://chromium.googlesource.com/v8/v8/+/0681deb)**  
   
 Date(Commit): Fri Sep 09 12:20:20 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2325133002](https://codereview.chromium.org/2325133002)  
 Regress: [mjsunit/regress/regress-crbug-645103.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-645103.js)  
@@ -8936,12 +8780,11 @@ new Subclass();
 
 ## **regress-crbug-644215.js (chromium issue)**  
    
-**[Issue 644215:
- Security: ILL_ILLOPN/Segfault; crashes Chrome Dev/Beta/Stable](https://crbug.com/644215)**  
+**[Security: ILL_ILLOPN/Segfault; crashes Chrome Dev/Beta/Stable](https://crbug.com/644215)**  
 **[Commit: Properly handle holes following spreads in array literals](https://chromium.googlesource.com/v8/v8/+/e427300)**  
   
 Date(Commit): Thu Sep 08 18:50:41 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug  
+Components: Blink>JavaScript>Runtime  
 Labels: ["Security_Impact-Stable", "M-54", "allpublic", "merge-merged-5.4", "Merge-Merged-54", "Release-0-M54"]  
 Code Review: [https://codereview.chromium.org/2321533003](https://codereview.chromium.org/2321533003)  
 Regress: [mjsunit/regress/regress-crbug-644215.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-644215.js)  
@@ -8965,12 +8808,11 @@ assertThrows(() => arr[0][0], TypeError);
 
 ## **regress-644682.js (chromium issue)**  
    
-**[Issue 644682:
- Crash in v8::internal::compiler::WasmGraphBuilder::AppendToPhi](https://crbug.com/644682)**  
+**[Crash in v8::internal::compiler::WasmGraphBuilder::AppendToPhi](https://crbug.com/644682)**  
 **[Commit: [wasm] Do not produce code for br_if if its condition does not validate.](https://chromium.googlesource.com/v8/v8/+/853892a)**  
   
 Date(Commit): Thu Sep 08 14:41:04 2016  
-Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Components: Blink>JavaScript>WebAssembly  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "ClusterFuzz-Verified", "Stability-AFL"]  
 Code Review: [https://codereview.chromium.org/2319213003](https://codereview.chromium.org/2319213003)  
 Regress: [mjsunit/regress/wasm/regress-644682.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-644682.js)  
@@ -9005,12 +8847,11 @@ assertThrows(function() { builder.instantiate(); });
 
 ## **regress-crbug-644245.js (chromium issue)**  
    
-**[Issue 644245:
- isolate->context() == nullptr || isolate->context()->IsContext() in runtime-comp](https://crbug.com/644245)**  
+**[isolate->context() == nullptr || isolate->context()->IsContext() in runtime-comp](https://crbug.com/644245)**  
 **[Commit: [deoptimizer] Support materialization of ContextExtension.](https://chromium.googlesource.com/v8/v8/+/9984d6f)**  
   
 Date(Commit): Thu Sep 08 10:33:20 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2317353003](https://codereview.chromium.org/2317353003)  
 Regress: [mjsunit/regress/regress-crbug-644245.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-644245.js)  
@@ -9039,12 +8880,11 @@ f();
 
 ## **regress-crbug-644689-1.js (chromium issue)**  
    
-**[Issue 644689:
- map->is_stable() in compilation-dependencies.cc](https://crbug.com/644689)**  
+**[map->is_stable() in compilation-dependencies.cc](https://crbug.com/644689)**  
 **[Commit: [turbofan] Ensure that all prototypes are stable for push/pop.](https://chromium.googlesource.com/v8/v8/+/4ed27fc)**  
   
 Date(Commit): Thu Sep 08 08:48:32 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.4", "Postmortem-Followup"]  
 Code Review: [https://codereview.chromium.org/2319533005](https://codereview.chromium.org/2319533005)  
 Regress: [mjsunit/regress/regress-crbug-644689-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-644689-1.js), [mjsunit/regress/regress-crbug-644689-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-644689-2.js)  
@@ -9071,12 +8911,10 @@ foo();
 
 ## **regress-5357.js (v8 issue)**  
    
-**[Issue 5357:
- Take into account input restrictions for feedback typing](https://crbug.com/v8/5357)**  
+**[Take into account input restrictions for feedback typing](https://crbug.com/v8/5357)**  
 **[Commit: [turbofan] Revert "Avoid overflow checks on SpeculativeNumberAdd/Subtract/Multiply."](https://chromium.googlesource.com/v8/v8/+/91ed540)**  
   
 Date(Commit): Thu Sep 08 04:20:31 2016  
-Type: FeatureRequest  
 Code Review: [https://codereview.chromium.org/2320013002](https://codereview.chromium.org/2320013002)  
 Regress: [mjsunit/regress/regress-5357.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5357.js)  
 ```javascript
@@ -9104,12 +8942,11 @@ assertEquals(2147483648, foo(2147483646));
 
 ## **regress-644633.js (chromium issue)**  
    
-**[Issue 644633:
- previous->Is(current) in typer.cc](https://crbug.com/644633)**  
+**[previous->Is(current) in typer.cc](https://crbug.com/644633)**  
 **[Commit: [turbofan] Ensure monotonicity for induction variable typing.](https://chromium.googlesource.com/v8/v8/+/b4f8a7c)**  
   
 Date(Commit): Thu Sep 08 03:51:11 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2320803002](https://codereview.chromium.org/2320803002)  
 Regress: [mjsunit/compiler/regress-644633.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-644633.js)  
@@ -9166,12 +9003,11 @@ assertEquals(x, CompareNegate(1,0x80000000));
 
 ## **regress-crbug-631027.js (chromium issue)**  
    
-**[Issue 631027:
- Unreachable code in escape-analysis.cc](https://crbug.com/631027)**  
+**[Unreachable code in escape-analysis.cc](https://crbug.com/631027)**  
 **[Commit: [turbofan] Handle ObjectIsReceiver in escape analysis.](https://chromium.googlesource.com/v8/v8/+/553d504)**  
   
 Date(Commit): Tue Sep 06 11:59:31 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2317623003](https://codereview.chromium.org/2317623003)  
 Regress: [mjsunit/regress/regress-crbug-631027.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631027.js)  
@@ -9194,12 +9030,11 @@ assertEquals("foo", f());
 
 ## **regress-642409.js (chromium issue)**  
    
-**[Issue 642409:
- Instance of ES6 subclass can be constructed with wrong prototype](https://crbug.com/642409)**  
+**[Instance of ES6 subclass can be constructed with wrong prototype](https://crbug.com/642409)**  
 **[Commit: [Turbofan] Fix CallSuper argument order in BytecodeGraphBuilder.](https://chromium.googlesource.com/v8/v8/+/c950256)**  
   
 Date(Commit): Tue Sep 06 11:53:19 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Hotlist-Polymer", "Proj-Ignition"]  
 Code Review: [https://codereview.chromium.org/2312103002](https://codereview.chromium.org/2312103002)  
 Regress: [mjsunit/regress/regress-642409.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-642409.js)  
@@ -9234,12 +9069,11 @@ new SubClass();
 
 ## **regress-crbug-644111.js (chromium issue)**  
    
-**[Issue 644111:
- info->shared_info()->HasBytecodeArray() in compiler.cc](https://crbug.com/644111)**  
+**[info->shared_info()->HasBytecodeArray() in compiler.cc](https://crbug.com/644111)**  
 **[Commit: [compiler] Bytecode preparation fails for asm.js modules.](https://chromium.googlesource.com/v8/v8/+/cc1249b)**  
   
 Date(Commit): Mon Sep 05 23:03:07 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2309853002](https://codereview.chromium.org/2309853002)  
 Regress: [mjsunit/regress/regress-crbug-644111.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-644111.js)  
@@ -9260,12 +9094,11 @@ var m = Module();
 
 ## **regress-644048.js (chromium issue)**  
    
-**[Issue 644048:
- v8: inputs cause SIGILL/conditional jump or move depends on uninitialized value](https://crbug.com/644048)**  
+**[v8: inputs cause SIGILL/conditional jump or move depends on uninitialized value](https://crbug.com/644048)**  
 **[Commit: [turbofan] Don't propagate truncations if output is tagged.](https://chromium.googlesource.com/v8/v8/+/8af781e)**  
   
 Date(Commit): Mon Sep 05 20:54:56 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: []  
 Code Review: [https://codereview.chromium.org/2311903002](https://codereview.chromium.org/2311903002)  
 Regress: [mjsunit/compiler/regress-644048.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-644048.js)  
@@ -9292,12 +9125,10 @@ foo(3);
 
 ## **regress-5342.js (v8 issue)**  
    
-**[Issue 5342:
- Error.captureStackTrace now adds its own call to the stack](https://crbug.com/v8/5342)**  
+**[Error.captureStackTrace now adds its own call to the stack](https://crbug.com/v8/5342)**  
 **[Commit: Do not include Error.captureStackTrace in the trace](https://chromium.googlesource.com/v8/v8/+/64c518d)**  
   
 Date(Commit): Fri Sep 02 09:51:42 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2307783002](https://codereview.chromium.org/2307783002)  
 Regress: [mjsunit/regress/regress-5342.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5342.js)  
 ```javascript
@@ -9316,11 +9147,10 @@ assertEquals(-1, o.stack.indexOf("captureStackTrace"));
 
 ## **regress-5337.js (v8 issue)**  
    
-**[No Permission](https://crbug.com/v8/5337)**  
+**[Permission denied](https://crbug.com/v8/5337)**  
 **[Commit: Fix bug with nested spreads as patterns](https://chromium.googlesource.com/v8/v8/+/628e9e3)**  
   
 Date(Commit): Fri Sep 02 07:53:00 2016  
-Type: None  
 Code Review: [https://codereview.chromium.org/2297303003](https://codereview.chromium.org/2297303003)  
 Regress: [mjsunit/es6/regress/regress-5337.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-5337.js)  
 ```javascript
@@ -9370,12 +9200,12 @@ Regress: [mjsunit/es6/regress/regress-5337.js](https://chromium.googlesource.com
 
 ## **regress-crbug-642056.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/642056)**  
+**[Permission denied](https://crbug.com/642056)**  
 **[Commit: [test] Add regression test for http://crbug.com/642056.](https://chromium.googlesource.com/v8/v8/+/86af343)**  
   
 Date(Commit): Fri Sep 02 07:08:29 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [http://crbug.com/642056.](http://crbug.com/642056.)  
 Regress: [mjsunit/regress/regress-crbug-642056.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-642056.js)  
 ```javascript
@@ -9427,12 +9257,11 @@ assertFalse(f(NaN));
 
 ## **regress-crbug-643073.js (chromium issue)**  
    
-**[Issue 643073:
- TypeGuard of kRepWord32 (None) cannot be changed to kRepBit in representation-ch](https://crbug.com/643073)**  
+**[TypeGuard of kRepWord32 (None) cannot be changed to kRepBit in representation-ch](https://crbug.com/643073)**  
 **[Commit: [turbofan] Only check semantic axis for Type::None.](https://chromium.googlesource.com/v8/v8/+/432790c)**  
   
 Date(Commit): Thu Sep 01 07:11:21 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2299903002](https://codereview.chromium.org/2299903002)  
 Regress: [mjsunit/regress/regress-crbug-643073.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-643073.js)  
@@ -9457,12 +9286,10 @@ foo();
 
 ## **regress-5332.js (v8 issue)**  
    
-**[Issue 5332:
- Turbofan doesn't initialize holey-double arrays correctly in Debug mode](https://crbug.com/v8/5332)**  
+**[Turbofan doesn't initialize holey-double arrays correctly in Debug mode](https://crbug.com/v8/5332)**  
 **[Commit: [turbofan] Don't treat the hole NaN as constant inside the compiler.](https://chromium.googlesource.com/v8/v8/+/64a7bd3)**  
   
 Date(Commit): Thu Sep 01 06:02:19 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2303643002](https://codereview.chromium.org/2303643002)  
 Regress: [mjsunit/regress/regress-5332.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5332.js)  
 ```javascript
@@ -9505,12 +9332,11 @@ assertEquals(undefined, foo()[0]);
 
 ## **regress-crbug-621868.js (chromium issue)**  
    
-**[Issue 621868:
- Crash in v8::internal::NewSpace::Verify](https://crbug.com/621868)**  
+**[Crash in v8::internal::NewSpace::Verify](https://crbug.com/621868)**  
 **[Commit: [crankshaft] Disable further folding already folded allocations.](https://chromium.googlesource.com/v8/v8/+/7b79224)**  
   
 Date(Commit): Wed Aug 31 09:48:45 2016  
-Components/Type: Blink>JavaScript>GC/Bug  
+Components: Blink>JavaScript>GC  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "merge-merged-5.4"]  
 Code Review: [https://codereview.chromium.org/2297983003](https://codereview.chromium.org/2297983003)  
 Regress: [mjsunit/regress/regress-crbug-621868.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-621868.js)  
@@ -9541,12 +9367,10 @@ g();
 
 ## **regress-5320.js (v8 issue)**  
    
-**[Issue 5320:
- Deopt loops on 32-bit architectures](https://crbug.com/v8/5320)**  
+**[Deopt loops on 32-bit architectures](https://crbug.com/v8/5320)**  
 **[Commit: [turbofan] Treat the INT32 state of a truncating binary op IC as number or oddball on 32-bit machines.](https://chromium.googlesource.com/v8/v8/+/bdf5566)**  
   
 Date(Commit): Tue Aug 30 14:13:34 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2292873002](https://codereview.chromium.org/2292873002)  
 Regress: [mjsunit/compiler/regress-5320.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5320.js)  
 ```javascript
@@ -9576,12 +9400,11 @@ OptimizeTruncatingBinaryOp(function(a, b) { return a ^ b; });
 
 ## **regress-639270.js (chromium issue)**  
    
-**[Issue 639270:
- IrOpcode::kFrameState == state->op()->opcode() in instruction-selector.cc](https://crbug.com/639270)**  
+**[IrOpcode::kFrameState == state->op()->opcode() in instruction-selector.cc](https://crbug.com/639270)**  
 **[Commit: Disallow tail calls from async functions and generators](https://chromium.googlesource.com/v8/v8/+/5af4cd9)**  
   
 Date(Commit): Mon Aug 29 18:31:35 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "merge-merged-5.3", "merge-merged-5.4", "NodeJS-Backport-Rejected"]  
 Code Review: [https://codereview.chromium.org/2278413003](https://codereview.chromium.org/2278413003)  
 Regress: [mjsunit/regress/regress-639270.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-639270.js)  
@@ -9610,12 +9433,11 @@ g();
 
 ## **regress-638132.js (chromium issue)**  
    
-**[Issue 638132:
- Word32Or of kRepWord32 (None) cannot be changed to kRepBit in representation-cha](https://crbug.com/638132)**  
+**[Word32Or of kRepWord32 (None) cannot be changed to kRepBit in representation-cha](https://crbug.com/638132)**  
 **[Commit: [turbofan] Insert dummy values when changing from None type.](https://chromium.googlesource.com/v8/v8/+/c83b21a)**  
   
 Date(Commit): Thu Aug 25 06:06:58 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2266823002](https://codereview.chromium.org/2266823002)  
 Regress: [mjsunit/compiler/regress-638132.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-638132.js)  
@@ -9654,12 +9476,11 @@ f(1);
 
 ## **regress-639210.js (chromium issue)**  
    
-**[Issue 639210:
- Regression: Shockwave plugin for Bond-Breaker-2 game is not working.](https://crbug.com/639210)**  
+**[Regression: Shockwave plugin for Bond-Breaker-2 game is not working.](https://crbug.com/639210)**  
 **[Commit: [turbofan] Fix merging of empty and non-empty state in load elimination.](https://chromium.googlesource.com/v8/v8/+/dc330f2)**  
   
 Date(Commit): Wed Aug 24 17:14:24 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Internals>PluginsBlink>JavaScript  
 Labels: ["ReleaseBlock-Beta", "hasbisect", "M-54"]  
 Code Review: [https://codereview.chromium.org/2270793004](https://codereview.chromium.org/2270793004)  
 Regress: [mjsunit/compiler/regress-639210.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-639210.js)  
@@ -9709,12 +9530,11 @@ assertEquals(0.1, m.store(1));
 
 ## **regress-crbug-635923.js (chromium issue)**  
    
-**[Issue 635923:
- !info->shared_info()->is_compiled() in compiler.cc](https://crbug.com/635923)**  
+**[!info->shared_info()->is_compiled() in compiler.cc](https://crbug.com/635923)**  
 **[Commit: [compiler] Make Compiler::EnsureBytecode not switch tiers.](https://chromium.googlesource.com/v8/v8/+/b52aeca)**  
   
 Date(Commit): Wed Aug 24 14:09:59 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified", "Proj-Ignition"]  
 Code Review: [https://codereview.chromium.org/2278543002](https://codereview.chromium.org/2278543002)  
 Regress: [mjsunit/regress/regress-crbug-635923.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-635923.js)  
@@ -9748,12 +9568,11 @@ assertEquals(23, f(0));
 
 ## **regress-crbug-640369.js (chromium issue)**  
    
-**[Issue 640369:
- IrOpcode::kLoop == loop->opcode() in verifier.cc](https://crbug.com/640369)**  
+**[IrOpcode::kLoop == loop->opcode() in verifier.cc](https://crbug.com/640369)**  
 **[Commit: [turbofan] Use ObjectIsReceiver directly for inlining.](https://chromium.googlesource.com/v8/v8/+/6646d73)**  
   
 Date(Commit): Wed Aug 24 11:09:32 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2271973003](https://codereview.chromium.org/2271973003)  
 Regress: [mjsunit/regress/regress-crbug-640369.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-640369.js)  
@@ -9781,12 +9600,11 @@ try { foo(); } catch (e) { }
 
 ## **regress-crbug-638551.js (chromium issue)**  
    
-**[Issue 638551:
- !shared->HasBytecodeArray() in compiler.cc](https://crbug.com/638551)**  
+**[!shared->HasBytecodeArray() in compiler.cc](https://crbug.com/638551)**  
 **[Commit: [interpreter] Fix canonicalization when preserving bytecode.](https://chromium.googlesource.com/v8/v8/+/8ab555c)**  
   
 Date(Commit): Thu Aug 18 10:42:40 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2245263006](https://codereview.chromium.org/2245263006)  
 Regress: [mjsunit/regress/regress-crbug-638551.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-638551.js)  
@@ -9817,12 +9635,11 @@ f();
 
 ## **regress-638134.js (chromium issue)**  
    
-**[Issue 638134:
- slice->AllElementsAreUnique() in constant-array-builder.cc](https://crbug.com/638134)**  
+**[slice->AllElementsAreUnique() in constant-array-builder.cc](https://crbug.com/638134)**  
 **[Commit: [Parser] Track ContainsDot for SMI values.](https://chromium.googlesource.com/v8/v8/+/477495c)**  
   
 Date(Commit): Thu Aug 18 08:15:43 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2248693005](https://codereview.chromium.org/2248693005)  
 Regress: [mjsunit/regress/regress-638134.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-638134.js)  
@@ -9857,12 +9674,11 @@ foo();
 
 ## **regress-633497.js (chromium issue)**  
    
-**[Issue 633497:
- Crash in asm.js emulator application](https://crbug.com/633497)**  
+**[Crash in asm.js emulator application](https://crbug.com/633497)**  
 **[Commit: [turbofan] Only do value numbering when types are compatible.](https://chromium.googlesource.com/v8/v8/+/b190d13)**  
   
 Date(Commit): Wed Aug 17 08:45:26 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Via-Wizard"]  
 Code Review: [https://codereview.chromium.org/2251833002](https://codereview.chromium.org/2251833002)  
 Regress: [mjsunit/compiler/regress-633497.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-633497.js)  
@@ -9902,12 +9718,10 @@ assertEquals(277.5, f());
 
 ## **regress-5286.js (v8 issue)**  
    
-**[Issue 5286:
- TurboFan produces wrong result for speculative int32 modulus](https://crbug.com/v8/5286)**  
+**[TurboFan produces wrong result for speculative int32 modulus](https://crbug.com/v8/5286)**  
 **[Commit: [turbofan] Fix CheckedInt32Mod lowering for -0 case with negative left hand side.](https://chromium.googlesource.com/v8/v8/+/665f0e4)**  
   
 Date(Commit): Fri Aug 12 12:13:51 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2243803002](https://codereview.chromium.org/2243803002)  
 Regress: [mjsunit/regress/regress-5286.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5286.js)  
 ```javascript
@@ -9965,12 +9779,10 @@ assertEquals(-0, foo(-2147483648, -2147483648));
 
 ## **regress-5278.js (v8 issue)**  
    
-**[Issue 5278:
- Wrong handling of <negative integer> % 1 in TurboFan.](https://crbug.com/v8/5278)**  
+**[Wrong handling of <negative integer> % 1 in TurboFan.](https://crbug.com/v8/5278)**  
 **[Commit: [turbofan] Fix CheckedInt32Mod lowering.](https://chromium.googlesource.com/v8/v8/+/9e14155)**  
   
 Date(Commit): Wed Aug 10 09:24:59 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2233713002](https://codereview.chromium.org/2233713002)  
 Regress: [mjsunit/compiler/regress-5278.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5278.js)  
 ```javascript
@@ -9993,12 +9805,10 @@ assertEquals(-0, foo(-2, 1));
 
 ## **regress-5275-1.js (v8 issue)**  
    
-**[Issue 5275:
- webkit/fast/js/array-bad-time flakily failing under --turbo](https://crbug.com/v8/5275)**  
+**[webkit/fast/js/array-bad-time flakily failing under --turbo ](https://crbug.com/v8/5275)**  
 **[Commit: [turbofan] Properly guard keyed stores wrt. setters in the prototype chain.](https://chromium.googlesource.com/v8/v8/+/7060bab8)**  
   
 Date(Commit): Wed Aug 10 06:30:22 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2231683002](https://codereview.chromium.org/2231683002)  
 Regress: [mjsunit/regress/regress-5275-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5275-1.js), [mjsunit/regress/regress-5275-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5275-2.js)  
 ```javascript
@@ -10027,12 +9837,11 @@ assertEquals([undefined], foo(1));
 
 ## **regress-crbug-635798.js (chromium issue)**  
    
-**[Issue 635798:
- Crash in v8::internal::Context::native_context](https://crbug.com/635798)**  
+**[Crash in v8::internal::Context::native_context](https://crbug.com/635798)**  
 **[Commit: [runtime] %GrowArrayElements doesn't have a native context in TurboFan.](https://chromium.googlesource.com/v8/v8/+/78727d4)**  
   
 Date(Commit): Tue Aug 09 13:03:07 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "findit-wrong", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2224253003](https://codereview.chromium.org/2224253003)  
 Regress: [mjsunit/regress/regress-crbug-635798.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-635798.js)  
@@ -10057,12 +9866,11 @@ foo();
 
 ## **regress-635429.js (chromium issue)**  
    
-**[Issue 635429:
- slice->AllElementsAreUnique() in constant-array-builder.cc](https://crbug.com/635429)**  
+**[slice->AllElementsAreUnique() in constant-array-builder.cc](https://crbug.com/635429)**  
 **[Commit: [Interpreter] Don't try to create bytecode array if HasStackOverflow().](https://chromium.googlesource.com/v8/v8/+/c1ae15d)**  
   
 Date(Commit): Tue Aug 09 07:24:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2228503004](https://codereview.chromium.org/2228503004)  
 Regress: [mjsunit/regress/regress-635429.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-635429.js)  
@@ -10146,12 +9954,11 @@ Regress: [mjsunit/compiler/regress-loop-variable-unsigned.js](https://chromium.g
 
 ## **regress-crbug-632800.js (chromium issue)**  
    
-**[Issue 632800:
- next_tier == Compiler::OPTIMIZED in runtime-profiler.cc](https://crbug.com/632800)**  
+**[next_tier == Compiler::OPTIMIZED in runtime-profiler.cc](https://crbug.com/632800)**  
 **[Commit: [interpreter] Fix profiler when hitting OSR frame.](https://chromium.googlesource.com/v8/v8/+/f00b42a)**  
   
 Date(Commit): Fri Aug 05 08:47:48 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2208603005](https://codereview.chromium.org/2208603005)  
 Regress: [mjsunit/regress/regress-crbug-632800.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-632800.js)  
@@ -10172,12 +9979,10 @@ osr();
 
 ## **regress-5262.js (v8 issue)**  
    
-**[Issue 5262:
- OSR code generated from bytecode might trigger deopt after underlying function was tiered up](https://crbug.com/v8/5262)**  
+**[OSR code generated from bytecode might trigger deopt after underlying function was tiered up](https://crbug.com/v8/5262)**  
 **[Commit: [interpreter] Avoid tier-up when there is an OSR activation.](https://chromium.googlesource.com/v8/v8/+/5671b66)**  
   
 Date(Commit): Fri Aug 05 07:55:03 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2206363004](https://codereview.chromium.org/2206363004)  
 Regress: [mjsunit/regress/regress-5262.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5262.js)  
 ```javascript
@@ -10213,12 +10018,11 @@ assertEquals(42, f(true));
 
 ## **regress-crbug-616709-1.js (chromium issue)**  
    
-**[Issue 616709:
- map->is_stable() in src/compilation-dependencies.cc](https://crbug.com/616709)**  
+**[map->is_stable() in src/compilation-dependencies.cc](https://crbug.com/616709)**  
 **[Commit: [turbofan] Remove unnecessary prototype checks for element access.](https://chromium.googlesource.com/v8/v8/+/cad5b29)**  
   
 Date(Commit): Fri Aug 05 04:55:03 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Arch-All", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2198833002](https://codereview.chromium.org/2198833002)  
 Regress: [mjsunit/regress/regress-crbug-616709-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-616709-1.js), [mjsunit/regress/regress-crbug-616709-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-616709-2.js)  
@@ -10252,12 +10056,11 @@ boom(a);
 
 ## **regress-634357.js (chromium issue)**  
    
-**[Issue 634357:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsSeededNumberDictionary())](https://crbug.com/634357)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsSeededNumberDictionary()) ](https://crbug.com/634357)**  
 **[Commit: [elements] update Dictionary in IncludesValue if own elements change](https://chromium.googlesource.com/v8/v8/+/9977a2c)**  
   
 Date(Commit): Thu Aug 04 19:09:30 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2212963002](https://codereview.chromium.org/2212963002)  
 Regress: [mjsunit/es7/regress/regress-634357.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es7/regress/regress-634357.js)  
@@ -10282,12 +10085,11 @@ result = array.includes(new Array());
 
 ## **regress-634273.js (chromium issue)**  
    
-**[Issue 634273:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsSmi()) in objects-inl.h](https://crbug.com/634273)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsSmi()) in objects-inl.h](https://crbug.com/634273)**  
 **[Commit: [elements] update Dictionary in IncludesValue if own elements change](https://chromium.googlesource.com/v8/v8/+/9977a2c)**  
   
 Date(Commit): Thu Aug 04 19:09:30 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2212963002](https://codereview.chromium.org/2212963002)  
 Regress: [mjsunit/es7/regress/regress-634273.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es7/regress/regress-634273.js)  
@@ -10312,12 +10114,11 @@ result = array.includes(new WeakMap());
 
 ## **regress-crbug-633884.js (chromium issue)**  
    
-**[Issue 633884:
- !value->IsTheHole(isolate) in runtime-scopes.cc](https://crbug.com/633884)**  
+**[!value->IsTheHole(isolate) in runtime-scopes.cc](https://crbug.com/633884)**  
 **[Commit: Properly pass InitializationFlag back from ScriptContextTable lookups](https://chromium.googlesource.com/v8/v8/+/e6d2c9b)**  
   
 Date(Commit): Thu Aug 04 16:13:41 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2203213003](https://codereview.chromium.org/2203213003)  
 Regress: [mjsunit/regress/regress-crbug-633884.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-633884.js)  
@@ -10343,12 +10144,11 @@ assertThrows(function() {
 
 ## **regress-634269.js (chromium issue)**  
    
-**[Issue 634269:
- (index >= 0) && (index < this->length()) in objects-inl.h](https://crbug.com/634269)**  
+**[(index >= 0) && (index < this->length()) in objects-inl.h](https://crbug.com/634269)**  
 **[Commit: [elements] limit TypedElementsAccessor::IncludesValue to backing store length](https://chromium.googlesource.com/v8/v8/+/0d7f7dc)**  
   
 Date(Commit): Thu Aug 04 15:54:55 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2209273002](https://codereview.chromium.org/2209273002)  
 Regress: [mjsunit/es7/regress/regress-634269.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es7/regress/regress-634269.js)  
@@ -10367,12 +10167,11 @@ Array.prototype.includes.call(new Uint8Array(), 2);
 
 ## **regress-crbug-633585.js (chromium issue)**  
    
-**[Issue 633585:
- Crash in v8::internal::InnerPointerToCodeCache::GcSafeFindCodeForInnerPointer](https://crbug.com/633585)**  
+**[Crash in v8::internal::InnerPointerToCodeCache::GcSafeFindCodeForInnerPointer](https://crbug.com/633585)**  
 **[Commit: [turbofan] Fix missing bailout for accessors in literals.](https://chromium.googlesource.com/v8/v8/+/667d8ad)**  
   
 Date(Commit): Thu Aug 04 10:28:46 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "M-53", "Security_Impact-Stable", "Security_Severity-Medium", "Hotlist-Merge-Approved", "allpublic", "Clusterfuzz", "Release-0-M53", "merge-merged-5.3", "Merge-Merged-53", "CVE-2016-5167", "CVE_description-submitted"]  
 Code Review: [https://codereview.chromium.org/2207413002](https://codereview.chromium.org/2207413002)  
 Regress: [mjsunit/regress/regress-crbug-633585.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-633585.js)  
@@ -10404,12 +10203,11 @@ g();
 
 ## **regress-633998.js (chromium issue)**  
    
-**[Issue 633998:
- Stack-overflow in v8::internal::PerThreadAssertScope<](https://crbug.com/633998)**  
+**[Stack-overflow in v8::internal::PerThreadAssertScope<](https://crbug.com/633998)**  
 **[Commit: Handle stack overflows in NoSideEffectToString](https://chromium.googlesource.com/v8/v8/+/ea6b960)**  
   
 Date(Commit): Thu Aug 04 07:45:11 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2206313002](https://codereview.chromium.org/2206313002)  
 Regress: [mjsunit/regress/regress-633998.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-633998.js)  
@@ -10465,12 +10263,11 @@ try {
 
 ## **regress-632289.js (chromium issue)**  
    
-**[Issue 632289:
- !info->shared_info()->is_compiled() in compiler.cc](https://crbug.com/632289)**  
+**[!info->shared_info()->is_compiled() in compiler.cc](https://crbug.com/632289)**  
 **[Commit: [Crankshaft] Move don't crankshaft check before EnsureDeoptimizationSupport.](https://chromium.googlesource.com/v8/v8/+/aacbdac)**  
   
 Date(Commit): Wed Aug 03 15:02:38 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2194453002](https://codereview.chromium.org/2194453002)  
 Regress: [mjsunit/regress/regress-632289.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-632289.js)  
@@ -10505,12 +10302,11 @@ try {
 
 ## **regress-633883.js (chromium issue)**  
    
-**[Issue 633883:
- args[1]->IsString() in runtime-strings.cc](https://crbug.com/633883)**  
+**[args[1]->IsString() in runtime-strings.cc](https://crbug.com/633883)**  
 **[Commit: [builtins] fix mapcheck in Array.includes fast-case when searching for String](https://chromium.googlesource.com/v8/v8/+/c4ee3d9)**  
   
 Date(Commit): Wed Aug 03 14:27:38 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2207903002](https://codereview.chromium.org/2207903002)  
 Regress: [mjsunit/es7/regress/regress-633883.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es7/regress/regress-633883.js)  
@@ -10531,12 +10327,10 @@ v47 = v34.includes(v17);
 
 ## **regress-v8-5255-1.js (v8 issue)**  
    
-**[Issue 5255:
- Representation selection is wrong for Word32/Float64 truncations on non-Number/non-Oddball values](https://crbug.com/v8/5255)**  
+**[Representation selection is wrong for Word32/Float64 truncations on non-Number/non-Oddball values](https://crbug.com/v8/5255)**  
 **[Commit: [turbofan] Fix invalid representation selection for Phis/Selects.](https://chromium.googlesource.com/v8/v8/+/c9324fe)**  
   
 Date(Commit): Tue Aug 02 12:11:09 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2206553002](https://codereview.chromium.org/2206553002)  
 Regress: [mjsunit/regress/regress-v8-5255-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5255-1.js), [mjsunit/regress/regress-v8-5255-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5255-2.js), [mjsunit/regress/regress-v8-5255-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5255-3.js)  
 ```javascript
@@ -10561,12 +10355,10 @@ assertEquals(7, foo(0));
 
 ## **regress-5252.js (v8 issue)**  
    
-**[Issue 5252:
- Running benchmark Octane21.-TF.json crashes](https://crbug.com/v8/5252)**  
+**[Running benchmark Octane21.-TF.json crashes](https://crbug.com/v8/5252)**  
 **[Commit: [interpreter] Elide OSR polling from fake loops.](https://chromium.googlesource.com/v8/v8/+/962fd4a)**  
   
 Date(Commit): Tue Aug 02 09:16:59 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2200733002](https://codereview.chromium.org/2200733002)  
 Regress: [mjsunit/regress/regress-5252.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5252.js)  
 ```javascript
@@ -10612,12 +10404,10 @@ Regress: [mjsunit/regress/regress-5252.js](https://chromium.googlesource.com/v8/
 
 ## **regress-v8-5254-1.js (v8 issue)**  
    
-**[Issue 5254:
- Narrowing comparison opcodes is wrong in TurboFan](https://crbug.com/v8/5254)**  
+**[Narrowing comparison opcodes is wrong in TurboFan](https://crbug.com/v8/5254)**  
 **[Commit: [turbofan] Fix invalid comparison operator narrowing.](https://chromium.googlesource.com/v8/v8/+/a758144)**  
   
 Date(Commit): Tue Aug 02 07:46:15 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2202803003](https://codereview.chromium.org/2202803003)  
 Regress: [mjsunit/regress/regress-v8-5254-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5254-1.js), [mjsunit/regress/regress-v8-5254-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5254-2.js)  
 ```javascript
@@ -10656,12 +10446,10 @@ assertTrue(foo());
 
 ## **regress-5245.js (v8 issue)**  
    
-**[Issue 5245:
- Error.capturStackTrace(a, Error) now installs readOnly stack property](https://crbug.com/v8/5245)**  
+**[Error.capturStackTrace(a, Error) now installs readOnly stack property](https://crbug.com/v8/5245)**  
 **[Commit: Set Error.stack property writable](https://chromium.googlesource.com/v8/v8/+/1c7c052)**  
   
 Date(Commit): Fri Jul 29 08:15:26 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2190313002](https://codereview.chromium.org/2190313002)  
 Regress: [mjsunit/regress/regress-5245.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5245.js)  
 ```javascript
@@ -10694,12 +10482,11 @@ c.stack = 1;  // Still writable.
 
 ## **regress-629792-source-position-on-jump.js (chromium issue)**  
    
-**[Issue 629792:
- CanElideLastBasedOnSourcePosition(node) in bytecode-peephole-optimizer.cc](https://crbug.com/629792)**  
+**[CanElideLastBasedOnSourcePosition(node) in bytecode-peephole-optimizer.cc](https://crbug.com/629792)**  
 **[Commit: [interpreter] Fix peephole rule on eliding last before jump.](https://chromium.googlesource.com/v8/v8/+/02b0985)**  
   
 Date(Commit): Thu Jul 28 14:41:26 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2185123003](https://codereview.chromium.org/2185123003)  
 Regress: [mjsunit/ignition/regress-629792-source-position-on-jump.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-629792-source-position-on-jump.js)  
@@ -10725,12 +10512,11 @@ f();
 
 ## **regress-crbug-631917.js (chromium issue)**  
    
-**[Issue 631917:
- args[1]->IsJSObject() in runtime-classes.cc](https://crbug.com/631917)**  
+**[args[1]->IsJSObject() in runtime-classes.cc](https://crbug.com/631917)**  
 **[Commit: [fullcode][mips][mips64][ppc][s390] Avoid trashing of a home object when doing a count operation with keyed load/store to a super.](https://chromium.googlesource.com/v8/v8/+/fc66694)**  
   
 Date(Commit): Thu Jul 28 14:31:07 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "findit-wrong", "M-54", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2191663004](https://codereview.chromium.org/2191663004)  
 Regress: [mjsunit/regress/regress-crbug-631917.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631917.js)  
@@ -10783,12 +10569,11 @@ var c = { toString: function() { return "c"; } };
 
 ## **regress-631050.js (chromium issue)**  
    
-**[Issue 631050:
- Crash in v8::internal::JSObject::UpdateAllocationSite](https://crbug.com/631050)**  
+**[Crash in v8::internal::JSObject::UpdateAllocationSite](https://crbug.com/631050)**  
 **[Commit: [heap] Don't consider mementos on pages below age mark](https://chromium.googlesource.com/v8/v8/+/e97b868)**  
   
 Date(Commit): Wed Jul 27 12:18:16 2016  
-Components/Type: Blink>JavaScript>GC/Bug-Security  
+Components: Blink>JavaScript>GC  
 Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-Medium", "M-54", "Security_Impact-Head", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2179033005](https://codereview.chromium.org/2179033005)  
 Regress: [mjsunit/regress/regress-631050.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-631050.js)  
@@ -10813,12 +10598,11 @@ try {
 
 ## **regress-crbug-631318-1.js (chromium issue)**  
    
-**[Issue 631318:
- Dead-code elimination during representation selection is too aggressive](https://crbug.com/631318)**  
+**[Dead-code elimination during representation selection is too aggressive](https://crbug.com/631318)**  
 **[Commit: [turbofan] Fix overly aggressive dead code elimination.](https://chromium.googlesource.com/v8/v8/+/32346aa)**  
   
 Date(Commit): Tue Jul 26 07:09:58 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Arch-All"]  
 Code Review: [https://codereview.chromium.org/2182003002](https://codereview.chromium.org/2182003002)  
 Regress: [mjsunit/regress/regress-crbug-631318-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-1.js), [mjsunit/regress/regress-crbug-631318-10.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-10.js), [mjsunit/regress/regress-crbug-631318-11.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-11.js), [mjsunit/regress/regress-crbug-631318-12.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-12.js), [mjsunit/regress/regress-crbug-631318-13.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-13.js), [mjsunit/regress/regress-crbug-631318-14.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-14.js), [mjsunit/regress/regress-crbug-631318-15.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-15.js), [mjsunit/regress/regress-crbug-631318-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-2.js), [mjsunit/regress/regress-crbug-631318-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-3.js), [mjsunit/regress/regress-crbug-631318-4.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-4.js), [mjsunit/regress/regress-crbug-631318-5.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-5.js), [mjsunit/regress/regress-crbug-631318-6.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-6.js), [mjsunit/regress/regress-crbug-631318-7.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-7.js), [mjsunit/regress/regress-crbug-631318-8.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-8.js), [mjsunit/regress/regress-crbug-631318-9.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-631318-9.js)  
@@ -10851,12 +10635,11 @@ assertThrows(() => bar(Symbol.toPrimitive));
 
 ## **regress-crbug-630952.js (chromium issue)**  
    
-**[Issue 630952:
- IsUseLessGeneral(input_use_infos_[index], use_info) in simplified-lowering.cc](https://crbug.com/630952)**  
+**[IsUseLessGeneral(input_use_infos_[index], use_info) in simplified-lowering.cc](https://crbug.com/630952)**  
 **[Commit: [Turbofan] IsUseLessGeneral shouldn't consider machine representation.](https://chromium.googlesource.com/v8/v8/+/480f155)**  
   
 Date(Commit): Mon Jul 25 12:01:54 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2177193002](https://codereview.chromium.org/2177193002)  
 Regress: [mjsunit/regress/regress-crbug-630952.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-630952.js)  
@@ -10892,12 +10675,11 @@ __v_14.toSingle();
 
 ## **regress-crbug-630951.js (chromium issue)**  
    
-**[Issue 630951:
- Unreachable code in verifier.cc](https://crbug.com/630951)**  
+**[Unreachable code in verifier.cc](https://crbug.com/630951)**  
 **[Commit: [turbofan] Avoid introducing machine operators during typed lowering.](https://chromium.googlesource.com/v8/v8/+/5bed151)**  
   
 Date(Commit): Mon Jul 25 10:38:00 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2182453002](https://codereview.chromium.org/2182453002)  
 Regress: [mjsunit/regress/regress-crbug-630951.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-630951.js)  
@@ -10923,12 +10705,11 @@ assertThrows(foo());
 
 ## **regress-crbug-630559.js (chromium issue)**  
    
-**[Issue 630559:
- Token::CATCH == tok in parser.cc](https://crbug.com/630559)**  
+**[Token::CATCH == tok in parser.cc](https://crbug.com/630559)**  
 **[Commit: Native try-catch syntax parsing should not crash.](https://chromium.googlesource.com/v8/v8/+/9868142)**  
   
 Date(Commit): Mon Jul 25 05:32:28 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2176613002](https://codereview.chromium.org/2176613002)  
 Regress: [mjsunit/regress/regress-crbug-630559.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-630559.js)  
@@ -10945,12 +10726,11 @@ assertThrows("try{}%");
 
 ## **regress-crbug-630923.js (chromium issue)**  
    
-**[Issue 630923:
- 0 == node->op()->ControlInputCount() in simplified-lowering.cc](https://crbug.com/630923)**  
+**[0 == node->op()->ControlInputCount() in simplified-lowering.cc](https://crbug.com/630923)**  
 **[Commit: [turbofan] Remove overly restrictive DCHECK.](https://chromium.googlesource.com/v8/v8/+/e3e347b)**  
   
 Date(Commit): Mon Jul 25 05:22:19 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2177133002](https://codereview.chromium.org/2177133002)  
 Regress: [mjsunit/regress/regress-crbug-630923.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-630923.js)  
@@ -10977,12 +10757,11 @@ foo();
 
 ## **regress-630611.js (chromium issue)**  
    
-**[Issue 630611:
- Phi of kMachNone (None) cannot be changed to kRepTagged in representation-change](https://crbug.com/630611)**  
+**[Phi of kMachNone (None) cannot be changed to kRepTagged in representation-change](https://crbug.com/630611)**  
 **[Commit: [turbofan] Handle impossible types (Type::None()) in the backend.](https://chromium.googlesource.com/v8/v8/+/a81d19d)**  
   
 Date(Commit): Mon Jul 25 04:02:58 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2177483002](https://codereview.chromium.org/2177483002)  
 Regress: [mjsunit/compiler/regress-630611.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-630611.js)  
@@ -11014,12 +10793,11 @@ f();
 
 ## **regress-crbug-630561.js (chromium issue)**  
    
-**[Issue 630561:
- collector->heap()->Contains(obj) in mark-compact.cc](https://crbug.com/630561)**  
+**[collector->heap()->Contains(obj) in mark-compact.cc](https://crbug.com/630561)**  
 **[Commit: [elements] Omit fast path in PrependElementIndices](https://chromium.googlesource.com/v8/v8/+/7ede61e)**  
   
 Date(Commit): Sat Jul 23 12:16:14 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2173653003](https://codereview.chromium.org/2173653003)  
 Regress: [mjsunit/regress/regress-crbug-630561.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-630561.js)  
@@ -11042,12 +10820,10 @@ var keys = Object.keys(dict_elements);
 
 ## **regress-5216.js (v8 issue)**  
    
-**[Issue 5216:
- Error subclasses constructors are shown in stack trace](https://crbug.com/v8/5216)**  
+**[Error subclasses constructors are shown in stack trace](https://crbug.com/v8/5216)**  
 **[Commit: Omit frames up to new target in Error constructor](https://chromium.googlesource.com/v8/v8/+/89403e0)**  
   
 Date(Commit): Fri Jul 22 11:45:50 2016  
-Type: FeatureRequest  
 Code Review: [https://codereview.chromium.org/2175603003](https://codereview.chromium.org/2175603003)  
 Regress: [mjsunit/regress/regress-5216.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5216.js)  
 ```javascript
@@ -11064,12 +10840,10 @@ assertFalse(new MyError().stack.includes("at MyError"));
 
 ## **regress-5213.js (v8 issue)**  
    
-**[Issue 5213:
- Math.pow(2,-2147483648) does not terminate on mips.](https://crbug.com/v8/5213)**  
+**[Math.pow(2,-2147483648) does not terminate on mips.](https://crbug.com/v8/5213)**  
 **[Commit: MIPS: Fix infinite loop in Math.pow(2,-2147483648)](https://chromium.googlesource.com/v8/v8/+/eaa86cb)**  
   
 Date(Commit): Thu Jul 21 19:38:01 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2163963003](https://codereview.chromium.org/2163963003)  
 Regress: [mjsunit/regress/regress-5213.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5213.js)  
 ```javascript
@@ -11087,12 +10861,10 @@ assertEquals(0, Math.pow(2,-9223372036854775808));
 
 ## **regress-5214.js (v8 issue)**  
    
-**[Issue 5214:
- Math.pow(2,2147483648) does not terminate on arm.](https://crbug.com/v8/5214)**  
+**[Math.pow(2,2147483648) does not terminate on arm.](https://crbug.com/v8/5214)**  
 **[Commit: [arm] Fix infinite loop in Math.pow(2,2147483648).](https://chromium.googlesource.com/v8/v8/+/e83739c)**  
   
 Date(Commit): Thu Jul 21 09:30:32 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2166743003](https://codereview.chromium.org/2166743003)  
 Regress: [mjsunit/regress/regress-5214.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5214.js)  
 ```javascript
@@ -11110,12 +10882,11 @@ assertEquals(0, Math.pow(2, -0x80000000));
 
 ## **regress-crbug-629823.js (chromium issue)**  
    
-**[Issue 629823:
- args[0]->IsJSArray() in runtime-array.cc](https://crbug.com/629823)**  
+**[args[0]->IsJSArray() in runtime-array.cc](https://crbug.com/629823)**  
 **[Commit: [runtime] %TransitionElementsKind works for any kind of JSObject.](https://chromium.googlesource.com/v8/v8/+/f793cb1)**  
   
 Date(Commit): Thu Jul 21 07:23:58 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2166963004](https://codereview.chromium.org/2166963004)  
 Regress: [mjsunit/regress/regress-crbug-629823.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-629823.js)  
@@ -11145,12 +10916,11 @@ foo();
 
 ## **regress-crbug-629435.js (chromium issue)**  
    
-**[Issue 629435:
- Crash in v8::internal::Invoke](https://crbug.com/629435)**  
+**[Crash in v8::internal::Invoke](https://crbug.com/629435)**  
 **[Commit: [turbofan] Fix typing rule for number addition.](https://chromium.googlesource.com/v8/v8/+/e0b8707)**  
   
 Date(Commit): Tue Jul 19 10:08:13 2016  
-Components/Type: None/Bug-Security  
+Components: None  
 Labels: ["Reproducible", "Stability-Memory-AddressSanitizer", "M-52", "Security", "Security_Severity-Medium", "Security_Impact-Head", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2161013002](https://codereview.chromium.org/2161013002)  
 Regress: [mjsunit/regress/regress-crbug-629435.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-629435.js)  
@@ -11180,12 +10950,11 @@ foo();
 
 ## **regress-crbug-629062.js (chromium issue)**  
    
-**[Issue 629062:
- NumberEqual of kRepBit (Constant(ADDRESS <false>)) cannot be changed to kRepFloa](https://crbug.com/629062)**  
+**[NumberEqual of kRepBit (Constant(ADDRESS <false>)) cannot be changed to kRepFloa](https://crbug.com/629062)**  
 **[Commit: [turbofan] Properly handle bit->float64 representation changes.](https://chromium.googlesource.com/v8/v8/+/15f99cd)**  
   
 Date(Commit): Tue Jul 19 08:29:52 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2155323003](https://codereview.chromium.org/2155323003)  
 Regress: [mjsunit/regress/regress-crbug-629062.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-629062.js)  
@@ -11210,12 +10979,11 @@ foo(true);
 
 ## **regress-crbug-614644.js (chromium issue)**  
    
-**[Issue 614644:
- Fatal error in v8::HandleScope::CreateHandle](https://crbug.com/614644)**  
+**[Fatal error in v8::HandleScope::CreateHandle](https://crbug.com/614644)**  
 **[Commit: [crankshaft] Guard against side effects in Array.prototype.shift lowering.](https://chromium.googlesource.com/v8/v8/+/173313e)**  
   
 Date(Commit): Tue Jul 19 06:43:04 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2161943002](https://codereview.chromium.org/2161943002)  
 Regress: [mjsunit/regress/regress-crbug-614644.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-614644.js)  
@@ -11240,12 +11008,10 @@ f([1], 1.1);
 
 ## **regress-5199.js (v8 issue)**  
    
-**[Issue 5199:
- RegExp show inconsistent result with other browsers](https://crbug.com/v8/5199)**  
+**[RegExp show inconsistent result with other browsers](https://crbug.com/v8/5199)**  
 **[Commit: [regexp] Fix case-insensitive matching for one-byte subjects.](https://chromium.googlesource.com/v8/v8/+/a51f429)**  
   
 Date(Commit): Mon Jul 18 12:03:37 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2159683002](https://codereview.chromium.org/2159683002)  
 Regress: [mjsunit/regress/regress-5199.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5199.js)  
 ```javascript
@@ -11261,12 +11027,11 @@ assertTrue(/(a[\u1000A])+/i.test('aa'));
 
 ## **regress-628773.js (chromium issue)**  
    
-**[Issue 628773:
- Crash in v8::internal::compiler::AddInputsToFrameStateDescriptor](https://crbug.com/628773)**  
+**[Crash in v8::internal::compiler::AddInputsToFrameStateDescriptor](https://crbug.com/628773)**  
 **[Commit: [turbofan] Eliminate checkpoints before return in common op reducer.](https://chromium.googlesource.com/v8/v8/+/8611079)**  
   
 Date(Commit): Mon Jul 18 11:56:54 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2155123002](https://codereview.chromium.org/2155123002)  
 Regress: [mjsunit/compiler/regress-628773.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-628773.js)  
@@ -11299,12 +11064,10 @@ foo();
 
 ## **regress-5205.js (v8 issue)**  
    
-**[Issue 5205:
- TurboFan bailout point for [[ToObject]] conversion is borked](https://crbug.com/v8/5205)**  
+**[TurboFan bailout point for [[ToObject]] conversion is borked](https://crbug.com/v8/5205)**  
 **[Commit: [turbofan] Fix deopt point for [[ToObject]] lazy bailout.](https://chromium.googlesource.com/v8/v8/+/a95cdbb)**  
   
 Date(Commit): Mon Jul 18 08:08:47 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2158443002](https://codereview.chromium.org/2158443002)  
 Regress: [mjsunit/regress/regress-5205.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5205.js)  
 ```javascript
@@ -11351,12 +11114,12 @@ Regress: [mjsunit/regress/regress-5205.js](https://chromium.googlesource.com/v8/
 
 ## **regress-628403.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/628403)**  
+**[Permission denied](https://crbug.com/628403)**  
 **[Commit: [turbofan] In effect control linearizer, only delay effect phi update for loops.](https://chromium.googlesource.com/v8/v8/+/514951f)**  
   
 Date(Commit): Sat Jul 16 12:39:14 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2159603002](https://codereview.chromium.org/2159603002)  
 Regress: [mjsunit/compiler/regress-628403.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-628403.js)  
 ```javascript
@@ -11393,12 +11156,11 @@ assertEquals(42, f([42]));
 
 ## **regress-crbug-628573.js (chromium issue)**  
    
-**[Issue 628573:
- Crash in v8::internal::Context::native_context](https://crbug.com/628573)**  
+**[Crash in v8::internal::Context::native_context](https://crbug.com/628573)**  
 **[Commit: [fullcode] Restore context after calling ToNumber builtin.](https://chromium.googlesource.com/v8/v8/+/5d66a7f)**  
   
 Date(Commit): Fri Jul 15 13:18:57 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2153783002](https://codereview.chromium.org/2153783002)  
 Regress: [mjsunit/regress/regress-crbug-628573.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-628573.js)  
@@ -11429,12 +11191,12 @@ var z = {valueOf: function() { return 3; }};
 
 ## **regress-628516.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/628516)**  
+**[Permission denied](https://crbug.com/628516)**  
 **[Commit: [turbofan] Add re-typing for PlainPrimitiveToNumber during representation inference.](https://chromium.googlesource.com/v8/v8/+/9f859c6)**  
   
 Date(Commit): Fri Jul 15 10:37:27 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2151223002](https://codereview.chromium.org/2151223002)  
 Regress: [mjsunit/compiler/regress-628516.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-628516.js)  
 ```javascript
@@ -11458,12 +11220,11 @@ assertThrows(f);
 
 ## **regress-crbug-627934.js (chromium issue)**  
    
-**[Issue 627934:
- args[1]->IsString() in runtime-strings.cc](https://crbug.com/627934)**  
+**[args[1]->IsString() in runtime-strings.cc](https://crbug.com/627934)**  
 **[Commit: [stubs] Properly handle length overflow in StringAddStub.](https://chromium.googlesource.com/v8/v8/+/6530a16)**  
   
 Date(Commit): Thu Jul 14 11:47:42 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2146353002](https://codereview.chromium.org/2146353002)  
 Regress: [mjsunit/regress/regress-crbug-627934.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-627934.js)  
@@ -11489,12 +11250,11 @@ for (var z = x;;) {
 
 ## **regress-crbug-627935.js (chromium issue)**  
    
-**[Issue 627935:
- args[0]->IsString() in runtime-strings.cc](https://crbug.com/627935)**  
+**[args[0]->IsString() in runtime-strings.cc](https://crbug.com/627935)**  
 **[Commit: [i18n] Ensure [[ToString]] conversion of time zone names.](https://chromium.googlesource.com/v8/v8/+/8226c88)**  
   
 Date(Commit): Thu Jul 14 11:31:29 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2143003005](https://codereview.chromium.org/2143003005)  
 Regress: [mjsunit/regress/regress-crbug-627935.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-627935.js)  
@@ -11518,12 +11278,11 @@ if (this.Intl) {
 
 ## **regress-crbug-627828.js (chromium issue)**  
    
-**[Issue 627828:
- args[1]->IsName() in runtime-object.cc](https://crbug.com/627828)**  
+**[args[1]->IsName() in runtime-object.cc](https://crbug.com/627828)**  
 **[Commit: [turbofan] Fix deopt point for [[ToName]] lazy bailout.](https://chromium.googlesource.com/v8/v8/+/a2f1519)**  
   
 Date(Commit): Wed Jul 13 15:18:10 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2149493003](https://codereview.chromium.org/2149493003)  
 Regress: [mjsunit/regress/regress-crbug-627828.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-627828.js)  
@@ -11620,12 +11379,11 @@ Regress: [mjsunit/regress/regress-crbug-627828.js](https://chromium.googlesource
 
 ## **regress-618608.js (chromium issue)**  
    
-**[Issue 618608:
- Fatal error in asm-wasm-builder.cc](https://crbug.com/618608)**  
+**[Fatal error in asm-wasm-builder.cc](https://crbug.com/618608)**  
 **[Commit: [wasm] allow array access with unsigned indices](https://chromium.googlesource.com/v8/v8/+/cd95c60)**  
   
 Date(Commit): Tue Jul 12 21:56:38 2016  
-Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Components: Blink>JavaScript>WebAssembly  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "BlocksAsmWasmLaunch"]  
 Code Review: [https://codereview.chromium.org/2138243002](https://codereview.chromium.org/2138243002)  
 Regress: [mjsunit/regress/regress-618608.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-618608.js)  
@@ -13062,12 +12820,11 @@ gc();
 
 ## **regress-crbug-515897.js (chromium issue)**  
    
-**[Issue 515897:
- Wrong escaping of forward slashes in RegExp.source](https://crbug.com/515897)**  
+**[Wrong escaping of forward slashes in RegExp.source](https://crbug.com/515897)**  
 **[Commit: [regexp] Fix regexp source escaping with preceding backslashes.](https://chromium.googlesource.com/v8/v8/+/bbb2159)**  
   
 Date(Commit): Tue Jul 12 05:36:17 2016  
-Components/Type: Blink>JavaScript>Language/Bug  
+Components: Blink>JavaScript>Language  
 Labels: ["M-47", "Via-Wizard"]  
 Code Review: [https://codereview.chromium.org/2137033002](https://codereview.chromium.org/2137033002)  
 Regress: [mjsunit/regress/regress-crbug-515897.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-515897.js)  
@@ -13090,12 +12847,11 @@ assertEquals("\\\\\\/", r2.source);
 
 ## **regress-624300.js (chromium issue)**  
    
-**[Issue 624300:
- peek_any_identifier() || peek() == Token::LPAREN in parser.cc](https://crbug.com/624300)**  
+**[peek_any_identifier() || peek() == Token::LPAREN in parser.cc](https://crbug.com/624300)**  
 **[Commit: Narrowly address async function stack overflow parsing case](https://chromium.googlesource.com/v8/v8/+/77cbe276)**  
   
 Date(Commit): Mon Jul 11 19:33:43 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2135503002](https://codereview.chromium.org/2135503002)  
 Regress: [mjsunit/es8/regress/regress-624300.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es8/regress/regress-624300.js)  
@@ -13118,12 +12874,11 @@ Regress: [mjsunit/es8/regress/regress-624300.js](https://chromium.googlesource.c
 
 ## **regress-613928.js (chromium issue)**  
    
-**[Issue 613928:
- !v->IsParameter() in src/wasm/asm-wasm-builder.cc](https://crbug.com/613928)**  
+**[!v->IsParameter() in src/wasm/asm-wasm-builder.cc](https://crbug.com/613928)**  
 **[Commit: [wasm] throw in case of assignment to module parameters](https://chromium.googlesource.com/v8/v8/+/8474f24)**  
   
 Date(Commit): Mon Jul 11 17:41:30 2016  
-Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Components: Blink>JavaScript>WebAssembly  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "BlocksAsmWasmLaunch"]  
 Code Review: [https://codereview.chromium.org/2123283007](https://codereview.chromium.org/2123283007)  
 Regress: [mjsunit/regress/regress-613928.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-613928.js)  
@@ -13152,12 +12907,12 @@ Regress: [mjsunit/regress/regress-613928.js](https://chromium.googlesource.com/v
 
 ## **regress-crbug-626715.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/626715)**  
+**[Permission denied](https://crbug.com/626715)**  
 **[Commit: [runtime] Follow-up fix for "Better encapsulation of dictionary objects handling in lookup iterator."](https://chromium.googlesource.com/v8/v8/+/b030a6f)**  
   
 Date(Commit): Mon Jul 11 15:51:58 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2135253002](https://codereview.chromium.org/2135253002)  
 Regress: [mjsunit/regress/regress-crbug-626715.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-626715.js)  
 ```javascript
@@ -13190,12 +12945,10 @@ for (var i = 0; i < 100; i++) {
 
 ## **regress-5174.js (v8 issue)**  
    
-**[Issue 5174:
- Wrong behavior of Object.keys on Proxy on built in objects](https://crbug.com/v8/5174)**  
+**[Wrong behavior of Object.keys on Proxy on built in objects](https://crbug.com/v8/5174)**  
 **[Commit: [keys] propagate PropertyFilter to proxy targets in KeyAccumulator](https://chromium.googlesource.com/v8/v8/+/08d0012)**  
   
 Date(Commit): Mon Jul 11 10:39:35 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2129193003](https://codereview.chromium.org/2129193003)  
 Regress: [mjsunit/regress/regress-5174.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5174.js)  
 ```javascript
@@ -13214,12 +12967,10 @@ assertEquals([], Object.keys(new Proxy(/regex/, {})));
 
 ## **regress-5173.js (v8 issue)**  
    
-**[Issue 5173:
- Stack traces do not show assembler builtin methods](https://crbug.com/v8/5173)**  
+**[Stack traces do not show assembler builtin methods](https://crbug.com/v8/5173)**  
 **[Commit: [builtins] Construct builtin frame in String/Number ctors](https://chromium.googlesource.com/v8/v8/+/d49d386)**  
   
 Date(Commit): Fri Jul 08 06:38:19 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2118283003](https://codereview.chromium.org/2118283003)  
 Regress: [mjsunit/regress/regress-5173.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5173.js)  
 ```javascript
@@ -13281,12 +13032,10 @@ testBuiltinInStackTrace("((f, x) => f(x))(Math.imul, thrower);", "at imul");
 
 ## **regress-5181.js (v8 issue)**  
    
-**[Issue 5181:
- DCHECK fails when Proxy target has a null prototype](https://crbug.com/v8/5181)**  
+**[DCHECK fails when Proxy target has a null prototype](https://crbug.com/v8/5181)**  
 **[Commit: [ForIn] Fix HasEnumerableProperty for Proxies with null prototype](https://chromium.googlesource.com/v8/v8/+/b36237b)**  
   
 Date(Commit): Thu Jul 07 10:12:06 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2129563002](https://codereview.chromium.org/2129563002)  
 Regress: [mjsunit/regress/regress-5181.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5181.js)  
 ```javascript
@@ -13308,12 +13057,10 @@ for (var key in proxy) ;
 
 ## **regress-5178.js (v8 issue)**  
    
-**[Issue 5178:
- Crash with missing TDZ-check in catch-node](https://crbug.com/v8/5178)**  
+**[Crash with missing TDZ-check in catch-node](https://crbug.com/v8/5178)**  
 **[Commit: [parser] Fix bug in destructuring binding for catch.](https://chromium.googlesource.com/v8/v8/+/4a4f717)**  
   
 Date(Commit): Thu Jul 07 07:31:16 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2123953002](https://codereview.chromium.org/2123953002)  
 Regress: [mjsunit/regress/regress-5178.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5178.js)  
 ```javascript
@@ -13334,12 +13081,12 @@ try { throw {a: 42} } catch({a, b=a}) { assertEquals(42, b) };
 
 ## **regress-621147.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/621147)**  
+**[Permission denied](https://crbug.com/621147)**  
 **[Commit: [turbofan] Set elements kind to holey if constructing array of possibly non-zero length.](https://chromium.googlesource.com/v8/v8/+/7614362)**  
   
 Date(Commit): Wed Jul 06 07:55:36 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2126623003](https://codereview.chromium.org/2126623003)  
 Regress: [mjsunit/compiler/regress-621147.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-621147.js)  
 ```javascript
@@ -13379,12 +13126,11 @@ test3(broken_array);
 
 ## **regress-crbug-625590.js (chromium issue)**  
    
-**[Issue 625590:
- RUNTIME_ASSERT in args[1]->IsJSObject() in runtime-classes.cc](https://crbug.com/625590)**  
+**[RUNTIME_ASSERT in args[1]->IsJSObject() in runtime-classes.cc](https://crbug.com/625590)**  
 **[Commit: [fullcode][mips][mips64][ppc][s390] Avoid trashing of a home object when doing a keyed store to a super.](https://chromium.googlesource.com/v8/v8/+/43aee03)**  
   
 Date(Commit): Mon Jul 04 11:42:39 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2120963002](https://codereview.chromium.org/2120963002)  
 Regress: [mjsunit/regress/regress-crbug-625590.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-625590.js)  
@@ -13411,12 +13157,11 @@ new f().mSloppy();
 
 ## **regress-crbug-625547.js (chromium issue)**  
    
-**[Issue 625547:
- ho->GetHeap()->Contains(ho) in objects-debug.cc](https://crbug.com/625547)**  
+**[ho->GetHeap()->Contains(ho) in objects-debug.cc](https://crbug.com/625547)**  
 **[Commit: [crankshaft] Use canonical nan_value or minus_zero_value objects instead of constant heap numbers with NaN or -0.0 values.](https://chromium.googlesource.com/v8/v8/+/acd674d)**  
   
 Date(Commit): Mon Jul 04 09:59:26 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "M-52", "M-53", "Clusterfuzz", "M-51"]  
 Code Review: [https://codereview.chromium.org/2115413002](https://codereview.chromium.org/2115413002)  
 Regress: [mjsunit/regress/regress-crbug-625547.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-625547.js)  
@@ -13449,12 +13194,11 @@ gc();  // Boom!
 
 ## **regress-625558.js (chromium issue)**  
    
-**[Issue 625558:
- !type->Is(Type::None()) in simplified-lowering.cc](https://crbug.com/625558)**  
+**[!type->Is(Type::None()) in simplified-lowering.cc](https://crbug.com/625558)**  
 **[Commit: [turbofan] Better handling of empty type in simplified lowering.](https://chromium.googlesource.com/v8/v8/+/9fdacb9)**  
   
 Date(Commit): Mon Jul 04 08:43:12 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2120243002](https://codereview.chromium.org/2120243002)  
 Regress: [mjsunit/compiler/regress-625558.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-625558.js)  
@@ -13480,12 +13224,11 @@ f();
 
 ## **regress-crbug-624747.js (chromium issue)**  
    
-**[Issue 624747:
- IrOpcode::kFrameState == state->op()->opcode() in instruction-selector.cc](https://crbug.com/624747)**  
+**[IrOpcode::kFrameState == state->op()->opcode() in instruction-selector.cc](https://crbug.com/624747)**  
 **[Commit: [turbofan] Broaden checkpoint elimination on returns.](https://chromium.googlesource.com/v8/v8/+/a757a62)**  
   
 Date(Commit): Fri Jul 01 13:53:45 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2118793002](https://codereview.chromium.org/2118793002)  
 Regress: [mjsunit/regress/regress-crbug-624747.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-624747.js)  
@@ -13517,12 +13260,11 @@ foo();
 
 ## **regress-625121.js (chromium issue)**  
    
-**[Issue 625121:
- Unexpected operator #115:NumberSinh @ node #291 in instruction-selector.cc](https://crbug.com/625121)**  
+**[Unexpected operator #115:NumberSinh @ node #291 in instruction-selector.cc](https://crbug.com/625121)**  
 **[Commit: [turbofan] Properly lower NumberSinh, NumberCosh and NumberTanh.](https://chromium.googlesource.com/v8/v8/+/9c281f2)**  
   
 Date(Commit): Fri Jul 01 12:53:04 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Hotlist-Fixit-PE2016"]  
 Code Review: [https://codereview.chromium.org/2116533004](https://codereview.chromium.org/2116533004)  
 Regress: [mjsunit/regress/regress-625121.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-625121.js)  
@@ -13549,12 +13291,11 @@ test(x => Math.tanh(+x));
 
 ## **regress-crbug-624919.js (chromium issue)**  
    
-**[Issue 624919:
- V8 Crash - unable to find pc offset during deoptimization](https://crbug.com/624919)**  
+**[V8 Crash - unable to find pc offset during deoptimization](https://crbug.com/624919)**  
 **[Commit: [turbofan] Fix eager bailout point after comma expression.](https://chromium.googlesource.com/v8/v8/+/920bc17)**  
   
 Date(Commit): Fri Jul 01 09:51:50 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: []  
 Code Review: [https://codereview.chromium.org/2113893004](https://codereview.chromium.org/2113893004)  
 Regress: [mjsunit/regress/regress-crbug-624919.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-624919.js)  
@@ -13613,12 +13354,10 @@ assertEquals("number", typeof array[0]);
 
 ## **regress-5106.js (v8 issue)**  
    
-**[Issue 5106:
- Illegal access with yield in extends clause in destructuring catch-node](https://crbug.com/v8/5106)**  
+**[Illegal access with yield in extends clause in destructuring catch-node](https://crbug.com/v8/5106)**  
 **[Commit: Do all parsing for try/catch destructuring inside the appropriate scopes](https://chromium.googlesource.com/v8/v8/+/7166503)**  
   
 Date(Commit): Thu Jun 30 06:52:13 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2110193002](https://codereview.chromium.org/2110193002)  
 Regress: [mjsunit/regress/regress-5106.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5106.js)  
 ```javascript
@@ -13659,12 +13398,11 @@ g3().next();  // throws a ReferenceError without fix
 
 ## **regress-617526.js (chromium issue)**  
    
-**[Issue 617526:
- Unreachable code in asm-wasm-builder.cc](https://crbug.com/617526)**  
+**[Unreachable code in asm-wasm-builder.cc](https://crbug.com/617526)**  
 **[Commit: [wasm] fix loops and if-else to take int type instead of signed](https://chromium.googlesource.com/v8/v8/+/fa5cb20)**  
   
 Date(Commit): Wed Jun 29 00:40:32 2016  
-Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Components: Blink>JavaScript>WebAssembly  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "BlocksAsmWasmLaunch"]  
 Code Review: [https://codereview.chromium.org/2101923003](https://codereview.chromium.org/2101923003)  
 Regress: [mjsunit/regress/regress-617526.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-617526.js)  
@@ -13697,12 +13435,11 @@ assertEquals(1, wasm.__f_18());
 
 ## **regress-wasm-crbug-599413.js (chromium issue)**  
    
-**[Issue 599413:
- (left_index == right_index) || (ignore_sign && (left_index <= 1) && (right_index](https://crbug.com/599413)**  
+**[(left_index == right_index) || (ignore_sign && (left_index <= 1) && (right_index](https://crbug.com/599413)**  
 **[Commit: [wasm] Making compare and conditionals more correct.](https://chromium.googlesource.com/v8/v8/+/e42983d)**  
   
 Date(Commit): Tue Jun 28 23:50:14 2016  
-Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Components: Blink>JavaScript>WebAssembly  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "BlocksAsmWasmLaunch"]  
 Code Review: [https://codereview.chromium.org/2106683003](https://codereview.chromium.org/2106683003)  
 Regress: [mjsunit/regress/regress-wasm-crbug-599413.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-wasm-crbug-599413.js)  
@@ -13733,12 +13470,11 @@ assertFalse(%IsAsmWasmCode(__f_100));
 
 ## **regress-wasm-crbug-618602.js (chromium issue)**  
    
-**[Issue 618602:
- (left_index == right_index) || (ignore_sign && (left_index <= 1) && (right_index](https://crbug.com/618602)**  
+**[(left_index == right_index) || (ignore_sign && (left_index <= 1) && (right_index](https://crbug.com/618602)**  
 **[Commit: [wasm] Forbid sign mismatch in asm typer.](https://chromium.googlesource.com/v8/v8/+/c585677)**  
   
 Date(Commit): Tue Jun 28 21:01:36 2016  
-Components/Type: Blink>JavaScript>WebAssembly/Bug  
+Components: Blink>JavaScript>WebAssembly  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "BlocksAsmWasmLaunch"]  
 Code Review: [https://codereview.chromium.org/2107683002](https://codereview.chromium.org/2107683002)  
 Regress: [mjsunit/regress/regress-wasm-crbug-618602.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-wasm-crbug-618602.js)  
@@ -13765,12 +13501,11 @@ assertFalse(%IsAsmWasmCode(__f_1));
 
 ## **regress-622663.js (chromium issue)**  
    
-**[Issue 622663:
- reg >= first_temporary_register() && reg <= last_temporary_register() in bytecod](https://crbug.com/622663)**  
+**[reg >= first_temporary_register() && reg <= last_temporary_register() in bytecod](https://crbug.com/622663)**  
 **[Commit: Fix bug with re-scoping arrow function parameter initializers](https://chromium.googlesource.com/v8/v8/+/61c137c)**  
   
 Date(Commit): Tue Jun 28 15:10:17 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.3"]  
 Code Review: [https://codereview.chromium.org/2083083007](https://codereview.chromium.org/2083083007)  
 Regress: [mjsunit/regress/regress-622663.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-622663.js)  
@@ -13802,12 +13537,10 @@ Regress: [mjsunit/regress/regress-622663.js](https://chromium.googlesource.com/v
 
 ## **regress-5158.js (v8 issue)**  
    
-**[Issue 5158:
- ARM64 deopt from Int32SubWithOverflow is wrong](https://crbug.com/v8/5158)**  
+**[ARM64 deopt from Int32SubWithOverflow is wrong](https://crbug.com/v8/5158)**  
 **[Commit: [arm64] We must not overwrite registers for binop results that are used in frame states.](https://chromium.googlesource.com/v8/v8/+/29da546)**  
   
 Date(Commit): Tue Jun 28 10:11:13 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2103793002](https://codereview.chromium.org/2103793002)  
 Regress: [mjsunit/compiler/regress-5158.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5158.js)  
 ```javascript
@@ -13833,12 +13566,11 @@ assertEquals(2147483648, foo(-2147483648));
 
 ## **regress-crbug-621816.js (chromium issue)**  
    
-**[Issue 621816:
- safe_to_deopt_topmost_optimized_code in deoptimizer.cc](https://crbug.com/621816)**  
+**[safe_to_deopt_topmost_optimized_code in deoptimizer.cc](https://crbug.com/621816)**  
 **[Commit: [turbofan] Fix missing lazy deopt in object literals.](https://chromium.googlesource.com/v8/v8/+/4af8029)**  
   
 Date(Commit): Mon Jun 27 13:56:00 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2099133003](https://codereview.chromium.org/2099133003)  
 Regress: [mjsunit/regress/regress-crbug-621816.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-621816.js)  
@@ -13871,12 +13603,12 @@ g();
 
 ## **regress-crbug-620119.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/620119)**  
+**[Permission denied](https://crbug.com/620119)**  
 **[Commit: Rewrite scopes in computed properties in destructured parameters](https://chromium.googlesource.com/v8/v8/+/f795a79)**  
   
 Date(Commit): Thu Jun 23 20:47:18 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2084103002](https://codereview.chromium.org/2084103002)  
 Regress: [mjsunit/regress/regress-crbug-620119.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-620119.js)  
 ```javascript
@@ -13894,12 +13626,11 @@ assertEquals(0, (function (x, {[(x = function() { y = 0 }, "foo")]: y = eval(1)}
 
 ## **regress-crbug-620650.js (chromium issue)**  
    
-**[Issue 620650:
- (value & V8_UINT64_C(ADDRESS)) != unexpected || (value & V8_UINT64_C(ADDRESS)) =](https://crbug.com/620650)**  
+**[(value & V8_UINT64_C(ADDRESS)) != unexpected || (value & V8_UINT64_C(ADDRESS)) =](https://crbug.com/620650)**  
 **[Commit: [mips] Fix using signaling NaN for holes in fixed double arrays.](https://chromium.googlesource.com/v8/v8/+/a81c665)**  
   
 Date(Commit): Thu Jun 23 08:27:54 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2086343002](https://codereview.chromium.org/2086343002)  
 Regress: [mjsunit/regress/regress-crbug-620650.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-620650.js)  
@@ -13928,12 +13659,11 @@ Regress: [mjsunit/regress/regress-crbug-620650.js](https://chromium.googlesource
 
 ## **regress-616386.js (chromium issue)**  
    
-**[Issue 616386:
- Security: Arbitrary Memory Read in v8](https://crbug.com/616386)**  
+**[Security: Arbitrary Memory Read in v8](https://crbug.com/616386)**  
 **[Commit: Rewrite scopes of non-simple default arguments](https://chromium.googlesource.com/v8/v8/+/0e14baf)**  
   
 Date(Commit): Wed Jun 22 18:22:18 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "reward-5000", "Security_Impact-Stable", "Security_Severity-Medium", "allpublic", "reward-inprocess", "M-51", "merge-merged-5.2", "Release-0-M52", "CVE-2016-5172", "CVE_description-submitted"]  
 Code Review: [https://codereview.chromium.org/2077283004](https://codereview.chromium.org/2077283004)  
 Regress: [mjsunit/regress/regress-616386.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-616386.js)  
@@ -13955,12 +13685,11 @@ assertEquals(0, (function ({y = (function(a2) { bbbb = a2 }), bbbb = eval('1')} 
 
 ## **regress-crbug-621496.js (chromium issue)**  
    
-**[Issue 621496:
- Fatal error in v8::internal::Parser::PatternRewriter::VisitBinaryOperation()](https://crbug.com/621496)**  
+**[Fatal error in v8::internal::Parser::PatternRewriter::VisitBinaryOperation()](https://crbug.com/621496)**  
 **[Commit: Fix bug with illegal spread as single arrow parameter](https://chromium.googlesource.com/v8/v8/+/b9f682b)**  
   
 Date(Commit): Wed Jun 22 18:07:46 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Stability-Libfuzzer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2084703005](https://codereview.chromium.org/2084703005)  
 Regress: [mjsunit/harmony/regress/regress-crbug-621496.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/harmony/regress/regress-crbug-621496.js)  
@@ -13979,12 +13708,11 @@ Regress: [mjsunit/harmony/regress/regress-crbug-621496.js](https://chromium.goog
 
 ## **regress-621869.js (chromium issue)**  
    
-**[Issue 621869:
- heap->AllowedToBeMigrated(object, NEW_SPACE) in scavenger.cc](https://crbug.com/621869)**  
+**[heap->AllowedToBeMigrated(object, NEW_SPACE) in scavenger.cc](https://crbug.com/621869)**  
 **[Commit: [heap] Filter out stale left-trimmed handles for scavenges](https://chromium.googlesource.com/v8/v8/+/7a88ff3)**  
   
 Date(Commit): Wed Jun 22 12:22:46 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.2"]  
 Code Review: [https://codereview.chromium.org/2078403002/](https://codereview.chromium.org/2078403002/)  
 Regress: [mjsunit/regress/regress-621869.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-621869.js)  
@@ -14016,12 +13744,11 @@ o1[0];
 
 ## **regress-620750.js (chromium issue)**  
    
-**[Issue 620750:
- Crash in v8::internal::Heap::AllocateHeapNumber](https://crbug.com/620750)**  
+**[Crash in v8::internal::Heap::AllocateHeapNumber](https://crbug.com/620750)**  
 **[Commit: [heap] Fix check in AdvancePage](https://chromium.googlesource.com/v8/v8/+/21b55c4)**  
   
 Date(Commit): Wed Jun 22 09:10:09 2016  
-Components/Type: Blink>JavaScript>GC/Bug-Security  
+Components: Blink>JavaScript>GC  
 Labels: ["Merge-na", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Security_Severity-High", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2090013002](https://codereview.chromium.org/2090013002)  
 Regress: [mjsunit/regress/regress-620750.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-620750.js)  
@@ -14045,12 +13772,10 @@ __v_13 = push_a_lot([]);
 
 ## **regress-5129.js (v8 issue)**  
    
-**[Issue 5129:
- Turbofan changes x - y < 0 to x < y which is not equivalent when (x - y) overflows](https://crbug.com/v8/5129)**  
+**[Turbofan changes x - y < 0 to x < y which is not equivalent when (x - y) overflows](https://crbug.com/v8/5129)**  
 **[Commit: [turbofan] x - y < 0 is not equivalent to x < y.](https://chromium.googlesource.com/v8/v8/+/488d6e5)**  
   
 Date(Commit): Wed Jun 22 05:38:36 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2090493002](https://codereview.chromium.org/2090493002)  
 Regress: [mjsunit/compiler/regress-5129.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5129.js)  
 ```javascript
@@ -14076,12 +13801,11 @@ assertTrue(foo(0x7fffffff,-1));
 
 ## **regress-crbug-621111.js (chromium issue)**  
    
-**[Issue 621111:
- Fatal error in v8::internal::List<T, P>::Add()](https://crbug.com/621111)**  
+**[Fatal error in v8::internal::List<T, P>::Add()](https://crbug.com/621111)**  
 **[Commit: Fix classifier related bug](https://chromium.googlesource.com/v8/v8/+/2cabc86)**  
   
 Date(Commit): Tue Jun 21 16:41:00 2016  
-Components/Type: Blink>JavaScript>Language/Bug-Security  
+Components: Blink>JavaScript>Language  
 Labels: ["Merge-na", "Reproducible", "Stability-Memory-AddressSanitizer", "M-53", "Security_Severity-Medium", "Security_Impact-Head", "Stability-Libfuzzer", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2086513002](https://codereview.chromium.org/2086513002)  
 Regress: [mjsunit/harmony/regress/regress-crbug-621111.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/harmony/regress/regress-crbug-621111.js)  
@@ -14099,12 +13823,11 @@ Regress: [mjsunit/harmony/regress/regress-crbug-621111.js](https://chromium.goog
 
 ## **regress-crbug-614292.js (chromium issue)**  
    
-**[Issue 614292:
- IrOpcode::kMerge == control->opcode() in src/compiler/memory-optimizer.cc](https://crbug.com/614292)**  
+**[IrOpcode::kMerge == control->opcode() in src/compiler/memory-optimizer.cc](https://crbug.com/614292)**  
 **[Commit: [turbofan] MemoryOptimizer cannot deal with dead nodes in use lists.](https://chromium.googlesource.com/v8/v8/+/5e0cd38)**  
   
 Date(Commit): Tue Jun 21 10:40:44 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2080703003](https://codereview.chromium.org/2080703003)  
 Regress: [mjsunit/regress/regress-crbug-614292.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-614292.js)  
@@ -14128,12 +13851,11 @@ try {
 
 ## **regress-crbug-621611.js (chromium issue)**  
    
-**[Issue 621611:
- v8 regression or user land bug around rounding numbers / exp form](https://crbug.com/621611)**  
+**[v8 regression or user land bug around rounding numbers / exp form](https://crbug.com/621611)**  
 **[Commit: [builtins] Make sure the Math functions and constants agree.](https://chromium.googlesource.com/v8/v8/+/7877dde)**  
   
 Date(Commit): Tue Jun 21 07:02:16 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug  
+Components: Blink>JavaScript>Runtime  
 Labels: ["Hotlist-Fixit-PE2016"]  
 Code Review: [https://codereview.chromium.org/2079233005](https://codereview.chromium.org/2079233005)  
 Regress: [mjsunit/regress/regress-crbug-621611.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-621611.js)  
@@ -14159,12 +13881,11 @@ assertEquals(Math.SQRT2, Math.sqrt(2));
 
 ## **regress-620553.js (chromium issue)**  
    
-**[Issue 620553:
- Security: V8 OOB Read(?) in GC with Array Object.](https://crbug.com/620553)**  
+**[Security: V8 OOB Read(?) in GC with Array Object.](https://crbug.com/620553)**  
 **[Commit: [heap] Filter out stale left-trimmed handles](https://chromium.googlesource.com/v8/v8/+/d800a65)**  
   
 Date(Commit): Mon Jun 20 14:32:15 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "reward-5000", "M-52", "Security_Impact-Stable", "Security_Severity-High", "allpublic", "reward-inprocess", "M-51", "merge-merged-5.2", "Release-0-M52", "CVE-2016-5129", "CVE_description-submitted"]  
 Code Review: [https://codereview.chromium.org/2078403002](https://codereview.chromium.org/2078403002)  
 Regress: [mjsunit/regress/regress-620553.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-620553.js)  
@@ -14193,12 +13914,11 @@ o1[0];
 
 ## **regress-621423.js (chromium issue)**  
    
-**[Issue 621423:
- TypeError: node #235:CheckBounds(input @1 = NumberConstant:NumberConstant) type](https://crbug.com/621423)**  
+**[TypeError: node #235:CheckBounds(input @1 = NumberConstant:NumberConstant) type ](https://crbug.com/621423)**  
 **[Commit: [turbofan] Only consider inhabited types for constant folding in typed lowering.](https://chromium.googlesource.com/v8/v8/+/50d6837)**  
   
 Date(Commit): Mon Jun 20 07:56:29 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2084483002](https://codereview.chromium.org/2084483002)  
 Regress: [mjsunit/compiler/regress-621423.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-621423.js)  
@@ -14230,12 +13950,10 @@ f();
 
 ## **regress-4815.js (v8 issue)**  
    
-**[Issue 4815:
- Stack traces do not show builtin methods implemented in C++](https://crbug.com/v8/4815)**  
+**[Stack traces do not show builtin methods implemented in C++](https://crbug.com/v8/4815)**  
 **[Commit: [builtins] Introduce a proper BUILTIN frame type.](https://chromium.googlesource.com/v8/v8/+/f47b9e9)**  
   
 Date(Commit): Fri Jun 17 07:41:34 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2069423002](https://codereview.chromium.org/2069423002)  
 Regress: [mjsunit/regress/regress-4815.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4815.js)  
 ```javascript
@@ -14295,12 +14013,11 @@ testBuiltinInStackTrace("((f, x) => f(x))(Math.imul, thrower);", "at imul");
 
 ## **regress-crbug-620253.js (chromium issue)**  
    
-**[Issue 620253:
- Fatal error in v8::FromJust](https://crbug.com/620253)**  
+**[Fatal error in v8::FromJust](https://crbug.com/620253)**  
 **[Commit: [d8] Make exception reporting more resilient.](https://chromium.googlesource.com/v8/v8/+/e55384b)**  
   
 Date(Commit): Thu Jun 16 10:14:08 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2069543007](https://codereview.chromium.org/2069543007)  
 Regress: [mjsunit/regress/regress-crbug-620253.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-620253.js)  
@@ -14317,12 +14034,10 @@ load("test/mjsunit/regress/regress-crbug-620253.js");
 
 ## **regress-5004.js (v8 issue)**  
    
-**[Issue 5004:
- Illegal access in proxied promise subclass](https://crbug.com/v8/5004)**  
+**[Illegal access in proxied promise subclass](https://crbug.com/v8/5004)**  
 **[Commit: Promises: Add regression test for promise resolution with proxy](https://chromium.googlesource.com/v8/v8/+/3624a5e)**  
   
 Date(Commit): Thu Jun 16 02:00:26 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2070213002](https://codereview.chromium.org/2070213002)  
 Regress: [mjsunit/regress/regress-5004.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5004.js)  
 ```javascript
@@ -14385,12 +14100,11 @@ assertEquals(2, f(0));
 
 ## **regress-619382.js (chromium issue)**  
    
-**[Issue 619382:
- Use-of-uninitialized-value in long v8::internal::Simulator::AddWithCarry<long>](https://crbug.com/619382)**  
+**[Use-of-uninitialized-value in long v8::internal::Simulator::AddWithCarry<long>](https://crbug.com/619382)**  
 **[Commit: [Heap] Fix comparing against new space top pointer](https://chromium.googlesource.com/v8/v8/+/d6473f5)**  
   
 Date(Commit): Tue Jun 14 13:52:01 2016  
-Components/Type: Blink>JavaScript>GC/Bug-Security  
+Components: Blink>JavaScript>GC  
 Labels: ["Reproducible", "M-52", "Security_Impact-Stable", "Security_Severity-Medium", "Stability-Memory-MemorySanitizer", "allpublic", "Clusterfuzz", "M-51", "merge-merged-5.2", "Release-0-M52"]  
 Code Review: [https://codereview.chromium.org/2065063002](https://codereview.chromium.org/2065063002)  
 Regress: [mjsunit/regress/regress-619382.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-619382.js)  
@@ -14438,12 +14152,11 @@ var __v_26 = [
 
 ## **regress-crbug-618788.js (chromium issue)**  
    
-**[Issue 618788:
- !array->HasFixedTypedArrayElements() in runtime-array.cc](https://crbug.com/618788)**  
+**[!array->HasFixedTypedArrayElements() in runtime-array.cc](https://crbug.com/618788)**  
 **[Commit: Array.prototype.slice should only normalize result if it's an array](https://chromium.googlesource.com/v8/v8/+/56ea2f9)**  
   
 Date(Commit): Tue Jun 14 09:39:23 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Clusterfuzz", "Unreproducible"]  
 Code Review: [https://codereview.chromium.org/2058013002](https://codereview.chromium.org/2058013002)  
 Regress: [mjsunit/regress/regress-crbug-618788.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-618788.js)  
@@ -14535,12 +14248,10 @@ Regress: [mjsunit/compiler/regress-store-holey-double-array.js](https://chromium
 
 ## **regress-5100.js (v8 issue)**  
    
-**[Issue 5100:
- Introduce dedicated CheckBounds operator for TurboFan](https://crbug.com/v8/5100)**  
+**[Introduce dedicated CheckBounds operator for TurboFan](https://crbug.com/v8/5100)**  
 **[Commit: [turbofan] Introduce a dedicated CheckBounds operator.](https://chromium.googlesource.com/v8/v8/+/85e5567)**  
   
 Date(Commit): Tue Jun 14 06:12:06 2016  
-Type: FeatureRequest  
 Code Review: [https://codereview.chromium.org/2035893004](https://codereview.chromium.org/2035893004)  
 Regress: [mjsunit/compiler/regress-5100.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5100.js)  
 ```javascript
@@ -14604,12 +14315,11 @@ a["undefined"] = "undefined";
 
 ## **regress-618603.js (chromium issue)**  
    
-**[Issue 618603:
- OperandIsValid(bytecode, operand_scale, 0, operand0) in bytecode-array-builder.c](https://crbug.com/618603)**  
+**[OperandIsValid(bytecode, operand_scale, 0, operand0) in bytecode-array-builder.c](https://crbug.com/618603)**  
 **[Commit: [interpreter] support async functions in Ignition](https://chromium.googlesource.com/v8/v8/+/1a30866)**  
   
 Date(Commit): Mon Jun 13 17:21:19 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/2051423003](https://codereview.chromium.org/2051423003)  
 Regress: [mjsunit/es8/regress/regress-618603.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es8/regress/regress-618603.js)  
@@ -14634,12 +14344,11 @@ __f_7("[1,2,3]", () => (function() {
 
 ## **regress-crbug-619476.js (chromium issue)**  
    
-**[Issue 619476:
- reported_errors_end_ <= i in expression-classifier.h](https://crbug.com/619476)**  
+**[reported_errors_end_ <= i in expression-classifier.h](https://crbug.com/619476)**  
 **[Commit: Remove erroneous DCHECK related to expression classifiers](https://chromium.googlesource.com/v8/v8/+/cdec5e8)**  
   
 Date(Commit): Mon Jun 13 12:34:19 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2058413002](https://codereview.chromium.org/2058413002)  
 Regress: [mjsunit/regress/regress-crbug-619476.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-619476.js)  
@@ -14657,12 +14366,11 @@ eval, x[eval];
 
 ## **regress-crbug-614727.js (chromium issue)**  
    
-**[Issue 614727:
- RUNTIME_ASSERT in size <= Page::kMaxRegularHeapObjectSize in src/runtime/runtime-internal.cc](https://crbug.com/614727)**  
+**[RUNTIME_ASSERT in size <= Page::kMaxRegularHeapObjectSize in src/runtime/runtime-internal.cc](https://crbug.com/614727)**  
 **[Commit: Fix arguments object stubs for large arrays.](https://chromium.googlesource.com/v8/v8/+/e95cfaf)**  
   
 Date(Commit): Mon Jun 13 08:25:43 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2054853002](https://codereview.chromium.org/2054853002)  
 Regress: [mjsunit/regress/regress-crbug-614727.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-614727.js)  
@@ -14696,12 +14404,12 @@ try { g.apply(null, args) } catch(e) {}
 
 ## **regress-crbug-618845.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/618845)**  
+**[Permission denied](https://crbug.com/618845)**  
 **[Commit: Fix stale IC::receiver_map_ after prototype fastification](https://chromium.googlesource.com/v8/v8/+/3b87e9a)**  
   
 Date(Commit): Fri Jun 10 11:43:33 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2058063002](https://codereview.chromium.org/2058063002)  
 Regress: [mjsunit/regress/regress-crbug-618845.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-618845.js)  
 ```javascript
@@ -14726,12 +14434,11 @@ assertEquals("FooName", ic(Foo));  // Don't crash, don't time out.
 
 ## **regress-618657.js (chromium issue)**  
    
-**[Issue 618657:
- HasBytecodeArray() in objects-inl.h](https://crbug.com/618657)**  
+**[HasBytecodeArray() in objects-inl.h](https://crbug.com/618657)**  
 **[Commit: [generators] Make runtime functions more robust.](https://chromium.googlesource.com/v8/v8/+/54b405c)**  
   
 Date(Commit): Thu Jun 09 14:20:58 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2052873002](https://codereview.chromium.org/2052873002)  
 Regress: [mjsunit/regress/regress-618657.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-618657.js)  
@@ -14755,12 +14462,10 @@ assertEquals(true, g.next().done);
 
 ## **regress-5085.js (v8 issue)**  
    
-**[Issue 5085:
- ({}) instanceof Proxy is returning true unexpectedly](https://crbug.com/v8/5085)**  
+**[({}) instanceof Proxy is returning true unexpectedly](https://crbug.com/v8/5085)**  
 **[Commit: [es6] Fix prototype chain walk for instanceof.](https://chromium.googlesource.com/v8/v8/+/eb1c9e2)**  
   
 Date(Commit): Thu Jun 09 06:26:03 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2041103007](https://codereview.chromium.org/2041103007)  
 Regress: [mjsunit/regress/regress-5085.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5085.js)  
 ```javascript
@@ -14848,12 +14553,11 @@ assertEquals(Proxy.prototype, {b: 2});
 
 ## **regress-crbug-495493.js (chromium issue)**  
    
-**[Issue 495493:
- UNKNOWN in v8::internal::Context::global_object](https://crbug.com/495493)**  
+**[UNKNOWN in v8::internal::Context::global_object](https://crbug.com/495493)**  
 **[Commit: [crankshaft] do not sign-extend int32 immediate in DoMathMinMax.](https://chromium.googlesource.com/v8/v8/+/7c3cad2)**  
   
 Date(Commit): Wed Jun 08 10:12:16 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Memory-AddressSanitizer", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2044353002](https://codereview.chromium.org/2044353002)  
 Regress: [mjsunit/regress/regress-crbug-495493.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-495493.js)  
@@ -14875,12 +14579,11 @@ foo(0);
 
 ## **regress-crbug-617527.js (chromium issue)**  
    
-**[Issue 617527:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/617527)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSReceiver()) in objects-i](https://crbug.com/617527)**  
 **[Commit: Add test case for 85b8c2dc (fix observable array access in messages.js).](https://chromium.googlesource.com/v8/v8/+/ada6fa1)**  
   
 Date(Commit): Wed Jun 08 07:54:26 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Merge-Merged", "Hotlist-Merge-Approved", "Clusterfuzz", "merge-merged-5.1", "merge-merged-5.2", "NodeJS-Backport-Done"]  
 Code Review: [https://codereview.chromium.org/2045153002](https://codereview.chromium.org/2045153002)  
 Regress: [mjsunit/regress/regress-crbug-617527.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-617527.js)  
@@ -14897,12 +14600,10 @@ assertThrows(_ => new RegExp(0, 0));
 
 ## **regress-5074.js (v8 issue)**  
    
-**[Issue 5074:
- Crankshaft deopts with truncated value](https://crbug.com/v8/5074)**  
+**[Crankshaft deopts with truncated value](https://crbug.com/v8/5074)**  
 **[Commit: [crankshaft] Fix invalid number truncation assumption on HAdd inputs.](https://chromium.googlesource.com/v8/v8/+/f576e29)**  
   
 Date(Commit): Wed Jun 08 03:56:22 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2048643002](https://codereview.chromium.org/2048643002)  
 Regress: [mjsunit/compiler/regress-5074.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-5074.js)  
 ```javascript
@@ -14930,12 +14631,11 @@ assertEquals("undefined2", foo(0, "2"));
 
 ## **regress-crbug-617524.js (chromium issue)**  
    
-**[Issue 617524:
- value->IsMutableHeapNumber() in objects-debug.cc](https://crbug.com/617524)**  
+**[value->IsMutableHeapNumber() in objects-debug.cc](https://crbug.com/617524)**  
 **[Commit: [runtime] Don't use ElementsTransitionAndStoreStub for transitions that involve instance rewriting.](https://chromium.googlesource.com/v8/v8/+/3e0be8d)**  
   
 Date(Commit): Tue Jun 07 09:50:04 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.0", "merge-merged-5.1", "merge-merged-5.2", "NodeJS-Backport-Done"]  
 Code Review: [https://codereview.chromium.org/2044003003](https://codereview.chromium.org/2044003003)  
 Regress: [mjsunit/regress/regress-crbug-617524.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-617524.js)  
@@ -14964,12 +14664,11 @@ assertEquals(0, o3.a);
 
 ## **regress-617525.js (chromium issue)**  
    
-**[Issue 617525:
- !locals_.has_sig() in encoder.cc](https://crbug.com/617525)**  
+**[!locals_.has_sig() in encoder.cc](https://crbug.com/617525)**  
 **[Commit: [asmjs] Validator should reject modules with repeated functions.](https://chromium.googlesource.com/v8/v8/+/0b91952)**  
   
 Date(Commit): Mon Jun 06 13:40:42 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2040983002](https://codereview.chromium.org/2040983002)  
 Regress: [mjsunit/regress/regress-617525.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-617525.js)  
@@ -14994,12 +14693,11 @@ assertFalse(%IsAsmWasmCode(__f_14));
 
 ## **regress-617529.js (chromium issue)**  
    
-**[Issue 617529:
- kAstStmt != var_type in asm-wasm-builder.cc](https://crbug.com/617529)**  
+**[kAstStmt != var_type in asm-wasm-builder.cc](https://crbug.com/617529)**  
 **[Commit: [asmjs] Validator should reject assignments to heap variables in functions.](https://chromium.googlesource.com/v8/v8/+/dc98fab)**  
   
 Date(Commit): Mon Jun 06 13:30:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2041843002](https://codereview.chromium.org/2041843002)  
 Regress: [mjsunit/regress/regress-617529.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-617529.js)  
@@ -15026,12 +14724,11 @@ assertFalse(%IsAsmWasmCode(__f_71));
 
 ## **regress-crbug-617567.js (chromium issue)**  
    
-**[Issue 617567:
- 1 == effect->op()->EffectInputCount() in node-properties.cc](https://crbug.com/617567)**  
+**[1 == effect->op()->EffectInputCount() in node-properties.cc](https://crbug.com/617567)**  
 **[Commit: [turbofan] Make FindFrameStateBefore handle dead paths.](https://chromium.googlesource.com/v8/v8/+/826627d)**  
   
 Date(Commit): Mon Jun 06 12:34:53 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2041833002](https://codereview.chromium.org/2041833002)  
 Regress: [mjsunit/regress/regress-crbug-617567.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-617567.js)  
@@ -15065,12 +14762,11 @@ assertThrows(f);
 
 ## **regress-616064.js (chromium issue)**  
    
-**[Issue 616064:
- Crash in v8::internal::interpreter::BytecodeRegisterOptimizer::OutputRegisterTransfer](https://crbug.com/616064)**  
+**[Crash in v8::internal::interpreter::BytecodeRegisterOptimizer::OutputRegisterTransfer](https://crbug.com/616064)**  
 **[Commit: [Interpreter] Don't try to eliminate dead-code in bytecode-array-builder](https://chromium.googlesource.com/v8/v8/+/2fd3f9d)**  
   
 Date(Commit): Wed Jun 01 22:55:10 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "M-53", "Fracas", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2030583002](https://codereview.chromium.org/2030583002)  
 Regress: [mjsunit/ignition/regress-616064.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-616064.js)  
@@ -15110,12 +14806,11 @@ try {
 
 ## **regress-615776.js (chromium issue)**  
    
-**[Issue 615776:
- RUNTIME_ASSERT in args[0]->IsNumber() in src/runtime/runtime-maths.cc](https://crbug.com/615776)**  
+**[RUNTIME_ASSERT in args[0]->IsNumber() in src/runtime/runtime-maths.cc](https://crbug.com/615776)**  
 **[Commit: math.js: Use %_TypedArrayGetLength to get length](https://chromium.googlesource.com/v8/v8/+/a7d091f)**  
   
 Date(Commit): Wed Jun 01 18:44:30 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2020203006](https://codereview.chromium.org/2020203006)  
 Regress: [mjsunit/regress/regress-615776.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-615776.js)  
@@ -15140,12 +14835,10 @@ v0.add(v1);
 
 ## **regress-v8-5009.js (v8 issue)**  
    
-**[Issue 5009:
- StoreIC sometimes does not store](https://crbug.com/v8/5009)**  
+**[StoreIC sometimes does not store](https://crbug.com/v8/5009)**  
 **[Commit: [runtime] Ensure that all elements kind transitions are chained to the root map.](https://chromium.googlesource.com/v8/v8/+/9fa206e)**  
   
 Date(Commit): Wed Jun 01 15:55:11 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2015513002](https://codereview.chromium.org/2015513002)  
 Regress: [mjsunit/regress/regress-v8-5009.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-5009.js)  
 ```javascript
@@ -15221,12 +14914,12 @@ test(p2);
 
 ## **regress-612386-smi-to-double-transition.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/612386)**  
+**[Permission denied](https://crbug.com/612386)**  
 **[Commit: [Interpreter] Fix GenerateSmiToDouble to avoid assuming it is called from a JSFrame.](https://chromium.googlesource.com/v8/v8/+/471893c)**  
   
 Date(Commit): Wed Jun 01 14:49:00 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/2011313003](https://codereview.chromium.org/2011313003)  
 Regress: [mjsunit/ignition/regress-612386-smi-to-double-transition.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-612386-smi-to-double-transition.js)  
 ```javascript
@@ -15264,12 +14957,11 @@ foo();
 
 ## **regress-612146.js (chromium issue)**  
    
-**[Issue 612146:
- Renderer crash on zhytomyr.dozor-gps.com.ua](https://crbug.com/612146)**  
+**[Renderer crash on zhytomyr.dozor-gps.com.ua](https://crbug.com/612146)**  
 **[Commit: [crankshaft] Only exclude explicit 'arguments' (and 'this') from liveness analysis.](https://chromium.googlesource.com/v8/v8/+/1428fbe)**  
   
 Date(Commit): Wed Jun 01 12:04:35 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible"]  
 Code Review: [https://codereview.chromium.org/2026173003](https://codereview.chromium.org/2026173003)  
 Regress: [mjsunit/regress/regress-612146.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-612146.js)  
@@ -15421,12 +15113,11 @@ assertEquals(2.121736758e-314, foo());
 
 ## **regress-crbug-615774.js (chromium issue)**  
    
-**[Issue 615774:
- index < GetInternalFieldCount() && index >= 0 in src/objects-inl.h](https://crbug.com/615774)**  
+**[index < GetInternalFieldCount() && index >= 0 in src/objects-inl.h](https://crbug.com/615774)**  
 **[Commit: Check CallSite arguments more rigorously](https://chromium.googlesource.com/v8/v8/+/25c2203)**  
   
 Date(Commit): Mon May 30 10:30:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2006603002](https://codereview.chromium.org/2006603002)  
 Regress: [mjsunit/regress/regress-crbug-615774.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-615774.js)  
@@ -15453,12 +15144,11 @@ try {
 
 ## **regress-crbug-612109.js (chromium issue)**  
    
-**[Issue 612109:
- Crash in v8::internal::Heap::CreateFillerObjectAt](https://crbug.com/612109)**  
+**[Crash in v8::internal::Heap::CreateFillerObjectAt](https://crbug.com/612109)**  
 **[Commit: [builtins] Rewrite uri.js as builtin functions.](https://chromium.googlesource.com/v8/v8/+/8c31bd8)**  
   
 Date(Commit): Fri May 27 09:57:07 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "M-52", "findit-wrong", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1994733003](https://codereview.chromium.org/1994733003)  
 Regress: [mjsunit/regress/regress-crbug-612109.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-612109.js)  
@@ -15481,12 +15171,10 @@ decodeURI(encodeURI(s));
 
 ## **regress-5036.js (v8 issue)**  
    
-**[Issue 5036:
- regexp with unicode and ignore case flag does not match correctly](https://crbug.com/v8/5036)**  
+**[regexp with unicode and ignore case flag does not match correctly](https://crbug.com/v8/5036)**  
 **[Commit: [regexp] fix /ui regexp desugaring for text nodes.](https://chromium.googlesource.com/v8/v8/+/5d93296)**  
   
 Date(Commit): Mon May 23 22:23:43 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2005753003](https://codereview.chromium.org/2005753003)  
 Regress: [mjsunit/regress/regress-5036.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5036.js)  
 ```javascript
@@ -15502,12 +15190,11 @@ assertEquals(["1\u212a"], /\d\w/ui.exec("1\u212a"));
 
 ## **regress-612412.js (chromium issue)**  
    
-**[Issue 612412:
- OperatorProperties::GetTotalInputCount(node->op()) == node->InputCount() in src/](https://crbug.com/612412)**  
+**[OperatorProperties::GetTotalInputCount(node->op()) == node->InputCount() in src/](https://crbug.com/612412)**  
 **[Commit: [turbofan] Correctly call ArrayNoArgumentConstructor stub from TF code](https://chromium.googlesource.com/v8/v8/+/f43aa0b)**  
   
 Date(Commit): Mon May 23 16:44:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/1999783004](https://codereview.chromium.org/1999783004)  
 Regress: [mjsunit/regress/regress-612412.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-612412.js)  
@@ -15538,12 +15225,11 @@ g();
 
 ## **regress-crbug-613919.js (chromium issue)**  
    
-**[Issue 613919:
- Unreachable code in src/objects-inl.h](https://crbug.com/613919)**  
+**[Unreachable code in src/objects-inl.h](https://crbug.com/613919)**  
 **[Commit: [deoptimizer] Fix materialization of sloppy arguments.](https://chromium.googlesource.com/v8/v8/+/3cc2adb)**  
   
 Date(Commit): Mon May 23 13:52:35 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2001133002](https://codereview.chromium.org/2001133002)  
 Regress: [mjsunit/regress/regress-crbug-613919.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-613919.js)  
@@ -15572,12 +15258,11 @@ assertEquals(23, f());
 
 ## **regress-crbug-613494.js (chromium issue)**  
    
-**[Issue 613494:
- Int64Constant of kRepWord64 (Internal) cannot be changed to kRepTagged in src/co](https://crbug.com/613494)**  
+**[Int64Constant of kRepWord64 (Internal) cannot be changed to kRepTagged in src/co](https://crbug.com/613494)**  
 **[Commit: [turbofan] Skip data-flow analysis of code entry field.](https://chromium.googlesource.com/v8/v8/+/dbd7d5a)**  
   
 Date(Commit): Mon May 23 10:40:29 2016  
-Components/Type: Blink>JavaScript>Compiler/Bug  
+Components: Blink>JavaScript>Compiler  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1997353002](https://codereview.chromium.org/1997353002)  
 Regress: [mjsunit/regress/regress-crbug-613494.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-613494.js)  
@@ -15605,12 +15290,11 @@ f();
 
 ## **regress-crbug-613570.js (chromium issue)**  
    
-**[Issue 613570:
- AllowHeapAllocation::IsAllowed() in src/heap/heap-inl.h](https://crbug.com/613570)**  
+**[AllowHeapAllocation::IsAllowed() in src/heap/heap-inl.h](https://crbug.com/613570)**  
 **[Commit: [json] fix encoding change for two-byte gap strings.](https://chromium.googlesource.com/v8/v8/+/46aeb2a)**  
   
 Date(Commit): Mon May 23 09:18:58 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1997003002](https://codereview.chromium.org/1997003002)  
 Regress: [mjsunit/regress/regress-crbug-613570.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-613570.js)  
@@ -15628,12 +15312,11 @@ assertEquals("[\n\u26031,\n\u26032\n]",
 
 ## **regress-crbug-613905.js (chromium issue)**  
    
-**[Issue 613905:
- Crash in v8::base::NoBarrier_Load](https://crbug.com/613905)**  
+**[Crash in v8::base::NoBarrier_Load](https://crbug.com/613905)**  
 **[Commit: [runtime] Don't crash when trying to access manually constructed CallSite object.](https://chromium.googlesource.com/v8/v8/+/a7a14fd)**  
   
 Date(Commit): Mon May 23 09:01:29 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Merge-na", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Severity-Medium", "Security_Impact-Head", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/2006603002](https://codereview.chromium.org/2006603002)  
 Regress: [mjsunit/regress/regress-crbug-613905.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-613905.js)  
@@ -15656,12 +15339,10 @@ try {
 
 ## **regress-5033.js (v8 issue)**  
    
-**[Issue 5033:
- Assertion failure in TypeFeedbackOracle::CollectReceiverTypes](https://crbug.com/v8/5033)**  
+**[Assertion failure in TypeFeedbackOracle::CollectReceiverTypes](https://crbug.com/v8/5033)**  
 **[Commit: [crankshaft] Don't inline "dont_crankshaft" functions](https://chromium.googlesource.com/v8/v8/+/43547df)**  
   
 Date(Commit): Fri May 20 15:20:15 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/2000703002](https://codereview.chromium.org/2000703002)  
 Regress: [mjsunit/regress/regress-5033.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5033.js)  
 ```javascript
@@ -15689,12 +15370,11 @@ caller();
 
 ## **regress-606021.js (chromium issue)**  
    
-**[Issue 606021:
- deqp/functional/gles3/texturefiltering/cube-sizes-*.html flaky on a bunch of platforms](https://crbug.com/606021)**  
+**[deqp/functional/gles3/texturefiltering/cube-sizes-*.html flaky on a bunch of platforms](https://crbug.com/606021)**  
 **[Commit: Bugfix: Crankshaft array literals with incorrect values.](https://chromium.googlesource.com/v8/v8/+/b71f1cc)**  
   
 Date(Commit): Fri May 20 13:07:52 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScriptBlink>WebGL  
 Labels: ["Hotlist-Merge-Review", "merge-merged-5.2", "Merge-rejected-5.1"]  
 Code Review: [https://codereview.chromium.org/2000673002](https://codereview.chromium.org/2000673002)  
 Regress: [mjsunit/regress/regress-606021.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-606021.js)  
@@ -15732,12 +15412,10 @@ assertEquals(1, l);
 
 ## **regress-5018.js (v8 issue)**  
    
-**[Issue 5018:
- DataView accessor fast path incorrect after ES2015 prototype hierarchy changes](https://crbug.com/v8/5018)**  
+**[DataView accessor fast path incorrect after ES2015 prototype hierarchy changes](https://crbug.com/v8/5018)**  
 **[Commit: Remove now-incorrect DataView accessor optimization](https://chromium.googlesource.com/v8/v8/+/de7d47e)**  
   
 Date(Commit): Thu May 19 19:49:35 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1984043002](https://codereview.chromium.org/1984043002)  
 Regress: [mjsunit/regress/regress-5018.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5018.js)  
 ```javascript
@@ -15781,12 +15459,11 @@ assertEquals(42, getByteOffset(dv));
 
 ## **regress-crbug-612142.js (chromium issue)**  
    
-**[Issue 612142:
- !v8::internal::FLAG_enable_slow_asserts || (IsDereferenceAllowed(INCLUDE_DEFERRE](https://crbug.com/612142)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (IsDereferenceAllowed(INCLUDE_DEFERRE](https://crbug.com/612142)**  
 **[Commit: [turbofan] Kill type Guard nodes during effect/control linearization.](https://chromium.googlesource.com/v8/v8/+/33e571f)**  
   
 Date(Commit): Wed May 18 05:38:22 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1980383002](https://codereview.chromium.org/1980383002)  
 Regress: [mjsunit/regress/regress-crbug-612142.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-612142.js)  
@@ -15811,12 +15488,11 @@ try {
 
 ## **regress-crbug-602595.js (chromium issue)**  
    
-**[Issue 602595:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsSmi()) in src/objects-inl.](https://crbug.com/602595)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsSmi()) in src/objects-inl.](https://crbug.com/602595)**  
 **[Commit: [turbofan] Escape analysis treats guard nodes as escaping.](https://chromium.googlesource.com/v8/v8/+/7cef559)**  
   
 Date(Commit): Tue May 17 15:47:35 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1972323004](https://codereview.chromium.org/1972323004)  
 Regress: [mjsunit/regress/regress-crbug-602595.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-602595.js)  
@@ -15840,12 +15516,12 @@ assertEquals([65], f(65));
 
 ## **regress-610633.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/610633)**  
+**[Permission denied](https://crbug.com/610633)**  
 **[Commit: Revert "Fix TypedArray Property optimizations", add regression test and eliminate dead code](https://chromium.googlesource.com/v8/v8/+/d33aedb)**  
   
 Date(Commit): Fri May 13 22:31:07 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/1977983002](https://codereview.chromium.org/1977983002)  
 Regress: [mjsunit/regress/regress-610633.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-610633.js)  
 ```javascript
@@ -15900,12 +15576,10 @@ assertEquals(42, a.byteOffset);
 
 ## **regress-5006.js (v8 issue)**  
    
-**[Issue 5006:
- Elliptic.js crashes on V8 5.2.290](https://crbug.com/v8/5006)**  
+**[Elliptic.js crashes on V8 5.2.290](https://crbug.com/v8/5006)**  
 **[Commit: [turbofan] Fix optimized lowering of Math.imul.](https://chromium.googlesource.com/v8/v8/+/fa7460a)**  
   
 Date(Commit): Thu May 12 18:43:32 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1971163002](https://codereview.chromium.org/1971163002)  
 Regress: [mjsunit/regress/regress-5006.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5006.js)  
 ```javascript
@@ -15932,12 +15606,10 @@ print(foo(1));
 
 ## **regress-4971.js (v8 issue)**  
    
-**[Issue 4971:
- Deoptimizer::GetOutputInfo failure when handling stack overflow with Proxies/super constructor calls](https://crbug.com/v8/4971)**  
+**[Deoptimizer::GetOutputInfo failure when handling stack overflow with Proxies/super constructor calls](https://crbug.com/v8/4971)**  
 **[Commit: [fullcodegen] Add missing bailout points for super calls.](https://chromium.googlesource.com/v8/v8/+/afb69f7)**  
   
 Date(Commit): Mon May 09 13:44:40 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1960083002](https://codereview.chromium.org/1960083002)  
 Regress: [mjsunit/regress/regress-4971.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4971.js)  
 ```javascript
@@ -15993,12 +15665,11 @@ Regress: [mjsunit/regress/regress-4971.js](https://chromium.googlesource.com/v8/
 
 ## **regress-crbug-610207.js (chromium issue)**  
    
-**[Issue 610207:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsSharedFunctionInfo()) in s](https://crbug.com/610207)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsSharedFunctionInfo()) in s](https://crbug.com/610207)**  
 **[Commit: Don't crash when load eval origin of a call site.](https://chromium.googlesource.com/v8/v8/+/8758245)**  
   
 Date(Commit): Mon May 09 09:00:52 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1958043002](https://codereview.chromium.org/1958043002)  
 Regress: [mjsunit/regress/regress-crbug-610207.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-610207.js)  
@@ -16023,12 +15694,11 @@ try {
 
 ## **regress-crbug-608278.js (chromium issue)**  
    
-**[Issue 608278:
- 1 == translation_size in src/crankshaft/lithium-codegen.cc](https://crbug.com/608278)**  
+**[1 == translation_size in src/crankshaft/lithium-codegen.cc](https://crbug.com/608278)**  
 **[Commit: [es6] Properly handle the case when an inlined getter/setter/constructor does a tail call.](https://chromium.googlesource.com/v8/v8/+/e17a283)**  
   
 Date(Commit): Fri May 06 12:37:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.1"]  
 Code Review: [https://codereview.chromium.org/1936043002](https://codereview.chromium.org/1936043002)  
 Regress: [mjsunit/regress/regress-crbug-608278.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-608278.js)  
@@ -16103,12 +15773,11 @@ f3();
 
 ## **regress-crbug-608279.js (chromium issue)**  
    
-**[Issue 608279:
- !info->shared_info()->feedback_vector()->metadata()->SpecDiffersFrom( info->lite](https://crbug.com/608279)**  
+**[!info->shared_info()->feedback_vector()->metadata()->SpecDiffersFrom( info->lite](https://crbug.com/608279)**  
 **[Commit: Don't treat catch scopes as possibly-shadowing for sloppy eval](https://chromium.googlesource.com/v8/v8/+/75f2d65)**  
   
 Date(Commit): Wed May 04 21:36:13 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1950803002](https://codereview.chromium.org/1950803002)  
 Regress: [mjsunit/regress/regress-crbug-608279.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-608279.js)  
@@ -16136,12 +15805,11 @@ __v_40.m();
 
 ## **regress-608630.js (chromium issue)**  
    
-**[Issue 608630:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/608630)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/608630)**  
 **[Commit: [wasm] Fix for 608630: allow proxies as FFI.](https://chromium.googlesource.com/v8/v8/+/f82b337)**  
   
 Date(Commit): Wed May 04 08:54:00 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/1943313002](https://codereview.chromium.org/1943313002)  
 Regress: [mjsunit/regress/regress-608630.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-608630.js)  
@@ -16224,12 +15892,11 @@ __f_1(__f_2, function(module) {
 
 ## **regress-crbug-609029.js (chromium issue)**  
    
-**[Issue 609029:
- data()->IsUndefined() || data()->IsFixedArray() in v8/src/objects-debug.cc](https://crbug.com/609029)**  
+**[data()->IsUndefined() || data()->IsFixedArray() in v8/src/objects-debug.cc](https://crbug.com/609029)**  
 **[Commit: [turbofan] Implement %_NewObject using FastNewObjectStub.](https://chromium.googlesource.com/v8/v8/+/c321837)**  
   
 Date(Commit): Wed May 04 07:35:22 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1943403004](https://codereview.chromium.org/1943403004)  
 Regress: [mjsunit/regress/regress-crbug-609029.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-609029.js)  
@@ -16246,12 +15913,10 @@ Regress: [mjsunit/regress/regress-crbug-609029.js](https://chromium.googlesource
 
 ## **regress-4970.js (v8 issue)**  
    
-**[Issue 4970:
- Check failed: is_sloppy(scope->language_mode()) || is_strict(info->language_mode()).](https://crbug.com/v8/4970)**  
+**[Check failed: is_sloppy(scope->language_mode()) || is_strict(info->language_mode()).](https://crbug.com/v8/4970)**  
 **[Commit: Fix 'eval' in class extends clauses to be always-strict](https://chromium.googlesource.com/v8/v8/+/c8a342a)**  
   
 Date(Commit): Tue May 03 22:36:29 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1931003003](https://codereview.chromium.org/1931003003)  
 Regress: [mjsunit/regress/regress-4970.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4970.js)  
 ```javascript
@@ -16279,12 +15944,11 @@ assertThrows(g, SyntaxError);
 
 ## **regress-592352.js (chromium issue)**  
    
-**[Issue 592352:
- Unreachable code in src/wasm/asm-wasm-builder.cc](https://crbug.com/592352)**  
+**[Unreachable code in src/wasm/asm-wasm-builder.cc](https://crbug.com/592352)**  
 **[Commit: [wasm] Disallow runtime calls in asm.js modules.](https://chromium.googlesource.com/v8/v8/+/d622c3a)**  
   
 Date(Commit): Tue May 03 15:57:23 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1943373002](https://codereview.chromium.org/1943373002)  
 Regress: [mjsunit/regress/regress-592352.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-592352.js)  
@@ -16314,12 +15978,11 @@ try {
 
 ## **regress-607493.js (chromium issue)**  
    
-**[Issue 607493:
- Unreachable code in src/compiler/verifier.cc](https://crbug.com/607493)**  
+**[Unreachable code in src/compiler/verifier.cc](https://crbug.com/607493)**  
 **[Commit: [turbofan] Fix OSR environment in for-in.](https://chromium.googlesource.com/v8/v8/+/2da181b)**  
   
 Date(Commit): Tue May 03 13:41:03 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1949433002](https://codereview.chromium.org/1949433002)  
 Regress: [mjsunit/compiler/regress-607493.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-607493.js)  
@@ -16374,12 +16037,11 @@ Regress: [mjsunit/compiler/regress-607493.js](https://chromium.googlesource.com/
 
 ## **regress-crbug-604299.js (chromium issue)**  
    
-**[Issue 604299:
- RUNTIME_ASSERT in args[0]->IsString() in src/runtime/runtime-regexp.cc](https://crbug.com/604299)**  
+**[RUNTIME_ASSERT in args[0]->IsString() in src/runtime/runtime-regexp.cc](https://crbug.com/604299)**  
 **[Commit: Use InternalArrays from certain Intl code](https://chromium.googlesource.com/v8/v8/+/4f374bb)**  
   
 Date(Commit): Mon May 02 18:19:25 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1923803002](https://codereview.chromium.org/1923803002)  
 Regress: [mjsunit/regress/regress-crbug-604299.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-604299.js)  
@@ -16402,12 +16064,10 @@ if (this.Intl) {
 
 ## **regress-4967.js (v8 issue)**  
    
-**[Issue 4967:
- Check failed: !(!HasStackOverflow()) || (operand_stack_depth_ >= count)](https://crbug.com/v8/4967)**  
+**[Check failed: !(!HasStackOverflow()) || (operand_stack_depth_ >= count)](https://crbug.com/v8/4967)**  
 **[Commit: [full-codegen] Fix stack depth tracking when reporting unsupported super usages](https://chromium.googlesource.com/v8/v8/+/567aa1b)**  
   
 Date(Commit): Mon May 02 17:28:54 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1929213002](https://codereview.chromium.org/1929213002)  
 Regress: [mjsunit/regress/regress-4967.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4967.js)  
 ```javascript
@@ -16427,12 +16087,10 @@ assertThrows(() => {
 
 ## **regress-v8-4972.js (v8 issue)**  
    
-**[Issue 4972:
- Check failed: (value & kHeapObjectTag) == 0.](https://crbug.com/v8/4972)**  
+**[Check failed: (value & kHeapObjectTag) == 0.](https://crbug.com/v8/4972)**  
 **[Commit: [runtime] Don't crash when creating an instance of a class inherited from a Proxy.](https://chromium.googlesource.com/v8/v8/+/b83edcc)**  
   
 Date(Commit): Fri Apr 29 15:07:35 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1925803005](https://codereview.chromium.org/1925803005)  
 Regress: [mjsunit/regress/regress-v8-4972.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-4972.js)  
 ```javascript
@@ -16448,12 +16106,10 @@ new class extends new Proxy(class {},{}) {}
 
 ## **regress-4964.js (v8 issue)**  
    
-**[Issue 4964:
- Illegal access with ArrayBuffer.prototype.slice and detached buffer](https://crbug.com/v8/4964)**  
+**[Illegal access with ArrayBuffer.prototype.slice and detached buffer](https://crbug.com/v8/4964)**  
 **[Commit: Add checks for detached ArrayBuffers to ArrayBuffer.prototype.slice](https://chromium.googlesource.com/v8/v8/+/3d66e5d)**  
   
 Date(Commit): Thu Apr 28 22:50:56 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1929123002](https://codereview.chromium.org/1929123002)  
 Regress: [mjsunit/regress/regress-4964.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4964.js)  
 ```javascript
@@ -16509,12 +16165,10 @@ function valueOf() {
 
 ## **regress-4945.js (v8 issue)**  
    
-**[Issue 4945:
- Fix "in" operator parsing.](https://crbug.com/v8/4945)**  
+**[Fix "in" operator parsing.](https://crbug.com/v8/4945)**  
 **[Commit: Forward accept_IN to ParseYieldExpression](https://chromium.googlesource.com/v8/v8/+/967a046)**  
   
 Date(Commit): Tue Apr 26 17:24:49 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1916183003](https://codereview.chromium.org/1916183003)  
 Regress: [mjsunit/regress/regress-4945.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4945.js)  
 ```javascript
@@ -16579,12 +16233,11 @@ Object.assign(x, x);
 
 ## **regress-crbug-605862.js (chromium issue)**  
    
-**[Issue 605862:
- Unreachable code in src/regexp/jsregexp.h](https://crbug.com/605862)**  
+**[Unreachable code in src/regexp/jsregexp.h](https://crbug.com/605862)**  
 **[Commit: [regexp] Fix non-match and max match length in RegExpCharacterClass.](https://chromium.googlesource.com/v8/v8/+/6f67d17)**  
   
 Date(Commit): Mon Apr 25 13:32:14 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1916763002](https://codereview.chromium.org/1916763002)  
 Regress: [mjsunit/regress/regress-crbug-605862.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-605862.js)  
@@ -16603,12 +16256,11 @@ Regress: [mjsunit/regress/regress-crbug-605862.js](https://chromium.googlesource
 
 ## **regress-605470.js (chromium issue)**  
    
-**[Issue 605470:
- Crash in v8::internal::Invoke](https://crbug.com/605470)**  
+**[Crash in v8::internal::Invoke](https://crbug.com/605470)**  
 **[Commit: [Interpreter] Fix incorrect Register OperandSize calculation for ExtraWide.](https://chromium.googlesource.com/v8/v8/+/11e3ba3)**  
   
 Date(Commit): Fri Apr 22 10:32:14 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["ReleaseBlock-Beta", "Merge-na", "Reproducible", "Stability-Memory-AddressSanitizer", "External-Fuzzer-Contribution", "reward-3500", "M-52", "Security_Impact-Head", "Security_Severity-High", "allpublic", "Clusterfuzz", "reward-inprocess"]  
 Code Review: [https://codereview.chromium.org/1908033002](https://codereview.chromium.org/1908033002)  
 Regress: [mjsunit/regress/regress-605470.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-605470.js)  
@@ -16635,12 +16287,11 @@ function_with_m_args(0x7FFF);
 
 ## **regress-crbug-602184.js (chromium issue)**  
    
-**[Issue 602184:
- DICTIONARY_ELEMENTS == elements_kind in src/code-stubs.h](https://crbug.com/602184)**  
+**[DICTIONARY_ELEMENTS == elements_kind in src/code-stubs.h](https://crbug.com/602184)**  
 **[Commit: [tests] Add testcase for r35397](https://chromium.googlesource.com/v8/v8/+/f4a9a50)**  
   
 Date(Commit): Fri Apr 22 09:08:46 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "M-50", "Reproducible", "Clusterfuzz", "M-51"]  
 Code Review: [https://codereview.chromium.org/1912443004](https://codereview.chromium.org/1912443004)  
 Regress: [mjsunit/regress/regress-crbug-602184.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-602184.js)  
@@ -16668,12 +16319,11 @@ f(true, v);
 
 ## **regress-crbug-594183.js (chromium issue)**  
    
-**[Issue 594183:
- Performance Regression: 5-20% WebGLAquarium 1000 Fishes time across most boards](https://crbug.com/594183)**  
+**[Performance Regression: 5-20% WebGLAquarium 1000 Fishes time across most boards](https://crbug.com/594183)**  
 **[Commit: [ic] Restore PROPERTY key tracking in keyed ICs](https://chromium.googlesource.com/v8/v8/+/9bebebd)**  
   
 Date(Commit): Thu Apr 21 13:18:28 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug-Regression  
+Components: Blink>JavaScript>Runtime  
 Labels: ["Hotlist-Merge-Review", "M-50", "Performance", "Cros-Perf-Monitor", "Hotlist-Merge-Approved", "ReleaseBlock-Stable", "merge-merged-50", "merge-merged-5.0", "merge-merged-5.1", "Merge-merged-51", "VerifyIn-53", "VerifyIn-54", "Bulk-Verified"]  
 Code Review: [https://codereview.chromium.org/1912593002](https://codereview.chromium.org/1912593002)  
 Regress: [mjsunit/regress/regress-crbug-594183.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-594183.js)  
@@ -16794,12 +16444,11 @@ assertTrue(f());
 
 ## **regress-crbug-605060.js (chromium issue)**  
    
-**[Issue 605060:
- map->is_stable() in v8/src/compilation-dependencies.cc](https://crbug.com/605060)**  
+**[map->is_stable() in v8/src/compilation-dependencies.cc](https://crbug.com/605060)**  
 **[Commit: Make sure we always try to make prototypes fast again when transitioning accessors](https://chromium.googlesource.com/v8/v8/+/4a6a0f5)**  
   
 Date(Commit): Thu Apr 21 11:18:08 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1907953002](https://codereview.chromium.org/1907953002)  
 Regress: [mjsunit/regress/regress-crbug-605060.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-605060.js)  
@@ -16819,12 +16468,11 @@ assertTrue(%HasFastProperties(Array.prototype));
 
 ## **regress-crbug-604680.js (chromium issue)**  
    
-**[Issue 604680:
- !removed || frame->LookupCode()->marked_for_deoptimization() in src/isolate.cc](https://crbug.com/604680)**  
+**[!removed || frame->LookupCode()->marked_for_deoptimization() in src/isolate.cc](https://crbug.com/604680)**  
 **[Commit: [deoptimizer] Do not modify stack_fp which is used as a key for lookup of previously materialized objects.](https://chromium.googlesource.com/v8/v8/+/b4dbb2f)**  
   
 Date(Commit): Thu Apr 21 09:54:33 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "M-51", "merge-merged-5.1"]  
 Code Review: [https://codereview.chromium.org/1904663003](https://codereview.chromium.org/1904663003)  
 Regress: [mjsunit/regress/regress-crbug-604680.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-604680.js)  
@@ -16879,12 +16527,10 @@ try {
 
 ## **regress-4908.js (v8 issue)**  
    
-**[Issue 4908:
- Crash related to arrow function parameters](https://crbug.com/v8/4908)**  
+**[Crash related to arrow function parameters](https://crbug.com/v8/4908)**  
 **[Commit: More accurately record an end position for default parameters in arrows](https://chromium.googlesource.com/v8/v8/+/e96cbdc)**  
   
 Date(Commit): Wed Apr 20 20:49:16 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1900343002](https://codereview.chromium.org/1900343002)  
 Regress: [mjsunit/regress/regress-4908.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4908.js)  
 ```javascript
@@ -16901,12 +16547,11 @@ Regress: [mjsunit/regress/regress-4908.js](https://chromium.googlesource.com/v8/
 
 ## **regress-599719.js (chromium issue)**  
    
-**[Issue 599719:
- result == fixed_size_from_fp + (stack_slots * kPointerSize) - CommonFrameConstan](https://crbug.com/599719)**  
+**[result == fixed_size_from_fp + (stack_slots * kPointerSize) - CommonFrameConstan](https://crbug.com/599719)**  
 **[Commit: [turbofan] Length and index2 are unsigned in CheckedLoad/CheckedStore.](https://chromium.googlesource.com/v8/v8/+/b994ad4)**  
   
 Date(Commit): Wed Apr 20 09:35:06 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1858323003](https://codereview.chromium.org/1858323003)  
 Regress: [mjsunit/regress/regress-599719.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599719.js)  
@@ -16945,12 +16590,11 @@ __f_5();
 
 ## **regress-599717.js (chromium issue)**  
    
-**[Issue 599717:
- index2 <= length in src/compiler/x64/code-generator-x64.cc](https://crbug.com/599717)**  
+**[index2 <= length in src/compiler/x64/code-generator-x64.cc](https://crbug.com/599717)**  
 **[Commit: [turbofan] Length and index2 are unsigned in CheckedLoad/CheckedStore.](https://chromium.googlesource.com/v8/v8/+/b994ad4)**  
   
 Date(Commit): Wed Apr 20 09:35:06 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1858323003](https://codereview.chromium.org/1858323003)  
 Regress: [mjsunit/regress/regress-599717.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599717.js)  
@@ -16990,12 +16634,11 @@ if (ok) {
 
 ## **regress-604044.js (chromium issue)**  
    
-**[Issue 604044:
- [v8] Segmentation fault from preparser](https://crbug.com/604044)**  
+**[[v8] Segmentation fault from preparser](https://crbug.com/604044)**  
 **[Commit: Prevent un-parsed LiteralFunction reaching the compiler.](https://chromium.googlesource.com/v8/v8/+/ed9b7d9)**  
   
 Date(Commit): Wed Apr 20 09:35:05 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Memory-AddressSanitizer"]  
 Code Review: [https://codereview.chromium.org/1895123002](https://codereview.chromium.org/1895123002)  
 Regress: [mjsunit/regress/regress-604044.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-604044.js)  
@@ -17014,12 +16657,11 @@ Regress: [mjsunit/regress/regress-604044.js](https://chromium.googlesource.com/v
 
 ## **regress-crbug-603463.js (chromium issue)**  
    
-**[Issue 603463:
- marker->IsSmi() in src/frames.cc](https://crbug.com/603463)**  
+**[marker->IsSmi() in src/frames.cc](https://crbug.com/603463)**  
 **[Commit: Fix polymorphic keyed load handler selection for proxies.](https://chromium.googlesource.com/v8/v8/+/2811388)**  
   
 Date(Commit): Tue Apr 19 08:58:43 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "M-53", "Clusterfuzz", "MovedFrom-52", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/1894203002](https://codereview.chromium.org/1894203002)  
 Regress: [mjsunit/regress/regress-crbug-603463.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-603463.js)  
@@ -17047,12 +16689,11 @@ f();
 
 ## **regress-602970.js (chromium issue)**  
    
-**[Issue 602970:
- Security: type confusion lead to information leak in decodeURI](https://crbug.com/602970)**  
+**[Security: type confusion lead to information leak in decodeURI](https://crbug.com/602970)**  
 **[Commit: Security: type confusion lead to information leak in decodeURI](https://chromium.googlesource.com/v8/v8/+/4014504)**  
   
 Date(Commit): Fri Apr 15 13:09:45 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["M-50", "Security_Impact-Stable", "Security_Severity-Medium", "reward-7500", "allpublic", "reward-inprocess", "M-51", "merge-merged-5.1", "Release-0-M51", "CVE-2016-1677", "CVE_description-submitted"]  
 Code Review: [https://codereview.chromium.org/1889133003](https://codereview.chromium.org/1889133003)  
 Regress: [mjsunit/regress/regress-602970.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-602970.js)  
@@ -17076,12 +16717,11 @@ assertEquals(0x7684, str.charCodeAt(0));
 
 ## **regress-crbug-600257.js (chromium issue)**  
    
-**[Issue 600257:
- unicode() in src/regexp/regexp-parser.cc](https://crbug.com/600257)**  
+**[unicode() in src/regexp/regexp-parser.cc](https://crbug.com/600257)**  
 **[Commit: [regexp] fix assertion failure when parsing close to stack overflow.](https://chromium.googlesource.com/v8/v8/+/93135d8)**  
   
 Date(Commit): Thu Apr 14 14:44:28 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1884143002](https://codereview.chromium.org/1884143002)  
 Regress: [mjsunit/regress/regress-crbug-600257.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-600257.js)  
@@ -17104,12 +16744,11 @@ Regress: [mjsunit/regress/regress-crbug-600257.js](https://chromium.googlesource
 
 ## **regress-crbug-601617.js (chromium issue)**  
    
-**[Issue 601617:
- frames_[0].kind() == TranslatedFrame::kFunction || frames_[0].kind() == Translat](https://crbug.com/601617)**  
+**[frames_[0].kind() == TranslatedFrame::kFunction || frames_[0].kind() == Translat](https://crbug.com/601617)**  
 **[Commit: [deoptimizer] Extend assert to also expect kTailCallerFunction as bottommost frame when accessing arguments for inlined function.](https://chromium.googlesource.com/v8/v8/+/26c480d)**  
   
 Date(Commit): Mon Apr 11 12:20:37 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Clusterfuzz", "M-51", "merge-merged-5.1"]  
 Code Review: [https://codereview.chromium.org/1876753002](https://codereview.chromium.org/1876753002)  
 Regress: [mjsunit/regress/regress-crbug-601617.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-601617.js)  
@@ -17151,12 +16790,11 @@ assertEquals(1, f0());
 
 ## **regress-599068-func-bindings.js (chromium issue)**  
    
-**[Issue 599068:
- !is_strict(language_mode()) in src/interpreter/bytecode-generator.cc](https://crbug.com/599068)**  
+**[!is_strict(language_mode()) in src/interpreter/bytecode-generator.cc](https://crbug.com/599068)**  
 **[Commit: [Interpreter] Handles legacy constants in strict mode.](https://chromium.googlesource.com/v8/v8/+/8982cb5)**  
   
 Date(Commit): Mon Apr 11 12:04:01 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1845223006](https://codereview.chromium.org/1845223006)  
 Regress: [mjsunit/regress/regress-599068-func-bindings.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599068-func-bindings.js)  
@@ -17211,12 +16849,11 @@ Regress: [mjsunit/regress/regress-599068-func-bindings.js](https://chromium.goog
 
 ## **regress-600593.js (chromium issue)**  
    
-**[Issue 600593:
- Crash in v8::internal::Invoke](https://crbug.com/600593)**  
+**[Crash in v8::internal::Invoke](https://crbug.com/600593)**  
 **[Commit: [turbofan] Remove some clever-but-wrong bits from select lowering.](https://chromium.googlesource.com/v8/v8/+/03975be)**  
   
 Date(Commit): Fri Apr 08 08:26:13 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Stability-Crash", "M-50", "Reproducible", "Stability-Memory-AddressSanitizer", "Hotlist-Merge-Approved", "Clusterfuzz", "M-51", "merge-merged-5.1"]  
 Code Review: [https://codereview.chromium.org/1870763003](https://codereview.chromium.org/1870763003)  
 Regress: [mjsunit/compiler/regress-600593.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-600593.js)  
@@ -17251,12 +16888,12 @@ assertThrows(function() { f(true); });
 
 ## **regress-599089-array-push.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/599089)**  
+**[Permission denied](https://crbug.com/599089)**  
 **[Commit: Fix representation issue in FastArrayPushStub](https://chromium.googlesource.com/v8/v8/+/9478356)**  
   
 Date(Commit): Thu Apr 07 12:46:08 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/1868973002](https://codereview.chromium.org/1868973002)  
 Regress: [mjsunit/regress/regress-599089-array-push.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599089-array-push.js)  
 ```javascript
@@ -17276,12 +16913,11 @@ assertEquals([undefined], array);
 
 ## **regress-585041.js (chromium issue)**  
    
-**[Issue 585041:
- Smi::IsValid(value) in src/objects.h](https://crbug.com/585041)**  
+**[Smi::IsValid(value) in src/objects.h](https://crbug.com/585041)**  
 **[Commit: Bugfix: assert in lithium compile for LMaybeGrowElements](https://chromium.googlesource.com/v8/v8/+/ce1fe78)**  
   
 Date(Commit): Thu Apr 07 11:41:39 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1854423003](https://codereview.chromium.org/1854423003)  
 Regress: [mjsunit/regress/regress-585041.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-585041.js)  
@@ -17315,12 +16951,11 @@ boom(false);
 
 ## **regress-599710.js (chromium issue)**  
    
-**[Issue 599710:
- right_block->HasPredecessor() in v8/src/crankshaft/hydrogen.cc](https://crbug.com/599710)**  
+**[right_block->HasPredecessor() in v8/src/crankshaft/hydrogen.cc](https://crbug.com/599710)**  
 **[Commit: [crankshaft] Make infinite loops preserve control flow.](https://chromium.googlesource.com/v8/v8/+/3df0a8c)**  
   
 Date(Commit): Thu Apr 07 05:36:44 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.1"]  
 Code Review: [https://codereview.chromium.org/1863123002](https://codereview.chromium.org/1863123002)  
 Regress: [mjsunit/regress/regress-599710.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599710.js)  
@@ -17407,12 +17042,11 @@ assertEquals("hey", g4());
 
 ## **regress-594084.js (chromium issue)**  
    
-**[Issue 594084:
- Crash in v8::internal::AstExpressionVisitor::VisitStatements](https://crbug.com/594084)**  
+**[Crash in v8::internal::AstExpressionVisitor::VisitStatements](https://crbug.com/594084)**  
 **[Commit: [destructuring] don't attempt to visit contents of FunctionLiterals](https://chromium.googlesource.com/v8/v8/+/f60048c)**  
   
 Date(Commit): Tue Apr 05 18:43:17 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Stability-Crash", "M-50", "Reproducible", "Stability-Memory-AddressSanitizer", "findit-wrong", "M-49", "Clusterfuzz", "merge-merged-5.0"]  
 Code Review: [https://codereview.chromium.org/1864553002](https://codereview.chromium.org/1864553002)  
 Regress: [mjsunit/es6/regress/regress-594084.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-594084.js)  
@@ -17433,12 +17067,11 @@ Regress: [mjsunit/es6/regress/regress-594084.js](https://chromium.googlesource.c
 
 ## **regress-599825.js (chromium issue)**  
    
-**[Issue 599825:
- Crash in v8::internal::AsmTyper::VisitHeapAccess](https://crbug.com/599825)**  
+**[Crash in v8::internal::AsmTyper::VisitHeapAccess](https://crbug.com/599825)**  
 **[Commit: [asm.js] Fix typing bug for non-literals in heap access.](https://chromium.googlesource.com/v8/v8/+/77a8c2e)**  
   
 Date(Commit): Tue Apr 05 17:24:03 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "ClusterFuzz-Verified"]  
 Code Review: [https://codereview.chromium.org/1858263002](https://codereview.chromium.org/1858263002)  
 Regress: [mjsunit/regress/regress-599825.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599825.js)  
@@ -17464,12 +17097,11 @@ assertFalse(%IsAsmWasmCode(__f_97));
 
 ## **regress-crbug-596394.js (chromium issue)**  
    
-**[Issue 596394:
- has_property_ in src/lookup.h](https://crbug.com/596394)**  
+**[has_property_ in src/lookup.h](https://crbug.com/596394)**  
 **[Commit: Ensure CreateDataProperty works correctly on TypedArrays](https://chromium.googlesource.com/v8/v8/+/7a38462)**  
   
 Date(Commit): Tue Apr 05 16:56:12 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1821723004](https://codereview.chromium.org/1821723004)  
 Regress: [mjsunit/regress/regress-crbug-596394.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-596394.js)  
@@ -17489,12 +17121,11 @@ assertThrows(() => Array.prototype.concat.call(array), TypeError);
 
 ## **regress-599414-array-concat-fast-path.js (chromium issue)**  
    
-**[Issue 599414:
- result_len <= FixedDoubleArray::kMaxLength in src/elements.cc](https://crbug.com/599414)**  
+**[result_len <= FixedDoubleArray::kMaxLength in src/elements.cc](https://crbug.com/599414)**  
 **[Commit: [elements] Fix length bounds precheck for Array.prototype.concat](https://chromium.googlesource.com/v8/v8/+/823224f)**  
   
 Date(Commit): Tue Apr 05 15:35:27 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1863553003](https://codereview.chromium.org/1863553003)  
 Regress: [mjsunit/regress/regress-599414-array-concat-fast-path.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599414-array-concat-fast-path.js)  
@@ -17518,12 +17149,11 @@ assertThrows(() => {
 
 ## **regress-599412.js (chromium issue)**  
    
-**[Issue 599412:
- RUNTIME_ASSERT in RepresentationChangerError: node #195:HeapConstant of kRepTagged (Constant(ADDRE](https://crbug.com/599412)**  
+**[RUNTIME_ASSERT in RepresentationChangerError: node #195:HeapConstant of kRepTagged (Constant(ADDRE](https://crbug.com/599412)**  
 **[Commit: [turbofan] Restrict types in load elimination.](https://chromium.googlesource.com/v8/v8/+/4142bc6)**  
   
 Date(Commit): Tue Apr 05 12:30:14 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1857133003](https://codereview.chromium.org/1857133003)  
 Regress: [mjsunit/regress/regress-599412.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-599412.js)  
@@ -17561,12 +17191,12 @@ f();
 
 ## **regress-crbug-537444.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/537444)**  
+**[Permission denied](https://crbug.com/537444)**  
 **[Commit: [crankshaft] Fix environment handling after leaving inlined tail call.](https://chromium.googlesource.com/v8/v8/+/792bf2a)**  
   
 Date(Commit): Tue Apr 05 09:43:56 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/1859763005](https://codereview.chromium.org/1859763005)  
 Regress: [mjsunit/regress/regress-crbug-537444.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-537444.js)  
 ```javascript
@@ -17604,12 +17234,10 @@ h("a");
 
 ## **regress-4759.js (v8 issue)**  
    
-**[Issue 4759:
- Rest element does not accept valid user-defined iterables](https://crbug.com/v8/4759)**  
+**[Rest element does not accept valid user-defined iterables](https://crbug.com/v8/4759)**  
 **[Commit: Fix treatment of rest pattern in array destructuring.](https://chromium.googlesource.com/v8/v8/+/4edf16d)**  
   
 Date(Commit): Tue Apr 05 08:56:51 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1852703002](https://codereview.chromium.org/1852703002)  
 Regress: [mjsunit/es6/regress/regress-4759.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-4759.js)  
 ```javascript
@@ -17646,12 +17274,11 @@ assertEquals([42], result);
 
 ## **regress-crbug-599714.js (chromium issue)**  
    
-**[Issue 599714:
- code->kind() == Code::OPTIMIZED_FUNCTION in src/frames.cc](https://crbug.com/599714)**  
+**[code->kind() == Code::OPTIMIZED_FUNCTION in src/frames.cc](https://crbug.com/599714)**  
 **[Commit: [frames] Also properly deal with TF builtins in OptimizedFrame::GetFunctions().](https://chromium.googlesource.com/v8/v8/+/e5724d9)**  
   
 Date(Commit): Tue Apr 05 06:41:20 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Te-Logged", "Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1861583002](https://codereview.chromium.org/1861583002)  
 Regress: [mjsunit/regress/regress-crbug-599714.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-599714.js)  
@@ -17676,12 +17303,11 @@ try { Object.hasOwnProperty(object); } catch (e) {}
 
 ## **regress-crbug-513471.js (chromium issue)**  
    
-**[Issue 513471:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsOddball()) in src/objects-](https://crbug.com/513471)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsOddball()) in src/objects-](https://crbug.com/513471)**  
 **[Commit: Fix resuming generator marked for optimization.](https://chromium.googlesource.com/v8/v8/+/6ab9c18)**  
   
 Date(Commit): Mon Apr 04 11:52:09 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Recharge", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1856683002](https://codereview.chromium.org/1856683002)  
 Regress: [mjsunit/regress/regress-crbug-513471.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-513471.js)  
@@ -17703,12 +17329,11 @@ f.next();
 
 ## **regress-crbug-599003.js (chromium issue)**  
    
-**[Issue 599003:
- RUNTIME_ASSERT in map->IsMap() in src/heap/spaces.cc](https://crbug.com/599003)**  
+**[RUNTIME_ASSERT in map->IsMap() in src/heap/spaces.cc](https://crbug.com/599003)**  
 **[Commit: Properly complete in-object slack tracking.](https://chromium.googlesource.com/v8/v8/+/4598356)**  
   
 Date(Commit): Mon Apr 04 10:00:44 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Hotlist-Merge-Review", "M-50", "Reproducible", "Security_Impact-Stable", "Security_Severity-High", "allpublic", "Clusterfuzz", "Release-0-M50", "merge-merged-5.0"]  
 Code Review: [https://codereview.chromium.org/1856653002](https://codereview.chromium.org/1856653002)  
 Regress: [mjsunit/regress/regress-crbug-599003.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-599003.js)  
@@ -17757,12 +17382,11 @@ gc();  // Boom!
 
 ## **regress-crbug-599067.js (chromium issue)**  
    
-**[Issue 599067:
- RUNTIME_ASSERT in args[0]->IsJSObject() in src/runtime/runtime-internal.cc](https://crbug.com/599067)**  
+**[RUNTIME_ASSERT in args[0]->IsJSObject() in src/runtime/runtime-internal.cc](https://crbug.com/599067)**  
 **[Commit: Display a meaningfull error message when trying to capture a stack trace to a proxy.](https://chromium.googlesource.com/v8/v8/+/c7ff576)**  
   
 Date(Commit): Mon Apr 04 08:37:30 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Reproducible", "Security_Impact-Stable", "Security_Severity-High", "M-49", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1844223004](https://codereview.chromium.org/1844223004)  
 Regress: [mjsunit/regress/regress-crbug-599067.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-599067.js)  
@@ -17787,12 +17411,11 @@ try {
 
 ## **regress-599001-verifyheap.js (chromium issue)**  
    
-**[Issue 599001:
- object->IsCode() || object->IsSeqString() || object->IsExternalString() || objec](https://crbug.com/599001)**  
+**[object->IsCode() || object->IsSeqString() || object->IsExternalString() || objec](https://crbug.com/599001)**  
 **[Commit: [Interpreter] Handles BytecodeArrays when scanning objects in heap.](https://chromium.googlesource.com/v8/v8/+/8a9ada4)**  
   
 Date(Commit): Fri Apr 01 13:14:33 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1850443006](https://codereview.chromium.org/1850443006)  
 Regress: [mjsunit/ignition/regress-599001-verifyheap.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-599001-verifyheap.js)  
@@ -17815,12 +17438,11 @@ gc();
 
 ## **regress-crbug-598998.js (chromium issue)**  
    
-**[Issue 598998:
- output_count_ - 1 != frame_index in src/deoptimizer.cc](https://crbug.com/598998)**  
+**[output_count_ - 1 != frame_index in src/deoptimizer.cc](https://crbug.com/598998)**  
 **[Commit: [crankshaft] [turbofan] Fix environment handling when generating a tail call from inlined function.](https://chromium.googlesource.com/v8/v8/+/ecb8fcf)**  
   
 Date(Commit): Fri Apr 01 07:22:47 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1849503002](https://codereview.chromium.org/1849503002)  
 Regress: [mjsunit/regress/regress-crbug-598998.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-598998.js)  
@@ -17864,12 +17486,11 @@ h(1);
 
 ## **regress-crbug-599073-1.js (chromium issue)**  
    
-**[Issue 599073:
- args.receiver()->IsJSReceiver() in src/builtins.cc](https://crbug.com/599073)**  
+**[args.receiver()->IsJSReceiver() in src/builtins.cc](https://crbug.com/599073)**  
 **[Commit: [ic] Use the CallFunction builtin to invoke accessors.](https://chromium.googlesource.com/v8/v8/+/6df9a22)**  
   
 Date(Commit): Fri Apr 01 06:37:57 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug  
+Components: Blink>JavaScript>Runtime  
 Labels: ["Stability-Crash", "Reproducible", "Arch-All", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1845243005](https://codereview.chromium.org/1845243005)  
 Regress: [mjsunit/regress/regress-crbug-599073-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-599073-1.js), [mjsunit/regress/regress-crbug-599073-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-599073-2.js), [mjsunit/regress/regress-crbug-599073-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-599073-3.js), [mjsunit/regress/regress-crbug-599073-4.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-599073-4.js)  
@@ -17896,12 +17517,11 @@ foo(true);
 
 ## **regress-597565-double-to-object-transition.js (chromium issue)**  
    
-**[Issue 597565:
- ASAN failure on ignition.](https://crbug.com/597565)**  
+**[ASAN failure on ignition.](https://crbug.com/597565)**  
 **[Commit: [Interpreter] Changes GenerateDoubleToObject to push and pop rsi value.](https://chromium.googlesource.com/v8/v8/+/e6b6e55)**  
   
 Date(Commit): Thu Mar 31 13:45:48 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: []  
 Code Review: [https://codereview.chromium.org/1848473002](https://codereview.chromium.org/1848473002)  
 Regress: [mjsunit/ignition/regress-597565-double-to-object-transition.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/ignition/regress-597565-double-to-object-transition.js)  
@@ -17930,12 +17550,11 @@ __f_9();
 
 ## **regress-crbug-476477-1.js (chromium issue)**  
    
-**[Issue 476477:
- Renderer crashed in V8 generated code, arm64 only, 100% reproducible](https://crbug.com/476477)**  
+**[Renderer crashed in V8 generated code, arm64 only, 100% reproducible](https://crbug.com/476477)**  
 **[Commit: [crankshaft] Address the deoptimization loops of Math.floor, Math.round and Math.ceil.](https://chromium.googlesource.com/v8/v8/+/978ad03)**  
   
 Date(Commit): Tue Mar 29 10:24:54 2016  
-Components/Type: Blink>JavaScript>API/Bug  
+Components: Blink>JavaScript>API  
 Labels: ["Stability-Crash", "M-43", "Via-Wizard", "Merge-Merged-4.3"]  
 Code Review: [https://codereview.chromium.org/1841513003](https://codereview.chromium.org/1841513003)  
 Regress: [mjsunit/regress/regress-crbug-476477-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-476477-1.js), [mjsunit/regress/regress-crbug-476477-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-476477-2.js)  
@@ -17972,12 +17591,11 @@ for (var i = 0; i < 1000; i++) {
 
 ## **regress-596718.js (chromium issue)**  
    
-**[Issue 596718:
- call_site.IsValid() in src/runtime/runtime-internal.cc](https://crbug.com/596718)**  
+**[call_site.IsValid() in src/runtime/runtime-internal.cc](https://crbug.com/596718)**  
 **[Commit: Check for proper types from error handling code](https://chromium.googlesource.com/v8/v8/+/97fce62)**  
   
 Date(Commit): Fri Mar 25 02:10:02 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Te-Logged", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1831053003](https://codereview.chromium.org/1831053003)  
 Regress: [mjsunit/regress/regress-596718.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-596718.js)  
@@ -18003,12 +17621,11 @@ assertEquals(null, new Error().stack[0].getMethodName());
 
 ## **regress-crbug-595615.js (chromium issue)**  
    
-**[Issue 595615:
- *deopt_index != Safepoint::kNoDeoptimizationIndex in src/frames.cc](https://crbug.com/595615)**  
+**[*deopt_index != Safepoint::kNoDeoptimizationIndex in src/frames.cc](https://crbug.com/595615)**  
 **[Commit: [crankshaft] Check if the function is callable before generating a tail call via Call builtin.](https://chromium.googlesource.com/v8/v8/+/e6dca37)**  
   
 Date(Commit): Mon Mar 21 19:24:28 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1818003002](https://codereview.chromium.org/1818003002)  
 Regress: [mjsunit/regress/regress-crbug-595615.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-595615.js)  
@@ -18044,12 +17661,11 @@ try {
 
 ## **regress-crbug-595738.js (chromium issue)**  
    
-**[Issue 595738:
- JSON.stringify() throws error about circular structures in a Backbone Model](https://crbug.com/595738)**  
+**[JSON.stringify() throws error about circular structures in a Backbone Model](https://crbug.com/595738)**  
 **[Commit: [json] Allow any callable object for toJSON.](https://chromium.googlesource.com/v8/v8/+/cc04776)**  
   
 Date(Commit): Sun Mar 20 19:35:28 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript  
 Labels: ["M-50", "has-Bisect", "Via-Wizard", "Arch-All", "M-49", "M-51"]  
 Code Review: [https://codereview.chromium.org/1824533002](https://codereview.chromium.org/1824533002)  
 Regress: [mjsunit/regress/regress-crbug-595738.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-595738.js)  
@@ -18068,12 +17684,11 @@ assertEquals("1", JSON.stringify(x));
 
 ## **regress-crbug-595657.js (chromium issue)**  
    
-**[Issue 595657:
- index <= know_captures in src/regexp/regexp-parser.cc](https://crbug.com/595657)**  
+**[index <= know_captures in src/regexp/regexp-parser.cc](https://crbug.com/595657)**  
 **[Commit: [regexp] catch stack overflow when parsing back references.](https://chromium.googlesource.com/v8/v8/+/1e2d0e1)**  
   
 Date(Commit): Fri Mar 18 14:52:41 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.0"]  
 Code Review: [https://codereview.chromium.org/1811913006](https://codereview.chromium.org/1811913006)  
 Regress: [mjsunit/regress/regress-crbug-595657.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-595657.js)  
@@ -18098,12 +17713,11 @@ test();
 
 ## **regress-595319.js (chromium issue)**  
    
-**[Issue 595319:
- !isolate->has_pending_exception() in src/compiler.cc](https://crbug.com/595319)**  
+**[!isolate->has_pending_exception() in src/compiler.cc](https://crbug.com/595319)**  
 **[Commit: Throw the right exceptions from setting elements in Array.prototype.concat](https://chromium.googlesource.com/v8/v8/+/7acee1e)**  
   
 Date(Commit): Thu Mar 17 22:42:00 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1814933002](https://codereview.chromium.org/1814933002)  
 Regress: [mjsunit/regress/regress-595319.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-595319.js)  
@@ -18146,12 +17760,10 @@ assertThrows(() => new ZeroFrozenArray().concat([1]), TypeError);
 
 ## **regress-v8-4839.js (v8 issue)**  
    
-**[Issue 4839:
- Ember.js 2.4.x (only on v8) crash: May be inlining related](https://crbug.com/v8/4839)**  
+**[Ember.js 2.4.x (only on v8) crash: May be inlining related](https://crbug.com/v8/4839)**  
 **[Commit: [crankshaft] Fix inlining to always connect both branches of test context.](https://chromium.googlesource.com/v8/v8/+/c2e82d6)**  
   
 Date(Commit): Thu Mar 17 10:00:21 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1811693002](https://codereview.chromium.org/1811693002)  
 Regress: [mjsunit/regress/regress-v8-4839.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-4839.js)  
 ```javascript
@@ -18234,12 +17846,11 @@ function dummy() {}
 
 ## **regress-crbug-594955.js (chromium issue)**  
    
-**[Issue 594955:
- elements_kind == DICTIONARY_ELEMENTS in src/ic/handler-compiler.cc](https://crbug.com/594955)**  
+**[elements_kind == DICTIONARY_ELEMENTS in src/ic/handler-compiler.cc](https://crbug.com/594955)**  
 **[Commit: Fix polymorphic keyed load handler selection for string elements](https://chromium.googlesource.com/v8/v8/+/84dd29b)**  
   
 Date(Commit): Wed Mar 16 10:56:16 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1806543002](https://codereview.chromium.org/1806543002)  
 Regress: [mjsunit/regress/regress-crbug-594955.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-594955.js)  
@@ -18262,12 +17873,11 @@ assertEquals(g(new String("a"), "length"), 1);
 
 ## **regress-592353.js (chromium issue)**  
    
-**[Issue 592353:
- scope_contains_with_ bit not set consistently for arrow functions](https://crbug.com/592353)**  
+**[scope_contains_with_ bit not set consistently for arrow functions](https://crbug.com/592353)**  
 **[Commit: Remove Scope::scope_contains_with_ bit](https://chromium.googlesource.com/v8/v8/+/108efd7)**  
   
 Date(Commit): Tue Mar 15 22:41:59 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Cr-Blink-JavaScript"]  
 Code Review: [https://codereview.chromium.org/1804783002](https://codereview.chromium.org/1804783002)  
 Regress: [mjsunit/regress/regress-592353.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-592353.js)  
@@ -18292,12 +17902,11 @@ f({});
 
 ## **regress-crbug-594574-concat-leak-1.js (chromium issue)**  
    
-**[Issue 594574:
- Security: v8 Array.concat OOB access writeup](https://crbug.com/594574)**  
+**[Security: v8 Array.concat OOB access writeup ](https://crbug.com/594574)**  
 **[Commit: [builtins] Fix Array.prototype.concat bug](https://chromium.googlesource.com/v8/v8/+/96a2bd8)**  
   
 Date(Commit): Tue Mar 15 20:29:28 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["Security_Impact-Stable", "merge-merged-4.9", "Hotlist-Merge-Approved", "Security_Severity-High", "M-49", "reward-7500", "allpublic", "reward-inprocess", "merge-merged-50", "merge-merged-5.0", "Release-2-M49", "CVE-2016-1646", "CVE_description-submitted", "Hotlist-Torque"]  
 Code Review: [https://codereview.chromium.org/1804963002](https://codereview.chromium.org/1804963002)  
 Regress: [mjsunit/regress/regress-crbug-594574-concat-leak-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-594574-concat-leak-1.js), [mjsunit/regress/regress-crbug-594574-concat-leak-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-594574-concat-leak-2.js)  
@@ -18344,12 +17953,10 @@ assertEquals(concatted_array[3], undefined);
 
 ## **regress-4825.js (v8 issue)**  
    
-**[Issue 4825:
- ElementsAccessor::CollectElementIndices() gets wrong results for SLOW_SLOPPY_ARGUMENTS_ELEMENTS](https://crbug.com/v8/4825)**  
+**[ElementsAccessor::CollectElementIndices() gets wrong results for SLOW_SLOPPY_ARGUMENTS_ELEMENTS](https://crbug.com/v8/4825)**  
 **[Commit: [runtime] fix getting element keys from SLOW_SLOPPY_ARGUMENTS_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/3088979)**  
   
 Date(Commit): Mon Mar 14 17:10:50 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1778023004](https://codereview.chromium.org/1778023004)  
 Regress: [mjsunit/regress/regress-4825.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4825.js)  
 ```javascript
@@ -18469,12 +18076,11 @@ function enumerate(o) {
 
 ## **regress-593299.js (chromium issue)**  
    
-**[Issue 593299:
- Crash in v8::internal::Isolate::native_context](https://crbug.com/593299)**  
+**[Crash in v8::internal::Isolate::native_context](https://crbug.com/593299)**  
 **[Commit: [turbofan] Fix operand calculation for constant materialization from frame.](https://chromium.googlesource.com/v8/v8/+/4d4bd54)**  
   
 Date(Commit): Sun Mar 13 20:21:41 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "Cr-Blink-JavaScript"]  
 Code Review: [https://codereview.chromium.org/1781393002](https://codereview.chromium.org/1781393002)  
 Regress: [mjsunit/regress/regress-593299.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-593299.js)  
@@ -18505,12 +18111,11 @@ assertThrows(f);
 
 ## **regress-crbug-593697-2.js (chromium issue)**  
    
-**[Issue 593697:
- !is_bottommost || stack_fp_ == fp_value in src/deoptimizer.cc](https://crbug.com/593697)**  
+**[!is_bottommost || stack_fp_ == fp_value in src/deoptimizer.cc](https://crbug.com/593697)**  
 **[Commit: [turbofan] Avoid dereferencing empty handle when inlining a tail call.](https://chromium.googlesource.com/v8/v8/+/690c7a8)**  
   
 Date(Commit): Fri Mar 11 11:41:29 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1781303002](https://codereview.chromium.org/1781303002)  
 Regress: [mjsunit/regress/regress-crbug-593697-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-593697-2.js)  
@@ -18536,12 +18141,11 @@ var f5 = (function f6(stdlib) {
 
 ## **regress-crbug-592340.js (chromium issue)**  
    
-**[Issue 592340:
- Crash in v8::internal::LookupIterator::UpdateProtector](https://crbug.com/592340)**  
+**[Crash in v8::internal::LookupIterator::UpdateProtector](https://crbug.com/592340)**  
 **[Commit: Ensure appropriate bounds checking for Array subclass concat](https://chromium.googlesource.com/v8/v8/+/ca5deb1)**  
   
 Date(Commit): Wed Mar 09 18:54:44 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "Unreproducible", "Cr-Blink-JavaScript"]  
 Code Review: [https://codereview.chromium.org/1782443002](https://codereview.chromium.org/1782443002)  
 Regress: [mjsunit/regress/regress-crbug-592340.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-592340.js)  
@@ -18566,12 +18170,10 @@ assertThrows(() => __v_2.concat(__v_4), RangeError);
 
 ## **regress-4800.js (v8 issue)**  
    
-**[Issue 4800:
- ARM/ARM64: some double registers are corrupted after deopt or stub failure](https://crbug.com/v8/4800)**  
+**[ARM/ARM64: some double registers are corrupted after deopt or stub failure](https://crbug.com/v8/4800)**  
 **[Commit: [arm/arm64][stubs] Fix d16-d31 preservation on stub failure](https://chromium.googlesource.com/v8/v8/+/32b3d3e)**  
   
 Date(Commit): Wed Mar 09 17:36:07 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1769833006](https://codereview.chromium.org/1769833006)  
 Regress: [mjsunit/regress/regress-4800.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4800.js)  
 ```javascript
@@ -18658,12 +18260,11 @@ f(0, 80000);
 
 ## **regress-crbug-593282.js (chromium issue)**  
    
-**[Issue 593282:
- 0 <= from && to <= String::kMaxCodePoint in src/regexp/regexp-ast.h](https://crbug.com/593282)**  
+**[0 <= from && to <= String::kMaxCodePoint in src/regexp/regexp-ast.h](https://crbug.com/593282)**  
 **[Commit: [regexp] fix bogus assertion in CharacterRange constructor.](https://chromium.googlesource.com/v8/v8/+/d1f68f7)**  
   
 Date(Commit): Wed Mar 09 15:55:38 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Cr-Blink-JavaScript", "merge-merged-5.0"]  
 Code Review: [https://codereview.chromium.org/1776013003](https://codereview.chromium.org/1776013003)  
 Regress: [mjsunit/regress/regress-crbug-593282.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-593282.js)  
@@ -18713,12 +18314,11 @@ __f_4();
 
 ## **regress-592341.js (chromium issue)**  
    
-**[Issue 592341:
- result == fixed_size + (stack_slots * kPointerSize) - StandardFrameConstants::kF](https://crbug.com/592341)**  
+**[result == fixed_size + (stack_slots * kPointerSize) - StandardFrameConstants::kF](https://crbug.com/592341)**  
 **[Commit: [turbofan] Fix deoptimization stack layout for fast literal comparisons.](https://chromium.googlesource.com/v8/v8/+/69c84fe)**  
   
 Date(Commit): Wed Mar 09 12:36:09 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1776013002](https://codereview.chromium.org/1776013002)  
 Regress: [mjsunit/regress/regress-592341.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-592341.js)  
@@ -18765,12 +18365,11 @@ function id(a) {
 
 ## **regress-590074.js (chromium issue)**  
    
-**[Issue 590074:
- Crash in v8::internal::Simulator::DecodeType2](https://crbug.com/590074)**  
+**[Crash in v8::internal::Simulator::DecodeType2](https://crbug.com/590074)**  
 **[Commit: [turbofan] Fix register constraint for memory barrier.](https://chromium.googlesource.com/v8/v8/+/9867a8a)**  
   
 Date(Commit): Wed Mar 09 09:39:51 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Stability-Memory-AddressSanitizer", "Clusterfuzz", "Cr-Blink-JavaScript"]  
 Code Review: [https://codereview.chromium.org/1775083002](https://codereview.chromium.org/1775083002)  
 Regress: [mjsunit/regress/regress-590074.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-590074.js)  
@@ -18814,12 +18413,11 @@ __f_9();
 
 ## **regress-crbug-592343.js (chromium issue)**  
    
-**[Issue 592343:
- entry->to() + 1 > current.from() in src/regexp/jsregexp.cc](https://crbug.com/592343)**  
+**[entry->to() + 1 > current.from() in src/regexp/jsregexp.cc](https://crbug.com/592343)**  
 **[Commit: [regexp] Fix off-by-one in CharacterRange::Negate.](https://chromium.googlesource.com/v8/v8/+/f9d7c71)**  
   
 Date(Commit): Mon Mar 07 11:00:01 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "merge-merged-5.0"]  
 Code Review: [https://codereview.chromium.org/1768093002](https://codereview.chromium.org/1768093002)  
 Regress: [mjsunit/regress/regress-crbug-592343.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-592343.js)  
@@ -18845,12 +18443,11 @@ assertTrue(r.test("\u{2001}"));
 
 ## **regress-crbug-590989-1.js (chromium issue)**  
    
-**[Issue 590989:
- callback function not called any more after called lots of times and in different place.](https://crbug.com/590989)**  
+**[callback function not called any more after called lots of times and in different place.](https://crbug.com/590989)**  
 **[Commit: [crankshaft] Fix invalid ToNumber optimization.](https://chromium.googlesource.com/v8/v8/+/0c35579)**  
   
 Date(Commit): Wed Mar 02 19:28:04 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug  
+Components: Blink>JavaScript>Runtime  
 Labels: ["ReleaseBlock-Beta", "M-50", "Via-Wizard", "Arch-All", "merge-merged-5.0"]  
 Code Review: [https://codereview.chromium.org/1757013002](https://codereview.chromium.org/1757013002)  
 Regress: [mjsunit/regress/regress-crbug-590989-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-590989-1.js), [mjsunit/regress/regress-crbug-590989-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-590989-2.js)  
@@ -18882,12 +18479,10 @@ assertEquals(false, g(o));  // Confused by type feedback.
 
 ## **regress-4769.js (v8 issue)**  
    
-**[Issue 4769:
- Builtins that should not rely on iteration do.](https://crbug.com/v8/4769)**  
+**[Builtins that should not rely on iteration do.](https://crbug.com/v8/4769)**  
 **[Commit: [json] Fix iteration over object keys in InternalizeJSONProperty.](https://chromium.googlesource.com/v8/v8/+/0ad4459)**  
   
 Date(Commit): Tue Mar 01 11:53:28 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1748633002](https://codereview.chromium.org/1748633002)  
 Regress: [mjsunit/regress/regress-4769.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4769.js)  
 ```javascript
@@ -18908,11 +18503,10 @@ JSON.stringify({foo: [42]}, [], ' ');
 
 ## **regress-4788-1.js (v8 issue)**  
    
-**[No Permission](https://crbug.com/v8/4788)**  
+**[Permission denied](https://crbug.com/v8/4788)**  
 **[Commit: [turbofan] Don't use the CompareIC in JSGenericLowering.](https://chromium.googlesource.com/v8/v8/+/d00da47)**  
   
 Date(Commit): Fri Feb 26 18:41:35 2016  
-Type: None  
 Code Review: [https://codereview.chromium.org/1738153002](https://codereview.chromium.org/1738153002)  
 Regress: [mjsunit/regress/regress-4788-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4788-1.js), [mjsunit/regress/regress-4788-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4788-2.js)  
 ```javascript
@@ -18952,12 +18546,11 @@ assertFalse(f(deopt(f)));
 
 ## **regress-crbug-589792.js (chromium issue)**  
    
-**[Issue 589792:
- Security: [v8] Out of bound(??) memory write with asm.js](https://crbug.com/589792)**  
+**[Security: [v8] Out of bound(??) memory write with asm.js](https://crbug.com/589792)**  
 **[Commit: [turbofan] Bailout if LoadBuffer typing assumption doesn't hold.](https://chromium.googlesource.com/v8/v8/+/58ab990)**  
   
 Date(Commit): Fri Feb 26 11:06:30 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["M-50", "reward-5000", "Nag", "Security_Impact-Stable", "merge-merged-4.9", "Security_Severity-High", "M-49", "allpublic", "Release-0-M50", "merge-merged-5.0", "CVE-2016-1653", "CVE_description-submitted"]  
 Code Review: [https://codereview.chromium.org/1740123002](https://codereview.chromium.org/1740123002)  
 Regress: [mjsunit/regress/regress-crbug-589792.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-589792.js)  
@@ -18992,12 +18585,11 @@ boom(0, 0x1000);
 
 ## **regress-crbug-589472.js (chromium issue)**  
    
-**[Issue 589472:
- operand_stack_depth_ >= count in src/full-codegen/full-codegen.cc](https://crbug.com/589472)**  
+**[operand_stack_depth_ >= count in src/full-codegen/full-codegen.cc](https://crbug.com/589472)**  
 **[Commit: [fullcodegen] Fix assert for operand stack depth tracking.](https://chromium.googlesource.com/v8/v8/+/3baa290)**  
   
 Date(Commit): Wed Feb 24 16:29:47 2016  
-Components/Type: None/Bug  
+Components: None  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz", "Cr-Blink-JavaScript"]  
 Code Review: [https://codereview.chromium.org/1732903002](https://codereview.chromium.org/1732903002)  
 Regress: [mjsunit/regress/regress-crbug-589472.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-589472.js)  
@@ -19100,12 +18692,11 @@ function f() {
 
 ## **regress-crbug-587068.js (chromium issue)**  
    
-**[Issue 587068:
- 10.6%-15.6% regression in webrtc.datachannel at 375196:375247](https://crbug.com/587068)**  
+**[10.6%-15.6% regression in webrtc.datachannel at 375196:375247](https://crbug.com/587068)**  
 **[Commit: [crankshaft] Fix deopt loop in String.fromCharCode on non-int32 inputs.](https://chromium.googlesource.com/v8/v8/+/6cc5c60)**  
   
 Date(Commit): Wed Feb 24 10:59:55 2016  
-Components/Type: Blink>JavaScript/Bug-Regression  
+Components: Blink>JavaScript>RuntimeBlink>JavaScript  
 Labels: ["M-50", "TE-Triaged", "Arch-All", "Performance-Sheriff"]  
 Code Review: [https://codereview.chromium.org/1727873003](https://codereview.chromium.org/1727873003)  
 Regress: [mjsunit/regress/regress-crbug-587068.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-587068.js)  
@@ -19128,12 +18719,11 @@ assertOptimized(foo);
 
 ## **regress-crbug-581577.js (chromium issue)**  
    
-**[Issue 581577:
- RegExp flag/source getters cause app.jiff.com to fail](https://crbug.com/581577)**  
+**[RegExp flag/source getters cause app.jiff.com to fail](https://crbug.com/581577)**  
 **[Commit: ES2015 web compat workaround: RegExp.prototype.flags => ""](https://chromium.googlesource.com/v8/v8/+/b22b258)**  
   
 Date(Commit): Tue Feb 23 01:49:03 2016  
-Components/Type: Blink>JavaScript>Language/Bug  
+Components: Blink>JavaScript>Language  
 Labels: ["M-48", "hasbisect", "Via-Wizard", "merge-merged-4.9"]  
 Code Review: [https://codereview.chromium.org/1640803003](https://codereview.chromium.org/1640803003)  
 Regress: [mjsunit/regress/regress-crbug-581577.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-581577.js)  
@@ -19154,12 +18744,11 @@ assertEquals("", RegExp.prototype.flags);
 
 ## **regress-585775.js (chromium issue)**  
    
-**[Issue 585775:
- [Regression]: Snapdeal page doesn't render its content fully](https://crbug.com/585775)**  
+**[[Regression]: Snapdeal page doesn't render its content fully](https://crbug.com/585775)**  
 **[Commit: Return undefined from RegExp.prototype.compile](https://chromium.googlesource.com/v8/v8/+/cdec6d2)**  
   
 Date(Commit): Sat Feb 20 00:35:57 2016  
-Components/Type: Blink>JavaScript>Language/Bug-Regression  
+Components: Blink>JavaScript>Language  
 Labels: ["hasbisect", "TE-Verified-M50", "merge-merged-4.9", "M-49", "ReleaseBlock-Stable", "TE-Verified-50.0.2656.0"]  
 Code Review: [https://codereview.chromium.org/1714903004](https://codereview.chromium.org/1714903004)  
 Regress: [mjsunit/regress/regress-585775.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-585775.js)  
@@ -19177,12 +18766,12 @@ assertEquals(pattern, pattern.compile(pattern));
 
 ## **regress-587004.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/587004)**  
+**[Permission denied](https://crbug.com/587004)**  
 **[Commit: [turbofan] Fix write barrier handling of map values.](https://chromium.googlesource.com/v8/v8/+/5d06548)**  
   
 Date(Commit): Fri Feb 19 18:46:22 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/1714513003](https://codereview.chromium.org/1714513003)  
 Regress: [mjsunit/regress/regress-587004.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-587004.js)  
 ```javascript
@@ -19223,12 +18812,10 @@ step();
 
 ## **regress-4659.js (v8 issue)**  
    
-**[Issue 4659:
- AstValueFactory::GetString() should handle String::FlatContent::NON_FLAT](https://crbug.com/v8/4659)**  
+**[AstValueFactory::GetString() should handle String::FlatContent::NON_FLAT](https://crbug.com/v8/4659)**  
 **[Commit: Force SharedFunctionInfo::name() to be a flat string](https://chromium.googlesource.com/v8/v8/+/58a9bc5)**  
   
 Date(Commit): Thu Feb 11 18:53:02 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1686193003](https://codereview.chromium.org/1686193003)  
 Regress: [mjsunit/regress/regress-4659.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4659.js)  
 ```javascript
@@ -19249,12 +18836,11 @@ assertEquals(42, obj.longerName);
 
 ## **regress-crbug-584188.js (chromium issue)**  
    
-**[Issue 584188:
- object->HasFastSmiOrObjectElements() || object->HasFastDoubleElements() in src/o](https://crbug.com/584188)**  
+**[object->HasFastSmiOrObjectElements() || object->HasFastDoubleElements() in src/o](https://crbug.com/584188)**  
 **[Commit: Fix Array.prototype.sort for *_STRING_WRAPPER_ELEMENTS](https://chromium.googlesource.com/v8/v8/+/5d2c09a)**  
   
 Date(Commit): Fri Feb 05 13:36:51 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1670153002](https://codereview.chromium.org/1670153002)  
 Regress: [mjsunit/regress/regress-crbug-584188.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-584188.js)  
@@ -19306,12 +18892,11 @@ f();
 
 ## **regress-583260.js (chromium issue)**  
    
-**[Issue 583260:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/583260)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/583260)**  
 **[Commit: Expect JSReceiver in Runtime_DeleteLookupSlot, not just JSObject.](https://chromium.googlesource.com/v8/v8/+/a973f73)**  
   
 Date(Commit): Wed Feb 03 09:49:22 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "merge-merged-4.9", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1664683002](https://codereview.chromium.org/1664683002)  
 Regress: [mjsunit/regress/regress-583260.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-583260.js)  
@@ -19365,12 +18950,11 @@ assertEquals(undefined, Reflect.get(o, 1.3, o2));
 
 ## **regress-crbug-583257.js (chromium issue)**  
    
-**[Issue 583257:
- transition_map->has_dictionary_elements() || transition_map->has_fixed_typed_arr](https://crbug.com/583257)**  
+**[transition_map->has_dictionary_elements() || transition_map->has_fixed_typed_arr](https://crbug.com/583257)**  
 **[Commit: More *_STRING_WRAPPER_ELEMENTS fixes](https://chromium.googlesource.com/v8/v8/+/d582d2b)**  
   
 Date(Commit): Tue Feb 02 13:51:00 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1651253003](https://codereview.chromium.org/1651253003)  
 Regress: [mjsunit/regress/regress-crbug-583257.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-583257.js)  
@@ -19410,12 +18994,10 @@ __f_11();
 
 ## **regress-4654.js (v8 issue)**  
    
-**[Issue 4654:
- Unicode normalization omits NUL characters and anything after them in the string](https://crbug.com/v8/4654)**  
+**[Unicode normalization omits NUL characters and anything after them in the string](https://crbug.com/v8/4654)**  
 **[Commit: Fix Unicode string normalization with null bytes](https://chromium.googlesource.com/v8/v8/+/f3e41d9)**  
   
 Date(Commit): Fri Jan 29 17:00:46 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1645223003](https://codereview.chromium.org/1645223003)  
 Regress: [mjsunit/regress/regress-4654.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4654.js)  
 ```javascript
@@ -19431,12 +19013,10 @@ assertEquals('hello\u0000foobar', 'hello\u0000foobar'.normalize('NFC'));
 
 ## **regress-4715.js (v8 issue)**  
    
-**[Issue 4715:
- For-In is broken in Crankshaft](https://crbug.com/v8/4715)**  
+**[For-In is broken in Crankshaft](https://crbug.com/v8/4715)**  
 **[Commit: [crankshaft] Make the for-in slow path compatible with the other compilers.](https://chromium.googlesource.com/v8/v8/+/3251a03)**  
   
 Date(Commit): Fri Jan 29 07:50:51 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1650493002](https://codereview.chromium.org/1650493002)  
 Regress: [mjsunit/regress/regress-4715.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4715.js)  
 ```javascript
@@ -19491,12 +19071,11 @@ assertEquals("e", foo(GetReal()));
 
 ## **regress-crbug-580584.js (chromium issue)**  
    
-**[Issue 580584:
- Chr-48 regression, w bisect: Object.defineProperty broken for window.localStorage, sessionStorage, etc](https://crbug.com/580584)**  
+**[Chr-48 regression, w bisect: Object.defineProperty broken for window.localStorage, sessionStorage, etc](https://crbug.com/580584)**  
 **[Commit: [api] Default native data property setter to replace the setter if the property is writable.](https://chromium.googlesource.com/v8/v8/+/997cd3d)**  
   
 Date(Commit): Wed Jan 27 13:22:18 2016  
-Components/Type: Blink>JavaScript>Runtime/Bug  
+Components: Blink>StorageBlink>JavaScript>Runtime  
 Labels: ["Via-Wizard"]  
 Code Review: [https://codereview.chromium.org/1632603002](https://codereview.chromium.org/1632603002)  
 Regress: [mjsunit/regress/regress-crbug-580584.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-580584.js)  
@@ -19528,12 +19107,11 @@ assertEquals({value: 10, writable: true, configurable: true, enumerable: false},
 
 ## **regress-crbug-580934.js (chromium issue)**  
    
-**[Issue 580934:
- Block-scope (let) sibling functions becoming undefined / garbage-collected](https://crbug.com/580934)**  
+**[Block-scope (let) sibling functions becoming undefined / garbage-collected](https://crbug.com/580934)**  
 **[Commit: Ensure arrow functions can close over lexically-scoped variables](https://chromium.googlesource.com/v8/v8/+/953bb41)**  
   
 Date(Commit): Tue Jan 26 23:11:10 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Merge-Merged-49", "M-48", "Via-Wizard", "merge-merged-4.8", "merge-merged-4.9", "M-49", "merge-merged-48"]  
 Code Review: [https://codereview.chromium.org/1630823006](https://codereview.chromium.org/1630823006)  
 Regress: [mjsunit/regress/regress-crbug-580934.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-580934.js)  
@@ -19561,12 +19139,11 @@ Regress: [mjsunit/regress/regress-crbug-580934.js](https://chromium.googlesource
 
 ## **regress-crbug-580506.js (chromium issue)**  
    
-**[Issue 580506:
- memcmp(fresh->address(), new_map->address(), Map::kCodeCacheOffset) == 0 in src/](https://crbug.com/580506)**  
+**[memcmp(fresh->address(), new_map->address(), Map::kCodeCacheOffset) == 0 in src/](https://crbug.com/580506)**  
 **[Commit: Also check new_target_is_base() bit when comparing two maps for equivalence.](https://chromium.googlesource.com/v8/v8/+/ac03ef0)**  
   
 Date(Commit): Mon Jan 25 16:44:01 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1631673002](https://codereview.chromium.org/1631673002)  
 Regress: [mjsunit/regress/regress-crbug-580506.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-580506.js)  
@@ -19599,12 +19176,10 @@ Regress: [mjsunit/regress/regress-crbug-580506.js](https://chromium.googlesource
 
 ## **regress-4693.js (v8 issue)**  
    
-**[Issue 4693:
- Block-scoped sloppy mode function declaration issue with Cisco Spark](https://crbug.com/v8/4693)**  
+**[Block-scoped sloppy mode function declaration issue with Cisco Spark](https://crbug.com/v8/4693)**  
 **[Commit: Sloppy mode webcompat: allow conflicting function declarations in blocks](https://chromium.googlesource.com/v8/v8/+/8aeb608)**  
   
 Date(Commit): Sat Jan 23 00:40:53 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1622723003](https://codereview.chromium.org/1622723003)  
 Regress: [mjsunit/regress/regress-4693.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4693.js)  
 ```javascript
@@ -19689,12 +19264,10 @@ assertThrows(`
 
 ## **regress-3650-1.js (v8 issue)**  
    
-**[Issue 3650:
- for x in y de-optimizations](https://crbug.com/v8/3650)**  
+**[for x in y de-optimizations](https://crbug.com/v8/3650)**  
 **[Commit: [crankshaft] For-in index increment cannot overflow.](https://chromium.googlesource.com/v8/v8/+/c7d2adc)**  
   
 Date(Commit): Fri Jan 22 07:55:11 2016  
-Type: FeatureRequest  
 Code Review: [https://codereview.chromium.org/1621623002](https://codereview.chromium.org/1621623002)  
 Regress: [mjsunit/regress/regress-3650-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3650-1.js), [mjsunit/regress/regress-3650-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3650-2.js), [mjsunit/regress/regress-3650-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-3650-3.js)  
 ```javascript
@@ -19725,12 +19298,10 @@ assertEquals("aa11ab12ba21bb22", f(t));
 
 ## **regress-4267.js (v8 issue)**  
    
-**[Issue 4267:
- Array length reduction should throw in strict mode if it can't delete an element](https://crbug.com/v8/4267)**  
+**[Array length reduction should throw in strict mode if it can't delete an element](https://crbug.com/v8/4267)**  
 **[Commit: Array length reduction should throw in strict mode if it can't delete an element.](https://chromium.googlesource.com/v8/v8/+/1d3e837)**  
   
 Date(Commit): Thu Jan 21 14:23:09 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1587073003](https://codereview.chromium.org/1587073003)  
 Regress: [mjsunit/regress/regress-4267.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4267.js)  
 ```javascript
@@ -19760,12 +19331,10 @@ assertThrows(setter);
 
 ## **regress-4696.js (v8 issue)**  
    
-**[Issue 4696:
- Spread rewriting doesn't work well](https://crbug.com/v8/4696)**  
+**[Spread rewriting doesn't work well](https://crbug.com/v8/4696)**  
 **[Commit: Fix bug with spread rewriting](https://chromium.googlesource.com/v8/v8/+/52a01ae)**  
   
 Date(Commit): Thu Jan 21 12:16:20 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1617713002](https://codereview.chromium.org/1617713002)  
 Regress: [mjsunit/harmony/regress/regress-4696.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/harmony/regress/regress-4696.js)  
 ```javascript
@@ -19805,12 +19374,11 @@ Regress: [mjsunit/harmony/regress/regress-4696.js](https://chromium.googlesource
 
 ## **regress-crbug-578039-Proxy_construct_prototype_change.js (chromium issue)**  
    
-**[Issue 578039:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsMap()) in src/objects-inl.](https://crbug.com/578039)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsMap()) in src/objects-inl.](https://crbug.com/578039)**  
 **[Commit: [proxy] Reload the initial map after prototype lookup on constructable Proxy.](https://chromium.googlesource.com/v8/v8/+/ec30425)**  
   
 Date(Commit): Mon Jan 18 12:49:29 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "merge-merged-4.9", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1586203003](https://codereview.chromium.org/1586203003)  
 Regress: [mjsunit/regress/regress-crbug-578039-Proxy_construct_prototype_change.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-578039-Proxy_construct_prototype_change.js)  
@@ -19835,12 +19403,11 @@ new proxy();
 
 ## **regress-578775.js (chromium issue)**  
    
-**[Issue 578775:
- *deopt_index != Safepoint::kNoDeoptimizationIndex in src/frames.cc](https://crbug.com/578775)**  
+**[*deopt_index != Safepoint::kNoDeoptimizationIndex in src/frames.cc](https://crbug.com/578775)**  
 **[Commit: Remove premature crankshaft optimization of HasInPrototypeChain.](https://chromium.googlesource.com/v8/v8/+/107db2c)**  
   
 Date(Commit): Mon Jan 18 12:12:32 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "merge-merged-4.9", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1605483002](https://codereview.chromium.org/1605483002)  
 Regress: [mjsunit/regress/regress-578775.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-578775.js)  
@@ -19870,12 +19437,10 @@ assertThrows(f, RangeError);
 
 ## **regress-4509-Class-constructor-typeerror-realm.js (v8 issue)**  
    
-**[Issue 4509:
- Classes: type error in derived constructor returning non-undefined primitive value created in callee rather than caller context (and hence realm)](https://crbug.com/v8/4509)**  
+**[Classes: type error in derived constructor returning non-undefined primitive value created in callee rather than caller context (and hence realm)](https://crbug.com/v8/4509)**  
 **[Commit: [runtime] Throw exception for derived constructors in correct context.](https://chromium.googlesource.com/v8/v8/+/c86f189)**  
   
 Date(Commit): Fri Jan 15 15:31:28 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1593553002](https://codereview.chromium.org/1593553002)  
 Regress: [mjsunit/regress/regress-4509-Class-constructor-typeerror-realm.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4509-Class-constructor-typeerror-realm.js)  
 ```javascript
@@ -19914,12 +19479,11 @@ assertThrows(() => { new OtherDerived() }, TypeError);
 
 ## **regress-crbug-577112.js (chromium issue)**  
    
-**[Issue 577112:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/577112)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsJSObject()) in src/objects](https://crbug.com/577112)**  
 **[Commit: [crankshaft] Don't inline array indexOf operations if receiver's proto is not a JSObject.](https://chromium.googlesource.com/v8/v8/+/1bb7cfd)**  
   
 Date(Commit): Fri Jan 15 10:19:59 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1584303002](https://codereview.chromium.org/1584303002)  
 Regress: [mjsunit/regress/regress-crbug-577112.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-577112.js)  
@@ -19945,12 +19509,10 @@ f();
 
 ## **regress-4665.js (v8 issue)**  
    
-**[Issue 4665:
- "Uncaught TypeError: this is not a typed array" thrown when modifying prototype](https://crbug.com/v8/4665)**  
+**["Uncaught TypeError: this is not a typed array" thrown when modifying prototype](https://crbug.com/v8/4665)**  
 **[Commit: Construct instances of base class from TypedArray.prototype.subarray](https://chromium.googlesource.com/v8/v8/+/e13f2ff)**  
   
 Date(Commit): Thu Jan 14 19:23:26 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1583773005](https://codereview.chromium.org/1583773005)  
 Regress: [mjsunit/regress/regress-4665.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4665.js)  
 ```javascript
@@ -19994,12 +19556,11 @@ assertEquals([10, buf3.buffer], seen_args);
 
 ## **regress-572589.js (chromium issue)**  
    
-**[Issue 572589:
- old_target->kind() == new_target->kind() in src/objects-debug.cc](https://crbug.com/572589)**  
+**[old_target->kind() == new_target->kind() in src/objects-debug.cc](https://crbug.com/572589)**  
 **[Commit: Propagate the "calls eval" bit from ScopeInfo to lazily-compiled arrow functions](https://chromium.googlesource.com/v8/v8/+/bcde4e2)**  
   
 Date(Commit): Thu Jan 14 19:21:24 2016  
-Components/Type: Blink>JavaScript>Language/Bug  
+Components: Blink>JavaScript>Language  
 Labels: ["Hotlist-Merge-Review", "Stability-Crash", "Reproducible", "merge-merged-4.9", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1575333004](https://codereview.chromium.org/1575333004)  
 Regress: [mjsunit/regress/regress-572589.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-572589.js)  
@@ -20022,12 +19583,11 @@ assertThrows(f);
 
 ## **regress-crbug-571149.js (chromium issue)**  
    
-**[Issue 571149:
- Uninitialized closed over variable within a function with rest parameters causes assertion failure in ToBoolean IC.](https://crbug.com/571149)**  
+**[Uninitialized closed over variable within a function with rest parameters causes assertion failure in ToBoolean IC.](https://crbug.com/571149)**  
 **[Commit: Don't pre-initialise block contexts with holes](https://chromium.googlesource.com/v8/v8/+/92e6f7a)**  
   
 Date(Commit): Thu Jan 14 18:04:35 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript>LanguageBlink>JavaScript  
 Labels: ["Stability-Crash", "Via-Wizard", "merge-merged-4.9"]  
 Code Review: [https://codereview.chromium.org/1584243002](https://codereview.chromium.org/1584243002)  
 Regress: [mjsunit/harmony/regress/regress-crbug-571149.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/harmony/regress/regress-crbug-571149.js)  
@@ -20058,12 +19618,11 @@ Regress: [mjsunit/harmony/regress/regress-crbug-571149.js](https://chromium.goog
 
 ## **regress-crbug-575080.js (chromium issue)**  
    
-**[Issue 575080:
- tagged_expected == tagged_actual in src/layout-descriptor.cc](https://crbug.com/575080)**  
+**[tagged_expected == tagged_actual in src/layout-descriptor.cc](https://crbug.com/575080)**  
 **[Commit: Generalize all representations when reconfiguring a property of a strict Function subclass.](https://chromium.googlesource.com/v8/v8/+/405c7a6)**  
   
 Date(Commit): Thu Jan 14 10:45:34 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1579603002](https://codereview.chromium.org/1579603002)  
 Regress: [mjsunit/regress/regress-crbug-575080.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-575080.js)  
@@ -20091,12 +19650,11 @@ obj.o = 0.1;
 
 ## **regress-576662.js (chromium issue)**  
    
-**[Issue 576662:
- JSPROXY != state_ in src/lookup.cc](https://crbug.com/576662)**  
+**[JSPROXY != state_ in src/lookup.cc](https://crbug.com/576662)**  
 **[Commit: Gracefully handle proxies in AllCanWrite().](https://chromium.googlesource.com/v8/v8/+/863bf39)**  
   
 Date(Commit): Tue Jan 12 14:56:54 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1580723003](https://codereview.chromium.org/1580723003)  
 Regress: [mjsunit/es6/regress/regress-576662.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-576662.js)  
@@ -20115,12 +19673,11 @@ assertThrows(() => Realm.eval(1, "Realm.global(0).bla = 1"));
 
 ## **regress-crbug-575314.js (chromium issue)**  
    
-**[Issue 575314:
- How to find the cause of the new " promiseCapability.[[Resolve]] is not a function" error](https://crbug.com/575314)**  
+**[How to find the cause of the new " promiseCapability.[[Resolve]] is not a function" error](https://crbug.com/575314)**  
 **[Commit: Partial rollback of Promise error checking](https://chromium.googlesource.com/v8/v8/+/ee9d7ac)**  
   
 Date(Commit): Mon Jan 11 22:42:11 2016  
-Components/Type: Blink>JavaScript>Language/Bug  
+Components: Blink>JavaScript>Language  
 Labels: ["Via-Wizard"]  
 Code Review: [https://codereview.chromium.org/1578893002](https://codereview.chromium.org/1578893002)  
 Regress: [mjsunit/regress/regress-crbug-575314.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-575314.js)  
@@ -20141,12 +19698,10 @@ Promise.resolve(test).catch(e => %AbortJS(e + " FAILED!"));
 
 ## **regress-4577.js (v8 issue)**  
    
-**[Issue 4577:
- Lexical variables named "arguments" erroneously disallowed in sloppy mode](https://crbug.com/v8/4577)**  
+**[Lexical variables named "arguments" erroneously disallowed in sloppy mode](https://crbug.com/v8/4577)**  
 **[Commit: Add test showing broken-ness of non-simple parameter named 'arguments'](https://chromium.googlesource.com/v8/v8/+/067c27b)**  
   
 Date(Commit): Fri Jan 08 20:29:46 2016  
-Type: Bug  
 Code Review: [https://codereview.chromium.org/1576503002](https://codereview.chromium.org/1576503002)  
 Regress: [mjsunit/regress/regress-4577.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-4577.js)  
 ```javascript
@@ -20177,12 +19732,12 @@ assertThrows(function(x = arguments, arguments) {}, ReferenceError);
 
 ## **regress-575364.js (chromium issue)**  
    
-**[No Permission](https://crbug.com/575364)**  
+**[Permission denied](https://crbug.com/575364)**  
 **[Commit: [wasm] Fix validation error for missing return statement in asm.js module.](https://chromium.googlesource.com/v8/v8/+/cad2294)**  
   
 Date(Commit): Fri Jan 08 12:50:07 2016  
-Components/Type: None/None  
-Labels: "No Permission"  
+Components: None  
+Labels: "Permission denied"  
 Code Review: [https://codereview.chromium.org/1564313003](https://codereview.chromium.org/1564313003)  
 Regress: [mjsunit/regress/regress-575364.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-575364.js)  
 ```javascript
@@ -20202,12 +19757,11 @@ assertFalse(%IsAsmWasmCode(f));
 
 ## **regress-crbug-569534.js (chromium issue)**  
    
-**[Issue 569534:
- !v8::internal::FLAG_enable_slow_asserts || (object->IsFixedDoubleArray()) in src](https://crbug.com/569534)**  
+**[!v8::internal::FLAG_enable_slow_asserts || (object->IsFixedDoubleArray()) in src](https://crbug.com/569534)**  
 **[Commit: Fix^3 cast in HasEnumerableElements](https://chromium.googlesource.com/v8/v8/+/a0d03d7)**  
   
 Date(Commit): Thu Jan 07 14:47:27 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1568863002](https://codereview.chromium.org/1568863002)  
 Regress: [mjsunit/regress/regress-crbug-569534.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-569534.js)  
@@ -20226,12 +19780,11 @@ for (var i in array) {}
 
 ## **regress-crbug-575082.js (chromium issue)**  
    
-**[Issue 575082:
- DaysFromYearMonth(*year, 0) + days == save_days in src/date.cc](https://crbug.com/575082)**  
+**[DaysFromYearMonth(*year, 0) + days == save_days in src/date.cc](https://crbug.com/575082)**  
 **[Commit: [date] Date parser says true even for wrong dates, check twice.](https://chromium.googlesource.com/v8/v8/+/b0d0d57)**  
   
 Date(Commit): Thu Jan 07 09:30:46 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1566973002](https://codereview.chromium.org/1566973002)  
 Regress: [mjsunit/regress/regress-crbug-575082.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-575082.js)  
@@ -20249,12 +19802,11 @@ var y = new Date("-1073741824");
 
 ## **regress-crbug-571517.js (chromium issue)**  
    
-**[Issue 571517:
- Crash in v8::internal::JSObject::UnregisterPrototypeUser](https://crbug.com/571517)**  
+**[Crash in v8::internal::JSObject::UnregisterPrototypeUser](https://crbug.com/571517)**  
 **[Commit: [prototype user tracking] Don't skip JSGlobalProxies](https://chromium.googlesource.com/v8/v8/+/b4583c0)**  
   
 Date(Commit): Tue Jan 05 16:15:48 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "M-49", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1559323002](https://codereview.chromium.org/1559323002)  
 Regress: [mjsunit/regress/regress-crbug-571517.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-571517.js)  
@@ -20298,12 +19850,11 @@ assertEquals(undefined, f(rec));
 
 ## **regress-crbug-422858.js (chromium issue)**  
    
-**[Issue 422858:
- Date.toLocalString() and new Date("str") are not complementary](https://crbug.com/422858)**  
+**[Date.toLocalString() and new Date("str") are not complementary](https://crbug.com/422858)**  
 **[Commit: Accept time zones like GMT-8 in the legacy date parser](https://chromium.googlesource.com/v8/v8/+/acbd64b)**  
   
 Date(Commit): Mon Jan 04 23:25:57 2016  
-Components/Type: Blink>JavaScript>Internationalization/Bug  
+Components: Blink>JavaScript>Internationalization  
 Labels: ["Via-Wizard", "Hotlist-Google"]  
 Code Review: [https://codereview.chromium.org/1557053002](https://codereview.chromium.org/1557053002)  
 Regress: [mjsunit/regress/regress-crbug-422858.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-422858.js)  
@@ -20338,12 +19889,11 @@ assertEquals(NaN, date.getUTCHours());
 
 ## **regress-crbug-487322.js (chromium issue)**  
    
-**[Issue 487322:
- DateTimeFormat does not resolve IANA time zone](https://crbug.com/487322)**  
+**[DateTimeFormat does not resolve IANA time zone](https://crbug.com/487322)**  
 **[Commit: Timezone name check fix](https://chromium.googlesource.com/v8/v8/+/4e18190)**  
   
 Date(Commit): Mon Jan 04 21:48:04 2016  
-Components/Type: Blink>JavaScript>Internationalization/Bug  
+Components: Blink>JavaScript>Internationalization  
 Labels: []  
 Code Review: [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)  
 Regress: [mjsunit/regress/regress-crbug-487322.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-487322.js)  
@@ -20383,12 +19933,11 @@ if (this.Intl) {
 
 ## **regress-crbug-364374.js (chromium issue)**  
    
-**[Issue 364374:
- Some official time zone IDs  are not accepted by Intl.DateTimeFormat.](https://crbug.com/364374)**  
+**[Some official time zone IDs  are not accepted by Intl.DateTimeFormat. ](https://crbug.com/364374)**  
 **[Commit: Timezone name check fix](https://chromium.googlesource.com/v8/v8/+/4e18190)**  
   
 Date(Commit): Mon Jan 04 21:48:04 2016  
-Components/Type: Blink>JavaScript>Internationalization/Bug  
+Components: Blink>JavaScript>Internationalization  
 Labels: []  
 Code Review: [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)  
 Regress: [mjsunit/regress/regress-crbug-364374.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-364374.js)  
@@ -20459,12 +20008,11 @@ if (this.Intl) {
 
 ## **regress-crbug-573857.js (chromium issue)**  
    
-**[Issue 573857:
- p->IsSmi() in src/objects-debug.cc](https://crbug.com/573857)**  
+**[p->IsSmi() in src/objects-debug.cc](https://crbug.com/573857)**  
 **[Commit: Use JSObjectVerify instead of trying to reimplement parts of it.](https://chromium.googlesource.com/v8/v8/+/fed2c41)**  
   
 Date(Commit): Mon Jan 04 13:50:06 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1551333002](https://codereview.chromium.org/1551333002)  
 Regress: [mjsunit/regress/regress-crbug-573857.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-573857.js)  
@@ -20488,12 +20036,11 @@ gc();
 
 ## **regress-crbug-573858.js (chromium issue)**  
    
-**[Issue 573858:
- constructor->shared()->construct_stub() == isolate()->builtins()->builtin(Builti](https://crbug.com/573858)**  
+**[constructor->shared()->construct_stub() == isolate()->builtins()->builtin(Builti](https://crbug.com/573858)**  
 **[Commit: ThrowTypeError should not be constructable, so shouldn't have a prototype.](https://chromium.googlesource.com/v8/v8/+/09c41d9)**  
   
 Date(Commit): Mon Jan 04 13:33:09 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1552223002](https://codereview.chromium.org/1552223002)  
 Regress: [mjsunit/regress/regress-crbug-573858.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-573858.js)  
@@ -20531,12 +20078,11 @@ assertThrows(test);
 
 ## **regress-572409.js (chromium issue)**  
    
-**[Issue 572409:
- Crash in v8::internal::InnerPointerToCodeCache::GcSafeFindCodeForInnerPointer](https://crbug.com/572409)**  
+**[Crash in v8::internal::InnerPointerToCodeCache::GcSafeFindCodeForInnerPointer](https://crbug.com/572409)**  
 **[Commit: [turbofan] Add deopt point for InternalSetPrototype in VisitObjectLiteral.](https://chromium.googlesource.com/v8/v8/+/140f69d)**  
   
 Date(Commit): Mon Jan 04 09:54:51 2016  
-Components/Type: Blink>JavaScript/Bug-Security  
+Components: Blink>JavaScript  
 Labels: ["ReleaseBlock-Beta", "Merge-na", "Reproducible", "Stability-Memory-AddressSanitizer", "Security_Impact-Head", "Security_Severity-High", "M-49", "allpublic", "Clusterfuzz"]  
 Code Review: [https://codereview.chromium.org/1555023002](https://codereview.chromium.org/1555023002)  
 Regress: [mjsunit/compiler/regress-572409.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-572409.js)  
@@ -20562,12 +20108,11 @@ f();
 
 ## **regress-crbug-565917.js (chromium issue)**  
    
-**[Issue 565917:
- 2 == args.length() in src/builtins.cc](https://crbug.com/565917)**  
+**[2 == args.length() in src/builtins.cc](https://crbug.com/565917)**  
 **[Commit: [es6] Unify ArrayBuffer and SharedArrayBuffer constructors.](https://chromium.googlesource.com/v8/v8/+/cb21144)**  
   
 Date(Commit): Fri Jan 01 07:13:16 2016  
-Components/Type: Blink>JavaScript/Bug  
+Components: Blink>JavaScript  
 Labels: ["Stability-Crash", "Reproducible", "Clusterfuzz"]  
 Code Review: [https://crrev.com/3235ccbb7826ceec2188f6ebab98fc851b54f60e](https://crrev.com/3235ccbb7826ceec2188f6ebab98fc851b54f60e)  
 Regress: [mjsunit/regress/regress-crbug-565917.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-565917.js)  
