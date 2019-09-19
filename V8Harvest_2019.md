@@ -2,6 +2,34 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1004912.js (chromium issue)**  
+   
+**[Permission denied](https://crbug.com/1004912)**  
+**[Commit: [CSA][cleanup] Use Name instead of String type for var_name in KeyedLoadICGeneric.](https://chromium.googlesource.com/v8/v8/+/b946521)**  
+  
+Date(Commit): Wed Sep 18 11:22:28 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1809370](https://chromium-review.googlesource.com/c/v8/v8/+/1809370)  
+Regress: [mjsunit/regress/regress-1004912.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1004912.js)  
+```javascript
+var key = {
+  toString() {
+    return Symbol();
+  }
+};
+
+var obj = {};
+obj[key];  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b946521^!)  
+[src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=b946521)  
+[test/mjsunit/regress/regress-1004912.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1004912.js?cl=b946521)  
+  
+
+---   
+
 ## **regress-crbug-1004061.js (chromium issue)**  
    
 **[CHECK failure: Type cast failed in CAST(Parameter(Descriptor::kElements)) at ../../src/builtins](https://crbug.com/1004061)**  
