@@ -2,6 +2,149 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1004037.js (chromium issue)**  
+   
+**[V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1004037)**  
+**[Commit: [ic] Add support for StoreSlow() in Global Dispatcher](https://chromium.googlesource.com/v8/v8/+/99188fc)**  
+  
+Date(Commit): Fri Sep 20 17:05:09 2019  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1812657](https://chromium-review.googlesource.com/c/v8/v8/+/1812657)  
+Regress: [mjsunit/regress/regress-crbug-1004037.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1004037.js)  
+```javascript
+__v_1 = {};
+__v_1.__defineGetter__('x', function () { });
+__proto__ = __v_1;
+function __f_4() {
+    __v_1 = {};
+}
+function __f_3() {
+    'use strict';
+    x = 42;
+}
+__f_4()
+try {
+    __f_3();
+} catch (e) { }
+
+__proto__ = __v_1;
+assertThrows(() => __f_3(), ReferenceError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/99188fc^!)  
+[src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=99188fc)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=99188fc)  
+[test/mjsunit/regress/regress-crbug-1002628.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1002628.js?cl=99188fc)  
+[test/mjsunit/regress/regress-crbug-1004037.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1004037.js?cl=99188fc)  
+  
+
+---   
+
+## **regress-crbug-1002628.js (chromium issue)**  
+   
+**[V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1002628)**  
+**[Commit: [ic] Add support for StoreSlow() in Global Dispatcher](https://chromium.googlesource.com/v8/v8/+/99188fc)**  
+  
+Date(Commit): Fri Sep 20 17:05:09 2019  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1812657](https://chromium-review.googlesource.com/c/v8/v8/+/1812657)  
+Regress: [mjsunit/regress/regress-crbug-1002628.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1002628.js)  
+```javascript
+"use strict";
+var __v_0 = {};
+try {
+    __v_0 = this;
+    Object.freeze(__v_0);
+}
+catch (e) {
+}
+
+function f() {
+    x = { [Symbol.toPrimitive]: () => FAIL };
+}
+try {
+    f()
+} catch (e) { }
+assertThrows(() => f(), ReferenceError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/99188fc^!)  
+[src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=99188fc)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=99188fc)  
+[test/mjsunit/regress/regress-crbug-1002628.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1002628.js?cl=99188fc)  
+[test/mjsunit/regress/regress-crbug-1004037.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1004037.js?cl=99188fc)  
+  
+
+---   
+
+## **regress-crbug-997056.js (chromium issue)**  
+   
+**[ASSERT: CSA_ASSERT failed: Word32Equal(DecodeWord32<PropertyDetails::KindField>(details)](https://crbug.com/997056)**  
+**[Commit: [ic] Fix accessor to data reconfiguration case](https://chromium.googlesource.com/v8/v8/+/ecafe04)**  
+  
+Date(Commit): Thu Sep 19 14:35:46 2019  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Merge-Request-76, M-76, M-77, M-78, Merge-Review-77, Merge-Review-78  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1813021](https://chromium-review.googlesource.com/c/v8/v8/+/1813021)  
+Regress: [mjsunit/regress/regress-crbug-997056.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-997056.js)  
+```javascript
+for (let i = 0; i < 4; ++i) {
+    var obj1 = {
+        get [obj1]() {},
+        ...obj2,
+    };
+    var obj2 = { [obj1]: 0 };
+    print(obj2);
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ecafe04^!)  
+[src/ic/keyed-store-generic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/keyed-store-generic.cc?cl=ecafe04)  
+[test/mjsunit/regress/regress-crbug-997056.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-997056.js?cl=ecafe04)  
+  
+
+---   
+
+## **regress-1005400.js (chromium issue)**  
+   
+**[V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/1005400)**  
+**[Commit: [CSA] Ensure we only call ToName once in KeyedLoadICGeneric.](https://chromium.googlesource.com/v8/v8/+/513c751)**  
+  
+Date(Commit): Thu Sep 19 12:39:46 2019  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1813022](https://chromium-review.googlesource.com/c/v8/v8/+/1813022)  
+Regress: [mjsunit/regress/regress-1005400.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1005400.js)  
+```javascript
+function foo(a, key) {
+  a[key];
+}
+
+let obj = {};
+let count = 0;
+
+var key_obj = {
+  toString: function() {
+    count++;
+    // Force string to be internalized during keyed lookup.
+    return 'foo' + count;
+  }
+};
+
+foo(obj, key_obj);
+
+assertEquals(count, 1);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/513c751^!)  
+[src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=513c751)  
+[test/mjsunit/regress/regress-1005400.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1005400.js?cl=513c751)  
+  
+
+---   
+
 ## **regress-1004912.js (chromium issue)**  
    
 **[Permission denied](https://crbug.com/1004912)**  
@@ -4237,12 +4380,12 @@ const foo = new class bar extends async function () {}.constructor {}();
 
 ## **regress-961237.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/961237)**  
+**[Security: jit difference on comparison in d8](https://crbug.com/961237)**  
 **[Commit: [turbofan] Fix handling of null in -0 == null comparison](https://chromium.googlesource.com/v8/v8/+/2108566)**  
   
 Date(Commit): Mon May 13 13:35:03 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: reward-0, Security_Severity-Low, Security_Impact-Stable, Arch-All, allpublic, CVE_description-missing, Release-0-M76, CVE-2019-5857  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1609538](https://chromium-review.googlesource.com/c/v8/v8/+/1609538)  
 Regress: [mjsunit/regress/regress-961237.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-961237.js)  
 ```javascript
