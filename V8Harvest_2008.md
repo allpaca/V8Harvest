@@ -4,7 +4,7 @@ The Harvest of V8 regress in 2008.
 
 ## **regress-176.js (v8 issue)**  
    
-**[Regexp: ? should be implemented as {0,1}](https://crbug.com/v8/176)**  
+**[Issue: Regexp: ? should be implemented as {0,1}](https://crbug.com/v8/176)**  
 **[Commit: Added test for bug 176 (zero length matches should fail in quantifiers).](https://chromium.googlesource.com/v8/v8/+/4ede982)**  
   
 Date(Commit): Thu Dec 11 09:01:55 2008  
@@ -42,7 +42,7 @@ assertArrayEquals(["f", undefined],
 
 ## **regress-149.js (v8 issue)**  
    
-**[Some upper/lower case mappings are performed incorrectly](https://crbug.com/v8/149)**  
+**[Issue: Some upper/lower case mappings are performed incorrectly](https://crbug.com/v8/149)**  
 **[Commit: Merge regexp2000 back into bleeding_edge](https://chromium.googlesource.com/v8/v8/+/b57b4a1)**  
   
 Date(Commit): Tue Nov 25 11:07:48 2008  
@@ -65,7 +65,7 @@ assertEquals(String.fromCharCode(0x26B), String.fromCharCode(0x2C62).toLowerCase
 
 ## **regress-137.js (v8 issue)**  
    
-**[division-> switch problem (it works correctly in previous chrome, in FF, Safari and IE)](https://crbug.com/v8/137)**  
+**[Issue: division-> switch problem (it works correctly in previous chrome, in FF, Safari and IE)](https://crbug.com/v8/137)**  
 **[Commit: If a HeapNumber is the incoming value, it must be converted to Smi before](https://chromium.googlesource.com/v8/v8/+/4e3bbd8)**  
   
 Date(Commit): Mon Nov 03 13:33:13 2008  
@@ -103,7 +103,7 @@ Regress: [mjsunit/regress/regress-137.js](https://chromium.googlesource.com/v8/v
 
 ## **regress-124.js (v8 issue)**  
    
-**[implicit 'this' is not as expected in an eval statement inside a function](https://crbug.com/v8/124)**  
+**[Issue: implicit 'this' is not as expected in an eval statement inside a function](https://crbug.com/v8/124)**  
 **[Commit: Added failing test case for bug 124.](https://chromium.googlesource.com/v8/v8/+/96733af)**  
   
 Date(Commit): Thu Oct 23 05:49:05 2008  
@@ -178,7 +178,7 @@ Test();
 
 ## **regress-116.js (v8 issue)**  
    
-**[function return value when accessing/setting array is not consistent with other JS engines](https://crbug.com/v8/116)**  
+**[Issue: function return value when accessing/setting array is not consistent with other JS engines](https://crbug.com/v8/116)**  
 **[Commit: Fix issue 116 by returning the value from SetFastElement.](https://chromium.googlesource.com/v8/v8/+/c63477d)**  
   
 Date(Commit): Fri Oct 17 06:36:35 2008  
@@ -209,7 +209,7 @@ assertEquals('f', r2[0]);
 
 ## **regress-114.js (v8 issue)**  
    
-**[Incorrect loop in "runtime.cc"](https://crbug.com/v8/114)**  
+**[Issue: Incorrect loop in "runtime.cc"](https://crbug.com/v8/114)**  
 **[Commit: Fixed bug 114](https://chromium.googlesource.com/v8/v8/+/a601594)**  
   
 Date(Commit): Tue Oct 14 09:13:23 2008  
@@ -239,7 +239,7 @@ assertEquals("XX\u03A5\u0308\u0301XX", "xx\u03B0xx".toUpperCase());
 
 ## **regress-86.js (v8 issue)**  
    
-**[Continuing a for-each loop in a finally clause exits the loop](https://crbug.com/v8/86)**  
+**[Issue: Continuing a for-each loop in a finally clause exits the loop](https://crbug.com/v8/86)**  
 **[Commit: - Added support for warnings on unused test rules.](https://chromium.googlesource.com/v8/v8/+/2d0c43a)**  
   
 Date(Commit): Thu Sep 25 12:38:34 2008  
@@ -278,7 +278,7 @@ assertTrue(leftThroughFinally);
 
 ## **regress-69.js (v8 issue)**  
    
-**[Crash on http://www.steev.net](https://crbug.com/v8/69)**  
+**[Issue: Crash on http://www.steev.net](https://crbug.com/v8/69)**  
 **[Commit: Fix http://code.google.com/p/v8/issues/detail?id=69 :](https://chromium.googlesource.com/v8/v8/+/88192fc)**  
   
 Date(Commit): Tue Sep 16 11:23:02 2008  
@@ -307,7 +307,7 @@ unbalanced_switch(1);
 
 ## **regress-57.js (v8 issue)**  
    
-**[Crash when deleting prototype[0]](https://crbug.com/v8/57)**  
+**[Issue: Crash when deleting prototype[0]](https://crbug.com/v8/57)**  
 **[Commit: Fixed bug #57.  Introduced String::Utf8Value and replaced a bunch of](https://chromium.googlesource.com/v8/v8/+/6974e4b)**  
   
 Date(Commit): Wed Sep 10 11:41:48 2008  
@@ -334,7 +334,7 @@ try {
 
 ## **regress-35.js (v8 issue)**  
    
-**[Need to check for end of string when parsing break or continue.](https://crbug.com/v8/35)**  
+**[Issue: Need to check for end of string when parsing break or continue.](https://crbug.com/v8/35)**  
 **[Commit: Fix issue 35 by applying patch by Daniel James.](https://chromium.googlesource.com/v8/v8/+/2f0c910)**  
   
 Date(Commit): Mon Sep 08 07:58:54 2008  
@@ -3591,7 +3591,7 @@ assertEquals(10, result);
 
 ## **regress-996542.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/996542)**  
+**[Issue: Permission denied](https://crbug.com/996542)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3628,7 +3628,7 @@ assertEquals(Infinity, one / (one % one));
 
 ## **regress-992733.js (chromium issue)**  
    
-**[Stack-overflow in __CFSearchStringROM](https://crbug.com/992733)**  
+**[Issue: Stack-overflow in __CFSearchStringROM](https://crbug.com/992733)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3660,7 +3660,7 @@ assertTrue(threw);
 
 ## **regress-990205.js (chromium issue)**  
    
-**[hourglass icon mouse pointer appearing while loading pages](https://crbug.com/990205)**  
+**[Issue: hourglass icon mouse pointer appearing while loading pages](https://crbug.com/990205)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3691,7 +3691,7 @@ assertThrows("f()");
 
 ## **regress-937896.js (chromium issue)**  
    
-**[Collect UserCounts for the Idle Detection API usage](https://crbug.com/937896)**  
+**[Issue: Collect UserCounts for the Idle Detection API usage](https://crbug.com/937896)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3734,7 +3734,7 @@ assertEquals(42, f());
 
 ## **regress-925537.js (chromium issue)**  
    
-**[shill: revisit and refine metrics](https://crbug.com/925537)**  
+**[Issue: shill: revisit and refine metrics](https://crbug.com/925537)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3772,7 +3772,7 @@ assertClose(-3 * Math.PI / 4, Math.atan2(ninf, ninf));
 
 ## **regress-900966.js (chromium issue)**  
    
-**[GCPW allows multiple instances of chrome to spawn leading to possible breakout of sandbox](https://crbug.com/900966)**  
+**[Issue: GCPW allows multiple instances of chrome to spawn leading to possible breakout of sandbox](https://crbug.com/900966)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3815,7 +3815,7 @@ assertEquals(true[12], 'z');
 
 ## **regress-900055.js (chromium issue)**  
    
-**[ChromeVox does not announce all macros options in tools menu](https://crbug.com/900055)**  
+**[Issue: ChromeVox does not announce all macros options in tools menu](https://crbug.com/900055)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3854,7 +3854,7 @@ assertTrue(caught);
 
 ## **regress-892742.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/892742)**  
+**[Issue: Permission denied](https://crbug.com/892742)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3896,7 +3896,7 @@ assertEquals(undefined, h());
 
 ## **regress-877615.js (chromium issue)**  
    
-**[Form input controls disappeared for High Sierra](https://crbug.com/877615)**  
+**[Issue: Form input controls disappeared for High Sierra](https://crbug.com/877615)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3930,7 +3930,7 @@ assertEquals([1].toString(), '1');        // Uses ToString directly on elements.
 
 ## **regress-875031.js (chromium issue)**  
    
-**[Shutdown crash in ~ArcNotificationManager](https://crbug.com/875031)**  
+**[Issue: Shutdown crash in ~ArcNotificationManager](https://crbug.com/875031)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3962,7 +3962,7 @@ assertTrue(caught);
 
 ## **regress-874178.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/874178)**  
+**[Issue: Permission denied](https://crbug.com/874178)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -3991,7 +3991,7 @@ assertTrue(foo.propertyIsEnumerable('bar'));
 
 ## **regress-842017.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/842017)**  
+**[Issue: Permission denied](https://crbug.com/842017)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4046,7 +4046,7 @@ assertEquals(10, j);
 
 ## **regress-806473.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/806473)**  
+**[Issue: Permission denied](https://crbug.com/806473)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4099,7 +4099,7 @@ assertEquals(10, j);
 
 ## **regress-780423.js (chromium issue)**  
    
-**[Add unit test for CfM autotest utility classes](https://crbug.com/780423)**  
+**[Issue: Add unit test for CfM autotest utility classes](https://crbug.com/780423)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4135,7 +4135,7 @@ assertTrue(o1.prototype !== o2.prototype, "different protos");
 
 ## **regress-737588.js (chromium issue)**  
    
-**[Purple Bot on chromium.perf: Android Nexus6 WebView Perf (1)](https://crbug.com/737588)**  
+**[Issue: Purple Bot on chromium.perf: Android Nexus6 WebView Perf (1)](https://crbug.com/737588)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4166,7 +4166,7 @@ assertEquals(125, goog.globalEval('var foofoofoo = 125; foofoofoo'));
 
 ## **regress-734862.js (chromium issue)**  
    
-**["WebContentsImplBrowserTest.DismissingBeforeUnloadDialogInvalidatesUrl" is flaky](https://crbug.com/734862)**  
+**[Issue: "WebContentsImplBrowserTest.DismissingBeforeUnloadDialogInvalidatesUrl" is flaky](https://crbug.com/734862)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4199,7 +4199,7 @@ assertTrue(catcher(void 0, 123) instanceof TypeError);
 
 ## **regress-682649.js (chromium issue)**  
    
-**[webrtc.peerconnection.reference fails because of not enough capacity](https://crbug.com/682649)**  
+**[Issue: webrtc.peerconnection.reference fails because of not enough capacity](https://crbug.com/682649)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4224,7 +4224,7 @@ assertEquals(this.toString(), eval("this.toString()"));
 
 ## **regress-678525.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/678525)**  
+**[Issue: Permission denied](https://crbug.com/678525)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4278,7 +4278,7 @@ assertEquals(105, '\151'.charCodeAt(0));
 
 ## **regress-676025.js (chromium issue)**  
    
-**[Quick swipe fails to un-hide shelf](https://crbug.com/676025)**  
+**[Issue: Quick swipe fails to un-hide shelf](https://crbug.com/676025)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4306,7 +4306,7 @@ assertTrue(result instanceof SyntaxError);
 
 ## **regress-674753.js (chromium issue)**  
    
-**[Cancelled XHR has no information](https://crbug.com/674753)**  
+**[Issue: Cancelled XHR has no information](https://crbug.com/674753)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4457,7 +4457,7 @@ assertFalse(typeof undetectable === 'object');
 
 ## **regress-670147.js (chromium issue)**  
    
-**[Add VR Shell unit tests to Android Tryservers](https://crbug.com/670147)**  
+**[Issue: Add VR Shell unit tests to Android Tryservers](https://crbug.com/670147)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4487,7 +4487,7 @@ assertFalse(XXX('Hello'));
 
 ## **regress-667061.js (chromium issue)**  
    
-**["virtual/rootlayerscrolls/scrollingcoordinator/non-fast-scrollable-visibility-change.html" is flaky](https://crbug.com/667061)**  
+**[Issue: "virtual/rootlayerscrolls/scrollingcoordinator/non-fast-scrollable-visibility-change.html" is flaky](https://crbug.com/667061)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4570,7 +4570,7 @@ assertTrue(caught);
 
 ## **regress-666721.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/666721)**  
+**[Issue: Permission denied](https://crbug.com/666721)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4620,7 +4620,7 @@ assertEquals(4, len3([1,2,3,4]));
 
 ## **regress-662254.js (chromium issue)**  
    
-**[Accessibility issue: Hypertexts contained w/in an element w/ a "click-and-mouse-related" event listener are "clickable"](https://crbug.com/662254)**  
+**[Issue: Accessibility issue: Hypertexts contained w/in an element w/ a "click-and-mouse-related" event listener are "clickable"](https://crbug.com/662254)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
@@ -4657,7 +4657,7 @@ g();
 
 ## **regress-588599.js (chromium issue)**  
    
-**[Permission denied](https://crbug.com/588599)**  
+**[Issue: Permission denied](https://crbug.com/588599)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
