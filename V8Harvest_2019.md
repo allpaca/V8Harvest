@@ -2,6 +2,195 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1003403.js (chromium issue)**  
+   
+**[Issue: CHECK failure: Bytecode mismatch at offset 60 in interpreter.cc](https://crbug.com/1003403)**  
+**[Commit: [parser] Fix destructured parameters in arrowheads](https://chromium.googlesource.com/v8/v8/+/f674045)**  
+  
+Date(Commit): Tue Sep 24 14:11:52 2019  
+Components: Blink>JavaScript, Blink>JavaScript>Interpreter  
+Labels: Reproducible, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1815131](https://chromium-review.googlesource.com/c/v8/v8/+/1815131)  
+Regress: [mjsunit/regress/regress-crbug-1003403.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1003403.js)  
+```javascript
+({ x: b = 0 }) => {
+  try { b; } catch (e) {}
+  function a() { b }
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f674045^!)  
+[src/ast/variables.h](https://cs.chromium.org/chromium/src/v8/src/ast/variables.h?cl=f674045)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=f674045)  
+[test/cctest/test-parsing.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/test-parsing.cc?cl=f674045)  
+[test/mjsunit/regress/regress-crbug-1003403.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1003403.js?cl=f674045)  
+  
+
+---   
+
+## **regress-1006670.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1006670)**  
+**[Commit: [regexp] Adhere to the stack limit in the interpreter](https://chromium.googlesource.com/v8/v8/+/256a816)**  
+  
+Date(Commit): Tue Sep 24 13:33:09 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1821458](https://chromium-review.googlesource.com/c/v8/v8/+/1821458)  
+Regress: [mjsunit/regress/regress-1006670.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1006670.js)  
+```javascript
+assertThrows(() => /(a?;?){4000000}/.exec("a"), RangeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/256a816^!)  
+[src/regexp/regexp-interpreter.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-interpreter.cc?cl=256a816)  
+[src/regexp/regexp-stack.h](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-stack.h?cl=256a816)  
+[test/mjsunit/regress/regress-1006670.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1006670.js?cl=256a816)  
+  
+
+---   
+
+## **regress-9759.js (v8 issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/v8/9759)**  
+**[Commit: [wasm] Limit number of labels for {br_table} instruction.](https://chromium.googlesource.com/v8/v8/+/cf34210)**  
+  
+Date(Commit): Tue Sep 24 12:54:49 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1821457](https://chromium-review.googlesource.com/c/v8/v8/+/1821457)  
+Regress: [mjsunit/regress/wasm/regress-9759.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-9759.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+const NUM_CASES = 0xfffd;
+
+(function TestBrTableTooLarge() {
+  let builder = new WasmModuleBuilder();
+  let cases = new Array(NUM_CASES).fill(0);
+  builder.addFunction('main', kSig_v_i)
+      .addBody([].concat([
+        kExprBlock, kWasmStmt,
+          kExprGetLocal, 0,
+          kExprBrTable], wasmSignedLeb(NUM_CASES),
+          cases, [0,
+        kExprEnd
+      ])).exportFunc();
+  assertThrows(() => new WebAssembly.Module(builder.toBuffer()),
+    WebAssembly.CompileError, /invalid table count/);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/cf34210^!)  
+[src/compiler/wasm-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?cl=cf34210)  
+[src/wasm/function-body-decoder-impl.h](https://cs.chromium.org/chromium/src/v8/src/wasm/function-body-decoder-impl.h?cl=cf34210)  
+[src/wasm/wasm-limits.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-limits.h?cl=cf34210)  
+[test/mjsunit/regress/wasm/regress-9759.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-9759.js?cl=cf34210)  
+  
+
+---   
+
+## **regress-1006629.js (chromium issue)**  
+   
+**[Issue: Fatal error in v8_SharedArrayBuffer_Newv8::Utils::ReportApiFailure](https://crbug.com/1006629)**  
+**[Commit: Fix construction of empty backing stores for SharedArrayBuffers](https://chromium.googlesource.com/v8/v8/+/39ecc99)**  
+  
+Date(Commit): Mon Sep 23 13:42:29 2019  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, Stability-UndefinedBehaviorSanitizer, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1815244](https://chromium-review.googlesource.com/c/v8/v8/+/1815244)  
+Regress: [mjsunit/regress/regress-1006629.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1006629.js)  
+```javascript
+const workerScript = `
+  onmessage = function() {
+  };`;
+const worker = new Worker(workerScript, {type: 'string'});
+const i32a = new Int32Array( new SharedArrayBuffer() );
+worker.postMessage([i32a.buffer]);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/39ecc99^!)  
+[src/api/api.cc](https://cs.chromium.org/chromium/src/v8/src/api/api.cc?cl=39ecc99)  
+[src/objects/backing-store.cc](https://cs.chromium.org/chromium/src/v8/src/objects/backing-store.cc?cl=39ecc99)  
+[src/objects/backing-store.h](https://cs.chromium.org/chromium/src/v8/src/objects/backing-store.h?cl=39ecc99)  
+[test/mjsunit/regress/regress-1006629.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1006629.js?cl=39ecc99)  
+  
+
+---   
+
+## **regress-crbug-1006592.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,jitless](https://crbug.com/1006592)**  
+**[Commit: [asm.js] Fix parsing of float coercion arguments.](https://chromium.googlesource.com/v8/v8/+/d1e9b88)**  
+  
+Date(Commit): Mon Sep 23 12:26:26 2019  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1815255](https://chromium-review.googlesource.com/c/v8/v8/+/1815255)  
+Regress: [mjsunit/regress/regress-crbug-1006592.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1006592.js)  
+```javascript
+function Module(stdlib) {
+  "use asm";
+  var fround = stdlib.Math.fround;
+  function f(a, b) {
+    a = +a;
+    b = +b;
+    return fround(a, b);
+  }
+  return { f: f };
+}
+
+var m = Module(this);
+assertEquals(23, m.f(23));
+assertEquals(42, m.f(42, 65));
+assertFalse(%IsAsmWasmCode(Module));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d1e9b88^!)  
+[src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=d1e9b88)  
+[test/mjsunit/regress/regress-crbug-1006592.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1006592.js?cl=d1e9b88)  
+  
+
+---   
+
+## **regress-crbug-1006631.js (chromium issue)**  
+   
+**[Issue: CHECK failure: !v8::internal::FLAG_enable_slow_asserts || (IsDereferenceAllowed()) in handles.h](https://crbug.com/1006631)**  
+**[Commit: [wasm] Load call builtin in JS-to-JS wrappers.](https://chromium.googlesource.com/v8/v8/+/ca02d58)**  
+  
+Date(Commit): Mon Sep 23 10:43:51 2019  
+Components: Blink>JavaScript, Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1815245](https://chromium-review.googlesource.com/c/v8/v8/+/1815245)  
+Regress: [mjsunit/regress/wasm/regress-crbug-1006631.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-crbug-1006631.js)  
+```javascript
+new WebAssembly.Function({ parameters: [], results: [] }, x => x);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ca02d58^!)  
+[src/compiler/wasm-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?cl=ca02d58)  
+[test/mjsunit/regress/wasm/regress-crbug-1006631.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-crbug-1006631.js?cl=ca02d58)  
+  
+
+---   
+
+## **regress-v8-9758.js (v8 issue)**  
+   
+**[Issue: Debug check failure: Bytecode Mismatch](https://crbug.com/v8/9758)**  
+**[Commit: [parser] Prevent lazy parsing of arrow functions](https://chromium.googlesource.com/v8/v8/+/4921821)**  
+  
+Date(Commit): Mon Sep 23 08:59:18 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1816510](https://chromium-review.googlesource.com/c/v8/v8/+/1816510)  
+Regress: [mjsunit/regress/regress-v8-9758.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-9758.js)  
+```javascript
+((a = ((b = a) => {})()) => 1)();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4921821^!)  
+[src/parsing/parser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.h?cl=4921821)  
+[test/mjsunit/regress/regress-v8-9758.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-9758.js?cl=4921821)  
+  
+
+---   
+
 ## **regress-crbug-1004037.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1004037)**  
@@ -3346,12 +3535,12 @@ foo(dv);
 
 ## **regress-crbug-969368.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/969368)**  
+**[Issue: CHECK failure: (location_) != nullptr in maybe-handles.h](https://crbug.com/969368)**  
 **[Commit: [asm.js] Check that function table indices are intish.](https://chromium.googlesource.com/v8/v8/+/b8474e7)**  
   
 Date(Commit): Mon Jun 17 16:59:50 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-High, Security_Impact-Beta, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, M-76  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1662571](https://chromium-review.googlesource.com/c/v8/v8/+/1662571)  
 Regress: [mjsunit/regress/regress-crbug-969368.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-969368.js)  
 ```javascript
