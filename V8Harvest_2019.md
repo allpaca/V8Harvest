@@ -5756,12 +5756,12 @@ new WebAssembly.Instance(new WebAssembly.Module(bytes));
 
 ## **regress-950328.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/950328)**  
+**[Issue: v8 crash on map-check](https://crbug.com/950328)**  
 **[Commit: Avoid making maps unstable in keyed store IC.](https://chromium.googlesource.com/v8/v8/+/5ef8846)**  
   
 Date(Commit): Wed Apr 10 14:30:57 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Merge-na, reward-3000, Security_Impact-Stable, Arch-x86_64, Security_Severity-High, allpublic, reward-inprocess, ClusterFuzz-Verified, Test-Predator-Wrong-CLs, Via-Wizard-Security, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, CVE_description-submitted, Target-75, M-75, Release-0-M75, CVE-2019-5831  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1559867](https://chromium-review.googlesource.com/c/v8/v8/+/1559867)  
 Regress: [mjsunit/regress/regress-950328.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-950328.js)  
 ```javascript
