@@ -3186,12 +3186,12 @@ foo();
 
 ## **regress-crbug-977089.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/977089)**  
+**[Issue: DCHECK failure in fresh->bit_field3() & ~IsInRetainedMapListBit::kMask == new_map->bit_field3() & ](https://crbug.com/977089)**  
 **[Commit: [map] Ignore migration target bit when normalizing](https://chromium.googlesource.com/v8/v8/+/88d2349)**  
   
 Date(Commit): Mon Jun 24 10:44:11 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1672936](https://chromium-review.googlesource.com/c/v8/v8/+/1672936)  
 Regress: [mjsunit/regress/regress-crbug-977089.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-977089.js)  
 ```javascript
