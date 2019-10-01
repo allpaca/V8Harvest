@@ -2,6 +2,97 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1008632.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1008632)**  
+**[Commit: Modify the DCHECK in when computing KeyedAccessStoreMode.](https://chromium.googlesource.com/v8/v8/+/1e3c387)**  
+  
+Date(Commit): Mon Sep 30 18:59:48 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1828480](https://chromium-review.googlesource.com/c/v8/v8/+/1828480)  
+Regress: [mjsunit/regress/regress-crbug-1008632.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1008632.js)  
+```javascript
+var __v_9690 = function () {};
+try {
+    (function () {
+        __f_1653();
+    })()
+} catch (__v_9763) {
+}
+function __f_1653(__v_9774, __v_9775) {
+  try {
+  } catch (e) {}
+    __v_9774[__v_9775 + 4] = 2;
+}
+(function () {
+    %PrepareFunctionForOptimization(__f_1653);
+    __f_1653(__v_9690, true);
+    %OptimizeFunctionOnNextCall(__f_1653);
+    assertThrows(() => __f_1653(), TypeError);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1e3c387^!)  
+[src/objects/feedback-vector.cc](https://cs.chromium.org/chromium/src/v8/src/objects/feedback-vector.cc?cl=1e3c387)  
+[test/mjsunit/regress/regress-crbug-1008632.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1008632.js?cl=1e3c387)  
+  
+
+---   
+
+## **regress-9781.js (v8 issue)**  
+   
+**[Issue: Regression in v8's PRoxy implementation (chrome & node)](https://crbug.com/v8/9781)**  
+**[Commit: Add missing null condition in Proxy GetPrototypeof](https://chromium.googlesource.com/v8/v8/+/c721203)**  
+  
+Date(Commit): Mon Sep 30 17:56:34 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1829897](https://chromium-review.googlesource.com/c/v8/v8/+/1829897)  
+Regress: [mjsunit/regress/regress-9781.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9781.js)  
+```javascript
+var proto = Object.getPrototypeOf(new Proxy(Object.create(null), {
+  getPrototypeOf(target) {
+    return Reflect.getPrototypeOf(target);
+  }
+} ));
+
+assertEquals(proto, null);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c721203^!)  
+[src/builtins/proxy-get-prototype-of.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/proxy-get-prototype-of.tq?cl=c721203)  
+[test/mjsunit/regress/regress-9781.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9781.js?cl=c721203)  
+  
+
+---   
+
+## **regress-1008414.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1008414)**  
+**[Commit: [parser] Prevent feedback slot merging for dynamic globals](https://chromium.googlesource.com/v8/v8/+/8de672c)**  
+  
+Date(Commit): Mon Sep 30 11:57:09 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1829270](https://chromium-review.googlesource.com/c/v8/v8/+/1829270)  
+Regress: [mjsunit/regress/regress-1008414.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1008414.js)  
+```javascript
+(function bar() {
+  (function foo(
+      x = new class B extends A(eval) { }
+    ) {
+        eval();
+    })();
+  eval();
+})()  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8de672c^!)  
+[src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=8de672c)  
+[test/mjsunit/regress/regress-1008414.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1008414.js?cl=8de672c)  
+  
+
+---   
+
 ## **regress-crbug-1003403.js (chromium issue)**  
    
 **[Issue: CHECK failure: Bytecode mismatch at offset 60 in interpreter.cc](https://crbug.com/1003403)**  
