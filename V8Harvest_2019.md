@@ -2,6 +2,41 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1006640.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1006640)**  
+**[Commit: GCExtension: Properly support exceptions](https://chromium.googlesource.com/v8/v8/+/38c9016)**  
+  
+Date(Commit): Wed Oct 02 12:14:02 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1835531](https://chromium-review.googlesource.com/c/v8/v8/+/1835531)  
+Regress: [mjsunit/regress/regress-1006640.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1006640.js)  
+```javascript
+function main() {
+  const v2 = [1337,1337,1337,1337,1337];
+  function v9() {
+      const v15 = {get:RegExp};
+      Object.defineProperty(v2,501,v15);
+      const v18 = RegExp();
+      const v19 = 1337 instanceof v18;
+  }
+  const v30 = {defineProperty:Function,get:v9,getPrototypeOf:Object};
+  const v32 = new Proxy(ArrayBuffer,v30);
+  const v34 = gc(v32);
+}
+
+assertThrows(() => main(), TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/38c9016^!)  
+[src/extensions/gc-extension.cc](https://cs.chromium.org/chromium/src/v8/src/extensions/gc-extension.cc?cl=38c9016)  
+[test/mjsunit/regress/regress-1002827.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1002827.js?cl=38c9016)  
+[test/mjsunit/regress/regress-1006640.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1006640.js?cl=38c9016)  
+  
+
+---   
+
 ## **regress-crbug-1008632.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1008632)**  
@@ -633,9 +668,9 @@ Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1796556](https:
 Regress: [mjsunit/regress/regress-1002827.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1002827.js)  
 ```javascript
 var PI = new Proxy(this, {
-    get() {
-        PI();
-    }
+  get() {
+      PI();
+  }
 });
 
 assertThrows(() => new gc(PI, {}), TypeError);  
@@ -3119,12 +3154,12 @@ f();
 
 ## **regress-crbug-977012.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/977012)**  
+**[Issue: DCHECK failure in descriptor_number < number_of_descriptors() in descriptor-array-inl.h](https://crbug.com/977012)**  
 **[Commit: [map] Update map in PrepareForDataProperty](https://chromium.googlesource.com/v8/v8/+/9c1363e)**  
   
 Date(Commit): Wed Jun 26 10:17:41 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>GC, Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-77, M-77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1674029](https://chromium-review.googlesource.com/c/v8/v8/+/1674029)  
 Regress: [mjsunit/regress/regress-crbug-977012.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-977012.js)  
 ```javascript
@@ -3151,12 +3186,12 @@ v1.x = 20.5;
 
 ## **regress-976627.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/976627)**  
+**[Issue: v8 crash on regexp length check](https://crbug.com/976627)**  
 **[Commit: [regexp] Allow JSRegExpResult allocations in large object space](https://chromium.googlesource.com/v8/v8/+/4c15693)**  
   
 Date(Commit): Wed Jun 26 07:50:33 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, reward-3000, Security_Impact-Stable, Arch-x86_64, Security_Severity-High, allpublic, reward-inprocess, Via-Wizard-Security, CVE_description-missing, M-75, merge-merged-7.6, Release-0-M76, CVE-2019-5853  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1674027](https://chromium-review.googlesource.com/c/v8/v8/+/1674027)  
 Regress: [mjsunit/regress/regress-976627.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-976627.js)  
 ```javascript
