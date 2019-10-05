@@ -2,6 +2,39 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1009728.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1009728)**  
+**[Commit: [parser] Delete unresolved variables created for labels](https://chromium.googlesource.com/v8/v8/+/5876122)**  
+  
+Date(Commit): Fri Oct 04 10:41:31 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1836258](https://chromium-review.googlesource.com/c/v8/v8/+/1836258)  
+Regress: [mjsunit/regress/regress-crbug-1009728.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1009728.js)  
+```javascript
+function foo(x) {
+  (function bar() {
+    {
+      x: 1
+    }
+    function f() {}
+  });
+}
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/5876122^!)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=5876122)  
+[src/parsing/expression-scope.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-scope.h?cl=5876122)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=5876122)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=5876122)  
+[src/parsing/parser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.h?cl=5876122)  
+...  
+  
+
+---   
+
 ## **regress-1006640.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1006640)**  
