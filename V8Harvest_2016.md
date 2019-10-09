@@ -4250,7 +4250,7 @@ builder.addFunction("regression_648079", kSig_s_v)
           kExprF32Min,
           kExprI64GtU,
           kExprBlock, 01,   // @107 i32
-            kExprTeeLocal,
+            kExprLocalTee,
             kExprBlock, 01,   // @111 i32
               kExprBlock, 01,   // @113 i32
                 kExprBlock, 01,   // @115 i32
@@ -4310,7 +4310,7 @@ builder.addFunction("regression_648079", kSig_s_v)
                                         kExprF64Sub,
                                         kExprI32Const,
                                         kExprUnreachable,
-                                        kExprGetLocal,
+                                        kExprLocalGet,
                                         kExprI64LoadMem32U,
                                         kExprUnreachable,
                                         kExprI64RemU,
@@ -4414,7 +4414,7 @@ builder.addFunction("regression_648079", kSig_s_v)
                                                                     kExprF64Sub,
                                                                     kExprI32Const,
                                                                     kExprUnreachable,
-                                                                    kExprGetLocal,
+                                                                    kExprLocalGet,
                                                                     kExprI64LoadMem32U,
                                                                     kExprUnreachable,
                                                                     kExprUnreachable,
@@ -4441,7 +4441,7 @@ builder.addFunction("regression_648079", kSig_s_v)
                                                                     kExprF64Sub,
                                                                     kExprI32Const,
                                                                     kExprUnreachable,
-                                                                    kExprGetLocal,
+                                                                    kExprLocalGet,
                                                                     kExprI64LoadMem32U,
                                                                     kExprF64Min,
                                                                     kExprF64Min,
@@ -4850,19 +4850,19 @@ try {
 function __f_16() {
     var __v_1 = new WasmModuleBuilder();
     __v_1.addFunction("grow_memory", kSig_i_i)
-        .addBody([kExprGetLocal, 0, kExprMemoryGrow])
+        .addBody([kExprLocalGet, 0, kExprMemoryGrow])
         .exportFunc();
     __v_1.addFunction("load", kSig_i_i)
-        .addBody([kExprGetLocal, 0, kExprI32LoadMem, 0, 0])
+        .addBody([kExprLocalGet, 0, kExprI32LoadMem, 0, 0])
         .exportFunc();
     __v_1.addFunction("store", kSig_i_ii)
-        .addBody([kExprGetLocal, 0, kExprGetLocal, 1, kExprI32StoreMem, 0, 0, kExprGetLocal, 1])
+        .addBody([kExprLocalGet, 0, kExprLocalGet, 1, kExprI32StoreMem, 0, 0, kExprLocalGet, 1])
         .exportFunc();
     __v_1.addFunction("load16", kSig_i_i)
-        .addBody([kExprGetLocal, 0, kExprI32LoadMem16U, 0, 0])
+        .addBody([kExprLocalGet, 0, kExprI32LoadMem16U, 0, 0])
         .exportFunc();
     __v_1.addFunction("store16", kSig_i_ii)
-        .addBody([kExprGetLocal, 0, kExprGetLocal, 1, kExprI32StoreMem16, 0, 0, kExprGetLocal, 1])
+        .addBody([kExprLocalGet, 0, kExprLocalGet, 1, kExprI32StoreMem16, 0, 0, kExprLocalGet, 1])
         .exportFunc();
     __v_1.__p_1551105852 = __v_1[getRandomProperty(__v_1, 1551105852)];
     __v_1.__defineGetter__(getRandomProperty(__v_1, 348910887), function() {
@@ -4871,10 +4871,10 @@ function __f_16() {
         return __v_1.__p_1551105852;
     });
     __v_1.addFunction("load8", kSig_i_i)
-        .addBody([kExprGetLocal, 0, kExprI32LoadMem8U, 0, 0])
+        .addBody([kExprLocalGet, 0, kExprI32LoadMem8U, 0, 0])
         .exportFunc();
     __v_1.addFunction("store8", kSig_i_ii)
-        .addBody([kExprGetLocal, 0, kExprGetLocal, 1, kExprI32StoreMem8, 0, 0, kExprGetLocal, 1])
+        .addBody([kExprLocalGet, 0, kExprLocalGet, 1, kExprI32StoreMem8, 0, 0, kExprLocalGet, 1])
         .exportFunc();
     return __v_1;
 }

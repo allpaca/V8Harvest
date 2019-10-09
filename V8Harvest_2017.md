@@ -376,8 +376,8 @@ const builder = new WasmModuleBuilder();
 builder.addFunction('test', kSig_i_i)
     .addBody([
       // body:
-      kExprGetLocal, 0,      // get_local 0
-      kExprGetLocal, 0,      // get_local 0
+      kExprLocalGet, 0,      // get_local 0
+      kExprLocalGet, 0,      // get_local 0
       kExprLoop, kWasmStmt,  // loop
       kExprBr, 0,            // br depth=0
       kExprEnd,              // end
@@ -448,7 +448,7 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 const builder = new WasmModuleBuilder();
 builder.addFunction('test', kSig_i_i)
     .addBody([
-      kExprGetLocal, 0x00,    // get_local 0
+      kExprLocalGet, 0x00,    // get_local 0
       kExprBlock, kWasmStmt,  // block
       kExprBr, 0x00,          // br depth=0
       kExprEnd,               // end
@@ -1721,7 +1721,7 @@ let func1_sig = makeSig(new Array(8).fill(kWasmI32), [kWasmI32]);
 let imp = builder1.addImport('q', 'gc', kSig_v_v);
 let func1 = builder1.addFunction('func1', func1_sig)
                 .addBody([
-                  kExprGetLocal, 0,  // -
+                  kExprLocalGet, 0,  // -
                   kExprCallFunction, imp
                 ])
                 .exportFunc();
@@ -1732,14 +1732,14 @@ let builder2 = new WasmModuleBuilder();
 let func1_imp = builder2.addImport('q', 'func1', func1_sig);
 let func2 = builder2.addFunction('func2', kSig_i_i)
                 .addBody([
-                  kExprGetLocal, 0,  // 1
-                  kExprGetLocal, 0,  // 2
-                  kExprGetLocal, 0,  // 3
-                  kExprGetLocal, 0,  // 4
-                  kExprGetLocal, 0,  // 5
-                  kExprGetLocal, 0,  // 6
-                  kExprGetLocal, 0,  // 7
-                  kExprGetLocal, 0,  // 8
+                  kExprLocalGet, 0,  // 1
+                  kExprLocalGet, 0,  // 2
+                  kExprLocalGet, 0,  // 3
+                  kExprLocalGet, 0,  // 4
+                  kExprLocalGet, 0,  // 5
+                  kExprLocalGet, 0,  // 6
+                  kExprLocalGet, 0,  // 7
+                  kExprLocalGet, 0,  // 8
                   kExprCallFunction, func1_imp
                 ])
                 .exportFunc();
@@ -3094,7 +3094,7 @@ function __f_15356(__v_50316, __v_50317) {
 }
   (function __f_15357() {
     let __v_50320 = __f_15356(__v_50350 = false, __v_50351 = kSig_i_i);
-      __v_50320.addFunction('plus_one', kSig_i_i).addBody([kExprGetLocal, 0, kExprCallFunction, __v_50315, kExprI32Const, kExprI32Add, kExprReturn]).exportFunc();
+      __v_50320.addFunction('plus_one', kSig_i_i).addBody([kExprLocalGet, 0, kExprCallFunction, __v_50315, kExprI32Const, kExprI32Add, kExprReturn]).exportFunc();
     let __v_50321 = __f_15356();
     let __v_50324 = __v_50321.instantiate();
     let __v_50325 = __v_50320.instantiate({
@@ -3147,7 +3147,7 @@ function __f_1() {
  __v_21 = __f_1(__v_18 = false, __v_25 = kSig_i_i);
  __v_21.addFunction('plus_one', kSig_i_i)
       .addBody([
-        kExprGetLocal, 0,                   // -
+        kExprLocalGet, 0,                   // -
         kExprCallFunction, __v_29      ])
       .exportFunc();
  __v_32 =
@@ -5206,7 +5206,7 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 
 let builder = new WasmModuleBuilder();
     builder.addFunction("main", kSig_i_i)
-      .addBody([kExprGetLocal, 0])
+      .addBody([kExprLocalGet, 0])
       .addLocals({s128_count: 1});
 
   assertFalse(WebAssembly.validate(builder.toBuffer()));  
@@ -6570,7 +6570,7 @@ builder.addImportedTable("x", "table", 1, 10000000);
 builder.addFunction("main", kSig_i_i)
   .addBody([
     kExprI32Const, 0,
-    kExprGetLocal, 0,
+    kExprLocalGet, 0,
     kExprCallIndirect, 0, kTableZero])
   .exportAs("main");
 let module = new WebAssembly.Module(builder.toBuffer());
@@ -7659,7 +7659,7 @@ builder0.setName('module_0');
 let sig_index = builder0.addType(kSig_i_v);
 builder0.addFunction('main', kSig_i_i)
     .addBody([
-      kExprGetLocal, 0,  // --
+      kExprLocalGet, 0,  // --
       kExprCallIndirect, sig_index, kTableZero
     ])  // --
     .exportAs('main');
@@ -12477,7 +12477,7 @@ let kExprS128LoadMem = 0xc0;
         kExprMemoryGrow, 0x00,
         kExprMemoryGrow, 0x00,
         kExprMemoryGrow, 0x00,
-        kExprSetLocal, 0x00,
+        kExprLocalSet, 0x00,
         kExprMemoryGrow, 0x00,
         kExprMemoryGrow, 0x00,
         kExprMemoryGrow, 0x00,
@@ -16208,7 +16208,7 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
   builder.addMemory(16, 32, false);
   builder.addFunction('test', kSig_i_i)
       .addBodyWithEnd([
-              kExprGetLocal, 0x00,
+              kExprLocalGet, 0x00,
               kExprI32Const, 0x29,
             kExprI32Shl,
             kExprI32Const, 0x18,

@@ -2,6 +2,113 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1007608.js (chromium issue)**  
+   
+**[Issue: DCHECK failure in CheckType(RootIndex::kException) in roots-inl.h](https://crbug.com/1007608)**  
+**[Commit: [wasm] Fix stack args in CWasmEntry stub](https://chromium.googlesource.com/v8/v8/+/f1e5488)**  
+  
+Date(Commit): Tue Oct 08 13:57:46 2019  
+Components: Blink>JavaScript, Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-77, M-77  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1847352](https://chromium-review.googlesource.com/c/v8/v8/+/1847352)  
+Regress: [mjsunit/regress/wasm/regress-crbug-1007608.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-crbug-1007608.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+let argc = 7;
+let builder = new WasmModuleBuilder();
+let types = new Array(argc).fill(kWasmI32);
+let sig = makeSig(types, []);
+let body = [];
+for (let i = 0; i < argc; ++i) {
+  body.push(kExprLocalGet, i);
+}
+body.push(kExprCallFunction, 0);
+builder.addImport('', 'f', sig);
+builder.addFunction("main", sig).addBody(body).exportAs('main');
+let instance = builder.instantiate({
+  '': {
+    'f': function() { throw "don't crash"; }
+  }
+});
+assertThrows(instance.exports.main);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f1e5488^!)  
+[src/execution/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/execution/isolate.cc?cl=f1e5488)  
+[test/mjsunit/regress/wasm/regress-crbug-1007608.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-crbug-1007608.js?cl=f1e5488)  
+  
+
+---   
+
+## **regress-crbug-1003732.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1003732)**  
+**[Commit: [runtime] Don't set sticky bit on empty_slow_element_dictionary](https://chromium.googlesource.com/v8/v8/+/90d161f)**  
+  
+Date(Commit): Tue Oct 08 11:49:25 2019  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1833686](https://chromium-review.googlesource.com/c/v8/v8/+/1833686)  
+Regress: [mjsunit/regress/regress-crbug-1003732.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1003732.js)  
+```javascript
+function f_1() {
+  var v = new Array();
+  v[0] = 10;
+  return v;
+}
+
+function test() {
+  var setter_called = false;
+  // Turn array to NumberDictionary
+  Array.prototype[123456789] = 42;
+  assertEquals(f_1().length, 1);
+
+  // Reset to empty_slow_dictionary
+  Array.prototype.length = 0;
+
+  // This should reset the prototype validity cell.
+  Array.prototype.__defineSetter__("0", function() {setter_called = true});
+  f_1();
+  assertEquals(setter_called, true);
+}
+test();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/90d161f^!)  
+[src/heap/setup-heap-internal.cc](https://cs.chromium.org/chromium/src/v8/src/heap/setup-heap-internal.cc?cl=90d161f)  
+[src/objects/js-objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/js-objects.cc?cl=90d161f)  
+[src/objects/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/objects.cc?cl=90d161f)  
+[test/mjsunit/regress/regress-crbug-1003732.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1003732.js?cl=90d161f)  
+  
+
+---   
+
+## **regress-crbug-1011596-module.mjs (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1011596)**  
+**[Commit: [parser] Fix preparsing of modules containing labels](https://chromium.googlesource.com/v8/v8/+/427a2fd)**  
+  
+Date(Commit): Mon Oct 07 10:18:14 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1844777](https://chromium-review.googlesource.com/c/v8/v8/+/1844777)  
+Regress: [mjsunit/regress/regress-crbug-1011596-module.mjs](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1011596-module.mjs), [mjsunit/regress/regress-crbug-1011596.mjs](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1011596.mjs)  
+```javascript
+export function foo() {
+  { label: 1 }
+  return 42;
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/427a2fd^!)  
+[src/parsing/preparser.h](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?cl=427a2fd)  
+[test/mjsunit/regress/regress-crbug-1011596-module.mjs](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1011596-module.mjs?cl=427a2fd)  
+[test/mjsunit/regress/regress-crbug-1011596.mjs](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1011596.mjs?cl=427a2fd)  
+  
+
+---   
+
 ## **regress-crbug-1009728.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1009728)**  
@@ -228,7 +335,7 @@ const NUM_CASES = 0xfffd;
   builder.addFunction('main', kSig_v_i)
       .addBody([].concat([
         kExprBlock, kWasmStmt,
-          kExprGetLocal, 0,
+          kExprLocalGet, 0,
           kExprBrTable], wasmSignedLeb(NUM_CASES),
           cases, [0,
         kExprEnd
@@ -3582,16 +3689,16 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
   builder.addFunction("foo", kSig_v_iii)
     .addBody([].concat([
       kExprBlock, kWasmStmt,
-        kExprGetLocal, 0x2,
+        kExprLocalGet, 0x2,
         kExprI32Const, 0x01,
         kExprI32And,
         // Generate a test branch (which has 32k limited reach).
         kExprIf, kWasmStmt,
-          kExprGetLocal, 0x0,
+          kExprLocalGet, 0x0,
           kExprI32Const, 0x01,
           kExprI32And,
           kExprBrIf, 0x1,
-          kExprGetLocal, 0x0,
+          kExprLocalGet, 0x0,
           // Emit a br_table that is long enough to make the test branch go out of range.
           ], br_table(0x1, 9000, 0x00), [
         kExprEnd,
@@ -5012,9 +5119,9 @@ const memory = new WebAssembly.Memory({initial: 1});
 let builder = new WasmModuleBuilder();
 builder.addImportedMemory("imports", "mem");
 builder.addFunction("fill", kSig_v_iii)
-       .addBody([kExprGetLocal, 0, // dst
-                 kExprGetLocal, 1, // value
-                 kExprGetLocal, 2, // size
+       .addBody([kExprLocalGet, 0, // dst
+                 kExprLocalGet, 1, // value
+                 kExprLocalGet, 2, // size
                  kNumericPrefix, kExprMemoryFill, 0]).exportAs("fill");
 let instance = builder.instantiate({imports: {mem: memory}});
 memory.grow(1);
@@ -5516,9 +5623,9 @@ const memory = new WebAssembly.Memory({initial: 1});
 let builder = new WasmModuleBuilder();
 builder.addImportedMemory("imports", "mem", 1);
 builder.addFunction("copy", kSig_v_iii)
-       .addBody([kExprGetLocal, 0, // dst
-                 kExprGetLocal, 1, // src
-                 kExprGetLocal, 2, // size
+       .addBody([kExprLocalGet, 0, // dst
+                 kExprLocalGet, 1, // src
+                 kExprLocalGet, 2, // size
                  kNumericPrefix, kExprMemoryCopy, 0, 0]).exportAs("copy");
 let instance = builder.instantiate({imports: {mem: memory}});
 memory.grow(1);
@@ -5648,12 +5755,12 @@ let kSig_r_i = makeSig([kWasmI32], [kWasmAnyRef]);
   builder.addFunction("merge", kSig_r_i)
       .addLocals({anyref_count: 1, anyfunc_count: 1})
       .addBody([
-        kExprGetLocal, 0,
+        kExprLocalGet, 0,
         kExprI32Eqz,
         kExprIf, kWasmAnyRef,
-          kExprGetLocal, 1,
+          kExprLocalGet, 1,
         kExprElse,
-          kExprGetLocal, 2,
+          kExprLocalGet, 2,
         kExprEnd,
       ]).exportFunc();
   let instance = builder.instantiate();
@@ -5667,12 +5774,12 @@ let kSig_r_i = makeSig([kWasmI32], [kWasmAnyRef]);
   builder.addFunction("merge", kSig_r_i)
       .addLocals({anyfunc_count: 1})
       .addBody([
-        kExprGetLocal, 0,
+        kExprLocalGet, 0,
         kExprI32Eqz,
         kExprIf, kWasmAnyRef,
           kExprRefNull,
         kExprElse,
-          kExprGetLocal, 1,
+          kExprLocalGet, 1,
         kExprEnd,
       ]).exportFunc();
   let instance = builder.instantiate();
@@ -7495,8 +7602,8 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
   binary.emit_header();
   binary.emit_bytes([kTypeSectionCode, 4, 1, kWasmFunctionTypeForm, 0, 0]);
   binary.emit_bytes([kFunctionSectionCode, 2, 1, 0]);
-  binary.emit_bytes([kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd]);
-  binary.emit_bytes([kCodeSectionCode, 6, 1, 4, 0, kExprGetLocal, 0, kExprEnd]);
+  binary.emit_bytes([kCodeSectionCode, 6, 1, 4, 0, kExprLocalGet, 0, kExprEnd]);
+  binary.emit_bytes([kCodeSectionCode, 6, 1, 4, 0, kExprLocalGet, 0, kExprEnd]);
   let buffer = binary.trunc_buffer();
   assertPromiseResult(WebAssembly.compile(buffer), assertUnreachable,
                       e => assertInstanceof(e, WebAssembly.CompileError));
@@ -8317,7 +8424,7 @@ const builder = new WasmModuleBuilder();
 const sig = builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
 builder.addFunction(undefined, sig)
   .addBody([
-    kExprGetLocal, 2,
+    kExprLocalGet, 2,
     kExprIf, kWasmStmt,
       kExprBlock, kWasmStmt
   ]);
@@ -8549,30 +8656,30 @@ builder.addFunction(undefined, sig)
       kExprEnd,
     kExprBlock, kWasmStmt,
       kExprI32Const, 0x00,
-      kExprSetLocal, 0x09,
+      kExprLocalSet, 0x09,
       kExprI32Const, 0x00,
       kExprIf, kWasmStmt,
         kExprBlock, kWasmStmt,
           kExprI32Const, 0x00,
-          kExprSetLocal, 0x0a,
+          kExprLocalSet, 0x0a,
           kExprBr, 0x00,
           kExprEnd,
         kExprBlock, kWasmStmt,
           kExprBlock, kWasmStmt,
-            kExprGetLocal, 0x00,
-            kExprSetLocal, 0x12,
+            kExprLocalGet, 0x00,
+            kExprLocalSet, 0x12,
             kExprBr, 0x00,
             kExprEnd,
-          kExprGetLocal, 0x16,
-          kExprSetLocal, 0x0f,
-          kExprGetLocal, 0x0f,
-          kExprSetLocal, 0x17,
-          kExprGetLocal, 0x0f,
-          kExprSetLocal, 0x18,
-          kExprGetLocal, 0x17,
-          kExprGetLocal, 0x18,
+          kExprLocalGet, 0x16,
+          kExprLocalSet, 0x0f,
+          kExprLocalGet, 0x0f,
+          kExprLocalSet, 0x17,
+          kExprLocalGet, 0x0f,
+          kExprLocalSet, 0x18,
+          kExprLocalGet, 0x17,
+          kExprLocalGet, 0x18,
           kExprI64ShrS,
-          kExprSetLocal, 0x19,
+          kExprLocalSet, 0x19,
           kExprUnreachable,
           kExprEnd,
         kExprUnreachable,
@@ -8612,10 +8719,10 @@ builder.addFunction(undefined, sig)
   .addLocals({i64_count: 1})
   .addBody([
     kExprLoop, kWasmI32,
-      kExprGetLocal, 1,
+      kExprLocalGet, 1,
       kExprI64Const, 1,
       kExprLoop, kWasmI32,
-        kExprGetLocal, 0,
+        kExprLocalGet, 0,
         kExprI32Const, 1,
         kExprI32Const, 1,
         kExprIf, kWasmI32,
@@ -8775,7 +8882,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
       .addLocals({except_count: 1})
       .addBody([
         kExprLoop, kWasmStmt,
-          kExprGetLocal, 0,
+          kExprLocalGet, 0,
           kExprBrOnExn  // Bytecode truncated here.
       ]).exportFunc();
   fun.body.pop();  // Pop implicitly added kExprEnd from body.
@@ -8952,23 +9059,23 @@ const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, kSig_i_i)
   .addLocals({i32_count: 5})
   .addBody([
-    kExprGetLocal, 0,    // --> 1
+    kExprLocalGet, 0,    // --> 1
     kExprIf, kWasmI32,
-      kExprGetLocal, 0,  // --> 1
+      kExprLocalGet, 0,  // --> 1
     kExprElse,
       kExprUnreachable,
       kExprEnd,
     kExprIf, kWasmI32,
-      kExprGetLocal, 0,  // --> 1
+      kExprLocalGet, 0,  // --> 1
     kExprElse,
       kExprUnreachable,
       kExprEnd,
     kExprIf, kWasmI32,
       kExprI32Const, 0,
-      kExprGetLocal, 0,
+      kExprLocalGet, 0,
       kExprI32Sub,       // --> -1
-      kExprGetLocal, 0,
-      kExprGetLocal, 0,
+      kExprLocalGet, 0,
+      kExprLocalGet, 0,
       kExprI32Sub,       // --> 0
       kExprI32Sub,       // --> -1
     kExprElse,
@@ -9011,7 +9118,7 @@ builder.addFunction(undefined, kSig_i_i)
     kExprElse,   // @15
       kExprI32Const, 1,
       kExprEnd,   // @18
-    kExprTeeLocal, 0,
+    kExprLocalTee, 0,
     kExprI32Popcnt
 ]);
 builder.instantiate();  
@@ -9128,8 +9235,8 @@ const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, kSig_v_v).addBody([]);
 builder.addFunction(undefined, kSig_i_i)
   .addBody([
-    kExprGetLocal, 0,
-    kExprGetLocal, 0,
+    kExprLocalGet, 0,
+    kExprLocalGet, 0,
     // Stack now contains two copies of the first param register.
     // Start a loop to create a merge point (values still in registers).
     kExprLoop, kWasmStmt,
@@ -9260,9 +9367,9 @@ const builder = new WasmModuleBuilder();
 builder.addFunction(undefined, kSig_v_v)
   .addLocals({i32_count: 1}).addLocals({f32_count: 1}).addLocals({f64_count: 1})
   .addBody([
-kExprGetLocal, 1,
-kExprGetLocal, 2,
-kExprGetLocal, 0,
+kExprLocalGet, 1,
+kExprLocalGet, 2,
+kExprLocalGet, 0,
 kExprIf, kWasmI32,
   kExprI32Const, 1,
 kExprElse,
@@ -9424,11 +9531,11 @@ kExprIf, kWasmI32,
 kExprElse,
   kExprI32Const, 1,
   kExprEnd,
-kExprTeeLocal, 0,
-kExprGetLocal, 0,
+kExprLocalTee, 0,
+kExprLocalGet, 0,
 kExprLoop, kWasmStmt,
   kExprI64Const, 0x80, 0x80, 0x80, 0x70,
-  kExprSetLocal, 0x01,
+  kExprLocalSet, 0x01,
   kExprI32Const, 0x00,
   kExprIf, kWasmI32,
     kExprI32Const, 0x00,
