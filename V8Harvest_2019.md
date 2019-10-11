@@ -2,6 +2,68 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-v8-9825.mjs (v8 issue)**  
+   
+**[Issue: Stress opt fails for await in 'next' position of for loop.](https://crbug.com/v8/9825)**  
+**[Commit: [async] Fix bug with await in for 'next' position.](https://chromium.googlesource.com/v8/v8/+/f796f86)**  
+  
+Date(Commit): Thu Oct 10 18:06:07 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1849197](https://chromium-review.googlesource.com/c/v8/v8/+/1849197)  
+Regress: [mjsunit/regress/regress-v8-9825.mjs](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-9825.mjs)  
+```javascript
+async function foo() {
+  for (;;await[]) {
+    break;
+  }
+}
+
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f796f86^!)  
+[src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=f796f86)  
+[test/mjsunit/regress/regress-v8-9825.mjs](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-9825.mjs?cl=f796f86)  
+[test/test262/test262.status](https://cs.chromium.org/chromium/src/v8/test/test262/test262.status?cl=f796f86)  
+  
+
+---   
+
+## **regress-1011980.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1011980)**  
+**[Commit: [ptr-compr] Remove ChangeTaggedSignedToCompressedSigned optimization](https://chromium.googlesource.com/v8/v8/+/fabfa41)**  
+  
+Date(Commit): Wed Oct 09 09:58:01 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1847363](https://chromium-review.googlesource.com/c/v8/v8/+/1847363)  
+Regress: [mjsunit/regress/regress-1011980.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1011980.js)  
+```javascript
+let hex_b = 0x0b;
+let hex_d = 0x0d;
+let hex_20 = 0x20;
+let hex_52 = 0x52;
+let hex_fe = 0xfe;
+
+function f(a) {
+  let unused = [ a / 8, ...[ ...[ ...[], a / 8, ...[ 7, hex_fe, a, 0, 0, hex_20,
+    6, hex_52, hex_d, 0, hex_b], 0, hex_b], hex_b]];
+}
+
+%PrepareFunctionForOptimization(f)
+f(64)
+f(64);
+%OptimizeFunctionOnNextCall(f);
+f(64);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/fabfa41^!)  
+[src/compiler/simplified-operator-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator-reducer.cc?cl=fabfa41)  
+[test/mjsunit/regress/regress-1011980.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1011980.js?cl=fabfa41)  
+  
+
+---   
+
 ## **regress-crbug-1007608.js (chromium issue)**  
    
 **[Issue: DCHECK failure in CheckType(RootIndex::kException) in roots-inl.h](https://crbug.com/1007608)**  
@@ -3059,12 +3121,12 @@ g(a);
 
 ## **regress-crbug-980422.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/980422)**  
+**[Issue: DCHECK failure in bytecode->IsBytecodeEqual( *outer_function_job->compilation_info()->bytecode_arr](https://crbug.com/980422)**  
 **[Commit: [parsing] Improve elision of hole checks for default parameters](https://chromium.googlesource.com/v8/v8/+/e8d8659)**  
   
 Date(Commit): Thu Jul 04 13:10:29 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Reproducible, Security_Impact-None, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Merge-Rejected-75, Merge-Rejected-76, Target-75, M-75  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1683267](https://chromium-review.googlesource.com/c/v8/v8/+/1683267)  
 Regress: [mjsunit/regress/regress-crbug-980422.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-980422.js)  
 ```javascript
@@ -3102,12 +3164,12 @@ try {
 
 ## **regress-crbug-979023.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/979023)**  
+**[Issue: DCHECK failure in number_of_own_descriptors > 0 in map-inl.h](https://crbug.com/979023)**  
 **[Commit: [ic] Fix accessor set after map update transitioning to dict](https://chromium.googlesource.com/v8/v8/+/f690334)**  
   
 Date(Commit): Wed Jul 03 10:00:17 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-77, M-77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1687671](https://chromium-review.googlesource.com/c/v8/v8/+/1687671)  
 Regress: [mjsunit/regress/regress-crbug-979023.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-979023.js)  
 ```javascript
