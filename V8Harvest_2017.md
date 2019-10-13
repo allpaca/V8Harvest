@@ -12462,9 +12462,6 @@ Regress: [mjsunit/regress/wasm/regress-702460.js](https://chromium.googlesource.
 ```javascript
 load("test/mjsunit/wasm/wasm-module-builder.js");
 
-let kSig_s_v = makeSig([], [kWasmS128]);
-let kExprS128LoadMem = 0xc0;
-
 (function() {
 "use asm";
   var builder = new WasmModuleBuilder();

@@ -2,6 +2,42 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1012301.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1012301)**  
+**[Commit: [runtime] Fix CloneObject for all in-place repr changes](https://chromium.googlesource.com/v8/v8/+/947a124)**  
+  
+Date(Commit): Fri Oct 11 16:09:45 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1856005](https://chromium-review.googlesource.com/c/v8/v8/+/1856005)  
+Regress: [mjsunit/regress/regress-crbug-1012301.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1012301.js)  
+```javascript
+function f(o) {
+  // The spread after the CloneObject IC shouldn't crash when trying to write a
+  // double value to a field created by CloneObject.
+  return {...o, ...{a:1.4}};
+}
+
+%EnsureFeedbackVectorForFunction(f);
+
+var o = {};
+o.a = 1.5;
+f(o);
+f(o);
+f(o);
+o.a = undefined;
+f(o);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/947a124^!)  
+[src/objects/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/objects.cc?cl=947a124)  
+[src/objects/property-details.h](https://cs.chromium.org/chromium/src/v8/src/objects/property-details.h?cl=947a124)  
+[test/mjsunit/regress/regress-crbug-1012301.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1012301.js?cl=947a124)  
+  
+
+---   
+
 ## **regress-v8-9825.mjs (v8 issue)**  
    
 **[Issue: Stress opt fails for await in 'next' position of for loop.](https://crbug.com/v8/9825)**  
