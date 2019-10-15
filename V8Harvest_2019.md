@@ -2,6 +2,56 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-9832.js (v8 issue)**  
+   
+**[Issue: EH program runs successfully on interpreter but not on turbofan](https://crbug.com/v8/9832)**  
+**[Commit: [wasm] Fix bogus uses of {WasmGraphBuilder::Buffer}.](https://chromium.googlesource.com/v8/v8/+/47f3a53)**  
+  
+Date(Commit): Mon Oct 14 09:32:37 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1856006](https://chromium-review.googlesource.com/c/v8/v8/+/1856006)  
+Regress: [mjsunit/regress/regress-9832.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9832.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+(function TestRegress9832() {
+  let builder = new WasmModuleBuilder();
+  let f = builder.addFunction("f", kSig_i_i)
+      .addBody([
+        kExprLocalGet, 0,
+        kExprLocalGet, 0,
+        kExprI32Add,
+      ]).exportFunc();
+  builder.addFunction("main", kSig_i_i)
+      .addLocals({except_count: 1})
+      .addBody([
+        kExprTry, kWasmStmt,
+          kExprLocalGet, 0,
+          kExprCallFunction, f.index,
+          kExprCallFunction, f.index,
+          kExprLocalSet, 0,
+        kExprCatch,
+          kExprDrop,
+          kExprLocalGet, 0,
+          kExprCallFunction, f.index,
+          kExprLocalSet, 0,
+          kExprEnd,
+        kExprLocalGet, 0,
+      ]).exportFunc();
+  let instance = builder.instantiate();
+  assertEquals(92, instance.exports.main(23));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/47f3a53^!)  
+[src/compiler/wasm-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?cl=47f3a53)  
+[src/compiler/wasm-compiler.h](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.h?cl=47f3a53)  
+[src/wasm/graph-builder-interface.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/graph-builder-interface.cc?cl=47f3a53)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=47f3a53)  
+[test/mjsunit/regress/regress-9832.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9832.js?cl=47f3a53)  
+  
+
+---   
+
 ## **regress-crbug-1012301.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1012301)**  
