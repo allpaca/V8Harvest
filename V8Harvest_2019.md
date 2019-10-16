@@ -3143,12 +3143,12 @@ Regress: [mjsunit/regress/regress-crbug-980168.js](https://chromium.googlesource
 
 ## **regress-980891.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/980891)**  
+**[Issue: Security: CSA_ASSERT failed: IsRegularHeapObjectSize(size_in_bytes) ](https://crbug.com/980891)**  
 **[Commit: [regexp] Handle large named capture groups object](https://chromium.googlesource.com/v8/v8/+/1b06c23)**  
   
 Date(Commit): Tue Jul 09 09:28:46 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Regexp  
+Labels: reward-0, Security_Impact-Stable, Security_Severity-Medium, ReleaseBlock-Stable, allpublic, ClusterFuzz-Verified, CVE_description-missing, M-77, Release-0-M77, CVE-2019-13670  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1691907](https://chromium-review.googlesource.com/c/v8/v8/+/1691907)  
 Regress: [mjsunit/regress/regress-980891.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-980891.js)  
 ```javascript
