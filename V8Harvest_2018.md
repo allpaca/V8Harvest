@@ -1507,7 +1507,7 @@ class MyRegExp {
   exec() { return null; }
 }
 
-var r = /c/;
+var r = /c/g;
 
 assertEquals(["ab", ""], "abc".split(r));
 assertEquals([["c"]], [..."c".matchAll(r)]);
@@ -1517,13 +1517,13 @@ r.constructor =  { [Symbol.species] : MyRegExp };
 assertEquals(["abc"], "abc".split(r));
 assertEquals([], [..."c".matchAll(r)]);
 
-assertEquals(["ab", ""], "abc".split(/c/));
-assertEquals([["c"]], [..."c".matchAll(/c/)]);
+assertEquals(["ab", ""], "abc".split(/c/g));
+assertEquals([["c"]], [..."c".matchAll(/c/g)]);
 
 RegExp.prototype.constructor =  { [Symbol.species] : MyRegExp };
 
-assertEquals(["abc"], "abc".split(/c/));
-assertEquals([], [..."c".matchAll(/c/)]);  
+assertEquals(["abc"], "abc".split(/c/g));
+assertEquals([], [..."c".matchAll(/c/g)]);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/3ca32e9^!)  
@@ -2672,7 +2672,7 @@ Labels: Reproducible, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuz
 Code Review: [https://chromium-review.googlesource.com/c/1304315](https://chromium-review.googlesource.com/c/1304315)  
 Regress: [mjsunit/regress/regress-crbug-899464.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-899464.js)  
 ```javascript
-''.matchAll(/./u);  
+''.matchAll(/./ug);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/6397149^!)  

@@ -2,6 +2,76 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1014798.js (chromium issue)**  
+   
+**[Issue: v8_wasm_compile_fuzzer: Fatal error in ](https://crbug.com/1014798)**  
+**[Commit: [Liftoff] Fix stack slot initialization on arm and arm64](https://chromium.googlesource.com/v8/v8/+/7d09b27)**  
+  
+Date(Commit): Wed Oct 16 14:07:36 2019  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Clusterfuzz, Test-Predator-Auto-CC, Test-Predator-Auto-Components  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1864933](https://chromium-review.googlesource.com/c/v8/v8/+/1864933)  
+Regress: [mjsunit/regress/wasm/regress-1014798.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1014798.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addFunction('main', kSig_i_iii)
+    .addLocals({f32_count: 4})
+    .addLocals({i64_count: 1})
+    .addLocals({f32_count: 2})
+    .addBodyWithEnd([
+      kExprI64Const, 0,
+      kExprLocalGet, 3,
+      kExprI64SConvertF32,
+      kExprI64Ne,
+      kExprEnd,  // @17
+    ]).exportFunc();
+const instance = builder.instantiate();
+assertEquals(0, instance.exports.main(1, 2, 3));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7d09b27^!)  
+[src/wasm/baseline/arm/liftoff-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/arm/liftoff-assembler-arm.h?cl=7d09b27)  
+[src/wasm/baseline/arm64/liftoff-assembler-arm64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/arm64/liftoff-assembler-arm64.h?cl=7d09b27)  
+[test/mjsunit/regress/wasm/regress-1014798.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1014798.js?cl=7d09b27)  
+  
+
+---   
+
+## **regress-1013920.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1013920)**  
+**[Commit: [asmjs] Disallow AsmJs instantiation from a SharedArrayBuffer.](https://chromium.googlesource.com/v8/v8/+/9de61eb)**  
+  
+Date(Commit): Tue Oct 15 12:45:29 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1862563](https://chromium-review.googlesource.com/c/v8/v8/+/1862563)  
+Regress: [mjsunit/asm/regress-1013920.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-1013920.js)  
+```javascript
+function asm(stdlib, foreign, heap) {
+  "use asm";
+  var heap32 = new stdlib.Uint32Array(heap);
+  function f() { return 0; }
+  return {f : f};
+}
+
+var heap = Reflect.construct(
+    SharedArrayBuffer,
+    [1024 * 1024],
+    ArrayBuffer.prototype.constructor);
+
+asm(this, {}, heap);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9de61eb^!)  
+[src/asmjs/asm-js.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-js.cc?cl=9de61eb)  
+[test/mjsunit/asm/regress-1013920.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/asm/regress-1013920.js?cl=9de61eb)  
+  
+
+---   
+
 ## **regress-9832.js (v8 issue)**  
    
 **[Issue: EH program runs successfully on interpreter but not on turbofan](https://crbug.com/v8/9832)**  
@@ -52,7 +122,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 
 ---   
 
-## **regress-crbug-1012301.js (chromium issue)**  
+## **regress-crbug-1012301-1.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1012301)**  
 **[Commit: [runtime] Fix CloneObject for all in-place repr changes](https://chromium.googlesource.com/v8/v8/+/947a124)**  
@@ -61,23 +131,30 @@ Date(Commit): Fri Oct 11 16:09:45 2019
 Components: None  
 Labels: None  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1856005](https://chromium-review.googlesource.com/c/v8/v8/+/1856005)  
-Regress: [mjsunit/regress/regress-crbug-1012301.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1012301.js)  
+Regress: [mjsunit/regress/regress-crbug-1012301-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1012301-1.js), [mjsunit/regress/regress-crbug-1012301.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1012301.js)  
 ```javascript
-function f(o) {
-  // The spread after the CloneObject IC shouldn't crash when trying to write a
-  // double value to a field created by CloneObject.
-  return {...o, ...{a:1.4}};
+function get() {
+  // Update the descriptor array now shared between the Foo map and the
+  // (Foo + c) map.
+  o1.c = 10;
+  // Change the type of the field on the new descriptor array in-place to
+  // Tagged. If Object.assign has a cached descriptor array, then it will point
+  // to the old Foo map's descriptors, which still have .b as Double.
+  o2.b = "string";
+  return 1;
 }
 
-%EnsureFeedbackVectorForFunction(f);
+function Foo() {
+  Object.defineProperty(this, "a", {get, enumerable: true});
+  // Initialise Foo.b to have Double representation.
+  this.b = 1.5;
+}
 
-var o = {};
-o.a = 1.5;
-f(o);
-f(o);
-f(o);
-o.a = undefined;
-f(o);  
+var o1 = new Foo();
+var o2 = new Foo();
+var target = {};
+Object.assign(target, o2);
+assertEquals(target.b, "string");  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/947a124^!)  
@@ -259,12 +336,12 @@ export function foo() {
 
 ## **regress-crbug-1009728.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1009728)**  
+**[Issue: CHECK failure: Bytecode mismatch at offset 0 in interpreter.cc](https://crbug.com/1009728)**  
 **[Commit: [parser] Delete unresolved variables created for labels](https://chromium.googlesource.com/v8/v8/+/5876122)**  
   
 Date(Commit): Fri Oct 04 10:41:31 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Interpreter  
+Labels: Hotlist-Merge-Review, Reproducible, Stability-Memory-AddressSanitizer, External-Fuzzer-Contribution, Merge-Merged, reward-NA, ReleaseBlock-Stable, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-78, M-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1836258](https://chromium-review.googlesource.com/c/v8/v8/+/1836258)  
 Regress: [mjsunit/regress/regress-crbug-1009728.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1009728.js)  
 ```javascript
@@ -3079,12 +3156,12 @@ const v17 = v7.findIndex(v8);
 
 ## **regress-crbug-980168.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/980168)**  
+**[Issue: DCHECK failure in !new_map->has_frozen_or_sealed_elements() in js-objects.cc](https://crbug.com/980168)**  
 **[Commit: Remove unnecessary DCHECK](https://chromium.googlesource.com/v8/v8/+/bf1ab27)**  
   
 Date(Commit): Tue Jul 09 15:41:13 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Head, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1687280](https://chromium-review.googlesource.com/c/v8/v8/+/1687280)  
 Regress: [mjsunit/regress/regress-crbug-980168.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-980168.js)  
 ```javascript
