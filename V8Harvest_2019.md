@@ -3123,12 +3123,12 @@ assertThrows(fun2, TypeError, /wasm function signature contains illegal type/);
 
 ## **regress-crbug-980292.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/980292)**  
+**[Issue: Crash in Builtins_GetPropertyWithReceiver](https://crbug.com/980292)**  
 **[Commit: TryPrototypeChainLookup: Bailout for Smi receiver](https://chromium.googlesource.com/v8/v8/+/bebca70)**  
   
 Date(Commit): Tue Jul 09 20:12:24 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Medium, Security_Impact-Head, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-77, M-77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1687283](https://chromium-review.googlesource.com/c/v8/v8/+/1687283)  
 Regress: [mjsunit/regress/regress-crbug-980292.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-980292.js)  
 ```javascript
