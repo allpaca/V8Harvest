@@ -2,6 +2,27 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1015567.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1015567)**  
+**[Commit: [parser] Accumulate even if we already thought we had an error](https://chromium.googlesource.com/v8/v8/+/94d8fcb)**  
+  
+Date(Commit): Fri Oct 18 14:30:05 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1869198](https://chromium-review.googlesource.com/c/v8/v8/+/1869198)  
+Regress: [mjsunit/regress/regress-crbug-1015567.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1015567.js)  
+```javascript
+assertThrows('a ( { b() {} } [ [ 1 , c.d = 1 ] = 1.1 ] )', SyntaxError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/94d8fcb^!)  
+[src/parsing/expression-scope.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-scope.h?cl=94d8fcb)  
+[test/mjsunit/regress/regress-crbug-1015567.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1015567.js?cl=94d8fcb)  
+  
+
+---   
+
 ## **regress-1014798.js (chromium issue)**  
    
 **[Issue: v8_wasm_compile_fuzzer: Fatal error in ](https://crbug.com/1014798)**  
