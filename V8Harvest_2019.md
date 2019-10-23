@@ -2,6 +2,169 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1016515.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1016515)**  
+**[Commit: [wasm] Initialize new jump table correct for lazy compilation](https://chromium.googlesource.com/v8/v8/+/369f1ff)**  
+  
+Date(Commit): Tue Oct 22 12:44:22 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1873687](https://chromium-review.googlesource.com/c/v8/v8/+/1873687)  
+Regress: [mjsunit/regress/wasm/regress-1016515.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1016515.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+var builder = new WasmModuleBuilder();
+var func = builder.addFunction('func', kSig_i_v).addBody([kExprI32Const, 1]);
+var body = [];
+for (let i = 0; i < 200; ++i) {
+    body.push(kExprCallFunction, func.index);
+}
+for (let i = 1; i < 200; ++i) {
+    body.push(kExprI32Add);
+}
+builder.addFunction('test', kSig_i_v).addBody(body).exportFunc();
+var instance = builder.instantiate();
+instance.exports.test();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/369f1ff^!)  
+[src/wasm/wasm-code-manager.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-code-manager.cc?cl=369f1ff)  
+[test/mjsunit/regress/wasm/regress-1016515.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1016515.js?cl=369f1ff)  
+  
+
+---   
+
+## **regress-crbug-1015372.js (chromium issue)**  
+   
+**[Issue: Security: Bytecode mismatch at offset 1](https://crbug.com/1015372)**  
+**[Commit: [parser] Push variables of non-arrow parenthesized expression to parent](https://chromium.googlesource.com/v8/v8/+/7ff8299)**  
+  
+Date(Commit): Tue Oct 22 10:40:05 2019  
+Components: Blink>JavaScript, Blink>JavaScript>Interpreter  
+Labels: ClusterFuzz-Verified, Test-Predator-Auto-Components  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1872389](https://chromium-review.googlesource.com/c/v8/v8/+/1872389)  
+Regress: [mjsunit/regress/regress-crbug-1015372.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1015372.js)  
+```javascript
+(function() {
+  function opt(flag) {
+    function inline() {
+      (function () {
+        flag()
+      })();
+      (flag) = 1;
+    }
+    inline();
+  }
+  assertThrows(opt, TypeError);
+})();
+
+(function() {
+  function opt(flag){
+      function inline() {
+          var f = (function() {
+              return flag;
+          });
+          function g(x) {
+            (flag) = x;
+          }
+
+          return [f,g];
+      }
+      return inline();
+  }
+  [f, g] = opt(1);
+
+  %PrepareFunctionForOptimization(f);
+  assertEquals(1, f());
+  assertEquals(1, f());
+  %OptimizeFunctionOnNextCall(f);
+  assertEquals(1, f());
+
+  g(2);
+
+  assertEquals(2, f());
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7ff8299^!)  
+[src/parsing/expression-scope.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-scope.h?cl=7ff8299)  
+[test/mjsunit/regress/regress-crbug-1015372.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1015372.js?cl=7ff8299)  
+  
+
+---   
+
+## **regress-crbug-1016056.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1016056)**  
+**[Commit: Reland "Reland "[runtime] Remove extension slots from context objects""](https://chromium.googlesource.com/v8/v8/+/392a121)**  
+  
+Date(Commit): Tue Oct 22 09:12:53 2019  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1863191](https://chromium-review.googlesource.com/c/v8/v8/+/1863191)  
+Regress: [mjsunit/regress/regress-crbug-1016056.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1016056.js)  
+```javascript
+function f(args) {
+  eval();
+  return arguments[0];
+}
+%PrepareFunctionForOptimization(f);
+function g() {
+  return f(1);
+}
+%PrepareFunctionForOptimization(g);
+assertEquals(1, g());
+%OptimizeFunctionOnNextCall(g);
+assertEquals(1, g());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/392a121^!)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=392a121)  
+[src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=392a121)  
+[src/builtins/base.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/base.tq?cl=392a121)  
+[src/builtins/builtins-arguments-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-arguments-gen.cc?cl=392a121)  
+[src/builtins/builtins-async-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-async-gen.cc?cl=392a121)  
+...  
+  
+
+---   
+
+## **regress-crbug-1015945.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1015945)**  
+**[Commit: [async stacks] Fix corner case for async generators.](https://chromium.googlesource.com/v8/v8/+/84cd9a8)**  
+  
+Date(Commit): Mon Oct 21 07:19:58 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1870230](https://chromium-review.googlesource.com/c/v8/v8/+/1870230)  
+Regress: [mjsunit/regress/regress-crbug-1015945.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1015945.js)  
+```javascript
+async function* foo() {
+  await 1;
+  throw new Error();
+}
+
+(async () => {
+  for await (const x of foo()) { }
+})();
+
+async_hooks.createHook({
+  promiseResolve() {
+    throw new Error();
+  }
+}).enable()  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/84cd9a8^!)  
+[src/execution/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/execution/isolate.cc?cl=84cd9a8)  
+[test/mjsunit/regress/regress-crbug-1015945.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1015945.js?cl=84cd9a8)  
+  
+
+---   
+
 ## **regress-crbug-1015567.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1015567)**  
