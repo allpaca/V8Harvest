@@ -2,6 +2,164 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1018611.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1018611)**  
+**[Commit: [parser] Add early return for declaration error in arrow head](https://chromium.googlesource.com/v8/v8/+/6d97ac5)**  
+  
+Date(Commit): Mon Oct 28 14:09:11 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1879906](https://chromium-review.googlesource.com/c/v8/v8/+/1879906)  
+Regress: [mjsunit/regress/regress-crbug-1018611.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1018611.js)  
+```javascript
+assertThrows("(l-(c))=>", SyntaxError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6d97ac5^!)  
+[src/parsing/expression-scope.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-scope.h?cl=6d97ac5)  
+[test/mjsunit/regress/regress-crbug-1018611.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1018611.js?cl=6d97ac5)  
+  
+
+---   
+
+## **regress-bound-functions.js (other issue)**  
+   
+**[Commit: [turbofan] Fix memory corruption with VirtualBoundFunctions](https://chromium.googlesource.com/v8/v8/+/48fb778)**  
+  
+Date(Commit): Mon Oct 28 13:20:16 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1879904](https://chromium-review.googlesource.com/c/v8/v8/+/1879904)  
+Regress: [mjsunit/compiler/regress-bound-functions.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-bound-functions.js)  
+```javascript
+function foo() {
+  return Array.prototype.sort.bind([]);
+}
+
+function bar() {
+  return foo();
+}
+
+%PrepareFunctionForOptimization(foo);
+%PrepareFunctionForOptimization(bar);
+bar();
+bar();
+%OptimizeFunctionOnNextCall(bar);
+bar();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/48fb778^!)  
+[src/compiler/serializer-for-background-compilation.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/serializer-for-background-compilation.cc?cl=48fb778)  
+[test/mjsunit/compiler/regress-bound-functions.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-bound-functions.js?cl=48fb778)  
+  
+  
+---   
+
+## **regress-9894.js (v8 issue)**  
+   
+**[Issue:  V8: missing has_sealed_elements() has_frozen_elements() in Map::GetInitialElements()](https://crbug.com/v8/9894)**  
+**[Commit: Handle nonextensible obj in Map::GetInitalElements](https://chromium.googlesource.com/v8/v8/+/65079f1)**  
+  
+Date(Commit): Mon Oct 28 08:00:48 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1876994](https://chromium-review.googlesource.com/c/v8/v8/+/1876994)  
+Regress: [mjsunit/regress/regress-9894.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9894.js)  
+```javascript
+(function frozen() {
+  const ary = [1.1]
+  Object.defineProperty(ary, 0, {get:run_it} );
+
+  // v8::internal::Runtime_ArrayIncludes_Slow.
+  ary.includes();
+
+  function run_it(el) {
+    ary.length = 0;
+    ary[0] = 1.1;
+    Object.freeze(ary);
+    return 2.2;
+  }
+})();
+
+(function seal() {
+  const ary = [1.1]
+  Object.defineProperty(ary, 0, {get:run_it} );
+
+  // v8::internal::Runtime_ArrayIncludes_Slow.
+  ary.includes();
+
+  function run_it(el) {
+    ary.length = 0;
+    ary[0] = 1.1;
+    Object.seal(ary);
+    return 2.2;
+  }
+})();
+
+(function preventExtensions() {
+  const ary = [1.1]
+  Object.defineProperty(ary, 0, {get:run_it} );
+
+  // v8::internal::Runtime_ArrayIncludes_Slow.
+  ary.includes();
+
+  function run_it(el) {
+    ary.length = 0;
+    ary[0] = 1.1;
+    Object.preventExtensions(ary);
+    return 2.2;
+  }
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/65079f1^!)  
+[src/objects/map-inl.h](https://cs.chromium.org/chromium/src/v8/src/objects/map-inl.h?cl=65079f1)  
+[test/mjsunit/regress/regress-9894.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9894.js?cl=65079f1)  
+  
+
+---   
+
+## **regress-1010272.js (chromium issue)**  
+   
+**[Issue: AwSnap! with 16 or more WASM threads](https://crbug.com/1010272)**  
+**[Commit: [wasm] Fix incorrect check for growing shared WebAssembly.memory](https://chromium.googlesource.com/v8/v8/+/2599d3c)**  
+  
+Date(Commit): Wed Oct 23 18:14:50 2019  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Needs-Triage-M79  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1869077](https://chromium-review.googlesource.com/c/v8/v8/+/1869077)  
+Regress: [mjsunit/regress/wasm/regress-1010272.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1010272.js)  
+```javascript
+const kNumWorkers = 100;
+const kNumMessages = 50;
+
+function AllocMemory(initial, maximum = initial) {
+  return new WebAssembly.Memory({initial : initial, maximum : maximum, shared : true});
+}
+
+(function RunTest() {
+  let worker = [];
+  for (let w = 0; w < kNumWorkers; w++) {
+    worker[w] = new Worker(
+        `onmessage =
+        function(msg) {
+          msg.memory.grow(1);
+        }`, {type : 'string'});
+  }
+
+  for (let i = 0; i < kNumMessages; i++) {
+    let memory = AllocMemory(1, 128);
+    for (let w = 0; w < kNumWorkers; w++) {
+      worker[w].postMessage({memory : memory});
+    }
+  }
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2599d3c^!)  
+[src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=2599d3c)  
+[test/mjsunit/regress/wasm/regress-1010272.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1010272.js?cl=2599d3c)  
+  
+
+---   
+
 ## **regress-1016515.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1016515)**  
