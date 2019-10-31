@@ -2,6 +2,62 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-v8-9534.js (v8 issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/v8/9534)**  
+**[Commit: Reland "[compiler] Optionally apply an offset to stack checks"](https://chromium.googlesource.com/v8/v8/+/b875f46)**  
+  
+Date(Commit): Wed Oct 30 10:23:05 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1762521](https://chromium-review.googlesource.com/c/v8/v8/+/1762521)  
+Regress: [mjsunit/regress/regress-v8-9534.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-9534.js)  
+```javascript
+let i = 0;
+function f() {
+  i++;
+  if (i > 10) {
+    %PrepareFunctionForOptimization(f);
+    %OptimizeFunctionOnNextCall(f);
+  }
+
+  new Promise(f);
+  return f.x;
+}
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b875f46^!)  
+[BUILD.gn](https://cs.chromium.org/chromium/src/v8/BUILD.gn?cl=b875f46)  
+[src/compiler/backend/arm/code-generator-arm.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/arm/code-generator-arm.cc?cl=b875f46)  
+[src/compiler/backend/arm/instruction-selector-arm.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/arm/instruction-selector-arm.cc?cl=b875f46)  
+[src/compiler/backend/arm64/code-generator-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/arm64/code-generator-arm64.cc?cl=b875f46)  
+[src/compiler/backend/arm64/instruction-selector-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/arm64/instruction-selector-arm64.cc?cl=b875f46)  
+...  
+  
+
+---   
+
+## **regress-1018592.js (chromium issue)**  
+   
+**[Issue: Debug check failed: 1 <= capture_ix && capture_ix <= capture_count.](https://crbug.com/1018592)**  
+**[Commit: [regexp] Fix invalid DCHECK in named capture logic](https://chromium.googlesource.com/v8/v8/+/5d5a659)**  
+  
+Date(Commit): Wed Oct 30 07:09:24 2019  
+Components: Blink>JavaScript, Blink>JavaScript>Regexp  
+Labels: M-78  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1886810](https://chromium-review.googlesource.com/c/v8/v8/+/1886810)  
+Regress: [mjsunit/regress/regress-1018592.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1018592.js)  
+```javascript
+const re = /()()()()(?<aaaab>)1/;
+"111a1a".replace(re, () => {}) ;  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/5d5a659^!)  
+[src/runtime/runtime-regexp.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-regexp.cc?cl=5d5a659)  
+[test/mjsunit/regress/regress-1018592.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1018592.js?cl=5d5a659)  
+  
+
+---   
+
 ## **regress-crbug-1018611.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1018611)**  
