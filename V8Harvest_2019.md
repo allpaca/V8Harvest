@@ -2,6 +2,36 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1018871.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1018871)**  
+**[Commit: [runtime] Handle when JSProxy::HasProperty returns Nothing](https://chromium.googlesource.com/v8/v8/+/9cba7a8)**  
+  
+Date(Commit): Thu Oct 31 09:57:06 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1886919](https://chromium-review.googlesource.com/c/v8/v8/+/1886919)  
+Regress: [mjsunit/regress/regress-1018871.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1018871.js)  
+```javascript
+var v_this = this;
+function f() {
+  var obj = {y: 0};
+  var proxy = new Proxy(obj, {
+    has() { y; },
+  });
+  Object.setPrototypeOf(v_this, proxy);
+  x;
+}
+assertThrows(f, RangeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9cba7a8^!)  
+[src/objects/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/objects.cc?cl=9cba7a8)  
+[test/mjsunit/regress/regress-1018871.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1018871.js?cl=9cba7a8)  
+  
+
+---   
+
 ## **regress-v8-9534.js (v8 issue)**  
    
 **[Issue: Permission denied](https://crbug.com/v8/9534)**  
