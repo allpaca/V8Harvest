@@ -2,6 +2,48 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1016450.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1016450)**  
+**[Commit: Regression test for word64-lowered BigInt accumulator](https://chromium.googlesource.com/v8/v8/+/ab9cd1a)**  
+  
+Date(Commit): Mon Nov 04 14:04:22 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1873692](https://chromium-review.googlesource.com/c/v8/v8/+/1873692)  
+Regress: [mjsunit/regress/regress-1016450.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1016450.js)  
+```javascript
+let g = 0;
+
+function f(x) {
+  let y = BigInt.asUintN(64, 15n);
+  // Introduce a side effect to force the construction of a FrameState that
+  // captures the value of y.
+  g = 42;
+  try {
+    return x + y;
+  } catch(_) {
+    return y;
+  }
+}
+
+
+%PrepareFunctionForOptimization(f);
+assertEquals(16n, f(1n));
+assertEquals(17n, f(2n));
+%OptimizeFunctionOnNextCall(f);
+assertEquals(16n, f(1n));
+assertOptimized(f);
+assertEquals(15n, f(0));
+assertUnoptimized(f);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ab9cd1a^!)  
+[test/mjsunit/regress/regress-1016450.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1016450.js?cl=ab9cd1a)  
+  
+
+---   
+
 ## **regress-1018871.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1018871)**  
@@ -3027,12 +3069,12 @@ Regress: [mjsunit/regress/regress-bind-deoptimize.js](https://chromium.googlesou
 
 ## **regress-crbug-988304.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/988304)**  
+**[Issue: DCHECK failure in bytecode->IsBytecodeEqual( *outer_function_job->compilation_info()->bytecode_arr](https://crbug.com/988304)**  
 **[Commit: [parsing] Fix bytecode mismatch for arrow funcs](https://chromium.googlesource.com/v8/v8/+/4189da7)**  
   
 Date(Commit): Mon Jul 29 16:30:10 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Reproducible, Security_Impact-None, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Merge-Rejected-76, Target-75, M-75  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1724384](https://chromium-review.googlesource.com/c/v8/v8/+/1724384)  
 Regress: [mjsunit/regress/regress-crbug-988304.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-988304.js)  
 ```javascript
