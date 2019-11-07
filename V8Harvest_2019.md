@@ -2958,12 +2958,12 @@ test(0);
 
 ## **regress-988973.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/988973)**  
+**[Issue: v8_regexp_parser_fuzzer: DCHECK failure in loop_node_->EatsAtLeast(true) >= continue_node_->EatsAtLeast(true) in regexp-com](https://crbug.com/988973)**  
 **[Commit: Reland "[regexp] Better quick checks on loop entry nodes"](https://chromium.googlesource.com/v8/v8/+/bea0ffd)**  
   
 Date(Commit): Wed Jul 31 14:34:20 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Head, Stability-Libfuzzer, Security_Severity-High, allpublic, Clusterfuzz  
 Code Review: [https://crrev.com/c/v8/v8/+/1702125](https://crrev.com/c/v8/v8/+/1702125)  
 Regress: [mjsunit/regress/regress-988973.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-988973.js)  
 ```javascript
@@ -2983,12 +2983,12 @@ Regress: [mjsunit/regress/regress-988973.js](https://chromium.googlesource.com/v
 
 ## **regress-crbug-986187.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/986187)**  
+**[Issue: Security: memory corruption in v8 with dcheck failure](https://crbug.com/986187)**  
 **[Commit: [ic] Remove broken DCHECK and clean up naming](https://chromium.googlesource.com/v8/v8/+/19810c4)**  
   
 Date(Commit): Tue Jul 30 16:22:08 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Runtime, Blink>JavaScript  
+Labels: Security_Impact-None, allpublic, ClusterFuzz-Verified, Test-Predator-Auto-Components, Target-75, M-75  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1724215](https://chromium-review.googlesource.com/c/v8/v8/+/1724215)  
 Regress: [mjsunit/regress/regress-crbug-986187.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-986187.js)  
 ```javascript
