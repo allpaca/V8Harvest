@@ -2,6 +2,101 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1021712.js (chromium issue)**  
+   
+**[Issue: CHECK failure: arguments.size() >= 1 in serializer-for-background-compilation.cc](https://crbug.com/1021712)**  
+**[Commit: Fixes argument CHECKs in serializer that are too strict](https://chromium.googlesource.com/v8/v8/+/0fc1f3a)**  
+  
+Date(Commit): Thu Nov 07 16:51:16 2019  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, M-80, Clusterfuzz, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1903442](https://chromium-review.googlesource.com/c/v8/v8/+/1903442)  
+Regress: [mjsunit/regress/regress-1021712.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1021712.js)  
+```javascript
+function f() {
+  Promise.prototype.then.call()
+}
+
+
+%PrepareFunctionForOptimization(f);
+try {
+  f();
+} catch (e) {}
+%OptimizeFunctionOnNextCall(f);
+assertThrows(() => f(), TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0fc1f3a^!)  
+[src/compiler/serializer-for-background-compilation.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/serializer-for-background-compilation.cc?cl=0fc1f3a)  
+[test/mjsunit/regress/regress-1021712.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1021712.js?cl=0fc1f3a)  
+  
+
+---   
+
+## **regress-1016703.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1016703)**  
+**[Commit: [heap]: Make addition of detached contexts robust for GC](https://chromium.googlesource.com/v8/v8/+/b33a850)**  
+  
+Date(Commit): Wed Nov 06 17:59:21 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1895573](https://chromium-review.googlesource.com/c/v8/v8/+/1895573)  
+Regress: [mjsunit/regress/regress-1016703.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1016703.js)  
+```javascript
+let realms = [];
+for (let i = 0; i < 4; i++) {
+  realms.push(Realm.createAllowCrossRealmAccess());
+}
+
+for (let i = 0; i < 4; i++) {
+  Realm.detachGlobal(realms[i]);
+  gc();
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b33a850^!)  
+[src/execution/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/execution/isolate.cc?cl=b33a850)  
+[src/objects/fixed-array.h](https://cs.chromium.org/chromium/src/v8/src/objects/fixed-array.h?cl=b33a850)  
+[src/objects/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/objects.cc?cl=b33a850)  
+[test/mjsunit/regress/regress-1016703.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1016703.js?cl=b33a850)  
+  
+
+---   
+
+## **regress-crbug-1020983.js (chromium issue)**  
+   
+**[Issue: Security: unreachable code in v8::internal::compiler::BytecodeGraphBuilder::TryGetScopeInfo](https://crbug.com/1020983)**  
+**[Commit: [compiler] Fallback to slow path for any unexpected opcode in TryGetScopeInfo](https://chromium.googlesource.com/v8/v8/+/8534e52)**  
+  
+Date(Commit): Wed Nov 06 09:31:24 2019  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: ClusterFuzz-Verified  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1899989](https://chromium-review.googlesource.com/c/v8/v8/+/1899989)  
+Regress: [mjsunit/regress/regress-crbug-1020983.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1020983.js)  
+```javascript
+function opt() {
+    for (let i = 0; i < 5000; i++) {
+        try {
+                    try {
+                        throw 1
+                    } finally {
+                        E
+                    }
+        } catch {}
+    }
+eval()
+}
+    opt()  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8534e52^!)  
+[src/compiler/bytecode-graph-builder.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/bytecode-graph-builder.cc?cl=8534e52)  
+[test/mjsunit/regress/regress-crbug-1020983.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1020983.js?cl=8534e52)  
+  
+
+---   
+
 ## **regress-1016450.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1016450)**  
