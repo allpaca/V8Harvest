@@ -3450,12 +3450,12 @@ assertEquals(o.constructor[Symbol.species], o.concat([1,2,3]).constructor);
 
 ## **regress-crbug-984344.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/984344)**  
+**[Issue: V8 Invalid Read in v8::internal::HeapObject::IsHeapNumber](https://crbug.com/984344)**  
 **[Commit: [Compile] Ensure we don't reuse a feedback vector with a different layout than expected.](https://chromium.googlesource.com/v8/v8/+/b06a134)**  
   
 Date(Commit): Thu Jul 18 12:33:52 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, reward-2000, Merge-Merged, Security_Impact-Stable, Security_Severity-Medium, Arch-x86_64, allpublic, Via-Wizard-Security, reward-unpaid, CVE_description-missing, Target-76, M-76, Release-1-M76, CVE-2019-5867  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1708474](https://chromium-review.googlesource.com/c/v8/v8/+/1708474)  
 Regress: [mjsunit/regress/regress-crbug-984344.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-984344.js)  
 ```javascript

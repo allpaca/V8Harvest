@@ -1184,12 +1184,12 @@ assertThrows("function f() { function g() { (); ", SyntaxError);
 
 ## **regress-crbug-906043.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/906043)**  
+**[Issue: Security: Tianfu CUP RCE](https://crbug.com/906043)**  
 **[Commit: [runtime] Reduce spread/apply call max arguments](https://chromium.googlesource.com/v8/v8/+/4e3a17d)**  
   
 Date(Commit): Thu Nov 22 12:08:17 2018  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Security_Impact-Stable, Security_Severity-High, allpublic, M-72, CVE_description-submitted, M-71, Target-71, Target-72, merge-merged-7.1, merge-merged-7.2, Release-0-M72, CVE-2019-5782  
 Code Review: [https://chromium-review.googlesource.com/c/1346115](https://chromium-review.googlesource.com/c/1346115)  
 Regress: [mjsunit/regress/regress-crbug-906043.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-906043.js)  
 ```javascript
