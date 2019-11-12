@@ -2,6 +2,50 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1020031.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1020031)**  
+**[Commit: [interpreter] Move function-entry stack check to start of bytecode array](https://chromium.googlesource.com/v8/v8/+/cebfde6)**  
+  
+Date(Commit): Mon Nov 11 15:00:09 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1903440](https://chromium-review.googlesource.com/c/v8/v8/+/1903440)  
+Regress: [mjsunit/regress/regress-1020031.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1020031.js)  
+```javascript
+function* f() {
+  try {
+    g();
+  } catch {}
+}
+
+function g() {
+  try {
+    for (var i of f());
+  } catch {
+    gc();
+  }
+}
+
+%PrepareFunctionForOptimization(g);
+g();
+g();
+g();
+%OptimizeFunctionOnNextCall(g);
+g();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/cebfde6^!)  
+[src/interpreter/bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/interpreter/bytecode-generator.cc?cl=cebfde6)  
+[test/cctest/interpreter/bytecode_expectations/AsyncGenerators.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/AsyncGenerators.golden?cl=cebfde6)  
+[test/cctest/interpreter/bytecode_expectations/AsyncModules.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/AsyncModules.golden?cl=cebfde6)  
+[test/cctest/interpreter/bytecode_expectations/BreakableBlocks.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/BreakableBlocks.golden?cl=cebfde6)  
+[test/cctest/interpreter/bytecode_expectations/CallLookupSlot.golden](https://cs.chromium.org/chromium/src/v8/test/cctest/interpreter/bytecode_expectations/CallLookupSlot.golden?cl=cebfde6)  
+...  
+  
+
+---   
+
 ## **regress-1021712.js (chromium issue)**  
    
 **[Issue: CHECK failure: arguments.size() >= 1 in serializer-for-background-compilation.cc](https://crbug.com/1021712)**  
