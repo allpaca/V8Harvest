@@ -2,6 +2,47 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1017159.js (chromium issue)**  
+   
+**[Issue: Fatal error in ](https://crbug.com/1017159)**  
+**[Commit: [Turbofan]: Fix error in serializer try ranges with generators](https://chromium.googlesource.com/v8/v8/+/d5dd2e6)**  
+  
+Date(Commit): Wed Nov 13 09:28:17 2019  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Stability-Memory-MemorySanitizer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1879247](https://chromium-review.googlesource.com/c/v8/v8/+/1879247)  
+Regress: [mjsunit/regress/regress-crbug-1017159.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1017159.js)  
+```javascript
+function* foo() {
+  __v_1 = foo.x;   // LdaNamedProperty
+  for (;;) {
+    try {
+      yield;
+      try {
+        __v_0 == "object";
+        __v_1[__getRandomProperty()]();
+      } catch(e) {
+        print();
+      }
+    } catch(e) {
+      "Caught: " + e;
+    }
+    break;
+  }
+};
+
+%PrepareFunctionForOptimization(foo);
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d5dd2e6^!)  
+[src/compiler/serializer-for-background-compilation.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/serializer-for-background-compilation.cc?cl=d5dd2e6)  
+[test/mjsunit/regress/regress-crbug-1017159.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1017159.js?cl=d5dd2e6)  
+  
+
+---   
+
 ## **regress-1020031.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1020031)**  
