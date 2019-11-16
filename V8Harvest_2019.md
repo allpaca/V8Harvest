@@ -2,6 +2,39 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1024099.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1024099)**  
+**[Commit: [builtins] Fix sorting of huge shared TypedArrays](https://chromium.googlesource.com/v8/v8/+/bc9e467)**  
+  
+Date(Commit): Thu Nov 14 21:03:08 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1914564](https://chromium-review.googlesource.com/c/v8/v8/+/1914564)  
+Regress: [mjsunit/regress/regress-crbug-1024099.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1024099.js)  
+```javascript
+let len = 0x20000;
+let ar = new Int32Array(new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT * len));
+ar[7] = -13;
+ar[0x1673] = -42;
+ar[0x1f875] = -153;
+
+ar.sort();
+
+assertEquals(ar[0], -153);
+assertEquals(ar[1], -42);
+assertEquals(ar[2], -13);
+assertEquals(ar[3], 0);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/bc9e467^!)  
+[src/builtins/typed-array-sort.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/typed-array-sort.tq?cl=bc9e467)  
+[src/runtime/runtime-typedarray.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-typedarray.cc?cl=bc9e467)  
+[test/mjsunit/regress/regress-crbug-1024099.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1024099.js?cl=bc9e467)  
+  
+
+---   
+
 ## **regress-crbug-1017159.js (chromium issue)**  
    
 **[Issue: Fatal error in ](https://crbug.com/1017159)**  
