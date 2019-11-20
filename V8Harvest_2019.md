@@ -2,6 +2,152 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1024758.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1024758)**  
+**[Commit: [compiler] Fix RegExpPrototypeTest reduction](https://chromium.googlesource.com/v8/v8/+/aecd843)**  
+  
+Date(Commit): Tue Nov 19 14:21:12 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1924353](https://chromium-review.googlesource.com/c/v8/v8/+/1924353)  
+Regress: [mjsunit/regress/regress-crbug-1024758.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1024758.js)  
+```javascript
+function f() {
+  return r.test("abc");
+}
+
+function to_dict(o) {
+  r.a = 42;
+  r.b = 42;
+  delete r.a;
+}
+
+function to_fast(o) {
+  const obj = {};
+  const obj2 = {};
+  delete o.a;
+  obj.__proto__ = o;
+  obj[0] = 1;
+  obj.__proto__ = obj2;
+  delete obj[0];
+  return o;
+}
+
+const r = /./;
+to_dict(r);
+to_fast(r);
+
+%PrepareFunctionForOptimization(f);
+assertTrue(f());
+%OptimizeFunctionOnNextCall(f);
+assertTrue(f());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/aecd843^!)  
+[src/compiler/heap-refs.h](https://cs.chromium.org/chromium/src/v8/src/compiler/heap-refs.h?cl=aecd843)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=aecd843)  
+[src/compiler/map-inference.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/map-inference.cc?cl=aecd843)  
+[src/compiler/map-inference.h](https://cs.chromium.org/chromium/src/v8/src/compiler/map-inference.h?cl=aecd843)  
+[test/mjsunit/regress/regress-crbug-1024758.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1024758.js?cl=aecd843)  
+  
+
+---   
+
+## **regress-9945-1.js (v8 issue)**  
+   
+**[Issue: 50x regression in some dart2js benchmarks between 7.5.149 and 7.8.279](https://crbug.com/v8/9945)**  
+**[Commit: [turbofan] Fix a deopt loop](https://chromium.googlesource.com/v8/v8/+/52e07ff)**  
+  
+Date(Commit): Tue Nov 19 08:18:37 2019  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1906208](https://chromium-review.googlesource.com/c/v8/v8/+/1906208)  
+Regress: [mjsunit/compiler/regress-9945-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-9945-1.js), [mjsunit/compiler/regress-9945-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-9945-2.js)  
+```javascript
+function foo(x) { bar(x) }
+function bar(x) { x.p }
+
+%PrepareFunctionForOptimization(foo);
+%PrepareFunctionForOptimization(bar);
+
+var dummy = [];
+dummy.p = 0;
+dummy.q = 0;
+
+var a = [];
+a.p = 42;
+
+var b = [];
+b.p = 42;
+
+foo(a);
+foo(a);
+
+%OptimizeFunctionOnNextCall(bar, "concurrent");
+foo(a);
+%PrepareFunctionForOptimization(bar);
+
+a[0] = {};
+foo(a);
+assertUnoptimized(bar, "no sync");
+
+%UnblockConcurrentRecompilation();
+assertOptimized(bar);
+
+%OptimizeFunctionOnNextCall(foo);
+foo(a);
+assertOptimized(foo);
+%PrepareFunctionForOptimization(foo);
+assertOptimized(bar);
+
+foo(b);
+assertUnoptimized(foo);
+assertOptimized(bar);
+
+%OptimizeFunctionOnNextCall(foo);
+foo(b);
+assertOptimized(foo);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/52e07ff^!)  
+[src/compiler/checkpoint-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/checkpoint-elimination.cc?cl=52e07ff)  
+[test/mjsunit/compiler/number-comparison-truncations.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/number-comparison-truncations.js?cl=52e07ff)  
+[test/mjsunit/compiler/regress-9945-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-9945-1.js?cl=52e07ff)  
+[test/mjsunit/compiler/regress-9945-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-9945-2.js?cl=52e07ff)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=52e07ff)  
+  
+
+---   
+
+## **regress-crbug-1022695.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1022695)**  
+**[Commit: [builtins] Put all JS linkage builtins in CODE_SPACE](https://chromium.googlesource.com/v8/v8/+/3f254fd)**  
+  
+Date(Commit): Mon Nov 18 11:09:32 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1916600](https://chromium-review.googlesource.com/c/v8/v8/+/1916600)  
+Regress: [mjsunit/regress/regress-crbug-1022695.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1022695.js)  
+```javascript
+assertThrows(() => {
+  (function (foo, foreign) {
+      'use asm';
+      var f = foreign.toString;
+      function get() {
+          f();
+      }
+      return get;
+  })(this, new Error())();
+});  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/3f254fd^!)  
+[src/builtins/builtins.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins.cc?cl=3f254fd)  
+[test/mjsunit/regress/regress-crbug-1022695.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1022695.js?cl=3f254fd)  
+  
+
+---   
+
 ## **regress-crbug-1024099.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1024099)**  
