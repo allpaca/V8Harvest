@@ -2909,12 +2909,12 @@ Realm.shared = this;
 
 ## **regress-989914.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/989914)**  
+**[Issue: DCHECK failure in bytecode->IsBytecodeEqual( *outer_function_job->compilation_info()->bytecode_arr](https://crbug.com/989914)**  
 **[Commit: [Parser] Don't mark receiver as MaybeAssigned since it can't be assigned.](https://chromium.googlesource.com/v8/v8/+/8c4609f)**  
   
 Date(Commit): Wed Aug 14 11:15:11 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, allpublic, Clusterfuzz, ClusterFuzz-Verified, Target-77, M-77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1752851](https://chromium-review.googlesource.com/c/v8/v8/+/1752851)  
 Regress: [mjsunit/regress/regress-989914.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-989914.js)  
 ```javascript
@@ -2935,12 +2935,12 @@ function foo() {
 
 ## **regress-992389.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/992389)**  
+**[Issue: Crash in v8::internal::IrregexpInterpreter::Result v8::internal::RawMatch<unsigned char>](https://crbug.com/992389)**  
 **[Commit: [regexp] Fix dirty read in regexp interpreter.](https://chromium.googlesource.com/v8/v8/+/52c7565)**  
   
 Date(Commit): Tue Aug 13 16:08:18 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Runtime, Blink>JavaScript  
+Labels: Reproducible, Security_Severity-Medium, Security_Impact-Head, Stability-Memory-MemorySanitizer, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-78, M-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1751342](https://chromium-review.googlesource.com/c/v8/v8/+/1751342)  
 Regress: [mjsunit/regress/regress-992389.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-992389.js)  
 ```javascript
