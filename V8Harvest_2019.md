@@ -2,6 +2,39 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1025468.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1025468)**  
+**[Commit: Ensure root maps do not have slack in descriptor array](https://chromium.googlesource.com/v8/v8/+/31fab14)**  
+  
+Date(Commit): Thu Nov 21 16:05:03 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1924363](https://chromium-review.googlesource.com/c/v8/v8/+/1924363)  
+Regress: [mjsunit/regress-crbug-1025468.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-crbug-1025468.js)  
+```javascript
+function f() {
+  class H {
+    ['h']() {}
+  }
+  let h = H.prototype.h;
+  h[1024] = {};
+  h["XXX"] = {};
+  h[-1] = {};
+}
+f();
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/31fab14^!)  
+[BUILD.gn](https://cs.chromium.org/chromium/src/v8/BUILD.gn?cl=31fab14)  
+[src/diagnostics/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/diagnostics/objects-debug.cc?cl=31fab14)  
+[src/heap/factory.cc](https://cs.chromium.org/chromium/src/v8/src/heap/factory.cc?cl=31fab14)  
+[test/mjsunit/regress-crbug-1025468.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-crbug-1025468.js?cl=31fab14)  
+  
+
+---   
+
 ## **regress-crbug-1024758.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1024758)**  
@@ -2876,12 +2909,12 @@ h();
 
 ## **regress-crbug-990582.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/990582)**  
+**[Issue: DCHECK failure in maybe_table.IsSourcePositionTableWithFrameCache() in code.cc](https://crbug.com/990582)**  
 **[Commit: Fix crash Code::DropStackFrameCacheCommon](https://chromium.googlesource.com/v8/v8/+/cfe6cea)**  
   
 Date(Commit): Wed Aug 14 15:03:27 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Target-77, M-77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1752856](https://chromium-review.googlesource.com/c/v8/v8/+/1752856)  
 Regress: [mjsunit/regress/regress-crbug-990582.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-990582.js)  
 ```javascript
