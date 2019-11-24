@@ -2,6 +2,90 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1026680.js (chromium issue)**  
+   
+**[Issue: v8_wasm_compile_fuzzer: Null-dereference READ in unsigned long v8::internal::Simulator::MemoryRead<unsigned long, unsigned long>](https://crbug.com/1026680)**  
+**[Commit: [liftoff] Add a regression test for msan failures](https://chromium.googlesource.com/v8/v8/+/ca16eb1)**  
+  
+Date(Commit): Fri Nov 22 22:21:49 2019  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Clusterfuzz, ClusterFuzz-Verified  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1930604](https://chromium-review.googlesource.com/c/v8/v8/+/1930604)  
+Regress: [mjsunit/regress/wasm/regress-1026680.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1026680.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+(function() {
+  const builder = new WasmModuleBuilder();
+  builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+  builder.addType(makeSig([], []));
+  // Generate function 1 (out of 2).
+  builder.addFunction(undefined, 0 /* sig */)
+    .addBodyWithEnd([
+kExprCallFunction, 0x01, // function #1: v_v
+kExprI32Const, 0x00,
+kExprEnd,   // @5
+            ]);
+  // Generate function 2 (out of 2).
+  builder.addFunction(undefined, 1 /* sig */)
+    .addLocals({f32_count: 1}).addLocals({i32_count: 13})
+    .addBodyWithEnd([
+kExprEnd,   // @5
+            ]);
+  builder.addExport('main', 0);
+  const instance = builder.instantiate();
+  print(instance.exports.main(1, 2, 3));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ca16eb1^!)  
+[test/mjsunit/regress/wasm/regress-1026680.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1026680.js?cl=ca16eb1)  
+  
+
+---   
+
+## **regress-crbug-1024282.js (chromium issue)**  
+   
+**[Issue: CHECK failure: !v8::internal::FLAG_enable_slow_asserts || (!feedback_vector_.equals(other.feedb](https://crbug.com/1024282)**  
+**[Commit: [TurboFan] Fix bug in FunctionBlueprint::operator==()](https://chromium.googlesource.com/v8/v8/+/03324e6)**  
+  
+Date(Commit): Fri Nov 22 21:14:59 2019  
+Components: Blink>JavaScript  
+Labels: Reproducible, M-80, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-80  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1926151](https://chromium-review.googlesource.com/c/v8/v8/+/1926151)  
+Regress: [mjsunit/regress/regress-crbug-1024282.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1024282.js)  
+```javascript
+assertThrows = function assertThrows(code) {};
+%PrepareFunctionForOptimization(assertThrows);
+
+function foo(val) {
+  var arr = [];
+  function bar() {
+    function m1() {}
+    %PrepareFunctionForOptimization(m1);
+    assertThrows(m1);
+    0 in arr;
+  }
+  %PrepareFunctionForOptimization(bar);
+  bar();  // virtual context distance of 1 from native_context
+  gc();
+  bar(true);
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/03324e6^!)  
+[src/compiler/serializer-for-background-compilation.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/serializer-for-background-compilation.cc?cl=03324e6)  
+[test/mjsunit/regress/regress-crbug-1024282.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1024282.js?cl=03324e6)  
+  
+
+---   
+
 ## **regress-crbug-1025468.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1025468)**  
@@ -2852,12 +2936,12 @@ assertEquals(v24, 0);
 
 ## **regress-crbug-980183.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/980183)**  
+**[Issue: Unknown signal in Builtins_ArrayPrototypeFindIndex](https://crbug.com/980183)**  
 **[Commit: [turbofan] Track field owner maps during load elimination](https://chromium.googlesource.com/v8/v8/+/f85826e)**  
   
 Date(Commit): Fri Aug 16 16:08:45 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-None, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-76  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1751346](https://chromium-review.googlesource.com/c/v8/v8/+/1751346)  
 Regress: [mjsunit/regress/regress-crbug-980183.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-980183.js)  
 ```javascript
