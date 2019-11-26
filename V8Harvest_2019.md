@@ -2,6 +2,126 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1027595.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1027595)**  
+**[Commit: [asm.js] Fix load type of {Float32Array} and {Float64Array}.](https://chromium.googlesource.com/v8/v8/+/a3a0f80)**  
+  
+Date(Commit): Mon Nov 25 14:47:08 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1932374](https://chromium-review.googlesource.com/c/v8/v8/+/1932374)  
+Regress: [mjsunit/asm/regress-1027595.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-1027595.js)  
+```javascript
+(function TestF32StoreConvertsF64ToF32() {
+  function Module(stdlib, foreign, heap) {
+    'use asm';
+    var f32 = new stdlib.Float32Array(heap);
+    function f(a) {
+      a = +a;
+      f32[0] = f32[1] = a;
+    }
+    return f;
+  }
+  var buffer = new ArrayBuffer(0x10000);
+  var f = Module(this, {}, buffer);
+  assertDoesNotThrow(() => f(23.42));
+  var view = new Float32Array(buffer);
+  assertEquals(Math.fround(23.42), view[0]);
+  assertEquals(Math.fround(23.42), view[1]);
+  assertTrue(%IsAsmWasmCode(Module));
+})();
+
+(function TestF64StoreConvertsF32ToF64() {
+  function Module(stdlib, foreign, heap) {
+    'use asm';
+    var fround = stdlib.Math.fround;
+    var f64 = new stdlib.Float64Array(heap);
+    function f(a) {
+      a = fround(a);
+      f64[0] = f64[1] = a;
+    }
+    return f;
+  }
+  var buffer = new ArrayBuffer(0x10000);
+  var f = Module(this, {}, buffer);
+  assertDoesNotThrow(() => f(23.42));
+  var view = new Float64Array(buffer);
+  assertEquals(Math.fround(23.42), view[0]);
+  assertEquals(Math.fround(23.42), view[1]);
+  assertTrue(%IsAsmWasmCode(Module));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a3a0f80^!)  
+[src/asmjs/asm-parser.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-parser.cc?cl=a3a0f80)  
+[test/mjsunit/asm/regress-1027595.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/asm/regress-1027595.js?cl=a3a0f80)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=a3a0f80)  
+  
+
+---   
+
+## **regress-1024936.js (chromium issue)**  
+   
+**[Issue: DCHECK failure in is_simple_api_call() in call-optimization.cc](https://crbug.com/1024936)**  
+**[Commit: [turbofan] Guard call to ProcessReceiverMapForApiCall](https://chromium.googlesource.com/v8/v8/+/3d0f645)**  
+  
+Date(Commit): Mon Nov 25 14:23:28 2019  
+Components: Blink>JavaScript  
+Labels: Clusterfuzz, Unreproducible, v8-ptr-compr  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1930905](https://chromium-review.googlesource.com/c/v8/v8/+/1930905)  
+Regress: [mjsunit/compiler/regress-1024936.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1024936.js)  
+```javascript
+Object.defineProperty(Number.prototype, "v", { get: constructor });
+function get_v(num) {
+  return num.v;
+}
+
+let n = new Number(42);
+%PrepareFunctionForOptimization(get_v);
+get_v(n);
+get_v(n);
+%OptimizeFunctionOnNextCall(get_v);
+get_v(n);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/3d0f645^!)  
+[src/compiler/serializer-for-background-compilation.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/serializer-for-background-compilation.cc?cl=3d0f645)  
+[test/mjsunit/compiler/regress-1024936.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1024936.js?cl=3d0f645)  
+  
+
+---   
+
+## **regress-crbug-1026603.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1026603)**  
+**[Commit: [parser] Fix variable caching for conflict lookup](https://chromium.googlesource.com/v8/v8/+/026a0c2)**  
+  
+Date(Commit): Mon Nov 25 10:27:37 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1928861](https://chromium-review.googlesource.com/c/v8/v8/+/1928861)  
+Regress: [mjsunit/regress/regress-crbug-1026603.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1026603.js)  
+```javascript
+(function f() {
+  with ({}) {
+    // Make sure that variable conflict resulution and variable lookup through
+    // deserialized scopes use the same cache scope. Declare a variable which
+    // checks for (and fails to find) a conflict, allocating the f variable as
+    // it goes, then access f, which also looks up f.
+    eval("var f; f;");
+  }
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/026a0c2^!)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=026a0c2)  
+[src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=026a0c2)  
+[test/mjsunit/regress/regress-crbug-1026603.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1026603.js?cl=026a0c2)  
+  
+
+---   
+
 ## **regress-1026680.js (chromium issue)**  
    
 **[Issue: v8_wasm_compile_fuzzer: Null-dereference READ in unsigned long v8::internal::Simulator::MemoryRead<unsigned long, unsigned long>](https://crbug.com/1026680)**  
