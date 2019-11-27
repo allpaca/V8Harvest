@@ -2944,12 +2944,12 @@ re.test("π");
 
 ## **regress-crbug-994719.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/994719)**  
+**[Issue: DCHECK failure in bytecode->IsBytecodeEqual( *outer_function_job->compilation_info()->bytecode_arr](https://crbug.com/994719)**  
 **[Commit: [parser] Fix bytecode mismatch for this](https://chromium.googlesource.com/v8/v8/+/dd54736)**  
   
 Date(Commit): Tue Aug 20 15:21:24 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1762025](https://chromium-review.googlesource.com/c/v8/v8/+/1762025)  
 Regress: [mjsunit/regress/regress-crbug-994719.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-994719.js)  
 ```javascript
