@@ -2,6 +2,103 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1027025.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1027025)**  
+**[Commit: Modify the DCheck to avoid failures.](https://chromium.googlesource.com/v8/v8/+/2174ba9)**  
+  
+Date(Commit): Tue Nov 26 18:42:51 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1929408](https://chromium-review.googlesource.com/c/v8/v8/+/1929408)  
+Regress: [mjsunit/regress/regress-crbug-1027025.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1027025.js)  
+```javascript
+function __f_11(b) {
+  [,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ...b];
+}
+Array.prototype.__defineSetter__("0", () => {});
+__f_11([, 3.3]);
+for (var __v_17 = 0; __v_17 < 100000; __v_17++);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2174ba9^!)  
+[src/ic/handler-configuration.cc](https://cs.chromium.org/chromium/src/v8/src/ic/handler-configuration.cc?cl=2174ba9)  
+[src/objects/feedback-vector.cc](https://cs.chromium.org/chromium/src/v8/src/objects/feedback-vector.cc?cl=2174ba9)  
+[test/mjsunit/regress/regress-crbug-1027025.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1027025.js?cl=2174ba9)  
+  
+
+---   
+
+## **regress-1028191.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1028191)**  
+**[Commit: [turbofan] Fixes crash caused by truncated bigint](https://chromium.googlesource.com/v8/v8/+/3ce6be0)**  
+  
+Date(Commit): Tue Nov 26 13:06:01 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1936468](https://chromium-review.googlesource.com/c/v8/v8/+/1936468)  
+Regress: [mjsunit/regress/regress-1028191.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1028191.js)  
+```javascript
+"use strict";
+
+function f(a, b, c) {
+  let x = BigInt.asUintN(64, a + b);
+  try {
+    x + c;
+  } catch(_) {
+    eval();
+  }
+  return x;
+}
+
+%PrepareFunctionForOptimization(f);
+assertEquals(f(3n, 5n), 8n);
+assertEquals(f(8n, 12n), 20n);
+%OptimizeFunctionOnNextCall(f);
+assertEquals(f(2n, 3n), 5n);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/3ce6be0^!)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=3ce6be0)  
+[test/mjsunit/regress/regress-1028191.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1028191.js?cl=3ce6be0)  
+  
+
+---   
+
+## **regress-crbug-1028396.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1028396)**  
+**[Commit: Fix too restrictive check in Map::MapVerify](https://chromium.googlesource.com/v8/v8/+/e34e527)**  
+  
+Date(Commit): Tue Nov 26 11:08:15 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1936467](https://chromium-review.googlesource.com/c/v8/v8/+/1936467)  
+Regress: [mjsunit/regress/regress-crbug-1028396.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1028396.js)  
+```javascript
+(function () {
+  var GeneratorFunction = function* () {}.constructor;
+  class MyFunc extends GeneratorFunction {
+    constructor(...args) {
+      super(...args);
+      this.o = {};
+      this.o = {};
+    }
+  }
+  var f = new MyFunc("'use strict'; yield 153;");
+  gc();
+  var f = new MyFunc("'use strict'; yield 153;");
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e34e527^!)  
+[src/diagnostics/objects-debug.cc](https://cs.chromium.org/chromium/src/v8/src/diagnostics/objects-debug.cc?cl=e34e527)  
+[test/mjsunit/regress/regress-crbug-1028396.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1028396.js?cl=e34e527)  
+  
+
+---   
+
 ## **regress-1027595.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1027595)**  
@@ -726,7 +823,7 @@ const re = /()()()()(?<aaaab>)1/;
 
 ---   
 
-## **regress-crbug-1018611.js (chromium issue)**  
+## **regress-crbug-1018611-2.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1018611)**  
 **[Commit: [parser] Add early return for declaration error in arrow head](https://chromium.googlesource.com/v8/v8/+/6d97ac5)**  
@@ -735,9 +832,9 @@ Date(Commit): Mon Oct 28 14:09:11 2019
 Components: None  
 Labels: None  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1879906](https://chromium-review.googlesource.com/c/v8/v8/+/1879906)  
-Regress: [mjsunit/regress/regress-crbug-1018611.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1018611.js)  
+Regress: [mjsunit/regress/regress-crbug-1018611-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1018611-2.js), [mjsunit/regress/regress-crbug-1018611.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1018611.js)  
 ```javascript
-assertThrows("(l-(c))=>", SyntaxError);  
+assertThrows("({a, b: ([c])}) => { }", SyntaxError);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/6d97ac5^!)  
@@ -2450,12 +2547,12 @@ assertEquals(v6.length, 2);
 
 ## **regress-crbug-992914.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/992914)**  
+**[Issue: Security: v8 Map migration doesn't respect element kinds changes, leading to type confusion](https://crbug.com/992914)**  
 **[Commit: Add new nonextensible element kinds](https://chromium.googlesource.com/v8/v8/+/1f4bec2)**  
   
 Date(Commit): Wed Aug 28 17:24:49 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Stability-Memory-AddressSanitizer, Needs-Feedback, Security_Impact-Stable, Arch-All, Security_Severity-High, allpublic, Unreproducible, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, M-76, M-77, merge-merged-76, Merge-Merged-77, Release-0-M77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1760976](https://chromium-review.googlesource.com/c/v8/v8/+/1760976)  
 Regress: [mjsunit/regress/regress-crbug-992914.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-992914.js)  
 ```javascript
