@@ -2,6 +2,69 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1028593.js (chromium issue)**  
+   
+**[Issue: SIGTRAP, Trace/breakpoint trap](https://crbug.com/1028593)**  
+**[Commit: [turbofan] Fix bigint-to-word64 constant folding](https://chromium.googlesource.com/v8/v8/+/16342a4)**  
+  
+Date(Commit): Fri Nov 29 12:44:09 2019  
+Components: Blink>JavaScript  
+Labels: ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1940263](https://chromium-review.googlesource.com/c/v8/v8/+/1940263)  
+Regress: [mjsunit/regress/regress-crbug-1028593.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1028593.js)  
+```javascript
+function foo() {
+  try {
+    return "number".charCodeAt(0n);
+  } catch(e) {}
+}
+%PrepareFunctionForOptimization(foo);
+for (let i = 0; i < 3; i++) {
+  foo();
+}
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/16342a4^!)  
+[src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=16342a4)  
+[test/mjsunit/regress/regress-crbug-1028593.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1028593.js?cl=16342a4)  
+  
+
+---   
+
+## **regress-1028862.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1028862)**  
+**[Commit: [turbofan] Fix simplified lowering of SpeculativeNumberModulus](https://chromium.googlesource.com/v8/v8/+/3363ddd)**  
+  
+Date(Commit): Fri Nov 29 11:46:49 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1943150](https://chromium-review.googlesource.com/c/v8/v8/+/1943150)  
+Regress: [mjsunit/compiler/regress-1028862.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1028862.js)  
+```javascript
+function foo() {
+  for (let i = 0; i < 5; i++) {
+    // Only allocate feedback vector after the first round so that we get Smi
+    // feedback for the modulus operation.
+    if (i == 1) %PrepareFunctionForOptimization(foo);
+    1 == new Date(42).getMilliseconds() % i;
+  }
+}
+
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/3363ddd^!)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=3363ddd)  
+[test/mjsunit/compiler/regress-1028862.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1028862.js?cl=3363ddd)  
+  
+
+---   
+
 ## **regress-crbug-1027025.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1027025)**  
@@ -2937,12 +3000,12 @@ g(2);
 
 ## **regress-crbug-997057.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/997057)**  
+**[Issue: Heap-use-after-free in v8::internal::compiler::ConstantFoldingReducer::Reduce](https://crbug.com/997057)**  
 **[Commit: [turbofan] Fix memory corruption](https://chromium.googlesource.com/v8/v8/+/f16a3a7)**  
   
 Date(Commit): Fri Aug 23 14:03:01 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Stable, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-76, M-76, Release-0-M77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1768579](https://chromium-review.googlesource.com/c/v8/v8/+/1768579)  
 Regress: [mjsunit/regress/regress-crbug-997057.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-997057.js)  
 ```javascript
