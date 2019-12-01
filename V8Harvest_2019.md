@@ -2914,12 +2914,12 @@ Regress: [mjsunit/regress/regress-997485.js](https://chromium.googlesource.com/v
 
 ## **regress-crbug-987205.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/987205)**  
+**[Issue: Unknown signal in Builtins_JSEntryTrampoline](https://crbug.com/987205)**  
 **[Commit: [turbofan] Relax double const store invariant in load elim. for literals](https://chromium.googlesource.com/v8/v8/+/7fd1922)**  
   
 Date(Commit): Fri Aug 23 17:10:48 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-High, Security_Impact-Beta, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-77, M-77  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1762020.](https://chromium-review.googlesource.com/c/v8/v8/+/1762020.)  
 Regress: [mjsunit/regress/regress-crbug-987205.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-987205.js)  
 ```javascript
