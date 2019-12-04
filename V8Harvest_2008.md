@@ -3558,11 +3558,14 @@ xeval('$=function(){L: {break L;break L;}};');
   
 ---   
 
-## **regress-1030466.js (other issue)**  
+## **regress-1030466.js (chromium issue)**  
    
+**[Issue: Permission denied](https://crbug.com/1030466)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
+Components: None  
+Labels: None  
 Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
 Regress: [mjsunit/regress/regress-1030466.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1030466.js)  
 ```javascript
@@ -3586,7 +3589,7 @@ assertEquals(10, result);
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
 ...  
   
-  
+
 ---   
 
 ## **regress-996542.js (chromium issue)**  

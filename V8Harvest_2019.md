@@ -2,6 +2,201 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1029576.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1029576)**  
+**[Commit: [Turbofan] Fixes crash on missing BigInt.asUintN argument](https://chromium.googlesource.com/v8/v8/+/e76d29b)**  
+  
+Date(Commit): Tue Dec 03 15:58:07 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1948711](https://chromium-review.googlesource.com/c/v8/v8/+/1948711)  
+Regress: [mjsunit/regress/regress-1029576.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1029576.js)  
+```javascript
+function f() {
+  try {
+    return BigInt.asUintN(8);
+  } catch(_) {
+    return 42n;
+  }
+}
+
+%PrepareFunctionForOptimization(f);
+assertEquals(42n, f());
+assertEquals(42n, f());
+%OptimizeFunctionOnNextCall(f);
+assertEquals(42n, f());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e76d29b^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=e76d29b)  
+[test/mjsunit/regress/regress-1029576.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1029576.js?cl=e76d29b)  
+  
+
+---   
+
+## **regress-crbug-1029658.js (chromium issue)**  
+   
+**[Issue: ASSERT: CSA_ASSERT failed: Torque assert 'valueDouble <= kMaxUInt32Double' failed](https://crbug.com/1029658)**  
+**[Commit: [builtins] Fix assertion failure in TypedArray.from()](https://chromium.googlesource.com/v8/v8/+/ea79fb8)**  
+  
+Date(Commit): Tue Dec 03 12:02:47 2019  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, M-80, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1946335](https://chromium-review.googlesource.com/c/v8/v8/+/1946335)  
+Regress: [mjsunit/regress/regress-crbug-1029658.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1029658.js)  
+```javascript
+delete Float64Array.prototype.__proto__[Symbol.iterator];
+let ar = new Float64Array();
+Object.defineProperty(ar, "length", {
+  get: function () { return 121567939849373; }
+});
+
+try { Float64Array.from(ar); } catch (e) {}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ea79fb8^!)  
+[src/builtins/typed-array-from.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/typed-array-from.tq?cl=ea79fb8)  
+[test/mjsunit/regress/regress-crbug-1029658.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1029658.js?cl=ea79fb8)  
+  
+
+---   
+
+## **regress-crbug-1028863.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1028863)**  
+**[Commit: [TurboFan] Loop variable analysis requires more sensitivity](https://chromium.googlesource.com/v8/v8/+/b8b6075)**  
+  
+Date(Commit): Mon Dec 02 15:20:52 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1946352](https://chromium-review.googlesource.com/c/v8/v8/+/1946352)  
+Regress: [mjsunit/regress/regress-crbug-1028863.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1028863.js)  
+```javascript
+function write(begin, end, step) {
+  for (var i = begin; i >= end; i += step) {
+    step = end - begin;
+    begin >>>= 805306382;
+  }
+}
+
+function bar() {
+  for (let i = 0; i < 10000; i++) {
+    write(Infinity, 1, 1);
+  }
+}
+
+%PrepareFunctionForOptimization(write);
+%PrepareFunctionForOptimization(bar);
+bar();
+%OptimizeFunctionOnNextCall(bar);
+bar();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b8b6075^!)  
+[src/compiler/graph-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/graph-reducer.cc?cl=b8b6075)  
+[src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=b8b6075)  
+[test/mjsunit/regress/regress-crbug-1028863.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1028863.js?cl=b8b6075)  
+  
+
+---   
+
+## **regress-1028208.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1028208)**  
+**[Commit: Don't try to optimize an already-optimized function](https://chromium.googlesource.com/v8/v8/+/cab15c8)**  
+  
+Date(Commit): Mon Dec 02 12:04:23 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1946351](https://chromium-review.googlesource.com/c/v8/v8/+/1946351)  
+Regress: [mjsunit/compiler/regress-1028208.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1028208.js)  
+```javascript
+const num_iterations = 1000;
+let i = 0;
+const re = /foo.bar/;
+const RegExpPrototypeExec = RegExp.prototype.exec;
+re.exec = function gaga(str) {
+    return (i++ < num_iterations) ? RegExpPrototypeExec.call(re, str) : null;
+};
+re.__defineGetter__("global", () => true);
+"foo*bar".match(re);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/cab15c8^!)  
+[src/execution/runtime-profiler.cc](https://cs.chromium.org/chromium/src/v8/src/execution/runtime-profiler.cc?cl=cab15c8)  
+[test/mjsunit/compiler/regress-1028208.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1028208.js?cl=cab15c8)  
+  
+
+---   
+
+## **regress-1027410.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1027410)**  
+**[Commit: [liftoff] Add regression test for asan dcheck failure](https://chromium.googlesource.com/v8/v8/+/2fb290d)**  
+  
+Date(Commit): Mon Dec 02 09:40:23 2019  
+Components: None  
+Labels: None  
+Code Review: [https://crrev.com/c/1930606.](https://crrev.com/c/1930606.)  
+Regress: [mjsunit/regress/wasm/regress-1027410.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1027410.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+(function() {
+  const builder = new WasmModuleBuilder();
+  builder.addType(makeSig([kWasmF64, kWasmF64, kWasmI32, kWasmI32], [kWasmI32]));
+  builder.addType(makeSig([], [kWasmF64]));
+  // Generate function 1 (out of 2).
+  builder.addFunction(undefined, 0 /* sig */)
+    .addBodyWithEnd([
+kExprI32Const, 0x01,
+kExprEnd,   // @3
+            ]);
+  // Generate function 2 (out of 2).
+  builder.addFunction(undefined, 1 /* sig */)
+    .addLocals({f64_count: 8})
+    .addBodyWithEnd([
+kExprBlock, kWasmF64,   // @3 f64
+  kExprBlock, kWasmStmt,   // @5
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x3f,
+    kExprLocalTee, 0x00,
+    kExprLocalTee, 0x01,
+    kExprLocalTee, 0x02,
+    kExprLocalTee, 0x03,
+    kExprLocalTee, 0x04,
+    kExprLocalTee, 0x05,
+    kExprLocalTee, 0x06,
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x3f,
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x3f,
+    kExprLocalTee, 0x07,
+    kExprI32Const, 0x00,
+    kExprIf, kWasmI32,   // @52 i32
+      kExprI32Const, 0x00,
+    kExprElse,   // @56
+      kExprI32Const, 0x00,
+      kExprEnd,   // @59
+    kExprBrIf, 0x01,   // depth=1
+    kExprI32UConvertF64,
+    kExprI32Const, 0x00,
+    kExprCallFunction, 0x00, // function #0: i_ddii
+    kExprDrop,
+    kExprUnreachable,
+    kExprEnd,   // @70
+  kExprUnreachable,
+  kExprEnd,   // @72
+kExprEnd,   // @73
+            ]);
+  assertDoesNotThrow(function() { builder.instantiate(); });
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2fb290d^!)  
+[test/mjsunit/regress/wasm/regress-1027410.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1027410.js?cl=2fb290d)  
+  
+
+---   
+
 ## **regress-crbug-1028593.js (chromium issue)**  
    
 **[Issue: SIGTRAP, Trace/breakpoint trap](https://crbug.com/1028593)**  
