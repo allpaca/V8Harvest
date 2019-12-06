@@ -2,6 +2,32 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1030103.js (chromium issue)**  
+   
+**[Issue: DCHECK failure in name_vec.empty() in wasm-code-manager.cc](https://crbug.com/1030103)**  
+**[Commit: [wasm] Fix logging for imports with names](https://chromium.googlesource.com/v8/v8/+/77da0c8)**  
+  
+Date(Commit): Wed Dec 04 12:21:42 2019  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1948705](https://chromium-review.googlesource.com/c/v8/v8/+/1948705)  
+Regress: [mjsunit/regress/wasm/regress-1030103.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1030103.js)  
+```javascript
+(function(foo, foreign) {
+  'use asm';
+  var fn = foreign.fn;
+  function f() { }
+  return f;
+})(this, {fn: x => x});  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/77da0c8^!)  
+[src/wasm/wasm-code-manager.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-code-manager.cc?cl=77da0c8)  
+[test/mjsunit/regress/wasm/regress-1030103.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1030103.js?cl=77da0c8)  
+  
+
+---   
+
 ## **regress-1029576.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1029576)**  
@@ -2907,12 +2933,12 @@ assertThrows(() => Object.getOwnPropertyDescriptors(Array(1e9).join('c')), Range
 
 ## **regress-996391.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/996391)**  
+**[Issue: v8_regexp_parser_fuzzer: DCHECK failure in index < length_ in vector.h](https://crbug.com/996391)**  
 **[Commit: [regexp] Dont attempt to match '^' before the start of the string](https://chromium.googlesource.com/v8/v8/+/1990b1e)**  
   
 Date(Commit): Wed Aug 28 14:23:39 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Runtime, Blink>JavaScript>Regexp  
+Labels: Hotlist-Merge-Review, Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Head, Stability-Libfuzzer, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Target-78, M-78, merge-merged-7.7  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1771794](https://chromium-review.googlesource.com/c/v8/v8/+/1771794)  
 Regress: [mjsunit/regress/regress-996391.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-996391.js)  
 ```javascript
