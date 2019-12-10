@@ -473,36 +473,6 @@ get_v(n);
 
 ---   
 
-## **regress-crbug-1026603.js (chromium issue)**  
-   
-**[Issue: Permission denied](https://crbug.com/1026603)**  
-**[Commit: [parser] Fix variable caching for conflict lookup](https://chromium.googlesource.com/v8/v8/+/026a0c2)**  
-  
-Date(Commit): Mon Nov 25 10:27:37 2019  
-Components: None  
-Labels: None  
-Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1928861](https://chromium-review.googlesource.com/c/v8/v8/+/1928861)  
-Regress: [mjsunit/regress/regress-crbug-1026603.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1026603.js)  
-```javascript
-(function f() {
-  with ({}) {
-    // Make sure that variable conflict resulution and variable lookup through
-    // deserialized scopes use the same cache scope. Declare a variable which
-    // checks for (and fails to find) a conflict, allocating the f variable as
-    // it goes, then access f, which also looks up f.
-    eval("var f; f;");
-  }
-})();  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/026a0c2^!)  
-[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=026a0c2)  
-[src/ast/scopes.h](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.h?cl=026a0c2)  
-[test/mjsunit/regress/regress-crbug-1026603.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1026603.js?cl=026a0c2)  
-  
-
----   
-
 ## **regress-1026680.js (chromium issue)**  
    
 **[Issue: v8_wasm_compile_fuzzer: Null-dereference READ in unsigned long v8::internal::Simulator::MemoryRead<unsigned long, unsigned long>](https://crbug.com/1026680)**  
@@ -2754,12 +2724,12 @@ try {
 
 ## **regress-996751.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/996751)**  
+**[Issue: DCHECK failure in bytecode->IsBytecodeEqual( *outer_function_job->compilation_info()->bytecode_arr](https://crbug.com/996751)**  
 **[Commit: [scopes] Push sloppy eval check through eval scopes](https://chromium.googlesource.com/v8/v8/+/f6057ff)**  
   
 Date(Commit): Thu Aug 29 14:49:28 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Parser  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Low, Security_Impact-None, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-76, M-76  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1773247](https://chromium-review.googlesource.com/c/v8/v8/+/1773247)  
 Regress: [mjsunit/regress/regress-996751.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-996751.js)  
 ```javascript
