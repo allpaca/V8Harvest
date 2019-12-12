@@ -2,6 +2,81 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1029642.js (chromium issue)**  
+   
+**[Issue: v8_wasm_compile_fuzzer: CHECK failure: found_contribution != pred_assessments->map().end() in register-allocator-verifi](https://crbug.com/1029642)**  
+**[Commit: [regalloc] Missing FP register conflict check](https://chromium.googlesource.com/v8/v8/+/8c050b7)**  
+  
+Date(Commit): Wed Dec 11 11:40:00 2019  
+Components: Blink>JavaScript>Compiler, Blink>JavaScript>WebAssembly  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Security_Impact-Beta, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-CC, Test-Predator-Auto-Components  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1958054](https://chromium-review.googlesource.com/c/v8/v8/+/1958054)  
+Regress: [mjsunit/regress/wasm/regress-1029642.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1029642.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js')
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(0, 0, false);
+builder.addType(makeSig([kWasmF32, kWasmF32, kWasmF64], [kWasmF64]));
+builder.addFunction(undefined, 0 /* sig */)
+  .addBodyWithEnd([
+kExprLoop, kWasmF64,   // @15 f64
+  kExprLoop, kWasmF64,   // @17 f64
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    kExprI32Const, 0,
+    kExprIf, kWasmF64,   // @251 f64
+      kExprLoop, kWasmF64,   // @253 f64
+        kExprI32Const, 0,
+        kExprIf, kWasmI32,   // @267 i32
+          kExprMemorySize, 0x00,
+          kExprMemoryGrow, 0x00,
+        kExprElse,   // @273
+          kExprF32Const, 0x00, 0x00, 0x00, 0x00,
+          kExprI32SConvertF32,
+          kExprEnd,   // @282
+        kExprDrop,
+        kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        kExprI32Const, 0x00,
+        kExprBrIf, 0x01,   // depth=1
+        kExprI32SConvertF64,
+        kExprF64SConvertI32,
+        kExprEnd,   // @311
+    kExprElse,   // @312
+      kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+      kExprEnd,   // @322
+    kExprF64Max,
+    kExprF64Max,
+    kExprF32Const, 0x00, 0x00, 0x00, 0x00,
+    kExprF32Const, 0x00, 0x00, 0x00, 0x00,
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    kExprCallFunction, 0x00, // function #0: d_ffdl
+    kExprF64Max,
+    kExprF64Max,
+    kExprF64Max,
+    kExprI32Const, 0x00,
+    kExprF64SConvertI32,
+    kExprF64Const, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    kExprF64Max,
+    kExprF64Max,
+    kExprEnd,   // @1374
+  kExprEnd,   // @1375
+kExprEnd,   // @1376
+    ]);
+builder.addExport('main', 0);
+builder.toModule();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8c050b7^!)  
+[src/compiler/backend/register-allocator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/register-allocator.cc?cl=8c050b7)  
+[src/compiler/backend/register-allocator.h](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/register-allocator.h?cl=8c050b7)  
+[test/mjsunit/regress/wasm/regress-1029642.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1029642.js?cl=8c050b7)  
+  
+
+---   
+
 ## **regress-1030103.js (chromium issue)**  
    
 **[Issue: DCHECK failure in name_vec.empty() in wasm-code-manager.cc](https://crbug.com/1030103)**  
@@ -2675,12 +2750,12 @@ Regress: [mjsunit/regress/regress-crbug-999450.js](https://chromium.googlesource
 
 ## **regress-crbug-997320.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/997320)**  
+**[Issue: CHECK failure: bytecode_size == bytecode->length() in bytecode-array-writer.cc](https://crbug.com/997320)**  
 **[Commit: [parser] Improve hole check elision in async arrow funcs](https://chromium.googlesource.com/v8/v8/+/afca89f)**  
   
 Date(Commit): Wed Sep 04 09:13:03 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-78, M-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1710671](https://chromium-review.googlesource.com/c/v8/v8/+/1710671)  
 Regress: [mjsunit/regress/regress-crbug-997320.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-997320.js)  
 ```javascript
