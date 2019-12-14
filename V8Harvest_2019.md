@@ -2,6 +2,110 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1029530.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1029530)**  
+**[Commit: [turbofan] Fixes rematerialization of truncated BigInts](https://chromium.googlesource.com/v8/v8/+/8aa5889)**  
+  
+Date(Commit): Thu Dec 12 16:36:33 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1962278](https://chromium-review.googlesource.com/c/v8/v8/+/1962278)  
+Regress: [mjsunit/regress/regress-1029530.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1029530.js)  
+```javascript
+{
+  function f() {
+    const b = BigInt.asUintN(4,3n);
+    let i = 0;
+    while(i < 1) {
+      i + 1;
+      i = b;
+    }
+  }
+
+  %PrepareFunctionForOptimization(f);
+  f();
+  f();
+  %OptimizeFunctionOnNextCall(f);
+  f();
+}
+
+
+{
+  function f() {
+    const b = BigInt.asUintN(4,10n);
+    let i = 0.1;
+    while(i < 1.8) {
+      i + 1;
+      i = b;
+    }
+  }
+
+  %PrepareFunctionForOptimization(f);
+  f();
+  f();
+  %OptimizeFunctionOnNextCall(f);
+  f();
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8aa5889^!)  
+[src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=8aa5889)  
+[test/mjsunit/regress/regress-1029530.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1029530.js?cl=8aa5889)  
+  
+
+---   
+
+## **regress-crbug-1031479.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1031479)**  
+**[Commit: Check if a function has feedback vector before OSRing.](https://chromium.googlesource.com/v8/v8/+/83fd3e8)**  
+  
+Date(Commit): Thu Dec 12 15:42:16 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1962850](https://chromium-review.googlesource.com/c/v8/v8/+/1962850)  
+Regress: [mjsunit/regress/regress-crbug-1031479.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1031479.js)  
+```javascript
+var i = 0;
+function main() {
+function v0() {
+   function v10(a) {
+        i++;
+        var cur_i = i;
+        try {
+            // This triggers the use of old closure that was installed in the
+            // earlier invocation of v10 and causes an infinite recursion. At
+            // some point we throw from here.
+            [].e = 1;
+
+            // Throw when the new closure is on the stack to trigger a OSR on
+            // the new closure
+            if (cur_i == 2) throw 1;
+        } catch(v22) {
+            // This loop triggers OSR.
+            for (const v24 in "c19rXGEC2E") {
+            }
+        }
+   }
+   const v25 = v10(1);
+   // We install v10's closure here. The bytecode for v10 gets flushed on gc()
+   const v21 = Object.defineProperty([].__proto__,"e",{set:v10});
+}
+const v26 = v0();
+gc();
+assertThrows(v0, TypeError);
+}
+main();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/83fd3e8^!)  
+[src/runtime/runtime-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-compiler.cc?cl=83fd3e8)  
+[test/mjsunit/regress/regress-crbug-1031479.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1031479.js?cl=83fd3e8)  
+  
+
+---   
+
 ## **regress-1029642.js (chromium issue)**  
    
 **[Issue: v8_wasm_compile_fuzzer: CHECK failure: found_contribution != pred_assessments->map().end() in register-allocator-verifi](https://crbug.com/1029642)**  
@@ -2630,12 +2734,12 @@ assertEquals(f, f());
 
 ## **regress-1000635.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1000635)**  
+**[Issue: Security: Use After Free in the function JavaScriptFrame::Summarize](https://crbug.com/1000635)**  
 **[Commit: Correctly handlify two frame {Summarize} methods](https://chromium.googlesource.com/v8/v8/+/fba03ab)**  
   
 Date(Commit): Thu Sep 05 15:42:59 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Merge-Merged, Security_Impact-Stable, Security_Severity-High, reward-7500, allpublic, reward-inprocess, CVE_description-submitted, Target-78, M-76, Release-2-M77, CVE-2019-13696  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1787429](https://chromium-review.googlesource.com/c/v8/v8/+/1787429)  
 Regress: [mjsunit/regress/regress-1000635.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1000635.js)  
 ```javascript
