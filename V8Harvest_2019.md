@@ -2,6 +2,127 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-1032753.js (chromium issue)**  
+   
+**[Issue: DCHECK failure in committed_size <= old_committed in wasm-code-manager.cc](https://crbug.com/1032753)**  
+**[Commit: [wasm] Fix committed code space tracking with --perf-prof](https://chromium.googlesource.com/v8/v8/+/48625b3)**  
+  
+Date(Commit): Tue Dec 17 13:23:06 2019  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-79  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1969790](https://chromium-review.googlesource.com/c/v8/v8/+/1969790)  
+Regress: [mjsunit/regress/wasm/regress-1032753.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1032753.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+new WasmModuleBuilder().instantiate();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/48625b3^!)  
+[src/wasm/wasm-code-manager.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-code-manager.cc?cl=48625b3)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=48625b3)  
+[test/mjsunit/regress/wasm/regress-1032753.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1032753.js?cl=48625b3)  
+  
+
+---   
+
+## **regress-crbug-1029077.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1029077)**  
+**[Commit: [json] Update feedback maps since they might be deprecated](https://chromium.googlesource.com/v8/v8/+/08a5b95)**  
+  
+Date(Commit): Tue Dec 17 10:42:26 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1970211](https://chromium-review.googlesource.com/c/v8/v8/+/1970211)  
+Regress: [mjsunit/regress/regress-crbug-1029077.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1029077.js)  
+```javascript
+JSON.parse('[{"a": 2.1, "b": 1, "c": "hello"}, {"a": null, "b": 2, "c": {"a": 2.1, "b": 1.1, "c": "hello"}}]')  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/08a5b95^!)  
+[src/json/json-parser.cc](https://cs.chromium.org/chromium/src/v8/src/json/json-parser.cc?cl=08a5b95)  
+[test/mjsunit/regress/regress-crbug-1029077.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1029077.js?cl=08a5b95)  
+  
+
+---   
+
+## **regress-crbug-1034203.js (chromium issue)**  
+   
+**[Issue: CHECK failure: (data_) != nullptr in heap-refs.h](https://crbug.com/1034203)**  
+**[Commit: [turbofan] Allow missing length and name in JSCallReducer](https://chromium.googlesource.com/v8/v8/+/9c37ec0)**  
+  
+Date(Commit): Tue Dec 17 09:16:26 2019  
+Components: Blink>JavaScript>Compiler  
+Labels: Reproducible, M-80, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-80  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1967386](https://chromium-review.googlesource.com/c/v8/v8/+/1967386)  
+Regress: [mjsunit/regress/regress-crbug-1034203.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1034203.js)  
+```javascript
+function foo(optimized) {
+  class C {
+    ['h']() {}
+  }
+  let h = C.prototype.h;
+  h.bind();
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9c37ec0^!)  
+[src/compiler/heap-refs.h](https://cs.chromium.org/chromium/src/v8/src/compiler/heap-refs.h?cl=9c37ec0)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=9c37ec0)  
+[src/compiler/js-heap-broker.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-heap-broker.cc?cl=9c37ec0)  
+[src/compiler/serializer-for-background-compilation.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/serializer-for-background-compilation.cc?cl=9c37ec0)  
+[test/mjsunit/compiler/regress-1034203.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1034203.js?cl=9c37ec0)  
+  
+
+---   
+
+## **regress-1034394.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1034394)**  
+**[Commit: [arm] Fix constant pool hickup for huge table switch](https://chromium.googlesource.com/v8/v8/+/2d89d8a)**  
+  
+Date(Commit): Mon Dec 16 15:54:50 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1967380](https://chromium-review.googlesource.com/c/v8/v8/+/1967380)  
+Regress: [mjsunit/regress/regress-1034394.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1034394.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const NUM_CASES = 3073;
+
+let body = [];
+body.push(kExprBlock);
+body.push(kWasmStmt);
+
+body.push(kExprLocalGet, 0);
+body.push(kExprBrTable, ...wasmSignedLeb(NUM_CASES));
+for (let i = 0; i < NUM_CASES + 1; i++) {
+  body.push(i % 2);
+}
+
+body.push(kExprEnd);
+
+let builder = new WasmModuleBuilder();
+builder.addFunction('main', kSig_v_i).addBody(body).exportFunc();
+let instance = builder.instantiate();
+instance.exports.main(0);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2d89d8a^!)  
+[src/compiler/backend/arm/code-generator-arm.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/arm/code-generator-arm.cc?cl=2d89d8a)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=2d89d8a)  
+[test/mjsunit/regress/regress-1034394.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1034394.js?cl=2d89d8a)  
+  
+
+---   
+
 ## **regress-1029530.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1029530)**  
@@ -2703,12 +2824,12 @@ testStoreGeneric();
 
 ## **regress-crbug-1000094.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1000094)**  
+**[Issue: CHECK failure: Bytecode mismatch at offset 0 in interpreter.cc](https://crbug.com/1000094)**  
 **[Commit: [parser] Fix arrowhead parsing in the script scope](https://chromium.googlesource.com/v8/v8/+/6f17f5d)**  
   
 Date(Commit): Tue Sep 10 09:11:07 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Interpreter  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-78, M-78, Merge-Merged-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1789705](https://chromium-review.googlesource.com/c/v8/v8/+/1789705)  
 Regress: [mjsunit/regress/regress-crbug-1000094.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1000094.js)  
 ```javascript
