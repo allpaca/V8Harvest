@@ -2,6 +2,61 @@
 The Harvest of V8 regress in 2019.  
   
 
+## **regress-crbug-1034973.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1034973)**  
+**[Commit: [runtime] Properly handle constant fields with computed values](https://chromium.googlesource.com/v8/v8/+/7f1aaa7)**  
+  
+Date(Commit): Thu Dec 19 10:09:49 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1974070](https://chromium-review.googlesource.com/c/v8/v8/+/1974070)  
+Regress: [mjsunit/regress/regress-crbug-1034973.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1034973.js)  
+```javascript
+let x = 0;
+let a = {x, 0:({x:4e14,y:4}), x};  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7f1aaa7^!)  
+[src/objects/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/objects/lookup.cc?cl=7f1aaa7)  
+[test/mjsunit/regress/regress-crbug-1034973.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1034973.js?cl=7f1aaa7)  
+  
+
+---   
+
+## **regress-crbug-1035331.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1035331)**  
+**[Commit: [turbofan] Remove a strong value assumption in the heap broker](https://chromium.googlesource.com/v8/v8/+/15fce7c)**  
+  
+Date(Commit): Wed Dec 18 15:32:53 2019  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1973733](https://chromium-review.googlesource.com/c/v8/v8/+/1973733)  
+Regress: [mjsunit/regress/regress-crbug-1035331.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1035331.js)  
+```javascript
+const obj = new class C extends async function () {}.constructor {}();
+delete obj.name;
+
+Number.prototype.__proto__ = obj;
+function foo() {
+  return obj.bind();
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+obj[undefined] = Map, gc();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/15fce7c^!)  
+[src/compiler/js-heap-broker.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-heap-broker.cc?cl=15fce7c)  
+[test/mjsunit/regress/regress-crbug-1035331.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1035331.js?cl=15fce7c)  
+  
+
+---   
+
 ## **regress-1032753.js (chromium issue)**  
    
 **[Issue: DCHECK failure in committed_size <= old_committed in wasm-code-manager.cc](https://crbug.com/1032753)**  
@@ -2713,12 +2768,12 @@ obj[getKey()] = 1;
 
 ## **regress-crbug-1002388.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1002388)**  
+**[Issue: CHECK failure: !v8::internal::FLAG_enable_slow_asserts || (this->IsStruct()) in class-definitio](https://crbug.com/1002388)**  
 **[Commit: [wasm] Fix WebAssembly.Table#get for constructed functions.](https://chromium.googlesource.com/v8/v8/+/7da8f2c)**  
   
 Date(Commit): Thu Sep 12 09:40:55 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>WebAssembly  
+Labels: Hotlist-Merge-Review, Reproducible, Security_Severity-High, Security_Impact-Beta, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Target-78, M-78, Merge-Merged-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1795352](https://chromium-review.googlesource.com/c/v8/v8/+/1795352)  
 Regress: [mjsunit/regress/wasm/regress-crbug-1002388.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-crbug-1002388.js)  
 ```javascript
