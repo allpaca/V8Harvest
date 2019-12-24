@@ -2696,12 +2696,12 @@ Regress: [mjsunit/regress/regress-crbug-1004061.js](https://chromium.googlesourc
 
 ## **regress-1003730.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1003730)**  
+**[Issue: CHECK failure: Object is not known to the heap broker in js-heap-broker.cc](https://crbug.com/1003730)**  
 **[Commit: [turbofan] Add a missing object to the broker](https://chromium.googlesource.com/v8/v8/+/2f9d2fc)**  
   
 Date(Commit): Mon Sep 16 12:39:26 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-78, M-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1806913](https://chromium-review.googlesource.com/c/v8/v8/+/1806913)  
 Regress: [mjsunit/regress/regress-1003730.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1003730.js)  
 ```javascript
@@ -2735,12 +2735,12 @@ foo();
 
 ## **regress-1003919.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1003919)**  
+**[Issue: CHECK failure: Type cast failed in CAST(holder) at ../../src/ic/keyed-store-generic.cc:633 in c](https://crbug.com/1003919)**  
 **[Commit: [CSA] Update TryLookupProperty to JSReceiver type.](https://chromium.googlesource.com/v8/v8/+/61085f2)**  
   
 Date(Commit): Mon Sep 16 12:20:31 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1803651](https://chromium-review.googlesource.com/c/v8/v8/+/1803651)  
 Regress: [mjsunit/regress/regress-1003919.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1003919.js)  
 ```javascript

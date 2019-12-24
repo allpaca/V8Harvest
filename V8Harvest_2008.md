@@ -3526,11 +3526,14 @@ assertTrue(typeof(Debug) === 'undefined');
   
 ---   
 
-## **regress-1036894.js (other issue)**  
+## **regress-1036894.js (chromium issue)**  
    
+**[Issue: Permission denied](https://crbug.com/1036894)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
+Components: None  
+Labels: None  
 Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
 Regress: [mjsunit/regress/regress-1036894.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1036894.js)  
 ```javascript
@@ -3555,7 +3558,7 @@ xeval('$=function(){L: {break L;break L;}};');
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
 ...  
   
-  
+
 ---   
 
 ## **regress-1030466.js (chromium issue)**  
