@@ -2599,12 +2599,12 @@ assertEquals(count, 1);
 
 ## **regress-1004912.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1004912)**  
+**[Issue: CHECK failure: Type cast failed in CAST(CallBuiltin(Builtins::kToName, p->context(), p->name())](https://crbug.com/1004912)**  
 **[Commit: [CSA][cleanup] Use Name instead of String type for var_name in KeyedLoadICGeneric.](https://chromium.googlesource.com/v8/v8/+/b946521)**  
   
 Date(Commit): Wed Sep 18 11:22:28 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1809370](https://chromium-review.googlesource.com/c/v8/v8/+/1809370)  
 Regress: [mjsunit/regress/regress-1004912.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1004912.js)  
 ```javascript
