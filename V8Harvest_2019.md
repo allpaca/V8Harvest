@@ -2293,12 +2293,12 @@ Regress: [mjsunit/regress/regress-crbug-1003403.js](https://chromium.googlesourc
 
 ## **regress-1006670.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1006670)**  
+**[Issue: v8_regexp_parser_fuzzer: Crash in v8::base::SmallVector<int, 64u>::Grow](https://crbug.com/1006670)**  
 **[Commit: [regexp] Adhere to the stack limit in the interpreter](https://chromium.googlesource.com/v8/v8/+/256a816)**  
   
 Date(Commit): Tue Sep 24 13:33:09 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Regexp  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Medium, Stability-Libfuzzer, Security_Impact-Beta, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-CC, Test-Predator-Auto-Components, Target-78, M-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1821458](https://chromium-review.googlesource.com/c/v8/v8/+/1821458)  
 Regress: [mjsunit/regress/regress-1006670.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1006670.js)  
 ```javascript
