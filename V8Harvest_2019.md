@@ -2239,12 +2239,12 @@ assertEquals(proto, null);
 
 ## **regress-1008414.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1008414)**  
+**[Issue: CHECK failure: Bytecode mismatch at offset 177 in interpreter.cc](https://crbug.com/1008414)**  
 **[Commit: [parser] Prevent feedback slot merging for dynamic globals](https://chromium.googlesource.com/v8/v8/+/8de672c)**  
   
 Date(Commit): Mon Sep 30 11:57:09 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Interpreter  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-High, Security_Impact-Beta, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-78, M-78, merge-merged-7.8  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1829270](https://chromium-review.googlesource.com/c/v8/v8/+/1829270)  
 Regress: [mjsunit/regress/regress-1008414.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1008414.js)  
 ```javascript
