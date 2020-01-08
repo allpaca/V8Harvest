@@ -2176,12 +2176,12 @@ assertThrows(() => main(), TypeError);
 
 ## **regress-crbug-1008632.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1008632)**  
+**[Issue: Sanitizer CHECK failure in "((*(u8*)MemToShadow(a))) == ((0))" (0x4, 0x0)](https://crbug.com/1008632)**  
 **[Commit: Modify the DCHECK in when computing KeyedAccessStoreMode.](https://chromium.googlesource.com/v8/v8/+/1e3c387)**  
   
 Date(Commit): Mon Sep 30 18:59:48 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: ReleaseBlock-Beta, Reproducible, Needs-Feedback, Security_Impact-Head, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Fuzz-Blocker, Target-79, M-79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1828480](https://chromium-review.googlesource.com/c/v8/v8/+/1828480)  
 Regress: [mjsunit/regress/regress-crbug-1008632.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1008632.js)  
 ```javascript
