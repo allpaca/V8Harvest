@@ -2141,12 +2141,12 @@ foo();
 
 ## **regress-1006640.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1006640)**  
+**[Issue: Fatal error in v8::FromJust](https://crbug.com/1006640)**  
 **[Commit: GCExtension: Properly support exceptions](https://chromium.googlesource.com/v8/v8/+/38c9016)**  
   
 Date(Commit): Wed Oct 02 12:14:02 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>API  
+Labels: Arch-x86_64, allpublic, Unreproducible, Via-Wizard-Security, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1835531](https://chromium-review.googlesource.com/c/v8/v8/+/1835531)  
 Regress: [mjsunit/regress/regress-1006640.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1006640.js)  
 ```javascript
