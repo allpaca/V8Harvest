@@ -2,6 +2,140 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1038178.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1038178)**  
+**[Commit: Add missing test for optional chains with undefined receiver](https://chromium.googlesource.com/v8/v8/+/0bc9e52)**  
+  
+Date(Commit): Tue Jan 14 20:11:57 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1987914](https://chromium-review.googlesource.com/c/v8/v8/+/1987914)  
+Regress: [mjsunit/regress/regress-crbug-1038178.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1038178.js)  
+```javascript
+function opt(){
+    (new (function(){
+        try{
+            r.c>new class extends(W.y.h){}
+            l.g.e._
+            function _(){}[]=({[l](){}}),c()
+        }catch(x){}
+    }));
+    (((function(){})())?.v)()
+}
+%PrepareFunctionForOptimization(opt)
+assertThrows(opt());
+assertThrows(opt());
+%OptimizeFunctionOnNextCall(opt)
+assertThrows(opt());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0bc9e52^!)  
+[test/mjsunit/regress/regress-crbug-1038178.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1038178.js?cl=0bc9e52)  
+  
+
+---   
+
+## **regress-crbug-1041616.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1041616)**  
+**[Commit: [parser] Fix cache scope recursion for `with`](https://chromium.googlesource.com/v8/v8/+/a85d74a)**  
+  
+Date(Commit): Tue Jan 14 13:57:47 2020  
+Components: None  
+Labels: None  
+Code Review: [https://crrev.com/c/1997135](https://crrev.com/c/1997135)  
+Regress: [mjsunit/regress/regress-crbug-1041616.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1041616.js)  
+```javascript
+global = 0;
+
+(function foo() {
+  function bar() {
+    let context_allocated = 0;
+    with ({}) {
+      f = function() { ++global; }
+    }
+    function baz() { return foo(context_allocated); };
+    f();
+  };
+  bar();
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a85d74a^!)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=a85d74a)  
+[test/mjsunit/regress/regress-crbug-1041210.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1041210.js?cl=a85d74a)  
+[test/mjsunit/regress/regress-crbug-1041616.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1041616.js?cl=a85d74a)  
+  
+
+---   
+
+## **regress-crbug-1041232.js (chromium issue)**  
+   
+**[Issue: Multi-mapped Mock Allocator sometimes fails to allocate](https://crbug.com/1041232)**  
+**[Commit: [test] Fix Multi-Mapped Mock Allocator](https://chromium.googlesource.com/v8/v8/+/bd51a5e)**  
+  
+Date(Commit): Mon Jan 13 19:44:26 2020  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-81  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1997442](https://chromium-review.googlesource.com/c/v8/v8/+/1997442)  
+Regress: [mjsunit/regress/regress-crbug-1041232.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1041232.js)  
+```javascript
+let kSize = 128 * 1024 * 1024;
+let kChunkSize = 2 * 1024 * 1024;
+let a = new Uint8Array(kSize);
+
+for (let i = 0; i < kChunkSize; i++) {
+  a[i] = 42;
+}
+
+assertEquals(undefined, a[-kChunkSize - 1]);
+assertEquals(undefined, a[-kChunkSize]);
+assertEquals(undefined, a[-1]);
+assertEquals(42, a[0]);
+assertEquals(42, a[1]);
+assertEquals(42, a[kChunkSize]);
+assertEquals(42, a[kChunkSize + 1]);
+assertEquals(42, a[kChunkSize + 1]);
+assertEquals(42, a[kSize - kChunkSize]);
+assertEquals(42, a[kSize - 1]);
+assertEquals(undefined, a[kSize]);
+assertEquals(undefined, a[kSize + 1]);
+assertEquals(undefined, a[kSize + kChunkSize]);
+assertEquals(undefined, a[kSize + kSize]);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/bd51a5e^!)  
+[src/d8/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8/d8.cc?cl=bd51a5e)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=bd51a5e)  
+[test/mjsunit/regress/regress-crbug-1041232.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1041232.js?cl=bd51a5e)  
+  
+
+---   
+
+## **regress-crbug-1041210.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1041210)**  
+**[Commit: [parser] Fix caching dynamic vars on wrong scope](https://chromium.googlesource.com/v8/v8/+/304e97d)**  
+  
+Date(Commit): Mon Jan 13 15:06:15 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1997135](https://chromium-review.googlesource.com/c/v8/v8/+/1997135)  
+Regress: [mjsunit/regress/regress-crbug-1041210.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1041210.js)  
+```javascript
+with ({}) {
+  (() => eval())();
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/304e97d^!)  
+[src/ast/scopes.cc](https://cs.chromium.org/chromium/src/v8/src/ast/scopes.cc?cl=304e97d)  
+[test/mjsunit/regress/regress-crbug-1041210.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1041210.js?cl=304e97d)  
+  
+
+---   
+
 ## **regress-chromium-1040238.js (chromium issue)**  
    
 **[Issue: ASSERT: CSA_ASSERT failed: Torque assert 'Is<A>(o)' failed](https://crbug.com/1040238)**  

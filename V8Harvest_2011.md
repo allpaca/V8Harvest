@@ -4289,37 +4289,6 @@ assertThrows("x");
 
 ---   
 
-## **regress-1119.js (v8 issue)**  
-   
-**[Issue: Permission denied](https://crbug.com/v8/1119)**  
-**[Commit: 1) Return failure if any of property sets failed;](https://chromium.googlesource.com/v8/v8/+/da8b72f)**  
-  
-Date(Commit): Tue Feb 08 19:04:17 2011  
-Code Review: [http://codereview.chromium.org/6454011](http://codereview.chromium.org/6454011)  
-Regress: [mjsunit/regress/regress-1119.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1119.js)  
-```javascript
-this.__defineSetter__("x", function() { hasBeenInvoked = true; });
-this.__defineSetter__("y", function() { throw 'exception'; });
-
-var hasBeenInvoked = false;
-eval("try { } catch (e) { var x = false; }");
-assertTrue(hasBeenInvoked);
-
-try {
-  eval("try { } catch (e) { var y = false; }");
-  assertUnreachable();
-} catch (e) {
-  assertEquals('exception', e);
-}  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/da8b72f^!)  
-[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=da8b72f)  
-[test/mjsunit/regress/regress-1119.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1119.js?cl=da8b72f)  
-  
-
----   
-
 ## **regress-1110.js (v8 issue)**  
    
 **[Issue: Permission denied](https://crbug.com/v8/1110)**  

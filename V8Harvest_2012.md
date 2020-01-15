@@ -829,32 +829,6 @@ assertFalse(observed);
 
 ---   
 
-## **regress-crbug-160010.js (chromium issue)**  
-   
-**[Issue: [LangFuzz] Crash at v8::internal::BasicJsonStringifier::SerializeString](https://crbug.com/160010)**  
-**[Commit: Fix length check in JSON.stringify.](https://chromium.googlesource.com/v8/v8/+/ef1b3d3)**  
-  
-Date(Commit): Mon Nov 12 10:20:07 2012  
-Components: None  
-Labels: M-25, Reward-1000, Via-Wizard, Security_Impact-None, Security_Severity-High, allpublic  
-Code Review: [https://chromiumcodereview.appspot.com/11410031](https://chromiumcodereview.appspot.com/11410031)  
-Regress: [mjsunit/regress/regress-crbug-160010.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-160010.js)  
-```javascript
-var str = "a";
-for (var i = 0; i < 28; i++) {
-  str += str;
-  %FlattenString(str);  // Evil performance hack
-}
-JSON.stringify(str);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/ef1b3d3^!)  
-[src/json-stringifier.h](https://cs.chromium.org/chromium/src/v8/src/json-stringifier.h?cl=ef1b3d3)  
-[test/mjsunit/regress/regress-crbug-160010.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-160010.js?cl=ef1b3d3)  
-  
-
----   
-
 ## **regress-crbug-157019.js (chromium issue)**  
    
 **[Issue: UNKNOWN in v8::internal::Invoke](https://crbug.com/157019)**  
