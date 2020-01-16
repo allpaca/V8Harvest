@@ -1965,12 +1965,12 @@ foo();
 
 ## **regress-1011980.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1011980)**  
+**[Issue: DCHECK failure in effect_edges > 0 in verifier.cc](https://crbug.com/1011980)**  
 **[Commit: [ptr-compr] Remove ChangeTaggedSignedToCompressedSigned optimization](https://chromium.googlesource.com/v8/v8/+/fabfa41)**  
   
 Date(Commit): Wed Oct 09 09:58:01 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-High, Security_Impact-Beta, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-78, M-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1847363](https://chromium-review.googlesource.com/c/v8/v8/+/1847363)  
 Regress: [mjsunit/regress/regress-1011980.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1011980.js)  
 ```javascript
@@ -2083,12 +2083,12 @@ test();
 
 ## **regress-crbug-1011596-module.mjs (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1011596)**  
+**[Issue: javascript_parser_proto_fuzzer: DCHECK failure in !parsing_module_ in preparser.h](https://crbug.com/1011596)**  
 **[Commit: [parser] Fix preparsing of modules containing labels](https://chromium.googlesource.com/v8/v8/+/427a2fd)**  
   
 Date(Commit): Mon Oct 07 10:18:14 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Parser  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Head, Stability-Libfuzzer, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, ClusterFuzz-Auto-CC, Target-79, M-79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1844777](https://chromium-review.googlesource.com/c/v8/v8/+/1844777)  
 Regress: [mjsunit/regress/regress-crbug-1011596-module.mjs](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1011596-module.mjs), [mjsunit/regress/regress-crbug-1011596.mjs](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1011596.mjs)  
 ```javascript
