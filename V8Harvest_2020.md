@@ -2,6 +2,27 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-v8-10072.js (chromium issue)**  
+   
+**[Issue: 3 Failing Layout Tests](https://crbug.com/10072)**  
+**[Commit: [regexp] Fix CP advancement in all SKIP_* bytecodes](https://chromium.googlesource.com/v8/v8/+/aedc824)**  
+  
+Date(Commit): Thu Jan 16 13:10:34 2020  
+Components: Blink  
+Labels: LayoutTests, Restrict-AddIssueComment-Commit  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2002543](https://chromium-review.googlesource.com/c/v8/v8/+/2002543)  
+Regress: [mjsunit/regress/regress-v8-10072.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-10072.js)  
+```javascript
+assertNull(/(?<=a[^b]*)./.exec('a'));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/aedc824^!)  
+[src/regexp/regexp-interpreter.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-interpreter.cc?cl=aedc824)  
+[test/mjsunit/regress/regress-v8-10072.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-10072.js?cl=aedc824)  
+  
+
+---   
+
 ## **regress-crbug-1038178.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1038178)**  
@@ -102,7 +123,9 @@ assertEquals(42, a[kSize - 1]);
 assertEquals(undefined, a[kSize]);
 assertEquals(undefined, a[kSize + 1]);
 assertEquals(undefined, a[kSize + kChunkSize]);
-assertEquals(undefined, a[kSize + kSize]);  
+assertEquals(undefined, a[kSize + kSize]);
+
+assertThrows(() => new ArrayBuffer(Number.MAX_SAFE_INTEGER));  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/bd51a5e^!)  
