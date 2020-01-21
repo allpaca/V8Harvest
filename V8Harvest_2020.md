@@ -2,6 +2,50 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1037771.js (chromium issue)**  
+   
+**[Issue: CHECK failure: TypeError: node #190:LoopExitValue type HeapConstant(ADDRESS {ADDRESS <undefined](https://crbug.com/1037771)**  
+**[Commit: [turbofan] Don't verify context input of Create*Context nodes](https://chromium.googlesource.com/v8/v8/+/e33d633)**  
+  
+Date(Commit): Mon Jan 20 18:25:04 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Security_Impact-Stable, TE-NeedsTriageHelp, Via-Wizard-Javascript, Triaged-ET  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2010792](https://chromium-review.googlesource.com/c/v8/v8/+/2010792)  
+Regress: [mjsunit/compiler/regress-1037771.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1037771.js)  
+```javascript
+async function* r() {
+  for (var l = "" in { goo: ()=>{} }) {
+    for (let n = 0; n < 500; (t ? -500 : 0)) {
+      n++;
+      if (n > 1) break;
+      try {
+        r.blabadfasdfasdfsdafsdsadf();
+      } catch (e) {
+        for (let n = 0; n < 500; n++);
+        for (let n in t) {
+          return t[n];
+        }
+      }
+      try { r(n, null) } catch (e) {}
+    }
+  }
+}
+let t = r();
+t.return({
+  get then() {
+    let n = r();
+    n.next();
+  }
+});  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e33d633^!)  
+[src/compiler/verifier.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc?cl=e33d633)  
+[test/mjsunit/compiler/regress-1037771.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1037771.js?cl=e33d633)  
+  
+
+---   
+
 ## **regress-v8-10072.js (chromium issue)**  
    
 **[Issue: 3 Failing Layout Tests](https://crbug.com/10072)**  

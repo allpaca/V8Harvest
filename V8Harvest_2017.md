@@ -5075,7 +5075,7 @@ assertEquals(undefined, foo());
   
 Date(Commit): Mon Sep 25 12:58:57 2017  
 Code Review: [https://chromium-review.googlesource.com/681357](https://chromium-review.googlesource.com/681357)  
-Regress: [mjsunit/regress/regress-6838-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6838-1.js), [mjsunit/regress/regress-6838-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6838-2.js), [mjsunit/regress/regress-6838-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6838-3.js)  
+Regress: [mjsunit/regress/regress-6838-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6838-1.js), [mjsunit/regress/regress-6838-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6838-2.js), [mjsunit/regress/regress-6838-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6838-3.js), [mjsunit/regress/regress-6838-4.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-6838-4.js)  
 ```javascript
 (function TestMathMaxOnLargeInt() {
   function Module(stdlib) {
