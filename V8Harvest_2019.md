@@ -1813,12 +1813,12 @@ assertEquals(0, instance.exports.main(1, 2, 3));
 
 ## **regress-1013920.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1013920)**  
+**[Issue: Security: Debug check failed: is_wasm_memory_.](https://crbug.com/1013920)**  
 **[Commit: [asmjs] Disallow AsmJs instantiation from a SharedArrayBuffer.](https://chromium.googlesource.com/v8/v8/+/9de61eb)**  
   
 Date(Commit): Tue Oct 15 12:45:29 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>WebAssembly  
+Labels: reward-0, Security_Severity-Low, Security_Impact-Beta, allpublic, Unreproducible, ClusterFuzz-Verified, Security_Needs_Attention-Severity  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1862563](https://chromium-review.googlesource.com/c/v8/v8/+/1862563)  
 Regress: [mjsunit/asm/regress-1013920.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-1013920.js)  
 ```javascript
