@@ -2,6 +2,41 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-10138.js (chromium issue)**  
+   
+**[Issue: 1 Failing Layout Tests](https://crbug.com/10138)**  
+**[Commit: Fix native stacks flag for pointer compression](https://chromium.googlesource.com/v8/v8/+/99641cb)**  
+  
+Date(Commit): Tue Jan 21 09:40:57 2020  
+Components: Blink  
+Labels: LayoutTests, Restrict-AddIssueComment-Commit  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2011206](https://chromium-review.googlesource.com/c/v8/v8/+/2011206)  
+Regress: [mjsunit/regress/regress-10138.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-10138.js)  
+```javascript
+function f() {
+  g();
+}
+
+function g() {
+  %DeoptimizeFunction(f);
+  %DeoptimizeFunction(f);
+}
+
+%PrepareFunctionForOptimization(f);
+f(); f();
+%OptimizeFunctionOnNextCall(f);
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/99641cb^!)  
+[src/builtins/arm64/builtins-arm64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/arm64/builtins-arm64.cc?cl=99641cb)  
+[src/builtins/x64/builtins-x64.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?cl=99641cb)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=99641cb)  
+[test/mjsunit/regress/regress-10138.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-10138.js?cl=99641cb)  
+  
+
+---   
+
 ## **regress-1037771.js (chromium issue)**  
    
 **[Issue: CHECK failure: TypeError: node #190:LoopExitValue type HeapConstant(ADDRESS {ADDRESS <undefined](https://crbug.com/1037771)**  

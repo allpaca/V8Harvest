@@ -5963,9 +5963,10 @@ function Module(stdlib, foreign, buffer) {
   function foo() { return heap[23] | 0 }
   return { foo:foo };
 }
+const kLength = Math.max(0x100000000, %TypedArrayMaxLength() + 1);
 function instantiate() {
   // On 32-bit architectures buffer allocation will throw.
-  var buffer = new ArrayBuffer(0x100000000);
+  var buffer = new ArrayBuffer(kLength);
   // On 64-bit architectures instantiation will throw.
   var module = Module(this, {}, buffer);
 }
