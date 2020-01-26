@@ -1755,12 +1755,12 @@ async_hooks.createHook({
 
 ## **regress-crbug-1015567.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1015567)**  
+**[Issue: Null-dereference READ in v8::internal::VariableProxy::var](https://crbug.com/1015567)**  
 **[Commit: [parser] Accumulate even if we already thought we had an error](https://chromium.googlesource.com/v8/v8/+/94d8fcb)**  
   
 Date(Commit): Fri Oct 18 14:30:05 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Interpreter  
+Labels: Hotlist-Merge-Review, reward-0, Security_Severity-Medium, Security_Impact-Beta, ReleaseBlock-Stable, allpublic, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Merge-Rejected-78, M-79, M-78, merge-merged-7.9  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1869198](https://chromium-review.googlesource.com/c/v8/v8/+/1869198)  
 Regress: [mjsunit/regress/regress-crbug-1015567.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1015567.js)  
 ```javascript
