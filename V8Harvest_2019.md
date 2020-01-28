@@ -1721,12 +1721,12 @@ assertEquals(1, g());
 
 ## **regress-crbug-1015945.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1015945)**  
+**[Issue: CHECK failure: !v8::internal::FLAG_enable_slow_asserts || (this->IsStruct()) in class-definitio](https://crbug.com/1015945)**  
 **[Commit: [async stacks] Fix corner case for async generators.](https://chromium.googlesource.com/v8/v8/+/84cd9a8)**  
   
 Date(Commit): Mon Oct 21 07:19:58 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Reproducible, Security_Impact-Stable, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Merge-Rejected-77, Target-78, M-78, Release-2-M78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1870230](https://chromium-review.googlesource.com/c/v8/v8/+/1870230)  
 Regress: [mjsunit/regress/regress-crbug-1015945.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1015945.js)  
 ```javascript
