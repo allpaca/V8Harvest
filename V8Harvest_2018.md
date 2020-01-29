@@ -799,14 +799,11 @@ for (var i = 0; i < 40000; i++) {
 
 ---   
 
-## **regress-crbug-90771.js (chromium issue)**  
+## **regress-crbug-90771.js (other issue)**  
    
-**[Issue: DOMUI: Sync errors surfacing on NTP, Preferences and Bookmarks Bar are completely out of sync](https://crbug.com/90771)**  
 **[Commit: Fix Reflect.construct with constructors without a prototype slot](https://chromium.googlesource.com/v8/v8/+/7a3cb59)**  
   
 Date(Commit): Tue Nov 27 11:52:41 2018  
-Components: UI, Services>Sync  
-Labels: Restrict-AddIssueComment-EditIssue, M-14, Merge-Merged-835, ReleaseBlock-Stable  
 Code Review: [https://chromium-review.googlesource.com/c/1351023](https://chromium-review.googlesource.com/c/1351023)  
 Regress: [mjsunit/regress/regress-crbug-90771.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-90771.js)  
 ```javascript
@@ -825,7 +822,7 @@ for (let key of Object.getOwnPropertyNames(this)) {
 [src/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects.cc?cl=7a3cb59)  
 [test/mjsunit/regress/regress-crbug-90771.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-90771.js?cl=7a3cb59)  
   
-
+  
 ---   
 
 ## **regress-8505.js (v8 issue)**  

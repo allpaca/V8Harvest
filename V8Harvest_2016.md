@@ -4579,14 +4579,12 @@ eval(s);
 
 ---   
 
-## **regress-02256.js (chromium issue)**  
+## **regress-02256.js (v8 issue)**  
    
-**[Issue: Right-click not working for context menus](https://crbug.com/2256)**  
+**[Issue: How to expose C++ class in V8](https://crbug.com/v8/2256)**  
 **[Commit: [wasm] explicitly mark off unlinked wasm module instances](https://chromium.googlesource.com/v8/v8/+/c938f0d)**  
   
 Date(Commit): Tue Oct 04 21:23:24 2016  
-Components: None  
-Labels: Area-Unknown, Restrict-AddIssueComment-Commit  
 Code Review: [https://codereview.chromium.org/2393443003](https://codereview.chromium.org/2393443003)  
 Regress: [mjsunit/regress/wasm/regress-02256.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-02256.js), [mjsunit/regress/wasm/regress-02256b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-02256b.js)  
 ```javascript
@@ -6823,14 +6821,12 @@ __f_1();
 
 ---   
 
-## **regress-02862.js (chromium issue)**  
+## **regress-02862.js (v8 issue)**  
    
-**[Issue: Regression: Navigation Back and Forth problems from History page ](https://crbug.com/2862)**  
+**[Issue: sem_* functions require -lrt when linking on Solaris 10](https://crbug.com/v8/2862)**  
 **[Commit: [wasm] fix for GC during instantiation.](https://chromium.googlesource.com/v8/v8/+/aff5ab1)**  
   
 Date(Commit): Thu Sep 29 04:24:42 2016  
-Components: None  
-Labels: Mstone-2.0, v-153.1, stable, Area-BrowserUI, Restrict-AddIssueComment-Commit  
 Code Review: [https://codereview.chromium.org/2371403003](https://codereview.chromium.org/2371403003)  
 Regress: [mjsunit/regress/wasm/regress-02862.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-02862.js)  
 ```javascript

@@ -2,14 +2,50 @@
 The Harvest of V8 regress in 2020.  
   
 
-## **regress-10138.js (chromium issue)**  
+## **regress-1045737.js (chromium issue)**  
    
-**[Issue: 1 Failing Layout Tests](https://crbug.com/10138)**  
+**[Issue: v8_wasm_compile_fuzzer: Fatal error in ](https://crbug.com/1045737)**  
+**[Commit: [wasm][liftoff] Zero-extend result of atomic.add](https://chromium.googlesource.com/v8/v8/+/82b7819)**  
+  
+Date(Commit): Mon Jan 27 14:02:35 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2020768](https://chromium-review.googlesource.com/c/v8/v8/+/2020768)  
+Regress: [mjsunit/regress/wasm/regress-1045737.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1045737.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+(function() {
+const builder = new WasmModuleBuilder();
+builder.addMemory(16, 32, false, true);
+builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
+  // signature: i_iii
+  // body:
+  kExprI32Const, 0x00, kExprI64Const, 0xc2, 0xe6, 0x00, kAtomicPrefix,
+  kExprI64AtomicAdd8U, 0x00, 0xb6, 0x0e, kExprF32SConvertI64,
+  kExprI32SConvertF32,
+  kExprEnd,  // @14
+]);
+builder.addExport('main', 0);
+const instance = builder.instantiate();
+assertEquals(instance.exports.main(1, 2, 3), 0);
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/82b7819^!)  
+[src/wasm/baseline/x64/liftoff-assembler-x64.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/x64/liftoff-assembler-x64.h?cl=82b7819)  
+[test/mjsunit/regress/wasm/regress-1045737.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1045737.js?cl=82b7819)  
+  
+
+---   
+
+## **regress-10138.js (v8 issue)**  
+   
+**[Issue: --interpreted-frames-native-stack crashing with compressed pointers](https://crbug.com/v8/10138)**  
 **[Commit: Fix native stacks flag for pointer compression](https://chromium.googlesource.com/v8/v8/+/99641cb)**  
   
 Date(Commit): Tue Jan 21 09:40:57 2020  
-Components: Blink  
-Labels: LayoutTests, Restrict-AddIssueComment-Commit  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2011206](https://chromium-review.googlesource.com/c/v8/v8/+/2011206)  
 Regress: [mjsunit/regress/regress-10138.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-10138.js)  
 ```javascript
@@ -81,14 +117,12 @@ t.return({
 
 ---   
 
-## **regress-v8-10072.js (chromium issue)**  
+## **regress-v8-10072.js (v8 issue)**  
    
-**[Issue: 3 Failing Layout Tests](https://crbug.com/10072)**  
+**[Issue: Permission denied](https://crbug.com/v8/10072)**  
 **[Commit: [regexp] Fix CP advancement in all SKIP_* bytecodes](https://chromium.googlesource.com/v8/v8/+/aedc824)**  
   
 Date(Commit): Thu Jan 16 13:10:34 2020  
-Components: Blink  
-Labels: LayoutTests, Restrict-AddIssueComment-Commit  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2002543](https://chromium-review.googlesource.com/c/v8/v8/+/2002543)  
 Regress: [mjsunit/regress/regress-v8-10072.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-10072.js)  
 ```javascript

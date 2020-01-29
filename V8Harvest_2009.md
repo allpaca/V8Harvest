@@ -590,14 +590,11 @@ assertEquals(1, (function (){return 1|-1%1})());
 
 ---   
 
-## **regress-crbug-18639.js (chromium issue)**  
+## **regress-crbug-18639.js (other issue)**  
    
-**[Issue: Crash [@ 0xffffffff]](https://crbug.com/18639)**  
 **[Commit: Add regression test case for http://crbug.com/18639 which](https://chromium.googlesource.com/v8/v8/+/6621a43)**  
   
 Date(Commit): Tue Sep 08 07:22:35 2009  
-Components: None  
-Labels: Area-MISC, reward-topanel, Security-High, Security, Security_Impact-Stable, Security_Severity-High, allpublic, Restrict-AddIssueComment-Commit  
 Code Review: [http://crbug.com/18639](http://crbug.com/18639)  
 Regress: [mjsunit/regress/regress-crbug-18639.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-18639.js)  
 ```javascript
@@ -617,7 +614,7 @@ try {
 [test/mjsunit/regress/regress-254.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-254.js?cl=6621a43)  
 [test/mjsunit/regress/regress-crbug-18639.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-18639.js?cl=6621a43)  
   
-
+  
 ---   
 
 ## **regress-416.js (v8 issue)**  

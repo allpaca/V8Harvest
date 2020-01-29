@@ -2154,14 +2154,11 @@ foo();
   
 ---   
 
-## **regress-58740.js (chromium issue)**  
+## **regress-58740.js (other issue)**  
    
-**[Issue: Regular expression, exec and related method(test) -- cause strange behavior](https://crbug.com/58740)**  
 **[Commit: Fix bug in cache handling of lastIndex on global regexps.](https://chromium.googlesource.com/v8/v8/+/6c0cde6)**  
   
 Date(Commit): Thu Oct 14 08:51:20 2010  
-Components: Blink>JavaScript, Blink  
-Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/3745005](http://codereview.chromium.org/3745005)  
 Regress: [mjsunit/regress/regress-58740.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-58740.js)  
 ```javascript
@@ -2177,7 +2174,7 @@ assertEquals(0, re.lastIndex);
 [src/regexp.js](https://cs.chromium.org/chromium/src/v8/src/regexp.js?cl=6c0cde6)  
 [test/mjsunit/regress/regress-58740.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-58740.js?cl=6c0cde6)  
   
-
+  
 ---   
 
 ## **regress-874.js (v8 issue)**  
@@ -2211,14 +2208,11 @@ assertEquals (setter, Object.getOwnPropertyDescriptor(x, 0).set);
 
 ---   
 
-## **regress-52801.js (chromium issue)**  
+## **regress-52801.js (other issue)**  
    
-**[Issue: Regular expression problem  -- causes infinite loop ](https://crbug.com/52801)**  
 **[Commit: RegExp: Fix caching to correctly set lastIndex.](https://chromium.googlesource.com/v8/v8/+/0dece53)**  
   
 Date(Commit): Wed Sep 22 11:22:57 2010  
-Components: Blink>JavaScript, Blink  
-Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/3389022](http://codereview.chromium.org/3389022)  
 Regress: [mjsunit/regress/regress-52801.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-52801.js)  
 ```javascript
@@ -2257,7 +2251,7 @@ assertEquals(5, re.lastIndex);  // Fails if caching.
 [src/regexp.js](https://cs.chromium.org/chromium/src/v8/src/regexp.js?cl=0dece53)  
 [test/mjsunit/regress/regress-52801.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-52801.js?cl=0dece53)  
   
-
+  
 ---   
 
 ## **regress-857.js (v8 issue)**  
@@ -2733,14 +2727,11 @@ assertEquals("[false]", JSON.stringify([42], replacer));
 
 ---   
 
-## **regress-45469.js (chromium issue)**  
+## **regress-45469.js (other issue)**  
    
-**[Issue: Date.localeFormat doesn't return a value](https://crbug.com/45469)**  
 **[Commit: Fix bug in regexp exec with global regexps.](https://chromium.googlesource.com/v8/v8/+/7b46a1f)**  
   
 Date(Commit): Fri Jun 25 07:00:29 2010  
-Components: Blink>JavaScript, Blink  
-Labels: Restrict-AddIssueComment-EditIssue, M-6, bulkmove  
 Code Review: [http://codereview.chromium.org/2826020](http://codereview.chromium.org/2826020)  
 Regress: [mjsunit/regress/regress-45469.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-45469.js)  
 ```javascript
@@ -2765,7 +2756,7 @@ for (var i = 0; i < 15; i++) {
 [src/regexp.js](https://cs.chromium.org/chromium/src/v8/src/regexp.js?cl=7b46a1f)  
 [test/mjsunit/regress/regress-45469.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-45469.js?cl=7b46a1f)  
   
-
+  
 ---   
 
 ## **regress-747.js (v8 issue)**  
@@ -2964,14 +2955,11 @@ assertTrue(isNaN(Date.parse('This is a relatively long string')));
 
 ---   
 
-## **regress-crbug-40931.js (chromium issue)**  
+## **regress-crbug-40931.js (other issue)**  
    
-**[Issue: Javascript split method of string object returns array with some additional strange keys](https://crbug.com/40931)**  
 **[Commit: Added regression test for crbug 40931 http://crbug.com/40931](https://chromium.googlesource.com/v8/v8/+/f066a9a)**  
   
 Date(Commit): Mon Apr 26 13:26:11 2010  
-Components: None  
-Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://crbug.com/40931](http://crbug.com/40931)  
 Regress: [mjsunit/regress/regress-crbug-40931.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-40931.js)  
 ```javascript
@@ -2992,7 +2980,7 @@ for(var i = 0; i < 10; i++) {
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f066a9a^!)  
 [test/mjsunit/regress/regress-crbug-40931.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-40931.js?cl=f066a9a)  
   
-
+  
 ---   
 
 ## **regress-681.js (v8 issue)**  
@@ -3065,14 +3053,11 @@ assertEquals(42, g());
 
 ---   
 
-## **regress-crbug-39160.js (chromium issue)**  
+## **regress-crbug-39160.js (other issue)**  
    
-**[Issue: Reliability failure in V8 generated code](https://crbug.com/39160)**  
 **[Commit: Re-apply "Inline floating point compare"](https://chromium.googlesource.com/v8/v8/+/6a63910)**  
   
 Date(Commit): Thu Mar 25 12:04:34 2010  
-Components: None  
-Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/1251009](http://codereview.chromium.org/1251009)  
 Regress: [mjsunit/regress/regress-crbug-39160.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-39160.js)  
 ```javascript
@@ -3095,7 +3080,7 @@ f(5)
 [src/jump-target.cc](https://cs.chromium.org/chromium/src/v8/src/jump-target.cc?cl=6a63910)  
 ...  
   
-
+  
 ---   
 
 ## **regress-646.js (v8 issue)**  
@@ -3146,14 +3131,11 @@ assertEquals(42, f());
 
 ---   
 
-## **regress-crbug-37853.js (chromium issue)**  
+## **regress-crbug-37853.js (other issue)**  
    
-**[Issue: CHECK fail when editing a sites page](https://crbug.com/37853)**  
 **[Commit: Fix code cache lookup for keyed IC's](https://chromium.googlesource.com/v8/v8/+/b0c9738)**  
   
 Date(Commit): Thu Mar 11 08:52:31 2010  
-Components: Blink>JavaScript, Blink  
-Labels: Restrict-AddIssueComment-Commit  
 Code Review: [http://codereview.chromium.org/872001](http://codereview.chromium.org/872001)  
 Regress: [mjsunit/regress/regress-crbug-37853.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-37853.js)  
 ```javascript
@@ -3170,7 +3152,7 @@ f(a, 1);
 [src/objects.h](https://cs.chromium.org/chromium/src/v8/src/objects.h?cl=b0c9738)  
 [test/mjsunit/regress/regress-crbug-37853.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-37853.js?cl=b0c9738)  
   
-
+  
 ---   
 
 ## **regress-636.js (v8 issue)**  

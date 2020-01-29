@@ -1592,12 +1592,12 @@ function AllocMemory(initial, maximum = initial) {
 
 ## **regress-1016515.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1016515)**  
+**[Issue: Unknown signal in Builtins_InterpreterEntryTrampoline](https://crbug.com/1016515)**  
 **[Commit: [wasm] Initialize new jump table correct for lazy compilation](https://chromium.googlesource.com/v8/v8/+/369f1ff)**  
   
 Date(Commit): Tue Oct 22 12:44:22 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Low, Security_Impact-Head, Hotlist-Merge-Approved, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-79, merge-merged-7.9  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1873687](https://chromium-review.googlesource.com/c/v8/v8/+/1873687)  
 Regress: [mjsunit/regress/wasm/regress-1016515.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1016515.js)  
 ```javascript
