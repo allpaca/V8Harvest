@@ -1306,12 +1306,12 @@ eval()
 
 ## **regress-1016450.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1016450)**  
+**[Issue: DCHECK failure in HAS_SMI_TAG(ptr) in smi.h](https://crbug.com/1016450)**  
 **[Commit: Regression test for word64-lowered BigInt accumulator](https://chromium.googlesource.com/v8/v8/+/ab9cd1a)**  
   
 Date(Commit): Mon Nov 04 14:04:22 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, Reproducible, Security_Impact-Stable, Hotlist-Merge-Approved, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Target-78, M-78, merge-merged-7.8, Merge-Merged-78, Release-2-M78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1873692](https://chromium-review.googlesource.com/c/v8/v8/+/1873692)  
 Regress: [mjsunit/regress/regress-1016450.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1016450.js)  
 ```javascript

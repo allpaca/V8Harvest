@@ -2,6 +2,130 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1044909.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1044909)**  
+**[Commit: Fix one more LookupIterator](https://chromium.googlesource.com/v8/v8/+/efaa34b)**  
+  
+Date(Commit): Wed Jan 29 16:49:50 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2023558](https://chromium-review.googlesource.com/c/v8/v8/+/2023558)  
+Regress: [mjsunit/regress/regress-crbug-1044909.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1044909.js)  
+```javascript
+function main() {
+  const v2 = Object.prototype;
+  v2[4294967296] = {};
+  const v12 = {get: function() {}};
+  Object.defineProperty(v2, 4294967296, v12);
+  const v15 = {...v2};
+}
+%PrepareFunctionForOptimization(main);
+main();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/efaa34b^!)  
+[src/objects/js-objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/js-objects.cc?cl=efaa34b)  
+[test/mjsunit/regress/regress-crbug-1044909.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1044909.js?cl=efaa34b)  
+  
+
+---   
+
+## **regress-crbug-1041251.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/1041251)**  
+**[Commit: [builtins] Fix FastCreateDataProperty](https://chromium.googlesource.com/v8/v8/+/68cc5c6)**  
+  
+Date(Commit): Wed Jan 29 12:25:03 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2023551](https://chromium-review.googlesource.com/c/v8/v8/+/2023551)  
+Regress: [mjsunit/regress/regress-crbug-1041251.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1041251.js)  
+```javascript
+let v0 = [0, 1];
+v0.constructor = {
+  [Symbol.species]: function() {
+    let v1 = [2];
+    Object.defineProperty(v1, "length", {writable: false});
+    return v1;
+  }
+}
+
+assertThrows(() => Array.prototype.map.call(v0, function() {}), TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/68cc5c6^!)  
+[src/builtins/base.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/base.tq?cl=68cc5c6)  
+[test/mjsunit/regress/regress-crbug-1041251.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1041251.js?cl=68cc5c6)  
+  
+
+---   
+
+## **regress-1044919.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1044919)**  
+**[Commit: [runtime] Don't invalidate property cell when it becomes read-only](https://chromium.googlesource.com/v8/v8/+/e395871)**  
+  
+Date(Commit): Wed Jan 29 11:06:42 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2023562](https://chromium-review.googlesource.com/c/v8/v8/+/2023562)  
+Regress: [mjsunit/regress/regress-1044919.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1044919.js)  
+```javascript
+(function main() {
+  eval();
+  function foo() {
+    bla = [];
+    bla.__proto__ = '';
+  }
+  %PrepareFunctionForOptimization(foo);
+  foo();
+  Object.defineProperty(this, 'bla',
+      {value: bla, configurable: false, writable: true});
+  foo();
+  %OptimizeFunctionOnNextCall(foo);
+  foo();
+  Object.defineProperty(this, 'bla',
+      {value: bla, configurable: false, writable: false});
+  foo();
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e395871^!)  
+[src/objects/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/objects.cc?cl=e395871)  
+[test/mjsunit/regress/regress-1044919.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1044919.js?cl=e395871)  
+  
+
+---   
+
+## **regress-crbug-1044911.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1044911)**  
+**[Commit: Fix ArrayLengthSetter for suddenly frozen elements](https://chromium.googlesource.com/v8/v8/+/2d10033)**  
+  
+Date(Commit): Wed Jan 29 10:52:52 2020  
+Components: None  
+Labels: None  
+Code Review: [https://codereview.chromium.org/2543553002](https://codereview.chromium.org/2543553002)  
+Regress: [mjsunit/regress/regress-crbug-1044911.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1044911.js)  
+```javascript
+let a = [0];
+let l = {
+  valueOf: function() {
+    Object.freeze(a);
+    return 1;
+  }
+};
+a.length = l;  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2d10033^!)  
+[src/builtins/accessors.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/accessors.cc?cl=2d10033)  
+[test/mjsunit/regress/regress-crbug-1044911.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1044911.js?cl=2d10033)  
+  
+
+---   
+
 ## **regress-1045737.js (chromium issue)**  
    
 **[Issue: v8_wasm_compile_fuzzer: Fatal error in ](https://crbug.com/1045737)**  
