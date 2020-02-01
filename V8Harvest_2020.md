@@ -2,6 +2,120 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1047368.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1047368)**  
+**[Commit: [ast] Flatten Wasm function names](https://chromium.googlesource.com/v8/v8/+/6abbfe2)**  
+  
+Date(Commit): Fri Jan 31 11:25:45 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2030738](https://chromium-review.googlesource.com/c/v8/v8/+/2030738)  
+Regress: [mjsunit/regress/regress-crbug-1047368.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1047368.js)  
+```javascript
+new WebAssembly.Function({
+    parameters: [],
+    results: []
+  }, x => x);
+const long_variable = {
+  toString: () => {
+  }
+};  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6abbfe2^!)  
+[src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=6abbfe2)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=6abbfe2)  
+[test/mjsunit/regress/regress-crbug-1047368.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1047368.js?cl=6abbfe2)  
+  
+
+---   
+
+## **regress-1045225.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1045225)**  
+**[Commit: [Liftoff] Clean up implementation of AtomicStore](https://chromium.googlesource.com/v8/v8/+/d8bb229)**  
+  
+Date(Commit): Fri Jan 31 08:54:44 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2029414](https://chromium-review.googlesource.com/c/v8/v8/+/2029414)  
+Regress: [mjsunit/regress/wasm/regress-1045225.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1045225.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+(function() {
+  const builder = new WasmModuleBuilder();
+  builder.addMemory(16, 32, false, true);
+  builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+  // Generate function 1 (out of 1).
+  builder.addFunction(undefined, 0 /* sig */)
+    .addBodyWithEnd([
+kExprI32Const, 0x80, 0x01,
+kExprI32Clz,
+kExprI32Const, 0x00,
+kExprI64Const, 0x00,
+kAtomicPrefix, kExprI64AtomicStore8U, 0x00, 0x00,
+kExprEnd,   // @13
+            ]);
+  builder.addExport('main', 0);
+  const instance = builder.instantiate();
+  print(instance.exports.main(1, 2, 3));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d8bb229^!)  
+[src/wasm/baseline/ia32/liftoff-assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/ia32/liftoff-assembler-ia32.h?cl=d8bb229)  
+[test/mjsunit/regress/wasm/regress-1045225.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1045225.js?cl=d8bb229)  
+  
+
+---   
+
+## **regress-1046472.js (chromium issue)**  
+   
+**[Issue: v8_wasm_code_fuzzer: Fatal error in ](https://crbug.com/1046472)**  
+**[Commit: [wasm] Type check brtable if it's not unreachable](https://chromium.googlesource.com/v8/v8/+/8ff14f5)**  
+  
+Date(Commit): Thu Jan 30 13:46:15 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Clusterfuzz, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2027990](https://chromium-review.googlesource.com/c/v8/v8/+/2027990)  
+Regress: [mjsunit/regress/wasm/regress-1046472.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1046472.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+(function() {
+  const builder = new WasmModuleBuilder();
+  builder.addMemory(16, 32, false);
+  builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+  // Generate function 1 (out of 1).
+  builder.addFunction(undefined, 0 /* sig */)
+    .addBodyWithEnd([
+kExprI32Const, 0x20,
+kExprI64LoadMem, 0x00, 0xce, 0xf2, 0xff, 0x01,
+kExprBlock, kWasmF32,   // @9 f32
+  kExprI32Const, 0x04,
+  kExprI32Const, 0x01,
+  kExprBrTable, 0x01, 0x01, 0x00, // entries=1
+  kExprEnd,   // @19
+kExprUnreachable,
+kExprEnd,   // @21
+            ]);
+  builder.addExport('main', 0);
+  assertThrows(
+      () => {builder.toModule()}, WebAssembly.CompileError,
+      'WebAssembly.Module(): Compiling function #0 failed: type error in ' +
+          'merge[0] (expected <bot>, got i32) @+57');
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8ff14f5^!)  
+[src/wasm/function-body-decoder-impl.h](https://cs.chromium.org/chromium/src/v8/src/wasm/function-body-decoder-impl.h?cl=8ff14f5)  
+[test/mjsunit/regress/wasm/regress-1046472.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1046472.js?cl=8ff14f5)  
+  
+
+---   
+
 ## **regress-crbug-1044909.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1044909)**  
@@ -100,12 +214,12 @@ Regress: [mjsunit/regress/regress-1044919.js](https://chromium.googlesource.com/
 
 ## **regress-crbug-1044911.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1044911)**  
+**[Issue:  Fatal error - unreachable code](https://crbug.com/1044911)**  
 **[Commit: Fix ArrayLengthSetter for suddenly frozen elements](https://chromium.googlesource.com/v8/v8/+/2d10033)**  
   
 Date(Commit): Wed Jan 29 10:52:52 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, TE-NeedsTriageHelp, Needs-Milestone  
 Code Review: [https://codereview.chromium.org/2543553002](https://codereview.chromium.org/2543553002)  
 Regress: [mjsunit/regress/regress-crbug-1044911.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1044911.js)  
 ```javascript
