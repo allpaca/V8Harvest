@@ -2,6 +2,39 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1048241.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1048241)**  
+**[Commit: [liftoff][ia32] Fix AtomicStore register spilling](https://chromium.googlesource.com/v8/v8/+/0e2e50d)**  
+  
+Date(Commit): Tue Feb 04 09:39:54 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2036073](https://chromium-review.googlesource.com/c/v8/v8/+/2036073)  
+Regress: [mjsunit/regress/wasm/regress-1048241.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1048241.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(16, 32, false, true);
+const sig = makeSig([kWasmF64, kWasmI64, kWasmI32, kWasmF64], []);
+builder.addFunction(undefined, sig).addBody([
+  kExprI32Const, 0x00,                               // -
+  kExprI32Const, 0x00,                               // -
+  kExprI32Const, 0x00,                               // -
+  kAtomicPrefix, kExprI32AtomicXor16U, 0x01, 0x00,   // -
+  kAtomicPrefix, kExprI32AtomicStore8U, 0x00, 0x00,  // -
+]);
+builder.instantiate();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0e2e50d^!)  
+[src/wasm/baseline/ia32/liftoff-assembler-ia32.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/ia32/liftoff-assembler-ia32.h?cl=0e2e50d)  
+[test/mjsunit/regress/wasm/regress-1048241.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1048241.js?cl=0e2e50d)  
+  
+
+---   
+
 ## **regress-crbug-1047368.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1047368)**  
