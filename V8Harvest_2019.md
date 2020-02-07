@@ -1348,12 +1348,12 @@ assertUnoptimized(f);
 
 ## **regress-1018871.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1018871)**  
+**[Issue: DCHECK failure in !has_pending_exception() in isolate.cc](https://crbug.com/1018871)**  
 **[Commit: [runtime] Handle when JSProxy::HasProperty returns Nothing](https://chromium.googlesource.com/v8/v8/+/9cba7a8)**  
   
 Date(Commit): Thu Oct 31 09:57:06 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1886919](https://chromium-review.googlesource.com/c/v8/v8/+/1886919)  
 Regress: [mjsunit/regress/regress-1018871.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1018871.js)  
 ```javascript
