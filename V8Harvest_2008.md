@@ -3459,11 +3459,14 @@ assertEquals((123).length, 0)
   
 ---   
 
-## **regress-1050043.js (other issue)**  
+## **regress-1050043.js (chromium issue)**  
    
+**[Issue: it making fast contact with server.](https://crbug.com/1050043)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
+Components: Internals>Network  
+Labels: Needs-Feedback, Arch-x86_64, Via-Wizard-NetworkDownloading  
 Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
 Regress: [mjsunit/regress/regress-1050043.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1050043.js)  
 ```javascript
@@ -3501,7 +3504,7 @@ assertEquals( 268435456, unsignedShiftRight(0x40000000, 2), "0x40000000 >>> 2");
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
 ...  
   
-  
+
 ---   
 
 ## **regress-1039610.js (chromium issue)**  
