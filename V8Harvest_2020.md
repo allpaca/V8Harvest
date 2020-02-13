@@ -2,6 +2,53 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1049982-1.js (chromium issue)**  
+   
+**[Issue: Array.reduce callback is called with the wrong accumulator](https://crbug.com/1049982)**  
+**[Commit: [gasm] Fix deopt frame state in Array.p.reduce and reduceRight](https://chromium.googlesource.com/v8/v8/+/099de33)**  
+  
+Date(Commit): Tue Feb 11 16:38:33 2020  
+Components: Enterprise, Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Hotlist-Enterprise, M-80, ReleaseBlock-Stable, Via-Wizard-Javascript, Triaged-ET, Target-80, Postmortem-Needed, M-81, M-82, FoundIn-80, Target-81, Enterprise-TSE, Target-82, Needs-Triage-M80, merge-merged-8.0, merge-merged-8.1, TE-Verified-82.0.4055.2  
+Code Review: [https://crrev.com/c/1934329.](https://crrev.com/c/1934329.)  
+Regress: [mjsunit/regress/regress-1049982-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1049982-1.js), [mjsunit/regress/regress-1049982-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1049982-2.js)  
+```javascript
+const xs = [1,2,3,4,5,6,7,8,9];
+let deopt = false;
+
+function g(acc, x, i) {
+  if (deopt) {
+    assertFalse(%IsBeingInterpreted());
+    Array.prototype.x = 42;  // Trigger a lazy deopt.
+    deopt = false;
+  }
+  return acc + x;
+}
+
+function f() {
+  return xs.reduce(g, 0);
+}
+
+%PrepareFunctionForOptimization(f);
+%PrepareFunctionForOptimization(g);
+assertEquals(45, f());
+assertEquals(45, f());
+%OptimizeFunctionOnNextCall(f);
+
+deopt = true;
+assertEquals(45, f());
+assertEquals(45, f());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/099de33^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=099de33)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=099de33)  
+[test/mjsunit/regress/regress-1049982-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1049982-1.js?cl=099de33)  
+[test/mjsunit/regress/regress-1049982-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1049982-2.js?cl=099de33)  
+  
+
+---   
+
 ## **regress-1048241.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1048241)**  
