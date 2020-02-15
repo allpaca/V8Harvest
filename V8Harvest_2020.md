@@ -2,6 +2,86 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1051912.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1051912)**  
+**[Commit: [wasm] Fix streaming compilation prefix hash](https://chromium.googlesource.com/v8/v8/+/80c7ab4)**  
+  
+Date(Commit): Thu Feb 13 20:53:17 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2054099](https://chromium-review.googlesource.com/c/v8/v8/+/2054099)  
+Regress: [mjsunit/regress/wasm/regress-1051912.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1051912.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js')
+
+let binary = new Binary();
+binary.emit_header();
+binary.emit_bytes([kTypeSectionCode, 4, 1, kWasmFunctionTypeForm, 0, 0]);
+binary.emit_bytes([kFunctionSectionCode, 2, 1, 0]);
+binary.emit_bytes([kCodeSectionCode, 6, 1, 4]);
+binary.emit_bytes([kUnknownSectionCode, 2, 1, 0]);
+binary.emit_bytes([kUnknownSectionCode, 2, 1, 0]);
+binary.emit_bytes([kUnknownSectionCode, 2, 1, 0]);
+binary.emit_bytes([ kExprEnd]);
+let buffer = binary.trunc_buffer();
+WebAssembly.compile(buffer);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/80c7ab4^!)  
+[src/wasm/module-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-compiler.cc?cl=80c7ab4)  
+[test/mjsunit/regress/wasm/regress-1051912.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1051912.js?cl=80c7ab4)  
+  
+
+---   
+
+## **regress-1051017.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1051017)**  
+**[Commit: [turbofan] Fix bug in Typer::TypeInductionVariablePhi](https://chromium.googlesource.com/v8/v8/+/a2e971c)**  
+  
+Date(Commit): Thu Feb 13 13:29:25 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2051957](https://chromium-review.googlesource.com/c/v8/v8/+/2051957)  
+Regress: [mjsunit/compiler/regress-1051017.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1051017.js)  
+```javascript
+function foo1() {
+  var x = -Infinity;
+  var i = 0;
+  for (; i < 1; i += x) {
+    if (i == -Infinity) x = +Infinity;
+  }
+  return i;
+}
+
+%PrepareFunctionForOptimization(foo1);
+assertEquals(NaN, foo1());
+assertEquals(NaN, foo1());
+%OptimizeFunctionOnNextCall(foo1);
+assertEquals(NaN, foo1());
+
+
+function foo2() {
+  var i = -Infinity;
+  for (; i <= 42; i += Infinity) { }
+  return i;
+}
+
+%PrepareFunctionForOptimization(foo2);
+assertEquals(NaN, foo2());
+assertEquals(NaN, foo2());
+%OptimizeFunctionOnNextCall(foo2);
+assertEquals(NaN, foo2());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a2e971c^!)  
+[src/compiler/typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/typer.cc?cl=a2e971c)  
+[test/mjsunit/compiler/regress-1051017.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1051017.js?cl=a2e971c)  
+  
+
+---   
+
 ## **regress-1049982-1.js (chromium issue)**  
    
 **[Issue: Array.reduce callback is called with the wrong accumulator](https://crbug.com/1049982)**  
