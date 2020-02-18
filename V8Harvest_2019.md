@@ -1167,12 +1167,12 @@ foo();
 
 ## **regress-1020031.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1020031)**  
+**[Issue: CHECK failure: static_cast<uintptr_t>(caller_frame_top_) - total_output_frame_size > stack_guar](https://crbug.com/1020031)**  
 **[Commit: [interpreter] Move function-entry stack check to start of bytecode array](https://chromium.googlesource.com/v8/v8/+/cebfde6)**  
   
 Date(Commit): Mon Nov 11 15:00:09 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Stable, Security_Severity-Medium, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-78, M-78, Release-0-M80  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1903440](https://chromium-review.googlesource.com/c/v8/v8/+/1903440)  
 Regress: [mjsunit/regress/regress-1020031.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1020031.js)  
 ```javascript
