@@ -17785,10 +17785,7 @@ Regress: [mjsunit/asm/regress-674089.js](https://chromium.googlesource.com/v8/v8
 function outer() {
   "use asm";
   function inner() {
-    switch (1) {
-      case 0:
-        break foo;
-    }
+    /f(/
   }
 }
 outer();  

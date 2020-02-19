@@ -1242,12 +1242,12 @@ assertThrows(() => f(), TypeError);
 
 ## **regress-1016703.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1016703)**  
+**[Issue: DCHECK failure in static_cast<unsigned>(index) < static_cast<unsigned>(capacity()) in fixed-array-](https://crbug.com/1016703)**  
 **[Commit: [heap]: Make addition of detached contexts robust for GC](https://chromium.googlesource.com/v8/v8/+/b33a850)**  
   
 Date(Commit): Wed Nov 06 17:59:21 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Reproducible, Security_Severity-Low, Security_Impact-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Merge-Rejected-78, M-78, merge-merged-7.9, v8-ptr-compr, Release-0-M79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1895573](https://chromium-review.googlesource.com/c/v8/v8/+/1895573)  
 Regress: [mjsunit/regress/regress-1016703.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1016703.js)  
 ```javascript

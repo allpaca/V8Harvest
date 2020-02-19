@@ -2,6 +2,45 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-9622.js (v8 issue)**  
+   
+**[Issue: Floating point values differ in Node v12 and Chrome compared to earlier versions.](https://crbug.com/v8/9622)**  
+**[Commit: [builtins] stop using imprecise fdlibm pow](https://chromium.googlesource.com/v8/v8/+/b12ba06)**  
+  
+Date(Commit): Tue Feb 18 09:09:38 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1774898](https://chromium-review.googlesource.com/c/v8/v8/+/1774898)  
+Regress: [mjsunit/regress/regress-9622.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9622.js)  
+```javascript
+'use strict';
+
+assertEquals(0.6840442338072671 ** 2.4, 0.4019777798321958);
+
+const constants = {
+  '0': 1,
+  '-1': 0.1,
+  '-2': 0.01,
+  '-3': 0.001,
+  '-4': 0.0001,
+  '-5': 0.00001,
+  '-6': 0.000001,
+  '-7': 0.0000001,
+  '-8': 0.00000001,
+  '-9': 0.000000001,
+};
+
+for (let i = 0; i > -10; i -= 1) {
+  assertEquals(10 ** i, constants[i]);
+  assertEquals(10 ** i, 1 / (10 ** -i));
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b12ba06^!)  
+[src/base/ieee754.cc](https://cs.chromium.org/chromium/src/v8/src/base/ieee754.cc?cl=b12ba06)  
+[test/mjsunit/regress/regress-9622.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9622.js?cl=b12ba06)  
+  
+
+---   
+
 ## **regress-1051912.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1051912)**  
