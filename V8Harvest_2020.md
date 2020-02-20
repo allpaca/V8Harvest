@@ -2,6 +2,50 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1053604.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1053604)**  
+**[Commit: [turbofan] Fix bug in receiver maps inference](https://chromium.googlesource.com/v8/v8/+/fb0a60e)**  
+  
+Date(Commit): Wed Feb 19 10:15:34 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2062396](https://chromium-review.googlesource.com/c/v8/v8/+/2062396)  
+Regress: [mjsunit/compiler/regress-1053604.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1053604.js)  
+```javascript
+let a = [0, 1, 2, 3, 4];
+
+function empty() {}
+
+function f(p) {
+  a.pop(Reflect.construct(empty, arguments, p));
+}
+
+let p = new Proxy(Object, {
+    get: () => (a[0] = 1.1, Object.prototype)
+});
+
+function main(p) {
+  f(p);
+}
+
+%PrepareFunctionForOptimization(empty);
+%PrepareFunctionForOptimization(f);
+%PrepareFunctionForOptimization(main);
+
+main(empty);
+main(empty);
+%OptimizeFunctionOnNextCall(main);
+main(p);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/fb0a60e^!)  
+[src/compiler/node-properties.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/node-properties.cc?cl=fb0a60e)  
+[test/mjsunit/compiler/regress-1053604.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1053604.js?cl=fb0a60e)  
+  
+
+---   
+
 ## **regress-9622.js (v8 issue)**  
    
 **[Issue: Floating point values differ in Node v12 and Chrome compared to earlier versions.](https://crbug.com/v8/9622)**  
@@ -111,7 +155,21 @@ function foo2() {
 assertEquals(NaN, foo2());
 assertEquals(NaN, foo2());
 %OptimizeFunctionOnNextCall(foo2);
-assertEquals(NaN, foo2());  
+assertEquals(NaN, foo2());
+
+
+function foo3(b) {
+  var k = 0;
+  let str = b ? "42" : "0";
+  for (var i = str; i < 1 && k++ < 1; i -= 0) { }
+  return i;
+}
+
+%PrepareFunctionForOptimization(foo3);
+assertEquals(0, foo3());
+assertEquals(0, foo3());
+%OptimizeFunctionOnNextCall(foo3);
+assertEquals(0, foo3());  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a2e971c^!)  
