@@ -2,6 +2,33 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1050046.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1050046)**  
+**[Commit: [keys] Make sure we don't leak the enum cache in slow-mode for/in](https://chromium.googlesource.com/v8/v8/+/4b0916a)**  
+  
+Date(Commit): Thu Feb 20 16:44:41 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2066959](https://chromium-review.googlesource.com/c/v8/v8/+/2066959)  
+Regress: [mjsunit/regress/regress-crbug-1050046.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1050046.js)  
+```javascript
+var __v_6 = new Boolean();
+ __v_6.first = 0;
+ __v_6.prop = 1;
+for (var __v_2 in __v_6) {
+ delete __v_6.prop;
+ gc();
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4b0916a^!)  
+[src/objects/keys.cc](https://cs.chromium.org/chromium/src/v8/src/objects/keys.cc?cl=4b0916a)  
+[test/mjsunit/regress/regress-crbug-1050046.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1050046.js?cl=4b0916a)  
+  
+
+---   
+
 ## **regress-1053604.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1053604)**  
