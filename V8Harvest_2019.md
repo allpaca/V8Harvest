@@ -1093,12 +1093,12 @@ assertThrows(() => {
 
 ## **regress-crbug-1024099.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1024099)**  
+**[Issue: CHECK failure: bytes <= NUMBER in runtime-typedarray.cc](https://crbug.com/1024099)**  
 **[Commit: [builtins] Fix sorting of huge shared TypedArrays](https://chromium.googlesource.com/v8/v8/+/bc9e467)**  
   
 Date(Commit): Thu Nov 14 21:03:08 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Head, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-80  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1914564](https://chromium-review.googlesource.com/c/v8/v8/+/1914564)  
 Regress: [mjsunit/regress/regress-crbug-1024099.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1024099.js)  
 ```javascript
