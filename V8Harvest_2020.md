@@ -2,6 +2,48 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1034449.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1034449)**  
+**[Commit: [turbofan] Fixes Array constructor with single string argument](https://chromium.googlesource.com/v8/v8/+/86a6ce4)**  
+  
+Date(Commit): Fri Feb 21 12:26:09 2020  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Stability-Crash, Reproducible, Security_Impact-Stable, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner, Merge-Review-81  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2064985](https://chromium-review.googlesource.com/c/v8/v8/+/2064985)  
+Regress: [mjsunit/regress/regress-1034449.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1034449.js)  
+```javascript
+function f(len) {
+  return new Array(len);
+}
+
+%PrepareFunctionForOptimization(f);
+assertEquals(3, f(3).length);
+assertEquals(18, f(18).length);
+%OptimizeFunctionOnNextCall(f);
+assertEquals(4, f(4).length);
+assertOptimized(f);
+let a = f("8");
+assertUnoptimized(f);
+assertEquals(1, a.length);
+assertEquals("8", a[0]);
+
+%PrepareFunctionForOptimization(f);
+assertEquals(1, f(1).length);
+%OptimizeFunctionOnNextCall(f);
+assertEquals(8, f(8).length);
+assertOptimized(f);
+assertEquals(1, f("8").length);
+assertOptimized(f);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/86a6ce4^!)  
+[src/compiler/js-create-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.cc?cl=86a6ce4)  
+[test/mjsunit/regress/regress-1034449.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1034449.js?cl=86a6ce4)  
+  
+
+---   
+
 ## **regress-crbug-1050046.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1050046)**  
