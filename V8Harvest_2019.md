@@ -1063,12 +1063,12 @@ assertOptimized(foo);
 
 ## **regress-crbug-1022695.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1022695)**  
+**[Issue: Crash in Builtins_InterpreterEntryTrampoline](https://crbug.com/1022695)**  
 **[Commit: [builtins] Put all JS linkage builtins in CODE_SPACE](https://chromium.googlesource.com/v8/v8/+/3f254fd)**  
   
 Date(Commit): Mon Nov 18 11:09:32 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Medium, Security_Impact-Head, M-80, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-80  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1916600](https://chromium-review.googlesource.com/c/v8/v8/+/1916600)  
 Regress: [mjsunit/regress/regress-crbug-1022695.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1022695.js)  
 ```javascript

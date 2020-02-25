@@ -9909,7 +9909,7 @@ load('test/mjsunit/wasm/wasm-module-builder.js');
 let builder = new WasmModuleBuilder();
 const num_pages = 49152;
 builder.addMemory(num_pages, num_pages);
-assertThrows(() => builder.instantiate(), RangeError);  
+assertThrows(() => builder.instantiate(), WebAssembly.CompileError);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a5449b0^!)  
