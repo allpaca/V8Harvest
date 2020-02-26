@@ -947,12 +947,12 @@ f();
 
 ## **regress-crbug-1024758.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1024758)**  
+**[Issue: Security: OOB Write in ReduceRegExpPrototypeTest](https://crbug.com/1024758)**  
 **[Commit: [compiler] Fix RegExpPrototypeTest reduction](https://chromium.googlesource.com/v8/v8/+/aecd843)**  
   
 Date(Commit): Tue Nov 19 14:21:12 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, Security_Impact-Stable, Security_Severity-High, reward-7500, allpublic, reward-inprocess, CVE_description-submitted, Merge-Rejected-78, Target-78, M-78, VulnerabilityAnalysis-Requested, Merge-Merged-79, Release-0-M79, CVE-2019-13728  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1924353](https://chromium-review.googlesource.com/c/v8/v8/+/1924353)  
 Regress: [mjsunit/regress/regress-crbug-1024758.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1024758.js)  
 ```javascript
