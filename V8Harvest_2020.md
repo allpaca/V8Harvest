@@ -2,6 +2,117 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1055692.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1055692)**  
+**[Commit: [wasm-simd] Fix OpcodeLength of load splat/extend ops](https://chromium.googlesource.com/v8/v8/+/a67a16a)**  
+  
+Date(Commit): Wed Feb 26 02:57:20 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2071401](https://chromium-review.googlesource.com/c/v8/v8/+/2071401)  
+Regress: [mjsunit/regress/wasm/regress-1055692.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1055692.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(16, 32, false);
+builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, 0 /* sig */)
+  .addBodyWithEnd([
+kExprI32Const, 0x75,  // i32.const
+kExprI32Const, 0x74,  // i32.const
+kExprI32Const, 0x18,  // i32.const
+kSimdPrefix, kExprS8x16LoadSplat,  // s8x16.load_splat
+kExprUnreachable,  // unreachable
+kExprUnreachable,  // unreachable
+kExprI32Const, 0x6f,  // i32.const
+kExprI32Const, 0x7f,  // i32.const
+kExprI32Const, 0x6f,  // i32.const
+kExprDrop,
+kExprDrop,
+kExprDrop,
+kExprDrop,
+kExprDrop,
+kExprEnd,  // end @18
+]);
+builder.addExport('main', 0);
+const instance = builder.instantiate();
+print(instance.exports.main(1, 2, 3));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a67a16a^!)  
+[src/wasm/wasm-opcodes.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.h?cl=a67a16a)  
+[test/mjsunit/regress/wasm/regress-1055692.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1055692.js?cl=a67a16a)  
+[test/mjsunit/wasm/wasm-module-builder.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-module-builder.js?cl=a67a16a)  
+  
+
+---   
+
+## **regress-1054466.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1054466)**  
+**[Commit: [liftoff] Check fp_pair when looking up register for reuse](https://chromium.googlesource.com/v8/v8/+/548fda4)**  
+  
+Date(Commit): Mon Feb 24 12:24:06 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2070006](https://chromium-review.googlesource.com/c/v8/v8/+/2070006)  
+Regress: [mjsunit/regress/wasm/regress-1054466.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1054466.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, 0 /* sig */)
+  .addLocals({i32_count: 2}).addLocals({f32_count: 2})
+  .addBodyWithEnd([
+kExprI32Const, 0x00,  // i32.const
+kExprI32Const, 0x00,  // i32.const
+kExprI32Const, 0xf9, 0x00,  // i32.const
+kExprI32Ior,  // i32.or
+kExprI32Eqz,  // i32.eqz
+kExprI32Add,  // i32.Add
+kSimdPrefix, kExprI32x4Splat,  // i32x4.splat
+kExprF32Const, 0x46, 0x5d, 0x00, 0x00,  // f32.const
+kExprI32Const, 0x83, 0x01,  // i32.const
+kExprI32Const, 0x83, 0x01,  // i32.const
+kExprI32Const, 0x83, 0x01,  // i32.const
+kExprI32Add,  // i32.Add
+kExprI32Add,  // i32.Add
+kExprIf, kWasmI32,  // if @33 i32
+  kExprI32Const, 0x00,  // i32.const
+kExprElse,  // else @37
+  kExprI32Const, 0x00,  // i32.const
+  kExprEnd,  // end @40
+kExprIf, kWasmI32,  // if @41 i32
+  kExprI32Const, 0x00,  // i32.const
+kExprElse,  // else @45
+  kExprI32Const, 0x00,  // i32.const
+  kExprEnd,  // end @48
+kExprF32ReinterpretI32,  // f32.reinterpret_i32
+kExprF32Max,  // f32.max
+kSimdPrefix, kExprF32x4Splat,  // f32x4.splat
+kExprI32Const, 0x83, 0x01,  // i32.const
+kSimdPrefix, kExprI32x4Splat,  // i32x4.splat
+kSimdPrefix, kExprI32x4Add,  // i32x4.add
+kSimdPrefix, kExprI32x4Add,  // i32x4.add
+kSimdPrefix, kExprS1x8AnyTrue,  // s1x8.any_true
+kExprEnd,  // end @64
+]);
+builder.addExport('main', 0);
+const instance = builder.instantiate();
+print(instance.exports.main(1, 2, 3));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/548fda4^!)  
+[src/wasm/baseline/liftoff-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.cc?cl=548fda4)  
+[test/mjsunit/regress/wasm/regress-1054466.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1054466.js?cl=548fda4)  
+[test/mjsunit/wasm/wasm-module-builder.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-module-builder.js?cl=548fda4)  
+  
+
+---   
+
 ## **regress-1034449.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1034449)**  
@@ -71,14 +182,37 @@ for (var __v_2 in __v_6) {
 
 ---   
 
+## **regress-10126-streaming.js (v8 issue)**  
+   
+**[Issue: [wasm] Decoders should throw on invalid custom section size](https://crbug.com/v8/10126)**  
+**[Commit: [wasm] The name of a custom section can cause a validation error](https://chromium.googlesource.com/v8/v8/+/03d5a7b)**  
+  
+Date(Commit): Wed Feb 19 18:39:25 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2041446](https://chromium-review.googlesource.com/c/v8/v8/+/2041446)  
+Regress: [mjsunit/regress/wasm/regress-10126-streaming.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-10126-streaming.js), [mjsunit/regress/wasm/regress-10126.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-10126.js)  
+```javascript
+load('test/mjsunit/regress/wasm/regress-10126.js')  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/03d5a7b^!)  
+[src/wasm/decoder.h](https://cs.chromium.org/chromium/src/v8/src/wasm/decoder.h?cl=03d5a7b)  
+[src/wasm/module-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-compiler.cc?cl=03d5a7b)  
+[src/wasm/module-decoder.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-decoder.cc?cl=03d5a7b)  
+[src/wasm/module-decoder.h](https://cs.chromium.org/chromium/src/v8/src/wasm/module-decoder.h?cl=03d5a7b)  
+[src/wasm/wasm-engine.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-engine.cc?cl=03d5a7b)  
+...  
+  
+
+---   
+
 ## **regress-1053604.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1053604)**  
+**[Issue: Security: Incorrect side effect modelling for JSCreate](https://crbug.com/1053604)**  
 **[Commit: [turbofan] Fix bug in receiver maps inference](https://chromium.googlesource.com/v8/v8/+/fb0a60e)**  
   
 Date(Commit): Wed Feb 19 10:15:34 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, Restrict-AddIssueComment-EditIssue, Security_Impact-Stable, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, Arch-ARM, ClusterFuzz-Verified, CVE_description-missing, Merge-Approved-79, Target-80, merge-merged-8.0, merge-merged-8.1, Respin-Cause-Android-80, Respin-Cause-Desktop-80, Release-3-M80, CVE-2020-6418  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2062396](https://chromium-review.googlesource.com/c/v8/v8/+/2062396)  
 Regress: [mjsunit/compiler/regress-1053604.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1053604.js)  
 ```javascript
@@ -111,45 +245,6 @@ main(p);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/fb0a60e^!)  
 [src/compiler/node-properties.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/node-properties.cc?cl=fb0a60e)  
 [test/mjsunit/compiler/regress-1053604.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1053604.js?cl=fb0a60e)  
-  
-
----   
-
-## **regress-9622.js (v8 issue)**  
-   
-**[Issue: Floating point values differ in Node v12 and Chrome compared to earlier versions.](https://crbug.com/v8/9622)**  
-**[Commit: [builtins] stop using imprecise fdlibm pow](https://chromium.googlesource.com/v8/v8/+/b12ba06)**  
-  
-Date(Commit): Tue Feb 18 09:09:38 2020  
-Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1774898](https://chromium-review.googlesource.com/c/v8/v8/+/1774898)  
-Regress: [mjsunit/regress/regress-9622.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9622.js)  
-```javascript
-'use strict';
-
-assertEquals(0.6840442338072671 ** 2.4, 0.4019777798321958);
-
-const constants = {
-  '0': 1,
-  '-1': 0.1,
-  '-2': 0.01,
-  '-3': 0.001,
-  '-4': 0.0001,
-  '-5': 0.00001,
-  '-6': 0.000001,
-  '-7': 0.0000001,
-  '-8': 0.00000001,
-  '-9': 0.000000001,
-};
-
-for (let i = 0; i > -10; i -= 1) {
-  assertEquals(10 ** i, constants[i]);
-  assertEquals(10 ** i, 1 / (10 ** -i));
-}  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/b12ba06^!)  
-[src/base/ieee754.cc](https://cs.chromium.org/chromium/src/v8/src/base/ieee754.cc?cl=b12ba06)  
-[test/mjsunit/regress/regress-9622.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9622.js?cl=b12ba06)  
   
 
 ---   
