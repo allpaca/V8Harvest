@@ -914,12 +914,12 @@ foo();
 
 ## **regress-crbug-1025468.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1025468)**  
+**[Issue: DCHECK failure in result.NumberOfOwnDescriptors() == result.instance_descriptors().number_of_descr](https://crbug.com/1025468)**  
 **[Commit: Ensure root maps do not have slack in descriptor array](https://chromium.googlesource.com/v8/v8/+/31fab14)**  
   
 Date(Commit): Thu Nov 21 16:05:03 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Security_Impact-Stable, reward-NA, Security_Severity-High, allpublic, ClusterFuzz-Verified, CVE_description-submitted, Merge-Rejected-78, Target-78, Target-79, M-79, M-78, VulnerabilityAnalysis-Requested, Merge-Merged-79, reward_to-l.dmxcsnsbh_at_gmail.com, Release-0-M79, CVE-2019-13735  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1924363](https://chromium-review.googlesource.com/c/v8/v8/+/1924363)  
 Regress: [mjsunit/regress-crbug-1025468.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-crbug-1025468.js)  
 ```javascript
