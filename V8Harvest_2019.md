@@ -513,12 +513,12 @@ re.__defineGetter__("global", () => true);
 
 ## **regress-1027410.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1027410)**  
+**[Issue: DCHECK failure in dst_offset != src_offset in liftoff-assembler-x64.h](https://crbug.com/1027410)**  
 **[Commit: [liftoff] Add regression test for asan dcheck failure](https://chromium.googlesource.com/v8/v8/+/2fb290d)**  
   
 Date(Commit): Mon Dec 02 09:40:23 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Head, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-80  
 Code Review: [https://crrev.com/c/1930606.](https://crrev.com/c/1930606.)  
 Regress: [mjsunit/regress/wasm/regress-1027410.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1027410.js)  
 ```javascript
