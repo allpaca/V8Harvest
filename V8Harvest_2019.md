@@ -740,12 +740,12 @@ Regress: [mjsunit/regress/regress-crbug-1028396.js](https://chromium.googlesourc
 
 ## **regress-1027595.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1027595)**  
+**[Issue: Security: v8 Check failed: result.failed() implies FLAG_wasm_lazy_validation.](https://crbug.com/1027595)**  
 **[Commit: [asm.js] Fix load type of {Float32Array} and {Float64Array}.](https://chromium.googlesource.com/v8/v8/+/a3a0f80)**  
   
 Date(Commit): Mon Nov 25 14:47:08 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>WebAssembly  
+Labels: reward-0, allpublic, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, M-78  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1932374](https://chromium-review.googlesource.com/c/v8/v8/+/1932374)  
 Regress: [mjsunit/asm/regress-1027595.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/asm/regress-1027595.js)  
 ```javascript
