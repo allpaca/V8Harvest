@@ -1325,7 +1325,7 @@ Date(Commit): Tue Nov 20 06:36:53 2018
 Components: Blink>JavaScript  
 Labels: Reproducible, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/1342919](https://chromium-review.googlesource.com/c/1342919)  
-Regress: [mjsunit/regress-906893.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-906893.js)  
+Regress: [mjsunit/regress/regress-906893.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-906893.js)  
 ```javascript
 const r = /x/;
 let counter = 0;
@@ -1386,7 +1386,7 @@ assertEquals(undefined, foo());
   
 Date(Commit): Mon Nov 19 10:58:01 2018  
 Code Review: [https://chromium-review.googlesource.com/c/1335696](https://chromium-review.googlesource.com/c/1335696)  
-Regress: [mjsunit/regress-regexp-functional-replace-slow.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-regexp-functional-replace-slow.js)  
+Regress: [mjsunit/regress/regress-regexp-functional-replace-slow.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-regexp-functional-replace-slow.js)  
 ```javascript
 /a/.constructor = "";
 
@@ -1500,7 +1500,7 @@ assertThrows("g()", RangeError);
   
 Date(Commit): Fri Nov 16 10:07:03 2018  
 Code Review: [https://chromium-review.googlesource.com/c/1335696](https://chromium-review.googlesource.com/c/1335696)  
-Regress: [mjsunit/regress-v8-8445-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-v8-8445-2.js), [mjsunit/regress-v8-8445.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-v8-8445.js)  
+Regress: [mjsunit/regress/regress-v8-8445-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-8445-2.js), [mjsunit/regress/regress-v8-8445.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-8445.js)  
 ```javascript
 class MyRegExp {
   exec() { return null; }

@@ -2,6 +2,63 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1057094.js (chromium issue)**  
+   
+**[Issue: CHECK failure: maximum_pages <= std::numeric_limits<size_t>::max() / wasm::kWasmPageSize in bac](https://crbug.com/1057094)**  
+**[Commit: [wasm] Fix memory limit check with custom flags](https://chromium.googlesource.com/v8/v8/+/27538aa)**  
+  
+Date(Commit): Tue Mar 03 16:17:24 2020  
+Components: Blink>JavaScript, Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, M-82, Target-82  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2083300](https://chromium-review.googlesource.com/c/v8/v8/+/2083300)  
+Regress: [mjsunit/regress/wasm/regress-crbug-1057094.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-crbug-1057094.js)  
+```javascript
+try {
+  var __v_50189 = new WebAssembly.Memory({
+    initial: 65536
+  });
+} catch (e) {
+  // 32-bit builds will throw a RangeError, that's okay.
+  assertTrue(e instanceof RangeError);
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/27538aa^!)  
+[src/objects/backing-store.cc](https://cs.chromium.org/chromium/src/v8/src/objects/backing-store.cc?cl=27538aa)  
+[test/mjsunit/regress/wasm/regress-crbug-1057094.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-crbug-1057094.js?cl=27538aa)  
+  
+
+---   
+
+## **regress-crbug-1052647.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1052647)**  
+**[Commit: [intl] Fix Intl.NumberFormat constructor](https://chromium.googlesource.com/v8/v8/+/09d1472)**  
+  
+Date(Commit): Tue Mar 03 11:33:53 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2082560](https://chromium-review.googlesource.com/c/v8/v8/+/2082560)  
+Regress: [mjsunit/regress/regress-crbug-1052647.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1052647.js)  
+```javascript
+let useArgs = undefined;
+function f(arg) {
+    useArgs = 'result' + arguments[0] + arg;
+}
+
+Intl.NumberFormat.__proto__ = { [Symbol.hasInstance]: f };
+
+new Intl.NumberFormat();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/09d1472^!)  
+[src/builtins/builtins-intl.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-intl.cc?cl=09d1472)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=09d1472)  
+[test/mjsunit/regress/regress-crbug-1052647.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1052647.js?cl=09d1472)  
+  
+
+---   
+
 ## **regress-1055692.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1055692)**  

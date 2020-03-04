@@ -670,12 +670,12 @@ for (var __v_17 = 0; __v_17 < 100000; __v_17++);
 
 ## **regress-1028191.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1028191)**  
+**[Issue: CHECK failure: IsValidHeapObject(isolate->heap(), HeapObject::cast(p)) in objects-debug.cc](https://crbug.com/1028191)**  
 **[Commit: [turbofan] Fixes crash caused by truncated bigint](https://chromium.googlesource.com/v8/v8/+/3ce6be0)**  
   
 Date(Commit): Tue Nov 26 13:06:01 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, Reproducible, Security_Impact-Stable, M-80, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, merge-merged-7.9, Release-0-M79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1936468](https://chromium-review.googlesource.com/c/v8/v8/+/1936468)  
 Regress: [mjsunit/regress/regress-1028191.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1028191.js)  
 ```javascript
@@ -707,12 +707,12 @@ assertEquals(f(2n, 3n), 5n);
 
 ## **regress-crbug-1028396.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1028396)**  
+**[Issue: CHECK failure: descriptors != ReadOnlyRoots(isolate).empty_descriptor_array() implies !parent.o](https://crbug.com/1028396)**  
 **[Commit: Fix too restrictive check in Map::MapVerify](https://chromium.googlesource.com/v8/v8/+/e34e527)**  
   
 Date(Commit): Tue Nov 26 11:08:15 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, M-80, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1936467](https://chromium-review.googlesource.com/c/v8/v8/+/1936467)  
 Regress: [mjsunit/regress/regress-crbug-1028396.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1028396.js)  
 ```javascript
@@ -921,7 +921,7 @@ Date(Commit): Thu Nov 21 16:05:03 2019
 Components: Blink>JavaScript  
 Labels: Hotlist-Merge-Review, Security_Impact-Stable, reward-NA, Security_Severity-High, allpublic, ClusterFuzz-Verified, CVE_description-submitted, Merge-Rejected-78, Target-78, Target-79, M-79, M-78, VulnerabilityAnalysis-Requested, Merge-Merged-79, reward_to-l.dmxcsnsbh_at_gmail.com, Release-0-M79, CVE-2019-13735  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1924363](https://chromium-review.googlesource.com/c/v8/v8/+/1924363)  
-Regress: [mjsunit/regress-crbug-1025468.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-crbug-1025468.js)  
+Regress: [mjsunit/regress/regress-crbug-1025468.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1025468.js)  
 ```javascript
 function f() {
   class H {
@@ -6031,7 +6031,7 @@ Date(Commit): Wed May 29 18:05:28 2019
 Components: Blink>JavaScript  
 Labels: Reproducible, Stability-Memory-AddressSanitizer, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-76, Merge-M76  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1625864](https://chromium-review.googlesource.com/c/v8/v8/+/1625864)  
-Regress: [mjsunit/regress-966460.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-966460.js)  
+Regress: [mjsunit/regress/regress-966460.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-966460.js)  
 ```javascript
 PI = [];
 PI[250] = PI;
@@ -6399,7 +6399,7 @@ Date(Commit): Mon May 20 21:31:24 2019
 Components: Blink>JavaScript  
 Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1613840](https://chromium-review.googlesource.com/c/v8/v8/+/1613840)  
-Regress: [mjsunit/regress-963346.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-963346.js)  
+Regress: [mjsunit/regress/regress-963346.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-963346.js)  
 ```javascript
 var o = ['3'];
 function foo(i) { o.x = i; }
@@ -7085,7 +7085,7 @@ Date(Commit): Fri May 03 09:51:47 2019
 Components: Blink>JavaScript  
 Labels: Reproducible, Stability-Memory-AddressSanitizer, allpublic, Clusterfuzz, ClusterFuzz-Verified  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1594434](https://chromium-review.googlesource.com/c/v8/v8/+/1594434)  
-Regress: [mjsunit/regress-958725.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-958725.js)  
+Regress: [mjsunit/regress/regress-958725.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-958725.js)  
 ```javascript
 function f(v3) {
   Symbol[Symbol.replace] = Object;
@@ -7316,7 +7316,7 @@ Date(Commit): Thu May 02 11:52:20 2019
 Components: Blink>JavaScript  
 Labels: Hotlist-Merge-Review, Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-High, Security_Impact-Beta, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-75, Merge-Merged-75-3770  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1593083](https://chromium-review.googlesource.com/c/v8/v8/+/1593083)  
-Regress: [mjsunit/regress-952682.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-952682.js)  
+Regress: [mjsunit/regress/regress-952682.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-952682.js)  
 ```javascript
 function f(array, x) {
   array.x = x;
@@ -7529,7 +7529,7 @@ Date(Commit): Sun Apr 28 14:11:01 2019
 Components: Blink>JavaScript>Runtime  
 Labels: Reproducible, Security_Impact-Head, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-75, M-75, Merge-Merged-75-3770  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1585858](https://chromium-review.googlesource.com/c/v8/v8/+/1585858)  
-Regress: [mjsunit/regress-956426.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-956426.js)  
+Regress: [mjsunit/regress/regress-956426.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-956426.js)  
 ```javascript
 var b = { x: 0, y: 0, 0: '' };
 var a = { x: 0, y: 100000000000, 0: '' };
@@ -10010,7 +10010,7 @@ Date(Commit): Fri Feb 15 07:44:11 2019
 Components: Blink>JavaScript  
 Labels: allpublic  
 Code Review: [https://chromium-review.googlesource.com/c/1475390](https://chromium-review.googlesource.com/c/1475390)  
-Regress: [mjsunit/regress-932101.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-932101.js)  
+Regress: [mjsunit/regress/regress-932101.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-932101.js)  
 ```javascript
 o = Object("A");
 o.x = 1;
@@ -10176,7 +10176,7 @@ Date(Commit): Sat Feb 09 09:09:02 2019
 Components: Blink>JavaScript  
 Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Low, Security_Impact-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/1460949](https://chromium-review.googlesource.com/c/1460949)  
-Regress: [mjsunit/regress-930045.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-930045.js)  
+Regress: [mjsunit/regress/regress-930045.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-930045.js)  
 ```javascript
 (function CaptureStackTracePrivateSymbol() {
   var o = {};
@@ -11366,7 +11366,7 @@ Date(Commit): Mon Jan 07 14:38:50 2019
 Components: Blink>JavaScript  
 Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/1397707](https://chromium-review.googlesource.com/c/1397707)  
-Regress: [mjsunit/regress-918763.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-918763.js)  
+Regress: [mjsunit/regress/regress-918763.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-918763.js)  
 ```javascript
 function C() {}
 C.__proto__ = null;
