@@ -643,12 +643,12 @@ foo();
 
 ## **regress-crbug-1027025.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1027025)**  
+**[Issue: DCHECK failure in *(maybe_code_handler.object()) == *StoreHandler::StoreSlow(GetIsolate()) in feed](https://crbug.com/1027025)**  
 **[Commit: Modify the DCheck to avoid failures.](https://chromium.googlesource.com/v8/v8/+/2174ba9)**  
   
 Date(Commit): Tue Nov 26 18:42:51 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-80  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1929408](https://chromium-review.googlesource.com/c/v8/v8/+/1929408)  
 Regress: [mjsunit/regress/regress-crbug-1027025.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1027025.js)  
 ```javascript
