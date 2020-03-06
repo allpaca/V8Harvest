@@ -2,6 +2,34 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1057653.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1057653)**  
+**[Commit: [keys] Handle RangeError in GetKeysWithPrototypeInfoCache](https://chromium.googlesource.com/v8/v8/+/22afaac)**  
+  
+Date(Commit): Wed Mar 04 13:38:10 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2084814](https://chromium-review.googlesource.com/c/v8/v8/+/2084814)  
+Regress: [mjsunit/regress/regress-crbug-1057653.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1057653.js)  
+```javascript
+Object.prototype.length = 3642395160;
+const array = new Float32Array(2**28);
+
+assertThrows(() => {for (const key in array) {}}, RangeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/22afaac^!)  
+[src/handles/maybe-handles.h](https://cs.chromium.org/chromium/src/v8/src/handles/maybe-handles.h?cl=22afaac)  
+[src/objects/keys.cc](https://cs.chromium.org/chromium/src/v8/src/objects/keys.cc?cl=22afaac)  
+[src/objects/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/objects.cc?cl=22afaac)  
+[test/cctest/compiler/test-run-jsobjects.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-jsobjects.cc?cl=22afaac)  
+[test/cctest/heap/test-heap.cc](https://cs.chromium.org/chromium/src/v8/test/cctest/heap/test-heap.cc?cl=22afaac)  
+...  
+  
+
+---   
+
 ## **regress-crbug-1057094.js (chromium issue)**  
    
 **[Issue: CHECK failure: maximum_pages <= std::numeric_limits<size_t>::max() / wasm::kWasmPageSize in bac](https://crbug.com/1057094)**  
