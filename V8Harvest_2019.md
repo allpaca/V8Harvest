@@ -611,12 +611,12 @@ foo();
 
 ## **regress-1028862.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1028862)**  
+**[Issue: Trap in Builtins_InterpreterEntryTrampoline](https://crbug.com/1028862)**  
 **[Commit: [turbofan] Fix simplified lowering of SpeculativeNumberModulus](https://chromium.googlesource.com/v8/v8/+/3363ddd)**  
   
 Date(Commit): Fri Nov 29 11:46:49 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, reward-5000, Security_Impact-Stable, Security_Severity-High, allpublic, reward-inprocess, ClusterFuzz-Verified, Via-Wizard-Security, Test-Predator-Auto-Owner, CVE_description-submitted, Merge-Rejected-78, Target-78, M-78, merge-merged-7.9, Merge-Merged-79, Release-0-M79, CVE-2019-13730  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1943150](https://chromium-review.googlesource.com/c/v8/v8/+/1943150)  
 Regress: [mjsunit/compiler/regress-1028862.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1028862.js)  
 ```javascript
@@ -1434,12 +1434,12 @@ const re = /()()()()(?<aaaab>)1/;
 
 ## **regress-crbug-1018611-2.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1018611)**  
+**[Issue: v8_script_parser_fuzzer: DCHECK failure in declaration->var()->initializer_position() != kNoSourcePosition in expression-sc](https://crbug.com/1018611)**  
 **[Commit: [parser] Add early return for declaration error in arrow head](https://chromium.googlesource.com/v8/v8/+/6d97ac5)**  
   
 Date(Commit): Mon Oct 28 14:09:11 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Parser  
+Labels: Reproducible, allpublic, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-79, M-79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1879906](https://chromium-review.googlesource.com/c/v8/v8/+/1879906)  
 Regress: [mjsunit/regress/regress-crbug-1018611-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1018611-2.js), [mjsunit/regress/regress-crbug-1018611.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1018611.js)  
 ```javascript
