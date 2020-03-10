@@ -445,12 +445,12 @@ try { Float64Array.from(ar); } catch (e) {}
 
 ## **regress-crbug-1028863.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1028863)**  
+**[Issue: v8: Wrong JIT code that triggers SIGTRAP at runtime](https://crbug.com/1028863)**  
 **[Commit: [TurboFan] Loop variable analysis requires more sensitivity](https://chromium.googlesource.com/v8/v8/+/b8b6075)**  
   
 Date(Commit): Mon Dec 02 15:20:52 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, reward-5000, Security_Impact-Stable, Security_Severity-High, allpublic, reward-inprocess, ClusterFuzz-Verified, Via-Wizard-Security, Test-Predator-Auto-Owner, CVE_description-submitted, Target-78, M-78, merge-merged-7.9, Merge-Merged-79, Release-0-M79, CVE-2019-13764  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1946352](https://chromium-review.googlesource.com/c/v8/v8/+/1946352)  
 Regress: [mjsunit/regress/regress-crbug-1028863.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1028863.js)  
 ```javascript
