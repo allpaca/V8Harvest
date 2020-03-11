@@ -484,12 +484,12 @@ bar();
 
 ## **regress-1028208.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1028208)**  
+**[Issue: DCHECK failure in !is_compiled() || IsInterpreted() in js-objects.cc](https://crbug.com/1028208)**  
 **[Commit: Don't try to optimize an already-optimized function](https://chromium.googlesource.com/v8/v8/+/cab15c8)**  
   
 Date(Commit): Mon Dec 02 12:04:23 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler  
+Labels: Reproducible, Security_Impact-Head, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1946351](https://chromium-review.googlesource.com/c/v8/v8/+/1946351)  
 Regress: [mjsunit/compiler/regress-1028208.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1028208.js)  
 ```javascript
