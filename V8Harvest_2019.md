@@ -385,12 +385,12 @@ Regress: [mjsunit/regress/wasm/regress-1030103.js](https://chromium.googlesource
 
 ## **regress-1029576.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1029576)**  
+**[Issue: Security:  Debug check failed: 0 <= index && index < node->op()->ValueInputCount().](https://crbug.com/1029576)**  
 **[Commit: [Turbofan] Fixes crash on missing BigInt.asUintN argument](https://chromium.googlesource.com/v8/v8/+/e76d29b)**  
   
 Date(Commit): Tue Dec 03 15:58:07 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, reward-0, Security_Severity-Low, Security_Impact-Stable, M-80, allpublic, ClusterFuzz-Verified, Test-Predator-Auto-Components, CVE_description-submitted, Release-0-M80, CVE-2020-6415  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1948711](https://chromium-review.googlesource.com/c/v8/v8/+/1948711)  
 Regress: [mjsunit/regress/regress-1029576.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1029576.js)  
 ```javascript
