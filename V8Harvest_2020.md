@@ -2,6 +2,96 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1059738.js (chromium issue)**  
+   
+**[Issue: DCHECK failure in !name_->AsIntegerIndex(&index) in lookup-inl.h](https://crbug.com/1059738)**  
+**[Commit: Fix one more LookupIterator](https://chromium.googlesource.com/v8/v8/+/ea468d5)**  
+  
+Date(Commit): Fri Mar 13 13:39:54 2020  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, M-80, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2101005](https://chromium-review.googlesource.com/c/v8/v8/+/2101005)  
+Regress: [mjsunit/regress/regress-crbug-1059738.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1059738.js)  
+```javascript
+var o = {4294967295: ({4294967295: NaN}) + "foo"};  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ea468d5^!)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=ea468d5)  
+[test/mjsunit/regress/regress-crbug-1059738.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1059738.js?cl=ea468d5)  
+  
+
+---   
+
+## **regress-10309.js (v8 issue)**  
+   
+**[Issue: Experimental SIMD - Issue when using f32.replace_lane and f32.load instructions together.](https://crbug.com/v8/10309)**  
+**[Commit: [wasm-simd] Add regression test to validate results on Arm64 HW](https://chromium.googlesource.com/v8/v8/+/37ef629)**  
+  
+Date(Commit): Fri Mar 13 00:58:01 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2101701](https://chromium-review.googlesource.com/c/v8/v8/+/2101701)  
+Regress: [mjsunit/regress/wasm/regress-10309.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-10309.js)  
+```javascript
+let registry = {};
+
+function module(bytes, valid = true) {
+  let buffer = new ArrayBuffer(bytes.length);
+  let view = new Uint8Array(buffer);
+  for (let i = 0; i < bytes.length; ++i) {
+    view[i] = bytes.charCodeAt(i);
+  }
+  let validated;
+  try {
+    validated = WebAssembly.validate(buffer);
+  } catch (e) {
+    throw new Error("Wasm validate throws");
+  }
+  if (validated !== valid) {
+    throw new Error("Wasm validate failure" + (valid ? "" : " expected"));
+  }
+  return new WebAssembly.Module(buffer);
+}
+
+function instance(bytes, imports = registry) {
+  return new WebAssembly.Instance(module(bytes), imports);
+}
+
+function call(instance, name, args) {
+  return instance.exports[name](...args);
+}
+
+function exports(name, instance) {
+  return {[name]: instance.exports};
+}
+
+function assert_return(action, expected) {
+  let actual = action();
+  if (!Object.is(actual, expected)) {
+    throw new Error("Wasm return value " + expected + " expected, got " + actual);
+  };
+}
+
+let f32 = Math.fround;
+
+let $1 = instance("\x00\x61\x73\x6d\x01\x00\x00\x00\x01\x09\x02\x60\x00\x00\x60\x01\x7f\x01\x7d\x03\x04\x03\x00\x00\x01\x05\x03\x01\x00\x01\x07\x1c\x02\x11\x72\x65\x70\x6c\x61\x63\x65\x5f\x6c\x61\x6e\x65\x5f\x74\x65\x73\x74\x00\x01\x04\x72\x65\x61\x64\x00\x02\x08\x01\x00\x0a\x6e\x03\x2a\x00\x41\x10\x43\x00\x00\x80\x3f\x38\x02\x00\x41\x14\x43\x00\x00\x00\x40\x38\x02\x00\x41\x18\x43\x00\x00\x40\x40\x38\x02\x00\x41\x1c\x43\x00\x00\x80\x40\x38\x02\x00\x0b\x39\x01\x01\x7b\x41\x10\x2a\x02\x00\xfd\x12\x21\x00\x20\x00\x41\x10\x2a\x01\x04\xfd\x14\x01\x21\x00\x20\x00\x41\x10\x2a\x01\x08\xfd\x14\x02\x21\x00\x20\x00\x41\x10\x2a\x01\x0c\xfd\x14\x03\x21\x00\x41\x00\x20\x00\xfd\x01\x02\x00\x0b\x07\x00\x20\x00\x2a\x02\x00\x0b");
+
+call($1, "replace_lane_test", []);
+
+assert_return(() => call($1, "read", [0]), f32(1.0));
+
+assert_return(() => call($1, "read", [4]), f32(2.0));
+
+assert_return(() => call($1, "read", [8]), f32(3.0));
+
+assert_return(() => call($1, "read", [12]), f32(4.0));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/37ef629^!)  
+[test/mjsunit/regress/wasm/regress-10309.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-10309.js?cl=37ef629)  
+  
+
+---   
+
 ## **regress-crbug-1057653.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1057653)**  
