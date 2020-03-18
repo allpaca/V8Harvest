@@ -2,6 +2,77 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1061803.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1061803)**  
+**[Commit: Reland "[turbofan] Clean up ConstantFoldingReducer"](https://chromium.googlesource.com/v8/v8/+/416b0c3)**  
+  
+Date(Commit): Tue Mar 17 09:49:24 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2098736](https://chromium-review.googlesource.com/c/v8/v8/+/2098736)  
+Regress: [mjsunit/compiler/regress-1061803.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1061803.js)  
+```javascript
+function foo() {
+  return arguments[1][0] === arguments[0];
+}
+
+%PrepareFunctionForOptimization(foo);
+assertFalse(foo(0, 0));
+assertFalse(foo(0, 0));
+%OptimizeFunctionOnNextCall(foo);
+assertThrows(foo, TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/416b0c3^!)  
+[src/compiler/constant-folding-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/constant-folding-reducer.cc?cl=416b0c3)  
+[src/compiler/js-graph.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.cc?cl=416b0c3)  
+[src/compiler/js-graph.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.h?cl=416b0c3)  
+[src/compiler/operator.h](https://cs.chromium.org/chromium/src/v8/src/compiler/operator.h?cl=416b0c3)  
+[test/mjsunit/compiler/regress-1061678.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1061678.js?cl=416b0c3)  
+...  
+  
+
+---   
+
+## **regress-1061678.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition_turbo:x64,ignition_turbo](https://crbug.com/1061678)**  
+**[Commit: Reland "[turbofan] Clean up ConstantFoldingReducer"](https://chromium.googlesource.com/v8/v8/+/416b0c3)**  
+  
+Date(Commit): Tue Mar 17 09:49:24 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2098736](https://chromium-review.googlesource.com/c/v8/v8/+/2098736)  
+Regress: [mjsunit/compiler/regress-1061678.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1061678.js)  
+```javascript
+Array.prototype[10] = 2;
+
+function foo() {
+  try {
+    [].forEach();
+  } catch (e) {
+  }
+};
+
+%PrepareFunctionForOptimization(foo);
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/416b0c3^!)  
+[src/compiler/constant-folding-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/constant-folding-reducer.cc?cl=416b0c3)  
+[src/compiler/js-graph.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.cc?cl=416b0c3)  
+[src/compiler/js-graph.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-graph.h?cl=416b0c3)  
+[src/compiler/operator.h](https://cs.chromium.org/chromium/src/v8/src/compiler/operator.h?cl=416b0c3)  
+[test/mjsunit/compiler/regress-1061678.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1061678.js?cl=416b0c3)  
+...  
+  
+
+---   
+
 ## **regress-crbug-1059738.js (chromium issue)**  
    
 **[Issue: DCHECK failure in !name_->AsIntegerIndex(&index) in lookup-inl.h](https://crbug.com/1059738)**  
