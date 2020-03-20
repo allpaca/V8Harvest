@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1062916.js (chromium issue)**  
+   
+**[Issue: DCHECK failure in !found in constant-folding-reducer.cc](https://crbug.com/1062916)**  
+**[Commit: [turbofan] Remove bogus DCHECK and add a comment](https://chromium.googlesource.com/v8/v8/+/c25cc4e)**  
+  
+Date(Commit): Fri Mar 20 08:11:00 2020  
+Components: Blink>JavaScript, Blink>JavaScript>Compiler  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2110027](https://chromium-review.googlesource.com/c/v8/v8/+/2110027)  
+Regress: [mjsunit/compiler/regress-1062916.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1062916.js)  
+```javascript
+function foo(x) {
+  var a = [];
+  for (var k1 in x) {
+    for (var k2 in x) {
+      a.k2;
+    }
+  }
+  return a.join();
+}
+
+%PrepareFunctionForOptimization(foo);
+foo({p: 42});
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c25cc4e^!)  
+[src/compiler/constant-folding-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/constant-folding-reducer.cc?cl=c25cc4e)  
+[test/mjsunit/compiler/regress-1062916.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1062916.js?cl=c25cc4e)  
+  
+
+---   
+
 ## **regress-1061803.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1061803)**  
