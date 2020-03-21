@@ -180,12 +180,12 @@ instance.exports.main(0);
 
 ## **regress-1029530.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1029530)**  
+**[Issue: CHECK failure: BigIntAsUintN of kRepWord64 (BigInt) cannot be changed to kRepWord32 in represen](https://crbug.com/1029530)**  
 **[Commit: [turbofan] Fixes rematerialization of truncated BigInts](https://chromium.googlesource.com/v8/v8/+/8aa5889)**  
   
 Date(Commit): Thu Dec 12 16:36:33 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler  
+Labels: Hotlist-Merge-Review, reward-0, Security_Impact-None, M-80, Security_Severity-High, allpublic, ClusterFuzz-Verified, M-79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1962278](https://chromium-review.googlesource.com/c/v8/v8/+/1962278)  
 Regress: [mjsunit/regress/regress-1029530.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1029530.js)  
 ```javascript
