@@ -139,12 +139,12 @@ foo();
 
 ## **regress-1034394.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1034394)**  
+**[Issue: A null pointer dereference has been discovered in V8 compiler which affects the latest version.](https://crbug.com/1034394)**  
 **[Commit: [arm] Fix constant pool hickup for huge table switch](https://chromium.googlesource.com/v8/v8/+/2d89d8a)**  
   
 Date(Commit): Mon Dec 16 15:54:50 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler, Blink>JavaScript>WebAssembly  
+Labels: Hotlist-Merge-Review, reward-5000, Stability-Memory-AddressSanitizer, Security_Impact-Stable, reward-decline, M-80, Security_Severity-High, allpublic, Arch-ARM, ClusterFuzz-Verified, Test-Predator-Auto-Components, CVE_description-submitted, Merge-Request-79, Target-80, merge-merged-8.0, Release-0-M80, CVE-2020-6381  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1967380](https://chromium-review.googlesource.com/c/v8/v8/+/1967380)  
 Regress: [mjsunit/regress/regress-1034394.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1034394.js)  
 ```javascript

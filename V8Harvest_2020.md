@@ -209,7 +209,7 @@ Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2084814](https:
 Regress: [mjsunit/regress/regress-crbug-1057653.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1057653.js)  
 ```javascript
 Object.prototype.length = 3642395160;
-const array = new Float32Array(2**28);
+const array = new Float32Array(2**27);
 
 assertThrows(() => {for (const key in array) {}}, RangeError);  
 ```  
