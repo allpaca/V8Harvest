@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1063661.js (chromium issue)**  
+   
+**[Issue: Security: Fatal error in ../../src/compiler/typer.cc, line 336](https://crbug.com/1063661)**  
+**[Commit: [turbofan] Fix NumberMin and NumberMax typings](https://chromium.googlesource.com/v8/v8/+/33306c4)**  
+  
+Date(Commit): Wed Mar 25 11:19:13 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: ClusterFuzz-Verified  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2116199](https://chromium-review.googlesource.com/c/v8/v8/+/2116199)  
+Regress: [mjsunit/compiler/regress-1063661.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1063661.js)  
+```javascript
+function main() {
+  const v1 = [];
+  for (let v11 = 0; v11 < 7; v11++) {
+    for (let v16 = 0; v16 != 100; v16++) {}
+    for (let v18 = -0.0; v18 < 7; v18 = v18 || 13.37) {
+      const v21 = Math.max(-339,v18);
+      v1.fill();
+      undefined % v21;
+    }
+  }
+}
+main();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/33306c4^!)  
+[src/compiler/operation-typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operation-typer.cc?cl=33306c4)  
+[test/mjsunit/compiler/regress-1063661.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1063661.js?cl=33306c4)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=33306c4)  
+[test/unittests/compiler/typer-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/typer-unittest.cc?cl=33306c4)  
+  
+
+---   
+
 ## **regress-1062916.js (chromium issue)**  
    
 **[Issue: DCHECK failure in !found in constant-folding-reducer.cc](https://crbug.com/1062916)**  
