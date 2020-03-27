@@ -4,12 +4,12 @@ The Harvest of V8 regress in 2019.
 
 ## **regress-crbug-1034973.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1034973)**  
+**[Issue: Security: Debug check failed: !initializing_store && property_details_.constness() == PropertyConstness::kConst implies IsConstFieldValueEqualTo(*value)](https://crbug.com/1034973)**  
 **[Commit: [runtime] Properly handle constant fields with computed values](https://chromium.googlesource.com/v8/v8/+/7f1aaa7)**  
   
 Date(Commit): Thu Dec 19 10:09:49 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: allpublic, ClusterFuzz-Verified, Target-79, M-79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1974070](https://chromium-review.googlesource.com/c/v8/v8/+/1974070)  
 Regress: [mjsunit/regress/regress-crbug-1034973.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1034973.js)  
 ```javascript
@@ -26,12 +26,12 @@ let a = {x, 0:({x:4e14,y:4}), x};
 
 ## **regress-crbug-1035331.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1035331)**  
+**[Issue: DCHECK failure in !HAS_WEAK_HEAP_OBJECT_TAG(ptr_) in tagged-impl.h](https://crbug.com/1035331)**  
 **[Commit: [turbofan] Remove a strong value assumption in the heap broker](https://chromium.googlesource.com/v8/v8/+/15fce7c)**  
   
 Date(Commit): Wed Dec 18 15:32:53 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-80  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1973733](https://chromium-review.googlesource.com/c/v8/v8/+/1973733)  
 Regress: [mjsunit/regress/regress-crbug-1035331.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1035331.js)  
 ```javascript
