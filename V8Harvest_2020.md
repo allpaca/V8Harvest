@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1065094.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1065094)**  
+**[Commit: Make CreateDynamicFunction throw if disallowed](https://chromium.googlesource.com/v8/v8/+/2aac556)**  
+  
+Date(Commit): Mon Mar 30 10:59:49 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2124837](https://chromium-review.googlesource.com/c/v8/v8/+/2124837)  
+Regress: [mjsunit/regress-1065094.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-1065094.js)  
+```javascript
+function f(fnConstructor) {
+    return Object.is(new fnConstructor(), undefined);
+}
+
+const realmIndex = Realm.createAllowCrossRealmAccess();
+const otherFunction = Realm.global(realmIndex).Function;
+Realm.detachGlobal(realmIndex);
+
+%PrepareFunctionForOptimization(f);
+assertFalse(f(Function));
+assertThrows(_ => f(otherFunction));
+%OptimizeFunctionOnNextCall(f);
+assertThrows(_ => f(otherFunction));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2aac556^!)  
+[src/builtins/builtins-function.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-function.cc?cl=2aac556)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=2aac556)  
+[test/mjsunit/regress-1065094.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-1065094.js?cl=2aac556)  
+  
+
+---   
+
 ## **regress-1063661.js (chromium issue)**  
    
 **[Issue: Security: Fatal error in ../../src/compiler/typer.cc, line 336](https://crbug.com/1063661)**  
