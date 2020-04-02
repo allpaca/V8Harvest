@@ -3408,11 +3408,14 @@ assertEquals(0, F.apply(this, [], 0), "empty args, extra argument");
   
 ---   
 
-## **regress-1066899.js (other issue)**  
+## **regress-1066899.js (chromium issue)**  
    
+**[Issue: e2e testing: Save screenshot on failure](https://crbug.com/1066899)**  
 **[Commit: Included mjsunit JavaScript test suite and C++ unit tests.](https://chromium.googlesource.com/v8/v8/+/c42f582)**  
   
 Date(Commit): Fri Aug 22 13:33:59 2008  
+Components: Platform>DevTools  
+Labels: None  
 Code Review: [http://v8.googlecode.com/svn/branches/bleeding_edge@16](http://v8.googlecode.com/svn/branches/bleeding_edge@16)  
 Regress: [mjsunit/regress/regress-1066899.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1066899.js)  
 ```javascript
@@ -3433,7 +3436,7 @@ Crash();
 [samples/process.cc](https://cs.chromium.org/chromium/src/v8/samples/process.cc?cl=c42f582)  
 ...  
   
-  
+
 ---   
 
 ## **regress-1062422.js (chromium issue)**  
