@@ -2,6 +2,191 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1060023.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1060023)**  
+**[Commit: [parser] Already break the expression scope chain for function parameters](https://chromium.googlesource.com/v8/v8/+/4561500)**  
+  
+Date(Commit): Thu Apr 02 13:16:55 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2134006](https://chromium-review.googlesource.com/c/v8/v8/+/2134006)  
+Regress: [mjsunit/regress/regress-crbug-1060023.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1060023.js)  
+```javascript
+class b extends RegExp {
+  exec() {
+    (function() { (a = (function({} = this) {})) => {} })
+  }
+}
+assertThrows(()=>'a'.match(new b), TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4561500^!)  
+[src/parsing/parser-base.h](https://cs.chromium.org/chromium/src/v8/src/parsing/parser-base.h?cl=4561500)  
+[src/parsing/parser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/parser.cc?cl=4561500)  
+[src/parsing/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.cc?cl=4561500)  
+[test/mjsunit/regress/regress-crbug-1060023.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1060023.js?cl=4561500)  
+  
+
+---   
+
+## **regress-crbug-1053939.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1053939)**  
+**[Commit: [ic] Use the existing prototype validity cell when recomputing handlers](https://chromium.googlesource.com/v8/v8/+/800c294)**  
+  
+Date(Commit): Thu Apr 02 12:36:45 2020  
+Components: Blink>JavaScript>Runtime  
+Labels: Hotlist-Merge-Review, Stability-Crash, Reproducible, Security_Impact-Stable, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Merge-Request-80, Merge-Review-81  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2122032](https://chromium-review.googlesource.com/c/v8/v8/+/2122032)  
+Regress: [mjsunit/regress/regress-crbug-1053939.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1053939.js)  
+```javascript
+function foo(a, b) {
+  a[b] = 1;
+  return a[b];
+}
+v = [];
+assertEquals(foo(v, 1), 1);
+v.__proto__.__proto__ = new Int32Array();
+assertEquals(foo(Object(), 1), 1);
+assertEquals(foo(v, 2), undefined);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/800c294^!)  
+[src/ic/handler-configuration.cc](https://cs.chromium.org/chromium/src/v8/src/ic/handler-configuration.cc?cl=800c294)  
+[src/ic/handler-configuration.h](https://cs.chromium.org/chromium/src/v8/src/ic/handler-configuration.h?cl=800c294)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=800c294)  
+[src/ic/ic.h](https://cs.chromium.org/chromium/src/v8/src/ic/ic.h?cl=800c294)  
+[src/objects/feedback-vector.cc](https://cs.chromium.org/chromium/src/v8/src/objects/feedback-vector.cc?cl=800c294)  
+...  
+  
+
+---   
+
+## **regress-1065635.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,jitless](https://crbug.com/1065635)**  
+**[Commit: [asm] Fix double literals without dots](https://chromium.googlesource.com/v8/v8/+/7bb686a)**  
+  
+Date(Commit): Wed Apr 01 13:59:24 2020  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2126922](https://chromium-review.googlesource.com/c/v8/v8/+/2126922)  
+Regress: [mjsunit/regress/wasm/regress-1065635.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1065635.js)  
+```javascript
+function foo() {
+  'use asm';
+  function bar() {
+    return -1e-15;
+  }
+  return {bar: bar};
+}
+
+assertEquals(-1e-15, foo().bar());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7bb686a^!)  
+[src/asmjs/asm-scanner.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-scanner.cc?cl=7bb686a)  
+[test/mjsunit/regress/wasm/regress-1065635.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1065635.js?cl=7bb686a)  
+  
+
+---   
+
+## **regress-crbug-1065741.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1065741)**  
+**[Commit: [turbofan] Add a type check to String.prototype.startsWith](https://chromium.googlesource.com/v8/v8/+/6ee457b)**  
+  
+Date(Commit): Wed Apr 01 13:57:44 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2129639](https://chromium-review.googlesource.com/c/v8/v8/+/2129639)  
+Regress: [mjsunit/regress/regress-crbug-1065741.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1065741.js)  
+```javascript
+function bar() {
+  String.prototype.startsWith.apply();
+}
+
+%PrepareFunctionForOptimization(bar);
+assertThrows(bar, TypeError);
+assertThrows(bar, TypeError);
+%OptimizeFunctionOnNextCall(bar);
+assertThrows(bar, TypeError);
+%PrepareFunctionForOptimization(bar);
+%OptimizeFunctionOnNextCall(bar);
+assertThrows(bar, TypeError);
+assertOptimized(bar);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6ee457b^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=6ee457b)  
+[test/mjsunit/regress/regress-crbug-1065741.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1065741.js?cl=6ee457b)  
+  
+
+---   
+
+## **regress-1065737.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1065737)**  
+**[Commit: [turbofan] Mark JSStoreGlobal as NeedsExactContext](https://chromium.googlesource.com/v8/v8/+/2f0e62e)**  
+  
+Date(Commit): Wed Apr 01 12:18:14 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2130280](https://chromium-review.googlesource.com/c/v8/v8/+/2130280)  
+Regress: [mjsunit/compiler/regress-1065737.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1065737.js)  
+```javascript
+function foo() {
+  class c {
+    static get [v = 0]() {}
+  }
+}
+
+%PrepareFunctionForOptimization(foo);
+assertThrows(foo, ReferenceError);
+assertThrows(foo, ReferenceError);
+%OptimizeFunctionOnNextCall(foo);
+assertThrows(foo, ReferenceError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2f0e62e^!)  
+[src/compiler/operator-properties.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operator-properties.cc?cl=2f0e62e)  
+[test/mjsunit/compiler/regress-1065737.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1065737.js?cl=2f0e62e)  
+  
+
+---   
+
+## **regress-1065852.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,jitless](https://crbug.com/1065852)**  
+**[Commit: [asm] Avoid instantiation as resumable function](https://chromium.googlesource.com/v8/v8/+/ee498c1)**  
+  
+Date(Commit): Wed Apr 01 09:50:34 2020  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2126920](https://chromium-review.googlesource.com/c/v8/v8/+/2126920)  
+Regress: [mjsunit/regress/wasm/regress-1065852.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1065852.js)  
+```javascript
+function* asm() {
+  "use asm";
+  function x(v) {
+    v = v | 0;
+  }
+  return x;
+}
+
+asm().next();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ee498c1^!)  
+[src/asmjs/asm-js.cc](https://cs.chromium.org/chromium/src/v8/src/asmjs/asm-js.cc?cl=ee498c1)  
+[src/runtime/runtime-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-compiler.cc?cl=ee498c1)  
+[test/mjsunit/regress/wasm/regress-1065852.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1065852.js?cl=ee498c1)  
+[test/mjsunit/wasm/asm-wasm.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/asm-wasm.js?cl=ee498c1)  
+  
+
+---   
+
 ## **regress-1065094.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1065094)**  
