@@ -2,6 +2,106 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1067270.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1067270)**  
+**[Commit: [regexp] Reserve space for all registers in interpreter](https://chromium.googlesource.com/v8/v8/+/30658b6)**  
+  
+Date(Commit): Mon Apr 06 14:34:34 2020  
+Components: None  
+Labels: None  
+Code Review: [https://crrev.com/c/2135642](https://crrev.com/c/2135642)  
+Regress: [mjsunit/regress/regress-1067270.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1067270.js)  
+```javascript
+const needle = Array(1802).join(" +") + Array(16884).join("A");
+const string = "A";
+
+assertEquals(string.search(needle), -1);
+assertEquals(string.search(needle), -1);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/30658b6^!)  
+[src/regexp/regexp-interpreter.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-interpreter.cc?cl=30658b6)  
+[test/mjsunit/regress/regress-1067270.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1067270.js?cl=30658b6)  
+  
+
+---   
+
+## **regress-1067544.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1067544)**  
+**[Commit: [turbofan] Fix bug in reduction of typed array iteration](https://chromium.googlesource.com/v8/v8/+/7cd01ed)**  
+  
+Date(Commit): Mon Apr 06 13:18:10 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2135632](https://chromium-review.googlesource.com/c/v8/v8/+/2135632)  
+Regress: [mjsunit/compiler/regress-1067544.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1067544.js)  
+```javascript
+const v = [];
+function foo() {
+  Int8Array.prototype.values.call([v]);
+}
+
+%PrepareFunctionForOptimization(foo);
+assertThrows(foo, TypeError);
+assertThrows(foo, TypeError);
+%OptimizeFunctionOnNextCall(foo);
+assertThrows(foo, TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7cd01ed^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=7cd01ed)  
+[src/compiler/js-call-reducer.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.h?cl=7cd01ed)  
+[test/mjsunit/compiler/regress-1067544.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1067544.js?cl=7cd01ed)  
+  
+
+---   
+
+## **regress-1065599.js (chromium issue)**  
+   
+**[Issue: v8_wasm_compile_fuzzer: Divide-by-zero in Builtins_JSEntry](https://crbug.com/1065599)**  
+**[Commit: [wasm-simd][x64][ia32] Do not overwrite input register](https://chromium.googlesource.com/v8/v8/+/7d955fa)**  
+  
+Date(Commit): Fri Apr 03 17:57:31 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Clusterfuzz, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2125941](https://chromium-review.googlesource.com/c/v8/v8/+/2125941)  
+Regress: [mjsunit/regress/wasm/regress-1065599.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1065599.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(16, 32, false);
+builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
+  // signature: i_iii
+  // body:
+  kExprI32Const, 0xba, 0x01,       // i32.const
+  kSimdPrefix, kExprI16x8Splat,    // i16x8.splat
+  kExprMemorySize, 0x00,           // memory.size
+  kSimdPrefix, kExprI16x8ShrS,     // i16x8.shr_s
+  kSimdPrefix, kExprS1x16AnyTrue,  // s1x16.any_true
+  kExprMemorySize, 0x00,           // memory.size
+  kExprI32RemS,                    // i32.rem_s
+  kExprEnd,                        // end @15
+]);
+builder.addExport('main', 0);
+const instance = builder.instantiate();
+instance.exports.main(1, 2, 3);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7d955fa^!)  
+[src/compiler/backend/ia32/code-generator-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/ia32/code-generator-ia32.cc?cl=7d955fa)  
+[src/compiler/backend/ia32/instruction-selector-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/ia32/instruction-selector-ia32.cc?cl=7d955fa)  
+[src/compiler/backend/x64/code-generator-x64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/code-generator-x64.cc?cl=7d955fa)  
+[src/compiler/backend/x64/instruction-selector-x64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/instruction-selector-x64.cc?cl=7d955fa)  
+[test/mjsunit/regress/wasm/regress-1055692.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1055692.js?cl=7d955fa)  
+...  
+  
+
+---   
+
 ## **regress-crbug-1060023.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1060023)**  
