@@ -2,6 +2,35 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1068494.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1068494)**  
+**[Commit: [turbofan] Fix bug in reduction of StoreDataPropertyInLiteral](https://chromium.googlesource.com/v8/v8/+/fbdb473)**  
+  
+Date(Commit): Wed Apr 08 11:50:28 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2139581](https://chromium-review.googlesource.com/c/v8/v8/+/2139581)  
+Regress: [mjsunit/compiler/regress-1068494.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1068494.js)  
+```javascript
+function foo() {
+  return { ['bar']: class {} };
+}
+%PrepareFunctionForOptimization(foo);
+assertEquals('bar', foo().bar.name);
+assertEquals('bar', foo().bar.name);
+%OptimizeFunctionOnNextCall(foo);
+assertEquals('bar', foo().bar.name);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/fbdb473^!)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=fbdb473)  
+[src/runtime/runtime-object.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-object.cc?cl=fbdb473)  
+[test/mjsunit/compiler/regress-1068494.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1068494.js?cl=fbdb473)  
+  
+
+---   
+
 ## **regress-1067270.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1067270)**  
