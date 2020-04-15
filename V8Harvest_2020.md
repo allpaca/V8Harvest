@@ -2,6 +2,105 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1067621.js (chromium issue)**  
+   
+**[Issue: Timing issues with Wasm threads (SAB and/or Atomics)](https://crbug.com/1067621)**  
+**[Commit: [wasm] Fix return value of concurrent memory.grow](https://chromium.googlesource.com/v8/v8/+/401190b)**  
+  
+Date(Commit): Tue Apr 14 21:37:32 2020  
+Components: Platform>DevTools, Blink>JavaScript>WebAssembly  
+Labels: allpublic  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2144113](https://chromium-review.googlesource.com/c/v8/v8/+/2144113)  
+Regress: [mjsunit/regress/wasm/regress-1067621.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1067621.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const kNumberOfWorker = 4;
+
+const workerOnMessage = function(msg) {
+  if (msg.module) {
+    let module = msg.module;
+    let mem = msg.mem;
+    this.instance = new WebAssembly.Instance(module, {m: {memory: mem}});
+    postMessage({instantiated: true});
+  } else {
+    const kNumberOfRuns = 20;
+    let result = new Array(kNumberOfRuns);
+    for (let i = 0; i < kNumberOfRuns; ++i) {
+      result[i] = instance.exports.grow();
+    }
+    postMessage({result: result});
+  }
+};
+
+function spawnWorkers() {
+  let workers = [];
+  for (let i = 0; i < kNumberOfWorker; i++) {
+    let worker = new Worker(
+        'onmessage = ' + workerOnMessage.toString(), {type: 'string'});
+    workers.push(worker);
+  }
+  return workers;
+}
+
+function instantiateModuleInWorkers(workers, module, shared_memory) {
+  for (let worker of workers) {
+    worker.postMessage({module: module, mem: shared_memory});
+    let msg = worker.getMessage();
+    if (!msg.instantiated) throw 'Worker failed to instantiate';
+  }
+}
+
+function triggerWorkers(workers) {
+  for (i = 0; i < workers.length; i++) {
+    let worker = workers[i];
+    worker.postMessage({});
+  }
+}
+
+(function TestConcurrentGrowMemoryResult() {
+  let builder = new WasmModuleBuilder();
+  builder.addImportedMemory('m', 'memory', 1, 500, 'shared');
+  builder.addFunction('grow', kSig_i_v)
+      .addBody([kExprI32Const, 1, kExprMemoryGrow, kMemoryZero])
+      .exportFunc();
+
+  const module = builder.toModule();
+  const shared_memory =
+      new WebAssembly.Memory({initial: 1, maximum: 500, shared: true});
+
+  // Spawn off the workers and run the sequences.
+  let workers = spawnWorkers();
+  instantiateModuleInWorkers(workers, module, shared_memory);
+  triggerWorkers(workers);
+  let all_results = [];
+  for (let worker of workers) {
+    let msg = worker.getMessage();
+    all_results = all_results.concat(msg.result);
+  }
+
+  all_results.sort((a, b) => a - b);
+  for (let i = 1; i < all_results.length; ++i) {
+    assertEquals(all_results[i - 1] + 1, all_results[i]);
+  }
+
+  // Terminate all workers.
+  for (let worker of workers) {
+    worker.terminate();
+  }
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/401190b^!)  
+[src/objects/backing-store.cc](https://cs.chromium.org/chromium/src/v8/src/objects/backing-store.cc?cl=401190b)  
+[src/objects/backing-store.h](https://cs.chromium.org/chromium/src/v8/src/objects/backing-store.h?cl=401190b)  
+[src/wasm/wasm-objects.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-objects.cc?cl=401190b)  
+[test/mjsunit/regress/wasm/regress-1067621.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1067621.js?cl=401190b)  
+[test/unittests/objects/backing-store-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/objects/backing-store-unittest.cc?cl=401190b)  
+  
+
+---   
+
 ## **regress-1068494.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1068494)**  
@@ -1842,12 +1941,12 @@ assertThrows(foo, SyntaxError);
 
 ## **regress-1033966.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1033966)**  
+**[Issue: Security: d8 memory corruption with dcheck failed in protectors.cc](https://crbug.com/1033966)**  
 **[Commit: [protectors] Remove invalid DCHECK in protectors.](https://chromium.googlesource.com/v8/v8/+/643ae46)**  
   
 Date(Commit): Thu Jan 02 15:49:54 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: allpublic, ClusterFuzz-Verified, Test-Predator-Auto-Owner, Target-79, M-79  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1982582](https://chromium-review.googlesource.com/c/v8/v8/+/1982582)  
 Regress: [mjsunit/regress/regress-1033966.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1033966.js)  
 ```javascript

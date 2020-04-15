@@ -2983,37 +2983,6 @@ f();
 
 ---   
 
-## **regress-411237.js (chromium issue)**  
-   
-**[Issue: CHECK failure in CHECK_EQ(FUNCTION, kind()) failed: ../../v8/src/objects-inl.h(4701)](https://crbug.com/411237)**  
-**[Commit: Harden OptimizeFunctionOnNextCall.](https://chromium.googlesource.com/v8/v8/+/83af12c)**  
-  
-Date(Commit): Fri Sep 05 15:13:44 2014  
-Components: Blink>JavaScript  
-Labels: Clusterfuzz  
-Code Review: [https://codereview.chromium.org/547553003](https://codereview.chromium.org/547553003)  
-Regress: [mjsunit/es6/regress/regress-411237.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/es6/regress/regress-411237.js)  
-```javascript
-%PrepareFunctionForOptimization(print);
-try {
-  %OptimizeFunctionOnNextCall(print);
-} catch(e) { }
-
-try {
-  function* f() {
-  }
-  %PrepareFunctionForOptimization(f);
-  %OptimizeFunctionOnNextCall(f);
-} catch(e) { }  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/83af12c^!)  
-[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=83af12c)  
-[test/mjsunit/regress/regress-411237.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-411237.js?cl=83af12c)  
-  
-
----   
-
 ## **regress-reset-dictionary-elements.js (other issue)**  
    
 **[Commit: Allocate a new empty number dictionary when resetting elements](https://chromium.googlesource.com/v8/v8/+/1dddf69)**  
@@ -8455,32 +8424,6 @@ f();
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/5945f9e^!)  
 [src/hydrogen.cc](https://cs.chromium.org/chromium/src/v8/src/hydrogen.cc?cl=5945f9e)  
 [test/mjsunit/regress/regress-347904.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-347904.js?cl=5945f9e)  
-  
-
----   
-
-## **regress-347542.js (chromium issue)**  
-   
-**[Issue: CHECK failure in CHECK(!function->IsOptimized()) failed: ../src/runtime.cc(8623)](https://crbug.com/347542)**  
-**[Commit: Removed bogus ASSERT.](https://chromium.googlesource.com/v8/v8/+/c4e90c1)**  
-  
-Date(Commit): Fri Feb 28 08:45:07 2014  
-Components: Blink>JavaScript  
-Labels: Clusterfuzz  
-Code Review: [https://codereview.chromium.org/183763007](https://codereview.chromium.org/183763007)  
-Regress: [mjsunit/regress/regress-347542.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-347542.js)  
-```javascript
-function foo() {};
-%PrepareFunctionForOptimization(foo);
-foo();
-%OptimizeFunctionOnNextCall(foo);
-foo();
-%NeverOptimizeFunction(foo);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/c4e90c1^!)  
-[src/runtime.cc](https://cs.chromium.org/chromium/src/v8/src/runtime.cc?cl=c4e90c1)  
-[test/mjsunit/regress/regress-347542.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-347542.js?cl=c4e90c1)  
   
 
 ---   

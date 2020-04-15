@@ -2448,7 +2448,6 @@ assertEquals(Object.prototype, Object.prototype.valueOf());
 assertThrows(callGlobalValueOf);
 assertThrows(callGlobalHasOwnProperty);
 
-%OptimizeFunctionOnNextCall(Object.prototype.valueOf);
 Object.prototype.valueOf();
 
 assertEquals(Object.prototype, Object.prototype.valueOf());

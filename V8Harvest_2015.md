@@ -15463,35 +15463,6 @@ g();
 
 ---   
 
-## **regress-491481.js (chromium issue)**  
-   
-**[Issue: Fatal error in ../../v8/src/contexts.h,](https://crbug.com/491481)**  
-**[Commit: Exclude non-optimizable functions from OptimizeFunctionOnNextCall.](https://chromium.googlesource.com/v8/v8/+/a893a5e)**  
-  
-Date(Commit): Tue May 26 08:47:04 2015  
-Components: Blink>JavaScript  
-Labels: Clusterfuzz  
-Code Review: [https://codereview.chromium.org/1143223004](https://codereview.chromium.org/1143223004)  
-Regress: [mjsunit/regress/regress-491481.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-491481.js)  
-```javascript
-try {
-%OptimizeFunctionOnNextCall(print);
-try {
-  __f_16();
-} catch(e) { print(e); }
-try {
-  __f_10();
-} catch(e) {; }
-} catch(e) {}  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/a893a5e^!)  
-[src/runtime/runtime-test.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-test.cc?cl=a893a5e)  
-[test/mjsunit/regress/regress-491481.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-491481.js?cl=a893a5e)  
-  
-
----   
-
 ## **regress-variable-liveness.js (other issue)**  
    
 **[Commit: [turbofan] Fix variable liveness control structure creation.](https://chromium.googlesource.com/v8/v8/+/d2ca18d)**  
@@ -19046,10 +19017,11 @@ function TestOptimizedCode() {
   assertSame(Infinity, 1 / a1.byteOffset);
 }
 
-%OptimizeFunctionOnNextCall(Uint8Array);
-for (var i = 0; i < 1000; i++) {
-  TestOptimizedCode();
-}  
+%PrepareFunctionForOptimization(TestOptimizedCode);
+TestOptimizedCode();
+TestOptimizedCode();
+%OptimizeFunctionOnNextCall(TestOptimizedCode);
+TestOptimizedCode();  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/a4124b3^!)  
