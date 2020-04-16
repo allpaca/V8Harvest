@@ -1558,12 +1558,12 @@ assertNull(/(?<=a[^b]*)./.exec('a'));
 
 ## **regress-crbug-1038178.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1038178)**  
+**[Issue: Security: Missing deoptimization information for OptimizedFrame::Summarize](https://crbug.com/1038178)**  
 **[Commit: Add missing test for optional chains with undefined receiver](https://chromium.googlesource.com/v8/v8/+/0bc9e52)**  
   
 Date(Commit): Tue Jan 14 20:11:57 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, reward-0, Security_Impact-Head, M-80, Security_Severity-High, ReleaseBlock-Stable, allpublic, ClusterFuzz-Verified, M-81, Target-81, merge-merged-8.0  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1987914](https://chromium-review.googlesource.com/c/v8/v8/+/1987914)  
 Regress: [mjsunit/regress/regress-crbug-1038178.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1038178.js)  
 ```javascript
