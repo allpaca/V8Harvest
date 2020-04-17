@@ -2,6 +2,82 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1070560.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1070560)**  
+**[Commit: [builtins] When creating new elements array initialize with holes](https://chromium.googlesource.com/v8/v8/+/a46d8d1)**  
+  
+Date(Commit): Thu Apr 16 15:59:37 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2150599](https://chromium-review.googlesource.com/c/v8/v8/+/2150599)  
+Regress: [mjsunit/regress/regress-crbug-1070560.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1070560.js)  
+```javascript
+function f() {
+ // Create a FixedDoubleArray
+ var arr = [5.65];
+ // Force the elements to be EmptyFixedArray
+ arr.splice(0);
+ // This should create a FixedDoubleArray initialized with holes.
+ arr.splice(-4, 9, 10, 20);
+ // If the earlier spice didn't create a holes this would fail.
+ assertFalse(2 in arr);
+}
+
+f();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a46d8d1^!)  
+[src/builtins/array-splice.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/array-splice.tq?cl=a46d8d1)  
+[test/mjsunit/regress/regress-crbug-1070560.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1070560.js?cl=a46d8d1)  
+  
+
+---   
+
+## **regress-crbug-1067757.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1067757)**  
+**[Commit: [ic] Use slow stub when storing non-existent properties to global object](https://chromium.googlesource.com/v8/v8/+/d11292f)**  
+  
+Date(Commit): Wed Apr 15 15:00:29 2020  
+Components: Blink>JavaScript>Runtime  
+Labels: Stability-Crash, Reproducible, Security_Impact-Stable, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2142255](https://chromium-review.googlesource.com/c/v8/v8/+/2142255)  
+Regress: [mjsunit/regress/regress-crbug-1067757.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1067757.js)  
+```javascript
+"use strict";
+
+function foo() {
+  let count = 0;
+  try {
+    for (p of v) {
+      count += 1;
+    }
+  } catch (e) { }
+  assertEquals(count, 0);
+}
+
+var v = [ "0", {}];
+
+foo();
+Reflect.deleteProperty(v, '0');
+
+let count_loop = 0;
+try {
+ for (p of v) { count_loop += 1; }
+} catch (e) {}
+assertEquals(count_loop, 0);
+
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d11292f^!)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=d11292f)  
+[test/mjsunit/regress/regress-crbug-1067757.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1067757.js?cl=d11292f)  
+  
+
+---   
+
 ## **regress-1067621.js (chromium issue)**  
    
 **[Issue: Timing issues with Wasm threads (SAB and/or Atomics)](https://crbug.com/1067621)**  
@@ -784,7 +860,7 @@ builder.addFunction(undefined, 0 /* sig */)
 kExprI32Const, 0x75,  // i32.const
 kExprI32Const, 0x74,  // i32.const
 kExprI32Const, 0x18,  // i32.const
-kSimdPrefix, kExprS8x16LoadSplat,  // s8x16.load_splat
+kSimdPrefix, ...kExprS8x16LoadSplat,  // s8x16.load_splat
 kExprUnreachable,  // unreachable
 kExprUnreachable,  // unreachable
 kExprI32Const, 0x6f,  // i32.const
