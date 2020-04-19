@@ -1872,12 +1872,12 @@ assertThrowsEquals(() => new WebAssembly.Global(desc), "foo");
 
 ## **regress-1040403.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1040403)**  
+**[Issue: DCHECK failure in mode == JSHeapBroker::BrokerMode::kSerialized implies kind == kUnserializedReadO](https://crbug.com/1040403)**  
 **[Commit: [turbofan] Allow handle deferences when compiling non concurrently](https://chromium.googlesource.com/v8/v8/+/36cb5f4)**  
   
 Date(Commit): Thu Jan 09 12:54:51 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-81, Target-81  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1992433](https://chromium-review.googlesource.com/c/v8/v8/+/1992433)  
 Regress: [mjsunit/regress/regress-1040403.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1040403.js)  
 ```javascript
@@ -1992,12 +1992,12 @@ Promise.race([function() {}]);
 
 ## **regress-1038588.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1038588)**  
+**[Issue: Security: Fatal error in ../../src/runtime/runtime-scopes.cc, line 269](https://crbug.com/1038588)**  
 **[Commit: [parser] Fix conflict detection loop early exit](https://chromium.googlesource.com/v8/v8/+/2a6c0f4)**  
   
 Date(Commit): Tue Jan 07 13:15:05 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: M-80, Security_Impact-Beta, allpublic, ClusterFuzz-Verified, Target-80  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1985991](https://chromium-review.googlesource.com/c/v8/v8/+/1985991)  
 Regress: [mjsunit/regress/regress-1038588.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1038588.js)  
 ```javascript
