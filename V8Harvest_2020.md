@@ -2,6 +2,66 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1072171.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1072171)**  
+**[Commit: [turbofan] Fix bug in Number.Min/Max typings](https://chromium.googlesource.com/v8/v8/+/4158af8)**  
+  
+Date(Commit): Mon Apr 20 17:05:50 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2157028](https://chromium-review.googlesource.com/c/v8/v8/+/2157028)  
+Regress: [mjsunit/compiler/regress-1072171.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1072171.js)  
+```javascript
+function testMax1(b) {
+  const max = Math.max(-1, b ? -0 : 1);
+  return Object.is(max, -0);
+}
+%PrepareFunctionForOptimization(testMax1);
+assertTrue(testMax1(true));
+assertTrue(testMax1(true));
+%OptimizeFunctionOnNextCall(testMax1);
+assertTrue(testMax1(true));
+
+function testMax2(b) {
+  const max = Math.max(b ? -0 : 1, -1);
+  return Object.is(max, -0);
+}
+%PrepareFunctionForOptimization(testMax2);
+assertTrue(testMax2(true));
+assertTrue(testMax2(true));
+%OptimizeFunctionOnNextCall(testMax2);
+assertTrue(testMax2(true));
+
+function testMin1(b) {
+  const min = Math.min(1, b ? -0 : -1);
+  return Object.is(min, -0);
+}
+%PrepareFunctionForOptimization(testMin1);
+assertTrue(testMin1(true));
+assertTrue(testMin1(true));
+%OptimizeFunctionOnNextCall(testMin1);
+assertTrue(testMin1(true));
+
+function testMin2(b) {
+  const min = Math.min(b ? -0 : -1, 1);
+  return Object.is(min, -0);
+}
+%PrepareFunctionForOptimization(testMin2);
+assertTrue(testMin2(true));
+assertTrue(testMin2(true));
+%OptimizeFunctionOnNextCall(testMin2);
+assertTrue(testMin2(true));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4158af8^!)  
+[src/compiler/operation-typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operation-typer.cc?cl=4158af8)  
+[test/mjsunit/compiler/regress-1072171.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1072171.js?cl=4158af8)  
+[test/unittests/compiler/typer-unittest.cc](https://cs.chromium.org/chromium/src/v8/test/unittests/compiler/typer-unittest.cc?cl=4158af8)  
+  
+
+---   
+
 ## **regress-crbug-1070560.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1070560)**  
@@ -334,7 +394,7 @@ assertThrows(()=>'a'.match(new b), TypeError);
 
 ---   
 
-## **regress-crbug-1053939.js (chromium issue)**  
+## **regress-crbug-1053939-1.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1053939)**  
 **[Commit: [ic] Use the existing prototype validity cell when recomputing handlers](https://chromium.googlesource.com/v8/v8/+/800c294)**  
@@ -343,17 +403,17 @@ Date(Commit): Thu Apr 02 12:36:45 2020
 Components: Blink>JavaScript>Runtime  
 Labels: Hotlist-Merge-Review, Stability-Crash, Reproducible, Security_Impact-Stable, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Merge-Request-80, Merge-Review-81  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2122032](https://chromium-review.googlesource.com/c/v8/v8/+/2122032)  
-Regress: [mjsunit/regress/regress-crbug-1053939.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1053939.js)  
+Regress: [mjsunit/regress/regress-crbug-1053939-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1053939-1.js), [mjsunit/regress/regress-crbug-1053939.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1053939.js)  
 ```javascript
-function foo(a, b) {
-  a[b] = 1;
-  return a[b];
+v = {};
+v.__proto__ = new Int32Array(1);
+function foo() {
+  for (var i = 0; i < 2; i++) {
+    v[i] = 0;
+  }
 }
-v = [];
-assertEquals(foo(v, 1), 1);
-v.__proto__.__proto__ = new Int32Array();
-assertEquals(foo(Object(), 1), 1);
-assertEquals(foo(v, 2), undefined);  
+foo();
+assertEquals(Object.keys(v).length, 1);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/800c294^!)  
