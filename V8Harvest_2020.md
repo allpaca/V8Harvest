@@ -1728,12 +1728,12 @@ assertThrows(opt());
 
 ## **regress-crbug-1041616.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1041616)**  
+**[Issue: DCHECK failure in cache != this implies cache->outer_scope()->deserialized_scope_uses_external_cac](https://crbug.com/1041616)**  
 **[Commit: [parser] Fix cache scope recursion for `with`](https://chromium.googlesource.com/v8/v8/+/a85d74a)**  
   
 Date(Commit): Tue Jan 14 13:57:47 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-81, Target-81  
 Code Review: [https://crrev.com/c/1997135](https://crrev.com/c/1997135)  
 Regress: [mjsunit/regress/regress-crbug-1041616.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1041616.js)  
 ```javascript
@@ -1807,12 +1807,12 @@ assertThrows(() => new ArrayBuffer(Number.MAX_SAFE_INTEGER));
 
 ## **regress-crbug-1041210.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1041210)**  
+**[Issue: CHECK failure: Bytecode mismatch at offset 10 in interpreter.cc](https://crbug.com/1041210)**  
 **[Commit: [parser] Fix caching dynamic vars on wrong scope](https://chromium.googlesource.com/v8/v8/+/304e97d)**  
   
 Date(Commit): Mon Jan 13 15:06:15 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-81, Target-81  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1997135](https://chromium-review.googlesource.com/c/v8/v8/+/1997135)  
 Regress: [mjsunit/regress/regress-crbug-1041210.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1041210.js)  
 ```javascript
