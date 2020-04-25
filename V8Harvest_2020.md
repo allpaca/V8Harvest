@@ -2,6 +2,35 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1073553.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1073553)**  
+**[Commit: Validate reading prefixed opcodes](https://chromium.googlesource.com/v8/v8/+/4681371)**  
+  
+Date(Commit): Fri Apr 24 16:56:11 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2161404](https://chromium-review.googlesource.com/c/v8/v8/+/2161404)  
+Regress: [mjsunit/regress/wasm/regress-1073553.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1073553.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(1);
+builder.addFunction(undefined, kSig_v_i) .addBodyWithEnd([
+    kExprI32Const, 1, kExprMemoryGrow, kMemoryZero, kNumericPrefix]);
+
+const b = builder.toBuffer();
+WebAssembly.compile(b);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4681371^!)  
+[src/wasm/decoder.h](https://cs.chromium.org/chromium/src/v8/src/wasm/decoder.h?cl=4681371)  
+[test/mjsunit/regress/wasm/regress-1073553.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1073553.js?cl=4681371)  
+  
+
+---   
+
 ## **regress-1072171.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1072171)**  
