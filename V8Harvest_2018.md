@@ -6948,49 +6948,6 @@ new WeakMap(iterable); // WeakMap does not have a size
 
 ---   
 
-## **regress-834624.js (chromium issue)**  
-   
-**[Issue: DCHECK failure in !trap_handler::IsThreadInWasm() in wasm-interpreter.cc](https://crbug.com/834624)**  
-**[Commit: [wasm][interpreter] Clear thread in wasm flag on exceptional return](https://chromium.googlesource.com/v8/v8/+/9286358)**  
-  
-Date(Commit): Mon Apr 30 17:13:19 2018  
-Components: Blink>JavaScript  
-Labels: Reproducible, Security_Impact-Head, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, M-68, Test-Predator-Auto-Owner  
-Code Review: [https://chromium-review.googlesource.com/1019570](https://chromium-review.googlesource.com/1019570)  
-Regress: [mjsunit/regress/wasm/regress-834624.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-834624.js)  
-```javascript
-load("test/mjsunit/wasm/wasm-module-builder.js");
-
-let instance;
-(function DoTest() {
-  function call_main() {
-    instance.exports.main();
-  }
-  let module = new WasmModuleBuilder();
-  module.addImport('mod', 'func', kSig_v_i);
-  module.addFunction('main', kSig_v_i)
-    .addBody([kExprLocalGet, 0, kExprCallFunction, 0])
-    .exportFunc();
-  instance = module.instantiate({
-    mod: {
-      func: call_main
-    }
-  });
-  try {
-    instance.exports.main();
-  } catch (e) {
-    // ignore
-  }
-})();  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/9286358^!)  
-[src/wasm/wasm-interpreter.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-interpreter.cc?cl=9286358)  
-[test/mjsunit/regress/wasm/regress-834624.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-834624.js?cl=9286358)  
-  
-
----   
-
 ## **regress-7706.js (v8 issue)**  
    
 **[Issue: Accessing symbol on primitive wrapper subclass changes its apparent toStringTag](https://crbug.com/v8/7706)**  
@@ -7525,41 +7482,6 @@ assertArrayEquals(result, ['0']);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/7bdbe77^!)  
 [src/builtins/builtins-regexp-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-regexp-gen.cc?cl=7bdbe77)  
 [test/mjsunit/regress/regress-crbug-831943.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-831943.js?cl=7bdbe77)  
-  
-
----   
-
-## **regress-831463.js (chromium issue)**  
-   
-**[Issue: CHECK failure: !v8::internal::FLAG_enable_slow_asserts || (object->IsWasmInstanceObject()) in w](https://crbug.com/831463)**  
-**[Commit: [wasm][interpreter] Check signature before getting code](https://chromium.googlesource.com/v8/v8/+/be1a231)**  
-  
-Date(Commit): Wed Apr 11 09:52:19 2018  
-Components: Blink>JavaScript>WebAssembly  
-Labels: Reproducible, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
-Code Review: [https://chromium-review.googlesource.com/1005005](https://chromium-review.googlesource.com/1005005)  
-Regress: [mjsunit/regress/wasm/regress-831463.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-831463.js)  
-```javascript
-load("test/mjsunit/wasm/wasm-module-builder.js");
-
-const builder = new WasmModuleBuilder();
-const sig = builder.addType(kSig_i_i);
-builder.addFunction('call', kSig_i_v)
-    .addBody([
-      kExprI32Const, 0, kExprI32Const, 0, kExprCallIndirect, sig, kTableZero
-    ])
-    .exportAs('call');
-builder.addImportedTable('imp', 'table');
-const table = new WebAssembly.Table({element: 'anyfunc', initial: 1});
-const instance = builder.instantiate({imp: {table: table}});
-assertThrows(
-    () => instance.exports.call(), WebAssembly.RuntimeError,
-    /function signature mismatch/);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/be1a231^!)  
-[src/wasm/wasm-interpreter.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-interpreter.cc?cl=be1a231)  
-[test/mjsunit/regress/wasm/regress-831463.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-831463.js?cl=be1a231)  
   
 
 ---   

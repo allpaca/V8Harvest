@@ -2,6 +2,275 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1071190.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1071190)**  
+**[Commit: [turbofan] Fixes incorrect DataView setters](https://chromium.googlesource.com/v8/v8/+/84cff42)**  
+  
+Date(Commit): Tue Apr 28 15:47:55 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2170091](https://chromium-review.googlesource.com/c/v8/v8/+/2170091)  
+Regress: [mjsunit/regress/regress-1071190.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1071190.js)  
+```javascript
+function test() {
+  const a = new DataView(new ArrayBuffer(32));
+  const b = new DataView(new ArrayBuffer(32));
+  a.setFloat64(0);
+  b.setFloat64(0, undefined);
+
+  for(let i = 0; i < 8; ++i) {
+    assertEquals(a.getUint8(i), b.getUint8(i));
+  }
+}
+
+%PrepareFunctionForOptimization(test);
+test();
+test();
+%OptimizeFunctionOnNextCall(test);
+test();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/84cff42^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=84cff42)  
+[test/mjsunit/regress/regress-1071190.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1071190.js?cl=84cff42)  
+  
+
+---   
+
+## **regress-1074586-b.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1074586)**  
+**[Commit: [wasm][liftoff][arm] Avoid double allocation of register is AtomicOp64](https://chromium.googlesource.com/v8/v8/+/980037c)**  
+  
+Date(Commit): Tue Apr 28 15:08:42 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2170088](https://chromium-review.googlesource.com/c/v8/v8/+/2170088)  
+Regress: [mjsunit/regress/wasm/regress-1074586-b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1074586-b.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(16, 32, false, true);
+const sig = builder.addType(makeSig(
+    [kWasmI32, kWasmI32, kWasmI32, kWasmI32, kWasmI32, kWasmI32, kWasmI32],
+    []));
+builder.addFunction(undefined, sig).addBodyWithEnd([
+  // signature: v_iiiiifidi
+  // body:
+  kExprI32Const, 0x00,                             // i32.const
+  kExprI64Const, 0x00,                             // i64.const
+  kAtomicPrefix, kExprI64AtomicStore, 0x00, 0x00,  // i64.atomic.store64
+  kExprEnd,                                        // end @9
+]);
+builder.addExport('main', 0);
+assertDoesNotThrow(() => builder.instantiate());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/980037c^!)  
+[src/wasm/baseline/arm/liftoff-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/arm/liftoff-assembler-arm.h?cl=980037c)  
+[test/mjsunit/regress/wasm/regress-1074586-b.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1074586-b.js?cl=980037c)  
+  
+
+---   
+
+## **regress-1074736.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1074736)**  
+**[Commit: [turbofan] Fix bug in typed array iteration](https://chromium.googlesource.com/v8/v8/+/0188a33)**  
+  
+Date(Commit): Tue Apr 28 13:36:26 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2168874](https://chromium-review.googlesource.com/c/v8/v8/+/2168874)  
+Regress: [mjsunit/compiler/regress-1074736.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1074736.js)  
+```javascript
+var arr = new Uint8Array();
+%ArrayBufferDetach(arr.buffer);
+
+function foo() {
+  return arr[Symbol.iterator]();
+}
+
+%PrepareFunctionForOptimization(foo);
+assertThrows(foo, TypeError);
+%OptimizeFunctionOnNextCall(foo);
+assertThrows(foo, TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0188a33^!)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=0188a33)  
+[test/mjsunit/compiler/regress-1074736.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1074736.js?cl=0188a33)  
+  
+
+---   
+
+## **regress-1069964.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1069964)**  
+**[Commit: [protectors] Move regexp species protector back to the isolate](https://chromium.googlesource.com/v8/v8/+/af45cf6)**  
+  
+Date(Commit): Tue Apr 28 06:40:42 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2157382](https://chromium-review.googlesource.com/c/v8/v8/+/2157382)  
+Regress: [mjsunit/regress/regress-1069964.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1069964.js)  
+```javascript
+Realm.createAllowCrossRealmAccess();
+const c = Realm.global(1);
+Realm.detachGlobal(1);
+try { c.constructor = () => {}; } catch {}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/af45cf6^!)  
+[src/builtins/builtins-regexp-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-regexp-gen.cc?cl=af45cf6)  
+[src/codegen/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/codegen/code-stub-assembler.cc?cl=af45cf6)  
+[src/codegen/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/codegen/code-stub-assembler.h?cl=af45cf6)  
+[src/execution/protectors-inl.h](https://cs.chromium.org/chromium/src/v8/src/execution/protectors-inl.h?cl=af45cf6)  
+[src/execution/protectors.cc](https://cs.chromium.org/chromium/src/v8/src/execution/protectors.cc?cl=af45cf6)  
+...  
+  
+
+---   
+
+## **regress-1071743.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1071743)**  
+**[Commit: [turbofan] Distinguish two further modes of CheckBounds](https://chromium.googlesource.com/v8/v8/+/53c1525)**  
+  
+Date(Commit): Mon Apr 27 19:45:35 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2157365](https://chromium-review.googlesource.com/c/v8/v8/+/2157365)  
+Regress: [mjsunit/compiler/regress-1071743.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1071743.js)  
+```javascript
+function foo(v) {
+  let x = Math.floor(v);
+  Number.prototype[v] = 42;
+  return x + Math.floor(v);
+}
+
+%PrepareFunctionForOptimization(foo);
+assertSame(foo(-0), -0);
+assertSame(foo(-0), -0);
+%OptimizeFunctionOnNextCall(foo);
+assertSame(foo(-0), -0);
+
+
+function bar(v) {
+  v = v ? (v|0) : -0;  // v has now type Integral32OrMinusZero.
+  let x = Math.floor(v);
+  Number.prototype[v] = 42;
+  return x + Math.floor(v);
+}
+
+%PrepareFunctionForOptimization(bar);
+assertSame(2, bar(1));
+assertSame(2, bar(1));
+%OptimizeFunctionOnNextCall(bar);
+assertSame(-0, bar(-0));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/53c1525^!)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=53c1525)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=53c1525)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=53c1525)  
+[src/compiler/redundancy-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/redundancy-elimination.cc?cl=53c1525)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=53c1525)  
+...  
+  
+
+---   
+
+## **regress-1070892.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1070892)**  
+**[Commit: [turbofan] Distinguish two further modes of CheckBounds](https://chromium.googlesource.com/v8/v8/+/53c1525)**  
+  
+Date(Commit): Mon Apr 27 19:45:35 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2157365](https://chromium-review.googlesource.com/c/v8/v8/+/2157365)  
+Regress: [mjsunit/compiler/regress-1070892.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1070892.js)  
+```javascript
+var v = {0: 0, 1: 1, '01': 7};
+function foo(index) {
+    return [v[index], v[index + 1], index + 1];
+};
+
+%PrepareFunctionForOptimization(foo);
+assertEquals(foo(0), [0, 1, 1]);
+assertEquals(foo(0), [0, 1, 1]);
+%OptimizeFunctionOnNextCall(foo);
+assertEquals(foo(0), [0, 1, 1]);
+assertEquals(foo('0'), [0, 7, '01']);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/53c1525^!)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=53c1525)  
+[src/compiler/js-call-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-call-reducer.cc?cl=53c1525)  
+[src/compiler/js-native-context-specialization.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-native-context-specialization.cc?cl=53c1525)  
+[src/compiler/redundancy-elimination.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/redundancy-elimination.cc?cl=53c1525)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=53c1525)  
+...  
+  
+
+---   
+
+## **regress-1070078.js (chromium issue)**  
+   
+**[Issue: v8_wasm_compile_fuzzer: CHECK failure: iterator != current_assessments->map().end() in register-allocator-verifier.cc](https://crbug.com/1070078)**  
+**[Commit: [arm] Change fp_fixed registers to be allocatable registers](https://chromium.googlesource.com/v8/v8/+/390ed4b)**  
+  
+Date(Commit): Fri Apr 24 17:00:36 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2161565](https://chromium-review.googlesource.com/c/v8/v8/+/2161565)  
+Regress: [mjsunit/regress/wasm/regress-1070078.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1070078.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(16, 32, false);
+builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
+  // signature: i_iii
+  // body:
+  kExprI32Const, 0x00,  // i32.const
+  kExprMemoryGrow, 0x00,  // memory.grow
+  kExprI32Const, 0xd3, 0xe7, 0x03,  // i32.const
+  kSimdPrefix, kExprI8x16Splat,  // i8x16.splat
+  kExprI32Const, 0x84, 0x80, 0xc0, 0x05,  // i32.const
+  kSimdPrefix, kExprI8x16Splat,  // i8x16.splat
+  kExprI32Const, 0x84, 0x81, 0x80, 0xc8, 0x01,  // i32.const
+  kSimdPrefix, kExprI8x16Splat,  // i8x16.splat
+  kExprI32Const, 0x19,  // i32.const
+  kSimdPrefix, kExprI8x16Splat,  // i8x16.splat
+  kSimdPrefix, kExprS8x16Shuffle,
+  0x00, 0x00, 0x17, 0x00, 0x04, 0x04, 0x04, 0x04,
+  0x04, 0x10, 0x01, 0x00, 0x04, 0x04, 0x04, 0x04,  // s8x16.shuffle
+  kSimdPrefix, kExprS8x16Shuffle,
+  0x04, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // s8x16.shuffle
+  kSimdPrefix, kExprI8x16LeU,  // i8x16.le_u
+  kSimdPrefix, kExprS1x4AnyTrue,  // s1x4.any_true
+  kExprMemoryGrow, 0x00,  // memory.grow
+  kExprDrop,
+  kExprEnd,  // end @233
+]);
+builder.addExport('main', 0);
+builder.instantiate();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/390ed4b^!)  
+[src/codegen/arm64/register-arm64.h](https://cs.chromium.org/chromium/src/v8/src/codegen/arm64/register-arm64.h?cl=390ed4b)  
+[test/mjsunit/regress/wasm/regress-1070078.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1070078.js?cl=390ed4b)  
+[test/mjsunit/wasm/wasm-module-builder.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-module-builder.js?cl=390ed4b)  
+  
+
+---   
+
 ## **regress-1073553.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1073553)**  
@@ -924,53 +1193,6 @@ new Intl.NumberFormat();
 [src/builtins/builtins-intl.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-intl.cc?cl=09d1472)  
 [test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=09d1472)  
 [test/mjsunit/regress/regress-crbug-1052647.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1052647.js?cl=09d1472)  
-  
-
----   
-
-## **regress-1055692.js (chromium issue)**  
-   
-**[Issue: Permission denied](https://crbug.com/1055692)**  
-**[Commit: [wasm-simd] Fix OpcodeLength of load splat/extend ops](https://chromium.googlesource.com/v8/v8/+/a67a16a)**  
-  
-Date(Commit): Wed Feb 26 02:57:20 2020  
-Components: None  
-Labels: None  
-Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2071401](https://chromium-review.googlesource.com/c/v8/v8/+/2071401)  
-Regress: [mjsunit/regress/wasm/regress-1055692.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1055692.js)  
-```javascript
-load('test/mjsunit/wasm/wasm-module-builder.js');
-
-const builder = new WasmModuleBuilder();
-builder.addMemory(16, 32, false);
-builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
-builder.addFunction(undefined, 0 /* sig */)
-  .addBodyWithEnd([
-kExprI32Const, 0x75,  // i32.const
-kExprI32Const, 0x74,  // i32.const
-kExprI32Const, 0x18,  // i32.const
-kSimdPrefix, ...kExprS8x16LoadSplat,  // s8x16.load_splat
-kExprUnreachable,  // unreachable
-kExprUnreachable,  // unreachable
-kExprI32Const, 0x6f,  // i32.const
-kExprI32Const, 0x7f,  // i32.const
-kExprI32Const, 0x6f,  // i32.const
-kExprDrop,
-kExprDrop,
-kExprDrop,
-kExprDrop,
-kExprDrop,
-kExprEnd,  // end @18
-]);
-builder.addExport('main', 0);
-const instance = builder.instantiate();
-print(instance.exports.main(1, 2, 3));  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/a67a16a^!)  
-[src/wasm/wasm-opcodes.h](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.h?cl=a67a16a)  
-[test/mjsunit/regress/wasm/regress-1055692.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1055692.js?cl=a67a16a)  
-[test/mjsunit/wasm/wasm-module-builder.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-module-builder.js?cl=a67a16a)  
   
 
 ---   

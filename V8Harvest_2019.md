@@ -234,12 +234,12 @@ Regress: [mjsunit/regress/regress-1029530.js](https://chromium.googlesource.com/
 
 ## **regress-crbug-1031479.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1031479)**  
+**[Issue: Security: Debug check failed: has_feedback_vector()](https://crbug.com/1031479)**  
 **[Commit: Check if a function has feedback vector before OSRing.](https://chromium.googlesource.com/v8/v8/+/83fd3e8)**  
   
 Date(Commit): Thu Dec 12 15:42:16 2019  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: reward-2000, Security_Impact-Stable, Security_Severity-Medium, allpublic, reward-inprocess, CVE_description-submitted, Release-0-M81, CVE-2020-6430  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1962850](https://chromium-review.googlesource.com/c/v8/v8/+/1962850)  
 Regress: [mjsunit/regress/regress-crbug-1031479.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1031479.js)  
 ```javascript
@@ -1995,45 +1995,6 @@ f(64);
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/fabfa41^!)  
 [src/compiler/simplified-operator-reducer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator-reducer.cc?cl=fabfa41)  
 [test/mjsunit/regress/regress-1011980.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1011980.js?cl=fabfa41)  
-  
-
----   
-
-## **regress-crbug-1007608.js (chromium issue)**  
-   
-**[Issue: DCHECK failure in CheckType(RootIndex::kException) in roots-inl.h](https://crbug.com/1007608)**  
-**[Commit: [wasm] Fix stack args in CWasmEntry stub](https://chromium.googlesource.com/v8/v8/+/f1e5488)**  
-  
-Date(Commit): Tue Oct 08 13:57:46 2019  
-Components: Blink>JavaScript, Blink>JavaScript>WebAssembly  
-Labels: Reproducible, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, Target-77, M-77  
-Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1847352](https://chromium-review.googlesource.com/c/v8/v8/+/1847352)  
-Regress: [mjsunit/regress/wasm/regress-crbug-1007608.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-crbug-1007608.js)  
-```javascript
-load("test/mjsunit/wasm/wasm-module-builder.js");
-
-let argc = 7;
-let builder = new WasmModuleBuilder();
-let types = new Array(argc).fill(kWasmI32);
-let sig = makeSig(types, []);
-let body = [];
-for (let i = 0; i < argc; ++i) {
-  body.push(kExprLocalGet, i);
-}
-body.push(kExprCallFunction, 0);
-builder.addImport('', 'f', sig);
-builder.addFunction("main", sig).addBody(body).exportAs('main');
-let instance = builder.instantiate({
-  '': {
-    'f': function() { throw "don't crash"; }
-  }
-});
-assertThrows(instance.exports.main);  
-```  
-  
-[[Diff]](https://chromium.googlesource.com/v8/v8/+/f1e5488^!)  
-[src/execution/isolate.cc](https://cs.chromium.org/chromium/src/v8/src/execution/isolate.cc?cl=f1e5488)  
-[test/mjsunit/regress/wasm/regress-crbug-1007608.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-crbug-1007608.js?cl=f1e5488)  
   
 
 ---   
