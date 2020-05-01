@@ -2,6 +2,103 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1072947.js (chromium issue)**  
+   
+**[Issue: Security: V8: Bugs in FastInitializeDerivedMap](https://crbug.com/1072947)**  
+**[Commit: [runtime] Fix miscalculated number of properties for derived class](https://chromium.googlesource.com/v8/v8/+/a4cf332)**  
+  
+Date(Commit): Thu Apr 30 15:22:27 2020  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Security_Impact-Stable, Security_Severity-High, M-81, Merge-Request-81, Merge-Review-83  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2172964](https://chromium-review.googlesource.com/c/v8/v8/+/2172964)  
+Regress: [mjsunit/regress/regress-crbug-1072947.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1072947.js)  
+```javascript
+(function() {
+  class reg extends RegExp {}
+
+  let r;
+  function trigger() {
+    try {
+      trigger();
+    } catch {
+      Reflect.construct(RegExp,[],reg);
+    }
+  }
+  trigger();
+})();
+
+(function() {
+  class reg extends Function {}
+
+  let r;
+  function trigger() {
+    try {
+      trigger();
+    } catch {
+      Reflect.construct(RegExp,[],reg);
+    }
+  }
+  trigger();
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a4cf332^!)  
+[src/objects/js-objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/js-objects.cc?cl=a4cf332)  
+[test/mjsunit/regress/regress-crbug-1072947.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1072947.js?cl=a4cf332)  
+  
+
+---   
+
+## **regress-1075953.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1075953)**  
+**[Commit: [wasm][liftoff][arm] Guarantee scratch register for spilling](https://chromium.googlesource.com/v8/v8/+/0e1ac4e)**  
+  
+Date(Commit): Thu Apr 30 11:05:25 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2172424](https://chromium-review.googlesource.com/c/v8/v8/+/2172424)  
+Regress: [mjsunit/regress/wasm/regress-1075953.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1075953.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(1, 1, false, true);
+const sig = builder.addType(makeSig([], [kWasmI32]));
+
+builder.addFunction(undefined, sig)
+  .addLocals({i32_count: 1002}).addLocals({i64_count: 3})
+  .addBodyWithEnd([
+  kExprLocalGet, 0xec, 0x07,  // local.get
+  kExprLocalGet, 0xea, 0x07,  // local.set
+  kExprLocalGet, 0x17,  // local.set
+  kExprLocalGet, 0xb5, 0x01,  // local.set
+  kExprI32Const, 0x00,  // i32.const
+  kExprIf, kWasmI32,  // if @39 i32
+    kExprI32Const, 0x91, 0xe8, 0x7e,  // i32.const
+  kExprElse,  // else @45
+    kExprI32Const, 0x00,  // i32.const
+    kExprEnd,  // end @48
+  kExprIf, kWasmStmt,  // if @49
+    kExprI32Const, 0x00,  // i32.const
+    kExprI32Const, 0x00,  // i32.const
+    kAtomicPrefix, kExprI32AtomicSub, 0x01, 0x04,  // i32.atomic.sub
+    kExprDrop,
+  kExprEnd,
+  kExprUnreachable,
+kExprEnd
+]);
+
+const instance = builder.instantiate();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0e1ac4e^!)  
+[src/wasm/baseline/arm/liftoff-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/arm/liftoff-assembler-arm.h?cl=0e1ac4e)  
+[test/mjsunit/regress/wasm/regress-1075953.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1075953.js?cl=0e1ac4e)  
+  
+
+---   
+
 ## **regress-1071190.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1071190)**  
@@ -47,7 +144,7 @@ Date(Commit): Tue Apr 28 15:08:42 2020
 Components: None  
 Labels: None  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2170088](https://chromium-review.googlesource.com/c/v8/v8/+/2170088)  
-Regress: [mjsunit/regress/wasm/regress-1074586-b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1074586-b.js)  
+Regress: [mjsunit/regress/wasm/regress-1074586-b.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1074586-b.js), [mjsunit/regress/wasm/regress-1074586.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1074586.js)  
 ```javascript
 load('test/mjsunit/wasm/wasm-module-builder.js');
 
