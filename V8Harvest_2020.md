@@ -2,6 +2,35 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1063796.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1063796)**  
+**[Commit: [ic] Fix KeyedHasIC_SloppyArguments implementation](https://chromium.googlesource.com/v8/v8/+/0d44905)**  
+  
+Date(Commit): Mon May 04 14:22:51 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2174504](https://chromium-review.googlesource.com/c/v8/v8/+/2174504)  
+Regress: [mjsunit/regress/regress-crbug-1063796.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1063796.js)  
+```javascript
+Object.prototype[1] = 1;
+function foo(baz) {
+  return 1 in arguments;
+}
+assertTrue(foo(0));
+%PrepareFunctionForOptimization(foo);
+assertTrue(foo(0));
+%OptimizeFunctionOnNextCall(foo);
+assertTrue(foo(0));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0d44905^!)  
+[src/builtins/builtins-handler-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-handler-gen.cc?cl=0d44905)  
+[test/mjsunit/regress/regress-crbug-1063796.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1063796.js?cl=0d44905)  
+  
+
+---   
+
 ## **regress-crbug-1072947.js (chromium issue)**  
    
 **[Issue: Security: V8: Bugs in FastInitializeDerivedMap](https://crbug.com/1072947)**  
