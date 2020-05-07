@@ -2,6 +2,134 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1077508.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/1077508)**  
+**[Commit: Move to slow-path in Array#sort if the array is no longer a FastJSArray](https://chromium.googlesource.com/v8/v8/+/a40e093)**  
+  
+Date(Commit): Thu May 07 08:08:39 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2187171](https://chromium-review.googlesource.com/c/v8/v8/+/2187171)  
+Regress: [mjsunit/regress/regress-crbug-1077508.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1077508.js)  
+```javascript
+const array = [, , , 0, 1, 2];
+const comparefn = () => {
+  Array.prototype.__defineSetter__("0", function () {});
+  Array.prototype.__defineSetter__("1", function () {});
+  Array.prototype.__defineSetter__("2", function () {});
+};
+
+array.sort(comparefn);
+
+assertArrayEquals([, , , , , , ], array);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a40e093^!)  
+[test/mjsunit/regress/regress-crbug-1077508.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1077508.js?cl=a40e093)  
+[third_party/v8/builtins/array-sort.tq](https://cs.chromium.org/chromium/src/v8/third_party/v8/builtins/array-sort.tq?cl=a40e093)  
+  
+
+---   
+
+## **regress-1076569.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1076569)**  
+**[Commit: [Tests] Add mjsunit test for issue 1076569.](https://chromium.googlesource.com/v8/v8/+/f19c759)**  
+  
+Date(Commit): Wed May 06 18:34:28 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2185130](https://chromium-review.googlesource.com/c/v8/v8/+/2185130)  
+Regress: [mjsunit/regress/regress-1076569.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1076569.js)  
+```javascript
+var array = new Int16Array();
+
+function foo() {
+  array[0] = "123.12";
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f19c759^!)  
+[test/mjsunit/regress/regress-1076569.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1076569.js?cl=f19c759)  
+  
+
+---   
+
+## **regress-v8-10484-1.js (v8 issue)**  
+   
+**[Issue: Unreachable due to Object.freeze and Array Pop](https://crbug.com/v8/10484)**  
+**[Commit: [builtins] Fix handling of read-only length in Array.prototype.pop](https://chromium.googlesource.com/v8/v8/+/d914a9a)**  
+  
+Date(Commit): Wed May 06 14:14:47 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2182452](https://chromium-review.googlesource.com/c/v8/v8/+/2182452)  
+Regress: [mjsunit/regress/regress-v8-10484-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-10484-1.js), [mjsunit/regress/regress-v8-10484-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-10484-2.js)  
+```javascript
+var ar;
+Object.defineProperty(Array.prototype, 3,
+    { get() { Object.freeze(ar); } });
+
+function foo() {
+  ar = [1, 2, 3];
+  ar.length = 4;
+  ar.pop();
+}
+
+assertThrows(foo, TypeError);
+assertThrows(foo, TypeError);
+assertThrows(foo, TypeError);
+assertThrows(foo, TypeError);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d914a9a^!)  
+[src/builtins/builtins-array.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-array.cc?cl=d914a9a)  
+[test/mjsunit/regress/regress-v8-10484-1.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-10484-1.js?cl=d914a9a)  
+[test/mjsunit/regress/regress-v8-10484-2.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-10484-2.js?cl=d914a9a)  
+  
+
+---   
+
+## **regress-1077804.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1077804)**  
+**[Commit: [turbofan] Fixes undefined in BigInt operations](https://chromium.googlesource.com/v8/v8/+/adc2b64)**  
+  
+Date(Commit): Wed May 06 14:07:07 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2182455](https://chromium-review.googlesource.com/c/v8/v8/+/2182455)  
+Regress: [mjsunit/regress/regress-1077804.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1077804.js)  
+```javascript
+function foo() {
+  return bar();
+}
+
+function bar(a, b) {
+  return a + b;
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+%OptimizeFunctionOnNextCall(foo);
+%PrepareFunctionForOptimization(bar);
+%OptimizeFunctionOnNextCall(bar);
+bar(2n, 2n);
+assertTrue(Number.isNaN(foo()));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/adc2b64^!)  
+[src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=adc2b64)  
+[test/mjsunit/regress/regress-1077804.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1077804.js?cl=adc2b64)  
+  
+
+---   
+
 ## **regress-crbug-1063796.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1063796)**  
