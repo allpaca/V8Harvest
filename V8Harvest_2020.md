@@ -2,6 +2,135 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1074737.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1074737)**  
+**[Commit: [parser] Treat var initializers in masking catch as assigning](https://chromium.googlesource.com/v8/v8/+/f5818c6)**  
+  
+Date(Commit): Fri May 08 14:25:50 2020  
+Components: Blink>JavaScript>Compiler, Blink>JavaScript>Parser  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Wrong-CLs, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2187272](https://chromium-review.googlesource.com/c/v8/v8/+/2187272)  
+Regress: [mjsunit/regress/regress-crbug-1074737.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1074737.js)  
+```javascript
+try {
+  throw 42
+} catch (e) {
+  function foo() { return e };
+  %PrepareFunctionForOptimization(foo);
+  %OptimizeFunctionOnNextCall(foo);
+  foo();
+  var e = "expected";
+}
+assertEquals("expected", foo());
+
+try {
+  throw 42
+} catch (f) {
+  function foo2() { return f };
+  %PrepareFunctionForOptimization(foo2);
+  %OptimizeFunctionOnNextCall(foo2);
+  foo2();
+  with ({}) {
+    var f = "expected";
+  }
+}
+assertEquals("expected", foo2());
+
+(function () {
+  function foo3() { return g };
+  %PrepareFunctionForOptimization(foo3);
+  %OptimizeFunctionOnNextCall(foo3);
+  foo3();
+  with ({}) {
+    var g = "expected";
+  }
+  assertEquals("expected", foo3());
+})()  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f5818c6^!)  
+[src/parsing/expression-scope.h](https://cs.chromium.org/chromium/src/v8/src/parsing/expression-scope.h?cl=f5818c6)  
+[test/mjsunit/regress/regress-crbug-1074737.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1074737.js?cl=f5818c6)  
+  
+
+---   
+
+## **regress-1078913.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1078913)**  
+**[Commit: [compiler] Skip interpreter trampoline copy for asm.js](https://chromium.googlesource.com/v8/v8/+/7bd4c13)**  
+  
+Date(Commit): Fri May 08 11:44:50 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2190412](https://chromium-review.googlesource.com/c/v8/v8/+/2190412)  
+Regress: [mjsunit/regress/regress-1078913.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1078913.js)  
+```javascript
+function func() {
+  return;
+}
+
+function asm_func() {
+  "use asm";
+  function f(){}
+  return {f:f};
+}
+
+function failed_asm_func() {
+  "use asm";
+  // This should fail validation
+  [x,y,z] = [1,2,3];
+  return;
+}
+
+func();
+asm_func();
+failed_asm_func();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7bd4c13^!)  
+[src/codegen/compiler.cc](https://cs.chromium.org/chromium/src/v8/src/codegen/compiler.cc?cl=7bd4c13)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=7bd4c13)  
+[test/mjsunit/regress/regress-1078913.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1078913.js?cl=7bd4c13)  
+  
+
+---   
+
+## **regress-crbug-1078825.js (chromium issue)**  
+   
+**[Issue: ASSERT: CSA_ASSERT failed: Torque assert 'Is<A>(o)' failed](https://crbug.com/1078825)**  
+**[Commit: [Promise.any] Fix crash if "then" is not callble](https://chromium.googlesource.com/v8/v8/+/ef2f167)**  
+  
+Date(Commit): Thu May 07 15:09:08 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2187495](https://chromium-review.googlesource.com/c/v8/v8/+/2187495)  
+Regress: [mjsunit/regress-crbug-1078825.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress-crbug-1078825.js)  
+```javascript
+load('test/mjsunit/test-async.js');
+
+(function() {
+  const p1 = Promise.reject(1);
+  const p2 = Promise.resolve(1);
+  Object.defineProperty(p2, "then", {});
+
+  testAsync(assert => {
+    assert.plan(1);
+    Promise.any([p1, p2]).then(
+      assert.unreachable,
+      (e) => { assert.equals(true, e instanceof TypeError); });
+    });
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ef2f167^!)  
+[src/builtins/promise-any.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/promise-any.tq?cl=ef2f167)  
+[test/mjsunit/regress-crbug-1078825.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-crbug-1078825.js?cl=ef2f167)  
+  
+
+---   
+
 ## **regress-crbug-1077508.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,slow_path](https://crbug.com/1077508)**  
