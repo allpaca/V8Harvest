@@ -1956,12 +1956,12 @@ builder.instantiate();
 
 ## **regress-crbug-1047368.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1047368)**  
+**[Issue: DCHECK failure in name->IsFlat() in factory.cc](https://crbug.com/1047368)**  
 **[Commit: [ast] Flatten Wasm function names](https://chromium.googlesource.com/v8/v8/+/6abbfe2)**  
   
 Date(Commit): Fri Jan 31 11:25:45 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-81  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2030738](https://chromium-review.googlesource.com/c/v8/v8/+/2030738)  
 Regress: [mjsunit/regress/regress-crbug-1047368.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1047368.js)  
 ```javascript
@@ -1985,12 +1985,12 @@ const long_variable = {
 
 ## **regress-1045225.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1045225)**  
+**[Issue: v8_wasm_compile_fuzzer: Stack-buffer-overflow in v8::internal::wasm::LiftoffAssembler::VarState::is_reg](https://crbug.com/1045225)**  
 **[Commit: [Liftoff] Clean up implementation of AtomicStore](https://chromium.googlesource.com/v8/v8/+/d8bb229)**  
   
 Date(Commit): Fri Jan 31 08:54:44 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Medium, Security_Impact-Head, Stability-Libfuzzer, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, M-81, Target-81, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2029414](https://chromium-review.googlesource.com/c/v8/v8/+/2029414)  
 Regress: [mjsunit/regress/wasm/regress-1045225.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1045225.js)  
 ```javascript
