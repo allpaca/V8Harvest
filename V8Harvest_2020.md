@@ -2,6 +2,208 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-v8-10513.js (v8 issue)**  
+   
+**[Issue: RegExp.prototype[@@replace] with named captures does not call proxied Get for undefined names](https://crbug.com/v8/10513)**  
+**[Commit: [regexp] Unconditionally get named capture in GetSubstitution](https://chromium.googlesource.com/v8/v8/+/4d53833)**  
+  
+Date(Commit): Tue May 12 08:45:05 2020  
+Code Review: [https://tc39.es/ecma262/#sec-getsubstitution.](https://tc39.es/ecma262/#sec-getsubstitution.)  
+Regress: [mjsunit/regress/regress-v8-10513.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-10513.js)  
+```javascript
+const access_log = [];
+const handler = {
+  get: function(obj, prop) {
+    access_log.push(prop);
+    return prop in obj ? obj[prop] : "z";
+  }
+};
+
+class ProxiedGroupRegExp extends RegExp {
+  exec(s) {
+    var result = super.exec(s);
+    if (result) {
+      result.groups = new Proxy(result.groups, handler);
+    }
+    return result;
+  }
+}
+
+let re = new ProxiedGroupRegExp("(?<x>.)");
+assertEquals("a z", "a".replace(re, "$<x> $<y>"));
+assertEquals(["x", "y"], access_log);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/4d53833^!)  
+[src/objects/string.cc](https://cs.chromium.org/chromium/src/v8/src/objects/string.cc?cl=4d53833)  
+[src/objects/string.h](https://cs.chromium.org/chromium/src/v8/src/objects/string.h?cl=4d53833)  
+[src/runtime/runtime-regexp.cc](https://cs.chromium.org/chromium/src/v8/src/runtime/runtime-regexp.cc?cl=4d53833)  
+[test/mjsunit/regress/regress-v8-10513.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-10513.js?cl=4d53833)  
+  
+
+---   
+
+## **regress-crbug-1055138-1.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition_turbo:arm,ignition_turbo](https://crbug.com/1055138)**  
+**[Commit: [ic] Fix stores to holey elements](https://chromium.googlesource.com/v8/v8/+/ae6c58c)**  
+  
+Date(Commit): Mon May 11 16:42:19 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Security_Impact-Stable, Clusterfuzz, ClusterFuzz-Verified, ClusterFuzz-Wrong, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2172090](https://chromium-review.googlesource.com/c/v8/v8/+/2172090)  
+Regress: [mjsunit/regress/regress-crbug-1055138-1.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1055138-1.js), [mjsunit/regress/regress-crbug-1055138-2.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1055138-2.js), [mjsunit/regress/regress-crbug-1055138-3.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1055138-3.js)  
+```javascript
+Object.prototype[1] = 153;
+Object.freeze(Object.prototype);
+
+(function TestSloppyStoreToReadOnlyProperty() {
+  function foo() {
+    let ar = [];
+    for (let i = 0; i < 3; i++) {
+      ar[i] = 42;
+
+      if (i == 1) {
+        // Attempt to overwrite read-only element should not change
+        // array length.
+        assertEquals(1, ar.length);
+      } else {
+        assertEquals(i + 1, ar.length);
+      }
+    }
+    return ar;
+  }
+
+  assertEquals([42,153,42], foo());
+  assertEquals([42,153,42], foo());
+  assertEquals([42,153,42], foo());
+  %PrepareFunctionForOptimization(foo);
+  assertEquals([42,153,42], foo());
+  %OptimizeFunctionOnNextCall(foo);
+  assertEquals([42,153,42], foo());
+})();
+
+(function StrictStoreToReadOnlyProperty() {
+  function foo() {
+    "use strict";
+    let ar = [];
+    let threw_exception = false;
+    for (let i = 0; i < 3; i++) {
+      try {
+        ar[i] = 42;
+      } catch(e) {
+        // Attempt to overwrite read-only element should throw and
+        // should not change array length.
+        assertTrue(i == 1);
+        assertEquals(1, ar.length);
+        assertInstanceof(e, TypeError);
+        threw_exception = true;
+      }
+    }
+    assertTrue(threw_exception);
+    return ar;
+  }
+
+  assertEquals([42,153,42], foo());
+  assertEquals([42,153,42], foo());
+  assertEquals([42,153,42], foo());
+  %PrepareFunctionForOptimization(foo);
+  assertEquals([42,153,42], foo());
+  %OptimizeFunctionOnNextCall(foo);
+  assertEquals([42,153,42], foo());
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ae6c58c^!)  
+[src/codegen/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/codegen/code-stub-assembler.cc?cl=ae6c58c)  
+[src/codegen/code-stub-assembler.h](https://cs.chromium.org/chromium/src/v8/src/codegen/code-stub-assembler.h?cl=ae6c58c)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=ae6c58c)  
+[src/ic/keyed-store-generic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/keyed-store-generic.cc?cl=ae6c58c)  
+[src/objects/elements-kind.h](https://cs.chromium.org/chromium/src/v8/src/objects/elements-kind.h?cl=ae6c58c)  
+...  
+  
+
+---   
+
+## **regress-10508.js (v8 issue)**  
+   
+**[Issue: d8 crash in src/objects/contexts-inl.h, line 170](https://crbug.com/v8/10508)**  
+**[Commit: [runtime] Return undefined as CallSite::getFunction for scripts](https://chromium.googlesource.com/v8/v8/+/7e05ebe)**  
+  
+Date(Commit): Mon May 11 13:06:11 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2193716](https://chromium-review.googlesource.com/c/v8/v8/+/2193716)  
+Regress: [mjsunit/regress/regress-10508.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-10508.js)  
+```javascript
+Error.prepareStackTrace = (error, frames) => {
+  // JSON.stringify executes the replacer, triggering the relevant
+  // code in Invoke().
+  JSON.stringify({}, frames[0].getFunction());
+};
+let v0;
+try {
+  throw new Error();
+} catch (e) {
+  e.stack
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/7e05ebe^!)  
+[src/builtins/builtins-callsite.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-callsite.cc?cl=7e05ebe)  
+[test/mjsunit/regress/regress-10508.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-10508.js?cl=7e05ebe)  
+  
+
+---   
+
+## **regress-1079449.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1079449)**  
+**[Commit: [wasm][liftoff][arm] Fix register allocation in I64AtomicCompareExchange](https://chromium.googlesource.com/v8/v8/+/a76f2cb)**  
+  
+Date(Commit): Mon May 11 10:16:46 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2192652](https://chromium-review.googlesource.com/c/v8/v8/+/2192652)  
+Regress: [mjsunit/regress/wasm/regress-1079449.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1079449.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addMemory(16, 32, false, true);
+const sig = builder.addType(makeSig(
+    [
+      kWasmI64, kWasmI32, kWasmI64, kWasmI32, kWasmI32, kWasmI32, kWasmI32,
+      kWasmI32, kWasmI32, kWasmI64, kWasmI64, kWasmI64
+    ],
+    [kWasmI64]));
+builder.addFunction(undefined, sig)
+    .addLocals({f32_count: 10})
+    .addLocals({i32_count: 4})
+    .addLocals({f64_count: 1})
+    .addLocals({i32_count: 15})
+    .addBodyWithEnd([
+      // signature: v_liliiiiiilll
+      // body:
+      kExprI32Const, 0x00,  // i32.const
+      kExprI64Const, 0x00,  // i64.const
+      kExprI64Const, 0x00,  // i64.const
+      kAtomicPrefix, kExprI64AtomicCompareExchange, 0x00,
+      0x8,      // i64.atomic.cmpxchng64
+      kExprEnd,  // end @124
+    ]);
+
+builder.addExport('main', 0);
+const instance = builder.instantiate();
+assertEquals(
+    0n, instance.exports.main(1n, 2, 3n, 4, 5, 6, 7, 8, 9, 10n, 11n, 12n, 13n));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a76f2cb^!)  
+[src/wasm/baseline/arm/liftoff-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/arm/liftoff-assembler-arm.h?cl=a76f2cb)  
+[test/mjsunit/regress/wasm/regress-1079449.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1079449.js?cl=a76f2cb)  
+  
+
+---   
+
 ## **regress-crbug-1074737.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1074737)**  
@@ -1923,12 +2125,12 @@ assertEquals(45, f());
 
 ## **regress-1048241.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1048241)**  
+**[Issue: v8_wasm_compile_fuzzer: Stack-buffer-overflow in v8::internal::wasm::LiftoffAssembler::VarState::is_reg](https://crbug.com/1048241)**  
 **[Commit: [liftoff][ia32] Fix AtomicStore register spilling](https://chromium.googlesource.com/v8/v8/+/0e2e50d)**  
   
 Date(Commit): Tue Feb 04 09:39:54 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Medium, Security_Impact-Head, Stability-Libfuzzer, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-CC, Test-Predator-Auto-Components, M-81, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2036073](https://chromium-review.googlesource.com/c/v8/v8/+/2036073)  
 Regress: [mjsunit/regress/wasm/regress-1048241.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1048241.js)  
 ```javascript
