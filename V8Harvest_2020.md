@@ -2,6 +2,118 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1079446.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1079446)**  
+**[Commit: [Turboprop] Allow removal of multiple unreachable blocks that merge.](https://chromium.googlesource.com/v8/v8/+/d9828e4)**  
+  
+Date(Commit): Thu May 14 21:22:35 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2196354](https://chromium-review.googlesource.com/c/v8/v8/+/2196354)  
+Regress: [mjsunit/regress/regress-1079446.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1079446.js)  
+```javascript
+arr = new Int16Array();
+function foo() {
+  arr.__defineGetter__('a', function() { });
+  arr[0] = "123.12";
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d9828e4^!)  
+[src/compiler/graph-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/graph-assembler.cc?cl=d9828e4)  
+[test/mjsunit/regress/regress-1079446.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1079446.js?cl=d9828e4)  
+  
+
+---   
+
+## **regress-1081030.js (chromium issue)**  
+   
+**[Issue: v8_wasm_compile_fuzzer: CHECK failure: interpreter_result.result() == result_compiled in wasm-fuzzer-common.cc](https://crbug.com/1081030)**  
+**[Commit: [wasm-simd][ia32] Fix f32x4.min AVX implementation](https://chromium.googlesource.com/v8/v8/+/6a6ec7a)**  
+  
+Date(Commit): Wed May 13 22:54:53 2020  
+Components: Blink>JavaScript  
+Labels: Stability-Crash, Reproducible, Stability-Memory-AddressSanitizer, Stability-Libfuzzer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2194471](https://chromium-review.googlesource.com/c/v8/v8/+/2194471)  
+Regress: [mjsunit/regress/wasm/regress-1081030.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1081030.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addType(makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
+  // signature: i_iii
+  // body:
+  kExprF32Const, 0xf8, 0xf8, 0xf8, 0xf8,
+  kSimdPrefix, kExprF32x4Splat,         // i8x16.splat
+  kExprF32Const, 0xf8, 0xf8, 0xf8, 0xf8,
+  kSimdPrefix, kExprF32x4Splat,         // i8x16.splat
+  kSimdPrefix, kExprF32x4Min, 0x01,     // f32x4.min
+  kSimdPrefix, kExprS1x4AnyTrue, 0x01,  // s1x4.any_true
+  kExprEnd,                             // end @16
+]);
+builder.addExport('main', 0);
+const instance = builder.instantiate();
+assertEquals(1, instance.exports.main(1, 2, 3));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6a6ec7a^!)  
+[src/compiler/backend/ia32/code-generator-ia32.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/ia32/code-generator-ia32.cc?cl=6a6ec7a)  
+[test/mjsunit/regress/wasm/regress-1081030.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1081030.js?cl=6a6ec7a)  
+[test/mjsunit/wasm/wasm-module-builder.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/wasm/wasm-module-builder.js?cl=6a6ec7a)  
+  
+
+---   
+
+## **regress-crbug-1069530.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo_opt](https://crbug.com/1069530)**  
+**[Commit: [ic] Properly handle store mode generalization in KeyedStoreIC](https://chromium.googlesource.com/v8/v8/+/bf25184)**  
+  
+Date(Commit): Wed May 13 15:14:21 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2196353](https://chromium-review.googlesource.com/c/v8/v8/+/2196353)  
+Regress: [mjsunit/regress/regress-crbug-1069530.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1069530.js)  
+```javascript
+function store(ar, index) {
+  ar[index] = "a";
+}
+
+let growable_array = [];
+
+store(growable_array, 0);
+store(growable_array, 1);
+store(growable_array, 2);
+store(growable_array, 3);
+
+var array = [];
+Object.defineProperty(array, "length", { value: 3, writable: false });
+
+store(array, 0);
+store(array, 1);
+
+store(array, 3);
+assertEquals(undefined, array[3]);
+assertEquals(3, array.length);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/bf25184^!)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=bf25184)  
+[src/objects/js-array.h](https://cs.chromium.org/chromium/src/v8/src/objects/js-array.h?cl=bf25184)  
+[src/objects/objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/objects.cc?cl=bf25184)  
+[test/mjsunit/regress/regress-crbug-1069530.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1069530.js?cl=bf25184)  
+  
+
+---   
+
 ## **regress-v8-10513.js (v8 issue)**  
    
 **[Issue: RegExp.prototype[@@replace] with named captures does not call proxied Get for undefined names](https://crbug.com/v8/10513)**  
