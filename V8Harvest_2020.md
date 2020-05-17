@@ -2,6 +2,36 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1082704.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1082704)**  
+**[Commit: [turbofan] Make GraphAssembler branching respect typing](https://chromium.googlesource.com/v8/v8/+/349e4ee)**  
+  
+Date(Commit): Fri May 15 12:50:11 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2202978](https://chromium-review.googlesource.com/c/v8/v8/+/2202978)  
+Regress: [mjsunit/compiler/regress-1082704.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1082704.js)  
+```javascript
+var array = [[]];
+function foo() {
+  const x = array[0];
+  const y = [][0];
+  return x == y;
+}
+%PrepareFunctionForOptimization(foo);
+assertFalse(foo());
+%OptimizeFunctionOnNextCall(foo);
+assertFalse(foo());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/349e4ee^!)  
+[src/compiler/graph-assembler.h](https://cs.chromium.org/chromium/src/v8/src/compiler/graph-assembler.h?cl=349e4ee)  
+[test/mjsunit/compiler/regress-1082704.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1082704.js?cl=349e4ee)  
+  
+
+---   
+
 ## **regress-1079446.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1079446)**  
