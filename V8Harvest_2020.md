@@ -2,6 +2,31 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1083450.js (chromium issue)**  
+   
+**[Issue: Security: Assertion failure in RegExpBytecodeGenerator](https://crbug.com/1083450)**  
+**[Commit: [regexp] Specify signedness when accessing packed arguments](https://chromium.googlesource.com/v8/v8/+/508569f)**  
+  
+Date(Commit): Tue May 19 05:25:15 2020  
+Components: Blink>JavaScript>Regexp  
+Labels: Test-Predator-Auto-Components, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2207137](https://chromium-review.googlesource.com/c/v8/v8/+/2207137)  
+Regress: [mjsunit/regress/regress-1083450.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1083450.js)  
+```javascript
+const source = "(?<=(?=ab)(|)abc)"
+const re = new RegExp(source);
+assertNotNull(re.exec("abc"));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/508569f^!)  
+[src/regexp/regexp-bytecode-generator.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-bytecode-generator.cc?cl=508569f)  
+[src/regexp/regexp-bytecodes.h](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-bytecodes.h?cl=508569f)  
+[src/regexp/regexp-interpreter.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-interpreter.cc?cl=508569f)  
+[test/mjsunit/regress/regress-1083450.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1083450.js?cl=508569f)  
+  
+
+---   
+
 ## **regress-1082704.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1082704)**  
@@ -82,9 +107,9 @@ builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
   // signature: i_iii
   // body:
   kExprF32Const, 0xf8, 0xf8, 0xf8, 0xf8,
-  kSimdPrefix, kExprF32x4Splat,         // i8x16.splat
+  kSimdPrefix, kExprF32x4Splat,         // f32x4.splat
   kExprF32Const, 0xf8, 0xf8, 0xf8, 0xf8,
-  kSimdPrefix, kExprF32x4Splat,         // i8x16.splat
+  kSimdPrefix, kExprF32x4Splat,         // f32x4.splat
   kSimdPrefix, kExprF32x4Min, 0x01,     // f32x4.min
   kSimdPrefix, kExprS1x4AnyTrue, 0x01,  // s1x4.any_true
   kExprEnd,                             // end @16
