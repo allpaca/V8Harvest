@@ -2,6 +2,74 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1084872.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,jitless](https://crbug.com/1084872)**  
+**[Commit: [regexp] Fix signed/unsigned confusion in regexp interpreter](https://chromium.googlesource.com/v8/v8/+/1372e35)**  
+  
+Date(Commit): Wed May 20 13:44:21 2020  
+Components: Blink>JavaScript, Blink>JavaScript>Regexp  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://crrev.com/c/2207137.](https://crrev.com/c/2207137.)  
+Regress: [mjsunit/regress/regress-1084872.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1084872.js)  
+```javascript
+const re = new RegExp("(?<=(.)\\2.*(T))");
+re.exec(undefined);
+assertEquals(re.exec("bTaLTT")[1], "b");  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/1372e35^!)  
+[src/regexp/regexp-interpreter.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-interpreter.cc?cl=1372e35)  
+[test/mjsunit/regress/regress-1084872.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1084872.js?cl=1372e35)  
+  
+
+---   
+
+## **regress-1084151.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1084151)**  
+**[Commit: [liftoff][mv] Fix merge issue in multi-value loops](https://chromium.googlesource.com/v8/v8/+/9d06369)**  
+  
+Date(Commit): Tue May 19 15:43:50 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2208851](https://chromium-review.googlesource.com/c/v8/v8/+/2208851)  
+Regress: [mjsunit/regress/wasm/regress-1084151.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1084151.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+let builder = new WasmModuleBuilder();
+let sig_i_iii = builder.addType(kSig_i_iii);
+
+builder.addFunction("main", sig_i_iii)
+  .addBody([
+    kExprLocalGet, 1,
+    kExprLocalGet, 1,
+    kExprI32Const, 5,
+    kExprLoop, sig_i_iii,
+      kExprLocalGet, 1,
+      kExprBlock, sig_i_iii,
+        kExprLocalGet, 1,
+        kExprLocalGet, 2,
+        kExprBrIf, 1,
+        kExprDrop,
+        kExprDrop,
+        kExprDrop,
+      kExprEnd,
+      kExprDrop,
+    kExprEnd])
+  .exportAs("main");
+
+let module = new WebAssembly.Module(builder.toBuffer());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9d06369^!)  
+[src/wasm/baseline/liftoff-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.cc?cl=9d06369)  
+[test/mjsunit/regress/wasm/regress-1084151.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1084151.js?cl=9d06369)  
+  
+
+---   
+
 ## **regress-1083450.js (chromium issue)**  
    
 **[Issue: Security: Assertion failure in RegExpBytecodeGenerator](https://crbug.com/1083450)**  
