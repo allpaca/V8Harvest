@@ -179,7 +179,7 @@ builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
   kExprF32Const, 0xf8, 0xf8, 0xf8, 0xf8,
   kSimdPrefix, kExprF32x4Splat,         // f32x4.splat
   kSimdPrefix, kExprF32x4Min, 0x01,     // f32x4.min
-  kSimdPrefix, kExprS1x4AnyTrue, 0x01,  // s1x4.any_true
+  kSimdPrefix, kExprV32x4AnyTrue, 0x01,  // i32x4.any_true
   kExprEnd,                             // end @16
 ]);
 builder.addExport('main', 0);
@@ -1074,7 +1074,7 @@ builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
   0x04, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // s8x16.shuffle
   kSimdPrefix, kExprI8x16LeU,  // i8x16.le_u
-  kSimdPrefix, kExprS1x16AnyTrue,  // s1x16.any_true
+  kSimdPrefix, kExprV8x16AnyTrue,  // v8x16.any_true
   kExprMemoryGrow, 0x00,  // memory.grow
   kExprDrop,
   kExprEnd,  // end @233
@@ -1463,7 +1463,7 @@ builder.addFunction(undefined, 0 /* sig */).addBodyWithEnd([
   kSimdPrefix, kExprI16x8Splat,    // i16x8.splat
   kExprMemorySize, 0x00,           // memory.size
   kSimdPrefix, kExprI16x8ShrS,     // i16x8.shr_s
-  kSimdPrefix, kExprS1x16AnyTrue,  // s1x16.any_true
+  kSimdPrefix, kExprV8x16AnyTrue,  // v8x16.any_true
   kExprMemorySize, 0x00,           // memory.size
   kExprI32RemS,                    // i32.rem_s
   kExprEnd,                        // end @15
@@ -2065,7 +2065,7 @@ kExprI32Const, 0x83, 0x01,  // i32.const
 kSimdPrefix, kExprI32x4Splat,  // i32x4.splat
 kSimdPrefix, kExprI32x4Eq,  // i32x4.eq
 kSimdPrefix, kExprI32x4Eq,  // i32x4.eq
-kSimdPrefix, kExprS1x16AnyTrue,  // s1x16.any_true
+kSimdPrefix, kExprV8x16AnyTrue,  // v8x16.any_true
 kExprEnd,  // end @64
 ]);
 builder.addExport('main', 0);
