@@ -2219,12 +2219,12 @@ main(p);
 
 ## **regress-1051912.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1051912)**  
+**[Issue: DCHECK failure in 1 == map_.count(key) in wasm-engine.cc](https://crbug.com/1051912)**  
 **[Commit: [wasm] Fix streaming compilation prefix hash](https://chromium.googlesource.com/v8/v8/+/80c7ab4)**  
   
 Date(Commit): Thu Feb 13 20:53:17 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Security_Impact-Head, Security_Severity-High, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-82, Target-82, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2054099](https://chromium-review.googlesource.com/c/v8/v8/+/2054099)  
 Regress: [mjsunit/regress/wasm/regress-1051912.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1051912.js)  
 ```javascript
