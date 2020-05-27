@@ -2,6 +2,150 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1086470.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1086470)**  
+**[Commit: Fix assert caused by SloppyArgumentsElements introduction](https://chromium.googlesource.com/v8/v8/+/fbb8dc4)**  
+  
+Date(Commit): Tue May 26 18:01:44 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2215059](https://chromium-review.googlesource.com/c/v8/v8/+/2215059)  
+Regress: [mjsunit/regress/regress-1086470.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1086470.js)  
+```javascript
+function __f_1( __v_9) {
+  return arguments;
+}
+
+var __v_48 = [];
+var __v_49 = __f_1();
+var __v_50 = 3;
+Object.preventExtensions(__v_49);
+function __f_7(__v_52, __v_53, __v_54) {
+  __v_52[__v_53] =
+  __v_54;
+}
+__v_48.__proto__ = __v_49;
+for (var __v_51 = 0; __v_51 < __v_50; __v_51++) {
+  __f_7(__v_48, __v_51);
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/fbb8dc4^!)  
+[src/objects/map.cc](https://cs.chromium.org/chromium/src/v8/src/objects/map.cc?cl=fbb8dc4)  
+[test/mjsunit/regress/regress-1086470.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1086470.js?cl=fbb8dc4)  
+  
+
+---   
+
+## **regress-1084953.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1084953)**  
+**[Commit: [TurboProp] Don't try to rewire unreachable blocks to end.](https://chromium.googlesource.com/v8/v8/+/f34771f)**  
+  
+Date(Commit): Mon May 25 10:42:52 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2209061](https://chromium-review.googlesource.com/c/v8/v8/+/2209061)  
+Regress: [mjsunit/regress/regress-1084953.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1084953.js)  
+```javascript
+function foo() {
+  try {
+    +Symbol();
+  } catch {
+  }
+}
+%PrepareFunctionForOptimization(foo);
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f34771f^!)  
+[src/compiler/backend/instruction-selector-impl.h](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/instruction-selector-impl.h?cl=f34771f)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=f34771f)  
+[src/compiler/graph-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/graph-assembler.cc?cl=f34771f)  
+[test/mjsunit/regress/regress-1083272.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1083272.js?cl=f34771f)  
+[test/mjsunit/regress/regress-1083763.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1083763.js?cl=f34771f)  
+...  
+  
+
+---   
+
+## **regress-1083763.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1083763)**  
+**[Commit: [TurboProp] Don't try to rewire unreachable blocks to end.](https://chromium.googlesource.com/v8/v8/+/f34771f)**  
+  
+Date(Commit): Mon May 25 10:42:52 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2209061](https://chromium-review.googlesource.com/c/v8/v8/+/2209061)  
+Regress: [mjsunit/regress/regress-1083763.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1083763.js)  
+```javascript
+function bar() {}
+
+function foo() {
+  try {
+    bar( "abc".charAt(4));
+  } catch (e) {}
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f34771f^!)  
+[src/compiler/backend/instruction-selector-impl.h](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/instruction-selector-impl.h?cl=f34771f)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=f34771f)  
+[src/compiler/graph-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/graph-assembler.cc?cl=f34771f)  
+[test/mjsunit/regress/regress-1083272.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1083272.js?cl=f34771f)  
+[test/mjsunit/regress/regress-1083763.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1083763.js?cl=f34771f)  
+...  
+  
+
+---   
+
+## **regress-1083272.js (chromium issue)**  
+   
+**[Issue: Crash in EffectControlLinearizer::UpdateBlockControl](https://crbug.com/1083272)**  
+**[Commit: [TurboProp] Don't try to rewire unreachable blocks to end.](https://chromium.googlesource.com/v8/v8/+/f34771f)**  
+  
+Date(Commit): Mon May 25 10:42:52 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: ClusterFuzz-Verified  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2209061](https://chromium-review.googlesource.com/c/v8/v8/+/2209061)  
+Regress: [mjsunit/regress/regress-1083272.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1083272.js)  
+```javascript
+function foo(e, t) {
+    for (var n = [e], s = e.length; s > 0; --s) {}
+    for (var s = 0; s < n.length; s++) { t() }
+}
+
+var e = 'abc';
+function t() {};
+
+%PrepareFunctionForOptimization(foo);
+foo(e, t);
+foo(e, t);
+%OptimizeFunctionOnNextCall(foo);
+foo(e, t);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f34771f^!)  
+[src/compiler/backend/instruction-selector-impl.h](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/instruction-selector-impl.h?cl=f34771f)  
+[src/compiler/effect-control-linearizer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/effect-control-linearizer.cc?cl=f34771f)  
+[src/compiler/graph-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/graph-assembler.cc?cl=f34771f)  
+[test/mjsunit/regress/regress-1083272.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1083272.js?cl=f34771f)  
+[test/mjsunit/regress/regress-1083763.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1083763.js?cl=f34771f)  
+...  
+  
+
+---   
+
 ## **regress-1084872.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,jitless](https://crbug.com/1084872)**  
