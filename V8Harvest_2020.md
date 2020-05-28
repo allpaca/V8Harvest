@@ -2396,12 +2396,12 @@ WebAssembly.compile(buffer);
 
 ## **regress-1051017.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1051017)**  
+**[Issue: Security: Type inference issue in Typer::Visitor::TypeInductionVariablePhi](https://crbug.com/1051017)**  
 **[Commit: [turbofan] Fix bug in Typer::TypeInductionVariablePhi](https://chromium.googlesource.com/v8/v8/+/a2e971c)**  
   
 Date(Commit): Thu Feb 13 13:29:25 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Compiler  
+Labels: Security_Impact-Stable, M-80, Security_Severity-High, allpublic, ClusterFuzz-Verified, CVE_description-submitted, Target-80, merge-merged-8.0, merge-merged-8.1, Release-2-M80, CVE-2020-6383, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2051957](https://chromium-review.googlesource.com/c/v8/v8/+/2051957)  
 Regress: [mjsunit/compiler/regress-1051017.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1051017.js)  
 ```javascript
