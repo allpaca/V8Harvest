@@ -2,6 +2,41 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-9441.js (v8 issue)**  
+   
+**[Issue: Loss of feedback when throwing in Generate_AddWithFeedback](https://crbug.com/v8/9441)**  
+**[Commit: Fix feedback loss when builtins throw](https://chromium.googlesource.com/v8/v8/+/fd5cc88)**  
+  
+Date(Commit): Thu May 28 12:20:37 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2202904](https://chromium-review.googlesource.com/c/v8/v8/+/2202904)  
+Regress: [mjsunit/regress/regress-9441.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-9441.js)  
+```javascript
+function foo(a, b) {
+    return a - b;
+}
+
+%PrepareFunctionForOptimization(foo);
+assertEquals(-1n, foo(1n, 2n));
+%OptimizeFunctionOnNextCall(foo);
+assertEquals(1n, foo(2n, 1n));
+assertOptimized(foo);
+assertThrows(() => foo(2n, undefined));
+assertUnoptimized(foo);
+%PrepareFunctionForOptimization(foo);
+%OptimizeFunctionOnNextCall(foo);
+assertEquals(-1n, foo(1n, 2n));
+assertOptimized(foo);
+assertThrows(() => foo(undefined, 2n));
+assertOptimized(foo);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/fd5cc88^!)  
+[src/ic/binary-op-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/binary-op-assembler.cc?cl=fd5cc88)  
+[test/mjsunit/regress/regress-9441.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-9441.js?cl=fd5cc88)  
+  
+
+---   
+
 ## **regress-1086470.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1086470)**  
@@ -708,6 +743,63 @@ load('test/mjsunit/test-async.js');
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/ef2f167^!)  
 [src/builtins/promise-any.tq](https://cs.chromium.org/chromium/src/v8/src/builtins/promise-any.tq?cl=ef2f167)  
 [test/mjsunit/regress-crbug-1078825.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress-crbug-1078825.js?cl=ef2f167)  
+  
+
+---   
+
+## **regress-5660.js (v8 issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/v8/5660)**  
+**[Commit: [turbofan] Improve equality on NumberOrOddball](https://chromium.googlesource.com/v8/v8/+/6204768)**  
+  
+Date(Commit): Thu May 07 11:58:09 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2162854](https://chromium-review.googlesource.com/c/v8/v8/+/2162854)  
+Regress: [mjsunit/regress/regress-5660.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-5660.js)  
+```javascript
+(function() {
+  function test(a, b) {
+    return a === b;
+  }
+
+  %PrepareFunctionForOptimization(test);
+  assertTrue(test(undefined, undefined));
+  assertTrue(test(undefined, undefined));
+  %OptimizeFunctionOnNextCall(test);
+  assertTrue(test(undefined, undefined));
+})();
+
+(function() {
+  function test(a, b) {
+    return a === b;
+  }
+
+  %PrepareFunctionForOptimization(test);
+  assertTrue(test(true, true));
+  assertTrue(test(true, true));
+  %OptimizeFunctionOnNextCall(test);
+  assertFalse(test(true, 1));
+})();
+
+(function() {
+  function test(a, b) {
+      return a == b;
+  }
+
+  %PrepareFunctionForOptimization(test);
+  assertTrue(test(true, true));
+  assertTrue(test(true, true));
+  %OptimizeFunctionOnNextCall(test);
+  assertTrue(test(true, 1));
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/6204768^!)  
+[src/codegen/code-stub-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/codegen/code-stub-assembler.cc?cl=6204768)  
+[src/common/globals.h](https://cs.chromium.org/chromium/src/v8/src/common/globals.h?cl=6204768)  
+[src/compiler/code-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/code-assembler.cc?cl=6204768)  
+[src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=6204768)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=6204768)  
+...  
   
 
 ---   
