@@ -2361,12 +2361,12 @@ assertOptimized(f);
 
 ## **regress-crbug-1050046.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1050046)**  
+**[Issue: ASSERT: CSA_ASSERT failed: SmiBelow(effective_index, LoadFixedArrayBaseLength(array))](https://crbug.com/1050046)**  
 **[Commit: [keys] Make sure we don't leak the enum cache in slow-mode for/in](https://chromium.googlesource.com/v8/v8/+/4b0916a)**  
   
 Date(Commit): Thu Feb 20 16:44:41 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Hotlist-Merge-Review, Stability-Crash, Reproducible, Security_Severity-High, Security_Impact-Beta, ReleaseBlock-Stable, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-CC, M-81, Target-81, merge-merged-8.1, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2066959](https://chromium-review.googlesource.com/c/v8/v8/+/2066959)  
 Regress: [mjsunit/regress/regress-crbug-1050046.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1050046.js)  
 ```javascript
