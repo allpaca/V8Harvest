@@ -2255,12 +2255,12 @@ new Intl.NumberFormat();
 
 ## **regress-1054466.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1054466)**  
+**[Issue: v8_wasm_compile_fuzzer: DCHECK failure in is_fp_pair() == other.is_fp_pair() in liftoff-register.h](https://crbug.com/1054466)**  
 **[Commit: [liftoff] Check fp_pair when looking up register for reuse](https://chromium.googlesource.com/v8/v8/+/548fda4)**  
   
 Date(Commit): Mon Feb 24 12:24:06 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Low, Security_Impact-Head, Stability-Libfuzzer, allpublic, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-CC, Test-Predator-Auto-Components, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2070006](https://chromium-review.googlesource.com/c/v8/v8/+/2070006)  
 Regress: [mjsunit/regress/wasm/regress-1054466.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1054466.js)  
 ```javascript
@@ -2729,8 +2729,9 @@ kExprEnd,   // @21
   builder.addExport('main', 0);
   assertThrows(
       () => {builder.toModule()}, WebAssembly.CompileError,
-      'WebAssembly.Module(): Compiling function #0:\"main\" failed: type ' +
-      'error in merge[0] (expected <bot>, got i32) @+57');
+      'WebAssembly.Module(): Compiling function #0:\"main\" failed: ' +
+      'inconsistent type in br_table target 1 (previous was i32, ' +
+      'this one is f32) @+60');
 })();  
 ```  
   
