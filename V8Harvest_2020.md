@@ -2,6 +2,89 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1073440.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1073440)**  
+**[Commit: [turbofan] Fix lost exception on BigInt ops](https://chromium.googlesource.com/v8/v8/+/ca54b83)**  
+  
+Date(Commit): Thu Jun 04 15:32:29 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2228493](https://chromium-review.googlesource.com/c/v8/v8/+/2228493)  
+Regress: [mjsunit/regress/regress-1073440.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1073440.js)  
+```javascript
+function foo(n) {
+  try {
+    let v = 0n;
+    for (let i = 0; i < n; ++i) {
+      v = 3n + v;
+      v = i;
+    }
+  } catch (e) {
+    return 1;
+  }
+  return 0;
+}
+
+%PrepareFunctionForOptimization(foo);
+assertEquals(foo(1), 0);
+assertEquals(foo(1), 0);
+%OptimizeFunctionOnNextCall(foo);
+assertEquals(foo(1), 0);
+assertOptimized(foo);
+%PrepareFunctionForOptimization(foo);
+assertEquals(foo(2), 1);
+assertUnoptimized(foo);
+%OptimizeFunctionOnNextCall(foo);
+assertEquals(foo(1), 0);
+assertOptimized(foo);
+assertEquals(foo(2), 1);
+assertOptimized(foo);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ca54b83^!)  
+[src/compiler/representation-change.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/representation-change.cc?cl=ca54b83)  
+[src/compiler/simplified-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-lowering.cc?cl=ca54b83)  
+[src/compiler/simplified-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.cc?cl=ca54b83)  
+[src/deoptimizer/deoptimize-reason.h](https://cs.chromium.org/chromium/src/v8/src/deoptimizer/deoptimize-reason.h?cl=ca54b83)  
+[src/ic/binary-op-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/binary-op-assembler.cc?cl=ca54b83)  
+...  
+  
+
+---   
+
+## **regress-crbug-1082293.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_no_ic](https://crbug.com/1082293)**  
+**[Commit: [ic] Fix a bug in StoreOwnIC when storing NaN values](https://chromium.googlesource.com/v8/v8/+/b613355)**  
+  
+Date(Commit): Thu Jun 04 09:35:22 2020  
+Components: Blink>JavaScript>Runtime, Blink>JavaScript>Compiler  
+Labels: Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2228886](https://chromium-review.googlesource.com/c/v8/v8/+/2228886)  
+Regress: [mjsunit/regress/regress-crbug-1082293.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1082293.js)  
+```javascript
+function f() {
+  let buffer = new ArrayBuffer(8);
+  let a32 = new Float32Array(buffer);
+  let a8 = new Uint32Array(buffer);
+  let a = { value: NaN };
+  Object.defineProperty(a32, 0, { value: NaN });
+  return a8[0];
+}
+
+let value = f();
+%EnsureFeedbackVectorForFunction(f);
+assertEquals(value, f());  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b613355^!)  
+[src/ic/accessor-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/ic/accessor-assembler.cc?cl=b613355)  
+[test/mjsunit/regress/regress-crbug-1082293.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1082293.js?cl=b613355)  
+  
+
+---   
+
 ## **regress-9441.js (v8 issue)**  
    
 **[Issue: Loss of feedback when throwing in Generate_AddWithFeedback](https://crbug.com/v8/9441)**  
