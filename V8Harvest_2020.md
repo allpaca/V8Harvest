@@ -2,6 +2,119 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1092650.js (chromium issue)**  
+   
+**[Issue: CHECK failure: object->IsHeapObject() in deoptimizer.cc](https://crbug.com/1092650)**  
+**[Commit: [deoptimizer] Add missing HeapNumber allocation](https://chromium.googlesource.com/v8/v8/+/ebfb877)**  
+  
+Date(Commit): Tue Jun 09 15:04:07 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Reproducible, Clusterfuzz, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2237145](https://chromium-review.googlesource.com/c/v8/v8/+/2237145)  
+Regress: [mjsunit/compiler/regress-1092650.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1092650.js)  
+```javascript
+({a: 2**30});
+
+function foo() {
+  return foo.arguments[0];
+}
+
+function main() {
+  foo({a: 42});
+}
+
+%PrepareFunctionForOptimization(foo);
+%PrepareFunctionForOptimization(main);
+main();
+main();
+%OptimizeFunctionOnNextCall(main);
+main();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/ebfb877^!)  
+[src/deoptimizer/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer/deoptimizer.cc?cl=ebfb877)  
+[test/mjsunit/compiler/regress-1092650.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1092650.js?cl=ebfb877)  
+  
+
+---   
+
+## **regress-1091461.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1091461)**  
+**[Commit: [turbofan] Make BigInt operations kNoThrow again](https://chromium.googlesource.com/v8/v8/+/a99ca6e)**  
+  
+Date(Commit): Tue Jun 09 11:24:09 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2235113](https://chromium-review.googlesource.com/c/v8/v8/+/2235113)  
+Regress: [mjsunit/regress/regress-1091461.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1091461.js)  
+```javascript
+function foo(a, b) {
+  let x = a + b;
+}
+function test() {
+  try {
+    foo(1n, 1n);
+  } catch (e) {}
+}
+
+%PrepareFunctionForOptimization(foo);
+%PrepareFunctionForOptimization(test);
+test();
+test();
+%OptimizeFunctionOnNextCall(test);
+test();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a99ca6e^!)  
+[src/compiler/js-type-hint-lowering.h](https://cs.chromium.org/chromium/src/v8/src/compiler/js-type-hint-lowering.h?cl=a99ca6e)  
+[src/compiler/simplified-operator.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/simplified-operator.cc?cl=a99ca6e)  
+[test/mjsunit/regress/regress-1091461.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1091461.js?cl=a99ca6e)  
+  
+
+---   
+
+## **regress-1084820.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1084820)**  
+**[Commit: [deoptimizer] Fix bug in object materialization](https://chromium.googlesource.com/v8/v8/+/d8bc336)**  
+  
+Date(Commit): Mon Jun 08 15:48:41 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2228330](https://chromium-review.googlesource.com/c/v8/v8/+/2228330)  
+Regress: [mjsunit/compiler/regress-1084820.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1084820.js)  
+```javascript
+const dummy_obj = {};
+dummy_obj.my_property = 'some HeapObject';
+dummy_obj.my_property = 'some other HeapObject';
+
+function gaga() {
+  const obj = {};
+  // Store a HeapNumber and then a Smi.
+  // This must happen in a loop, even if it's only 2 iterations:
+  for (let j = -3_000_000_000; j <= -1_000_000_000; j += 2_000_000_000) {
+    obj.my_property = j;
+  }
+  // Trigger (soft) deopt.
+  if (!%IsBeingInterpreted()) obj + obj;
+}
+
+%PrepareFunctionForOptimization(gaga);
+gaga();
+gaga();
+%OptimizeFunctionOnNextCall(gaga);
+gaga();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/d8bc336^!)  
+[src/deoptimizer/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer/deoptimizer.cc?cl=d8bc336)  
+[src/deoptimizer/deoptimizer.h](https://cs.chromium.org/chromium/src/v8/src/deoptimizer/deoptimizer.h?cl=d8bc336)  
+[test/mjsunit/compiler/regress-1084820.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1084820.js?cl=d8bc336)  
+  
+
+---   
+
 ## **regress-1073440.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1073440)**  
