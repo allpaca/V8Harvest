@@ -2366,12 +2366,12 @@ assert_return(() => call($1, "read", [12]), f32(4.0));
 
 ## **regress-crbug-1057653.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1057653)**  
+**[Issue: Security: Segmentation fault   in operator* () at ../../src/handles/handles.h:149](https://crbug.com/1057653)**  
 **[Commit: [keys] Handle RangeError in GetKeysWithPrototypeInfoCache](https://chromium.googlesource.com/v8/v8/+/22afaac)**  
   
 Date(Commit): Wed Mar 04 13:38:10 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Stability-Memory-AddressSanitizer, reward-0, Security_Impact-Head, allpublic, ClusterFuzz-Verified, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2084814](https://chromium-review.googlesource.com/c/v8/v8/+/2084814)  
 Regress: [mjsunit/regress/regress-crbug-1057653.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1057653.js)  
 ```javascript
