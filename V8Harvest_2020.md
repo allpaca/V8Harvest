@@ -2,6 +2,104 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1092011.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1092011)**  
+**[Commit: [runtime] Fix reentrancy bug in JSFunction::EnsureHasInitialMap](https://chromium.googlesource.com/v8/v8/+/0817d7e)**  
+  
+Date(Commit): Wed Jun 10 13:43:07 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2238570](https://chromium-review.googlesource.com/c/v8/v8/+/2238570)  
+Regress: [mjsunit/compiler/regress-1092011.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1092011.js)  
+```javascript
+var __caught = 0;
+
+(function main() {
+  function foo(f) {
+    const pr = new Promise(function executor() {
+      f(function resolvefun() {
+        try {
+          throw 42;
+        } catch (e) {
+          __caught++;
+        }
+      }, function rejectfun() {});
+    });
+    pr.__proto__ = foo.prototype;
+    return pr;
+  }
+  foo.__proto__ = Promise;
+  foo.prototype.then = function thenfun() {};
+  new foo();
+  foo.prototype = undefined;
+  foo.all([foo.resolve()]);
+})();
+
+assertEquals(2, __caught);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/0817d7e^!)  
+[src/objects/js-objects.cc](https://cs.chromium.org/chromium/src/v8/src/objects/js-objects.cc?cl=0817d7e)  
+[src/objects/js-objects.h](https://cs.chromium.org/chromium/src/v8/src/objects/js-objects.h?cl=0817d7e)  
+[test/mjsunit/compiler/regress-1092011.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1092011.js?cl=0817d7e)  
+  
+
+---   
+
+## **regress-v8-10568.js (v8 issue)**  
+   
+**[Issue: Incorrect CharacterRange  when UTF16 surrogate pair is present](https://crbug.com/v8/10568)**  
+**[Commit: [regexp] Fix integer overflows in TextNode::GetQuickCheckDetails](https://chromium.googlesource.com/v8/v8/+/a305d2d)**  
+  
+Date(Commit): Wed Jun 10 12:22:47 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2230527](https://chromium-review.googlesource.com/c/v8/v8/+/2230527)  
+Regress: [mjsunit/regress/regress-v8-10568.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-10568.js)  
+```javascript
+assertEquals(/[--𐀾]/u.exec("Hr3QoS3KCWXQ2yjBoDIK")[0], "H");
+assertEquals(/[0-\u{10000}]/u.exec("A0")[0], "A");  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/a305d2d^!)  
+[src/regexp/regexp-ast.h](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-ast.h?cl=a305d2d)  
+[src/regexp/regexp-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-compiler.cc?cl=a305d2d)  
+[src/regexp/regexp-compiler.h](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-compiler.h?cl=a305d2d)  
+[src/regexp/regexp-dotprinter.cc](https://cs.chromium.org/chromium/src/v8/src/regexp/regexp-dotprinter.cc?cl=a305d2d)  
+[test/mjsunit/regress/regress-v8-10568.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-10568.js?cl=a305d2d)  
+  
+
+---   
+
+## **regress-1092896.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1092896)**  
+**[Commit: [string] Don't skip GetMethod on Smis in String builtins](https://chromium.googlesource.com/v8/v8/+/b527305)**  
+  
+Date(Commit): Wed Jun 10 09:47:10 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2238030](https://chromium-review.googlesource.com/c/v8/v8/+/2238030)  
+Regress: [mjsunit/regress/regress-1092896.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1092896.js)  
+```javascript
+let count = 0
+Object.prototype[Symbol.replace] = function () {
+  count++
+}
+
+"".replace(0);
+assertEquals(count, 1);
+
+"".replace(0.1);
+assertEquals(count, 2);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b527305^!)  
+[src/builtins/builtins-string-gen.cc](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-string-gen.cc?cl=b527305)  
+[test/mjsunit/regress/regress-1092896.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1092896.js?cl=b527305)  
+  
+
+---   
+
 ## **regress-1092650.js (chromium issue)**  
    
 **[Issue: CHECK failure: object->IsHeapObject() in deoptimizer.cc](https://crbug.com/1092650)**  
