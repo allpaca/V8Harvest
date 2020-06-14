@@ -2,6 +2,98 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1094132.js (chromium issue)**  
+   
+**[Issue: CHECK failure: previously_materialized_objects->get(i) == *value in deoptimizer.cc](https://crbug.com/1094132)**  
+**[Commit: [deoptimizer] Relax a CHECK](https://chromium.googlesource.com/v8/v8/+/92012d0)**  
+  
+Date(Commit): Fri Jun 12 09:40:39 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2241517](https://chromium-review.googlesource.com/c/v8/v8/+/2241517)  
+Regress: [mjsunit/compiler/regress-1094132.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1094132.js)  
+```javascript
+function prettyPrinted() {}
+
+function formatFailureText() {
+  if (expectedText.length <= 40 && foundText.length <= 40) {
+    message += ": expected <" + expectedText + "> found <" + foundText + ">";
+    message += ":\nexpected:\n" + expectedText + "\nfound:\n" + foundText;
+  }
+}
+
+function fail(expectedText, found, name_opt) {
+  formatFailureText(expectedText, found, name_opt);
+  if (!a[aProps[i]][aProps[i]]) { }
+}
+
+function deepEquals(a, b) {
+  if (a === 0) return 1 / a === 1 / b;
+  if (typeof a !== typeof a) return false;
+  if (typeof a !== "object" && typeof a !== "function") return false;
+  if (objectClass !== classOf()) return false;
+  if (objectClass === "RegExp") { }
+}
+
+function assertEquals() {
+  if (!deepEquals()) {
+    fail(prettyPrinted(), undefined, undefined);
+  }
+}
+
+({y: {}, x: 0.42});
+
+function gaga() {
+  return {gx: bar.arguments[0], hx: baz.arguments[0]};
+}
+
+function baz() {
+  return gaga();
+}
+
+function bar(obj) {
+  return baz(obj.y);
+}
+
+function foo() {
+  bar({y: {}, x: 42});
+  try { assertEquals() } catch (e) {}
+  try { assertEquals() } catch (e) {}
+  assertEquals();
+}
+
+%PrepareFunctionForOptimization(prettyPrinted);
+%PrepareFunctionForOptimization(formatFailureText);
+%PrepareFunctionForOptimization(fail);
+%PrepareFunctionForOptimization(deepEquals);
+%PrepareFunctionForOptimization(assertEquals);
+%PrepareFunctionForOptimization(gaga);
+%PrepareFunctionForOptimization(baz);
+%PrepareFunctionForOptimization(bar);
+%PrepareFunctionForOptimization(foo);
+try { foo() } catch (e) {}
+%OptimizeFunctionOnNextCall(foo);
+try { foo() } catch (e) {}
+%PrepareFunctionForOptimization(prettyPrinted);
+%PrepareFunctionForOptimization(formatFailureText);
+%PrepareFunctionForOptimization(fail);
+%PrepareFunctionForOptimization(deepEquals);
+%PrepareFunctionForOptimization(assertEquals);
+%PrepareFunctionForOptimization(gaga);
+%PrepareFunctionForOptimization(baz);
+%PrepareFunctionForOptimization(bar);
+%PrepareFunctionForOptimization(foo);
+%OptimizeFunctionOnNextCall(foo);
+try { foo() } catch (e) {}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/92012d0^!)  
+[src/deoptimizer/deoptimizer.cc](https://cs.chromium.org/chromium/src/v8/src/deoptimizer/deoptimizer.cc?cl=92012d0)  
+[test/mjsunit/compiler/regress-1094132.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1094132.js?cl=92012d0)  
+  
+
+---   
+
 ## **regress-1092011.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1092011)**  
