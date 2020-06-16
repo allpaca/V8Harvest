@@ -2,6 +2,27 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1094226.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1094226)**  
+**[Commit: [scanner] Update outdated DCHECK](https://chromium.googlesource.com/v8/v8/+/9aa3c60)**  
+  
+Date(Commit): Mon Jun 15 07:21:43 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2245592](https://chromium-review.googlesource.com/c/v8/v8/+/2245592)  
+Regress: [mjsunit/regress/regress-1094226.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1094226.js)  
+```javascript
+assertThrows(() => eval('<' + '!'));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/9aa3c60^!)  
+[src/parsing/scanner.h](https://cs.chromium.org/chromium/src/v8/src/parsing/scanner.h?cl=9aa3c60)  
+[test/mjsunit/regress/regress-1094226.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1094226.js?cl=9aa3c60)  
+  
+
+---   
+
 ## **regress-1094132.js (chromium issue)**  
    
 **[Issue: CHECK failure: previously_materialized_objects->get(i) == *value in deoptimizer.cc](https://crbug.com/1094132)**  
