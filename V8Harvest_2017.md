@@ -6188,7 +6188,7 @@ Regress: [mjsunit/regress/regress-crbug-754177.js](https://chromium.googlesource
 %NeverOptimizeFunction(true);
 %NeverOptimizeFunction(1);
 %NeverOptimizeFunction({});
-assertThrows("%NeverOptimizeFunction()", SyntaxError);
+%NeverOptimizeFunction();
 
 %PrepareFunctionForOptimization(print);
 %OptimizeFunctionOnNextCall(print);  

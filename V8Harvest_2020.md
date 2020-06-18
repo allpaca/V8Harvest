@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-v8-10604.js (v8 issue)**  
+   
+**[Issue: d8 crash in in ReportApiFailure () at v8/src/api/api.cc:488](https://crbug.com/v8/10604)**  
+**[Commit: [d8] Fix Realm.eval script origin](https://chromium.googlesource.com/v8/v8/+/10e713b)**  
+  
+Date(Commit): Tue Jun 16 16:45:13 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2246564](https://chromium-review.googlesource.com/c/v8/v8/+/2246564)  
+Regress: [mjsunit/regress/regress-v8-10604.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-v8-10604.js)  
+```javascript
+(async function test() {
+  try {
+    import('does_not_exist.mjs');
+    assertUnreachable();
+  } catch {};
+
+  try {
+    await eval("import('does_not_exist.mjs')");
+    assertUnreachable();
+  } catch {};
+
+  try {
+    await Realm.eval(Realm.create(), "import('does_not_exist.mjs')");
+    assertUnreachable();
+  } catch {};
+})();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/10e713b^!)  
+[src/d8/d8.cc](https://cs.chromium.org/chromium/src/v8/src/d8/d8.cc?cl=10e713b)  
+[test/mjsunit/regress/regress-v8-10604.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-v8-10604.js?cl=10e713b)  
+  
+
+---   
+
 ## **regress-1094226.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1094226)**  
