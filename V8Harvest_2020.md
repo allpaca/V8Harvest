@@ -2,6 +2,40 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1053364.js (chromium issue)**  
+   
+**[Issue: Bytecode mismatch for anonymous function](https://crbug.com/1053364)**  
+**[Commit: [parser] Don't mark sloppy block functions as assigned](https://chromium.googlesource.com/v8/v8/+/92cd4d1)**  
+  
+Date(Commit): Thu Jun 18 16:24:48 2020  
+Components: Blink>JavaScript>Interpreter  
+Labels: ClusterFuzz-Verified, Via-Wizard-Security, bytecode-mismatch  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2241511](https://chromium-review.googlesource.com/c/v8/v8/+/2241511)  
+Regress: [mjsunit/regress/regress-crbug-1053364.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1053364.js)  
+```javascript
+function main() {
+  function g() {
+    function h() {
+      f;
+    }
+    {
+      function f() {}
+    }
+    f;
+    throw new Error();
+  }
+  g();
+}
+main();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/92cd4d1^!)  
+[src/parsing/preparser.cc](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.cc?cl=92cd4d1)  
+[test/mjsunit/regress/regress-crbug-1053364.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1053364.js?cl=92cd4d1)  
+  
+
+---   
+
 ## **regress-v8-10604.js (v8 issue)**  
    
 **[Issue: d8 crash in in ReportApiFailure () at v8/src/api/api.cc:488](https://crbug.com/v8/10604)**  
