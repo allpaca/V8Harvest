@@ -2484,12 +2484,12 @@ foo();
 
 ## **regress-1061803.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1061803)**  
+**[Issue: Trap in Builtins_CheckNumberInRange](https://crbug.com/1061803)**  
 **[Commit: Reland "[turbofan] Clean up ConstantFoldingReducer"](https://chromium.googlesource.com/v8/v8/+/416b0c3)**  
   
 Date(Commit): Tue Mar 17 09:49:24 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Impact-Head, Security_Severity-High, allpublic, Clusterfuzz, Test-Predator-Auto-Owner  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2098736](https://chromium-review.googlesource.com/c/v8/v8/+/2098736)  
 Regress: [mjsunit/compiler/regress-1061803.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1061803.js)  
 ```javascript
