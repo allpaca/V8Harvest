@@ -8062,7 +8062,7 @@ var {proxy, revoke} = Proxy.revocable({}, {});
 revoke();
 let builder = new WasmModuleBuilder();
 builder.addImport('m', 'q', kSig_v_v);
-WebAssembly.instantiate(builder.toModule(), proxy);  
+WebAssembly.instantiate(builder.toModule(), proxy).catch(error => {});  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/fe00be4^!)  

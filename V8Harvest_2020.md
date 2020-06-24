@@ -2,6 +2,51 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1080902.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition_turbo_opt:ia32,ignition_turbo_opt](https://crbug.com/1080902)**  
+**[Commit: [wasm] Add templatized methods for static bounds checks](https://chromium.googlesource.com/v8/v8/+/e68728a)**  
+  
+Date(Commit): Wed Jun 24 03:41:28 2020  
+Components: Blink>JavaScript>WebAssembly  
+Labels: Stability-Crash, Security_Impact-Stable, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2256858](https://chromium-review.googlesource.com/c/v8/v8/+/2256858)  
+Regress: [mjsunit/regress/wasm/regress-1080902.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1080902.js)  
+```javascript
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+let memory = new WebAssembly.Memory({
+  initial: 1,
+  maximum: 10,
+  shared: true
+});
+
+let builder = new WasmModuleBuilder();
+builder.addImportedMemory("m", "imported_mem", 0, 1 << 16, "shared");
+builder.addFunction("main", kSig_i_v).addBody([
+    kExprI32Const, 0,
+    kAtomicPrefix,
+    kExprI32AtomicLoad16U, 1, 0]).exportAs("main");
+let module = new WebAssembly.Module(builder.toBuffer());
+let instance = new WebAssembly.Instance(module, {
+  m: {
+    imported_mem: memory
+  }
+});
+instance.exports.main();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/e68728a^!)  
+[src/base/bounds.h](https://cs.chromium.org/chromium/src/v8/src/base/bounds.h?cl=e68728a)  
+[src/compiler/wasm-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?cl=e68728a)  
+[src/wasm/baseline/liftoff-compiler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-compiler.cc?cl=e68728a)  
+[src/wasm/module-instantiate.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/module-instantiate.cc?cl=e68728a)  
+[src/wasm/wasm-external-refs.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-external-refs.cc?cl=e68728a)  
+...  
+  
+
+---   
+
 ## **regress-crbug-1053364.js (chromium issue)**  
    
 **[Issue: Bytecode mismatch for anonymous function](https://crbug.com/1053364)**  
@@ -1821,7 +1866,7 @@ builder.addFunction(undefined, kSig_v_i) .addBodyWithEnd([
     kExprI32Const, 1, kExprMemoryGrow, kMemoryZero, kNumericPrefix]);
 
 const b = builder.toBuffer();
-WebAssembly.compile(b);  
+WebAssembly.compile(b).then(() => assertUnreachable(), () => { /* ignore */ })  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/4681371^!)  
@@ -2951,7 +2996,8 @@ binary.emit_bytes([kUnknownSectionCode, 2, 1, 0]);
 binary.emit_bytes([kUnknownSectionCode, 2, 1, 0]);
 binary.emit_bytes([ kExprEnd]);
 let buffer = binary.trunc_buffer();
-WebAssembly.compile(buffer);  
+WebAssembly.compile(buffer).then(
+    () => assertUnreachable(), () => {/* ignore */});  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/80c7ab4^!)  
@@ -3643,7 +3689,9 @@ let myIterable = {
   }
 };
 
-MyPromise.race(myIterable);  
+MyPromise.race(myIterable).then(
+  assertUnreachable,
+  (e) => { assertEquals(e, "then throws")});  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d8fe5b9^!)  
@@ -3819,7 +3867,8 @@ Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/1965919](https:
 Regress: [mjsunit/regress/regress-crbug-1038140.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1038140.js)  
 ```javascript
 Promise.resolve = function() { return {}; };
-Promise.race([function() {}]);  
+Promise.race([function() {}]).then(
+    () => assertUnreachable(), () => { /* ignore */})  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/766aeb9^!)  

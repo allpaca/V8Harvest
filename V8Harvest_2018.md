@@ -6288,7 +6288,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 (function testExternRefIsNull() {
   const builder = new WasmModuleBuilder();
   builder.addFunction('main', kSig_i_r)
-      .addBody([kExprLocalGet, 0, kExprRefIsNull, kWasmExternRef])
+      .addBody([kExprLocalGet, 0, kExprRefIsNull])
       .exportFunc();
 
   var wire_bytes = builder.toBuffer();
@@ -7902,7 +7902,8 @@ for (let i = 0; i < 100; ++i) {
   chain = chain.then(() => WebAssembly.instantiate(buffer));
 }
 chain.then(({module, instance}) => instance.exports.fun1155())
-    .then(res => print('Result of executing fun1155: ' + res));  
+    .then(res => print('Result of executing fun1155: ' + res))
+    .catch(() => {/* ignore */});  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/be1b2d6^!)  

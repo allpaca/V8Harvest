@@ -6161,8 +6161,12 @@ Labels: Reproducible, Stability-Memory-AddressSanitizer, Security_Severity-Low, 
 Code Review: [https://chromium-review.googlesource.com/606701](https://chromium-review.googlesource.com/606701)  
 Regress: [mjsunit/regress/regress-746909.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-746909.js)  
 ```javascript
-eval(`import('modules-skip-2.js');`);
-eval(`eval(import('modules-skip-2.js'));`);  
+eval(`import('modules-skip-2.js');`).then(
+    assertUnreachable,
+    () => { /* ignore */});
+eval(`eval(import('modules-skip-2.js'));`).then(
+    assertUnreachable,
+    () => { /* ignore */});  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/f6e20fc^!)  
@@ -7279,7 +7283,7 @@ function __f_8() {
   try {
     __f_8();
   } catch(e) {
-      import(__v_1);
+      import(__v_1).then();
   }
 }
 __f_8();  
@@ -11199,7 +11203,9 @@ Object.defineProperty(v11.__proto__, 0, {
   },
   set: function() {
     try {
-      WebAssembly.instantiate();
+      WebAssembly.instantiate().then(
+          () => assertUnreachable(),
+          () => { /* ignore */ });
       v11[0] = 0;
     } catch (e) {
       assertTrue(e instanceof RangeError);
