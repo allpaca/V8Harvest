@@ -2746,12 +2746,12 @@ try {
 
 ## **regress-crbug-1052647.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1052647)**  
+**[Issue: Security: Debug check failed: !context.get(context_entry).IsTheHole(isolate)](https://crbug.com/1052647)**  
 **[Commit: [intl] Fix Intl.NumberFormat constructor](https://chromium.googlesource.com/v8/v8/+/09d1472)**  
   
 Date(Commit): Tue Mar 03 11:33:53 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Runtime  
+Labels: Hotlist-Merge-Review, reward-0, Security_Impact-Stable, M-80, Security_Severity-High, allpublic, ClusterFuzz-Verified, CVE_description-submitted, Target-80, VulnerabilityAnalysis-Requested, VulnerabilityAnalysis-Submitted, merge-merged-8.0, merge-merged-3987, merge-merged-80, merge-merged-8.1, CVE-2020-6426, merge-merged-3987_137, Release-5-M80, merge-merged-8.3  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2082560](https://chromium-review.googlesource.com/c/v8/v8/+/2082560)  
 Regress: [mjsunit/regress/regress-crbug-1052647.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1052647.js)  
 ```javascript
