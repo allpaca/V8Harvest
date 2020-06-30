@@ -2,6 +2,43 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1098565.js (chromium issue)**  
+   
+**[Issue: Renderer process Crash / DCHECK failure in v8::internal::compiler::AllocationBuilder::Allocate](https://crbug.com/1098565)**  
+**[Commit: [turbofan] Skip optimizations for huge 'arguments'](https://chromium.googlesource.com/v8/v8/+/da67c2a)**  
+  
+Date(Commit): Mon Jun 29 16:13:29 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Arch-x86_64, Via-Wizard-Javascript, Triaged-ET, Target-85, M-85, FoundIn-83, FoundIn-84, FoundIn-85, Needs-Triage-M83  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2273121](https://chromium-review.googlesource.com/c/v8/v8/+/2273121)  
+Regress: [mjsunit/regress/regress-1098565.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1098565.js)  
+```javascript
+function f() {
+    return arguments;
+}
+
+arr = [];
+arr.length=0x8000;
+g = f.bind(null,...arr);
+
+function test() {
+    return g();
+}
+
+%PrepareFunctionForOptimization(f);
+%PrepareFunctionForOptimization(test);
+test();
+%OptimizeFunctionOnNextCall(test);
+assertEquals(test().length, arr.length);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/da67c2a^!)  
+[src/compiler/js-create-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.cc?cl=da67c2a)  
+[test/mjsunit/regress/regress-1098565.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1098565.js?cl=da67c2a)  
+  
+
+---   
+
 ## **regress-1080902.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition_turbo_opt:ia32,ignition_turbo_opt](https://crbug.com/1080902)**  
