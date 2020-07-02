@@ -2179,12 +2179,12 @@ assertEquals('bar', foo().bar.name);
 
 ## **regress-1067270.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1067270)**  
+**[Issue: Talos Security Advisory for Google Chrome PDFium (TALOS-2020-1044)](https://crbug.com/1067270)**  
 **[Commit: [regexp] Reserve space for all registers in interpreter](https://chromium.googlesource.com/v8/v8/+/30658b6)**  
   
 Date(Commit): Mon Apr 06 14:34:34 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript>Runtime, Blink>JavaScript>Regexp  
+Labels: Hotlist-Merge-Review, reward-5000, Security_Impact-Stable, M-80, Security_Severity-High, allpublic, reward-inprocess, ClusterFuzz-Verified, Test-Predator-Auto-Components, CVE_description-submitted, Target-80, M-81, Target-81, merge-merged-8.1, merge-merged-8.3, Release-2-M81, CVE-2020-6458  
 Code Review: [https://crrev.com/c/2135642](https://crrev.com/c/2135642)  
 Regress: [mjsunit/regress/regress-1067270.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1067270.js)  
 ```javascript
