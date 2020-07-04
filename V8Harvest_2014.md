@@ -9638,7 +9638,7 @@ Regress: [mjsunit/regress/regress-331444.js](https://chromium.googlesource.com/v
 ```javascript
 function boom() {
   var args = [];
-  for (var i = 0; i < 125000; i++)
+  for (var i = 0; i < 110000; i++)
     args.push(i);
   return Array.apply(Array, args);
 }

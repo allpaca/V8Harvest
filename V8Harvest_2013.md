@@ -619,7 +619,7 @@ Regress: [mjsunit/regress/regress-3027.js](https://chromium.googlesource.com/v8/
 ```javascript
 function boom() {
   var args = [];
-  for (var i = 0; i < 125000; i++) {
+  for (var i = 0; i < 110000; i++) {
     args.push(i);
   }
   return Array.apply(Array, args);
@@ -627,8 +627,8 @@ function boom() {
 
 var array = boom();
 
-assertEquals(125000, array.length);
-assertEquals(124999, array[124999]);  
+assertEquals(110000, array.length);
+assertEquals(100999, array[100999]);  
 ```  
   
 [[Diff]](https://chromium.googlesource.com/v8/v8/+/d53e387^!)  
