@@ -2,6 +2,45 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1102053.js (chromium issue)**  
+   
+**[Issue: CHECK failure: TypeError: node #NUMBER:PlainPrimitiveToNumber(input @0 = Call:Call) type Any is](https://crbug.com/1102053)**  
+**[Commit: [turbofan] Fix CHECK failure in graph verifier](https://chromium.googlesource.com/v8/v8/+/8c0b68e)**  
+  
+Date(Commit): Mon Jul 06 13:07:50 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Components, Test-Predator-Auto-Owner, M-83, Target-83  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2282523](https://chromium-review.googlesource.com/c/v8/v8/+/2282523)  
+Regress: [mjsunit/compiler/regress-1102053.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1102053.js)  
+```javascript
+const v10 =
+  {__proto__: [42], a: 1757695453, length: Promise, toString: 1337, d: []};
+
+async function foo(a) {
+  a.length;
+  for (const k in v10) {
+    for (let i = 0; i < k; i++) {}
+    for (let i = 0; i < 10; i++) {
+      function bar() {}
+      while (a < 1) {
+        for (const kk of []) await 42;
+      }
+    }
+  }
+}
+
+for (let i = 0; i < 2; i++) {
+  foo([42]);
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/8c0b68e^!)  
+[src/compiler/js-typed-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-typed-lowering.cc?cl=8c0b68e)  
+[test/mjsunit/compiler/regress-1102053.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1102053.js?cl=8c0b68e)  
+  
+
+---   
+
 ## **regress-1098565.js (chromium issue)**  
    
 **[Issue: Renderer process Crash / DCHECK failure in v8::internal::compiler::AllocationBuilder::Allocate](https://crbug.com/1098565)**  
