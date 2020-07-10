@@ -2,6 +2,86 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-1101304.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1101304)**  
+**[Commit: [liftoff] Handle unordered register pairs](https://chromium.googlesource.com/v8/v8/+/b429b8f)**  
+  
+Date(Commit): Thu Jul 09 11:05:08 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2287870](https://chromium-review.googlesource.com/c/v8/v8/+/2287870)  
+Regress: [mjsunit/regress/wasm/regress-1101304.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-1101304.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addType(makeSig(
+    [kWasmI64, kWasmI32, kWasmF64, kWasmI64, kWasmI64, kWasmI32, kWasmI64],
+    []));
+builder.addFunction(undefined, 0 /* sig */).addBody([
+  kExprI32Const,    0,          // i32.const
+  kExprIf,          kWasmStmt,  // if @3
+  kExprI32Const,    1,          // i32.const
+  kExprIf,          kWasmStmt,  // if @7
+  kExprNop,                     // nop
+  kExprElse,                    // else @10
+  kExprUnreachable,             // unreachable
+  kExprEnd,                     // end @12
+  kExprLocalGet,    0x06,       // local.get
+  kExprLocalSet,    0x00,       // local.set
+  kExprLocalGet,    0x03,       // local.get
+  kExprLocalGet,    0x00,       // local.get
+  kExprI64Sub,                  // i64.sub
+  kExprDrop,                    // drop
+  kExprUnreachable,             // unreachable
+  kExprEnd                      // end @24
+]);
+builder.toModule();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/b429b8f^!)  
+[src/wasm/baseline/arm/liftoff-assembler-arm.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/arm/liftoff-assembler-arm.h?cl=b429b8f)  
+[src/wasm/baseline/liftoff-assembler.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.h?cl=b429b8f)  
+[test/mjsunit/regress/wasm/regress-1101304.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-1101304.js?cl=b429b8f)  
+  
+
+---   
+
+## **regress-1102683.js (chromium issue)**  
+   
+**[Issue: DCHECK failure in lhs.Is(Type::NonInternal()) || lhs.Is(Type::Hole()) || FLAG_testing_d8_test_runn](https://crbug.com/1102683)**  
+**[Commit: [turbofan] Remove an incorrect DCHECK](https://chromium.googlesource.com/v8/v8/+/c681125)**  
+  
+Date(Commit): Wed Jul 08 12:38:10 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Reproducible, Stability-Memory-AddressSanitizer, Clusterfuzz, ClusterFuzz-Verified, Test-Predator-Auto-Owner, M-84, Target-84  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2287494](https://chromium-review.googlesource.com/c/v8/v8/+/2287494)  
+Regress: [mjsunit/compiler/regress-1102683.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/compiler/regress-1102683.js)  
+```javascript
+async function foo() {
+  for (let i = 0; i < 1; i++) {
+    while (i !== i) {
+      await 42;
+      function unused() {}
+      return;
+    }
+  }
+}
+
+%PrepareFunctionForOptimization(foo);
+foo();
+%OptimizeFunctionOnNextCall(foo);
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c681125^!)  
+[src/compiler/operation-typer.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/operation-typer.cc?cl=c681125)  
+[test/mjsunit/compiler/regress-1102683.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/compiler/regress-1102683.js?cl=c681125)  
+  
+
+---   
+
 ## **regress-1102053.js (chromium issue)**  
    
 **[Issue: CHECK failure: TypeError: node #NUMBER:PlainPrimitiveToNumber(input @0 = Call:Call) type Any is](https://crbug.com/1102053)**  
