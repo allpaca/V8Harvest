@@ -2398,12 +2398,12 @@ instance.exports.main(1, 2, 3);
 
 ## **regress-crbug-1060023.js (chromium issue)**  
    
-**[Issue: Permission denied](https://crbug.com/1060023)**  
+**[Issue: Security:  V8 Debug check failed: !var->has_forced_context_allocation() || var->is_used(). Fatal error in ../../src/ast/scopes.cc, line 2239](https://crbug.com/1060023)**  
 **[Commit: [parser] Already break the expression scope chain for function parameters](https://chromium.googlesource.com/v8/v8/+/4561500)**  
   
 Date(Commit): Thu Apr 02 13:16:55 2020  
-Components: None  
-Labels: None  
+Components: Blink>JavaScript  
+Labels: reward-0, Security_Severity-Low, Security_Impact-Stable, allpublic, ClusterFuzz-Verified, Test-Predator-Auto-Components, M-82  
 Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2134006](https://chromium-review.googlesource.com/c/v8/v8/+/2134006)  
 Regress: [mjsunit/regress/regress-crbug-1060023.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1060023.js)  
 ```javascript
