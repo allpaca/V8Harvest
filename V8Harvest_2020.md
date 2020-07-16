@@ -2,6 +2,116 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-crbug-1105383.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1105383)**  
+**[Commit: [hashtable] Don't add PropertyCell to GlobalDictionary too early](https://chromium.googlesource.com/v8/v8/+/f73c57b)**  
+  
+Date(Commit): Wed Jul 15 08:21:45 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, v8-foozzie-failure  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2292230](https://chromium-review.googlesource.com/c/v8/v8/+/2292230)  
+Regress: [mjsunit/regress/regress-crbug-1105383.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1105383.js)  
+```javascript
+'use strict';
+Object.defineProperty(
+    this.__proto__, "boom",
+    { value:153, writable:true, configurable: true, enumerable:false });
+
+var good = 1;
+try {
+  boom = 42;
+} catch (e) {}
+
+var properties = Object.getOwnPropertyNames(this);
+
+assertTrue(properties.findIndex(e => e == "good") >= 0);
+assertEquals(properties.findIndex(e => e == "boom"), -1);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f73c57b^!)  
+[src/objects/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/objects/lookup.cc?cl=f73c57b)  
+[test/mjsunit/regress/regress-crbug-1104711.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1104711.js?cl=f73c57b)  
+[test/mjsunit/regress/regress-crbug-1105383.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1105383.js?cl=f73c57b)  
+  
+
+---   
+
+## **regress-crbug-1104711.js (chromium issue)**  
+   
+**[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1104711)**  
+**[Commit: [hashtable] Don't add PropertyCell to GlobalDictionary too early](https://chromium.googlesource.com/v8/v8/+/f73c57b)**  
+  
+Date(Commit): Wed Jul 15 08:21:45 2020  
+Components: Blink>JavaScript>Compiler  
+Labels: Stability-Crash, Reproducible, Clusterfuzz, ClusterFuzz-Verified, v8-foozzie-failure, Test-Predator-Auto-Owner  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2292230](https://chromium-review.googlesource.com/c/v8/v8/+/2292230)  
+Regress: [mjsunit/regress/regress-crbug-1104711.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1104711.js)  
+```javascript
+__proto__ = {x:1};
+try {
+  foo();
+} catch (e) {}
+function foo() {
+  'use strict';
+  x = 42;
+}
+x = 42;
+foo();  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/f73c57b^!)  
+[src/objects/lookup.cc](https://cs.chromium.org/chromium/src/v8/src/objects/lookup.cc?cl=f73c57b)  
+[test/mjsunit/regress/regress-crbug-1104711.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1104711.js?cl=f73c57b)  
+[test/mjsunit/regress/regress-crbug-1105383.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1105383.js?cl=f73c57b)  
+  
+
+---   
+
+## **regress-crbug-1104608.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1104608)**  
+**[Commit: Fix "named" loads for large TypedArray indices](https://chromium.googlesource.com/v8/v8/+/c90353e)**  
+  
+Date(Commit): Tue Jul 14 12:09:04 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2295606](https://chromium-review.googlesource.com/c/v8/v8/+/2295606)  
+Regress: [mjsunit/regress/regress-crbug-1104608.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-crbug-1104608.js)  
+```javascript
+const kSize = 4294967296;
+if (%TypedArrayMaxLength() >= kSize) {
+  const array = new Uint8Array(kSize);
+
+  function f() {
+    let result = array["4294967295"];
+    assertEquals(0, result);
+  }
+
+  function g() {
+    array["4294967295"] = 1;
+  }
+
+  %PrepareFunctionForOptimization(f);
+  for (var i = 0; i < 3; i++) f();
+  %OptimizeFunctionOnNextCall(f);
+  f();
+
+  %PrepareFunctionForOptimization(g);
+  for (var i = 0; i < 3; i++) g();
+  %OptimizeFunctionOnNextCall(g);
+  g();
+}  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/c90353e^!)  
+[src/ic/ic.cc](https://cs.chromium.org/chromium/src/v8/src/ic/ic.cc?cl=c90353e)  
+[test/mjsunit/mjsunit.status](https://cs.chromium.org/chromium/src/v8/test/mjsunit/mjsunit.status?cl=c90353e)  
+[test/mjsunit/regress/regress-crbug-1104608.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-crbug-1104608.js?cl=c90353e)  
+  
+
+---   
+
 ## **regress-1101304.js (chromium issue)**  
    
 **[Issue: Permission denied](https://crbug.com/1101304)**  
