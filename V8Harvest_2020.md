@@ -2,6 +2,97 @@
 The Harvest of V8 regress in 2020.  
   
 
+## **regress-10702.js (v8 issue)**  
+   
+**[Issue: Liftoff has incorrect behavior, does not take br_if when it should](https://crbug.com/v8/10702)**  
+**[Commit: [liftoff] Fix missing stack move](https://chromium.googlesource.com/v8/v8/+/42b4f15)**  
+  
+Date(Commit): Fri Jul 17 13:52:28 2020  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2304574](https://chromium-review.googlesource.com/c/v8/v8/+/2304574)  
+Regress: [mjsunit/regress/wasm/regress-10702.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/wasm/regress-10702.js)  
+```javascript
+load('test/mjsunit/wasm/wasm-module-builder.js');
+
+const builder = new WasmModuleBuilder();
+builder.addGlobal(kWasmI32, 1).init = 35;
+builder.addType(makeSig([], [kWasmI32]));
+builder.addType(makeSig([kWasmI32, kWasmI32], [kWasmI32]));
+builder.addFunction(undefined, 0 /* sig */).addBody([
+  // signature: i_v
+  // body:
+  kExprI32Const, 1,  // i32.const
+]);
+builder.addFunction(undefined, 0 /* sig */).addBody([
+  // signature: i_v
+  // body:
+  kExprI32Const, 0,  // i32.const
+]);
+builder.addFunction(undefined, 1 /* sig */).addBody([
+  // signature: i_ii
+  // body:
+  kExprBlock, kWasmI32,                   // block @1 i32
+  kExprF64Const, 0, 0, 0, 0, 0, 0, 0, 0,  // f64.const
+  kExprI32SConvertF64,                    // i32.trunc_f64_s
+  kExprCallFunction, 1,                   // call function #1: i_v
+  kExprBrIf, 0,                           // br_if depth=0
+  kExprGlobalGet, 0,                      // global.get
+  kExprCallFunction, 0,                   // call function #0: i_v
+  kExprBrIf, 0,                           // br_if depth=0
+  kExprI32ShrS,                           // i32.shr_s
+  kExprEnd,                               // end @24
+]);
+builder.addExport('f', 2);
+const instance = builder.instantiate();
+assertEquals(35, instance.exports.f(0, 0));  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/42b4f15^!)  
+[src/wasm/baseline/liftoff-assembler.cc](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.cc?cl=42b4f15)  
+[src/wasm/baseline/liftoff-assembler.h](https://cs.chromium.org/chromium/src/v8/src/wasm/baseline/liftoff-assembler.h?cl=42b4f15)  
+[test/mjsunit/regress/wasm/regress-10702.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/wasm/regress-10702.js?cl=42b4f15)  
+  
+
+---   
+
+## **regress-1105746.js (chromium issue)**  
+   
+**[Issue: Permission denied](https://crbug.com/1105746)**  
+**[Commit: [turbofan] Skip optimizations for large unmapped 'arguments'](https://chromium.googlesource.com/v8/v8/+/2ba8049)**  
+  
+Date(Commit): Thu Jul 16 12:15:55 2020  
+Components: None  
+Labels: None  
+Code Review: [https://chromium-review.googlesource.com/c/v8/v8/+/2300481](https://chromium-review.googlesource.com/c/v8/v8/+/2300481)  
+Regress: [mjsunit/regress/regress-1105746.js](https://chromium.googlesource.com/v8/v8/+/master/test/mjsunit/regress/regress-1105746.js)  
+```javascript
+'use strict'
+
+function f() {
+    return arguments;
+}
+
+var arr = [];
+arr.length=0x8000;
+var g = f.bind(null,...arr);
+
+function test() {
+    return g();
+}
+
+%PrepareFunctionForOptimization(f);
+%PrepareFunctionForOptimization(test);
+test();
+%OptimizeFunctionOnNextCall(test);
+assertEquals(test().length, arr.length);  
+```  
+  
+[[Diff]](https://chromium.googlesource.com/v8/v8/+/2ba8049^!)  
+[src/compiler/js-create-lowering.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/js-create-lowering.cc?cl=2ba8049)  
+[test/mjsunit/regress/regress-1105746.js](https://cs.chromium.org/chromium/src/v8/test/mjsunit/regress/regress-1105746.js?cl=2ba8049)  
+  
+
+---   
+
 ## **regress-crbug-1105383.js (chromium issue)**  
    
 **[Issue: V8 correctness failure in configs: x64,ignition:x64,ignition_turbo](https://crbug.com/1105383)**  
